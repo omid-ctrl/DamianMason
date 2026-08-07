@@ -290,8 +290,8 @@ export default function XtremeAgPage() {
                 </div>
                 <figcaption className="dm-figure__caption">
                   <span className="dm-figure__folio">Fig. 04 </span>
-                  Cutting the Curve, mid-episode. Two men in an office and a shed, in front of
-                  a cornfield neither of them is standing in.
+                  Cutting the Curve, mid-episode. Two men on a video call, in front of a
+                  cornfield neither of them is standing in.
                 </figcaption>
               </figure>
             </div>
