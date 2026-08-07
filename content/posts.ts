@@ -50,11 +50,41 @@
  *     but it is the lede of somebody else's Straight Arrow News article and
  *     must not be republished as Damian's copy.
  *
- * `heroImage` is the filename as it exists in `_source/media/`. Both are raw
- * macOS screenshots of another publisher's page, so both want replacing.
+ * IMAGES. `image` was `heroImage` until this pass, and it held a raw
+ * `_source/media/` capture filename that no component could resolve and no
+ * component read. It is now the public path, and it is read twice: PostCard
+ * puts it in a 1:1 thumb and the post template puts it in a 3:2 plate.
+ *
+ * ONE OF THE TWO WAS ALSO POINTING AT THE WRONG FILE. The Eggflation post
+ * carried `Screenshot-2023-04-19-at-11.40.07-AM.png`, which normalizes to
+ * `xtremeag-video-interview.png`: a Cutting the Curve podcast frame with two
+ * farmers in it and no Straight Arrow News anywhere. The right frame is
+ * `news-interview-cal-maine.png`, which carries the EGGFLATION kicker, the
+ * headline CAL-MAINE SEES PROFIT INCREASE 165X, and a lower third naming
+ * Simone Del Rosario, who is the byline in this post's own body.
+ *
+ * THERE IS NO ALT FIELD HERE, on purpose. Both of these frames also appear in
+ * content/press.ts, so both are multi-call-site files and content/image-alt.ts
+ * owns their descriptions. An `imageAlt` beside `image` would put a second
+ * description of the same file in a second place, which is the drift that file
+ * exists to stop. A future post whose image has exactly one call site is the
+ * point at which to add the field, not before.
+ *
  * `sourceUrl` is the outbound piece the post is about. Neither post linked to
  * it on the old site, which is the single biggest defect on both.
  */
+
+/**
+ * The frame a post is about. `width` and `height` are the real dimensions of
+ * the file in public/, which is what lets both call sites reserve the box
+ * before the bytes arrive. Re-measure them if CROPS in
+ * scripts/normalize-assets.mjs ever moves a rectangle.
+ */
+export type PostImage = {
+  src: string;
+  width: number;
+  height: number;
+};
 
 export type Post = {
   slug: string;
@@ -80,8 +110,13 @@ export type Post = {
   authorRole?: 'wrote' | 'posted';
   /** Full body copy, verbatim from the source, as markdown. */
   body: string;
-  heroImage?: string;
-  heroAlt?: string;
+  /**
+   * Public path to the frame this post is about. Alt text is not here: see the
+   * IMAGES note above. Optional, because a post can be written before there is
+   * a frame for it, and both call sites render nothing rather than a
+   * placeholder.
+   */
+  image?: PostImage;
   sourceUrl?: string;
 };
 
@@ -103,8 +138,7 @@ export const posts: Post[] = [
     // break, standing in for the `<br>` that separated the two lines on the
     // live page.
     body: 'Damian featured in Straight Arrow News  \nBy Simone Del Rosario',
-    heroImage: 'Screenshot-2023-04-19-at-11.40.07-AM.png',
-    heroAlt: 'Straight Arrow News',
+    image: { src: '/img/photos/news-interview-cal-maine.png', width: 1998, height: 1014 },
     sourceUrl:
       'https://straightarrownews.com/cc/eggflation-gives-producers-record-profits-while-internet-mocks-outrageous-prices/',
   },
@@ -122,8 +156,7 @@ export const posts: Post[] = [
     // Verbatim and complete. A whole Divi section, row, column and text module
     // were built to hold this one sentence.
     body: 'Damian Mason featured in Cheddar News',
-    heroImage: 'Screenshot-2023-04-19-at-12.16.28-PM.png',
-    heroAlt: 'Damian Mason on Cheddar News',
+    image: { src: '/img/photos/cheddar-news-food-supply.png', width: 2000, height: 1124 },
     // The segment itself. It lived on /blog-news/ as a YouTube embed while
     // this post showed only a still frame of it.
     sourceUrl: 'https://www.youtube.com/watch?v=5FUIE6Ks0Ok',

@@ -69,6 +69,20 @@ export const imageAlt = {
   '/img/photos/do-business-better-book-cover.png':
     'Cover of Do Business Better by Damian Mason, published by Wiley, with a foreword by Larry Winget.',
 
+  /* --- Broadcast frames ------------------------------------------------ */
+  /* Two frames that a blog post and a media row both carry, which is what put
+     them in here. The burned-in headline is named in each string, because on
+     these two the headline is the reason the frame is on the page at all. */
+
+  /** /blog/, both post routes, /blog-news/. The kicker and the headline are
+   *  Straight Arrow News's own, set into the broadcast graphic. */
+  '/img/photos/news-interview-cal-maine.png':
+    'Damian Mason and Simone Del Rosario in a two-box Straight Arrow News interview, both named on screen, under an EGGFLATION kicker and the headline CAL-MAINE SEES PROFIT INCREASE 165X.',
+
+  /** /blog/, both post routes, /blog-news/. */
+  '/img/photos/cheddar-news-food-supply.png':
+    'Damian Mason on Cheddar News in a red polo, opposite an anchor in a New York studio, under the headline HOW MUCH OF THE U.S. FOOD SUPPLY IS AT RISK with a market ticker running below it.',
+
   /* --- Marks and cover art -------------------------------------------- */
 
   /** /the-business-of-agriculture/, /podcasts/. */
@@ -90,3 +104,22 @@ export const imageAlt = {
 } as const;
 
 export type SharedImagePath = keyof typeof imageAlt;
+
+/**
+ * The description this object owns for `src`.
+ *
+ * A component that renders a path out of the content layer cannot know at the
+ * type level whether that path is in here, so it asks. THIS THROWS rather than
+ * returning undefined: every call site is a server component rendered at build
+ * time, so a missing entry stops the build instead of shipping an image with
+ * an empty alt, which is the failure mode this whole file exists to prevent.
+ */
+export function sharedImageAlt(src: string): string {
+  const alt = (imageAlt as Record<string, string | undefined>)[src];
+  if (!alt) {
+    throw new Error(
+      `No shared alt for ${src}. Either add it to content/image-alt.ts, or, if this is the file's only call site, pass the alt inline.`,
+    );
+  }
+  return alt;
+}

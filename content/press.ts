@@ -30,11 +30,42 @@
  *   - podcast: an audio interview, here a live radio spot.
  *   - video: reserved, unused by the current nine.
  *
- * KNOWN DEFECTS on the source page, for a later phase: all six press images
- * are raw macOS screenshots with empty alt text, three of them load from the
- * staging host, and two have a raw U+202F narrow no-break space inside the
- * filename. No image path is stored here, so none of that carries over.
+ * IMAGES. The old page's six were raw macOS captures with empty alt text,
+ * three of them loading from the staging host, and two with a raw U+202F
+ * narrow no-break space inside the filename. None of that carries over.
+ *
+ * What does carry over is `thumb`, on five of the nine, and only on five. Each
+ * of those five is a broadcast frame whose burned-in headline is the headline
+ * of the row it sits beside: EGGFLATION over the Cal-Maine row, HIGH FOOD
+ * PRICES over the food-prices row, GLOBAL FERTILIZER SHORTAGE GETTING EVEN
+ * WORSE over the fertilizer row. That match is the whole reason the thumb is
+ * defensible under DESIGN_SYSTEM 6.4 rule 3, and it is why the other four rows
+ * get nothing rather than something.
+ *
+ * THE FORBES ROW GETS NOTHING ON PURPOSE. `forbes-feature.png` exists and is
+ * about the right article, but it is a promo card with a READ ARTICLE button
+ * drawn into the pixels. A button that cannot be clicked, one line above a
+ * link that can, is worse than no picture.
  */
+
+/**
+ * An optional square frame for a row's left rail. `width` and `height` are the
+ * real dimensions of the file in public/; re-measure them if CROPS in
+ * scripts/normalize-assets.mjs ever moves a rectangle.
+ */
+export type PressThumb = {
+  src: string;
+  width: number;
+  height: number;
+  /**
+   * The inline description, for a file whose only call site is this list.
+   *
+   * LEAVE IT OUT for a file that content/image-alt.ts owns, and do not retype
+   * the string here: that file's first rule is that a shared file may not have
+   * two descriptions. PressList reads it from there instead.
+   */
+  alt?: string;
+};
 
 export type PressItem = {
   id: string;
@@ -43,6 +74,7 @@ export type PressItem = {
   url: string;
   date?: string;
   type: 'article' | 'podcast' | 'video' | 'tv';
+  thumb?: PressThumb;
 };
 
 export const press: PressItem[] = [
@@ -52,6 +84,15 @@ export const press: PressItem[] = [
     title: 'Soybeans are having an incredible year. That’s bad for prices.',
     url: 'https://san.com/cc/soybeans-are-having-an-incredible-year-thats-bad-for-prices/',
     type: 'article',
+    // Straight Arrow News, 21 August 2024, which is the month this piece ran.
+    // Same two-shot and the same correspondent as the Eggflation appearance,
+    // two years later.
+    thumb: {
+      src: '/img/photos/san-interview-2.png',
+      width: 952,
+      height: 478,
+      alt: 'Damian Mason in a ball cap at his podcast desk, opposite Straight Arrow News correspondent Simone Del Rosario, both named on screen, his plate reading THE BUSINESS OF AGRICULTURE.',
+    },
   },
   {
     id: 'san-bird-flu-egg-prices',
@@ -80,6 +121,10 @@ export const press: PressItem[] = [
       '‘Eggflation’ gives producers record profits while internet mocks outrageous prices',
     url: 'https://straightarrownews.com/cc/eggflation-gives-producers-record-profits-while-internet-mocks-outrageous-prices/',
     type: 'article',
+    // The frame carries the word EGGFLATION, which is the word in this row's
+    // own title. Alt is in content/image-alt.ts: the blog post at
+    // /blog/eggflation-gives-producers-record-profits/ carries the same file.
+    thumb: { src: '/img/photos/news-interview-cal-maine.png', width: 1998, height: 1014 },
   },
   {
     id: 'san-high-food-prices-persist',
@@ -87,6 +132,12 @@ export const press: PressItem[] = [
     title: 'Why high food prices will persist even when inflation eases elsewhere',
     url: 'https://straightarrownews.com/cc/why-high-food-prices-will-persist-even-when-inflation-eases-elsewhere/',
     type: 'article',
+    thumb: {
+      src: '/img/photos/food-inflation-episode.png',
+      width: 1996,
+      height: 1012,
+      alt: 'Damian Mason on Straight Arrow News in front of a Business of Agriculture backdrop, under a HIGH FOOD PRICES kicker and the headline WHEN WILL FOOD INFLATION GO DOWN?',
+    },
   },
   {
     // Embed only on the old page. Same segment as the blog post at
@@ -96,6 +147,10 @@ export const press: PressItem[] = [
     title: 'How the climate crisis is causing food shortages globally',
     url: 'https://www.youtube.com/watch?v=5FUIE6Ks0Ok',
     type: 'tv',
+    // Alt is in content/image-alt.ts: the blog post at
+    // /blog/how-the-climate-crisis-is-causing-food-shortages-globally/
+    // carries the same file.
+    thumb: { src: '/img/photos/cheddar-news-food-supply.png', width: 2000, height: 1124 },
   },
   {
     // "Bison Ag Supply And Service" capitalizes "And" on the live page.
@@ -114,6 +169,12 @@ export const press: PressItem[] = [
       'Global fertilizer shortage prompts farmers to consider more sustainable practices',
     url: 'https://cheddar.com/media/global-fertilizer-shortage-prompts-farmers-to-consider-more-sustainable-practices',
     type: 'tv',
+    thumb: {
+      src: '/img/photos/cheddar-news-fertilizer-shortage.png',
+      width: 1828,
+      height: 920,
+      alt: 'Damian Mason in an XtremeAg polo opposite a Cheddar News anchor in Washington, under the headline GLOBAL FERTILIZER SHORTAGE GETTING EVEN WORSE.',
+    },
   },
   {
     // The on-page heading spells it "NewsMaxTV" and the iframe title spells it

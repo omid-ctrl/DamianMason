@@ -441,13 +441,6 @@
     "w": 2000,
     "h": 1500
   },
-  "photos/keynote-stage-xtremeag": {
-    "out": [
-      "/img/photos/keynote-stage-xtremeag.jpg"
-    ],
-    "w": 1500,
-    "h": 2000
-  },
   "photos/breakout-session-audience": {
     "out": [
       "/img/photos/breakout-session-audience.jpg"
@@ -496,20 +489,6 @@
     ],
     "w": 1467,
     "h": 2000
-  },
-  "photos/keynote-stage-wide": {
-    "out": [
-      "/img/photos/keynote-stage-wide.jpg"
-    ],
-    "w": 1500,
-    "h": 2000
-  },
-  "photos/book-signing-xtremeag": {
-    "out": [
-      "/img/photos/book-signing-xtremeag.png"
-    ],
-    "w": 1512,
-    "h": 1209
   },
   "photos/do-business-better-book-cover": {
     "out": [
@@ -560,13 +539,6 @@
     "w": 640,
     "h": 498
   },
-  "photos/acres-tv-episode-grid": {
-    "out": [
-      "/img/photos/acres-tv-episode-grid.png"
-    ],
-    "w": 1692,
-    "h": 1852
-  },
   "photos/acres-tv-arlan-suderman": {
     "out": [
       "/img/photos/acres-tv-arlan-suderman.png"
@@ -592,15 +564,8 @@
     "out": [
       "/img/photos/xtremeag-video-interview.png"
     ],
-    "w": 1800,
-    "h": 1014
-  },
-  "photos/xtremeag-cutting-the-curve-2": {
-    "out": [
-      "/img/photos/xtremeag-cutting-the-curve-2.png"
-    ],
-    "w": 1806,
-    "h": 1018
+    "w": 1798,
+    "h": 853
   },
   "photos/cheddar-news-food-supply": {
     "out": [
@@ -627,50 +592,43 @@
     "out": [
       "/img/photos/news-interview-cal-maine.png"
     ],
-    "w": 2000,
-    "h": 1129
+    "w": 1998,
+    "h": 1014
   },
   "photos/food-inflation-episode": {
     "out": [
       "/img/photos/food-inflation-episode.png"
     ],
     "w": 1996,
-    "h": 1124
+    "h": 1012
   },
   "photos/cheddar-news-fertilizer-shortage": {
     "out": [
       "/img/photos/cheddar-news-fertilizer-shortage.png"
     ],
     "w": 1828,
-    "h": 1030
+    "h": 920
   },
   "photos/green-screen-studio": {
     "out": [
       "/img/photos/green-screen-studio.png"
     ],
-    "w": 730,
+    "w": 728,
     "h": 414
   },
   "photos/equipment-factory-tour": {
     "out": [
       "/img/photos/equipment-factory-tour.png"
     ],
-    "w": 1800,
-    "h": 1014
-  },
-  "photos/san-interview-1": {
-    "out": [
-      "/img/photos/san-interview-1.png"
-    ],
-    "w": 951,
-    "h": 532
+    "w": 1798,
+    "h": 1012
   },
   "photos/san-interview-2": {
     "out": [
       "/img/photos/san-interview-2.png"
     ],
     "w": 952,
-    "h": 530
+    "h": 478
   },
   "skipped": [
     {
@@ -744,6 +702,30 @@
     {
       "src": "_source/media/BOASG-BRAND-LOGO-FINAL-WHITE.jpg",
       "reason": "Lower resolution (1000px) duplicate of the supplied Damian Mason Logos/BOASG-BRAND-LOGO-FINAL-WHITE.jpg (1500px), which is used instead."
+    },
+    {
+      "src": "_source/media/book-signing-IMG_2446.png",
+      "reason": "The same 1512x1209 StoneX book-signing frame that already ships as photos/book-signing-stonex.jpg, which /reviews/ carries. Mean absolute difference between the two is 3.2 of 255, which is JPEG quantisation and nothing else. It was also misnamed: there is no XtremeAg in the frame."
+    },
+    {
+      "src": "_source/media/Screenshot-2024-08-21-at-11.48.25 AM.png",
+      "reason": "The same Straight Arrow News two-shot as Screenshot-2024-08-21-at-11.49.00 AM.png, 35 seconds earlier on the same clock (0:51 against 0:53) with the same two lower thirds. That one is cropped and placed; this one is the second take."
+    },
+    {
+      "src": "_source/media/Screenshot-2023-04-19-at-11.46.37-AM.png",
+      "reason": "A second Cutting the Curve player capture beside Screenshot-2023-04-18-at-5.55.45-PM.png. Same show, same two-panel layout, same player chrome, and no route needs a second one."
+    },
+    {
+      "src": "_source/media/IMG_3597-rotated.jpg",
+      "reason": "A wide XtremeAg stage frame, 1500x2000, roughly half ballroom carpet, with Damian about 200px tall. That is the failure DESIGN_SYSTEM 6.3 demotes out of a hero and out of a plate."
+    },
+    {
+      "src": "_source/media/332503780_161776152950398_8554729294588018579_n.jpeg",
+      "reason": "The other frame of the same moment as IMG_3597-rotated.jpg, shot seconds apart. The tight crop of it, photos/keynote-stage-xtremeag-portrait.jpg, is what ships on /xtreme-ag/ and it is committed rather than generated, so nothing is lost by dropping the wide frame. Nothing in the wide frame is absent from the crop."
+    },
+    {
+      "src": "_source/media/acres-tv-screenshot.png",
+      "reason": "A streaming-service episode grid: a UI screenshot of somebody else's catalogue page, poster tiles and all. DESIGN_SYSTEM 6.4 bars it from a hero, a band and the fold, and rule 2 sends the slot to a ruled card, which is what /acres-tv/ already carries. There is no placement left for it."
     },
     {
       "src": "_source/media/dm_-_food_waste-1080p.mp4",

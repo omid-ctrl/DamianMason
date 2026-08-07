@@ -15,6 +15,8 @@ import {
 // components/sections has no barrel file, so each section is imported directly.
 import { CTABand } from '@/components/sections/CTABand';
 import { Hero } from '@/components/sections/Hero';
+import { ClientSectors } from '@/components/sections/ClientSectors';
+import { CoverageGrid } from '@/components/sections/CoverageGrid';
 import { LogoWall } from '@/components/sections/LogoWall';
 import { StatRow } from '@/components/sections/StatRow';
 import { TestimonialGrid } from '@/components/sections/TestimonialGrid';
@@ -188,6 +190,27 @@ export default function SpeakingPage() {
            times since 1994"). This says what the record is evidence OF, which
            is what a hub page owes a reader deciding where to click. */
         restatement="Know the industry cold, then be funny about it. That order is the whole trick, and it’s the reason your growers stay in their seats."
+      />
+
+      {/* The proof of the ledger's second glyph, and the reason it rides the
+          same sunken band rather than opening a new one: "50 / STATES" is a
+          number a reader has to take on trust, and this is the same claim laid
+          out so it can be counted instead.
+
+          It carries no folio deliberately. The numbered sections on this route
+          are the five that a reader navigates between; this is a rider on the
+          ledger above it, the same way the StatRow's own title is. */}
+      <CoverageGrid
+        id="coverage"
+        surface="sunken"
+        density="tight"
+        eyebrow="Coverage"
+        title="Fifty states. Count them."
+        intro="Fifty squares, fifty states. He’s worked in all of them since 1994, so whichever state your meeting is in, Damian has already worked in it. Run a finger down a column and check."
+        /* The honesty slot. Two true things next to each other, and stop:
+           there are seven more countries, and not one file in the source names
+           a single one of them. See docs/OPEN-ITEMS.md item 22. */
+        cutline="Seven more countries, since 1994. Nothing in the record names them, so these seven run blank."
       />
 
       <Section id="routes" aria-labelledby="routes-title">
@@ -374,6 +397,23 @@ export default function SpeakingPage() {
            the Farm Bureau fact, which the glyph cannot carry. */
         intro="Cargill, Merck, Land O’Lakes Purina, CLAAS, Pioneer Seeds, and Wilbur-Ellis have all booked him, and so have three state Farm Bureaus."
       />
+
+      {/* The wall answers WHO. This answers what kind, and how many.
+
+          21 marks in a grid tell a reader that 21 organisations booked him.
+          What a meeting planner is actually deciding is whether THEIR kind of
+          organisation booked him, and a grid of logos cannot answer that: it
+          asks them to recognise 21 brands and do the sorting themselves. The
+          ledger does the sorting and stays checkable, because it prints the
+          members of every row.
+
+          Every value is derived from content/clients.ts, the same generated
+          list the wall renders, so the two cannot disagree. */}
+      <Section id="sectors" surface="sunken" density="tight" aria-label="Client roster by sector">
+        <Container>
+          <ClientSectors />
+        </Container>
+      </Section>
 
       <CTABand
         id="booking"

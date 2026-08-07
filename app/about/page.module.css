@@ -40,6 +40,13 @@
   margin-block-start: var(--space-8);
 }
 
+/* A full section interval, not a paragraph one. The spine is a second object
+   under the pillar bar rather than a continuation of it, and at --space-8 the
+   bar's last bullet and the spine's running head read as one list. */
+.spine {
+  margin-block-start: var(--space-10);
+}
+
 /* --- the books shelf -------------------------------------------------------
    Three titles, three columns at 1024 and up, one column below. There is no
    price, no cart and no purchase link anywhere in this block by construction:

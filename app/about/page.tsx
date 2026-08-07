@@ -6,6 +6,7 @@ import { CTABand } from '@/components/sections/CTABand';
 import { Hero } from '@/components/sections/Hero';
 import { CredentialBar } from '@/components/sections/CredentialBar';
 import { StatRow } from '@/components/sections/StatRow';
+import { Timeline } from '@/components/sections/Timeline';
 import type { SectionActions } from '@/components/sections/types';
 import { JsonLd } from '@/components/seo';
 import { books } from '@/content/books';
@@ -324,6 +325,28 @@ export default function AboutPage() {
               and there, and the two renderings drifted into an unmarked blue
               list on a loose rhythm and a dashed list on a tight one. */}
           <CredentialBar pillars={PILLARS} className={styles.credentials} data-reveal="stagger" />
+
+          {/* The bar above says what he is. This says when, and it is here
+              rather than in a section of its own because it is evidence for
+              those four pillars rather than a subject beside them.
+
+              IT IS DELIBERATELY SHORT, AND THE REGISTER UNDER IT IS A SENTENCE
+              RATHER THAN A LIST. Nine things belong on a spine for this
+              speaker and two of them carry a year anywhere in the source; see
+              the header of content/timeline.ts, which records the grep. The
+              other six are already printed on this page at full size: Purdue,
+              Second City and the Guild card are in the biography prose AND in
+              the bar directly above this, and both books get a card of their
+              own in No. 03. Ticking them a third time with no date on them
+              would be the page repeating itself with a rule drawn down the
+              side of it, which is decoration wearing a graphic's clothes.
+              Logged for the client as docs/OPEN-ITEMS.md item 23. */}
+          <Timeline
+            id="record"
+            className={styles.spine}
+            eyebrow="The dated record"
+            title="How he got here."
+          />
         </Container>
       </Section>
 

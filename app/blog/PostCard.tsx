@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Post } from '@/content/posts';
+import { sharedImageAlt } from '@/content/image-alt';
 import { Card, Heading, Prose, cx } from '@/components/ui';
 import styles from './page.module.css';
 
@@ -11,9 +13,17 @@ import styles from './page.module.css';
  * the blog" block at the foot of a post. If the archive ever grows past a
  * handful, this is the thing to promote into components/sections/.
  *
- * There is no thumbnail. Both source posts carried a raw macOS screenshot of
- * another publisher's page as their featured image, and DESIGN_SYSTEM 6.4 sends
- * a screenshot-only slot to a ruled card with a real headline instead.
+ * THE THUMB. This card had none, on the reading that both featured images were
+ * screenshots. They are not: both are broadcast frame grabs, Straight Arrow
+ * News and Cheddar News, carrying that newsroom's own kicker and headline in
+ * the pixels. DESIGN_SYSTEM 6.4 rule 3 admits a capture as evidence once the
+ * player chrome is cropped off and it sits on a --surface-plate figure with a
+ * hairline and a cutline, and CROPS in scripts/normalize-assets.mjs is where
+ * the chrome came off. A frame of Damian on air is the strongest thing either
+ * of these seven-word posts has to show.
+ *
+ * It stays optional, and a post without one gets no placeholder: the ruled
+ * card was a complete object before the thumb existed and still is.
  */
 export type PostCardProps = {
   post: Post;
@@ -41,6 +51,25 @@ export function PostCard({ post, index, headingLevel = 2, className }: PostCardP
 
   return (
     <Card as="li" variant="ruled" className={cx(styles.item, className)}>
+      {post.image ? (
+        // Square, per the card-thumbnail row of DESIGN_SYSTEM 6.3. Both frames
+        // are 16:9 and both put Damian in the left or the centre box, so the
+        // 50% 30% focal point the ratio ships with keeps a face in the crop.
+        <div className={cx('dm-photo', styles.thumb)}>
+          <Image
+            className="dm-photo__img"
+            src={post.image.src}
+            alt={sharedImageAlt(post.image.src)}
+            width={post.image.width}
+            height={post.image.height}
+            loading="lazy"
+            /* The box is --size-thumb, which tops out at 10rem. Unhinted, a
+               2000px source pulls the 1920px candidate into a 160px slot. */
+            sizes="10rem"
+          />
+        </div>
+      ) : null}
+
       <p className={styles.meta}>
         {index !== undefined ? (
           <span className={styles.index} aria-hidden="true">

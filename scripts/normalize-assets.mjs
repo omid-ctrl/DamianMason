@@ -161,7 +161,6 @@ const THIRD_PARTY_LOGOS = [
 const PHOTOS = [
   { src: `${SRC_MEDIA}/2-background-microphones-on-a-stand-2022-11-16-19-05-19-utc-scaled.jpg`, base: 'microphones-background' },
   { src: `${SRC_MEDIA}/331668334_973198694086419_2283442893014987447_n.jpeg`, base: 'book-signing-table' },
-  { src: `${SRC_MEDIA}/332503780_161776152950398_8554729294588018579_n.jpeg`, base: 'keynote-stage-xtremeag' },
   { src: `${SRC_MEDIA}/458B0C93-D40F-4CF5-B0CC-BC1C89816092.jpeg`, base: 'breakout-session-audience' },
   { src: `${SRC_MEDIA}/DM-audience-230102.jpg`, base: 'speaking-to-audience' },
   { src: `${SRC_MEDIA}/DM-image0-1.jpeg`, base: 'keynote-stage-podium' },
@@ -169,8 +168,6 @@ const PHOTOS = [
   { src: `${SRC_MEDIA}/DSC_7419-scaled.jpg`, base: 'portrait-light-jacket' },
   { src: `${SRC_MEDIA}/DSC_7639.jpg`, base: 'portrait-black-suit' },
   { src: `${SRC_MEDIA}/Damian-Collab-crop-scaled.jpg`, base: 'portrait-dark-blazer' },
-  { src: `${SRC_MEDIA}/IMG_3597-rotated.jpg`, base: 'keynote-stage-wide' },
-  { src: `${SRC_MEDIA}/book-signing-IMG_2446.png`, base: 'book-signing-xtremeag' },
   { src: `${SRC_MEDIA}/dbb-online-store.png`, base: 'do-business-better-book-cover' },
   { src: `${SRC_MEDIA}/FOOD-FEAR-AUDIOBOOK-STORE.png`, base: 'food-fear-audiobook-cover' },
   { src: `${SRC_MEDIA}/FoodFear-Mockup-Online-Store.png`, base: 'food-fear-book-cover' },
@@ -182,12 +179,10 @@ const PHOTOS = [
      pipeline change. */
   { src: `${SRC_MEDIA}/WEB-COLLAGE-2.png`, base: 'speaking-closeup' },
   { src: `${SRC_MEDIA}/WEB-COLLAGE-2.png`, base: 'tradeshow-floor-audience' },
-  { src: `${SRC_MEDIA}/acres-tv-screenshot.png`, base: 'acres-tv-episode-grid' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-13-at-12.43.38-PM.png`, base: 'acres-tv-arlan-suderman' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-18-at-5.52.49-PM.png`, base: 'field-day-panel' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-18-at-5.55.45-PM.png`, base: 'xtremeag-cutting-the-curve-1' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-19-at-11.40.07-AM.png`, base: 'xtremeag-video-interview' },
-  { src: `${SRC_MEDIA}/Screenshot-2023-04-19-at-11.46.37-AM.png`, base: 'xtremeag-cutting-the-curve-2' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-19-at-12.16.28-PM.png`, base: 'cheddar-news-food-supply' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-20-at-3.38.16-PM.png`, base: 'agrigold-panel' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-20-at-3.38.42-PM-1.png`, base: 'xtremeag-cornfield-team' },
@@ -196,7 +191,6 @@ const PHOTOS = [
   { src: `${SRC_MEDIA}/Screenshot-2023-04-25-at-10.56.20-AM.png`, base: 'cheddar-news-fertilizer-shortage' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-25-at-2.44.31-PM.png`, base: 'green-screen-studio' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-25-at-9.17.26-AM.png`, base: 'equipment-factory-tour' },
-  { src: `${SRC_MEDIA}/Screenshot-2024-08-21-at-11.48.25 AM.png`, base: 'san-interview-1' },
   { src: `${SRC_MEDIA}/Screenshot-2024-08-21-at-11.49.00 AM.png`, base: 'san-interview-2' },
 ];
 
@@ -270,6 +264,56 @@ const CROPS = {
     expect: [640, 498],
     why: 'Panel 3. A trade-show floor session seen from BEHIND a seated audience. docs/OPEN-ITEMS.md item 4 asks the client for exactly this and records that the site does not have it. It did.',
   },
+
+  // --- player chrome off the broadcast frames -------------------------------
+  // Five frame grabs captured with a YouTube player still on screen. Every
+  // bottom edge below was found by profiling per-row mean and standard
+  // deviation down the source, not by eye: chrome is uniform across the width
+  // and the video is not, so the row where sd collapses is the row the player
+  // starts. The SCRUB HANDLE is the part that gets missed. It is a disc that
+  // rides five or six rows ABOVE the progress bar, so a rectangle cut at the
+  // bar leaves a coloured dot on the bottom edge of the plate. Each height
+  // below is the first row of the handle, not the first row of the bar.
+  'news-interview-cal-maine': {
+    rect: { left: 0, top: 0, width: 1998 / 2002, height: 1014 / 1130 },
+    expect: [1998, 1014],
+    why: 'Progress bar at y=1019, scrub handle from y=1014, control bar to y=1124, then 5 rows of page white. 4 columns of browser edge come off the right. The EGGFLATION kicker, the CAL-MAINE headline and both lower thirds survive whole.',
+  },
+  'food-inflation-episode': {
+    rect: { left: 0, top: 0, width: 1, height: 1012 / 1124 },
+    expect: [1996, 1012],
+    why: 'Scrub handle from y=1012, progress bar y=1017. The HIGH FOOD PRICES kicker and the headline survive whole.',
+  },
+  'cheddar-news-fertilizer-shortage': {
+    rect: { left: 0, top: 0, width: 1, height: 920 / 1030 },
+    expect: [1828, 920],
+    why: 'This one is 16:9 to within 2 rows, so the player is drawn OVER the video rather than beside it and the progress bar lands on the lower third. Cutting at the bar clipped the headline; the bar is 255,255,125 and the lower third under it is 0,0,0, so the real boundary is y=920 and the headline survives whole.',
+  },
+  'san-interview-2': {
+    rect: { left: 0, top: 0, width: 1, height: 478 / 530 },
+    expect: [952, 478],
+    why: 'Both name plates end at y=477, the scrub handle starts at y=481. 3 rows of margin is all there is here.',
+  },
+  'xtremeag-video-interview': {
+    rect: { left: 2 / 1800, top: 1 / 1014, width: 1798 / 1800, height: 853 / 1014 },
+    expect: [1798, 853],
+    why: 'A 1px dark row on top and 2 dark columns on the left come off with the chrome. The bottom is cut at y=853 rather than at the control bar at y=934, because the "Presented by Loveland" credit runs y=858 to y=918 and the hover chip starts at y=906: the two overlap, so the credit cannot be kept whole and a half-cut sponsor mark reads as a mistake. The frame ends on clean ground instead.',
+  },
+
+  // --- edge trims -----------------------------------------------------------
+  // Not chrome, just the capture's own border. Both are 1 to 2 device pixels
+  // and both sit on a --surface-plate figure, where a dark hairline down one
+  // side reads as a rule the design system did not draw.
+  'equipment-factory-tour': {
+    rect: { left: 0, top: 2 / 1014, width: 1798 / 1800, height: 1012 / 1014 },
+    expect: [1798, 1012],
+    why: '2 dark rows on top, 2 dark columns on the right. Left and bottom are clean.',
+  },
+  'green-screen-studio': {
+    rect: { left: 1 / 730, top: 0, width: 728 / 730, height: 1 },
+    expect: [728, 414],
+    why: '1 dark column on the left, 1 flat 162,162,162 column on the right. Top and bottom are clean.',
+  },
 };
 
 /**
@@ -316,6 +360,36 @@ const SKIPPED = [
   {
     src: `${SRC_MEDIA}/BOASG-BRAND-LOGO-FINAL-WHITE.jpg`,
     reason: 'Lower resolution (1000px) duplicate of the supplied Damian Mason Logos/BOASG-BRAND-LOGO-FINAL-WHITE.jpg (1500px), which is used instead.',
+  },
+
+  // Frames that were transcoded into public/img/photos/ for seven phases,
+  // referenced by no route, and are now deleted from public/ as well as
+  // dropped from the manifest. Each one is either a duplicate of a frame that
+  // already ships or a frame with no placement the design system permits.
+  // The originals stay in _source/media/ in every case.
+  {
+    src: `${SRC_MEDIA}/book-signing-IMG_2446.png`,
+    reason: 'The same 1512x1209 StoneX book-signing frame that already ships as photos/book-signing-stonex.jpg, which /reviews/ carries. Mean absolute difference between the two is 3.2 of 255, which is JPEG quantisation and nothing else. It was also misnamed: there is no XtremeAg in the frame.',
+  },
+  {
+    src: `${SRC_MEDIA}/Screenshot-2024-08-21-at-11.48.25 AM.png`,
+    reason: 'The same Straight Arrow News two-shot as Screenshot-2024-08-21-at-11.49.00 AM.png, 35 seconds earlier on the same clock (0:51 against 0:53) with the same two lower thirds. That one is cropped and placed; this one is the second take.',
+  },
+  {
+    src: `${SRC_MEDIA}/Screenshot-2023-04-19-at-11.46.37-AM.png`,
+    reason: 'A second Cutting the Curve player capture beside Screenshot-2023-04-18-at-5.55.45-PM.png. Same show, same two-panel layout, same player chrome, and no route needs a second one.',
+  },
+  {
+    src: `${SRC_MEDIA}/IMG_3597-rotated.jpg`,
+    reason: 'A wide XtremeAg stage frame, 1500x2000, roughly half ballroom carpet, with Damian about 200px tall. That is the failure DESIGN_SYSTEM 6.3 demotes out of a hero and out of a plate.',
+  },
+  {
+    src: `${SRC_MEDIA}/332503780_161776152950398_8554729294588018579_n.jpeg`,
+    reason: 'The other frame of the same moment as IMG_3597-rotated.jpg, shot seconds apart. The tight crop of it, photos/keynote-stage-xtremeag-portrait.jpg, is what ships on /xtreme-ag/ and it is committed rather than generated, so nothing is lost by dropping the wide frame. Nothing in the wide frame is absent from the crop.',
+  },
+  {
+    src: `${SRC_MEDIA}/acres-tv-screenshot.png`,
+    reason: 'A streaming-service episode grid: a UI screenshot of somebody else\'s catalogue page, poster tiles and all. DESIGN_SYSTEM 6.4 bars it from a hero, a band and the fold, and rule 2 sends the slot to a ruled card, which is what /acres-tv/ already carries. There is no placement left for it.',
   },
 
   // Not images.

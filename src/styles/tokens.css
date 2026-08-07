@@ -794,6 +794,22 @@
   --size-portrait-max: 32rem;
   --size-thumb: clamp(6rem, 4.2rem + 7.4vw, 10rem);  /* episode artwork column */
 
+  /* The coverage tile grid on /speaking/: eleven tracks holding fifty state
+     tiles and, in a second register, seven blank ones.
+
+     MEASURED, not chosen. The binding constraint is the SMALL end, not the
+     large one: at 390 the container leaves 349px of content, and eleven tracks
+     with --space-1 gutters give a 28.1px tile against a two-character IBM Plex
+     Mono label of 14.4px at the --fs-2xs floor. That fits, and it is the reason
+     the grid is eleven columns rather than the twelve some tile grids use.
+
+     The cap only decides the LARGE end. Uncapped, the grid fills its column and
+     a 764px track at 1440 renders 65px tiles carrying 13px labels, which reads
+     as a set of empty boxes with type lost in the middle of them. 28rem gives
+     37.1px tiles, roughly a 3:1 tile-to-type ratio at both ends of the range,
+     so the graphic keeps one texture from 390 to 1440. */
+  --size-tile-grid-max: 28rem;     /* 448px */
+
   /* SUPPLIED BRAND ARTWORK. See DESIGN_SYSTEM section 6.5.
      The ceiling on any single piece of full-colour supplied artwork. The Do
      Business Better jacket rendered at 474px square, roughly 224,000px2 of

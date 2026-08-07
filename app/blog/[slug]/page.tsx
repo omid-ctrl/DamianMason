@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Button, Container, Eyebrow, Heading, Prose, Rule, Section, cx } from '@/components/ui';
@@ -7,6 +8,7 @@ import { CTABand } from '@/components/sections/CTABand';
 import { PressList } from '@/components/sections/PressList';
 import { VideoEmbed } from '@/components/sections/VideoEmbed';
 import { JsonLd } from '@/components/seo';
+import { sharedImageAlt } from '@/content/image-alt';
 import { postBySlug, posts, postsByDate } from '@/content/posts';
 import { press } from '@/content/press';
 import { videos, type Video } from '@/content/videos';
@@ -30,11 +32,17 @@ import styles from './page.module.css';
  * Cheddar segment was a YouTube video the whole time and the old page showed a
  * still frame of it, so the video gets embedded here.
  *
- * Neither featured image ships. Both are raw macOS screenshots of another
- * publisher's page, and DESIGN_SYSTEM 6.4 rules a screenshot out of a hero and
- * out of the fold, and sends a screenshot-only slot to a typographic treatment
- * with a real headline and a real link instead. That is the ruled source card
- * and the video frame below.
+ * BOTH FEATURED IMAGES NOW SHIP, as a 3:2 plate under the byline. The earlier
+ * reading was that they were screenshots of another publisher's page. They are
+ * frame grabs off a broadcast, carrying that newsroom's own kicker and
+ * headline burned into the pixels, and DESIGN_SYSTEM 6.4 rule 3 admits a
+ * capture as evidence once the player chrome is cropped, it sits on a plate
+ * with a hairline, and the cutline says what it is. All three hold here. The
+ * chrome came off in CROPS, in scripts/normalize-assets.mjs.
+ *
+ * The plate is deliberately below the byline rather than above the headline:
+ * rule 1 keeps a capture out of a hero, and this is the article's first
+ * figure, not its masthead.
  */
 
 type RouteParams = { slug: string };
@@ -71,6 +79,20 @@ const BOOKING_HEADING_FALLBACK = 'Book the economist the newsrooms call.';
 
 const BOOKING_COPY_FALLBACK =
   'Damian says the same things on a stage that he says on camera, at rather greater length. Send the office a date and find out whether it is open.';
+
+/**
+ * The cutline under the header plate, per post. Same reason as BOOKING_COPY:
+ * one template, two posts, and a cutline is a humour slot rather than a label,
+ * so it cannot be generated from the outlet and the date.
+ *
+ * Both of these state two things that are literally in the frame and stop.
+ */
+const IMAGE_CUTLINE: Record<string, string> = {
+  'eggflation-gives-producers-record-profits':
+    'Straight Arrow News, December 2022. The headline says Cal-Maine’s profit went up 165 times. The internet went with a meme.',
+  'how-the-climate-crisis-is-causing-food-shortages-globally':
+    'Cheddar News, April 2023. The question on screen is about the food supply. The ticker running under it is about the Dow.',
+};
 
 const SOURCE_NOTE: Record<string, string> = {
   'eggflation-gives-producers-record-profits':
@@ -280,6 +302,31 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
               </p>
 
               <Rule className={styles.headRule} />
+
+              {post.image ? (
+                <figure className={cx('dm-figure', styles.plate)}>
+                  <div className="dm-photo dm-photo--plate">
+                    <Image
+                      className="dm-photo__img"
+                      src={post.image.src}
+                      alt={sharedImageAlt(post.image.src)}
+                      width={post.image.width}
+                      height={post.image.height}
+                      loading="lazy"
+                      sizes="(min-width: 64rem) 41rem, 100vw"
+                    />
+                  </div>
+                  <figcaption className="dm-figure__caption">
+                    {/* A folio only where the page has more than one figure,
+                        per DESIGN_SYSTEM 6.1. The Eggflation post's source
+                        block is a ruled row rather than a player, so that post
+                        carries exactly one figure and numbering it "Fig. 01"
+                        would be a series of one. */}
+                    {video ? <span className="dm-figure__folio">Fig. 01 </span> : null}
+                    {IMAGE_CUTLINE[post.slug]}
+                  </figcaption>
+                </figure>
+              ) : null}
             </header>
 
             <Prose className={styles.body}>
@@ -303,7 +350,8 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
                     <>
                       <VideoEmbed
                         video={video}
-                        folio="FIG. 01"
+                        /* Fig. 02 since the header gained a plate above it. */
+                        folio="FIG. 02"
                         cutline={`${source.outlet}, ${formatPostDate(post.date)}. A national news desk calling an Indiana farm owner about the global food supply.`}
                       />
                       {/* The player is a facade, so it needs JavaScript. This
@@ -326,6 +374,12 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
                       items={[source]}
                       headingLevel={3}
                       label={`Source for ${post.title}`}
+                      /* This row and the plate in the header above resolve to
+                         the same file, and they would land about 600px apart
+                         on the same screen. The media archive is where that
+                         thumb earns its place; here it is the picture the
+                         reader has already looked at. */
+                      thumbs={false}
                     />
                   )}
                 </div>

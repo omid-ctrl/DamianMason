@@ -94,6 +94,12 @@
   margin-block-start: var(--space-5);
 }
 
+/* The frame grab under the byline. It sits inside the <header>, so it takes
+   the same step off the rule that the body takes off the header. */
+.plate {
+  margin-block-start: var(--space-7);
+}
+
 .body {
   margin-block-start: var(--space-7);
 }

@@ -543,6 +543,74 @@ is not worth degrading the footage over.
 
 ---
 
+## 22. Which seven countries? This one is now visible to visitors
+
+**This is the one item on the list a visitor can see.** Everything else here is
+a question between us. This one is printed on the site.
+
+**What ships today.** The speaking page now carries a coverage graphic: fifty
+squares, one per state, each with its postal code, so a reader can count the
+claim instead of taking it on trust. Underneath it sits a second row of **seven
+blank squares** under the heading "7 foreign countries", and a caption that
+reads: "Seven more countries, since 1994. Nothing in the record names them, so
+these seven run blank."
+
+**Why they are blank.** We searched every file we hold: the extracted text of
+all 29 pages of your old site, the page-by-page harvest notes, and the whole
+content layer of the new one. **No country is named anywhere.** The only
+country name in the entire repository sits in a note about Egg Farmers of
+Ontario, and that is a client, not a booking abroad. The number is stated on
+five pages; the seven countries themselves are stated on none.
+
+We were not willing to guess at seven countries inside your biography, and we
+were not willing to draw seven squares and put made-up flags in them.
+
+**This compounds item 5**, which is still open: your old BoASG page said eight
+foreign countries and every other page said seven. So the count is unconfirmed
+and the members of the set are unknown.
+
+**If you answer.** Send the list, in any form, and the seven blanks become seven
+labelled tiles reading CANADA, MEXICO and so on. About twenty minutes. It is
+worth doing: seven named countries is a materially better credential than the
+number seven, and right now the graphic is honest about a gap rather than
+carrying the claim.
+
+**If you would rather not**, say so and we will drop the second register
+entirely and leave the graphic at fifty states. Also about twenty minutes. What
+we will not do is invent them.
+
+---
+
+## 23. Six career milestones have no year on them
+
+**What ships today.** The about page now carries a short dated spine under the
+credentials: **1994**, when you quit the Fortune 500 job, **2023**, when the
+keynote got its name, and where it stands today. Under it, a line that says the
+record has no year for the Purdue degree, Second City, the Screen Actors Guild
+card, either book, or any of the three podcasts.
+
+**Why it is only three entries long.** Those are the only dates that exist. We
+searched the whole mirror of your old site for a four-digit year: 1994 appears
+five times, 2023 appears as the year you titled the programme, and everything
+else that looks like a date is either a WordPress publish stamp on the page
+itself or a number inside somebody else's story. There is no graduation year, no
+publication year for either book, and no launch date for any of the three shows.
+
+**Why we did not fill them in.** A timeline is a claim about when things
+happened. Six invented dates inside your own biography is exactly the kind of
+detail nobody checks until somebody does.
+
+**If you send the years.** Any of the six, in any order. Each one you send moves
+that entry onto the spine automatically, in the right place, with no rebuilding:
+the page is already built to do it. Five minutes per date.
+
+**Most useful first:** the two book publication years and the year The Business
+of Agriculture launched. Those three would turn a three-point line into a real
+thirty-year arc, which is the strongest version of this credential and the one a
+meeting planner reads fastest.
+
+---
+
 ## Summary: the five we would most like answers to
 
 If you only have time for a few, these are the ones that change the most:
@@ -558,3 +626,8 @@ If you only have time for a few, these are the ones that change the most:
    it.
 5. **Item 6**, the two 40,000s, because a number the site states about itself
    should be one number with one meaning.
+
+**And one more, added late:** **item 22**, the seven countries, because it is now
+the only question on this list that a visitor to the site can see. It ships as
+seven blank squares and an honest caption. Naming them turns a gap into a
+credential.

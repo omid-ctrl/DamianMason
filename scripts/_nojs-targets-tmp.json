@@ -1,0 +1,78 @@
+[
+ {
+  "name": "home",
+  "url": "http://localhost:3210/"
+ },
+ {
+  "name": "about",
+  "url": "http://localhost:3210/about/"
+ },
+ {
+  "name": "speaking",
+  "url": "http://localhost:3210/speaking/"
+ },
+ {
+  "name": "keynote",
+  "url": "http://localhost:3210/keynote/"
+ },
+ {
+  "name": "reviews",
+  "url": "http://localhost:3210/reviews/"
+ },
+ {
+  "name": "meeting-coordinators",
+  "url": "http://localhost:3210/meeting-coordinators/"
+ },
+ {
+  "name": "collaboration-opportunities",
+  "url": "http://localhost:3210/collaboration-opportunities/"
+ },
+ {
+  "name": "boasg",
+  "url": "http://localhost:3210/boasg/"
+ },
+ {
+  "name": "podcasts",
+  "url": "http://localhost:3210/podcasts/"
+ },
+ {
+  "name": "the-business-of-agriculture",
+  "url": "http://localhost:3210/the-business-of-agriculture/"
+ },
+ {
+  "name": "do-business-better-podcast",
+  "url": "http://localhost:3210/do-business-better-podcast/"
+ },
+ {
+  "name": "xtreme-ag",
+  "url": "http://localhost:3210/xtreme-ag/"
+ },
+ {
+  "name": "blog-news",
+  "url": "http://localhost:3210/blog-news/"
+ },
+ {
+  "name": "acres-tv",
+  "url": "http://localhost:3210/acres-tv/"
+ },
+ {
+  "name": "blog",
+  "url": "http://localhost:3210/blog/"
+ },
+ {
+  "name": "blog-eggflation",
+  "url": "http://localhost:3210/blog/eggflation-gives-producers-record-profits/"
+ },
+ {
+  "name": "blog-climate-crisis",
+  "url": "http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/"
+ },
+ {
+  "name": "contact-us",
+  "url": "http://localhost:3210/contact-us/"
+ },
+ {
+  "name": "join-the-conversation",
+  "url": "http://localhost:3210/join-the-conversation/"
+ }
+]

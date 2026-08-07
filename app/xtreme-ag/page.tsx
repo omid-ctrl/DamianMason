@@ -108,10 +108,12 @@ export default function XtremeAgPage() {
           },
         ]}
         image={{
-          /* A 4:5 crop of keynote-stage-xtremeag.jpg, cut to the hero ratio so
-             the plate does not have to throw away half the frame. The uncropped
-             original is a wide stage shot where Damian is a stamp, which is the
-             exact failure docs/DESIGN_SYSTEM.md 6.3 demotes out of the hero. */
+          /* A 4:5 crop, cut to the hero ratio so the plate does not have to
+             throw away half the frame. The two wide originals it came from are
+             stage shots where Damian is about 200px of a 2000px frame, which
+             is the exact failure docs/DESIGN_SYSTEM.md 6.3 demotes out of a
+             hero; both are now in SKIPPED in scripts/normalize-assets.mjs and
+             off disk. This crop is committed rather than generated. */
           src: '/img/photos/keynote-stage-xtremeag-portrait.jpg',
           alt: 'Damian Mason speaking on stage in front of a large illuminated XtremeAg X.',
           width: 880,
@@ -157,6 +159,30 @@ export default function XtremeAgPage() {
                   .
                 </p>
               </Prose>
+
+              {/* The deck three sections up claims Damian "works trade shows
+                  and field days" and until now the page evidenced the stage,
+                  the field day and the articles, but never the trade show
+                  floor. This is it, and it is the only frame on file of it.
+                  The XtremeAg watermark bottom right is theirs, burned in. */}
+              <figure className="dm-figure">
+                <div className={`dm-photo dm-photo--plate ${styles.evidence}`}>
+                  <Image
+                    className="dm-photo__img"
+                    src="/img/photos/equipment-factory-tour.png"
+                    alt="Damian Mason in a dark blazer talking with two exhibitors on a trade show floor, in front of a row of planter units and a Fendt stand."
+                    width={1798}
+                    height={1012}
+                    sizes="(min-width: 48rem) 42rem, 100vw"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption className="dm-figure__caption">
+                  <span className="dm-figure__folio">Fig. 02 </span>
+                  Working a trade show floor for XtremeAg. The tractors have their headlights
+                  on, indoors.
+                </figcaption>
+              </figure>
             </div>
 
             <Card
@@ -187,12 +213,14 @@ export default function XtremeAgPage() {
           screenshot is the only asset for a slot, the slot becomes a ruled row
           carrying the real headline and a link.
 
-          Fig. 02 is not a photograph either: it is a frame grab off an XtremeAg
+          Fig. 03 is not a photograph either: it is a frame grab off an XtremeAg
           broadcast and it carries a burned-in "DAMIAN MASON / CUTTING THE CURVE
           PODCAST" lower third in the bottom right. It is the only asset on file
           of Damian with the XtremeAg growers, so it ships, and it is listed on
           the professional-photography open item in docs/OPEN-ITEMS.md along
-          with PLAN.md item 4. Crop the lower third or replace the frame. */}
+          with PLAN.md item 4. Crop the lower third or replace the frame.
+
+          Fig. 04 under it is the podcast the copy keeps pointing at. */}
       <Section aria-labelledby="featured-title">
         <Container>
           <div className={styles.head}>
@@ -217,23 +245,50 @@ export default function XtremeAgPage() {
               />
             </div>
 
-            <figure className={`dm-figure ${styles.spaced} col-span-6 md:col-span-5`}>
-              <div className="dm-photo dm-photo--plate">
-                <Image
-                  className="dm-photo__img"
-                  src="/img/photos/xtremeag-cornfield-team.png"
-                  alt="Damian Mason and three XtremeAg farmers standing at the edge of a tall cornfield during filming."
-                  width={1372}
-                  height={776}
-                  sizes="(min-width: 48rem) 30rem, 100vw"
-                  loading="lazy"
-                />
-              </div>
-              <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 02 </span>
-                Damian with XtremeAg growers in a standing cornfield. He’s the one in shorts.
-              </figcaption>
-            </figure>
+            <div className={`${styles.spaced} col-span-6 md:col-span-5`}>
+              <figure className="dm-figure">
+                <div className="dm-photo dm-photo--plate">
+                  <Image
+                    className="dm-photo__img"
+                    src="/img/photos/xtremeag-cornfield-team.png"
+                    alt="Damian Mason and three XtremeAg farmers standing at the edge of a tall cornfield during filming."
+                    width={1372}
+                    height={776}
+                    sizes="(min-width: 48rem) 30rem, 100vw"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption className="dm-figure__caption">
+                  <span className="dm-figure__folio">Fig. 03 </span>
+                  Damian with XtremeAg growers in a standing cornfield. He’s the one in
+                  shorts.
+                </figcaption>
+              </figure>
+
+              {/* The podcast, evidenced. The copy above sends a reader to
+                  xtremeag.farm/podcasts and the hero deck says he hosts
+                  Cutting the Curve, and until now the page asserted both and
+                  showed neither. Same hairline plate as Fig. 02: this is a
+                  frame off the show, not a photograph. */}
+              <figure className={`dm-figure ${styles.stackedFigure}`}>
+                <div className={`dm-photo dm-photo--plate ${styles.evidence}`}>
+                  <Image
+                    className="dm-photo__img"
+                    src="/img/photos/xtremeag-video-interview.png"
+                    alt="A Cutting the Curve episode in progress: Damian Mason and a grower in two side by side video panels, over a standing corn backdrop."
+                    width={1798}
+                    height={853}
+                    sizes="(min-width: 48rem) 30rem, 100vw"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption className="dm-figure__caption">
+                  <span className="dm-figure__folio">Fig. 04 </span>
+                  Cutting the Curve, mid-episode. Two men in an office and a shed, in front of
+                  a cornfield neither of them is standing in.
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </Container>
       </Section>

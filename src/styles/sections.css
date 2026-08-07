@@ -644,6 +644,32 @@
     margin: 0;
     padding: 0;
   }
+  /* The frame rail, on the five rows that have a frame.
+     The track only exists on --framed, so a row without a thumb is the
+     original typographic row and not a row with an empty column in it. Below
+     30rem the rail would leave the headline about 150px, so it stacks, which
+     is the same breakpoint .dm-episode__layout--row uses for the same reason. */
+  .dm-press__layout {
+    display: grid;
+    gap: var(--space-5);
+    align-items: start;
+  }
+  @media (min-width: 30rem) {
+    .dm-press__layout--framed {
+      grid-template-columns: var(--size-thumb) minmax(0, 1fr);
+    }
+  }
+  .dm-press__thumb {
+    aspect-ratio: var(--ratio-square);
+    inline-size: 100%;
+  }
+  /* The 1:1 focal point from the crops table in DESIGN_SYSTEM 6.3. Every one
+     of these five is a 16:9 broadcast frame with a face in the upper half and
+     a burned-in headline along the bottom, so 30% keeps the face and lets the
+     chyron go. */
+  .dm-press__thumb .dm-photo__img {
+    object-position: 50% 30%;
+  }
   .dm-press__head {
     display: flex;
     flex-wrap: wrap;
@@ -745,4 +771,262 @@
     margin-block-start: var(--space-4);
     padding: 0;
   }
+}
+
+/* ==========================================================================
+   CLIENT SECTORS: the roster by kind
+
+   Consumed by components/sections/ClientSectors.tsx. It sits under the logo
+   wall on /speaking/: the wall answers WHO, this answers what kind and how
+   many, which is the question a meeting planner is actually asking.
+
+   It is a ledger, not a chart. Seven categories with a maximum of five means an
+   axis and gridlines would be more furniture than data, and the system already
+   owns the object for figures in a ruled column.
+
+   The row hairline is --rule-structural because it carries structure: delete it
+   and the rows run together. The BAR is not, because every value is printed as
+   a numeral beside it, which makes the bar decorative under SC 1.4.11 rather
+   than a meaningful graphic owing 3:1 on its own.
+   ========================================================================== */
+.dm-sectors__list {
+  margin: var(--space-5) 0 0;
+  display: grid;
+  gap: 0;
+}
+
+.dm-sectors__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2) var(--space-4);
+  align-items: baseline;
+  padding-block: var(--space-4);
+  border-block-start: var(--border-hairline) solid var(--rule-structural);
+}
+.dm-sectors__row:last-child {
+  border-block-end: var(--border-hairline) solid var(--rule-structural);
+}
+
+.dm-sectors__label {
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0;
+}
+
+.dm-sectors__value {
+  margin: 0;
+  display: contents;
+}
+
+.dm-sectors__count {
+  font-family: var(--family-figure);
+  font-variant-numeric: var(--numeric-tabular);
+  font-size: var(--fs-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--ink-brand);
+  grid-column: 2;
+  justify-self: end;
+}
+
+/* The bar spans both columns on its own row, under the label and the figure,
+   so it never competes with the type for width and never needs a fixed track. */
+.dm-sectors__bar {
+  grid-column: 1 / -1;
+  block-size: var(--border-thick, 3px);
+  background-color: var(--rule-quiet);
+  position: relative;
+}
+.dm-sectors__bar::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: var(--dm-sector-fill, 0%);
+  background-color: var(--ink-brand);
+}
+
+/* Six possible counts, six rules. The alternative was an inline style, which
+   DESIGN_SYSTEM section 10 item 15 bars in a component. */
+.dm-sectors__row[data-count="1"] { --dm-sector-fill: 16.67%; }
+.dm-sectors__row[data-count="2"] { --dm-sector-fill: 33.33%; }
+.dm-sectors__row[data-count="3"] { --dm-sector-fill: 50%; }
+.dm-sectors__row[data-count="4"] { --dm-sector-fill: 66.67%; }
+.dm-sectors__row[data-count="5"] { --dm-sector-fill: 83.33%; }
+.dm-sectors__row[data-count="6"] { --dm-sector-fill: 100%; }
+
+.dm-sectors__names {
+  grid-column: 1 / -1;
+  font-size: var(--fs-xs);
+  line-height: var(--lh-normal);
+  color: var(--ink-secondary);
+  max-inline-size: var(--measure);
+}
+
+.dm-sectors__total {
+  margin-block-start: var(--space-4);
+  font-size: var(--fs-xs);
+  color: var(--ink-muted);
+  max-inline-size: var(--measure-narrow);
+}
+
+/* ==========================================================================
+   COVERAGE: fifty states as a tally, plus seven blank tiles
+
+   Consumed by components/sections/CoverageGrid.tsx, on /speaking/, directly
+   under the stat ledger whose second figure is "50 / STATES". This is what
+   makes that glyph checkable.
+
+   WHY TILES AND NOT A MAP. At 100% coverage a choropleth is a silhouette: it
+   prints the shape of a country the reader already knows and adds nothing to
+   the figure above it. The claim is ALL OF THEM, and a reader verifies "all of
+   them" by counting, which is what fifty equal squares carrying their postal
+   codes allow and an outline does not.
+
+   THE HAIRLINE IS --rule-structural AND HAS TO BE. Delete it and there is no
+   graphic left, only fifty pairs of letters floating on the ground, so it
+   carries structure under SC 1.4.11 and clears 3:1 in every scope. The tile
+   grid is capped by --size-tile-grid-max: see the token, where the 390 and 1440
+   arithmetic is written down.
+
+   NOTHING IN HERE MOVES. There is no data-reveal on the plot on purpose. A
+   graphic whose whole argument is that it can be counted should not be
+   assembling itself while the reader counts it.
+   ========================================================================== */
+.dm-coverage__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-block-end: var(--space-8);
+  max-inline-size: var(--measure);
+}
+.dm-coverage__layout { row-gap: var(--space-8); }
+.dm-coverage__figure { margin: 0; }
+.dm-coverage__aside { align-self: start; }
+
+.dm-coverage__grid {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  gap: var(--space-1);
+  max-inline-size: var(--size-tile-grid-max);
+}
+.dm-coverage__tile {
+  align-items: center;
+  aspect-ratio: 1;
+  border: var(--border-hairline) solid var(--rule-structural);
+  color: var(--ink-primary);
+  display: flex;
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  /* --ls-normal, not the mono running head's --ls-widest. Two characters in a
+     28px cell at 390 have no room to be tracked out, and a postal code is data
+     here rather than furniture. */
+  letter-spacing: var(--ls-normal);
+  line-height: 1;
+  justify-content: center;
+}
+/* The seven that carry no label. The fill is what separates "occupied, and we
+   cannot say by what" from an empty cell in the grid. */
+.dm-coverage__tile--blank { background-color: var(--surface-sunken); }
+/* A hole in the map. It still takes a track, because auto-placement with the
+   holes skipped would slide every state after one of them a column west. */
+.dm-coverage__void { aspect-ratio: 1; }
+.dm-coverage__register {
+  margin-block-start: var(--space-6);
+  margin-block-end: var(--space-3);
+}
+
+/* ==========================================================================
+   THE SPINE: the dated record on /about/
+
+   Consumed by components/sections/Timeline.tsx. It sits inside the credentials
+   section, under the four-pillar bar, which is the block it dates.
+
+   NOT AN SVG, AND IT MUST NOT BECOME ONE. What this renders is a sequence of
+   dated events, which is what an <ol> already is: the text reflows at 390, it
+   wraps, it inherits the scale, it is searchable and it needs no accessible
+   name. The only drawing in the whole object is a border and a pseudo-element,
+   so there is no non-text content and nothing for SC 1.1.1 to ask about.
+
+   The rule down the side carries structure, so it is --rule-structural, and so
+   is the tick: with them deleted the list stops being a timeline and becomes a
+   list. The tick is drawn on the rail rather than on the item, so it sits on
+   the year's own line box and no magic offset has to be maintained: the rail
+   pulls back by exactly the item's start padding, and the tick plus its gap add
+   back up to the same number.
+   ========================================================================== */
+.dm-spine {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.dm-spine__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.dm-spine__list {
+  border-inline-start: var(--border-hairline) solid var(--rule-structural);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dm-spine__item {
+  padding-block: var(--space-5);
+  padding-inline-start: var(--space-5);
+}
+.dm-spine__rail {
+  align-items: center;
+  color: var(--ink-muted);
+  display: flex;
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  gap: var(--space-2);
+  letter-spacing: var(--ls-widest);
+  line-height: var(--lh-loose);
+  /* Back out to the rule. --space-4 of tick plus --space-2 of gap is
+     --space-5 exactly, so the year and the two lines under it share one
+     start edge. */
+  margin-inline-start: calc(var(--space-5) * -1);
+  text-transform: uppercase;
+}
+.dm-spine__rail::before {
+  background-color: var(--rule-structural);
+  block-size: var(--border-hairline);
+  content: "";
+  flex: 0 0 auto;
+  inline-size: var(--space-4);
+}
+.dm-spine__title {
+  color: var(--ink-primary);
+  font-family: var(--family-serif);
+  font-size: var(--fs-md);
+  font-weight: var(--weight-semibold);
+  line-height: var(--lh-snug);
+  margin-block-start: var(--space-3);
+  max-inline-size: var(--measure);
+}
+.dm-spine__detail {
+  color: var(--ink-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  margin-block-start: var(--space-2);
+  max-inline-size: var(--measure);
+}
+/* The register. Off the spine on purpose: these entries have no year, so they
+   have no position, and giving them a tick would be the page inventing one. */
+.dm-spine__undated {
+  border-block-start: var(--border-hairline) solid var(--rule-structural);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-inline-size: var(--measure);
+  padding-block-start: var(--space-4);
+}
+.dm-spine__undated-body {
+  color: var(--ink-muted);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-normal);
 }

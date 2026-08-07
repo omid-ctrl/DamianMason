@@ -69,6 +69,25 @@
   margin-block-start: var(--space-8);
 }
 
+/* The hairline DESIGN_SYSTEM 6.4 rule 3 asks for.
+   Both frames on this route below the hero are grabs off an XtremeAg
+   broadcast rather than photographs somebody was hired to take. The rule
+   admits one as evidence on three conditions: the chrome comes off, it sits on
+   a --surface-plate figure with a hairline, and the cutline says what it is.
+   .dm-photo already carries the plate fill, so this is the second condition
+   and it is the only thing separating the two treatments visually: a real
+   photograph on this site never gets a border. The frame is drawn on the media
+   box rather than on the figure so the caption keeps its own hairline and the
+   two rules do not double up. */
+.evidence {
+  border: var(--border-hairline) solid var(--rule-structural);
+}
+
+/* A second figure stacked under the first in the same column. */
+.stackedFigure {
+  margin-block-start: var(--space-7);
+}
+
 /* The two-up row on Join the Conversation: heading left, action right. */
 .rowEnd {
   display: flex;

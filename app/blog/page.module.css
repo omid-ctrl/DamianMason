@@ -20,6 +20,19 @@
   gap: var(--space-1);
 }
 
+/* The square frame grab at the head of a ruled card.
+   --size-thumb is the same column the episode rows use, so a post card and an
+   episode card put their artwork on one width rather than two. Capped rather
+   than filled: at col-span-6 the card is 552px at 1440 and a 552px square
+   above four lines of type is a picture with a caption stuck to it, not a
+   ruled row with evidence at the top of it. */
+.thumb {
+  aspect-ratio: var(--ratio-square);
+  inline-size: 100%;
+  max-inline-size: var(--size-thumb);
+  margin-block-end: var(--space-5);
+}
+
 /* The mono meta row above a post title: the decorative index and the dateline.
    Same furniture as the episode row, kept local so the two cannot drift. */
 .meta {
