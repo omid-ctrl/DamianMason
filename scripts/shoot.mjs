@@ -3,7 +3,7 @@
  * judge panel, and to shoot every route at three breakpoints for Phase 6
  * visual QA.
  *
- *   node scripts/shoot.mjs --targets <file.json> --out <dir> [--widths 390,768,1440]
+ *   node scripts/shoot.mjs --targets <file.json> --out <dir> [--widths 390,768,1440] [--dpr 2]
  *
  * targets.json is [{ "name": "home", "url": "http://localhost:3000/" }, ...]
  * A `file://` url works too, which is how the standalone comps get shot.
@@ -11,6 +11,13 @@
  * Full-page by default. Waits for fonts and lazy images so a screenshot never
  * catches a half-painted page, which is the usual way visual QA produces
  * confident nonsense.
+ *
+ * --dpr defaults to 2 and every existing call keeps its behaviour. It exists
+ * because 2x is exactly the density at which the defect this project's display
+ * face was chosen to avoid becomes invisible: a hairline that falls under one
+ * device pixel at 1x still has two to land on at 2x. Every screenshot this repo
+ * has ever taken was 2x, so that whole class of defect has never once been
+ * photographed. Shoot type comps at 1 as well as 2.
  */
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -27,6 +34,7 @@ const targets = JSON.parse(fs.readFileSync(args.targets, 'utf8'));
 const outDir = args.out;
 const widths = (args.widths ?? '390,768,1440').split(',').map(Number);
 const fullPage = args.viewportOnly !== 'true';
+const dpr = Number(args.dpr ?? 2);
 fs.mkdirSync(outDir, { recursive: true });
 
 const browser = await chromium.launch();
@@ -35,7 +43,7 @@ const report = [];
 for (const width of widths) {
   const context = await browser.newContext({
     viewport: { width, height: width < 500 ? 844 : 1000 },
-    deviceScaleFactor: 2,
+    deviceScaleFactor: dpr,
     isMobile: width < 500,
     hasTouch: width < 500,
     reducedMotion: 'reduce',

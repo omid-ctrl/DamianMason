@@ -1,0 +1,74 @@
+[
+  {
+    "name": "home",
+    "url": "http://localhost:3200/"
+  },
+  {
+    "name": "about",
+    "url": "http://localhost:3200/about/"
+  },
+  {
+    "name": "acres-tv",
+    "url": "http://localhost:3200/acres-tv/"
+  },
+  {
+    "name": "blog",
+    "url": "http://localhost:3200/blog/"
+  },
+  {
+    "name": "blog-news",
+    "url": "http://localhost:3200/blog-news/"
+  },
+  {
+    "name": "boasg",
+    "url": "http://localhost:3200/boasg/"
+  },
+  {
+    "name": "collaboration-opportunities",
+    "url": "http://localhost:3200/collaboration-opportunities/"
+  },
+  {
+    "name": "contact-us",
+    "url": "http://localhost:3200/contact-us/"
+  },
+  {
+    "name": "do-business-better-podcast",
+    "url": "http://localhost:3200/do-business-better-podcast/"
+  },
+  {
+    "name": "join-the-conversation",
+    "url": "http://localhost:3200/join-the-conversation/"
+  },
+  {
+    "name": "keynote",
+    "url": "http://localhost:3200/keynote/"
+  },
+  {
+    "name": "meeting-coordinators",
+    "url": "http://localhost:3200/meeting-coordinators/"
+  },
+  {
+    "name": "podcasts",
+    "url": "http://localhost:3200/podcasts/"
+  },
+  {
+    "name": "reviews",
+    "url": "http://localhost:3200/reviews/"
+  },
+  {
+    "name": "speaking",
+    "url": "http://localhost:3200/speaking/"
+  },
+  {
+    "name": "the-business-of-agriculture",
+    "url": "http://localhost:3200/the-business-of-agriculture/"
+  },
+  {
+    "name": "xtreme-ag",
+    "url": "http://localhost:3200/xtreme-ag/"
+  },
+  {
+    "name": "blog-eggflation-gives-producers-record-profits",
+    "url": "http://localhost:3200/blog/eggflation-gives-producers-record-profits/"
+  }
+]
