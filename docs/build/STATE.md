@@ -19,11 +19,16 @@
       them junk), 13 carry over after removing the products item; **17 testimonials** (15 speaking + 1 book
       endorsement + 1 footer quote); split is 22 pages + 2 posts + 4 products. See `## Corrections` below.
 
-- [ ] **Phase 1 — Design system** (~8 agents)
+- [x] **Phase 1 — Design system** (~8 agents)
       3 direction agents → 3 judge agents → 1 synthesis agent. Outputs `src/styles/tokens.css`, Tailwind theme,
       `docs/DESIGN_SYSTEM.md`, `components/ui` primitives.
       **Gate:** no raw hex and no arbitrary px anywhere in components.
-      Result:
+      Result: **PASS (7 agents).** Winner: **Direction 1, Editorial Broadsheet** (bone paper ground, navy as ink,
+      Bodoni Moda display / Archivo body / IBM Plex Mono furniture). Took brand-fit 9 and execution 8; lost
+      legibility 3, and every one of that lens's objections was a token value, all repaired. Tied direction 3 on
+      raw score, won 2 of 3 lenses, no judge overridden. Grafted 15 ideas from the losers, notably direction 3's
+      ledger stat row and duotone portrait and direction 2's `[data-surface="paper"]` scope. `tsc` clean,
+      `next build` clean, zero raw hex in components, zero em dashes, `user-scalable` absent.
 
 - [ ] **Phase 2 — Global chrome & shared sections** (~6 agents)
       Header (dropdown + mobile), Footer (socials, copyright, contact, newsletter), SEO infra (metadata, JSON-LD,
@@ -111,3 +116,4 @@ dead invisible full-width clickable row on the homepage.
 _(append one line per completed phase: date, phase, agent count, outcome)_
 
 - 2026-08-06 · Phase 0 · 10 agents · PASS. 28 pages harvested, 70 assets mirrored, 46 logos normalized, VOICE.md written, gate reconciled 6 plan discrepancies.
+- 2026-08-06 · Phase 1 · 7 agents · PASS. Editorial Broadsheet wins 2 of 3 lenses; 15 ideas grafted from losers; all contrast failures repaired; tsc + next build clean.

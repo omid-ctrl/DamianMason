@@ -1,26 +1,676 @@
+/* ============================================================================
+   DAMIAN MASON / BUSINESS AGRICULTURE
+   Global stylesheet. Tailwind v4, CSS-first. There is no tailwind.config.js.
+
+   Structure:
+     1. imports (tokens first, so the custom properties exist before @theme)
+     2. @theme     namespace resets, so no stock Tailwind color or scale exists
+     3. @theme inline  the token map. `inline` is load-bearing: it makes the
+                   utility emit var(--ink-primary) rather than baking the
+                   :root value in, which is the only way a utility inside a
+                   [data-surface="deep"] section picks up the remap.
+     4. base layer resets, focus ring, selection, motion guard, prose defaults
+     5. components the token-driven primitive classes the React components in
+                   components/ui compose. No component file contains a hex
+                   value, an arbitrary pixel value or an inline style.
+   ============================================================================ */
+
+@import "../src/styles/tokens.css";
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ----------------------------------------------------------------------------
+   2. NAMESPACE RESETS
+   Wiping the stock namespaces means `bg-blue-500`, `text-3xl` as Tailwind
+   defines it, `rounded-lg`, `shadow-xl` and friends simply do not exist. The
+   only values a utility can produce are the ones mapped below, which is what
+   keeps raw color and raw type out of the component layer by construction.
+   ---------------------------------------------------------------------------- */
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --leading-*: initial;
+  --tracking-*: initial;
+  --font-weight-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --ease-*: initial;
+  --breakpoint-*: initial;
+  --container-*: initial;
+
+  /* Utility spacing steps off a 4px base: p-4 is 1rem, gap-6 is 1.5rem. The
+     named --space-* tokens remain the source for the component layer. */
+  --spacing: 0.25rem;
+
+  --breakpoint-sm: 30rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+
+  --container-narrow: 56rem;
+  --container-text: 46rem;
+  --container-page: 84rem;
+  --container-wide: 96rem;
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-inherit: inherit;
 }
 
+/* ----------------------------------------------------------------------------
+   3. TOKEN MAP
+   ---------------------------------------------------------------------------- */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --- surfaces ----------------------------------------------------------- */
+  --color-page: var(--surface-page);
+  --color-raised: var(--surface-raised);
+  --color-bright: var(--surface-bright);
+  --color-sunken: var(--surface-sunken);
+  --color-deep: var(--surface-deep);
+  --color-deep-alt: var(--surface-deep-alt);
+  --color-deep-raised: var(--surface-deep-raised);
+  --color-accent-field: var(--surface-accent);
+  --color-plate: var(--surface-plate);
+  --color-overlay: var(--surface-overlay);
+
+  /* --- ink ---------------------------------------------------------------- */
+  --color-ink: var(--ink-primary);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-brand: var(--ink-brand);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-ink-accent: var(--ink-accent);
+  --color-ink-hot: var(--ink-hot);
+  --color-ink-gold: var(--ink-gold);
+  --color-ink-green: var(--ink-green);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-ink-on-accent: var(--ink-on-accent);
+
+  /* --- rules and borders --------------------------------------------------- */
+  --color-rule: var(--rule-structural);
+  --color-rule-decorative: var(--rule-decorative);
+  --color-rule-quiet: var(--rule-quiet);
+  --color-rule-strong: var(--rule-strong);
+  --color-rule-brand: var(--rule-brand);
+  --color-rule-accent: var(--rule-accent);
+
+  /* --- brand constants ----------------------------------------------------- */
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-orange: var(--brand-orange);
+
+  /* --- status -------------------------------------------------------------- */
+  --color-success: var(--status-success-ink);
+  --color-success-surface: var(--status-success-bg);
+  --color-warning: var(--status-warning-ink);
+  --color-warning-surface: var(--status-warning-bg);
+  --color-danger: var(--status-danger-ink);
+  --color-danger-surface: var(--status-danger-bg);
+  --color-info: var(--status-info-ink);
+  --color-info-surface: var(--status-info-bg);
+
+  /* --- families ------------------------------------------------------------ */
+  --font-display: var(--family-display);
+  --font-serif: var(--family-serif);
+  --font-figure: var(--family-figure);
+  --font-body: var(--family-body);
+  --font-mono: var(--family-mono);
+  --font-sans: var(--family-body);
+
+  /* --- type scale ---------------------------------------------------------- */
+  --text-2xs: var(--fs-2xs);
+  --text-xs: var(--fs-xs);
+  --text-sm: var(--fs-sm);
+  --text-base: var(--fs-base);
+  --text-md: var(--fs-md);
+  --text-lg: var(--fs-lg);
+  --text-xl: var(--fs-xl);
+  --text-2xl: var(--fs-2xl);
+  --text-3xl: var(--fs-3xl);
+  --text-4xl: var(--fs-4xl);
+  --text-5xl: var(--fs-5xl);
+  --text-6xl: var(--fs-6xl);
+  --text-figure: var(--fs-figure);
+
+  /* --- rhythm -------------------------------------------------------------- */
+  --leading-solid: var(--lh-solid);
+  --leading-tight: var(--lh-tight);
+  --leading-snug: var(--lh-snug);
+  --leading-heading: var(--lh-heading);
+  --leading-normal: var(--lh-normal);
+  --leading-body: var(--lh-body);
+  --leading-loose: var(--lh-loose);
+
+  --tracking-tightest: var(--ls-tightest);
+  --tracking-tighter: var(--ls-tighter);
+  --tracking-tight: var(--ls-tight);
+  --tracking-normal: var(--ls-normal);
+  --tracking-wide: var(--ls-wide);
+  --tracking-wider: var(--ls-wider);
+  --tracking-widest: var(--ls-widest);
+
+  --font-weight-light: var(--weight-light);
+  --font-weight-regular: var(--weight-regular);
+  --font-weight-medium: var(--weight-medium);
+  --font-weight-semibold: var(--weight-semibold);
+  --font-weight-bold: var(--weight-bold);
+  --font-weight-black: var(--weight-black);
+
+  /* --- shape and depth ----------------------------------------------------- */
+  --radius-none: var(--corner-none);
+  --radius-xs: var(--corner-xs);
+  --radius-sm: var(--corner-sm);
+  --radius-md: var(--corner-md);
+  --radius-pill: var(--corner-pill);
+
+  --shadow-rule: var(--elevation-rule);
+  --shadow-lifted: var(--elevation-lifted);
+  --shadow-panel: var(--elevation-panel);
+
+  --ease-standard: var(--easing-standard);
+  --ease-entrance: var(--easing-entrance);
+  --ease-exit: var(--easing-exit);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ----------------------------------------------------------------------------
+   4. BASE
+   ---------------------------------------------------------------------------- */
+@layer base {
+  html {
+    background-color: var(--surface-page);
+    color: var(--ink-primary);
+    font-family: var(--family-body);
+    font-size: 100%;
+    line-height: var(--lh-body);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--surface-page);
+    color: var(--ink-primary);
+    font-size: var(--fs-base);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings inherit their size from the Heading primitive, never from the tag.
+     What the tag settles is family, color, balance and the reset of the browser
+     default margin. */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--ink-primary);
+    font-weight: var(--weight-semibold);
+    line-height: var(--lh-snug);
+    text-wrap: balance;
+  }
+
+  p, li, dd, dt, blockquote, figcaption {
+    text-wrap: pretty;
+  }
+
+  /* Bodoni Moda ships a real optical-size axis. Letting the browser drive it
+     from the used font-size is the entire fix for the shed hairlines that
+     broke every proof figure in the original comp. Never pin
+     font-variation-settings: "opsz" on top of this. */
+  :is(h1, h2, h3, h4, h5, h6, blockquote, .dm-display, .dm-figure) {
+    font-optical-sizing: auto;
+  }
+
+  /* Figures are tabular everywhere so a ledger column, an episode list and a
+     press date all align without anyone remembering to ask. */
+  :is(table, .dm-figure, .dm-stat__figure, time, .dm-tabular) {
+    font-variant-numeric: var(--numeric-tabular);
+  }
+
+  a {
+    color: var(--link-ink);
+    text-decoration-color: var(--link-underline);
+    text-decoration-thickness: from-font;
+    text-underline-offset: 0.16em;
+    transition: var(--transition-ink);
+  }
+
+  a:hover {
+    color: var(--link-ink-hover);
+  }
+
+  /* SC 1.4.1: in running prose the underline is the non-color cue, and it is
+     not optional. Links that live inside a nav, a button or a card carry their
+     own affordance and opt out with .dm-link-bare. */
+  :where(p, li, dd, blockquote, figcaption) a:not(.dm-link-bare) {
+    text-decoration-line: underline;
+  }
+
+  :focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--corner-xs);
+  }
+
+  /* Never remove the indicator, only replace it. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-ink);
+  }
+
+  img, picture, video, canvas, svg {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+  hr {
+    border: 0;
+    border-block-start: var(--border-hairline) solid var(--rule-structural);
+  }
+
+  strong, b {
+    font-weight: var(--weight-semibold);
+  }
+
+  input, textarea, select, button {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::placeholder {
+    color: var(--field-placeholder-ink);
+    opacity: 1;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  /* Motion guard. tokens.css collapses the duration tokens; this catches
+     anything that hard-codes a transition or an animation anyway. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 1ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ----------------------------------------------------------------------------
+   5. COMPONENTS
+   The primitive classes. components/ui/*.tsx compose these; nothing here is
+   duplicated in a .tsx file.
+   ---------------------------------------------------------------------------- */
+@layer components {
+  /* --- skip link ----------------------------------------------------------- */
+  .dm-skip-link {
+    position: absolute;
+    inset-inline-start: var(--space-4);
+    inset-block-start: var(--space-4);
+    z-index: var(--z-skip-link);
+    padding: var(--space-3) var(--space-5);
+    background-color: var(--surface-accent);
+    color: var(--ink-on-accent);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    text-decoration: none;
+    transform: translateY(-200%);
+  }
+  .dm-skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
+  /* --- container ----------------------------------------------------------- */
+  .dm-container {
+    inline-size: 100%;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    max-inline-size: var(--width-container-max);
+  }
+  .dm-container--wide { max-inline-size: var(--width-container-wide); }
+  .dm-container--narrow { max-inline-size: var(--width-container-narrow); }
+  .dm-container--text { max-inline-size: var(--width-container-text); }
+  .dm-container--flush { padding-inline: 0; }
+
+  /* --- section ------------------------------------------------------------- */
+  .dm-section {
+    background-color: var(--surface-page);
+    color: var(--ink-primary);
+    padding-block: var(--section-pad-block);
+  }
+  .dm-section--tight { padding-block: var(--section-pad-block-tight); }
+  .dm-section--loose { padding-block: var(--section-pad-block-loose); }
+  .dm-section--flush { padding-block: 0; }
+
+  /* The shared 12-column grid. One primitive, used by every route, so a press
+     list and an episode grid never roll their own column definition. */
+  .dm-grid12 {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+    gap: var(--grid-gap);
+  }
+  @media (max-width: 47.9375rem) {
+    .dm-grid12 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  }
+
+  /* --- eyebrow / running head / folio -------------------------------------- */
+  .dm-eyebrow {
+    display: block;
+    color: var(--ink-muted);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--ls-widest);
+    line-height: var(--lh-loose);
+    text-transform: uppercase;
+  }
+  .dm-eyebrow--accent { color: var(--ink-accent); }
+  .dm-eyebrow--brand { color: var(--ink-brand); }
+  .dm-eyebrow--faint { color: var(--ink-faint); }
+  .dm-eyebrow--inline { display: inline-block; }
+
+  /* --- headings ------------------------------------------------------------ */
+  .dm-heading {
+    color: var(--ink-primary);
+    font-family: var(--family-serif);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-snug);
+    text-wrap: balance;
+  }
+  /* The Didone. Only ever at --fs-4xl and above, only with optical sizing on
+     automatic. Below 40px its hairlines drop under a device pixel at 1x. */
+  .dm-display {
+    color: var(--ink-primary);
+    font-family: var(--family-display);
+    font-optical-sizing: auto;
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--ls-tightest);
+    line-height: var(--lh-tight);
+    text-wrap: balance;
+  }
+  .dm-display--masthead { line-height: var(--lh-solid); }
+  .dm-heading--brand, .dm-display--brand { color: var(--ink-brand); }
+  .dm-heading--muted { color: var(--ink-muted); }
+
+  /* The numbered section-head prefix, set INSIDE the h2 so the document
+     outline carries it. This is direction 1's best idea, executed with the
+     heading weight it forgot to give itself: the mono folio is subordinate,
+     the serif title is the heading, and the two are never the same size. */
+  .dm-heading__folio {
+    display: block;
+    color: var(--ink-accent);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--ls-widest);
+    line-height: var(--lh-loose);
+    margin-block-end: var(--space-2);
+    text-transform: uppercase;
+  }
+
+  /* --- rules --------------------------------------------------------------- */
+  .dm-rule {
+    border: 0;
+    border-block-start: var(--border-hairline) solid var(--rule-structural);
+    inline-size: 100%;
+  }
+  .dm-rule--thin { border-block-start-width: var(--border-thin); }
+  .dm-rule--thick { border-block-start-width: var(--border-thick); }
+  .dm-rule--strong { border-block-start-color: var(--rule-strong); }
+  .dm-rule--brand { border-block-start-color: var(--rule-brand); }
+  .dm-rule--accent {
+    border-block-start-color: var(--rule-accent);
+    border-block-start-width: var(--border-medium);
+  }
+  /* Ornament only. Sits below 3:1 on purpose. If deleting it would lose
+     meaning, it needed to be a structural rule. */
+  .dm-rule--decorative { border-block-start-color: var(--rule-decorative); }
+  .dm-rule--short { inline-size: var(--size-rule-short); }
+  .dm-rule--medium { inline-size: var(--size-rule-medium); }
+
+  /* --- buttons ------------------------------------------------------------- */
+  .dm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-block-size: var(--size-tap-target);
+    padding-block: var(--space-3);
+    padding-inline: var(--space-6);
+    border: var(--border-hairline) solid transparent;
+    border-radius: var(--corner-none);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--ls-widest);
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-surface), var(--transition-ink);
+  }
+  .dm-btn--lg {
+    min-block-size: var(--space-8);
+    padding-block: var(--space-4);
+    padding-inline: var(--space-7);
+    font-size: var(--fs-xs);
+  }
+  .dm-btn--block { display: flex; inline-size: 100%; }
+
+  /* Primary: an orange field with navy type. The wordmark's two colors doing
+     a job. One per viewport. */
+  .dm-btn--primary {
+    background-color: var(--action-primary-bg);
+    border-color: var(--action-primary-bg);
+    color: var(--action-primary-ink);
+  }
+  .dm-btn--primary:hover {
+    background-color: var(--action-primary-bg-hover);
+    border-color: var(--action-primary-bg-hover);
+  }
+  .dm-btn--primary:active {
+    background-color: var(--action-primary-bg-active);
+    border-color: var(--action-primary-bg-active);
+  }
+
+  .dm-btn--secondary {
+    background-color: var(--action-secondary-bg);
+    border-color: var(--action-secondary-rule);
+    color: var(--action-secondary-ink);
+  }
+  .dm-btn--secondary:hover { background-color: var(--action-secondary-bg-hover); }
+  .dm-btn--secondary:active { background-color: var(--action-secondary-bg-active); }
+
+  .dm-btn--ghost {
+    background-color: var(--action-ghost-bg);
+    border-color: transparent;
+    color: var(--action-ghost-ink);
+    padding-inline: var(--space-3);
+  }
+  .dm-btn--ghost:hover { background-color: var(--action-ghost-bg-hover); }
+
+  .dm-btn:disabled,
+  .dm-btn[aria-disabled="true"] {
+    background-color: var(--state-disabled-bg);
+    border-color: var(--state-disabled-rule);
+    color: var(--state-disabled-ink);
+    cursor: not-allowed;
+  }
+
+  /* --- prose --------------------------------------------------------------- */
+  .dm-prose {
+    color: var(--ink-primary);
+    font-family: var(--family-body);
+    font-size: var(--fs-base);
+    line-height: var(--lh-body);
+    max-inline-size: var(--measure);
+  }
+  .dm-prose--narrow { max-inline-size: var(--measure-narrow); }
+  .dm-prose--wide { max-inline-size: var(--measure-wide); }
+  .dm-prose--full { max-inline-size: none; }
+  .dm-prose--lead {
+    font-size: var(--fs-md);
+    line-height: var(--lh-normal);
+    color: var(--ink-secondary);
+  }
+  .dm-prose > * + * { margin-block-start: var(--space-4); }
+  .dm-prose > * + :is(h2, h3, h4) { margin-block-start: var(--space-7); }
+  .dm-prose :is(h2, h3, h4) { font-family: var(--family-serif); }
+  .dm-prose h2 { font-size: var(--fs-2xl); }
+  .dm-prose h3 { font-size: var(--fs-xl); }
+  .dm-prose h4 { font-size: var(--fs-lg); }
+  .dm-prose :is(ul, ol) {
+    padding-inline-start: var(--space-5);
+    list-style-position: outside;
+  }
+  .dm-prose ul { list-style-type: square; }
+  .dm-prose ol { list-style-type: decimal; }
+  .dm-prose li + li { margin-block-start: var(--space-2); }
+  .dm-prose li::marker { color: var(--ink-accent); }
+
+  /* --- card ---------------------------------------------------------------- */
+  .dm-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--surface-raised);
+    border: var(--border-hairline) solid var(--rule-structural);
+    border-radius: var(--corner-none);
+    color: var(--ink-primary);
+    padding: var(--space-5);
+  }
+  .dm-card--flush { padding: 0; }
+  .dm-card--ruled {
+    background-color: transparent;
+    border-inline: 0;
+    border-block-end: 0;
+    border-block-start-width: var(--border-thin);
+    border-block-start-color: var(--rule-strong);
+    padding-inline: 0;
+  }
+  .dm-card--plate {
+    background-color: var(--surface-plate);
+    border-color: transparent;
+  }
+  .dm-card--bright { background-color: var(--surface-bright); }
+  .dm-card--interactive { transition: var(--transition-surface); }
+  .dm-card--interactive:hover { background-color: var(--state-hover-bg); }
+
+  /* --- stat ledger --------------------------------------------------------- */
+  /* Grafted wholesale from direction 3. Serif figures that survive a 1x
+     raster, a mono index above and a mono label below, on a hairline row. */
+  .dm-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .dm-stat__index {
+    color: var(--ink-faint);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    letter-spacing: var(--ls-wider);
+    line-height: 1;
+  }
+  .dm-stat__figure {
+    color: var(--ink-brand);
+    font-family: var(--family-figure);
+    font-optical-sizing: auto;
+    font-size: var(--fs-figure);
+    font-variant-numeric: var(--numeric-tabular);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--ls-tight);
+    line-height: 1;
+  }
+  /* The plus sign carries meaning (more than) and is the one place a hairline
+     of brand orange earns a letterform. It is aria-hidden, so it is exempt
+     from the text contrast floor and a screen reader still says "2,400". */
+  .dm-stat__plus {
+    color: var(--ink-hot);
+    font-weight: var(--weight-regular);
+  }
+  .dm-stat__label {
+    color: var(--ink-muted);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    letter-spacing: var(--ls-widest);
+    line-height: var(--lh-loose);
+    text-transform: uppercase;
+  }
+  .dm-stat__note {
+    color: var(--ink-muted);
+    font-family: var(--family-body);
+    font-size: var(--fs-xs);
+    line-height: var(--lh-normal);
+    max-inline-size: var(--measure-narrow);
+  }
+
+  /* --- quote --------------------------------------------------------------- */
+  /* Deliberately --fs-xl, one full step BELOW a section h2 at --fs-2xl. A pull
+     quote never outranks the heading it sits under. */
+  .dm-quote {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: 0;
+  }
+  .dm-quote__body {
+    color: var(--ink-primary);
+    font-family: var(--family-serif);
+    font-optical-sizing: auto;
+    font-size: var(--fs-xl);
+    font-style: italic;
+    font-weight: var(--weight-regular);
+    line-height: var(--lh-snug);
+    max-inline-size: var(--measure-quote);
+    text-wrap: balance;
+  }
+  .dm-quote__body--wide { max-inline-size: var(--measure-narrow); }
+  .dm-quote__attribution {
+    color: var(--ink-muted);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    font-style: normal;
+    letter-spacing: var(--ls-widest);
+    line-height: var(--lh-loose);
+    text-transform: uppercase;
+  }
+  .dm-quote--barred {
+    border-inline-start: var(--border-medium) solid var(--rule-accent);
+    padding-inline-start: var(--space-5);
+  }
+
+  /* --- figure and cutline --------------------------------------------------- */
+  /* The cutline is a standing structural slot, not decoration. It is where the
+     dry humor lives: two true things next to each other, in 13px mono, under a
+     hairline. Every photograph on the site gets one. */
+  .dm-figure { margin: 0; }
+  .dm-figure__media {
+    background-color: var(--surface-plate);
+    overflow: hidden;
+  }
+  .dm-figure__caption {
+    border-block-start: var(--border-hairline) solid var(--rule-structural);
+    color: var(--ink-muted);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    line-height: var(--lh-loose);
+    margin-block-start: var(--space-3);
+    max-inline-size: var(--measure-narrow);
+    padding-block-start: var(--space-2);
+  }
+  .dm-figure__folio {
+    color: var(--ink-faint);
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+  }
 }
