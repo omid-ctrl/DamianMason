@@ -140,3 +140,51 @@
 .plate {
   inline-size: 100%;
 }
+
+/* The two print jackets in section No. 07.
+
+   ARTWORK, so DESIGN_SYSTEM 6.5 governs rather than 6.2: colour kept, no
+   --photo-filter, a hairline instead of a plate, and multiply so each jacket's
+   own white ground resolves into the sage band behind it. Without the multiply
+   the two files render as white boxes inside a sage box, which is the exact
+   defect the logo wall solved the same way.
+
+   CAPPED ON THE BLOCK AXIS. --size-jacket-h, not an inline-size cap: sized on
+   the inline axis two jackets in one column land on different heights, because
+   width binds before the height cap ever engages. The block axis is what makes
+   them peers. Same reasoning as /about/#books, same token. */
+.jackets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jackets li {
+  border: var(--border-hairline) solid var(--rule-quiet);
+  padding: var(--space-3);
+  display: grid;
+  place-items: center;
+}
+
+.jackets img {
+  block-size: auto;
+  inline-size: auto;
+  /* The ceiling is the brand-art cap, not the portrait cap. A jacket is not a
+     photograph of a person, and the Do Business Better cover is a saturated
+     yellow square: at portrait scale it out-shouts the one orange field this
+     viewport is allowed without ever using the colour. */
+  max-block-size: var(--size-jacket-h);
+  max-inline-size: 100%;
+  mix-blend-mode: multiply;
+  object-fit: contain;
+}
+
+/* The field-day band closes section No. 04. Full grid width, so it reads as a
+   band rather than as a card that happens to contain a picture. */
+.rolesFigure {
+  margin-block-start: var(--space-7);
+}

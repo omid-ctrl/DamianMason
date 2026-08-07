@@ -81,6 +81,19 @@ const PLANNER_BENEFITS = [
 
 /** Section 7 of the source: the three roles, as ruled cards rather than as the
  *  three macOS screenshots the old page used as marketing imagery. */
+/** The two print jackets, for section No. 07. The audiobook cover is
+ *  deliberately absent: see the note at the rail. */
+const HOME_JACKETS = [
+  {
+    src: '/img/photos/food-fear-book-cover.png',
+    alt: 'Cover of Food Fear by Damian Mason: a tomato held in an open palm, casting the shadow of a monster.',
+  },
+  {
+    src: '/img/photos/do-business-better-book-cover.png',
+    alt: imageAlt['/img/photos/do-business-better-book-cover.png'],
+  },
+] as const;
+
 const ROLES = [
   {
     title: 'Podcast Host and Guest',
@@ -402,6 +415,41 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+
+            {/* field-day-panel.png shipped in public/ for seven phases and was
+                rendered by zero routes, because the content manifest recorded
+                the whole batch as unusable. It is a clean broadcast frame grab
+                with no player chrome anywhere in it, which is a different thing
+                from the macOS screenshots DESIGN_SYSTEM 6.4 bars, and it is the
+                most agricultural asset in the archive: a sunflower field day,
+                four men round a cocktail table, everybody talking.
+
+                It belongs to THIS section and not another. No. 04 is "If it's
+                Agriculture, it Needs Damian", and this is the only frame on the
+                site that shows him inside a crop rather than on a stage in
+                front of one. It also earns its keep now in a way it could not
+                before: under grayscale(1) a field of sunflowers was grey. */}
+            <figure className={`dm-figure ${styles.rolesFigure} col-span-6 md:col-span-12`}>
+              <div className="dm-photo dm-photo--band">
+                <Image
+                  className="dm-photo__img"
+                  src="/img/photos/field-day-panel.png"
+                  /* Inline, not in content/image-alt.ts: that registry exists
+                     for assets with more than one call site, which cannot be
+                     allowed to diverge. This has one. */
+                  alt="Damian Mason talking with three other men around a cocktail table at an outdoor field day, a stand of flowering sunflowers and event tents behind them."
+                  width={1406}
+                  height={1008}
+                  loading="lazy"
+                  sizes="(min-width: 64rem) 84rem, 100vw"
+                />
+              </div>
+              <figcaption className="dm-figure__caption">
+                <span className="dm-figure__folio">Fig. 04 </span>
+                A field day, four men and a cocktail table in a stand of sunflowers.
+                Nobody is holding a microphone and everybody is talking.
+              </figcaption>
+            </figure>
           </div>
 
           {/* Outside .sectionGrid, not inside it. .dm-section-close owns the
@@ -535,7 +583,7 @@ export default function HomePage() {
               />
             </div>
 
-            <div className={`${styles.stack} col-span-6 md:col-span-7`}>
+            <div className={`${styles.stack} col-span-6 md:col-span-4`}>
               {/* The "after speaking to companies such as Merck, Land O'Lakes,
                   and Cargill" clause came out of this paragraph. It is verbatim
                   jacket copy in content/books.ts, so it already runs on /about/
@@ -553,6 +601,38 @@ export default function HomePage() {
                 </p>
               </Prose>
             </div>
+
+            {/* The section discussed two books and an audiobook and showed
+                none of them, while all three jacket files sat unreferenced in
+                public/. That is the cheapest imagery on the site.
+
+                TWO JACKETS, NOT THREE. The audiobook cover is the print cover
+                with a headphones badge on it, so a third slot here would read
+                as a rendering bug rather than a third book. The two-format
+                story is already told properly on /about/#books, and the
+                paragraph beside this rail already says Food Fear is on audio.
+
+                ARTWORK, NOT PHOTOGRAPHY, so DESIGN_SYSTEM 6.5 applies and 6.2
+                does not: it keeps its colour, takes no --photo-filter, gets a
+                hairline rather than a plate of its own, and carries no cutline,
+                because a cutline belongs to a photograph. mix-blend-mode:
+                multiply resolves each jacket's own white ground into the sage
+                band behind it, which is why there is no visible edge where the
+                two whites would otherwise meet. */}
+            <ul className={`${styles.jackets} col-span-6 md:col-span-3`} role="list">
+              {HOME_JACKETS.map((jacket) => (
+                <li key={jacket.src}>
+                  <Image
+                    src={jacket.src}
+                    alt={jacket.alt}
+                    width={1200}
+                    height={1200}
+                    loading="lazy"
+                    sizes="(min-width: 48rem) 16rem, 40vw"
+                  />
+                </li>
+              ))}
+            </ul>
 
           </div>
 
