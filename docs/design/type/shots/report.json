@@ -1,0 +1,210 @@
+[
+  {
+    "name": "type-0-bodoni",
+    "width": 390,
+    "status": "ok",
+    "title": "Type bake-off: Bodoni Moda",
+    "h1": [
+      "Straight-Forward Agriculture Dialogue",
+      "Ag economist, comedian, farm owner.",
+      "Meeting Coordinators",
+      "Join the Conversation",
+      "Testimonials",
+      "News & Media"
+    ],
+    "headings": 12,
+    "images": 0,
+    "brokenImages": [],
+    "emptyHrefs": [],
+    "wpengineRefs": false,
+    "scrollWidth": 980,
+    "clientWidth": 980,
+    "horizontalOverflow": 0,
+    "consoleErrors": [],
+    "failedRequests": [
+      "https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&family=Archivo:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;600&family=IBM+Plex+Mono:wght@400;500&display=swap :: net::ERR_BLOCKED_BY_ORB"
+    ]
+  },
+  {
+    "name": "type-a-oswald",
+    "width": 390,
+    "status": "ok",
+    "title": "Type bake-off: Oswald",
+    "h1": [
+      "Straight-Forward Agriculture Dialogue",
+      "Ag economist, comedian, farm owner.",
+      "Meeting Coordinators",
+      "Join the Conversation",
+      "Testimonials",
+      "News & Media"
+    ],
+    "headings": 12,
+    "images": 0,
+    "brokenImages": [],
+    "emptyHrefs": [],
+    "wpengineRefs": false,
+    "scrollWidth": 980,
+    "clientWidth": 980,
+    "horizontalOverflow": 0,
+    "consoleErrors": [],
+    "failedRequests": [
+      "https://fonts.googleapis.com/css2?family=Oswald:wght@600&family=Archivo:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;600&family=IBM+Plex+Mono:wght@400;500&display=swap :: net::ERR_BLOCKED_BY_ORB"
+    ]
+  },
+  {
+    "name": "type-b-big-shoulders",
+    "width": 390,
+    "status": "ok",
+    "title": "Type bake-off: Big Shoulders",
+    "h1": [
+      "Straight-Forward Agriculture Dialogue",
+      "Ag economist, comedian, farm owner.",
+      "Meeting Coordinators",
+      "Join the Conversation",
+      "Testimonials",
+      "News & Media"
+    ],
+    "headings": 12,
+    "images": 0,
+    "brokenImages": [],
+    "emptyHrefs": [],
+    "wpengineRefs": false,
+    "scrollWidth": 980,
+    "clientWidth": 980,
+    "horizontalOverflow": 0,
+    "consoleErrors": [],
+    "failedRequests": [
+      "https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@72,600&family=Archivo:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;600&family=IBM+Plex+Mono:wght@400;500&display=swap :: net::ERR_BLOCKED_BY_ORB"
+    ]
+  },
+  {
+    "name": "type-c-libre-franklin",
+    "width": 390,
+    "status": "ok",
+    "title": "Type bake-off: Libre Franklin",
+    "h1": [
+      "Straight-Forward Agriculture Dialogue",
+      "Ag economist, comedian, farm owner.",
+      "Meeting Coordinators",
+      "Join the Conversation",
+      "Testimonials",
+      "News & Media"
+    ],
+    "headings": 12,
+    "images": 0,
+    "brokenImages": [],
+    "emptyHrefs": [],
+    "wpengineRefs": false,
+    "scrollWidth": 980,
+    "clientWidth": 980,
+    "horizontalOverflow": 0,
+    "consoleErrors": [],
+    "failedRequests": [
+      "https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@800&family=Archivo:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;600&family=IBM+Plex+Mono:wght@400;500&display=swap :: net::ERR_BLOCKED_BY_ORB"
+    ]
+  },
+  {
+    "name": "type-0-bodoni",
+    "width": 1440,
+    "status": "ok",
+    "title": "Type bake-off: Bodoni Moda",
+    "h1": [
+      "Straight-Forward Agriculture Dialogue",
+      "Ag economist, comedian, farm owner.",
+      "Meeting Coordinators",
+      "Join the Conversation",
+      "Testimonials",
+      "News & Media"
+    ],
+    "headings": 12,
+    "images": 0,
+    "brokenImages": [],
+    "emptyHrefs": [],
+    "wpengineRefs": false,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "horizontalOverflow": 0,
+    "consoleErrors": [],
+    "failedRequests": [
+      "https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&family=Archivo:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;600&family=IBM+Plex+Mono:wght@400;500&display=swap :: net::ERR_BLOCKED_BY_ORB"
+    ]
+  },
+  {
+    "name": "type-a-oswald",
+    "width": 1440,
+    "status": "ok",
+    "title": "Type bake-off: Oswald",
+    "h1": [
+      "Straight-Forward Agriculture Dialogue",
+      "Ag economist, comedian, farm owner.",
+      "Meeting Coordinators",
+      "Join the Conversation",
+      "Testimonials",
+      "News & Media"
+    ],
+    "headings": 12,
+    "images": 0,
+    "brokenImages": [],
+    "emptyHrefs": [],
+    "wpengineRefs": false,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "horizontalOverflow": 0,
+    "consoleErrors": [],
+    "failedRequests": [
+      "https://fonts.googleapis.com/css2?family=Oswald:wght@600&family=Archivo:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;600&family=IBM+Plex+Mono:wght@400;500&display=swap :: net::ERR_BLOCKED_BY_ORB"
+    ]
+  },
+  {
+    "name": "type-b-big-shoulders",
+    "width": 1440,
+    "status": "ok",
+    "title": "Type bake-off: Big Shoulders",
+    "h1": [
+      "Straight-Forward Agriculture Dialogue",
+      "Ag economist, comedian, farm owner.",
+      "Meeting Coordinators",
+      "Join the Conversation",
+      "Testimonials",
+      "News & Media"
+    ],
+    "headings": 12,
+    "images": 0,
+    "brokenImages": [],
+    "emptyHrefs": [],
+    "wpengineRefs": false,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "horizontalOverflow": 0,
+    "consoleErrors": [],
+    "failedRequests": [
+      "https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@72,600&family=Archivo:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;600&family=IBM+Plex+Mono:wght@400;500&display=swap :: net::ERR_BLOCKED_BY_ORB"
+    ]
+  },
+  {
+    "name": "type-c-libre-franklin",
+    "width": 1440,
+    "status": "ok",
+    "title": "Type bake-off: Libre Franklin",
+    "h1": [
+      "Straight-Forward Agriculture Dialogue",
+      "Ag economist, comedian, farm owner.",
+      "Meeting Coordinators",
+      "Join the Conversation",
+      "Testimonials",
+      "News & Media"
+    ],
+    "headings": 12,
+    "images": 0,
+    "brokenImages": [],
+    "emptyHrefs": [],
+    "wpengineRefs": false,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "horizontalOverflow": 0,
+    "consoleErrors": [],
+    "failedRequests": [
+      "https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@800&family=Archivo:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;600&family=IBM+Plex+Mono:wght@400;500&display=swap :: net::ERR_BLOCKED_BY_ORB"
+    ]
+  }
+]

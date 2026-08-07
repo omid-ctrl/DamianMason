@@ -23,17 +23,17 @@ import { site } from '@/content/site';
  * ---------------------------------------------------------------------------
  */
 const TOKENS = {
-  /** --surface-page / --palette-bone-200 */
-  bone: '#f2ebde',
-  /** --ink-primary / --palette-navy-950. 15.22:1 on bone. */
+  /** --surface-page / --palette-stone-200. The page ground. */
+  ground: '#f7f8f6',
+  /** --ink-primary / --palette-navy-950. 16.94:1 on the ground. */
   ink: '#041826',
-  /** --ink-brand / --palette-navy-700, the wordmark navy. 7.56:1 on bone. */
+  /** --ink-brand / --palette-navy-700, the wordmark navy. 8.41:1. */
   inkBrand: '#094d78',
-  /** --ink-muted / --palette-bone-800. 5.74:1 on bone. */
-  inkMuted: '#625a4b',
-  /** --rule-structural / --palette-bone-650. 3.48:1 on bone. */
-  ruleStructural: '#857c69',
-  /** --brand-orange. A field or a rule only, never a letterform on bone. */
+  /** --ink-muted / --palette-stone-800. 5.76:1. */
+  inkMuted: '#566654',
+  /** --rule-structural / --palette-stone-650. 3.47:1. */
+  ruleStructural: '#788a73',
+  /** --brand-orange. A field or a rule only, never a letterform on a light ground. */
   orange: '#ff5325',
 } as const;
 
@@ -68,7 +68,7 @@ export default async function OpengraphImage() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          backgroundColor: TOKENS.bone,
+          backgroundColor: TOKENS.ground,
           color: TOKENS.ink,
           padding: '56px 72px',
         }}

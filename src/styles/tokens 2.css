@@ -76,82 +76,30 @@
   --palette-navy-200: #b7cedd;
   --palette-navy-100: #d3e0e8;
 
-  /* Stone: a cool sage-grey neutral. Nothing on this site is pure white.
-
-     This replaced a warm bone ramp (#F2EBDE ground) in the Cool Modern Ag
-     revision. The reason was register, not craft: 15 of 17 routes shipped the
-     same cream, the alternating band sat 4% away from it so a 15,000px scroll
-     read as one flat beige column, and cream reads as an antique broadsheet to
-     an audience of farm credit executives and commodity board directors buying
-     a speaker for a 2026 annual meeting.
-
-     THE HUE IS SAGE, NOT BLUE. 105 to 113 degrees at 9 to 14% saturation. A
-     blue-grey neutral is the reflex when someone says "cooler" and it is wrong
-     here twice over: it would read as a SaaS product, and it would fight the
-     forest scope further down this file. Sage ties the neutrals to the green.
-
-     EVERY STEP KEEPS ITS PREDECESSOR'S MEASURED JOB, verified to two decimals
-     by scripts/contrast-table.mjs. The old page/sunken pairs were 1.33/1.20,
-     3.48/3.12, 5.09/4.56 and 5.74/5.15; these are 1.33/1.20, 3.47/3.12,
-     5.09/4.58 and 5.76/5.18.
-
-     That transfer is not luck. #E9EDE8 has a relative luminance of 0.8372 and
-     the old #F2EBDE had 0.8357, within 0.2%, so the new sage band IS the old
-     page ground wearing a different hue. Tune a dark step against the new page
-     ground and its sunken number falls out on its own. */
-  --palette-stone-050: #fdfefc;
-  --palette-stone-100: #fafbf8;
-  --palette-stone-200: #f7f8f6;
-  /* The hover step, and the one genuinely new value in this ramp.
-
-     A cool-white ground sits at 93.6% luminance, which leaves 0.064 of headroom
-     before pure white where the bone ground had 0.164. The old ladder went
-     page -> raised -> bright, each about +0.065, and it simply cannot be
-     reproduced: --surface-raised now sits 1.03 against the page where it used
-     to sit 1.07, which is invisible.
-
-     Cards and nav panels do not care, because both carry a --rule-structural
-     hairline at 3.47:1 and are defined by their rule. --state-hover-bg did
-     care: it would have become a 3% lift, which is a hover state that does not
-     exist. So on a cool-white ground HOVER GOES DOWN INTO THE SAGE rather than
-     up into white, and this step is where it goes. 1.06 against the page,
-     against the old 1.07.
-
-     Neither axe nor a screenshot diff can catch that regression, because hover
-     is not in a screenshot. It has to be hovered by hand. */
-  --palette-stone-250: #f0f2f0;
-  --palette-stone-300: #e9ede8;
-  --palette-stone-400: #d3dbd0;
-  --palette-stone-500: #a6b6a1;
-  --palette-stone-650: #788a73;
-  /* The faint ink step. Its predecessor's predecessor measured 3.89:1, which
-     fails SC 1.4.3 for any text under 24px however decorative it is and however
-     reliably it is aria-hidden. WCAG's "pure decoration" exemption is a
+  /* Bone: warm uncoated newsprint. Nothing on this site is pure white. */
+  --palette-bone-050: #fdfbf7;
+  --palette-bone-100: #f8f3e9;
+  --palette-bone-200: #f2ebde;
+  --palette-bone-300: #e8dfce;
+  --palette-bone-400: #d8cdb8;
+  --palette-bone-500: #c4b79e;
+  --palette-bone-600: #9a8e77;
+  --palette-bone-650: #857c69;
+  --palette-bone-700: #7e7460;
+  /* The faint ink step. bone-700 measured 3.89:1 on bone and 3.49:1 on sunken,
+     which fails SC 1.4.3 for any text under 24px however decorative it is and
+     however reliably it is aria-hidden. WCAG's "pure decoration" exemption is a
      judgment call, and 90 flagged nodes is not a judgment worth defending in an
-     audit. stone-750 is the lightest value that still clears 4.5:1 on every
-     light ground in the system: 5.09 on page, 4.58 on sunken, 5.22 on raised,
-     5.36 on bright. It is still a full step lighter than stone-800, so the
-     faint tier survives.
-
-     The two dead steps the bone ramp carried, -600 and -700, are not carried
-     over. Both had zero references anywhere in the repo. */
-  --palette-stone-750: #5f6e5c;
-  --palette-stone-800: #566654;
+     audit. bone-750 is the lightest value that still clears 4.5:1 on every
+     light ground in the system: 5.09 on bone, 4.56 on sunken, 5.45 on raised,
+     5.84 on bright. It is still a full step lighter than bone-800, so the
+     faint tier survives. */
+  --palette-bone-750: #6a6252;
+  --palette-bone-800: #625a4b;
 
   /* Orange: the brand orange plus deepened print steps. The brand value is
-     legal as TEXT only on a dark ground. On a light one it is a field, a rule
-     or a mark, never a letterform.
-
-     THE RESTRICTION NOW NAMES A GROUND, NOT A SCOPE, because the ramp swap
-     moved the number without moving the rule. #FF5325 measures 3.19 on stone
-     bright, 3.10 on raised, 3.03 on the page and 2.72 on the sage band. It
-     therefore clears the 3:1 non-text floor of SC 1.4.11 on the page for the
-     first time (on bone it was 2.72 and cleared nothing), and still fails it on
-     sunken, which 37 Sections use.
-
-     Do not read that as permission. A number moving 0.31 is not a reason to
-     start putting orange rules on light grounds; it is a reason the token
-     comment can now be honest about where it would be legal if we did. */
+     legal as TEXT only on deep navy. On bone it measures 2.72:1 and must be
+     a field, a rule, or a mark, never a letterform. */
   --palette-orange-800: #8c2a0b;
   --palette-orange-700: #a8330e;
   --palette-orange-600: #c63e12;
@@ -186,10 +134,10 @@
   /* ==========================================================================
      3. SEMANTIC COLOR / SURFACES
      ========================================================================== */
-  --surface-page: var(--palette-stone-200);      /* the dominant ground */
-  --surface-raised: var(--palette-stone-100);    /* cards, pulled boxes */
-  --surface-bright: var(--palette-stone-050);    /* form fields, logo cells */
-  --surface-sunken: var(--palette-stone-300);    /* wells, alternating bands */
+  --surface-page: var(--palette-bone-200);      /* the dominant ground */
+  --surface-raised: var(--palette-bone-100);    /* cards, pulled boxes */
+  --surface-bright: var(--palette-bone-050);    /* form fields, logo cells */
+  --surface-sunken: var(--palette-bone-300);    /* wells, alternating bands */
   --surface-deep: var(--palette-navy-950);      /* full-bleed navy bands */
   --surface-deep-alt: var(--palette-navy-900);
   --surface-deep-raised: var(--palette-navy-800);
@@ -216,10 +164,10 @@
   --ink-brand: var(--palette-navy-700);         /* @on page,sunken >=4.5   Headlines and
                                                     figures. The wordmark navy, reserved
                                                     for display type and proof numbers. */
-  --ink-muted: var(--palette-stone-800);         /* @on page,raised,bright,sunken >=4.5
+  --ink-muted: var(--palette-bone-800);         /* @on page,raised,bright,sunken >=4.5
                                                     Captions, folios, labels, running
                                                     heads, stat descriptions. */
-  --ink-faint: var(--palette-stone-750);         /* @on page,raised,bright,sunken >=4.5
+  --ink-faint: var(--palette-bone-750);         /* @on page,raised,bright,sunken >=4.5
                                                     Decorative indices and disabled
                                                     text ONLY. Never prose. Clears AA
                                                     at any size on every light ground,
@@ -236,7 +184,7 @@
                                                     clear is SC 1.4.11, not SC 1.4.3. */
   --ink-gold: var(--palette-gold-700);          /* @on page >=4.5 */
   --ink-green: var(--palette-green-600);        /* @on page >=4.5 */
-  --ink-inverse: var(--palette-stone-100);       /* type placed on a deep ground */
+  --ink-inverse: var(--palette-bone-100);       /* type placed on a deep ground */
   --ink-on-accent: var(--palette-navy-950);     /*  5.60:1 on the orange field */
 
   /* ==========================================================================
@@ -248,12 +196,12 @@
      --rule-decorative is ornament only. It may sit below 3:1. If deleting the
        rule would lose meaning, it was the wrong token.
      ========================================================================== */
-  --rule-structural: var(--palette-stone-650);   /* @on page,raised,bright,sunken >=3 */
-  --rule-decorative: var(--palette-stone-400);   /* @on page >=3
+  --rule-structural: var(--palette-bone-650);   /* @on page,raised,bright,sunken >=3 */
+  --rule-decorative: var(--palette-bone-400);   /* @on page >=3
                                                    @allow-fail "ornament by definition.
                                                    If deleting the rule would lose meaning
                                                    it was the wrong token. DESIGN_SYSTEM 5." */
-  --rule-quiet: var(--palette-stone-300);
+  --rule-quiet: var(--palette-bone-300);
   --rule-strong: var(--palette-navy-950);       /* the heavy broadsheet rule */
   --rule-brand: var(--palette-navy-700);
   --rule-accent: var(--palette-orange-400);     /* the one orange hairline */
@@ -265,12 +213,8 @@
      6. FOCUS AND SELECTION
      The ring stays in the orange family in both scopes so focus reads as the
      brand, and it clears 3:1 against every ground it can land on.
-     light scope #a8330e: 6.27 on page, 5.64 on sunken, 6.60 on a form field
+     bone scope  #a8330e: 5.63 on page, 5.05 on sunken, 6.46 on a form field
      deep scope  #ff8154: 7.32 on navy-950, 6.17 on navy-900, 4.89 on navy-800
-
-     Every scope must set --focus-ring-offset-color. The ring sits at a 2px
-     offset over whatever ground it lands on, so a scope that omits it draws
-     that offset in the light-scope colour on a dark band.
      ========================================================================== */
   --focus-ring-color: var(--palette-orange-700);  /* @on page,sunken,bright >=3 */
   --focus-ring-offset-color: var(--surface-page);
@@ -294,14 +238,13 @@
   --action-primary-rule: transparent;
 
   --action-secondary-bg: transparent;
-  --action-secondary-bg-hover: var(--palette-stone-300);
-  --action-secondary-bg-active: var(--palette-stone-400);
+  --action-secondary-bg-hover: var(--palette-bone-300);
+  --action-secondary-bg-active: var(--palette-bone-400);
   --action-secondary-ink: var(--palette-navy-950);           /* 15.22:1 */
   --action-secondary-rule: var(--palette-navy-950);
 
   --action-ghost-bg: transparent;
-  /* stone-250, not -300. A full band step reads as a selection, not a hover. */
-  --action-ghost-bg-hover: var(--palette-stone-250);
+  --action-ghost-bg-hover: var(--palette-bone-300);
   --action-ghost-ink: var(--palette-navy-800);               /* 10.17:1 */
   --action-ghost-rule: transparent;
 
@@ -310,14 +253,11 @@
   --link-ink-visited: var(--palette-navy-700);
   --link-underline: currentColor;   /* the non-color cue required by SC 1.4.1 */
 
-  --state-disabled-ink: var(--palette-stone-650);
-  --state-disabled-bg: var(--palette-stone-300);
-  --state-disabled-rule: var(--palette-stone-500);
-  /* Down into the sage, not up into white. See the --palette-stone-250 note:
-     on a 93.6%-luminance ground there is no headroom left above the page for a
-     hover to live in. 1.06 against the page, where the old one was 1.07. */
-  --state-hover-bg: var(--palette-stone-250);
-  --state-selected-bg: var(--palette-stone-300);
+  --state-disabled-ink: var(--palette-bone-650);
+  --state-disabled-bg: var(--palette-bone-300);
+  --state-disabled-rule: var(--palette-bone-500);
+  --state-hover-bg: var(--palette-bone-100);
+  --state-selected-bg: var(--palette-bone-300);
 
   /* ==========================================================================
      8. SEMANTIC COLOR / STATUS
@@ -341,17 +281,17 @@
      mailing-list capture, both of which can land inside the navy CTA band.
      Every token here is remapped in the deep scope.
      ========================================================================== */
-  --field-bg: var(--palette-stone-050);
-  --field-bg-hover: var(--palette-stone-100);
-  --field-bg-disabled: var(--palette-stone-300);
+  --field-bg: var(--palette-bone-050);
+  --field-bg-hover: var(--palette-bone-100);
+  --field-bg-disabled: var(--palette-bone-300);
   --field-ink: var(--palette-navy-950);            /* 17.46:1 */
-  --field-placeholder-ink: var(--palette-stone-800);/*  6.59:1 */
-  --field-rule: var(--palette-stone-650);           /*  4.00:1 against the field */
-  --field-rule-hover: var(--palette-stone-800);
+  --field-placeholder-ink: var(--palette-bone-800);/*  6.59:1 */
+  --field-rule: var(--palette-bone-650);           /*  4.00:1 against the field */
+  --field-rule-hover: var(--palette-bone-800);
   --field-rule-focus: var(--palette-orange-700);   /*  6.46:1 against the field */
   --field-rule-error: var(--palette-red-700);
   --field-label-ink: var(--palette-navy-800);      /* 10.17:1 */
-  --field-help-ink: var(--palette-stone-800);       /*  5.74:1 */
+  --field-help-ink: var(--palette-bone-800);       /*  5.74:1 */
   --field-error-ink: var(--palette-red-700);       /*  6.95:1 on the error surface */
   --field-error-bg: var(--palette-red-100);
   --field-required-ink: var(--palette-orange-700);
@@ -387,7 +327,7 @@
      material is the same one DESIGN_SYSTEM 6.2 specifies. */
   --photo-filter-underexposed: grayscale(1) brightness(4.2) contrast(1.3);
   --duotone-shadow: var(--palette-navy-900);   /* multiply, the cool duotone */
-  --duotone-highlight: var(--palette-stone-100);/* screen */
+  --duotone-highlight: var(--palette-bone-100);/* screen */
   --duotone-blend-shadow: multiply;
   --duotone-blend-highlight: screen;
   /* The screen layer only lifts the highlights toward bone. At full strength it
@@ -419,14 +359,14 @@
   --size-video-vertical-max: 18rem;
 
   /* Logo wall. Ragged marks, opaque white JPEG backgrounds, aspect ratios from
-     0.86 to 6.05. Multiply is the only treatment that works on a light ground;
-     a dark scope inverts and screens instead. */
+     0.86 to 6.05. Multiply on bone is the only treatment that works on the
+     light ground; the deep scope inverts and screens instead. */
   --logo-filter: grayscale(1) contrast(1.06);
   --logo-filter-hover: grayscale(0) contrast(1);
   --logo-blend: multiply;
   --logo-opacity: 0.82;
   --logo-opacity-hover: 1;
-  --logo-cell-bg: var(--palette-stone-050);
+  --logo-cell-bg: var(--palette-bone-050);
   --logo-cell-rule: var(--rule-structural);
   --logo-cell-min-h: 7.25rem;   /* 116px */
   --logo-cell-pad: var(--space-4);
@@ -758,20 +698,12 @@
    and media so a navy band inherits the same component CSS with zero
    hard-coded light values.
 
-   THE WORDMARK NEVER REVERSES, AND IT NEVER SITS ON GREEN.
-   public/img/brand/wordmark-white.png exists in the asset library and is not
-   used by this system anywhere. Every ground the mark touches is the light
-   stone. If a design needs the wordmark inside a dark section, navy or forest,
-   the mark sits on a light plate (data-surface="paper"); it does not knock out
-   to white and it does not sit on the green. That property is the strongest
-   evidence the system was built around the retained mark rather than around it.
-
-   Until the Cool Modern Ag revision this rule was asserted in six comments and
-   enforced by zero tests, and it held only because the mark is structurally
-   confined to the masthead ground and one paper plate in the footer. Adding a
-   third dark scope is the moment that stops being reliable, so it is now also
-   a Playwright assertion: see scripts/wordmark-check.mjs. A rule this load
-   bearing should not be a comment.
+   THE WORDMARK NEVER REVERSES. public/img/brand/wordmark-white.png exists in
+   the asset library and is not used by this system anywhere. Every ground the
+   mark touches is bone. If a design needs the wordmark inside a navy section,
+   the mark sits on a bone plate (data-surface="paper"), it does not knock out
+   to white. That property is the strongest evidence the system was built
+   around the retained mark rather than around it.
 
    "deepest" is a variant of this scope, not a separate one, so it matches here
    too and then steps only its grounds darker in the block further down. An
@@ -788,9 +720,9 @@
   --surface-deep-raised: var(--palette-navy-800);
   --surface-plate: var(--palette-navy-800);
 
-  --ink-primary: var(--palette-stone-100);      /* 16.32:1 */
+  --ink-primary: var(--palette-bone-100);      /* 16.32:1 */
   --ink-secondary: var(--palette-navy-100);    /* 13.40:1 */
-  --ink-brand: var(--palette-stone-050);
+  --ink-brand: var(--palette-bone-050);
   --ink-muted: var(--palette-navy-300);        /*  8.04:1 */
   --ink-faint: var(--palette-navy-400);        /*  6.97:1 */
   --ink-accent: var(--palette-orange-400);     /*  5.60:1. The brand orange is
@@ -804,7 +736,7 @@
   --rule-structural: var(--palette-navy-450);  /*  5.69:1 on navy-950, 3.80:1 on navy-800 */
   --rule-decorative: var(--palette-navy-800);
   --rule-quiet: var(--palette-navy-900);
-  --rule-strong: var(--palette-stone-100);
+  --rule-strong: var(--palette-bone-100);
   --rule-brand: var(--palette-navy-500);
   --border-color: var(--rule-structural);
   --border-color-strong: var(--rule-strong);
@@ -822,8 +754,8 @@
   --action-secondary-bg: transparent;
   --action-secondary-bg-hover: var(--palette-navy-800);
   --action-secondary-bg-active: var(--palette-navy-700);
-  --action-secondary-ink: var(--palette-stone-100);
-  --action-secondary-rule: var(--palette-stone-100);
+  --action-secondary-ink: var(--palette-bone-100);
+  --action-secondary-rule: var(--palette-bone-100);
 
   --action-ghost-bg-hover: var(--palette-navy-900);
   --action-ghost-ink: var(--palette-navy-100);
@@ -850,7 +782,7 @@
   --field-bg: var(--palette-navy-800);
   --field-bg-hover: var(--palette-navy-700);
   --field-bg-disabled: var(--palette-navy-900);
-  --field-ink: var(--palette-stone-100);          /* 10.90:1 */
+  --field-ink: var(--palette-bone-100);          /* 10.90:1 */
   --field-placeholder-ink: var(--palette-navy-200); /* 7.40:1 */
   --field-rule: var(--palette-navy-450);         /*  3.80:1 against the field */
   --field-rule-hover: var(--palette-navy-400);
@@ -887,88 +819,85 @@
   --rule-decorative: var(--palette-navy-900);
 }
 
-/* PAPER SCOPE: a light card or plate sitting inside a dark section. Grafted
+/* PAPER SCOPE: a bone card or plate sitting inside a deep section. Grafted
    from direction 2, which was the only comp that shipped an explicit light
    scope. Every route ends in the navy CTA band, and several of them want a
    light card floating on navy. Without this, that card is hand-written
    light-on-dark overrides, which is exactly what the token layer exists to
-   prevent. Values are identical to the root light scope by definition. */
+   prevent. Values are identical to the root bone scope by definition. */
 [data-surface="paper"] {
-  --surface-page: var(--palette-stone-200);
-  --surface-raised: var(--palette-stone-100);
-  --surface-bright: var(--palette-stone-050);
-  --surface-sunken: var(--palette-stone-300);
-  --surface-plate: var(--palette-stone-300);
+  --surface-page: var(--palette-bone-200);
+  --surface-raised: var(--palette-bone-100);
+  --surface-bright: var(--palette-bone-050);
+  --surface-sunken: var(--palette-bone-300);
+  --surface-plate: var(--palette-bone-300);
 
   --ink-primary: var(--palette-navy-950);
   --ink-secondary: var(--palette-navy-800);
   --ink-brand: var(--palette-navy-700);
-  --ink-muted: var(--palette-stone-800);
-  --ink-faint: var(--palette-stone-750);
+  --ink-muted: var(--palette-bone-800);
+  --ink-faint: var(--palette-bone-750);
   --ink-accent: var(--palette-orange-700);
   --ink-hot: var(--palette-orange-400);
   --ink-gold: var(--palette-gold-700);
   --ink-green: var(--palette-green-600);
-  --ink-inverse: var(--palette-stone-100);
+  --ink-inverse: var(--palette-bone-100);
 
-  --rule-structural: var(--palette-stone-650);
-  --rule-decorative: var(--palette-stone-400);
-  --rule-quiet: var(--palette-stone-300);
+  --rule-structural: var(--palette-bone-650);
+  --rule-decorative: var(--palette-bone-400);
+  --rule-quiet: var(--palette-bone-300);
   --rule-strong: var(--palette-navy-950);
   --rule-brand: var(--palette-navy-700);
   --border-color: var(--rule-structural);
   --border-color-strong: var(--rule-strong);
 
   --focus-ring-color: var(--palette-orange-700);
-  --focus-ring-offset-color: var(--palette-stone-200);
+  --focus-ring-offset-color: var(--palette-bone-200);
   --selection-bg: var(--palette-orange-200);
   --selection-ink: var(--palette-navy-950);
 
   --action-secondary-ink: var(--palette-navy-950);
   --action-secondary-rule: var(--palette-navy-950);
-  --action-secondary-bg-hover: var(--palette-stone-300);
+  --action-secondary-bg-hover: var(--palette-bone-300);
   --action-ghost-ink: var(--palette-navy-800);
-  --action-ghost-bg-hover: var(--palette-stone-300);
+  --action-ghost-bg-hover: var(--palette-bone-300);
   --link-ink: var(--palette-orange-700);
   --link-ink-hover: var(--palette-orange-800);
   --link-ink-visited: var(--palette-navy-700);
 
-  /* Down into the sage, not up into white. See the --palette-stone-250 note:
-     on a 93.6%-luminance ground there is no headroom left above the page for a
-     hover to live in. 1.06 against the page, where the old one was 1.07. */
-  --state-hover-bg: var(--palette-stone-250);
-  --state-selected-bg: var(--palette-stone-300);
-  --state-disabled-ink: var(--palette-stone-650);
-  --state-disabled-bg: var(--palette-stone-300);
+  --state-hover-bg: var(--palette-bone-100);
+  --state-selected-bg: var(--palette-bone-300);
+  --state-disabled-ink: var(--palette-bone-650);
+  --state-disabled-bg: var(--palette-bone-300);
 
-  --field-bg: var(--palette-stone-050);
+  --field-bg: var(--palette-bone-050);
   --field-ink: var(--palette-navy-950);
-  --field-placeholder-ink: var(--palette-stone-800);
-  --field-rule: var(--palette-stone-650);
+  --field-placeholder-ink: var(--palette-bone-800);
+  --field-rule: var(--palette-bone-650);
   --field-rule-focus: var(--palette-orange-700);
   --field-label-ink: var(--palette-navy-800);
-  --field-help-ink: var(--palette-stone-800);
+  --field-help-ink: var(--palette-bone-800);
   --field-error-ink: var(--palette-red-700);
   --field-error-bg: var(--palette-red-100);
 
   --logo-filter: grayscale(1) contrast(1.06);
   --logo-blend: multiply;
   --logo-opacity: 0.82;
-  --logo-cell-bg: var(--palette-stone-050);
-  --logo-cell-rule: var(--palette-stone-650);
+  --logo-cell-bg: var(--palette-bone-050);
+  --logo-cell-rule: var(--palette-bone-650);
 
   color: var(--ink-primary);
   background-color: var(--surface-page);
 }
 
-/* SUNKEN SCOPE: the alternating sage band. The structural rule steps
+/* SUNKEN SCOPE: an alternating band on bone stock. The structural rule steps
    darker so it still clears 3:1 against the darker ground. */
 [data-surface="sunken"] {
-  --surface-page: var(--palette-stone-300);
-  --surface-raised: var(--palette-stone-100);
-  --rule-decorative: var(--palette-stone-500);
-  --focus-ring-offset-color: var(--palette-stone-300);
-  --state-hover-bg: var(--palette-stone-400);
+  --surface-page: var(--palette-bone-300);
+  --surface-raised: var(--palette-bone-100);
+  --rule-decorative: var(--palette-bone-500);
+  --focus-ring-offset-color: var(--palette-bone-300);
+  --state-hover-bg: var(--palette-bone-400);
 
   color: var(--ink-primary);
   background-color: var(--surface-page);

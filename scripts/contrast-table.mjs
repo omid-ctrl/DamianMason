@@ -409,6 +409,37 @@ function run() {
     }
   }
 
+  // app/opengraph-image.tsx is the only file in the runtime carrying raw hex,
+  // because next/og renders through Satori and Satori resolves neither CSS
+  // custom properties nor Tailwind. Its header says the values "MUST be kept in
+  // sync with tokens.css by hand", and until now nothing checked that they were.
+  // A social card quietly rendering last season's palette is exactly the kind of
+  // drift nobody notices, because nobody looks at the OG image after shipping it.
+  //
+  // Each entry there carries a JSDoc naming the token it mirrors. Parse that
+  // claim and hold it to it.
+  const ogPath = join(ROOT, 'app/opengraph-image.tsx');
+  try {
+    const og = readFileSync(ogPath, 'utf8');
+    const root = scopes.get('root');
+    const re = /\/\*\*[^*]*?(--[\w-]+)[^*]*?\*\/\s*\n\s*(\w+):\s*'(#[0-9a-fA-F]{3,6})'/g;
+    let m;
+    while ((m = re.exec(og)) !== null) {
+      const [, token, key, hex] = m;
+      const expected = resolve(root, token);
+      if (!expected) continue; // the JSDoc names something that is not a token, e.g. --brand-orange alias
+      if (expected.toLowerCase() !== hex.toLowerCase()) {
+        failures.push({
+          scope: 'opengraph-image.tsx',
+          token: `${key} (claims ${token})`,
+          reason: `is ${hex}, but ${token} resolves to ${expected}`,
+        });
+      }
+    }
+  } catch {
+    // The file is optional as far as this tool is concerned.
+  }
+
   // An @allow-fail with no reason is itself a failure, wherever it appears.
   for (const [scopeName, map] of scopes) {
     for (const [name, decl] of map) {
