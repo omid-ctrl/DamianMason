@@ -1,0 +1,14 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const c = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+const p = await c.newPage();
+const reqs = [];
+p.on('request', r => { if (/\.(jpe?g|png|webp|avif)/i.test(r.url()) || r.resourceType() === 'image') reqs.push(r.url()); });
+await p.goto('http://localhost:3100/reviews/', { waitUntil: 'networkidle' });
+await p.evaluate(async () => { const H = document.documentElement.scrollHeight; for (let y = 0; y < H; y += 600) { window.scrollTo(0, y); await new Promise(s => setTimeout(s, 150)); } });
+await p.waitForTimeout(1200);
+console.log('POSTER SRCS:');
+console.log(JSON.stringify(await p.evaluate(() => [...document.querySelectorAll('.dm-video__poster, .dm-video__facade img')].map(i => ({ src: i.currentSrc, nat: [i.naturalWidth, i.naturalHeight], box: [Math.round(i.getBoundingClientRect().width), Math.round(i.getBoundingClientRect().height)], pos: getComputedStyle(i).objectPosition, fit: getComputedStyle(i).objectFit }))), null, 1));
+console.log('\nTHIRD PARTY IMAGE HOSTS:');
+console.log(JSON.stringify([...new Set(reqs.filter(u => !u.includes('localhost')).map(u => new URL(u).host))], null, 1));
+await b.close();

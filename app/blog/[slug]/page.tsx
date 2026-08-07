@@ -42,9 +42,39 @@ type RouteParams = { slug: string };
 /** Editorial framing for the source block. One entry per post, written for the
  *  rebuild against docs/VOICE.md. Nothing here is a claim the linked piece and
  *  its own headline do not already make. */
+/**
+ * The closing band's copy, per post.
+ *
+ * One CTABand serves both posts, so a single hard-coded string renders twice
+ * across the site by construction: a reader who opens both articles reads the
+ * identical booking pitch under each. It is keyed by slug for the same reason
+ * SOURCE_NOTE is, and each one leads on that post's own subject.
+ *
+ * A new post with no entry here falls back to BOOKING_COPY_FALLBACK, which
+ * says nothing post-specific and is therefore safe to repeat once.
+ */
+const BOOKING_COPY: Record<string, string> = {
+  'eggflation-gives-producers-record-profits':
+    'Egg prices got twenty minutes of national coverage and about four minutes of explanation. Damian does the other sixteen, on a stage, for a room that already knows what a laying flock costs. Send him a date.',
+  'how-the-climate-crisis-is-causing-food-shortages-globally':
+    'A camera crew gets four minutes. Your association gets sixty to ninety, and gets to ask questions at the end of them. Send the office a date and find out whether it is open.',
+};
+
+/** Same reason as BOOKING_COPY: one band, two posts, two headings. */
+const BOOKING_HEADING: Record<string, string> = {
+  'eggflation-gives-producers-record-profits': 'Get the whole egg story, not the clip.',
+  'how-the-climate-crisis-is-causing-food-shortages-globally':
+    'Book the economist the newsrooms call.',
+};
+
+const BOOKING_HEADING_FALLBACK = 'Book the economist the newsrooms call.';
+
+const BOOKING_COPY_FALLBACK =
+  'Damian says the same things on a stage that he says on camera, at rather greater length. Send the office a date and find out whether it is open.';
+
 const SOURCE_NOTE: Record<string, string> = {
   'eggflation-gives-producers-record-profits':
-    'Simone Del Rosario wrote it for Straight Arrow News in December 2022, and Damian supplied the ag economics: producers were booking record profits while the grocery aisle turned into a meme. If you buy eggs or price them, it’s a short read.',
+    'Simone Del Rosario wrote it for Straight Arrow News in December 2022, and Damian is quoted in it: producers were booking record profits while the grocery aisle turned into a meme. If you buy eggs or price them, it’s a short read.',
   'how-the-climate-crisis-is-causing-food-shortages-globally':
     'Cheddar News booked Damian in April 2023 to talk about climate pressure and the global food supply. Here’s the segment, in full. Nothing loads until you press play.',
 };
@@ -161,7 +191,13 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
     datePublished: post.date,
     dateModified: post.date,
     articleSection: 'Blog',
-    author: { '@id': schemaIds.person },
+    // A 'posted' entry is a link out to somebody else's piece, so the author of
+    // this page is the site, not Damian. Naming the Person here made a search
+    // result for Straight Arrow News's own headline credit him with writing it.
+    author:
+      post.authorRole === 'posted'
+        ? { '@id': schemaIds.organization }
+        : { '@id': schemaIds.person },
     publisher: { '@id': schemaIds.organization },
     isPartOf: {
       '@type': 'Blog',
@@ -230,8 +266,16 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
                 {post.title}
               </Heading>
 
+              {/* "Posted by", not "By", on a post that is coverage of Damian
+                  rather than writing by him. The Eggflation body carries its
+                  own byline three lines below this one ("By Simone Del
+                  Rosario"), so a bare "By Damian Mason" put two bylines that
+                  disagree inside one screen, under a headline that belongs to
+                  Straight Arrow News. content/posts.ts sets authorRole. */}
               <p className={styles.byline}>
-                <span>By {post.author}</span>
+                <span>
+                  {post.authorRole === 'posted' ? 'Posted by' : 'By'} {post.author}
+                </span>
                 <time dateTime={post.date}>{formatPostDate(post.date)}</time>
               </p>
 
@@ -266,7 +310,12 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
                           link does not, which keeps the source reachable no
                           matter what the visitor's browser is doing. */}
                       <p className={styles.sourceFallback}>
-                        <a href={source.url} target="_blank" rel="noopener noreferrer">
+                        <a
+                          className="dm-action-link"
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           Open the segment on YouTube
                           <span className="sr-only"> (opens in a new tab)</span>
                         </a>
@@ -314,8 +363,13 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
       <CTABand
         id="post-booking"
         eyebrow="Booking"
-        heading="Book the economist the newsrooms call."
-        copy="Since 1994 Damian has spoken to over 2,400 audiences in all 50 states and 7 foreign countries. Your date either works or it doesn’t. First step: send it to the office and find out."
+        heading={BOOKING_HEADING[post.slug] ?? BOOKING_HEADING_FALLBACK}
+        /* Per post, from BOOKING_COPY. The hard-coded string this replaces also
+           dropped the "since 1994 / 2,400 audiences / 50 states / 7 foreign
+           countries" run, which was the single most repeated passage on the
+           site at eleven routes, and the "First step" formula, which was on
+           nine. */
+        copy={BOOKING_COPY[post.slug] ?? BOOKING_COPY_FALLBACK}
         actions={[
           { label: 'Book Damian', href: '/contact-us/' },
           { label: 'See the keynote', href: '/keynote/', variant: 'secondary' },

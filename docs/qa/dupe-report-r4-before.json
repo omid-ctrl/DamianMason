@@ -1,0 +1,706 @@
+{
+  "generatedAt": "2026-08-07T12:42:10.316Z",
+  "base": "http://localhost:3100",
+  "routes": 19,
+  "window": {
+    "min": 8,
+    "max": 12
+  },
+  "totals": {
+    "rebuiltRepeats": 29,
+    "crossRoute": 27,
+    "withinRoute": 2,
+    "sourceMandated": 2,
+    "repeatedNgrams": 659,
+    "repeatedNgramsByLength": {
+      "8": 169,
+      "9": 146,
+      "10": 129,
+      "11": 115,
+      "12": 100
+    },
+    "proseWords": 8810
+  },
+  "rebuilt": [
+    {
+      "words": 41,
+      "text": "april 19 2023 how the climate crisis is causing food shortages globally cheddar news called in april 2023 to ask how climate pressure turns into real food shortages damian took the question on camera watch the segment here read the post",
+      "seed": "april 19 2023 how the climate crisis is",
+      "occurrences": [
+        {
+          "route": "blog",
+          "block": "prose"
+        },
+        {
+          "route": "post-eggflation",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 41,
+      "text": "december 16 2022 eggflation gives producers record profits while internet mocks outrageous prices damian talked eggs with straight arrow news record 2022 egg prices handed producers record profits while the internet turned the grocery aisle into a meme read the post",
+      "seed": "december 16 2022 eggflation gives producers record profits",
+      "occurrences": [
+        {
+          "route": "blog",
+          "block": "prose"
+        },
+        {
+          "route": "post-climate",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 20,
+      "text": "exceptionally funny professional comedian studied at second city in chicago relatable farm raised farm owner 3 decades of business ownership",
+      "seed": "exceptionally funny professional comedian studied at second city",
+      "occurrences": [
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "keynote",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 18,
+      "text": "knowledgeable degree in ag econ from purdue university educated on current events professional corporate background author podcast host",
+      "seed": "knowledgeable degree in ag econ from purdue university",
+      "occurrences": [
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "keynote",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 17,
+      "text": "01 2 400+ audiences addressed 02 50 states 03 1994 speaking since 04 40 000+ monthly listeners",
+      "seed": "01 2 400+ audiences addressed 02 50 states",
+      "occurrences": [
+        {
+          "route": "home",
+          "block": "prose"
+        },
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "speaking",
+          "block": "prose"
+        },
+        {
+          "route": "keynote",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 17,
+      "text": "as a leading voice in the industry damian is sought after for conversations commentary on hot topics",
+      "seed": "as a leading voice in the industry damian",
+      "occurrences": [
+        {
+          "route": "xtreme-ag",
+          "block": "prose"
+        },
+        {
+          "route": "acres-tv",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 16,
+      "text": "damian mason is a businessman agriculturist speaker podcaster media guest ag personality influencer author and consultant",
+      "seed": "damian mason is a businessman agriculturist speaker podcaster",
+      "occurrences": [
+        {
+          "route": "keynote",
+          "block": "prose"
+        },
+        {
+          "route": "collaboration-opportunities",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 14,
+      "text": "food fear how fear is ruining your dinner and why you should celebrate eating",
+      "seed": "food fear how fear is ruining your dinner",
+      "occurrences": [
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "reviews",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 14,
+      "text": "straight arrow news article eggflation gives producers record profits while internet mocks outrageous prices",
+      "seed": "straight arrow news article eggflation gives producers record",
+      "occurrences": [
+        {
+          "route": "blog-news",
+          "block": "prose"
+        },
+        {
+          "route": "post-eggflation",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 12,
+      "text": "how fear is ruining your dinner and why you should celebrate eating",
+      "seed": "how fear is ruining your dinner and why",
+      "occurrences": [
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "reviews",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 12,
+      "text": "after speaking to companies such as merck land o'lakes and cargill and",
+      "seed": "after speaking to companies such as merck land",
+      "occurrences": [
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "do-business-better-podcast",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 11,
+      "text": "a win win win for event planners organizers and audience attendees",
+      "seed": "a win win win for event planners organizers",
+      "occurrences": [
+        {
+          "route": "home",
+          "block": "prose"
+        },
+        {
+          "route": "meeting-coordinators",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 11,
+      "text": "custom messages material that's fresh new and relevant for your audience",
+      "seed": "custom messages material that's fresh new and relevant",
+      "occurrences": [
+        {
+          "route": "home",
+          "block": "prose"
+        },
+        {
+          "route": "meeting-coordinators",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 11,
+      "text": "21 of 2 400+ cargill merck land o'lakes purina claas pioneer",
+      "seed": "21 of 2 400+ cargill merck land o'lakes",
+      "occurrences": [
+        {
+          "route": "home",
+          "block": "prose"
+        },
+        {
+          "route": "speaking",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 11,
+      "text": "do business better traits habits and actions to help you succeed",
+      "seed": "do business better traits habits and actions to",
+      "occurrences": [
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "do-business-better-podcast",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 11,
+      "text": "damian mason discussing wheat and inflation of food prices on newsmaxtv",
+      "seed": "damian mason discussing wheat and inflation of food",
+      "occurrences": [
+        {
+          "route": "blog-news",
+          "block": "prose"
+        },
+        {
+          "route": "blog-news",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 10,
+      "text": "eggflation gives producers record profits while internet mocks outrageous prices",
+      "seed": "eggflation gives producers record profits while internet mocks",
+      "occurrences": [
+        {
+          "route": "blog-news",
+          "block": "prose"
+        },
+        {
+          "route": "blog",
+          "block": "prose"
+        },
+        {
+          "route": "post-eggflation",
+          "block": "prose"
+        },
+        {
+          "route": "post-climate",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 9,
+      "text": "how the climate crisis is causing food shortages globally",
+      "seed": "how the climate crisis is causing food shortages",
+      "occurrences": [
+        {
+          "route": "blog-news",
+          "block": "prose"
+        },
+        {
+          "route": "blog",
+          "block": "prose"
+        },
+        {
+          "route": "post-eggflation",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 9,
+      "text": "2 400 audiences in 50 states and 7 countries",
+      "seed": "2 400 audiences in 50 states and 7",
+      "occurrences": [
+        {
+          "route": "home",
+          "block": "prose"
+        },
+        {
+          "route": "collaboration-opportunities",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 9,
+      "text": "audiences in all 50 states and 7 foreign countries",
+      "seed": "audiences in all 50 states and 7 foreign",
+      "occurrences": [
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "reviews",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 9,
+      "text": "trends in the business of food fuel and fiber",
+      "seed": "trends in the business of food fuel and",
+      "occurrences": [
+        {
+          "route": "the-business-of-agriculture",
+          "block": "prose"
+        },
+        {
+          "route": "join-the-conversation",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 8,
+      "text": "required unsubscribe from the bottom of any email",
+      "seed": "required unsubscribe from the bottom of any email",
+      "occurrences": [
+        {
+          "route": "the-business-of-agriculture",
+          "block": "prose"
+        },
+        {
+          "route": "do-business-better-podcast",
+          "block": "prose"
+        },
+        {
+          "route": "contact-us",
+          "block": "prose"
+        },
+        {
+          "route": "join-the-conversation",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 8,
+      "text": "in all 50 states and 7 foreign countries",
+      "seed": "in all 50 states and 7 foreign countries",
+      "occurrences": [
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "reviews",
+          "block": "prose"
+        },
+        {
+          "route": "contact-us",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 8,
+      "text": "a short cut from a live keynote on",
+      "seed": "a short cut from a live keynote on",
+      "occurrences": [
+        {
+          "route": "keynote",
+          "block": "prose"
+        },
+        {
+          "route": "keynote",
+          "block": "prose"
+        },
+        {
+          "route": "keynote",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 8,
+      "text": "in the business of food fuel and fiber",
+      "seed": "in the business of food fuel and fiber",
+      "occurrences": [
+        {
+          "route": "boasg",
+          "block": "prose"
+        },
+        {
+          "route": "the-business-of-agriculture",
+          "block": "prose"
+        },
+        {
+          "route": "join-the-conversation",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 8,
+      "text": "no 04 if it's agriculture it needs damian",
+      "seed": "no 04 if it's agriculture it needs damian",
+      "occurrences": [
+        {
+          "route": "home",
+          "block": "prose"
+        },
+        {
+          "route": "acres-tv",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 8,
+      "text": "the business of agriculture and do business better",
+      "seed": "the business of agriculture and do business better",
+      "occurrences": [
+        {
+          "route": "collaboration-opportunities",
+          "block": "prose"
+        },
+        {
+          "route": "join-the-conversation",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 8,
+      "text": "managing for the future a candid conversation with",
+      "seed": "managing for the future a candid conversation with",
+      "occurrences": [
+        {
+          "route": "collaboration-opportunities",
+          "block": "prose"
+        },
+        {
+          "route": "acres-tv",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 8,
+      "text": "new episodes every monday the business of agriculture",
+      "seed": "new episodes every monday the business of agriculture",
+      "occurrences": [
+        {
+          "route": "podcasts",
+          "block": "prose"
+        },
+        {
+          "route": "the-business-of-agriculture",
+          "block": "prose"
+        }
+      ]
+    }
+  ],
+  "sourceMandated": [
+    {
+      "words": 54,
+      "text": "can we get a sample preview of your presentation how would you describe your presentation delivery style what are your technology requirements can we record or photograph your presentation are you available for break outs luncheons or panel discussions will you help us promote our event should i book directly or through a bureau",
+      "seed": "can we get a sample preview of your",
+      "occurrences": [
+        {
+          "route": "home",
+          "block": "faq"
+        },
+        {
+          "route": "keynote",
+          "block": "faq"
+        },
+        {
+          "route": "meeting-coordinators",
+          "block": "faq"
+        }
+      ]
+    },
+    {
+      "words": 30,
+      "text": "what are your speaking fees how do you manage booking travel and travel expenses where do you travel how long is your presentation are you available for multi day events",
+      "seed": "what are your speaking fees how do you",
+      "occurrences": [
+        {
+          "route": "home",
+          "block": "faq"
+        },
+        {
+          "route": "keynote",
+          "block": "faq"
+        },
+        {
+          "route": "meeting-coordinators",
+          "block": "faq"
+        }
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "reach-40k",
+      "routes": 11,
+      "total": 15,
+      "perRoute": {
+        "home": 1,
+        "about": 1,
+        "speaking": 1,
+        "keynote": 1,
+        "collaboration-opportunities": 2,
+        "podcasts": 2,
+        "the-business-of-agriculture": 2,
+        "xtreme-ag": 1,
+        "blog-news": 1,
+        "blog": 1,
+        "join-the-conversation": 2
+      }
+    },
+    {
+      "id": "career-totals",
+      "routes": 10,
+      "total": 22,
+      "perRoute": {
+        "home": 3,
+        "about": 3,
+        "speaking": 4,
+        "keynote": 2,
+        "reviews": 4,
+        "meeting-coordinators": 1,
+        "collaboration-opportunities": 2,
+        "do-business-better-podcast": 1,
+        "blog": 1,
+        "contact-us": 1
+      }
+    },
+    {
+      "id": "states-and-countries",
+      "routes": 5,
+      "total": 6,
+      "perRoute": {
+        "home": 1,
+        "about": 1,
+        "reviews": 1,
+        "collaboration-opportunities": 1,
+        "contact-us": 2
+      }
+    },
+    {
+      "id": "book-direct-not-bureau",
+      "routes": 4,
+      "total": 8,
+      "perRoute": {
+        "home": 1,
+        "keynote": 1,
+        "meeting-coordinators": 4,
+        "contact-us": 2
+      }
+    },
+    {
+      "id": "occupation-list",
+      "routes": 4,
+      "total": 5,
+      "perRoute": {
+        "keynote": 1,
+        "collaboration-opportunities": 1,
+        "the-business-of-agriculture": 2,
+        "join-the-conversation": 1
+      }
+    },
+    {
+      "id": "weather-and-commodity-refusal",
+      "routes": 4,
+      "total": 4,
+      "perRoute": {
+        "home": 1,
+        "podcasts": 1,
+        "acres-tv": 1,
+        "join-the-conversation": 1
+      }
+    },
+    {
+      "id": "contract-and-deposit",
+      "routes": 2,
+      "total": 3,
+      "perRoute": {
+        "home": 2,
+        "meeting-coordinators": 1
+      }
+    },
+    {
+      "id": "fees-are-net",
+      "routes": 2,
+      "total": 2,
+      "perRoute": {
+        "speaking": 1,
+        "contact-us": 1
+      }
+    },
+    {
+      "id": "travel-arrangements",
+      "routes": 1,
+      "total": 2,
+      "perRoute": {
+        "meeting-coordinators": 2
+      }
+    },
+    {
+      "id": "no-speaking-during-meals",
+      "routes": 1,
+      "total": 2,
+      "perRoute": {
+        "meeting-coordinators": 2
+      }
+    },
+    {
+      "id": "check-the-date-first",
+      "routes": 1,
+      "total": 1,
+      "perRoute": {
+        "meeting-coordinators": 1
+      }
+    },
+    {
+      "id": "sponsor-cta",
+      "routes": 1,
+      "total": 1,
+      "perRoute": {
+        "collaboration-opportunities": 1
+      }
+    },
+    {
+      "id": "farm-office-dateline",
+      "routes": 1,
+      "total": 1,
+      "perRoute": {
+        "about": 1
+      }
+    }
+  ],
+  "wordsPerRoute": {
+    "home": 740,
+    "about": 621,
+    "speaking": 519,
+    "keynote": 688,
+    "reviews": 239,
+    "meeting-coordinators": 633,
+    "collaboration-opportunities": 682,
+    "boasg": 535,
+    "podcasts": 342,
+    "the-business-of-agriculture": 536,
+    "do-business-better-podcast": 805,
+    "xtreme-ag": 305,
+    "blog-news": 429,
+    "acres-tv": 383,
+    "blog": 253,
+    "contact-us": 491,
+    "join-the-conversation": 298,
+    "post-eggflation": 162,
+    "post-climate": 149
+  }
+}

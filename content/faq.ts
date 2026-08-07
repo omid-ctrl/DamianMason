@@ -49,18 +49,42 @@
  *     refers to is not linked anywhere on the old site.
  *   - "pre recorded" is unhyphenated, and "pre-ordered/ pre-purchased" had the
  *     space on the wrong side, in the removed products answer.
- *   - The YouTube channel URL sits inline in the answer text as bare text. It
- *     needs to become a real link when this renders.
+ *   - The YouTube channel URL sat inline in the answer text as bare text.
+ *     RESOLVED: `answer` still carries the source string verbatim, which is
+ *     what the FAQPage JSON-LD serializes, and `links` below tells the
+ *     accordion which run of that string to render as a real anchor. The href
+ *     is the same `socials` entry the footer uses, so the FAQ and the footer
+ *     cannot drift apart.
  *
  * `topics` drives per-route filtering. Keys in use: booking, travel,
  * technology, program, audience, fees.
  */
+
+import { socials } from './site';
+
+const YOUTUBE_CHANNEL =
+  socials.find((social) => social.icon === 'youtube')?.href ??
+  'https://www.youtube.com/@DamianMasonChannel';
+
+/**
+ * One run of literal text inside an answer, promoted to a link at render time.
+ *
+ * `match` must appear in `answer` exactly once. `label` is what the visitor
+ * reads, so a bare URL in the source becomes the name of the thing it points
+ * at. Nothing here changes `answer`, which stays verbatim for the schema.
+ */
+export type FaqLink = {
+  match: string;
+  href: string;
+  label: string;
+};
 
 export type FaqItem = {
   id: string;
   question: string;
   answer: string;
   topics: string[];
+  links?: FaqLink[];
 };
 
 export const faq: FaqItem[] = [
@@ -119,6 +143,13 @@ export const faq: FaqItem[] = [
     answer:
       'Yes, video links may be found on Damian’s Youtube channel (https://www.youtube.com/@DamianMasonChannel/videos), or viewed on his website.',
     topics: ['program'],
+    links: [
+      {
+        match: 'Damian’s Youtube channel (https://www.youtube.com/@DamianMasonChannel/videos)',
+        href: YOUTUBE_CHANNEL,
+        label: 'Damian’s Youtube channel',
+      },
+    ],
   },
   {
     id: 'delivery-style',

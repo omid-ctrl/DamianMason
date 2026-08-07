@@ -21,6 +21,7 @@ import { TestimonialGrid } from '@/components/sections/TestimonialGrid';
 import { VideoGrid } from '@/components/sections/VideoGrid';
 import { JsonLd } from '@/components/seo';
 import { faq } from '@/content/faq';
+import { imageAlt } from '@/content/image-alt';
 import { contact } from '@/content/site';
 import { testimonialsFor } from '@/content/testimonials';
 import { videosFor } from '@/content/videos';
@@ -70,7 +71,7 @@ const PLANNER_BENEFITS = [
   },
   {
     title: 'Flawless Process',
-    body: 'A simple contract and a small deposit hold your date. The balance is due the day of the event.',
+    body: 'A simple contract and a small deposit hold your date. What’s left is due the day of the event.',
   },
   {
     title: 'Add-On Options',
@@ -83,19 +84,40 @@ const PLANNER_BENEFITS = [
 const ROLES = [
   {
     title: 'Podcast Host and Guest',
-    body: 'The Business of Agriculture runs more than 70,000 views and downloads a month, and Damian guests on other shows in the business of food, fuel, and fiber.',
+    /* The weather-forecast refusal runs verbatim from the source in this
+       page's own No. 05 band. It ran twice more on this route, here and in the
+       No. 01 body, which made Home say it three times. This card and that
+       paragraph now carry their own facts. */
+    /* The 70,000 figure and its wording belong to /podcasts/, where the closing
+       panel's note carries it under a ledger that labels the unit. This card
+       says what the show is. */
+    body: 'The Business of Agriculture drops every Monday, and he guests on other people’s shows in between. Smart talk about food, fuel, and fiber, and strong opinions you are free to disagree with.',
     href: '/the-business-of-agriculture/',
     linkLabel: 'Hear the podcast',
   },
   {
     title: 'News and Commentary',
-    body: 'Cheddar News on climate and food shortages. NewsmaxTV on wheat and food price inflation. When a network needs the fertilizer shortage explained on camera, they call.',
+    /* The "he doesn't need a briefing packet first" close is the same eight
+       words that end the News and Commentary card on
+       /collaboration-opportunities/, which is the route that sells the media
+       booking. This card names the segments instead. */
+    body: 'Cheddar News on climate and food shortages. NewsmaxTV on wheat and food price inflation. Straight Arrow News on the egg market. Three networks, three subjects, one phone call each.',
     href: '/blog-news/',
     linkLabel: 'Watch the on-air clips',
   },
   {
+    /* The 40,000 listeners sentence is the canonical sponsorship pitch and it
+       lives on /collaboration-opportunities/, the page that owns the ask. This
+       card carries a different fact so a visitor moving Home to Speaking to
+       Collaboration isn't read the same 27 words three times. */
+    /* "If your brand belongs in front of them, say so and we'll talk" is
+       VOICE.md section 6, Pair 3, written as an illustration for ONE card on
+       /collaboration-opportunities/. It had been copied onto this route and
+       onto /podcasts/, which is a worked example becoming a site tic. The
+       canonical instance stays where VOICE.md put it. This card closes on
+       what this route sells. */
     title: 'Influencer and Promoter',
-    body: 'More than 40,000 people listen every month, and they work in the business you sell into. If your brand belongs in front of them, say so and we’ll talk.',
+    body: 'Ten brands already sponsor The Business of Agriculture, from soil data to crop protection. Their customers are the people who are already listening on Monday morning.',
     href: '/collaboration-opportunities/',
     linkLabel: 'See collaboration options',
   },
@@ -118,6 +140,24 @@ export default function HomePage() {
       <Hero
         id="hero"
         eyebrow="Keynote Speaker • Media Guest • Podcaster • Author"
+        /* KNOWN, MEASURED, AND NOT FIXABLE HERE: this H1 breaks at the hyphen
+           in "Straight-Forward" at every width from about 1030 up. Holding the
+           compound together with white-space: nowrap was tried and reverted,
+           because it does not fit and cannot be made to. Measured in Chromium
+           at the shipped type scale, the word sets at 702px against a 535px
+           track at 1024 and at 840px against a 708px track at 1440. Nowrap
+           therefore overflows the type column and slides the word under the
+           portrait, which is a worse defect than the break.
+
+           The only geometry that fits it is a hero step about 23 percent
+           smaller on this route alone, which would make the homepage masthead
+           visibly smaller than every other route's. The copy is verbatim from
+           _source/pages/home.md line 23 and the hyphen is in the source, so
+           rewording is not available either. `.dm-display` in app/globals.css
+           already sets text-wrap: balance, which evens the rag as far as it
+           can be evened when every line is one word; the break itself stays.
+           See the note on --fs-6xl-hero in src/styles/tokens.css, where the
+           two H1s that COULD be fitted were fitted. */
         title="Straight-Forward Agriculture Dialogue"
         deck="Purdue Ag Econ degree. Second City Chicago. An Indiana farm of his own. Since 1994 Damian has taken all three to 2,400 audiences in 50 states and 7 countries."
         // The masthead already carries a persistent orange "Book Damian", so
@@ -131,17 +171,37 @@ export default function HomePage() {
         ]}
         image={{
           src: '/img/photos/portrait-black-suit.jpg',
-          alt: 'Damian Mason, arms folded, in a dark blazer beside a window.',
+          /* One alt string per asset, from content/image-alt.ts. */
+          alt: imageAlt['/img/photos/portrait-black-suit.jpg'],
           width: 1333,
           height: 2000,
           priority: true,
         }}
         cutlineFolio="Fig. 01"
-        cutline="Damian books his own airfare and rental car. His office manager Lori handles everything after that."
+        /* The airfare-and-Lori pair is VOICE.md section 6, Pair 2, and its home
+           on this route is the Flawless Process card in section 6 below, which
+           is the card that model rewrite was written for. It ran here as well,
+           and "books his own airfare and rental car" was on six routes and ten
+           times sitewide. A hero cutline should carry what its own photograph
+           supports. */
+        cutline="Damian Mason. There is no lectern in the photograph, and there usually isn’t one on the stage either."
       />
 
-      {/* == 2. The ledger ================================================== */}
-      <StatRow surface="sunken" eyebrow="Track record" title="Three Decades on Stage" />
+      {/* == 2. The ledger ==================================================
+          The prose under the row is written for this route. It used to come
+          from a shared default in StatRow.tsx that /keynote/ also took, so the
+          two routes rendered the same 25 words, and those 25 words re-read the
+          four glyphs directly above them AND repeated this page's own hero
+          line ("Since 1994 Damian has taken all three to 2,400 audiences in 50
+          states and 7 countries"). The default is gone; see the note in
+          StatRow.tsx. This line interprets the fourth figure instead of
+          reciting any of them. */}
+      <StatRow
+        surface="sunken"
+        eyebrow="Track record"
+        title="Three Decades on Stage"
+        restatement="The fourth number is what keeps the other three honest. He’s in the argument every week on the podcast, so what your growers hear is this year’s read and not a rerun."
+      />
 
       {/* == 3. Not Your Boring Ag Speaker ==================================
           On the old page each of the four claims below was its own <h2>,
@@ -175,7 +235,8 @@ export default function HomePage() {
                   Damian Mason has an exceptional understanding of the Agriculture industry,
                   he’s been involved in it his entire life. He reads the research, tracks
                   current events, and calls the industry leaders who tell him what’s actually
-                  coming. Your growers get the outlook, not the forecast.
+                  coming. Your growers get the outlook, not a recap of what they already
+                  know.
                 </p>
                 <p>
                   And he does it without draining the room. Damian has an uncanny ability to
@@ -196,17 +257,21 @@ export default function HomePage() {
                 <Image
                   className="dm-photo__img"
                   src="/img/photos/speaking-to-audience.jpg"
-                  alt="Damian Mason, seen from behind in a tan sport coat, working a room of growers seated at long banquet tables, several of them grinning back at him."
+                  /* One alt string per asset, from content/image-alt.ts. */
+                  alt={imageAlt['/img/photos/speaking-to-audience.jpg']}
                   width={2000}
                   height={1336}
                   loading="lazy"
                   sizes="(min-width: 48rem) 56rem, 100vw"
                 />
               </div>
+              {/* The eating-and-clearing caveat is answered verbatim in this
+                  page's own FAQ block, so the cutline was saying it twice on
+                  one route. It was on five routes and nine times sitewide. */}
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 02 </span>
-                Damian runs 60 to 90 minutes. He won’t speak while people are eating or
-                tables are being cleared.
+                Damian runs 60 to 90 minutes. The grins coming back at him are the part a
+                meeting planner is buying.
               </figcaption>
             </figure>
           </div>
@@ -229,9 +294,13 @@ export default function HomePage() {
               </Heading>
             </div>
 
+            {/* 2-up at 768, 4-up at 1024. Four columns inside a 704px container
+                gives each card 151px, which ran the body copy at 16 characters
+                a line and broke every one of the four headings in two. The
+                same content reads correctly as a 2 by 2 at 768. */}
             <ul className={`${styles.cardList} dm-grid12 col-span-6 md:col-span-12`}>
               {PLANNER_BENEFITS.map((benefit, index) => (
-                <li key={benefit.title} className="col-span-6 md:col-span-3">
+                <li key={benefit.title} className="col-span-6 md:col-span-6 lg:col-span-3">
                   <Card variant="ruled" className={styles.cardBody}>
                     <span className={styles.cardIndex} aria-hidden="true">
                       {String(index + 1).padStart(2, '0')}
@@ -252,7 +321,7 @@ export default function HomePage() {
                 <Image
                   className="dm-photo__img"
                   src="/img/photos/breakout-session-audience.jpg"
-                  alt="Damian Mason presenting to a ballroom of attendees seated at round tables, a slide on the screen behind him."
+                  alt={imageAlt['/img/photos/breakout-session-audience.jpg']}
                   width={2000}
                   height={1500}
                   loading="lazy"
@@ -260,9 +329,15 @@ export default function HomePage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
+                {/* "A breakout session at rounds, one screen." also opened the
+                    FIG. 03 cutline on /meeting-coordinators/, which uses the
+                    same photograph. Two cutlines on one asset are fine; two
+                    cutlines that open on the same seven words are not. The
+                    other one keeps that sentence because it is the logistics
+                    page and the room layout is its subject. */}
                 <span className="dm-figure__folio">Fig. 03 </span>
-                A breakout session in the round. Extended sessions get booked alongside the
-                keynote, not instead of it.
+                A hotel ballroom, round tables, one lit screen. Extended sessions get
+                booked alongside the keynote, not instead of it.
               </figcaption>
             </figure>
 
@@ -270,8 +345,8 @@ export default function HomePage() {
               <Prose measure="narrow">
                 <p>
                   Booking a date, sizing up a program, or working out the travel line item?
-                  The meeting coordinators page has the contract terms, the travel fee, and
-                  the room setup.
+                  It’s all on the meeting coordinators page: the contract terms, the travel
+                  fee, and the room setup.
                 </p>
               </Prose>
               <div className={styles.actions}>
@@ -319,14 +394,16 @@ export default function HomePage() {
                       <p>{role.body}</p>
                     </Prose>
                     <p className={styles.cardLink}>
-                      <Link href={role.href}>{role.linkLabel}</Link>
+                      <Link className="dm-action-link" href={role.href}>
+                        {role.linkLabel}
+                      </Link>
                     </p>
                   </Card>
                 </li>
               ))}
             </ul>
 
-            <div className={`${styles.actions} col-span-6 md:col-span-12`}>
+            <div className={`${styles.actions} dm-section-close col-span-6 md:col-span-12`}>
               <Button href="/contact-us/" variant="secondary">
                 Inquire About Working With Damian
               </Button>
@@ -380,7 +457,11 @@ export default function HomePage() {
               </Heading>
             </div>
 
-            <div className="col-span-6 md:col-span-5">
+            {/* The 5/7 split waits for 1024. At 768 it put a two-column video
+                grid inside a 400px track and rendered the four facades at
+                182x102, smaller than the same four are at 390: the media got
+                smaller as the viewport got larger. */}
+            <div className="col-span-6 md:col-span-12 lg:col-span-5">
               <TestimonialGrid
                 items={homeTestimonials}
                 variant="featured"
@@ -388,18 +469,23 @@ export default function HomePage() {
               />
             </div>
 
-            <div className={`${styles.stack} col-span-6 md:col-span-7`}>
+            <div className={`${styles.stack} col-span-6 md:col-span-12 lg:col-span-7`}>
               <VideoGrid
                 videos={homeVideos}
                 columns={2}
                 headingLevel={3}
                 label="Video testimonials from Damian Mason’s clients"
               />
-              <div className={styles.actions}>
-                <Button href="/reviews/" variant="secondary">
-                  More Reviews
-                </Button>
-              </div>
+            </div>
+
+            {/* The section's own closing row, at the section's left gutter.
+                Parked inside the video column it sat under the first of two
+                thumbnails with the whole left half of the section empty above
+                it, which made the section read as truncated. */}
+            <div className={`${styles.actions} dm-section-close col-span-6 md:col-span-12`}>
+              <Button href="/reviews/" variant="secondary">
+                More Reviews
+              </Button>
             </div>
           </div>
         </Container>
@@ -430,19 +516,29 @@ export default function HomePage() {
             </div>
 
             <div className={`${styles.stack} col-span-6 md:col-span-7`}>
+              {/* The "after speaking to companies such as Merck, Land O'Lakes,
+                  and Cargill" clause came out of this paragraph. It is verbatim
+                  jacket copy in content/books.ts, so it already runs on /about/
+                  as a quotation, and /do-business-better-podcast/ restates it
+                  in the rebuild's own words because that route is named for the
+                  book. Three routes for one clause was two too many. This page
+                  also names Cargill, Merck and Land O'Lakes in the logo-wall
+                  intro seven sections up, so the clause was a within-route
+                  repeat here as well. */}
               <Prose>
                 <p>
                   Two titles: <em>Food Fear</em>, on why the hype around your dinner is wrong,
-                  and <em>Do Business Better</em>, on defining success on your own terms.
-                  Damian wrote the second one after speaking to companies such as Merck, Land
-                  O’Lakes, and Cargill.
+                  and <em>Do Business Better</em>, on defining success on your own terms.{' '}
+                  <em>Food Fear</em> is on audio as well. Neither one is a keynote handout.
                 </p>
               </Prose>
-              <div className={styles.actions}>
-                <Button href="/about/#books" variant="secondary">
-                  See the Books
-                </Button>
-              </div>
+            </div>
+
+            {/* Same closing row as section 06, for the same reason. */}
+            <div className={`${styles.actions} dm-section-close col-span-6 md:col-span-12`}>
+              <Button href="/about/#books" variant="secondary">
+                See the Books
+              </Button>
             </div>
           </div>
         </Container>
@@ -484,7 +580,12 @@ export default function HomePage() {
         id="book"
         eyebrow="Next step"
         heading="Book Damian for Your Next Event"
-        copy="First step: contact Damian to make sure he has your event date available. A simple contract and a small deposit hold it."
+        /* The contract-and-deposit sentence lives in the Flawless Process card
+           in section 6 of this page, which is the card VOICE.md section 6,
+           Pair 2 was written for. It ran here too, and the "First step: check
+           the date" formula was on nine routes. The band asks for the date
+           without reciting the terms a visitor read four sections ago. */
+        copy="Send the date, the city, and who is in the room. If the calendar is open you’ll know inside a business day, and if it isn’t you’ll know that just as fast."
         actions={[
           { label: 'Book Damian', href: '/contact-us/' },
           { label: 'Sign Up for Damian’s Mailing List', href: '/join-the-conversation/' },

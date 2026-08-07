@@ -17,7 +17,8 @@
  *   - Output names are kebab-case, lowercase, no spaces, no parentheses, and
  *     are derived from the BRAND name rather than the incoming filename.
  *   - Logos are capped at LOGO_MAX px on the longest side. Photos are capped at
- *     PHOTO_MAX px on the longest side. Nothing is ever upscaled.
+ *     PHOTO_MAX px on the longest side. Nothing is upscaled in this script; the
+ *     one place anything is, and only up to 2x, is the ink pass noted below.
  *   - Every logo also gets a .webp sibling at identical pixel dimensions. Both
  *     lossless and quality 90 are encoded and the smaller file wins, which is
  *     what "lossless for flat color if that is smaller" resolves to.
@@ -25,6 +26,11 @@
  *     camera originals do not end up sideways once the tag is gone.
  *   - LOGO-REVISION-B-A-F-01 copy.png is never read and never written. The
  *     client asked for that mark to be omitted from the site.
+ *   - The 31 logo-wall marks then go through scripts/normalize-logo-ink.mjs,
+ *     which trims each one to its real ink and re-pads it so the wall scales on
+ *     the artwork rather than on the margin the supplier baked around it. That
+ *     pass runs from here, at the end of main(), because this script rewrites
+ *     the same files from source and would otherwise put the margins back.
  *
  * Side effects: writes public/img/**, content/clients.ts, content/sponsors.ts,
  * content/brand-assets.ts, and _source/asset-map.json.
@@ -35,6 +41,8 @@ import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
 import url from 'node:url';
+
+import { normalizeLogoInk } from './normalize-logo-ink.mjs';
 
 const require = createRequire(import.meta.url);
 const sharp = require('sharp');
@@ -102,7 +110,10 @@ const SPONSORS = [
   { name: 'AgView Solutions', src: 'Agview solutions logo.jpeg', base: 'agview-solutions', url: 'https://agviewsolutions.com' },
   { name: 'EarthOptics', src: 'EarthOptics.png', base: 'earthoptics', url: 'https://earthoptics.com' },
   { name: 'Good Agriculture', src: 'Good Agriculture logo.png', base: 'good-agriculture', url: 'https://goodagriculture.com' },
-  { name: 'Harvest Returns', src: 'Harvest Returns.jpeg', base: 'harvest-returns', url: 'https://harvestreturns.com' },
+  // The apex harvestreturns.com has no A record, so the bare domain resolves
+  // to nothing and the tile would land on a browser error page. Only the www
+  // host is published. Verified with dig against both 8.8.8.8 and 1.1.1.1.
+  { name: 'Harvest Returns', src: 'Harvest Returns.jpeg', base: 'harvest-returns', url: 'https://www.harvestreturns.com' },
   { name: 'Heads Up Plant Protectants', src: 'Heads Up logo.jpg', base: 'heads-up-plant-protectants', url: 'https://headsupst.com' },
   { name: 'Life Scientific', src: 'Life Scientific.jpeg', base: 'life-scientific', url: 'https://lifescientific.com' },
   { name: 'Nano-Yield', src: 'Nano-Yield- logo.webp', base: 'nano-yield', url: 'https://nano-yield.com' },
@@ -183,6 +194,37 @@ const PHOTOS = [
   { src: `${SRC_MEDIA}/Screenshot-2024-08-21-at-11.48.25 AM.png`, base: 'san-interview-1' },
   { src: `${SRC_MEDIA}/Screenshot-2024-08-21-at-11.49.00 AM.png`, base: 'san-interview-2' },
 ];
+
+/**
+ * Four supplied marks arrive with a ground the logo wall cannot composite
+ * away. The wall sets `mix-blend-mode: multiply` over a bone cell, which
+ * erases white and leaves anything darker standing as a visible box around
+ * the mark, so the ground has to come off the pixels here rather than be
+ * special-cased in CSS for four files.
+ *
+ * Keyed by output basename. Both steps are optional and `crop` runs first,
+ * because a drawn-in frame would otherwise wall the flood off from the edge.
+ *
+ *   crop  - pixels shaved off each edge, for a frame baked into the artwork.
+ *   flood - walks the ground in from the four edges and repaints it white.
+ *           `step` is the largest luminance change one pixel of ground may
+ *           make, which lets the walk follow a gradient without climbing an
+ *           anti-aliased edge into the mark. `chromaMax` keeps it out of any
+ *           colored ink. Both have defaults; only override with a measured
+ *           reason.
+ */
+const GROUND_FIXES = {
+  // A 1px grey rule down column 0 and column 256. Rows 0 and 147 are clean,
+  // so the frame is two vertical lines, not a box.
+  'land-olakes-purina': { crop: { left: 1, right: 1 } },
+  // Ground is 244,243,241, near white but not white, against a 253,251,247 cell.
+  'iowa-farm-bureau': { flood: {} },
+  // Ground is a grey radial gradient running 157 at the corners to 177 at the
+  // mid edges. A single tolerance cannot span it, a per-step one can.
+  'heads-up-plant-protectants': { flood: {} },
+  // The shield is cut out of a solid black square, so the ground is 0,0,0.
+  'newfields-ag': { flood: {} },
+};
 
 /**
  * Everything deliberately left out of public/, with the reason recorded so the
@@ -290,15 +332,120 @@ function encode(pipeline, ext, kind) {
  * Build the resize+orient pipeline for one source.
  * rotate() bakes EXIF orientation into pixels; sharp then drops all metadata
  * on write, which is the "strip EXIF" requirement.
+ *
+ * `input` is a path for most entries and a lossless PNG buffer for the four
+ * that went through groundFixedSource() first.
  */
-function base(src, cap) {
-  return sharp(src)
+function base(input, cap) {
+  return sharp(input)
     .rotate()
     .resize({ width: cap, height: cap, fit: 'inside', withoutEnlargement: true });
 }
 
 /**
- * Process one manifest entry. Returns { out: string[], w, h }.
+ * Repaint the ground white, in place, on a raw RGB(A) buffer.
+ *
+ * Region growing seeded from all four edges. A pixel joins the ground when it
+ * is close in luminance to the ground pixel it was reached from and carries
+ * almost no chroma. The per-step luminance bound is what makes this work on a
+ * gradient: the ground drifts a level or two per pixel and the walk follows
+ * it, while an anti-aliased edge into a mark drops tens of levels in one pixel
+ * and stops it. The chroma bound is the second wall, so colored ink is never a
+ * candidate however light it is.
+ *
+ * Returns the fraction of the image repainted, which main() prints so a bad
+ * threshold shows up as a number rather than as a quietly gutted logo.
+ */
+function floodGroundToWhite(data, width, height, channels, { step = 10, chromaMax = 24 } = {}) {
+  const lum = (i) => (data[i] * 299 + data[i + 1] * 587 + data[i + 2] * 114) / 1000;
+  const chroma = (i) =>
+    Math.max(data[i], data[i + 1], data[i + 2]) - Math.min(data[i], data[i + 1], data[i + 2]);
+
+  const seen = new Uint8Array(width * height);
+  const stack = [];
+
+  /** `fromLum` is null for a seed on the edge, which has nothing to compare to. */
+  const visit = (x, y, fromLum) => {
+    if (x < 0 || y < 0 || x >= width || y >= height) return;
+    const p = y * width + x;
+    if (seen[p]) return;
+    const i = p * channels;
+    if (chroma(i) > chromaMax) return;
+    if (fromLum !== null && Math.abs(lum(i) - fromLum) > step) return;
+    seen[p] = 1;
+    stack.push(p);
+  };
+
+  for (let x = 0; x < width; x++) {
+    visit(x, 0, null);
+    visit(x, height - 1, null);
+  }
+  for (let y = 0; y < height; y++) {
+    visit(0, y, null);
+    visit(width - 1, y, null);
+  }
+
+  while (stack.length) {
+    const p = stack.pop();
+    const x = p % width;
+    const y = (p - x) / width;
+    const l = lum(p * channels);
+    visit(x - 1, y, l);
+    visit(x + 1, y, l);
+    visit(x, y - 1, l);
+    visit(x, y + 1, l);
+  }
+
+  let painted = 0;
+  for (let p = 0; p < width * height; p++) {
+    if (!seen[p]) continue;
+    painted++;
+    const i = p * channels;
+    data[i] = 255;
+    data[i + 1] = 255;
+    data[i + 2] = 255;
+  }
+  return painted / (width * height);
+}
+
+/**
+ * Apply a GROUND_FIXES entry and hand back a lossless PNG buffer, so the
+ * normal pipeline below is unchanged and nothing is encoded twice lossily.
+ * Also returns the repainted fraction for the log line, or null when the
+ * entry only crops.
+ */
+async function groundFixedSource(absSrc, fix) {
+  const raw = async (pipeline) => {
+    const { data, info } = await pipeline.raw().toBuffer({ resolveWithObject: true });
+    return { data, meta: { width: info.width, height: info.height, channels: info.channels } };
+  };
+
+  // flatten() first: a fix is only ever applied to a mark that is opaque
+  // already, and it guarantees three channels for the flood arithmetic.
+  let { data, meta } = await raw(sharp(absSrc).rotate().flatten({ background: '#ffffff' }));
+
+  if (fix.crop) {
+    const { left = 0, top = 0, right = 0, bottom = 0 } = fix.crop;
+    ({ data, meta } = await raw(
+      sharp(data, { raw: meta }).extract({
+        left,
+        top,
+        width: meta.width - left - right,
+        height: meta.height - top - bottom,
+      }),
+    ));
+  }
+
+  let painted = null;
+  if (fix.flood) {
+    painted = floodGroundToWhite(data, meta.width, meta.height, meta.channels, fix.flood);
+  }
+
+  return { buffer: await sharp(data, { raw: meta }).png().toBuffer(), painted };
+}
+
+/**
+ * Process one manifest entry. Returns { out: string[], w, h, ground? }.
  */
 async function process(entry) {
   const name = path.basename(entry.src);
@@ -313,9 +460,20 @@ async function process(entry) {
   const outDir = path.join(PUBLIC_IMG, entry.dir);
   await fsp.mkdir(outDir, { recursive: true });
 
+  // A ground fix replaces the source with an equivalent lossless buffer, so
+  // everything downstream of here is identical for a fixed and an unfixed mark.
+  const fix = GROUND_FIXES[entry.base];
+  let ground;
+  let input = absSrc;
+  if (fix) {
+    const fixed = await groundFixedSource(absSrc, fix);
+    input = fixed.buffer;
+    ground = fixed.painted === null ? 'cropped' : `${(fixed.painted * 100).toFixed(1)}% ground repainted`;
+  }
+
   const ext = entry.ext ?? rasterExt(entry.src);
   const rasterPath = path.join(outDir, entry.base + ext);
-  const info = await encode(base(absSrc, cap), ext, entry.kind).toFile(rasterPath);
+  const info = await encode(base(input, cap), ext, entry.kind).toFile(rasterPath);
 
   const out = [`/img/${entry.dir}/${entry.base}${ext}`];
 
@@ -326,20 +484,20 @@ async function process(entry) {
       // Source was already webp, so the raster IS the webp sibling. Emit a PNG
       // fallback so every sponsor has a non-webp raster available.
       const pngPath = path.join(outDir, entry.base + '.png');
-      await base(absSrc, cap).png({ compressionLevel: 9, effort: 10 }).toFile(pngPath);
+      await base(input, cap).png({ compressionLevel: 9, effort: 10 }).toFile(pngPath);
       out.push(`/img/${entry.dir}/${entry.base}.png`);
     } else {
       const webpPath = path.join(outDir, entry.base + '.webp');
       const [lossless, lossy] = await Promise.all([
-        base(absSrc, cap).webp({ lossless: true, effort: 6 }).toBuffer(),
-        base(absSrc, cap).webp({ quality: 90, effort: 6 }).toBuffer(),
+        base(input, cap).webp({ lossless: true, effort: 6 }).toBuffer(),
+        base(input, cap).webp({ quality: 90, effort: 6 }).toBuffer(),
       ]);
       await fsp.writeFile(webpPath, lossless.length < lossy.length ? lossless : lossy);
       out.push(`/img/${entry.dir}/${entry.base}.webp`);
     }
   }
 
-  return { out, w: info.width, h: info.height };
+  return { out, w: info.width, h: info.height, ...(ground ? { ground } : {}) };
 }
 
 // ---------------------------------------------------------------------------
@@ -376,7 +534,9 @@ async function main() {
     const res = await process(entry);
     map[entry.src] = res;
     dims.set(entry.src, res);
-    console.log(`${entry.src}  ->  ${res.out.join(', ')}  (${res.w}x${res.h})`);
+    console.log(
+      `${entry.src}  ->  ${res.out.join(', ')}  (${res.w}x${res.h})${res.ground ? `  [ground fix: ${res.ground}]` : ''}`,
+    );
   }
 
   map.skipped = SKIPPED;
@@ -468,7 +628,8 @@ async function main() {
       'name, so none of them is a guess:',
       '  AgView Solutions, farm transition planning, Rowley Iowa.',
       '  EarthOptics, soil data mapping, Minneapolis.',
-      '  Harvest Returns, agriculture investment platform, Fort Worth.',
+      '  Harvest Returns, agriculture investment platform, Fort Worth. The www',
+      '    host is the live one: the apex has no A record at all.',
       '  Life Scientific, crop protection, Dublin.',
       '  NewFields Ag, liquid biologicals and seed treatments, Grand Mound Iowa.',
       '  Redox Bio, plant bio-nutrition, Burley Idaho, trading as redoxgrows.com.',
@@ -510,14 +671,14 @@ async function main() {
       '_source/asset-map.json.',
     ]) +
     '\nexport const brandAssets = {\n' +
-    `  wordmark: ${q(b('wordmark'))}, // site header and footer, all pages\n` +
-    `  wordmarkWhite: ${q(b('wordmark-white'))}, // header over dark hero imagery, footer on the dark band\n` +
-    `  boasg: ${q(b('boasg'))}, // /boasg/ hero and the join CTA, plus social share cards\n` +
-    `  boasgWhite: ${q(b('boasg-white'))}, // /boasg/ badge placed over photography or a dark section\n` +
-    `  businessOfAgriculture: ${q(b('business-of-agriculture'))}, // /podcast/ masthead and the home page podcast block\n` +
-    `  businessOfAgriculturePodcast: ${q(b('business-of-agriculture-podcast'))}, // /podcast/ episode artwork and the feed cover\n` +
-    `  granary: ${q(b('the-granary'))}, // /the-granary/ hero\n` +
-    `  xtremeAg: ${q(b('xtreme-ag'))}, // /the-granary/ and /podcast/, the XtremeAg partnership credit\n` +
+    `  wordmark: ${q(b('wordmark'))}, // site header and footer on every route, plus the OG card and the Organization logo in lib/schema.ts\n` +
+    `  wordmarkWhite: ${q(b('wordmark-white'))}, // not placed anywhere: the wordmark never reverses. See DESIGN_SYSTEM section 10 rule 4\n` +
+    `  boasg: ${q(b('boasg'))}, // /boasg/ share card\n` +
+    `  boasgWhite: ${q(b('boasg-white'))}, // /boasg/ badge\n` +
+    `  businessOfAgriculture: ${q(b('business-of-agriculture'))}, // /the-business-of-agriculture/, the stacked lockup leading the subscribe band\n` +
+    `  businessOfAgriculturePodcast: ${q(b('business-of-agriculture-podcast'))}, // /the-business-of-agriculture/ and /podcasts/ cover art, and the PodcastSeries image\n` +
+    `  granary: ${q(b('the-granary'))}, // /the-business-of-agriculture/ and /xtreme-ag/, the Granary show mark\n` +
+    `  xtremeAg: ${q(b('xtreme-ag'))}, // /the-business-of-agriculture/, the XtremeAg partnership credit\n` +
     '} as const;\n\n' +
     header([
       'Secondary marks that ship alongside the primary set. They are kept out of',
@@ -525,16 +686,23 @@ async function main() {
       'are real and available if a page needs them.',
     ]) +
     '\nexport const brandAssetsExtra = {\n' +
-    `  boasgWhiteFlat: ${q(b('boasg-white-flat'))}, // /boasg/, opaque white background variant for print or email\n` +
-    `  doBusinessBetterPodcast: ${q(b('do-business-better-podcast'))}, // /about/#books and any Do Business Better cross promo\n` +
-    `  businessOfAgricultureLockup: ${q(b('business-of-agriculture-lockup'))}, // /podcast/ alternate lockup on a dark panel\n` +
-    `  businessOfAgricultureIconWhite: ${q(b('business-of-agriculture-icon-white'))}, // /podcast/ leaf icon over dark sections, favicon-scale use\n` +
-    `  businessOfAgricultureAvatar: ${q(b('business-of-agriculture-avatar'))}, // /podcast/ square avatar for feed and player embeds\n` +
-    `  xtremeAgTransparent: ${q(b('xtreme-ag-transparent'))}, // /the-granary/, transparent version for placing on color\n` +
-    `  dmMonogram: ${q(b('dm-monogram'))}, // favicon and app icon source, site wide\n` +
+    `  boasgWhiteFlat: ${q(b('boasg-white-flat'))}, // unplaced, the opaque duplicate of the boasgWhite badge. See docs/CONTENT_MANIFEST.md\n` +
+    `  doBusinessBetterPodcast: ${q(b('do-business-better-podcast'))}, // /podcasts/ and /do-business-better-podcast/ cover art, and the PodcastSeries image\n` +
+    `  businessOfAgricultureLockup: ${q(b('business-of-agriculture-lockup'))}, // unplaced, the horizontal alternate to businessOfAgriculture\n` +
+    `  businessOfAgricultureIconWhite: ${q(b('business-of-agriculture-icon-white'))}, // unplaced, the leaf icon on its own at favicon scale\n` +
+    `  businessOfAgricultureAvatar: ${q(b('business-of-agriculture-avatar'))}, // unplaced, the square avatar the player embeds carry themselves\n` +
+    `  xtremeAgTransparent: ${q(b('xtreme-ag-transparent'))}, // /podcasts/ and /xtreme-ag/, the transparent XtremeAg mark for placing on color\n` +
+    `  dmMonogram: ${q(b('dm-monogram'))}, // never referenced by a route: this is the SOURCE the site icons were cut from, not a shipped image. See app/icon.png\n` +
     '} as const;\n\n' +
     'export type BrandAssetKey = keyof typeof brandAssets;\n';
   await fsp.writeFile(path.join(CONTENT, 'brand-assets.ts'), brandTs);
+
+  // -- ink normalization ----------------------------------------------------
+  // The two walls only. Everything above this line is faithful to the supplied
+  // file; this is the one pass that changes the artwork's framing, and it is
+  // the difference between 31 equal cells and 31 equal marks.
+  console.log('\nNormalizing logo-wall ink.');
+  await normalizeLogoInk();
 
   console.log(`\nProcessed ${entries.length} assets. Skipped ${SKIPPED.length}.`);
 }

@@ -1,0 +1,14 @@
+import { chromium } from 'playwright';
+const b=await chromium.launch();
+const c=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:3});
+const p=await c.newPage();
+await p.goto('http://localhost:3100/the-business-of-agriculture/',{waitUntil:'networkidle'});
+const info=await p.evaluate(()=>[...document.images].filter(i=>/business-of-ag|boa|lockup/i.test(i.currentSrc)).map(i=>({src:i.currentSrc.slice(-70),nat:[i.naturalWidth,i.naturalHeight],box:[Math.round(i.getBoundingClientRect().width),Math.round(i.getBoundingClientRect().height)],blend:getComputedStyle(i).mixBlendMode,filter:getComputedStyle(i).filter,cls:i.className})));
+console.log(JSON.stringify(info,null,1));
+const el=await p.$('.showLockup, [class*="showLockup"]');
+if(el){await el.scrollIntoViewIfNeeded();await p.waitForTimeout(400);
+ const bb=await el.boundingBox();
+ await p.screenshot({path:'/Users/omidebrahimi/Desktop/Projects/DamianMason/docs/qa/screenshots/round-1-mobile/zz-boa-lockup-390.png',clip:{x:0,y:bb.y-30,width:390,height:Math.min(300,bb.height+60)}});
+ console.log('shot ok', JSON.stringify(bb));
+} else console.log('no .showLockup');
+await b.close();

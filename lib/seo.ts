@@ -60,8 +60,14 @@ export type OgType = 'website' | 'article' | 'profile';
  * Because `buildMetadata` always emits an `openGraph` object, every nested
  * route was shipping with no `og:image` and no `twitter:image` at all. Naming
  * the generated route here puts the card back on all of them.
+ *
+ * The trailing slash is load bearing. `next.config.ts` sets
+ * `trailingSlash: true`, so `/opengraph-image` answers 308 to
+ * `/opengraph-image/`. Scrapers follow the redirect, but a card URL that is a
+ * redirect rather than the asset is the same disagreement between advertised
+ * and served URL this file exists to prevent.
  */
-export const DEFAULT_OG_IMAGE_PATH = '/opengraph-image';
+export const DEFAULT_OG_IMAGE_PATH = '/opengraph-image/';
 
 export type OgImage = {
   /** Absolute URL, or a root-relative path that gets resolved against site.url. */

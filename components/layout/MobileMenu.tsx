@@ -249,22 +249,31 @@ export function MobileMenu({
               })}
             </ul>
           </nav>
+        </Container>
 
-          <div className="dm-menu__foot">
-            {/* The phone number is reachable at every breakpoint. Here it is a
-                44px target, which is what a meeting planner on a phone needs. */}
-            <a className="dm-menu__phone" href={phoneHref}>
-              <PhoneIcon className="dm-menu__icon" />
-              {phone}
-            </a>
-            {/* The one documented exception to "the masthead booking control is
-                secondary". The sheet is a modal that occludes the whole page,
-                so it is its own viewport, and this is the only filled orange
-                field inside it. See DESIGN_SYSTEM.md section 5. */}
-            <Button href={bookingHref} variant="primary" block>
-              {bookingLabel}
-            </Button>
-          </div>
+        {/* The foot is a sibling of the scrolling list, not a sticky element
+            inside it. As a sticky child it was an opaque plate pinned over the
+            bottom 153px of the scroll area, and at 390 the last two
+            destinations, About and Contact Us, sat entirely underneath it with
+            the list appearing to end at a rule under "Blog". A visitor had no
+            way to know they existed. Out here it takes its own row of the
+            sheet's flex column, so the list is cut by a scroll edge instead of
+            covered: the next row is always half visible, and the fade above
+            the foot's rule says the rest is a scroll away. */}
+        <Container className="dm-menu__foot">
+          {/* The phone number is reachable at every breakpoint. Here it is a
+              44px target, which is what a meeting planner on a phone needs. */}
+          <a className="dm-menu__phone" href={phoneHref}>
+            <PhoneIcon className="dm-menu__icon" />
+            {phone}
+          </a>
+          {/* The one documented exception to "the masthead booking control is
+              secondary". The sheet is a modal that occludes the whole page,
+              so it is its own viewport, and this is the only filled orange
+              field inside it. See DESIGN_SYSTEM.md section 5. */}
+          <Button href={bookingHref} variant="primary" block>
+            {bookingLabel}
+          </Button>
         </Container>
       </div>
     </>

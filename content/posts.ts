@@ -22,6 +22,18 @@
  * staging username, linked to /author/damianmasonstg/. That is a defect, not a
  * name, so `author` is "Damian Mason" on both.
  *
+ * BUT NEITHER POST IS SOMETHING DAMIAN WROTE, and `authorRole` says so. Both
+ * bodies are one line reporting that he was featured somewhere else, and the
+ * Eggflation body carries the real writer's name: "Damian featured in Straight
+ * Arrow News / By Simone Del Rosario". With `author` rendered as a plain "By"
+ * byline, the page ran a headline that belongs to Straight Arrow News, then
+ * "By Damian Mason", then three lines later "By Simone Del Rosario". Two
+ * bylines disagreeing inside one screen, and the Article JSON-LD naming Damian
+ * as the author of somebody else's headline. `authorRole: 'posted'` renders
+ * "Posted by" and hands the schema's `author` to the site Organization instead
+ * of the Person, which is what actually happened: this site posted a link to a
+ * piece it did not write. Set it to 'wrote' for a post Damian actually writes.
+ *
  * EXCERPTS. The old excerpts are unusable. One truncates mid-phrase because
  * the body is four words long, and the other collapses a `<br>` and reads
  * "Damian featured in Straight Arrow NewsBy Simone Del Rosario" with no space.
@@ -58,6 +70,14 @@ export type Post = {
   date: string;
   excerpt: string;
   author: string;
+  /**
+   * 'wrote'  Damian is the author. Byline reads "By Damian Mason" and the
+   *          Article JSON-LD names the Person.
+   * 'posted' The post is a link out to coverage of him, written by somebody
+   *          else. Byline reads "Posted by Damian Mason" and the JSON-LD names
+   *          the site Organization. Defaults to 'wrote' when absent.
+   */
+  authorRole?: 'wrote' | 'posted';
   /** Full body copy, verbatim from the source, as markdown. */
   body: string;
   heroImage?: string;
@@ -76,6 +96,9 @@ export const posts: Post[] = [
     excerpt:
       'Damian talked eggs with Straight Arrow News. Record 2022 egg prices handed producers record profits while the internet turned the grocery aisle into a meme.',
     author: 'Damian Mason',
+    // Simone Del Rosario wrote the Straight Arrow News piece and the body below
+    // says so. This site posted the link.
+    authorRole: 'posted',
     // Verbatim and complete. The two trailing spaces are a markdown hard line
     // break, standing in for the `<br>` that separated the two lines on the
     // live page.
@@ -94,6 +117,8 @@ export const posts: Post[] = [
     excerpt:
       'Cheddar News called in April 2023 to ask how climate pressure turns into real food shortages. Damian took the question on camera. Watch the segment here.',
     author: 'Damian Mason',
+    // A Cheddar News segment, not a piece of Damian's writing.
+    authorRole: 'posted',
     // Verbatim and complete. A whole Divi section, row, column and text module
     // were built to hold this one sentence.
     body: 'Damian Mason featured in Cheddar News',

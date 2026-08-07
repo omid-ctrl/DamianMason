@@ -40,12 +40,30 @@
 }
 
 /* The address is long and the card is narrow at 390, so the value is allowed
-   to break rather than to overflow its cell. */
+   to break rather than to overflow its cell.
+
+   `anywhere` and not `break-word`, deliberately: `break-word` leaves the
+   min-content width at the longest unbreakable run, which pushed the ledger
+   card's own track to 817px inside a 768px viewport. `anywhere` keeps the
+   card sized by its container. The cost of `anywhere` is that it will split
+   at any character, so the address is kept short enough not to need it. */
 .ledgerValue {
   font-family: var(--family-serif);
   font-size: var(--fs-lg);
   line-height: var(--lh-snug);
   overflow-wrap: anywhere;
+}
+
+/* One step down at 390. At --fs-lg, damianmasonoffice@gmail.com measured 309px
+   against a 299px cell, so `anywhere` fired and left a lone "m" alone on line
+   two of the primary conversion asset on the primary conversion page. --fs-md
+   brings it to about 276px, so it sets on one line and the break opportunity
+   is never taken. It is still a step above the 16px the same address takes in
+   the footer. */
+@media (max-width: 29.9375rem) {
+  .ledgerValue {
+    font-size: var(--fs-md);
+  }
 }
 
 /* The phone number and the email address are tel: and mailto: links and they

@@ -1,0 +1,50 @@
+{
+  "business-of-agriculture.png": {
+    "v": 3,
+    "sha1": "f2b1afad568dfcba043e4123ff5e63fa69b51116",
+    "width": 508,
+    "height": 209
+  },
+  "business-of-agriculture.webp": {
+    "v": 3,
+    "sha1": "e0002d55749a3947c24591f979b743eb16caf1da",
+    "width": 508,
+    "height": 209
+  },
+  "the-granary.png": {
+    "v": 3,
+    "sha1": "26d54e062fce63704e38960189364376f2faf06e",
+    "width": 508,
+    "height": 388
+  },
+  "the-granary.webp": {
+    "v": 3,
+    "sha1": "8a7f4aa22693a05a1054165cc908d036d0432ef2",
+    "width": 508,
+    "height": 388
+  },
+  "xtreme-ag.jpg": {
+    "v": 3,
+    "sha1": "1b41cfc4dfb9d838eeff63a5e587602d83d47789",
+    "width": 508,
+    "height": 242
+  },
+  "xtreme-ag.webp": {
+    "v": 3,
+    "sha1": "d0f643dd374374783aa16a25b1e1e769bbc12a50",
+    "width": 508,
+    "height": 242
+  },
+  "xtreme-ag-transparent.png": {
+    "v": 3,
+    "sha1": "617ad310362d5df24994d3ef68d977cd536ec694",
+    "width": 256,
+    "height": 122
+  },
+  "xtreme-ag-transparent.webp": {
+    "v": 3,
+    "sha1": "5dbb35eb357934764034200b110ad708025a858c",
+    "width": 256,
+    "height": 122
+  }
+}

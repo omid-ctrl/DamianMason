@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import {
   Button,
@@ -27,6 +28,7 @@ import {
 import { buildMetadata } from '@/lib/seo';
 
 import styles from './page.module.css';
+import { imageAlt } from '@/content/image-alt';
 
 const ROUTE = '/the-business-of-agriculture/';
 
@@ -69,7 +71,7 @@ export const metadata: Metadata = buildMetadata({
     url: brandAssets.businessOfAgriculturePodcast,
     width: 800,
     height: 800,
-    alt: 'Cover art for The Business of Agriculture Podcast with Damian Mason.',
+    alt: imageAlt['/img/brand/business-of-agriculture-podcast.jpg'],
   },
 });
 
@@ -158,7 +160,7 @@ export default function BusinessOfAgriculturePage() {
                 <Image
                   className={styles.art}
                   src={brandAssets.businessOfAgriculturePodcast}
-                  alt="Cover art for The Business of Agriculture Podcast: a green and black leaf mark above the Damian Mason wordmark."
+                  alt={imageAlt['/img/brand/business-of-agriculture-podcast.jpg']}
                   width={800}
                   height={800}
                   priority
@@ -166,7 +168,8 @@ export default function BusinessOfAgriculturePage() {
                 />
               </Section>
               <figcaption className={`dm-figure__caption ${styles.artCutline}`}>
-                Show art. The feed is Libsyn 504653, and a new episode lands every Monday.
+                <span className="dm-figure__folio">Fig. 01 </span>
+                Show art. A new episode lands every Monday.
               </figcaption>
             </figure>
           </div>
@@ -226,10 +229,14 @@ export default function BusinessOfAgriculturePage() {
               title="The Business of Agriculture Podcast player"
               height={LIBSYN_PLAYER_HEIGHT}
               eyebrow="The full archive"
-              action="Load the Libsyn player"
+              /* "Load the Libsyn player" wrapped to two centred lines in this
+                 plate's button column at 768, the last mono label on the site
+                 still breaking. The word "Libsyn" is carried by the note
+                 immediately to its left, so dropping it costs no clarity and
+                 lands the label on one line at every width. */
+              action="Load the player"
             >
-              Libsyn&rsquo;s player brings about 2.5MB of its own code and artwork with it, so
-              it waits here until you want it.
+              Every episode, back to the first one.
             </EmbedFacade>
             <p className={`dm-figure__caption ${styles.playerCutline}`}>
               The full archive, streaming straight from the Libsyn feed. Downloads are on.
@@ -249,6 +256,25 @@ export default function BusinessOfAgriculturePage() {
         surface="sunken"
       >
         <Container>
+          {/* The stacked lockup, the second supplied Business of Agriculture
+              mark. It is the show's name spelled out, which is the string the
+              reader is about to search for, so it belongs on the subscribe
+              band rather than next to the cover art it would duplicate. */}
+          <Image
+            className={styles.showLockup}
+            src={brandAssets.businessOfAgriculture}
+            alt="The Business of Agriculture Podcast with Damian Mason"
+            /* 508x209 is what scripts/normalize-brand-art.mjs settled this file
+               on. Do not restore 800x345: that canvas was 6 percent baked-in
+               margin plus a 10,500 pixel grey ghost at 2 percent alpha, which
+               the image optimizer amplified into a visible dirty rectangle
+               beside the leaf. */
+            width={508}
+            height={209}
+            loading="lazy"
+            sizes="14rem"
+          />
+
           <div className={styles.head}>
             <Eyebrow>Subscribe</Eyebrow>
             <Heading level={2} size="2xl" folio="No. 02" id="listen-title">
@@ -291,7 +317,7 @@ export default function BusinessOfAgriculturePage() {
         id="sponsors"
         folio="No. 03"
         level={2}
-        intro="Ten sponsors. Every mark below links straight to the company, and if you sell into Agriculture, they’re the ones already spending money to reach that crowd."
+        intro="Ten sponsors. If you sell into Agriculture, these are the companies already spending money to reach that crowd."
       />
 
       {/* ==================================================================
@@ -311,8 +337,8 @@ export default function BusinessOfAgriculturePage() {
 
           <Prose className={styles.intro}>
             <p>
-              Two more things from the XtremeAg crew. The Granary is filmed with them, and
-              Cutting The Curve is their own podcast.
+              Two more things from XtremeAg. The Granary is filmed with them, and Cutting
+              The Curve is their show with Damian hosting it.
             </p>
           </Prose>
 
@@ -321,16 +347,21 @@ export default function BusinessOfAgriculturePage() {
               <Image
                 className={styles.crossMark}
                 src={brandAssets.granary}
-                alt="The Granary"
-                width={800}
-                height={800}
+                alt={imageAlt['/img/brand/the-granary.png']}
+                width={508}
+                height={388}
                 loading="lazy"
                 sizes="8rem"
               />
               <Heading level={3} size="lg">
                 The Granary
               </Heading>
-              <p>Filmed with the XtremeAg crew in a granary turned tavern on Damian’s Indiana farm.</p>
+              {/* "the XtremeAg crew" was an inference: no source says a crew
+                  exists. The full sentence, "filmed with XtremeAg in a granary
+                  turned tavern on Damian's Indiana farm", is /xtreme-ag/'s, and
+                  that route states it twice already. This is a cross-promo
+                  card, so it says who makes it and stops. */}
+              <p>An XtremeAg show, shot on Damian’s Indiana farm.</p>
               <Button
                 className={styles.crossAction}
                 href={podcasts.xtremeAg.granary}
@@ -347,9 +378,9 @@ export default function BusinessOfAgriculturePage() {
               <Image
                 className={styles.crossMark}
                 src={brandAssets.xtremeAg}
-                alt="XtremeAg"
-                width={800}
-                height={480}
+                alt={imageAlt['/img/brand/xtreme-ag.jpg']}
+                width={508}
+                height={242}
                 loading="lazy"
                 sizes="8rem"
               />
@@ -372,7 +403,7 @@ export default function BusinessOfAgriculturePage() {
 
           <Prose className={styles.crossFooter}>
             <p>
-              Damian’s own work with XtremeAg has a page here: <a href="/xtreme-ag/">XtremeAg</a>.
+              Damian’s own work with XtremeAg has a page here: <Link href="/xtreme-ag/">XtremeAg</Link>.
             </p>
           </Prose>
         </Container>
@@ -384,7 +415,10 @@ export default function BusinessOfAgriculturePage() {
           ================================================================== */}
       {listenerQuotes.length > 0 ? (
         <Section id="review" aria-labelledby="review-title">
-          <Container width="narrow">
+          {/* align="start" keeps this narrow measure on the same left gutter as
+              the episode sections above it. Centred, it started at x=320 while
+              the rest of the page started at x=96. */}
+          <Container width="narrow" align="start">
             <div className={styles.head}>
               <Eyebrow>Listener review</Eyebrow>
               <Heading level={2} size="2xl" folio="No. 05" id="review-title">
@@ -405,12 +439,16 @@ export default function BusinessOfAgriculturePage() {
           jumped to the top of the page. This one posts to Mailchimp.
           ================================================================== */}
       <Section id="subscribe" surface="sunken">
-        <Container width="narrow">
+        <Container width="narrow" align="start">
           <NewsletterForm
             idPrefix="podcast-subscribe"
             headingLevel={2}
             title="New episodes every Monday."
-            blurb="Subscribe and you’ll hear when an episode drops. No daily clutter, no pitches."
+            /* "No daily clutter, no pitches" is the closing line of
+               NewsletterForm's own default blurb, which renders on /contact-us/
+               and elsewhere. This form is attached to a show, so it promises
+               what the show's list actually sends. */
+            blurb="You’ll hear when a new episode posts. Nothing else lands in your inbox."
             submitLabel="Subscribe"
             submitVariant="secondary"
           />
@@ -437,6 +475,11 @@ export default function BusinessOfAgriculturePage() {
         folio="No. 06"
         copy={
           <>
+            {/* THIS ROUTE OWNS THE OCCUPATION LIST. "Growers, ag lenders,
+                agronomists" was running eight times on seven routes, and this
+                is the show whose audience the source actually describes, so the
+                full list stays here and the neighbours name a different slice
+                each. Do not paste it onto a fourth route. */}
             <p>
               More than 40,000 listeners a month. Growers, ag lenders, agronomists, and the
               agribusiness people who sell to them. If your brand belongs in that feed, here’s

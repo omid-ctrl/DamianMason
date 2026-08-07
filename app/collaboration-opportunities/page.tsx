@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import {
@@ -21,10 +22,12 @@ import { JsonLd } from '@/components/seo';
 import { buildBreadcrumbListSchema, buildVideoObjectSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
 import { contact } from '@/content/site';
+import { jobTitleList } from '@/content/job-titles';
 import { testimonialsFor } from '@/content/testimonials';
 import { videosFor } from '@/content/videos';
 
 import styles from './page.module.css';
+import { imageAlt } from '@/content/image-alt';
 
 const ROUTE = '/collaboration-opportunities/';
 const CONTACT = '/contact-us/';
@@ -44,7 +47,7 @@ export const metadata: Metadata = buildMetadata({
     url: '/img/photos/speaking-to-audience.jpg',
     width: 2000,
     height: 1336,
-    alt: 'Damian Mason speaking to a seated room of farmers and agribusiness people.',
+    alt: imageAlt['/img/photos/speaking-to-audience.jpg'],
   },
 });
 
@@ -148,17 +151,26 @@ export default function CollaborationOpportunitiesPage() {
         id="hero"
         eyebrow="Collaborate with Damian"
         title={
+          /* The space before the break is load bearing. Without it the text
+             node resolves to "If it's Agriculture,it needs Damian." and that
+             is what the accessible name, the indexed text and a screen reader
+             all get, however correctly the two lines render. */
           <>
-            If it’s Agriculture,
+            If it’s Agriculture,{' '}
             <br />
             it needs Damian.
           </>
         }
-        deck="Be a guest on the show. Sponsor an episode. Co-host a webinar, or put your brand in front of an Ag audience that buys. More than 40,000 people listen every month, and they’re the real-world agriculture people you’re trying to reach."
+        /* The figure is gone from this deck. "More than 40,000 people listen
+           every month" is the canonical sponsorship sentence and it belongs to
+           the Influencer card in No. 01 below, which is VOICE.md Pair 3. It ran
+           here as well, so the same eight words opened two blocks on one page,
+           and the ledger restated the number a third time. */
+        deck="Be a guest on the show. Sponsor an episode. Co-host a webinar, or put your brand in front of an Ag audience that buys. These are the real-world agriculture people you’re trying to reach, and they’re already listening."
         actions={[{ label: 'Work with Damian', href: CONTACT }]}
         image={{
           src: '/img/photos/portrait-dark-blazer.jpg',
-          alt: 'Damian Mason in a charcoal blazer and jeans, leaning against a brick window frame.',
+          alt: imageAlt['/img/photos/portrait-dark-blazer.jpg'],
           width: 1467,
           height: 2000,
           priority: true,
@@ -180,7 +192,15 @@ export default function CollaborationOpportunitiesPage() {
           { value: '50', label: 'States' },
           { value: '7', label: 'Countries' },
         ]}
-        restatement="Since 1994 he’s worked 2,400 audiences in all 50 states and 7 foreign countries. Another 40,000 hear him on the podcast every month, and they work in the business you sell into."
+        /* Not a restatement of the glyphs. The previous line ("Since 1994 he's
+           worked 2,400 audiences in all 50 states and 7 foreign countries")
+           repeated all four figures standing above it, and this route already
+           carries that same claim as a PROFESSIONAL bullet further down
+           ("Professional speaker to over 2,400 audiences in 50 states and 7
+           countries"), so it ran twice on one page. The reader here is a
+           prospective sponsor, so the prose says which figures they are
+           actually buying. */
+        restatement="You’re buying two of these four. The stage figures are why the audience trusts him. The podcast figure is how many of them hear your brand every month."
       />
 
       {/* ====================================================================
@@ -206,8 +226,8 @@ export default function CollaborationOpportunitiesPage() {
               </Heading>
               <Prose measure="full">
                 <p>
-                  Damian hosts two podcasts and runs the{' '}
-                  <a href="/boasg/">Business of Ag Success Group</a>. He books guests for
+                  Damian hosts three shows and runs the{' '}
+                  <Link href="/boasg/">Business of Ag Success Group</Link>. He books guests for
                   his own shows, and he says yes to other people’s. Want your story in
                   front of an audience that already works in your business?
                 </p>
@@ -329,11 +349,31 @@ export default function CollaborationOpportunitiesPage() {
           </Prose>
 
           <div className={styles.block}>
+            {/* The Innovation reel is the one asset the old site placed on two
+                pages, so its description in content/videos.ts printed a
+                byte-identical cutline here and on /keynote/. /keynote/ is
+                selling the program, so there the cutline says what the clip is
+                about. Here the reader is a prospective sponsor, so it says what
+                the clip demonstrates about the room. */}
             <VideoGrid
               videos={collaborationVideos}
               columns={3}
               headingLevel={3}
               label="Podcast and keynote samples"
+              /* All three, or none: DESIGN_SYSTEM 6.1. One captioned tile in a
+                 row of three bottomed the row out 60px apart for a reason a
+                 reader cannot see. The two podcast tiles are title-card
+                 captures rather than photographs, so their cutlines say what
+                 the title card says: the show, the guest, and the subject.
+                 Nothing here is inferred from anything but the frame. */
+              cutlines={{
+                'managing-for-the-future':
+                  'The Business of Agriculture, with Luke Roush. Managing for the future, from a thirty year old on the fourth generation of the same farm.',
+                'survival-strategies-for-small-business':
+                  'Do Business Better, with Brad McDonald. Survival strategies for small business, which is the half of Damian’s work that has nothing to do with a tractor.',
+                'demo-innovation':
+                  'Watch the room rather than the stage: this is an audience of growers being told who pays for innovation, and staying with it.',
+              }}
             />
           </div>
         </Container>
@@ -344,6 +384,19 @@ export default function CollaborationOpportunitiesPage() {
           and set the six items as six paragraphs, each opening with a
           <span class="hgKElc"> checkmark pasted out of a Google results page.
           One heading, one real list.
+
+          THE INQUIRY FORM IS DELIBERATELY NOT CARRIED OVER. The source section
+          shipped a Divi form with four fields (Email, Full Name, Phone,
+          Message) that POSTed to a WordPress nonce endpoint. This build has no
+          server and no form service, so that backend does not exist here and a
+          re-drawn copy of the form would submit nowhere. Lead capture on this
+          site is therefore mailto-only: the two actions below are the
+          replacement, and /contact-us/ states what to put in a first email so
+          the Message field's job is still done. This is the site's one
+          intentional functional reduction and it is logged in
+          docs/OPEN-ITEMS.md for the client to overturn if they want a hosted
+          form. The Mailchimp form on /contact-us/ and
+          /join-the-conversation/ is a newsletter signup, not this.
           ==================================================================== */}
       <Section surface="sunken" aria-labelledby="work-together-title">
         <Container>
@@ -357,12 +410,15 @@ export default function CollaborationOpportunitiesPage() {
           <div className={`dm-grid12 ${styles.split}`}>
             <div className="col-span-6 md:col-span-12 lg:col-span-7">
               <Prose lead measure="full">
+                {/* The nine titles come from content/job-titles.ts. This
+                    sentence is verbatim source on this route
+                    (`_source/pages/collaboration-opportunities.md:121`) and on
+                    /keynote/ (`keynote.md:180`), and it was hand typed on three
+                    routes with three different item counts. */}
                 <p>
-                  Damian Mason is a businessman, agriculturist, speaker, podcaster, media
-                  guest, Ag personality, influencer, author, and consultant. His favorite
-                  role? Getting to join forces with other visionaries on projects that
-                  reach the real people of agriculture and business with content that
-                  matters.
+                  Damian Mason is a {jobTitleList()}. His favorite role? Getting to join
+                  forces with other visionaries on projects that reach the real people of
+                  agriculture and business with content that matters.
                 </p>
               </Prose>
               <Prose measure="full" className={styles.checklist}>
@@ -390,7 +446,7 @@ export default function CollaborationOpportunitiesPage() {
                 <Image
                   className="dm-photo__img"
                   src="/img/photos/speaking-to-audience.jpg"
-                  alt="Damian Mason, seen from behind, speaking to a seated room of farmers and agribusiness people at banquet tables."
+                  alt={imageAlt['/img/photos/speaking-to-audience.jpg']}
                   width={2000}
                   height={1336}
                   loading="lazy"
@@ -426,7 +482,7 @@ export default function CollaborationOpportunitiesPage() {
             <p>
               All three of these came in after a live event, not a podcast. It’s the same
               prep either way. Ten more, plus four on video, are on the{' '}
-              <a href="/reviews/">reviews page</a>.
+              <Link href="/reviews/">reviews page</Link>.
             </p>
           </Prose>
 
@@ -453,7 +509,10 @@ export default function CollaborationOpportunitiesPage() {
         id="join"
         eyebrow="The list"
         heading="Want to join the conversation?"
-        copy="One email when there’s something worth your time: where Damian is speaking next, and what’s moving in the business of food, fuel, and fiber. No daily clutter."
+        /* Not the NewsletterForm's default blurb reworded. That component
+           renders its own promise on /contact-us/ and elsewhere, and this band
+           was saying the same thing in the same shape one route over. */
+        copy="Sponsors and guests hear about the show before anybody else does, and so does everyone else on the list. It costs an email address."
         actions={[{ label: 'Sign up for Damian’s email list', href: NEWSLETTER }]}
       />
     </>

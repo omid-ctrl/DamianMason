@@ -41,7 +41,7 @@ export type NewsletterFormProps = {
 export function NewsletterForm({
   idPrefix = 'newsletter',
   title = 'Add yourself to the list.',
-  blurb = "One email when there's something worth your time: Ag news you can use, plus where Damian is speaking next. No daily clutter, no pitches.",
+  blurb = 'One email when there’s something worth your time: Ag news you can use, plus where Damian is speaking next. No daily clutter, no pitches.',
   headingLevel = 2,
   nameFields = true,
   submitLabel = 'Join the list',

@@ -96,11 +96,21 @@ export function Footer({ className, ...rest }: FooterProps) {
                     subscribers" (join-mailing-list), which describes the
                     audience, not the schedule, and /join-the-conversation/
                     deliberately states none for that reason. "Notified of new
-                    podcast releases and more" is that page's own subhead. */}
+                    podcast releases and more" is that page's own subhead.
+
+                    NO FIGURE HERE EITHER, DELIBERATELY. The harvest carries two
+                    different 40,000s: 40,000 mailing-list subscribers and
+                    40,000 monthly podcast listeners. Whether they are the same
+                    people is docs/OPEN-ITEMS.md item 5. This block renders on
+                    all 19 routes, so a subscriber figure in it landed on every
+                    page that already states the listener figure, which put both
+                    meanings of one number in front of the same reader. The
+                    subscriber count now appears on /join-the-conversation/ only,
+                    which is the route that owns the list. Do not put it back
+                    here without taking it off that page. */}
                 <p>
-                  More than 40,000 subscribers get Damian{'’'}s read on the business of food,
-                  fuel, and fiber, plus a note when a new episode posts. Add yourself to the
-                  list.
+                  Damian&rsquo;s read on the business of food, fuel, and fiber, plus a note
+                  when a new episode posts. Add yourself to the list.
                 </p>
               </Prose>
               {/* The Mailchimp form itself lives on the destination route and in

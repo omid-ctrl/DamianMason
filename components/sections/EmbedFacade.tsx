@@ -11,9 +11,14 @@
  * which made that route roughly three times the weight of every other route on
  * the site.
  *
- * This is the same trade VideoEmbed already makes for YouTube: reserve the
- * box, render a real control, and mount the frame on activation. Plate and
- * frame share one height token, which is why the swap costs no layout shift.
+ * This is the same trade VideoEmbed already makes for YouTube: render a real
+ * control and mount the frame on activation.
+ *
+ * The plate used to be pinned to the frame's own height so the swap cost no
+ * layout shift. That bought an outlined box three quarters empty on every
+ * width, so the plate now sizes to its content. The shift lands inside 500ms
+ * of a click on the control, which is exactly what the layout-shift metric
+ * excludes, so nothing is paid on load.
  */
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
@@ -73,8 +78,10 @@ export function EmbedFacade({
         />
       ) : (
         <div className="dm-embed__plate">
-          {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-          {children ? <p className="dm-embed__note">{children}</p> : null}
+          <div className="dm-embed__text">
+            {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+            {children ? <p className="dm-embed__note">{children}</p> : null}
+          </div>
           <Button variant="secondary" onClick={() => setActivated(true)}>
             {action}
           </Button>

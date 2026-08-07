@@ -33,7 +33,19 @@ import styles from './page.module.css';
 
    There is no contact form. This build has no server and no form service, so a
    form here would post nowhere. Email and phone are the real paths and they
-   are the loudest things on the page.
+   are the loudest things on the page. This is also where the retired inquiry
+   form from /collaboration-opportunities/ lands: that form had four fields
+   (Email, Full Name, Phone, Message) and POSTed to a WordPress nonce endpoint
+   that does not exist in this build, so lead capture across the whole site is
+   mailto-only. No. 02 below spells out what to put in the first email so the
+   Message field's job is still done. Logged in docs/OPEN-ITEMS.md. The one
+   <form> on this route is the Mailchimp newsletter signup at No. 04 and it is
+   not an inquiry form.
+
+   REPLY TIME. The source says "We typically respond within one business day."
+   The hedge is the client's and it stays: this route states the promise twice,
+   in the hero deck and in the ledger, and both carry "typically". It is not
+   restated a third time anywhere on the page.
    ============================================================================ */
 
 const PATH = '/contact-us/';
@@ -49,7 +61,7 @@ const OG_IMAGE = {
 export const metadata: Metadata = buildMetadata({
   title: 'Contact and Booking',
   description:
-    'Email damianmasonoffice@gmail.com or call 888.304.0702. Bookings run direct through the Indiana office, and every inquiry gets an answer in one business day.',
+    'Email damianmasonoffice@gmail.com or call 888.304.0702. Bookings run direct through the Indiana office, and we typically answer within one business day.',
   path: PATH,
   image: OG_IMAGE,
 });
@@ -92,9 +104,13 @@ export default function ContactUsPage() {
 
       <Hero
         id="contact"
-        eyebrow="Filed from the Indiana farm office"
+        /* "Filed from the Indiana farm office" is /about/'s running head. It
+           was flying on three routes at once while a comment on /keynote/
+           asserted it belonged to one. This route's own dateline is the thing
+           it is actually promising: a person on the other end. */
+        eyebrow="Booking, press, and partnerships"
         title="Get in Touch"
-        deck="Booking a date, pitching a collaboration, or just curious about the program? Email the office or call. We answer within one business day, and you'll be talking to Damian or to Lori, not to a bureau."
+        deck="Booking a date, pitching a collaboration, or just curious about the program? Email the office or call. We typically answer within one business day, and you’ll be talking to Damian or to Lori, not to a bureau."
         actions={[
           {
             label: 'Email the office',
@@ -118,11 +134,21 @@ export default function ContactUsPage() {
                 Email is the fastest. The phone works too.
               </Heading>
               <Prose>
+                {/* The third sentence used to run "Either way the reply comes
+                    from Damian or from his office manager Lori, not from a
+                    bureau", which is the hero deck's own promise ("you'll be
+                    talking to Damian or to Lori, not to a bureau") restated
+                    about 200 characters later with the nouns swapped. This
+                    route states the no-bureau fact three times; the hero owns
+                    it, and the No. 05 band carries the source FAQ's fuller
+                    version ("There are a few bureaus we have worked with
+                    successfully over the years. We don't endorse them."). What
+                    is left here is the only thing this paragraph is for: which
+                    channel to use, and why. */}
                 <p>
                   Email gets you a written record of the date, the fee, and the room, which is
-                  what your committee will ask for. Call if the date is close. Either way you
-                  get a reply from Damian or from his office manager Lori inside one business
-                  day, not from a bureau.
+                  what your committee will ask for. Call if the date is close and you
+                  don&rsquo;t want to wait on a reply.
                 </p>
                 <p>
                   Press, podcast producers and brands looking at a partnership use the same
@@ -165,6 +191,7 @@ export default function ContactUsPage() {
                   </dt>
                   <dd>
                     <span className={styles.ledgerValue}>One business day</span>
+                    <p className={styles.ledgerNote}>Typically. Email is the faster of the two.</p>
                   </dd>
                 </div>
 
@@ -207,11 +234,18 @@ export default function ContactUsPage() {
 
       {/* --- No. 02, what to send ------------------------------------------- */}
       <Section aria-labelledby="inquiry-title">
-        <Container width="narrow">
+        {/* Standard container, not narrow. A narrow container centres itself,
+            which put this head on a 320px axis while the heads above and below
+            it sat at 96. The reading measure belongs to the content column. */}
+        <Container>
+          <div className="dm-grid12">
+            <div className="col-span-6 md:col-span-4">
           <Eyebrow>Before you write</Eyebrow>
           <Heading level={2} folio="No. 02" id="inquiry-title" className={styles.sectionHeading}>
             What to put in the first email
           </Heading>
+            </div>
+            <div className="col-span-6 md:col-span-8">
           <Prose>
             <p>
               First step: make sure he has your date. Send these five lines and you get a real
@@ -219,9 +253,12 @@ export default function ContactUsPage() {
             </p>
             <ul>
               <li>The date, the city, and the name of the event.</li>
+              {/* "growers, ag lenders, agronomists" was the same triplet on
+                  seven routes. Naming the reader's own people is the point of
+                  this bullet, so it names the reader's people instead. */}
               <li>
-                Who is in the room, and roughly how many: growers, ag lenders, agronomists,
-                association members.
+                Who is in the room, and roughly how many: your members, your dealers, your
+                borrowers, your own staff.
               </li>
               <li>
                 The slot you are filling: keynote, break-out, luncheon, or panel. Programs
@@ -233,11 +270,15 @@ export default function ContactUsPage() {
                 are NET to him.
               </li>
             </ul>
-            <p>
-              One caveat, stated up front: Damian won&rsquo;t speak while people are eating or
-              tables are being cleared.
-            </p>
+            {/* No closing caveat here any more. It read "Damian won't speak
+                while people are eating or tables are being cleared", which is
+                the FAQ's own sentence and belongs to the three routes that
+                carry the FAQ verbatim: /, /keynote/ and /meeting-coordinators/.
+                It was on five routes and nine times sitewide. The paragraph
+                above the list already lands this section. */}
           </Prose>
+            </div>
+          </div>
         </Container>
       </Section>
 
@@ -270,12 +311,16 @@ export default function ContactUsPage() {
                 How a date gets held
               </Heading>
               <Prose measure="narrow">
+                {/* Trimmed to the two facts this page needs and the one it
+                    owns. "Damian books most of his events directly" was on five
+                    routes, and the full travel arrangement belongs to
+                    /meeting-coordinators/, which states it once and links here.
+                    What is left is the sequence a visitor who just wrote the
+                    email actually wants. */}
                 <p>
-                  Damian books most of his events directly with the client. A simple contract and
-                  a small deposit hold your date, and the balance is due the day of the event. He
-                  books his own airfare and rental car against one travel fee, quoted up front.
-                  You book the hotel. After that the date is on Lori&rsquo;s calendar and off
-                  your list.
+                  There is a contract to sign and a deposit to send, and the balance settles
+                  the day of the event. Travel is one fee, quoted up front, and you book the
+                  hotel. After that the date is on Lori&rsquo;s calendar and off your list.
                 </p>
                 <p className={styles.asideNote}>
                   There are a few bureaus we have worked with successfully over the years. We
@@ -290,18 +335,25 @@ export default function ContactUsPage() {
 
       {/* --- No. 04, the list ------------------------------------------------ */}
       <Section aria-labelledby="newsletter-title">
-        <Container width="narrow">
-          <Eyebrow>Not booking today</Eyebrow>
-          <Heading level={2} folio="No. 04" id="newsletter-title">
-            Get the list instead
-          </Heading>
-          <Card variant="bright" className={styles.asideNote}>
-            <NewsletterForm
-              idPrefix="contact-newsletter"
-              title={null}
-              submitVariant="secondary"
-            />
-          </Card>
+        {/* Standard container, not narrow. A narrow container centres itself,
+            which put this head on a 320px axis while the heads above and below
+            it sat at 96. The reading measure belongs to the content column. */}
+        <Container>
+          <div className="dm-grid12">
+            <div className="col-span-6 md:col-span-4">
+              <Eyebrow>Not booking today</Eyebrow>
+              <Heading level={2} folio="No. 04" id="newsletter-title">
+                Get the list instead
+              </Heading>
+            </div>
+            <Card variant="bright" className={`${styles.asideNote} col-span-6 md:col-span-8`}>
+              <NewsletterForm
+                idPrefix="contact-newsletter"
+                title={null}
+                submitVariant="secondary"
+              />
+            </Card>
+          </div>
         </Container>
       </Section>
 
@@ -310,7 +362,7 @@ export default function ContactUsPage() {
         eyebrow="Bookings"
         folio="No. 05"
         heading="Have a date in mind?"
-        copy="Send the date and the city. If it's open, we talk about the room, the program, and the fee. If not, you'll know inside one business day."
+        copy="Send the date and the city. If it’s open, we talk about the room, the program, and the fee. If not, you’ll hear that back just as fast."
         actions={[
           {
             label: 'Email the office',

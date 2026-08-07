@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 
 import {
   Button,
-  Card,
   Container,
   Eyebrow,
   Heading,
@@ -12,6 +11,7 @@ import {
 } from '@/components/ui';
 // components/sections has no barrel file, so each section is imported by path.
 import { CTABand } from '@/components/sections/CTABand';
+import { CredentialBar } from '@/components/sections/CredentialBar';
 import { FAQAccordion } from '@/components/sections/FAQAccordion';
 import { Hero } from '@/components/sections/Hero';
 import { StatRow } from '@/components/sections/StatRow';
@@ -21,11 +21,14 @@ import { JsonLd } from '@/components/seo';
 import { buildBreadcrumbListSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
 import { contact } from '@/content/site';
+import { credentialPillars } from '@/content/credentials';
 import { faq } from '@/content/faq';
+import { jobTitleList } from '@/content/job-titles';
 import { testimonialsFor } from '@/content/testimonials';
 import { videosFor, type Video } from '@/content/videos';
 
 import styles from './page.module.css';
+import { imageAlt } from '@/content/image-alt';
 
 const ROUTE = '/keynote/';
 const BOOKING_HREF = '/contact-us/';
@@ -40,7 +43,7 @@ export const metadata: Metadata = buildMetadata({
     url: '/img/photos/keynote-stage-podium.jpg',
     width: 2000,
     height: 1500,
-    alt: 'Damian Mason on stage at the InSite CDM 2023 Winter Forum, one arm out toward the audience.',
+    alt: imageAlt['/img/photos/keynote-stage-podium.jpg'],
   },
 });
 
@@ -64,24 +67,15 @@ const demoReels: Video[] = videosFor(ROUTE);
  */
 const bookingFaq = faq.filter((item) => item.id !== 'presentation-content');
 
-const CREDENTIALS = [
-  {
-    title: 'Knowledgeable',
-    points: ['Degree in Ag Econ from Purdue University', 'Educated on current events'],
-  },
-  {
-    title: 'Professional',
-    points: ['Corporate background', 'Author', 'Podcast host'],
-  },
-  {
-    title: 'Exceptionally funny',
-    points: ['Professional comedian', 'Studied at Second City in Chicago'],
-  },
-  {
-    title: 'Relatable',
-    points: ['Farm raised', 'Farm owner', 'Three decades of business ownership'],
-  },
-];
+/**
+ * The four-pillar bar now comes from `content/credentials.ts`. It used to be
+ * hand-copied here and on /about/, and this copy had been recased ("Educated on
+ * current events", "Three decades of business ownership") away from the source,
+ * so the two routes rendered the same eight bullets two different ways. The
+ * Screen Actors Guild bullet is deliberately not on this list: the source bar
+ * does not carry it and /about/ owns the biography that does.
+ */
+const CREDENTIALS = credentialPillars;
 
 export default function KeynotePage() {
   return (
@@ -104,6 +98,10 @@ export default function KeynotePage() {
         // 4xl is the lowest step the Didone is legal at and the highest step
         // this sentence can carry.
         titleSize="4xl"
+        /* Both source blurbs live here, word for word. The old Divi page also
+           held them in a pair of service cards, and the rebuild shipped both
+           copies. Section 5 now carries only what distinguishes the keynote
+           from the extensions. See the note above that list. */
         deck={
           <>
             <p>
@@ -121,7 +119,7 @@ export default function KeynotePage() {
         ]}
         image={{
           src: '/img/photos/portrait-light-jacket.jpg',
-          alt: 'Damian Mason outside a brick building in a checked sport coat, holding his glasses.',
+          alt: imageAlt['/img/photos/portrait-light-jacket.jpg'],
           width: 1334,
           height: 2000,
         }}
@@ -129,8 +127,19 @@ export default function KeynotePage() {
         cutline="Damian Mason. He studied Ag Econ at Purdue and improv at Second City, and he uses both in the same hour."
       />
 
-      {/* == 2. The ledger =================================================== */}
-      <StatRow id="record" title="The record" surface="sunken" />
+      {/* == 2. The ledger ===================================================
+          Written for this route. This slot used to fall back to a shared
+          default in StatRow.tsx, which meant / and /keynote/ carried the same
+          25 words, and those words simply read the four glyphs back. What the
+          count of audiences means on the PROGRAM page is that the program has
+          survived both halves of the commodity cycle, which is the hero
+          eyebrow's own "good and bad Ag climates" claim stated as a fact. */}
+      <StatRow
+        id="record"
+        title="The record"
+        surface="sunken"
+        restatement="Some of those rooms met in a good year. Plenty met in a bad one. Damian works both the same way: your growers get the truth, and they get to laugh at it."
+      />
 
       {/* == 3. The four credentials ========================================= */}
       <Section id="credentials" aria-labelledby="credentials-title">
@@ -142,30 +151,18 @@ export default function KeynotePage() {
             </Heading>
             <Prose>
               <p>
-                You&rsquo;re not hiring a motivational speaker who read one Ag article on
-                the plane. Damian has the Purdue Ag Econ degree, the Second City training,
-                and an Indiana farm of his own. Three decades of business ownership sit
-                behind all of it.
+                You&rsquo;re not hiring a motivational speaker who&rsquo;s read one Ag
+                article on the plane. Damian&rsquo;s got the Purdue Ag Econ degree, the
+                Second City training, and an Indiana farm of his own, and there&rsquo;s
+                three decades of business ownership behind all of it. Your growers will
+                know inside two minutes which one of those he&rsquo;s drawing on.
               </p>
             </Prose>
           </div>
 
-          <ul className={`${styles.pillars} dm-grid12`} role="list">
-            {CREDENTIALS.map((pillar) => (
-              <li key={pillar.title} className="col-span-6 md:col-span-6 lg:col-span-3">
-                <Card variant="ruled" className={styles.pillar}>
-                  <Heading level={3} size="lg">
-                    {pillar.title}
-                  </Heading>
-                  <ul className={styles.pillarPoints} role="list">
-                    {pillar.points.map((point) => (
-                      <li key={point}>{point}</li>
-                    ))}
-                  </ul>
-                </Card>
-              </li>
-            ))}
-          </ul>
+          {/* One component, shared with /about/. See CredentialBar for why the
+              markup moved out of the two routes that render it. */}
+          <CredentialBar pillars={CREDENTIALS} className={styles.pillars} />
         </Container>
       </Section>
 
@@ -214,7 +211,7 @@ export default function KeynotePage() {
                 <Image
                   className="dm-photo__img"
                   src="/img/photos/speaking-to-audience.jpg"
-                  alt="Damian Mason working the front of a packed meeting room, seen from behind as the audience watches."
+                  alt={imageAlt['/img/photos/speaking-to-audience.jpg']}
                   width={2000}
                   height={1336}
                   loading="lazy"
@@ -224,7 +221,7 @@ export default function KeynotePage() {
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 02 </span>
                 Mid-program, and every face in the room is pointed the same direction.
-                Programs run 60 to 90 minutes.
+                That&rsquo;s what 60 to 90 minutes buys you.
               </figcaption>
             </figure>
           </div>
@@ -242,6 +239,24 @@ export default function KeynotePage() {
                 </Heading>
               </div>
 
+              {/* RULING ON THE SOURCE'S OWN DUPLICATION, recorded so a later
+                  agent does not re-litigate it. `_source/pages/keynote.md`
+                  carries the KEYNOTE blurb at lines 25 and 29 and the
+                  EXTENSIONS hook at lines 27 and 30, because the old Divi page
+                  held a hero blurb and a service card containing the same text.
+                  The rebuild shipped both, so a visitor read the same two
+                  sentences twice inside about 2,000 characters.
+
+                  Decision: the hero keeps both blurbs word for word, which is
+                  where the source's own emphasis sits and where parity is
+                  therefore preserved. These two cards carry only what
+                  distinguishes one format from the other. The counterpart note
+                  is on the hero deck.
+
+                  The "he will not speak while people are eating" caveat came
+                  out of the Extensions card for a different reason: it is
+                  verbatim in this route's own FAQ, five sections down, so the
+                  page was stating it twice. */}
               <ul className={styles.formats} role="list">
                 <li className={styles.format}>
                   <Heading level={3} size="lg">
@@ -249,9 +264,8 @@ export default function KeynotePage() {
                   </Heading>
                   <Prose measure="wide">
                     <p>
-                      Damian speaks to companies around the globe that have a role in the
-                      world&rsquo;s most important industry: Agriculture. Growers, ag
-                      lenders, agronomists, pork producers, association boards and the
+                      One general session, built for the room you actually have: growers,
+                      ag lenders, agronomists, pork producers, association boards, and the
                       allied industries that sell to all of them.
                     </p>
                   </Prose>
@@ -262,9 +276,9 @@ export default function KeynotePage() {
                   </Heading>
                   <Prose measure="wide">
                     <p>
-                      Keynote not enough? No problem! Damian also delivers breakouts and
-                      panel discussions. The one caveat: he will not speak while people are
-                      eating or tables are being cleared.
+                      Breakouts, luncheons, and panels. He moderates as well as presents, so
+                      an extension can be a working session for your board rather than a
+                      second speech.
                     </p>
                   </Prose>
                 </li>
@@ -310,7 +324,7 @@ export default function KeynotePage() {
             label="Keynote demo reels"
           />
 
-          <div className={styles.actions}>
+          <div className={`${styles.actions} dm-section-close`}>
             <Button
               href={YOUTUBE_CHANNEL}
               variant="secondary"
@@ -334,7 +348,7 @@ export default function KeynotePage() {
               <Image
                 className="dm-photo__img"
                 src="/img/photos/keynote-stage-podium.jpg"
-                alt="Damian Mason on stage at the InSite CDM 2023 Winter Forum, one arm out toward the audience."
+                alt={imageAlt['/img/photos/keynote-stage-podium.jpg']}
                 width={2000}
                 height={1500}
                 loading="lazy"
@@ -356,10 +370,13 @@ export default function KeynotePage() {
             <Heading level={2} size="2xl" id="reviews-title">
               Reviews
             </Heading>
+            {/* Not "four of them": the four videos on /reviews/ are in addition
+                to the ten written notes, not four of the ten. /speaking/ and
+                /collaboration-opportunities/ already had the arithmetic right. */}
             <Prose>
               <p>
-                Three from meeting planners who sat in the room while it happened. Ten
-                more, plus four on video, are on the reviews page.
+                Three from meeting planners who were in the room while it happened.
+                There&rsquo;s ten more on the reviews page, plus four on video.
               </p>
             </Prose>
           </div>
@@ -370,45 +387,72 @@ export default function KeynotePage() {
             label="What meeting planners said"
           />
 
-          <div className={styles.actions}>
-            <Button href="/reviews/" variant="ghost">
-              Read every review
+          <div className={`${styles.actions} dm-section-close`}>
+            {/* Not "every": three testimonials are quoted on this route,
+                /speaking/ and /collaboration-opportunities/ and appear nowhere
+                on /reviews/. The label says what that page holds.
+
+                Secondary, not ghost. Ghost carries the same inline padding
+                without the border that explains it, so this label alone sat
+                13px inside the left axis every other closing action is on, and
+                the misalignment was visible against the hairline above it. */}
+            <Button href="/reviews/" variant="secondary" size="lg">
+              Read the ten written reviews
             </Button>
           </div>
         </Container>
       </Section>
 
-      {/* == 9. Bio ========================================================== */}
+      {/* == 9. Bio ==========================================================
+          /about/ OWNS THE BIOGRAPHY. The three-paragraph bio from
+          `_source/pages/keynote.md` section 7 ran here AND on /about/ word for
+          word, roughly 90 contiguous identical words including the Arizona
+          sentence, so a client clicking Keynote then About read the same
+          biography twice. Both routes are one nav click apart and both link to
+          each other. The paragraphs stay verbatim on /about/, which is the page
+          the site built to hold them and the page the nav label names.
+
+          What is left here is the part /about/ does not carry and section 3 of
+          this page does not either. Section 3 already spends the Purdue degree,
+          the Second City training, the Indiana farm and the three decades of
+          ownership in prose, so restating them here would duplicate this page
+          on itself. That is also why the farm is not in the paragraph below any
+          more: "the Indiana farm he goes home to between dates" was three
+          sections under "an Indiana farm of his own".
+
+          The heading is the full nine-title sentence from
+          `_source/pages/keynote.md:180`, which is this route's own source line.
+          It rendered as five titles here for three rounds because it was hand
+          typed. It comes out of `content/job-titles.ts` now, the way the four
+          credential pillars come out of `content/credentials.ts`.
+
+          The eyebrow moved off "Filed from the Indiana farm office" because
+          that is the /about/ hero's running head. /blog/ and /contact-us/ were
+          also flying it and now have their own, so the statement is true of the
+          site that ships, not just of this file.
+          ==================================================================== */}
       <Section id="about-damian" aria-labelledby="about-damian-title">
         <Container>
           <div className="dm-grid12">
             <div className="col-span-6 md:col-span-12 lg:col-span-8">
               <div className={styles.headTight}>
-                <Eyebrow>Filed from the Indiana farm office</Eyebrow>
+                <Eyebrow>The short version</Eyebrow>
                 <Heading level={2} size="2xl" id="about-damian-title">
-                  Damian Mason: businessman, agriculturist, speaker, podcaster, author.
+                  Damian Mason is a {jobTitleList()}.
                 </Heading>
               </div>
 
               <Prose>
                 <p>
-                  Damian Mason speaks on the two subjects he knows best: Business and
-                  Agriculture. Since 1994, he has spoken to over 2,400 audiences in all 50
-                  states and 7 foreign countries.
-                </p>
-                <p>
-                  Damian is a graduate of Purdue University with a degree in Agriculture
-                  Economics. He studied comedy writing and improvisation at The Second
-                  City, Chicago, and is a member of the Screen Actors Guild.
-                </p>
-                <p>
-                  When he&rsquo;s not traveling for work, Damian can be found on his
-                  Indiana farm with his wife Lori or escaping from winter at their Arizona
-                  residence.
+                  He carries a Screen Actors Guild card, he has written a book about food
+                  and a book about business, and he hosts three podcasts between dates.
                 </p>
               </Prose>
 
               <div className={styles.actions}>
+                <Button href="/about/" variant="secondary" size="lg">
+                  Read the full biography
+                </Button>
                 <Button href={BOOKING_HREF} variant="secondary" size="lg">
                   Book Damian for your event
                 </Button>
@@ -420,32 +464,47 @@ export default function KeynotePage() {
 
       {/* == 10. FAQ ========================================================= */}
       <Section id="faq" surface="sunken" aria-labelledby="faq-title">
-        <Container width="narrow">
-          <div className={styles.head}>
+        {/* The standard container, not the narrow one. A narrow container
+            centres itself, which put this section's eyebrow and H2 on a 320px
+            axis while every other head on the route sat at 96, so a reader
+            scrolling the page watched the spine jog 224px and come back. The
+            reading measure is a property of the ANSWER column, not of the
+            section, so it moves onto the grid, the same way DESIGN_SYSTEM 7.1.1
+            took the logo wall's head off the wide container. This is the
+            arrangement Home's FAQ already uses. */}
+        <Container>
+          <div className="dm-grid12">
+            <div className={`${styles.head} col-span-6 md:col-span-4`}>
             <Eyebrow>Booking</Eyebrow>
             <Heading level={2} size="2xl" id="faq-title">
               Questions meeting planners ask
             </Heading>
             <Prose>
               <p>
+                {/* "Damian books most of his events directly with his clients"
+                    is the opening line of the last item in the accordion below,
+                    verbatim from the source, so the standfirst was quoting the
+                    answer before the visitor got to the question. */}
                 Fees, travel, room setup, and what happens between the handshake and the
-                stage. Damian books most of his events directly with his clients, so
-                you’re asking the man who shows up.
+                stage. If it isn&rsquo;t answered here, the office will answer it.
               </p>
             </Prose>
           </div>
 
-          <FAQAccordion
-            items={bookingFaq}
-            withSchema
-            schemaPath={ROUTE}
-            idPrefix="keynote-faq"
-          />
+            <div className="col-span-6 md:col-span-8">
+              <FAQAccordion
+                items={bookingFaq}
+                withSchema
+                schemaPath={ROUTE}
+                idPrefix="keynote-faq"
+              />
 
-          <div className={styles.actions}>
-            <Button href={`mailto:${contact.email}`} variant="secondary" size="lg">
-              Email the office
-            </Button>
+              <div className={styles.actions}>
+                <Button href={`mailto:${contact.email}`} variant="secondary" size="lg">
+                  Email the office
+                </Button>
+              </div>
+            </div>
           </div>
         </Container>
       </Section>
@@ -453,9 +512,16 @@ export default function KeynotePage() {
       {/* == 11. The close =================================================== */}
       <CTABand
         id="book"
-        eyebrow="First step"
+        eyebrow="Booking"
         heading="Check your date, then let’s talk."
-        copy="Contact Damian to make sure he has your event date available. A simple contract and a small deposit hold it. He books his own airfare and rental car, and his office manager Lori handles what’s left."
+        /* This band used to restate four booking facts that the FAQ directly
+           above it already answers in the client's own words: check the date,
+           contract and deposit, airfare and rental car, and Lori. The FAQ is
+           source-verbatim and it is on this page, so the band was the page
+           telling a visitor something they had just finished reading. It asks
+           for the date instead and points at the route that holds the terms in
+           full. */
+        copy="Send the date and the city and you’ll know inside a business day whether the calendar is open. Everything a committee will want to see first is written out for meeting coordinators."
         actions={[
           { label: 'Book Damian', href: BOOKING_HREF },
           { label: 'Sign up for Damian’s email list', href: '/join-the-conversation/', variant: 'secondary' },

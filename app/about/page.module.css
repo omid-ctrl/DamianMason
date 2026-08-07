@@ -30,58 +30,27 @@
 }
 
 /* --- the four credential pillars -------------------------------------------
-   Four cells at 1024 and up, two at 480, one at 390. Four divides by 1, 2 and
-   4, so no arrangement leaves a ragged tail.
+   Spacing only. The bar itself is components/sections/CredentialBar.tsx and its
+   rules are .dm-pillars in src/styles/sections-core.css, shared with /keynote/.
+   This route used to carry its own grid, its own markerless list and its own
+   looser rhythm, which is how the same eight facts came to look like two
+   different components two nav clicks apart.
    -------------------------------------------------------------------------- */
 .credentials {
-  display: grid;
-  gap: var(--gutter-column);
-  grid-template-columns: 1fr;
-  list-style: none;
   margin-block-start: var(--space-8);
-  padding: 0;
-}
-
-@media (min-width: 30rem) {
-  .credentials {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 64rem) {
-  .credentials {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.credential {
-  block-size: 100%;
-  gap: var(--space-4);
-}
-
-.credentialList {
-  color: var(--ink-secondary);
-  display: flex;
-  flex-direction: column;
-  font-size: var(--fs-sm);
-  line-height: var(--lh-normal);
-  list-style: none;
-  padding: 0;
-}
-
-.credentialList li {
-  border-block-start: var(--border-hairline) solid var(--rule-quiet);
-  padding-block-start: var(--space-2);
-}
-
-.credentialList li + li {
-  margin-block-start: var(--space-2);
 }
 
 /* --- the books shelf -------------------------------------------------------
-   Three titles, three columns, one column below 768. There is no price, no
-   cart and no purchase link anywhere in this block by construction: the route
-   renders title, subtitle, cover and description and nothing else.
+   Three titles, three columns at 1024 and up, one column below. There is no
+   price, no cart and no purchase link anywhere in this block by construction:
+   the route renders title, subtitle, cover and description and nothing else.
+
+   Three columns used to start at 768, where the container is 704px and each
+   book got 213px. The descriptions ran at a 23-character measure, "After
+   speaking to companies such as Merck..." laddered to 19 lines, and the
+   subtitle "How Fear is Ruining Your Dinner and Why You Should Celebrate
+   Eating" broke into four. One column at 768 is the same treatment 390 gets
+   and it reads correctly at both.
    -------------------------------------------------------------------------- */
 .books {
   display: grid;
@@ -92,10 +61,13 @@
   padding: 0;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 64rem) {
   .books {
     gap: var(--gutter-column);
-    grid-template-columns: repeat(3, 1fr);
+    /* Two, not three. Food Fear is one card that carries both of its editions;
+       see SHELF in app/about/page.tsx. Three columns for two cards would leave
+       a ruled hole at exactly the width a meeting planner on a laptop sees. */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -104,27 +76,93 @@
   gap: var(--space-5);
 }
 
+/* At 768 one book has the full 704px container, which is the right measure for
+   the description and far too much for a cover: stacked, the mockup rendered
+   512px wide and pushed the copy most of a screen down. The tablet gets the
+   arrangement it has room for instead, cover beside copy, with the cover in a
+   fixed track so all three shelves line up. */
+@media (min-width: 48rem) and (max-width: 63.9375rem) {
+  .book {
+    display: grid;
+    grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    column-gap: var(--gutter-column);
+    align-items: start;
+  }
+
+  .bookCover {
+    grid-row: span 2;
+  }
+}
+
 /* The cover art is a rendered mockup on a white canvas, not a photograph, so
-   it does not take the duotone plate. It sits on the brightest surface in the
-   system behind a hairline, which is the same treatment a logo cell gets. */
+   it does not take the duotone plate. A hairline and nothing else:
+   DESIGN_SYSTEM 6.5. It used to carry --surface-bright, which is lighter than
+   the sunken ground this section runs on, so each cover read as a white box
+   inside a bone box inside a bone section, three of them in a row. The multiply
+   below already resolves the artwork's own white to whatever is behind it, so
+   the fill was doing nothing except adding the third box. */
 .bookCover {
-  background-color: var(--surface-bright);
   border: var(--border-hairline) solid var(--rule-quiet);
   display: grid;
   padding: var(--space-4);
   place-items: center;
+  /* Both cover slots reserve the same height whatever their jackets do, so the
+     two cards on the shelf start their type on the same baseline. Without it
+     the card carrying one jacket opened its cover row 90px taller than the card
+     carrying two, and the shelf read as two different components. */
+  min-block-size: var(--size-jacket-h);
+}
+
+/* Two jackets in one slot, where a card stands for two editions. They sit on
+   one baseline at equal optical weight, which is what tells a reader at a
+   glance that this is one book in two formats rather than two books. */
+.bookCover[data-covers='two'] {
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: end;
+  column-gap: var(--space-5);
+  place-items: end center;
 }
 
 .bookCover img {
-  block-size: auto;
   inline-size: 100%;
-  max-inline-size: var(--size-portrait-max);
+  block-size: auto;
+  /* Height, not width, is what makes two jackets peers here: see
+     --size-jacket-h in src/styles/tokens.css. Sized on the inline axis alone,
+     the single Do Business Better jacket rendered more than twice the height of
+     the two paired Food Fear jackets beside it.
+
+     inline-size stays 100% and object-fit does the containing. `inline-size:
+     auto` was tried and it is wrong for a next/image: auto resolves to the
+     INTRINSIC width of whichever srcset candidate the browser picked, so at 768
+     the paired jackets collapsed to about 50px while at 1440 they looked
+     correct. The box has to come from the layout, never from the file. */
+  max-block-size: var(--size-jacket-h);
+  object-fit: contain;
+  /* The cover PNGs were harvested from the retired product pages and carry
+     their own baked-in white, which is not the same white as --surface-bright.
+     The Do Business Better cover read as a lighter rectangle inset inside the
+     plate, with a hard edge on all four sides. Multiply resolves the asset's
+     white to exactly the plate it sits on, which is the same trick the logo
+     wall uses on 21 white-backed marks, and it leaves the artwork itself
+     untouched because every ground it sits on is a near-white. */
+  mix-blend-mode: multiply;
 }
 
 .bookHead {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+}
+
+/* The "From the publisher" label and the description it labels, as one child
+   of the card. The card is a flex column below 48rem and above 64rem and a
+   two-column grid between them, and in the grid case the cover spans both
+   rows, so the description has to stay the card's third child. */
+.bookBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .bookSubtitle {

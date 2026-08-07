@@ -28,17 +28,20 @@
    gets none of the duotone recipe. It sits on a bone plate inside the navy
    section, which is exactly what data-surface="paper" exists for, and the
    cutline sits outside the plate on the navy so it reads as page furniture. */
+/* The ceiling is --size-brand-art-max, not --size-portrait-max: this is
+   artwork, not a photograph, and DESIGN_SYSTEM 6.5.4 caps artwork so no
+   supplied mark outweighs the one filled orange field section 5.1 allows. At
+   the portrait ceiling it rendered 458px square. */
 .artFigure {
   margin: 0;
   inline-size: 100%;
-  max-inline-size: var(--size-portrait-max);
+  max-inline-size: var(--size-brand-art-max);
   justify-self: end;
 }
 
 @media (max-width: 63.9375rem) {
   .artFigure {
     justify-self: start;
-    max-inline-size: var(--size-portrait-max);
   }
 }
 
@@ -52,10 +55,33 @@
   block-size: auto;
   aspect-ratio: var(--ratio-square);
   object-fit: contain;
+  /* The supplied show art is a square with a hard white ground, so on a bone
+     plate it rendered as a white box inside a bone box, which is the same
+     defect the 21 white-backed logo marks have. Multiply resolves the asset's
+     white to the plate it sits on and leaves the artwork itself alone, which
+     is exactly what --logo-blend does on the wall. Whether brand artwork
+     should also be greyscaled the way client logos are is a design-system
+     decision and is not made here. */
+  mix-blend-mode: multiply;
 }
 
 .artCutline {
   margin-block-start: var(--space-3);
+}
+
+/* --- show lockup -----------------------------------------------------------
+   The second of the two supplied Business of Agriculture marks. The square
+   tile in the hero is the feed's cover art; this one is the show's name set
+   out in full under the leaf, so it leads the subscribe band, where the reader
+   is about to go and type that exact string into a podcast app. Transparent
+   PNG, black type, so it sits on the sunken ground without a plate. */
+.showLockup {
+  display: block;
+  inline-size: var(--size-wordmark-w-footer);
+  max-inline-size: 100%;
+  block-size: auto;
+  margin-block-end: var(--space-5);
+  mix-blend-mode: multiply;
 }
 
 /* --- platform row ----------------------------------------------------------
@@ -110,11 +136,17 @@
   gap: var(--space-3);
 }
 
+/* Multiply per DESIGN_SYSTEM 6.5.2. Two of the three cross-promo marks are
+   transparent PNGs and multiply changes nothing about them; xtreme-ag.jpg is an
+   opaque file with a hard white ground, and without this it painted a white
+   rectangle on the section's bone. Same treatment the logo wall gives 31
+   white-backed marks, which is why that wall has no inner edges. */
 .crossMark {
   inline-size: auto;
   block-size: auto;
   max-inline-size: 100%;
   max-block-size: var(--logo-box-h);
+  mix-blend-mode: multiply;
 }
 
 .crossAction {

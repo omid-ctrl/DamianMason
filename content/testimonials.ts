@@ -258,11 +258,26 @@ const testimonialsByRoute: Record<string, readonly string[]> = {
     'william-noland',
     'brian-rittgers',
   ],
-  '/keynote/': ['wendy-j-ruud', 'titan-pro-team', 'tim-luthy'],
+  /* THE THREE-UP ROWS ARE CURATED ON LENGTH, NOT JUST ON CONTENT.
+     A three-column quote row has no rule at the bottom of a cell, so a cell
+     that runs out of words early leaves a hole rather than a shape. /speaking/
+     used to lead with the 389-character Mike Elliott quote beside a
+     142-character one, which bottomed columns two and three out 350 and 460px
+     above column one, with the section's own CTA stranded in the middle of it.
+     /keynote/ had the same defect at 45 against 174.
+
+     So each row is picked from quotes within about a line of each other. The
+     pool is seventeen and every quote still ships: the long ones run in full on
+     /reviews/, which is the page these rows send a reader to.
+
+     Lengths, for the next person who edits a row:
+       melissa-bockman 197 · william-noland 190 · dusty-rich 180
+       titan-pro-team 174 · brooks-breymeyer 160 · tim-luthy 142 */
+  '/keynote/': ['titan-pro-team', 'brooks-breymeyer', 'tim-luthy'],
   '/collaboration-opportunities/': ['wendy-j-ruud', 'titan-pro-team', 'tim-luthy'],
   '/meeting-coordinators/': ['national-ag-aviation-association'],
   '/the-business-of-agriculture/': ['geoff-bastow'],
-  '/speaking/': ['mike-elliott', 'dusty-rich', 'tim-luthy'],
+  '/speaking/': ['melissa-bockman', 'william-noland', 'dusty-rich'],
   footer: ['b-kettler-ihla'],
 };
 

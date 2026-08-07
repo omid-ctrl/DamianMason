@@ -9,7 +9,7 @@ import {
   Section,
   cx,
 } from '@/components/ui';
-import type { DisplaySize, HeadingLevel, SectionDensity, Surface } from '@/components/ui';
+import type { DisplaySize, HeadingLevel, HeadingSize, SectionDensity, Surface } from '@/components/ui';
 import type { SectionActions } from './types';
 
 export type HeroVariant = 'portrait' | 'band';
@@ -47,8 +47,14 @@ type HeroBase = {
    * The Didone only exists at --fs-4xl and above, which the type signature of
    * Heading enforces. `portrait` defaults to the full masthead step, `band`
    * one step down because the type is competing with a photograph.
+   *
+   * A step BELOW 4xl is legal here and it drops the title out of the Didone
+   * into the serif, which is the only correct setting when the source gives a
+   * band a sentence rather than a title. The guardrail is kept, not bypassed:
+   * `display` is passed to Heading only for a size the Didone is allowed at.
+   * See the note at the /meeting-coordinators/ media band.
    */
-  titleSize?: DisplaySize;
+  titleSize?: DisplaySize | HeadingSize;
   /** The standfirst under the H1. A string is wrapped in a paragraph. */
   deck?: ReactNode;
   /** At most two. The first is rendered primary, which is the one filled
@@ -77,6 +83,10 @@ const DEFAULT_TITLE_SIZE: Record<HeroVariant, DisplaySize> = {
   portrait: '6xl',
   band: '5xl',
 };
+
+/** The three steps the Didone is permitted at, as a value, so the render can
+ *  decide whether this title is a display line or a serif one. */
+const DISPLAY_SIZES: DisplaySize[] = ['4xl', '5xl', '6xl'];
 
 /** A band carries reversed type, so it defaults to the navy ground. */
 const DEFAULT_SURFACE: Record<HeroVariant, Surface> = {
@@ -150,6 +160,7 @@ export function Hero(props: HeroProps) {
   const size = titleSize ?? DEFAULT_TITLE_SIZE[variant];
   const headingId = id ? `${id}-title` : undefined;
   const band = variant === 'band';
+  const isDisplay = DISPLAY_SIZES.includes(size as DisplaySize);
 
   const type = (
     // Full width at 390 and at 768, where a 7-column masthead H1 would ladder
@@ -162,9 +173,21 @@ export function Hero(props: HeroProps) {
       )}
     >
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <Heading level={level} display size={size} id={headingId}>
-        {title}
-      </Heading>
+      {isDisplay ? (
+        <Heading
+          level={level}
+          display
+          size={size as DisplaySize}
+          id={headingId}
+          className="dm-hero__title"
+        >
+          {title}
+        </Heading>
+      ) : (
+        <Heading level={level} size={size} id={headingId} className="dm-hero__title">
+          {title}
+        </Heading>
+      )}
       {deck ? <Deck deck={deck} /> : null}
       <Actions actions={actions} />
     </div>
@@ -192,6 +215,15 @@ export function Hero(props: HeroProps) {
                   width={image.width}
                   height={image.height}
                   priority={image.priority ?? true}
+                  /* `priority` and `fetchPriority` are two different things in
+                     Next 16 and this element wants both. `priority` maps to
+                     preload only (get-img-props.js), while the hint itself is a
+                     separate prop, so without this line no <img> on the site
+                     emits fetchpriority and lcp-discovery-insight scores 0 on
+                     every route where an image is LCP. Measured on a production
+                     build, adding it flips that audit to 1 and moves /keynote/
+                     desktop LCP from 803ms to 712ms. */
+                  fetchPriority="high"
                   sizes="(min-width: 48rem) 32rem, 100vw"
                 />
               </div>
@@ -226,6 +258,9 @@ export function Hero(props: HeroProps) {
               width={image.width}
               height={image.height}
               priority={image.priority ?? true}
+              /* Same pairing as the portrait above. The band photograph is the
+                 LCP element on /acres-tv/ at mobile. */
+              fetchPriority="high"
               sizes="100vw"
             />
             {/* The 0.62 veil handles the photograph. This handles the one thing

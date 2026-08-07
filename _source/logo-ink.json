@@ -1,0 +1,312 @@
+{
+  "clients/agfirst-farm-credit.png": {
+    "sha1": "ac37d1b8db994f6656abcd50fe2b15ce6532f23b",
+    "width": 362,
+    "height": 114
+  },
+  "clients/agfirst-farm-credit.webp": {
+    "sha1": "75f028428dbf920aa8cec828c7877c4f6cc58b02",
+    "width": 362,
+    "height": 114
+  },
+  "clients/agromark.jpg": {
+    "sha1": "07846642a1b56772dd4cf6d55847d5616eff4df6",
+    "width": 314,
+    "height": 90
+  },
+  "clients/agromark.webp": {
+    "sha1": "b436527006fa81dbb9034ea60e3ced3ef839b260",
+    "width": 314,
+    "height": 90
+  },
+  "clients/almond-alliance.png": {
+    "sha1": "2877a28dd18d41b4258712ba70c964f6ae20f6c9",
+    "width": 466,
+    "height": 173
+  },
+  "clients/almond-alliance.webp": {
+    "sha1": "d4055659c467ebbf6a40bc3746c5b2fcf8534730",
+    "width": 466,
+    "height": 173
+  },
+  "clients/california-farm-bureau.png": {
+    "sha1": "c745203d6425566d549a8e34d635176a62cfa2f3",
+    "width": 234,
+    "height": 234
+  },
+  "clients/california-farm-bureau.webp": {
+    "sha1": "84bb3caa9d8bbfdb7cfe0eccc5bfe0b59fcc555d",
+    "width": 234,
+    "height": 234
+  },
+  "clients/cargill.png": {
+    "sha1": "99e0d3bc6de0877e63cd9c43171a56cc24240df2",
+    "width": 428,
+    "height": 190
+  },
+  "clients/cargill.webp": {
+    "sha1": "5987ca0c89c68585c9c83ca76435bfbfaa03f1cc",
+    "width": 428,
+    "height": 190
+  },
+  "clients/claas.png": {
+    "sha1": "0a553a1205c1dc108c6e2ec67be7a599785fca70",
+    "width": 322,
+    "height": 58
+  },
+  "clients/claas.webp": {
+    "sha1": "a57e85812dce302bc95dac35bfc4a60018ef53b3",
+    "width": 322,
+    "height": 58
+  },
+  "clients/compeer-financial.jpg": {
+    "sha1": "ca40d3c15782cc2e3ff1336067f8824493a41fbb",
+    "width": 466,
+    "height": 96
+  },
+  "clients/compeer-financial.webp": {
+    "sha1": "cfe38ea63268368dfd18ae3a7c1d8b2ab51beea6",
+    "width": 466,
+    "height": 96
+  },
+  "clients/egg-farmers.jpg": {
+    "sha1": "d30feec5c05a73acc174a936b8755e651f351f60",
+    "width": 228,
+    "height": 234
+  },
+  "clients/egg-farmers.webp": {
+    "sha1": "5ebe9dbadcf9aa7a1a000a666282d3d26322f170",
+    "width": 228,
+    "height": 234
+  },
+  "clients/farm-credit-services-of-america.png": {
+    "sha1": "4658d8698fc241fab36e19e7c1d33cf90fe1b1c0",
+    "width": 316,
+    "height": 210
+  },
+  "clients/farm-credit-services-of-america.webp": {
+    "sha1": "249319c1bf1ddae873d6046a2c077429b810f3cf",
+    "width": 316,
+    "height": 210
+  },
+  "clients/hudson-insurance.png": {
+    "sha1": "43cf4a361cbd1bbd4dcf95731f30cdeb1fa3df10",
+    "width": 466,
+    "height": 160
+  },
+  "clients/hudson-insurance.webp": {
+    "sha1": "027b9ee2f56e71ff48a26ba8441ae0cc1b766b7a",
+    "width": 466,
+    "height": 160
+  },
+  "clients/indiana-farm-bureau.jpg": {
+    "sha1": "51d36b5a51fa455be1ac0d3af3250d78208a5727",
+    "width": 310,
+    "height": 152
+  },
+  "clients/indiana-farm-bureau.webp": {
+    "sha1": "e230a008ba15779354f38943e6fa2de113221035",
+    "width": 310,
+    "height": 152
+  },
+  "clients/iowa-farm-bureau.jpg": {
+    "sha1": "1b6f0cd0364691089a1d937c47e138099638d3fa",
+    "width": 414,
+    "height": 198
+  },
+  "clients/iowa-farm-bureau.webp": {
+    "sha1": "c6ed8c31fd808094b598ce90fc7bf495cdc5e186",
+    "width": 414,
+    "height": 198
+  },
+  "clients/land-olakes-purina.png": {
+    "sha1": "92ca4960d30974f1c2f1b1e551629dc168845308",
+    "width": 434,
+    "height": 96
+  },
+  "clients/land-olakes-purina.webp": {
+    "sha1": "cb253b619e61e34c849f2d0c296c3df7debf9f36",
+    "width": 434,
+    "height": 96
+  },
+  "clients/merck.png": {
+    "sha1": "2ae0935e2a98dc591c85d9c4228ee963ab796acf",
+    "width": 466,
+    "height": 136
+  },
+  "clients/merck.webp": {
+    "sha1": "db01c398a0729afb9a420635565cedc199d6baa3",
+    "width": 466,
+    "height": 136
+  },
+  "clients/north-dakota-grain-dealers-association.jpg": {
+    "sha1": "b94f44b003a47c22e645c0fb2890d38c8d53efae",
+    "width": 292,
+    "height": 234
+  },
+  "clients/north-dakota-grain-dealers-association.webp": {
+    "sha1": "029e196c00bff8570fc6fb35ac6d85ed6250bd97",
+    "width": 292,
+    "height": 234
+  },
+  "clients/pioneer-seeds.png": {
+    "sha1": "a390f32eaa0d729743fb32a2e15ab78cf4e05caa",
+    "width": 285,
+    "height": 234
+  },
+  "clients/pioneer-seeds.webp": {
+    "sha1": "27dbb3d4d39b832b110254d0661fb740c55c8fab",
+    "width": 285,
+    "height": 234
+  },
+  "clients/prairie-oat-growers-association.jpg": {
+    "sha1": "676e1ae0d57ae7a5cd1029ab61991f819cf6124c",
+    "width": 376,
+    "height": 108
+  },
+  "clients/prairie-oat-growers-association.webp": {
+    "sha1": "631e86503a3191826fea11a811a963dc5d867214",
+    "width": 376,
+    "height": 108
+  },
+  "clients/south-dakota-soybean-association.png": {
+    "sha1": "23e57d963ca7cfaf409c9e50bfefb89748297cf1",
+    "width": 284,
+    "height": 100
+  },
+  "clients/south-dakota-soybean-association.webp": {
+    "sha1": "98e1c5d6954bfa162e2d3d482969f9b85ac43eb1",
+    "width": 284,
+    "height": 100
+  },
+  "clients/superior-livestock-auction.png": {
+    "sha1": "8ecf3205f82b2fa17c99b666bd0b381fbbe9603c",
+    "width": 349,
+    "height": 234
+  },
+  "clients/superior-livestock-auction.webp": {
+    "sha1": "385f4b2d09a5ae024fa19f0d945d99739a129a9f",
+    "width": 349,
+    "height": 234
+  },
+  "clients/usaedc.png": {
+    "sha1": "bd405f2d6e836ae3a1f39de1ce85a77f06475a56",
+    "width": 466,
+    "height": 103
+  },
+  "clients/usaedc.webp": {
+    "sha1": "d467ebfdcb019827fca8736dc873cc018ec58a49",
+    "width": 466,
+    "height": 103
+  },
+  "clients/wilbur-ellis.jpg": {
+    "sha1": "0ff212575c03108895031892bae12896a16e9381",
+    "width": 394,
+    "height": 106
+  },
+  "clients/wilbur-ellis.webp": {
+    "sha1": "47a3c3130da830aecb562c7b876b010d32ee652a",
+    "width": 394,
+    "height": 106
+  },
+  "sponsors/agview-solutions.jpg": {
+    "sha1": "a45c4810ef11386d396499ada9a7b5ceef23555b",
+    "width": 247,
+    "height": 234
+  },
+  "sponsors/agview-solutions.webp": {
+    "sha1": "f19a075475c3a8da49ea9e01c90a26c86c1c7eb9",
+    "width": 247,
+    "height": 234
+  },
+  "sponsors/earthoptics.png": {
+    "sha1": "fbd11836cdd0281dc6853f64361d9823da21d551",
+    "width": 466,
+    "height": 119
+  },
+  "sponsors/earthoptics.webp": {
+    "sha1": "6d491d18da932f4970c91db7b5c7b2e63add0674",
+    "width": 466,
+    "height": 119
+  },
+  "sponsors/good-agriculture.png": {
+    "sha1": "854cf9d581919275e0cc79e9e42c34383e9d408b",
+    "width": 466,
+    "height": 113
+  },
+  "sponsors/good-agriculture.webp": {
+    "sha1": "f4691d868ece35fca58e469afd61a719eaeb180a",
+    "width": 466,
+    "height": 113
+  },
+  "sponsors/harvest-returns.jpg": {
+    "sha1": "6b5e5b0596a3bfa538500dada3666c2d1ad58f00",
+    "width": 362,
+    "height": 120
+  },
+  "sponsors/harvest-returns.webp": {
+    "sha1": "8ec20f38cc7091e579813281d71430722a01493b",
+    "width": 362,
+    "height": 120
+  },
+  "sponsors/heads-up-plant-protectants.jpg": {
+    "sha1": "ad93c6ffbd356dc8d87a07281d8ebead5dc2c6bc",
+    "width": 466,
+    "height": 160
+  },
+  "sponsors/heads-up-plant-protectants.webp": {
+    "sha1": "b7de5b37d732b4e964e552ec406d392bab9933df",
+    "width": 466,
+    "height": 160
+  },
+  "sponsors/life-scientific.jpg": {
+    "sha1": "d3b5568b0f1a224b59285a646d4b75546657fe82",
+    "width": 386,
+    "height": 68
+  },
+  "sponsors/life-scientific.webp": {
+    "sha1": "f4bbd4e1c9688649854c4529ed8c2a84ff09cbe1",
+    "width": 386,
+    "height": 68
+  },
+  "sponsors/nano-yield.png": {
+    "sha1": "9e05077173fc784325d93d33a52bf3073bf435da",
+    "width": 445,
+    "height": 234
+  },
+  "sponsors/nano-yield.webp": {
+    "sha1": "a49f7dde04eb0cc2f54174e403e1e8122a53302e",
+    "width": 445,
+    "height": 234
+  },
+  "sponsors/newfields-ag.jpg": {
+    "sha1": "953d95c0b67e2914a9e7f5f0f22ed424e8ca5dc3",
+    "width": 201,
+    "height": 234
+  },
+  "sponsors/newfields-ag.webp": {
+    "sha1": "07f195cf4c24fe37b2a08c3c2897f298c8241452",
+    "width": 201,
+    "height": 234
+  },
+  "sponsors/redox-bio.png": {
+    "sha1": "9f2990b602e1ce20731f6a715508fea8dd537509",
+    "width": 466,
+    "height": 178
+  },
+  "sponsors/redox-bio.webp": {
+    "sha1": "6e40d450eef55227a5949581286b4878f1b33e61",
+    "width": 466,
+    "height": 178
+  },
+  "sponsors/tidal-grow.jpg": {
+    "sha1": "2752217f3aaaa11408613de2be1f74f20ff40d4e",
+    "width": 402,
+    "height": 202
+  },
+  "sponsors/tidal-grow.webp": {
+    "sha1": "b20a23d49c67d872d6de11c909a32aebf51c2575",
+    "width": 402,
+    "height": 202
+  }
+}

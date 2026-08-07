@@ -19,8 +19,8 @@ import { buildSiteBaseSchema } from '@/lib/schema';
  *
  *  Roman only. The italic master was being preloaded on all 19 routes at
  *  29.5KB and nothing on the site sets the Didone in italic: the one italic
- *  rule in the build is .dm-quote__body, which is --family-serif, and the only
- *  two <em> elements sit inside Prose, which is --family-body. */
+ *  rule in the build is .dm-quote__body, which is --family-serif-italic, and
+ *  the only two <em> elements sit inside Prose, which is --family-body. */
 const bodoniModa = Bodoni_Moda({
   variable: '--font-bodoni',
   subsets: ['latin'],
@@ -35,7 +35,42 @@ const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
+  style: ['normal'],
+});
+
+/** The slant, split off its roman and deliberately NOT preloaded.
+ *
+ *  Same defect the Bodoni note above describes, one family down and twice the
+ *  size: asking one Source_Serif_4() call for both styles emits a preloaded
+ *  latin subset per style, so a 50.3KB italic master was fetched at High
+ *  priority in the head of all 19 routes to serve exactly one CSS rule,
+ *  .dm-quote__body. Measured on the home route, blocking that one file moved
+ *  LCP from 3.23s to 2.93s and performance from 93 to 95.
+ *
+ *  Splitting it into its own instance with `preload: false` keeps the
+ *  typography, which is the point: a synthesised oblique of a text serif is not
+ *  the same mark. The file is now fetched off the critical path, and only on
+ *  the routes that actually set a pull quote. Regular weight only, because
+ *  --weight-regular is the only weight .dm-quote__body asks for, and asking for
+ *  one weight gets a 20.4KB static master where asking for three got the 50.3KB
+ *  variable one. So the head loses 50.3KB and the wire loses 29.9KB more.
+ *
+ *  No CSS moved, and that is deliberate rather than an oversight: next/font
+ *  names both instances "Source Serif 4", so the italic face joins the same
+ *  family the roman already declares and .dm-quote__body keeps resolving it
+ *  through --family-serif. Verified in the served @font-face set: one italic
+ *  400 face per subset, alongside the normal 400/600/700, so nothing is ever
+ *  slanted by the rasteriser. Keep sourceSerifItalic.variable on <html>: it is
+ *  what pulls this instance's stylesheet, and the @font-face rules with it.
+ *
+ *  Do not fold this back into the call above. */
+const sourceSerifItalic = Source_Serif_4({
+  variable: '--font-source-serif-italic',
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400'],
+  style: ['italic'],
+  preload: false,
 });
 
 /** Running text, UI, navigation, forms. */
@@ -80,7 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${bodoniModa.variable} ${sourceSerif.variable} ${archivo.variable} ${plexMono.variable} h-full`}
+      className={`${bodoniModa.variable} ${sourceSerif.variable} ${sourceSerifItalic.variable} ${archivo.variable} ${plexMono.variable} h-full`}
     >
       <body className="flex min-h-full flex-col">
         <a href="#main" className="dm-skip-link">

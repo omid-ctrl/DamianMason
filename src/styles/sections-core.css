@@ -84,7 +84,28 @@
      full-bleed behind reversed type at the 0.62 veil.
      ========================================================================== */
   .dm-hero { position: relative; }
-  .dm-hero__grid { align-items: end; }
+  /* The section is sized by the portrait, so on a route whose deck is short the
+     type column is the shorter of the two and the difference has to go
+     somewhere. Both ends have been tried and both were wrong on their own.
+     Aligning to the end put all of it above the H1: /speaking/ and /podcasts/
+     opened with about 430px of bare bone between the masthead rule and their
+     first word and the orange primary action fell to y=910, below the fold of a
+     900px window, on the two routes whose whole job is to get it pressed.
+     Aligning to the start put all of it below the buttons instead, which was
+     measured at 228 to 300px of empty bone on eight routes and simply moved the
+     hole rather than closing it.
+
+     Centring halves it and puts the type column's optical centre on the
+     portrait's, which is the standard editorial two-up and the reason the
+     remaining air reads as a margin rather than as a dropped element. The eight
+     short-deck routes gain 114 to 150px above the eyebrow and lose the same
+     below the buttons; the three long-deck routes, whose columns are already
+     near-equal, move by a few px. It applies only from lg, because below that
+     the two are stacked in separate rows and there is nothing to align to. */
+  .dm-hero__grid { align-items: start; }
+  @media (min-width: 64rem) {
+    .dm-hero__grid { align-items: center; }
+  }
   .dm-hero__type {
     display: flex;
     flex-direction: column;
@@ -100,6 +121,28 @@
      restores it. */
   .dm-hero__type > * {
     max-inline-size: 100%;
+  }
+  /* The masthead step, re-fitted to the measure it actually gets.
+     From 1024 the type track is 7 of 12 columns, which is 535px at 1024 and
+     708px at 1440, but --fs-6xl reaches its 120px ceiling at a 1159px viewport.
+     "Coordinators" and "Conversation" are roughly 700px of Bodoni at 120px, so
+     between 1024 and about 1340 the single longest word in six H1s could not
+     fit a line of its own at any break point. The old answer was to let the
+     word break mid syllable, which rendered "Coordinato / rs" and
+     "Conversati / on" on the two pages a meeting planner is most likely to
+     land on. The measure is fixed by the layout and the word is fixed by the
+     copy, so the size is what gives: --fs-6xl-hero, defined and argued in
+     tokens.css section 12, rejoins 120px at 1440 so the shipped ladder in
+     DESIGN_SYSTEM section 8 does not move.
+
+     It rebinds the token rather than setting font-size because the `text-6xl`
+     utility sits in @layer utilities and would win over any declaration in
+     this layer. The @theme map is `inline`, so that utility resolves
+     `var(--fs-6xl)` at the heading itself and picks the rebound value up
+     through inheritance. Below 1024 the H1 spans all 12 columns and the base
+     scale is already correct, so the override starts where the split does. */
+  @media (min-width: 64rem) {
+    .dm-hero__type { --fs-6xl: var(--fs-6xl-hero); }
   }
   .dm-hero__actions {
     display: flex;
@@ -200,6 +243,18 @@
     margin: 0;
     padding: 0;
   }
+  /* The column count tracks the number of figures, so the top rule, the
+     dividers and the bottom rule all terminate on the same edge. Four is the
+     default because four is what the credibility ledger carries; /podcasts/
+     carries three, and in a fixed four-column grid its top rule ran the full
+     1344px container while its bottom rule stopped at about 1032px with no
+     divider closing the third cell. */
+  .dm-statrow__list[data-count='3'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .dm-statrow__list[data-count='2'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .dm-statrow__item {
     border-block-end: var(--border-hairline) solid var(--rule-structural);
     padding-block: var(--space-5);
@@ -221,23 +276,35 @@
      box while --fs-figure is still ~46px, so "40,000+" and "70,000+" overrun
      their cell and the fourth column's rule is pushed past the container. Two
      columns is the only other count that divides four, and it keeps the ledger
-     reading as a ledger rather than collapsing to the 390 row treatment. */
+     reading as a ledger rather than collapsing to the 390 row treatment.
+     A three-figure row is exempt: three columns give each figure about 235px
+     at 768, which is comfortable, and two columns would leave the same ragged
+     tail this whole section exists to avoid. */
   @media (min-width: 48rem) and (max-width: 63.9375rem) {
-    .dm-statrow__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dm-statrow__list[data-count='4'] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     /* The adjacent-sibling rule above puts a left rule on every item after the
        first. In two columns that lands a stray rule on the start of row two,
        so the rule is re-stated per column position instead. */
-    .dm-statrow__item + .dm-statrow__item {
+    .dm-statrow__list[data-count='4'] .dm-statrow__item + .dm-statrow__item {
       border-inline-start: 0;
       padding-inline-start: 0;
     }
-    .dm-statrow__item:nth-child(even) {
+    .dm-statrow__list[data-count='4'] .dm-statrow__item:nth-child(even) {
       border-inline-start: var(--border-hairline) solid var(--rule-structural);
       padding-inline-start: var(--gutter-column-tight);
     }
   }
 
+  /* `[data-count]` rather than the bare class, and this is load-bearing. The
+     column-count rules above are `.dm-statrow__list[data-count='3']` at 0-2-0
+     and they sit outside any media query. A media query adds no specificity,
+     so a 0-1-0 `.dm-statrow__list` here loses to them no matter how narrow the
+     viewport is, and the three-figure ledger on /podcasts/ stayed in three
+     116px columns at 390 with "40,000+" painting straight across "MONTHLY
+     LISTENERS". Matching the attribute selector puts this rule at 0-2-0 and
+     later in source order, so every count collapses to the row treatment. */
   @media (max-width: 47.9375rem) {
+    .dm-statrow__list[data-count],
     .dm-statrow__list { grid-template-columns: minmax(0, 1fr); }
     .dm-statrow__item {
       padding-block: var(--space-4);
@@ -296,9 +363,10 @@
   }
   .dm-logowall__title { margin-block-start: var(--space-2); }
   .dm-logowall__head + .dm-logowall__intro { margin-block-start: var(--space-5); }
-  :is(.dm-logowall__head, .dm-logowall__intro) + .dm-logowall__grid {
-    margin-block-start: var(--space-7);
-  }
+  /* The head and the grid now sit in two different containers, so the interval
+     between them belongs to the head's container rather than to an adjacency
+     between siblings. */
+  .dm-logowall__lede { margin-block-end: var(--space-7); }
   .dm-logowall__grid {
     display: grid;
     border-block-end: var(--border-hairline) solid var(--logo-cell-rule);
@@ -307,8 +375,22 @@
     margin: 0;
     padding: 0;
   }
-  .dm-logowall--cols-7 .dm-logowall__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* Two across on a phone, not three. Three across leaves 99px of content in a
+     cell, and a 5.55:1 logotype in 99px is 17.8px tall, which was measured and
+     is not legible. Two across offers 157px, which is what carries claas back
+     to 28px and the whole wall to a single optical weight. It costs four extra
+     rows of scroll and buys a wall a visitor can actually read. The odd
+     twenty-first cell spans both columns rather than leaving a ruled hole, so
+     the grid still closes cleanly. */
+  .dm-logowall--cols-7 .dm-logowall__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dm-logowall--cols-5 .dm-logowall__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dm-logowall__grid > .dm-logo-cell:last-child:nth-child(odd) { grid-column: span 2; }
+  /* Three across from 768, where a third of the container is already wider
+     than the two-across phone cell. */
+  @media (min-width: 48rem) {
+    .dm-logowall--cols-7 .dm-logowall__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .dm-logowall__grid > .dm-logo-cell:last-child:nth-child(odd) { grid-column: auto; }
+  }
   @media (min-width: 64rem) {
     .dm-logowall--cols-7 .dm-logowall__grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
     .dm-logowall--cols-5 .dm-logowall__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
@@ -333,13 +415,29 @@
   .dm-logo-cell picture { display: contents; }
 
   .dm-logo-cell__img {
-    /* Both caps, always. With a height cap alone, usaedc.png (423 by 119)
-       computes to roughly 295px inside a 160px cell and overruns its
-       neighbours. A square mark is height-constrained, a 3.55:1 mark is
-       width-constrained, and the two land at the same optical weight. */
+    /* OPTICAL SIZING. Not a height cap, and not a width cap: those are below
+       and they are a safety net now.
+
+       A cell cannot hand equal height AND equal width to marks whose aspect
+       ratios run from 0.86:1 to 6.05:1. Under the old dual cap a wide wordmark
+       hit max-inline-size and never came near the height cap while a square
+       badge filled it, so the wall measured a 2.52x height spread at 1440 and
+       4.49x at 390 with claas down at 17.8px.
+
+       Two marks read as the same size when they carry the same amount of ink,
+       not when they are the same number of pixels tall. So each mark carries
+       --logo-ar-sqrt, the square root of its own aspect ratio, generated per
+       file into src/styles/logo-optical.css, and this one line sets the width
+       to G x sqrt(a). With block-size auto the height follows at G / sqrt(a),
+       so sqrt(width x height) lands on G for every mark on the wall regardless
+       of its shape. That is equal apparent visual weight, which is what a
+       designer sets by eye.
+
+       The fallback of 1 sizes an unknown mark as if it were square, which is
+       the least wrong guess and still bounded by the caps below. */
+    inline-size: calc(var(--logo-optical) * var(--logo-ar-sqrt, 1));
     max-inline-size: 100%;
-    max-block-size: var(--logo-box-h);
-    inline-size: auto;
+    max-block-size: var(--logo-box-h-compact);
     block-size: auto;
     object-fit: contain;
     filter: var(--logo-filter);
@@ -347,22 +445,28 @@
     opacity: var(--logo-opacity);
     transition: var(--transition-media);
   }
-  /* Anything wider than 3:1 backs off so it does not visually dominate a row
-     of square marks. */
-  .dm-logo-cell--wide .dm-logo-cell__img {
-    max-inline-size: calc(100% * var(--logo-scale-wide));
-    max-block-size: calc(var(--logo-box-h) * var(--logo-scale-wide));
-  }
 
   @media (max-width: 47.9375rem) {
     .dm-logo-cell {
       padding: var(--space-2);
       padding-block-end: calc(var(--space-2) + var(--space-1));
     }
-    .dm-logo-cell__img { max-block-size: var(--logo-box-h-compact); }
-    .dm-logo-cell--wide .dm-logo-cell__img {
-      max-block-size: calc(var(--logo-box-h-compact) * var(--logo-scale-wide));
+  }
+  /* From 768 the cell carries the larger G. The three-across client cell is
+     201px of content there, which is 39px more than the widest mark needs at
+     that G, so nothing has to move to make room. */
+  @media (min-width: 48rem) {
+    .dm-logo-cell__img {
+      inline-size: calc(var(--logo-optical-wide) * var(--logo-ar-sqrt, 1));
+      max-block-size: var(--logo-box-h);
     }
+  }
+  /* At lg the client wall goes seven across and the cell drops to 158.8px of
+     content, which is 3.8px short of what the widest mark needs at the same G.
+     The inline padding steps down one notch to find it. The block padding does
+     not move: it is what keeps a mark off the hairline above and below it. */
+  @media (min-width: 64rem) {
+    .dm-logo-cell { padding-inline: var(--logo-cell-pad-inline-wide); }
   }
 
   .dm-logo-cell__link {
@@ -418,5 +522,99 @@
   .dm-ctaband__panel { gap: var(--space-4); }
   @media (min-width: 48rem) {
     .dm-ctaband__panel { justify-self: end; }
+  }
+
+  /* ==========================================================================
+     CREDENTIAL BAR
+     The four-pillar bar on /keynote/ and /about/. One rendering, two consumers:
+     components/sections/CredentialBar.tsx. The two routes used to carry their
+     own markup and their own rules, and they diverged into a dashed list on a
+     24px rhythm and an unmarked list on a 38px one.
+
+     Four cells at 1024 and up, two at 480, one below. Four divides by 1, 2 and
+     4, so no arrangement leaves a ragged tail.
+     ========================================================================== */
+  .dm-pillars {
+    display: grid;
+    gap: var(--gutter-column);
+    grid-template-columns: 1fr;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media (min-width: 30rem) {
+    .dm-pillars { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 64rem) {
+    .dm-pillars { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .dm-pillars__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    block-size: 100%;
+  }
+
+  .dm-pillars__points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: var(--ink-secondary);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+  }
+  .dm-pillars__points li {
+    position: relative;
+    padding-inline-start: var(--space-5);
+  }
+  .dm-pillars__points li + li {
+    margin-block-start: var(--space-2);
+  }
+
+  /* A hairline dash rather than an orange marker: four cards of orange glyphs
+     would blow the orange budget in DESIGN_SYSTEM 5.1 on decoration. */
+  .dm-pillars__points li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.7em;
+    inline-size: var(--space-3);
+    block-size: var(--border-thin);
+    background-color: var(--rule-strong);
+  }
+
+  /* ==========================================================================
+     SECTION-CLOSING ACTION
+     One convention, applied in the shell, so a future page cannot reintroduce
+     the other one.
+
+     THE DEFECT THIS REPLACES. A section-closing button that sits left-aligned
+     under column one of a multi-column grid, at roughly one column's width,
+     reads as belonging to that column rather than as closing the section. It
+     was measured on eight of them: /speaking/ "Read the ten written reviews"
+     at 380px under a 416px column, /keynote/ two at 303 and 305, and Home's
+     "More Reviews" separated from its own column's content by a 450px gap.
+
+     THE CONVENTION. The action hangs off a hairline that spans the whole
+     container. The rule is the thing that closes the section; the button hangs
+     from it at the section's own left axis, so it inherits the spine the
+     heading is on rather than the width of whatever column it happens to sit
+     under. Nothing about it is column-shaped any more.
+     ========================================================================== */
+  .dm-section-close {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    margin-block-start: var(--space-9);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--border-hairline) solid var(--rule-structural);
+  }
+  @media (max-width: 29.9375rem) {
+    .dm-section-close {
+      flex-direction: column;
+      align-items: stretch;
+    }
   }
 }

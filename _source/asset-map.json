@@ -93,15 +93,17 @@
       "/img/clients/iowa-farm-bureau.webp"
     ],
     "w": 225,
-    "h": 144
+    "h": 144,
+    "ground": "68.0% ground repainted"
   },
   "Client Logos/Land OLakes Purina.png": {
     "out": [
       "/img/clients/land-olakes-purina.png",
       "/img/clients/land-olakes-purina.webp"
     ],
-    "w": 257,
-    "h": 148
+    "w": 255,
+    "h": 148,
+    "ground": "cropped"
   },
   "Client Logos/Merck Logo.png": {
     "out": [
@@ -205,7 +207,8 @@
       "/img/sponsors/heads-up-plant-protectants.webp"
     ],
     "w": 800,
-    "h": 800
+    "h": 800,
+    "ground": "85.2% ground repainted"
   },
   "Website - List of Podcast Sponsors - Logos/Life Scientific.jpeg": {
     "out": [
@@ -229,7 +232,8 @@
       "/img/sponsors/newfields-ag.webp"
     ],
     "w": 132,
-    "h": 132
+    "h": 132,
+    "ground": "33.6% ground repainted"
   },
   "Website - List of Podcast Sponsors - Logos/Redox Bio logo.png": {
     "out": [

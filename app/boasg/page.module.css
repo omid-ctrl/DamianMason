@@ -50,18 +50,27 @@
 }
 
 /* The BoASG badge is line art, not a photograph, so it never goes through the
-   duotone plate. It sits on the brightest stock in the system, which is the
-   ground the mark was drawn for. */
+   duotone plate.
+
+   It also gets no plate of its own, per DESIGN_SYSTEM 6.5.2. The --surface-bright
+   fill that used to be here put the brightest stock in the system inside a bone
+   section, so the seal read as a white box on bone rather than as a mark on the
+   page. A hairline and nothing else, and the mark composites straight onto the
+   section ground. */
 .badge {
   align-items: center;
   justify-content: center;
   padding: var(--space-7);
+  background: transparent;
 }
 
 .badgeImg {
   inline-size: 100%;
-  max-inline-size: var(--size-portrait-max);
+  /* 6.5.4: the artwork ceiling, not the portrait ceiling. This is a mark, not
+     a photograph of a person. */
+  max-inline-size: var(--size-brand-art-max);
   block-size: auto;
+  mix-blend-mode: multiply;
 }
 
 /* The schedule footnote. Mono, muted, under a hairline, capped at the narrow

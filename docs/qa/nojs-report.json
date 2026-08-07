@@ -5,11 +5,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 6472,
+    "textLength": 6762,
     "h1": [
       "Straight-Forward Agriculture Dialogue"
     ],
-    "headings": 26
+    "headings": 26,
+    "videos": 4,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "about",
@@ -17,11 +20,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 5370,
+    "textLength": 4824,
     "h1": [
       "Ag economist, comedian, farm owner."
     ],
-    "headings": 16
+    "headings": 16,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "speaking",
@@ -29,11 +35,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 5471,
+    "textLength": 5045,
     "h1": [
       "Hire a Speaker that Works for YOU."
     ],
-    "headings": 15
+    "headings": 15,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "keynote",
@@ -41,11 +50,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 6678,
+    "textLength": 6373,
     "h1": [
       "A Leading Agriculture Presenter Who Talks Candidly About Current Events."
     ],
-    "headings": 23
+    "headings": 23,
+    "videos": 3,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "reviews",
@@ -53,11 +65,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 4886,
+    "textLength": 5045,
     "h1": [
       "Testimonials"
     ],
-    "headings": 14
+    "headings": 14,
+    "videos": 4,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "meeting-coordinators",
@@ -65,11 +80,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 5452,
+    "textLength": 5530,
     "h1": [
       "Meeting Coordinators"
     ],
-    "headings": 19
+    "headings": 19,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "collaboration-opportunities",
@@ -77,11 +95,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 5714,
+    "textLength": 5827,
     "h1": [
       "If it’s Agriculture,\nit needs Damian."
     ],
-    "headings": 22
+    "headings": 22,
+    "videos": 3,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "boasg",
@@ -89,11 +110,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 4776,
+    "textLength": 4580,
     "h1": [
       "The Business of Ag Success Group"
     ],
-    "headings": 13
+    "headings": 13,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "podcasts",
@@ -101,11 +125,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 3795,
+    "textLength": 3350,
     "h1": [
       "Three shows. One host."
     ],
-    "headings": 11
+    "headings": 11,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "the-business-of-agriculture",
@@ -113,11 +140,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 5433,
+    "textLength": 5367,
     "h1": [
       "The Business of Agriculture Podcast"
     ],
-    "headings": 15
+    "headings": 15,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "do-business-better-podcast",
@@ -125,11 +155,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 6001,
+    "textLength": 6113,
     "h1": [
       "Do Business Better Podcast"
     ],
-    "headings": 14
+    "headings": 14,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "xtreme-ag",
@@ -137,11 +170,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 2918,
+    "textLength": 3091,
     "h1": [
       "What’s XtremeAg, You Ask?"
     ],
-    "headings": 12
+    "headings": 12,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "blog-news",
@@ -149,11 +185,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 3929,
+    "textLength": 4146,
     "h1": [
       "News & Media"
     ],
-    "headings": 20
+    "headings": 20,
+    "videos": 3,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "acres-tv",
@@ -161,11 +200,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 3411,
+    "textLength": 3353,
     "h1": [
       "Damian’s Business of Agriculture streams on Acres TV."
     ],
-    "headings": 15
+    "headings": 15,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "blog",
@@ -173,11 +215,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 2844,
+    "textLength": 2772,
     "h1": [
       "Blog"
     ],
-    "headings": 9
+    "headings": 9,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "blog-eggflation",
@@ -185,11 +230,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 2426,
+    "textLength": 2416,
     "h1": [
       "‘Eggflation’ Gives Producers Record Profits While Internet Mocks Outrageous Prices"
     ],
-    "headings": 10
+    "headings": 10,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "blog-climate",
@@ -197,11 +245,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 2358,
+    "textLength": 2413,
     "h1": [
       "How the Climate Crisis is Causing Food Shortages Globally"
     ],
-    "headings": 9
+    "headings": 9,
+    "videos": 1,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "contact-us",
@@ -209,11 +260,14 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 4107,
+    "textLength": 3850,
     "h1": [
       "Get in Touch"
     ],
-    "headings": 11
+    "headings": 11,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   },
   {
     "name": "join-the-conversation",
@@ -221,10 +275,13 @@
     "pending": 0,
     "hiddenTextNodes": [],
     "offscreenTransformed": [],
-    "textLength": 3043,
+    "textLength": 2864,
     "h1": [
       "Join the Conversation"
     ],
-    "headings": 9
+    "headings": 9,
+    "videos": 0,
+    "unreachableVideos": [],
+    "deadFacades": []
   }
 ]

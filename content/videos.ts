@@ -31,8 +31,19 @@
  *     audio of the originals intact. The 1080p sources are gone from the repo.
  *   - Each one now carries a real `poster` frame grabbed four seconds in, so a
  *     mobile visitor sees Damian on stage rather than the black rectangle the
- *     old site shipped. Combined with `preload="none"` on VideoEmbed, a reel
- *     costs about 25KB to 60KB until someone presses play.
+ *     old site shipped.
+ *   - POSTER SIZING, and do not undo it: `preload="none"` suppresses the video
+ *     bytes but there is no lazy equivalent for the `poster` attribute, so
+ *     Chrome fetches every poster on the page during the initial load, however
+ *     far below the fold the reel sits. The three keynote posters shipped as
+ *     1280x720 JPEGs totalling 136KB for frames that render at 370x208 on
+ *     mobile and about 420px wide on desktop, which cost /keynote/ 0.9s of
+ *     mobile LCP and six Lighthouse performance points. They are now 640x360
+ *     WebP totalling 39KB, which is the displayed size at the mobile device
+ *     pixel ratio. Regenerate with:
+ *       cwebp -q 78 -resize 640 360 -m 6 <frame>.jpg -o dm-<name>.webp
+ *     Combined with `preload="none"`, a reel now costs 6KB to 18KB until
+ *     someone presses play.
  *   - None of the three is captioned yet. `VideoEmbed` takes a `captions` prop
  *     and the VTT is still owed.
  *
@@ -43,6 +54,22 @@
  * /collaboration-opportunities/, which never applied it.
  */
 
+/**
+ * The shape of the SOURCE recording, which is not always the shape of the
+ * frame it is served in.
+ *
+ * `wide`     a 16:9 recording. Everything on the site except the four below.
+ * `vertical` a 9:16 recording, shot on a phone. YouTube still serves its
+ *            hqdefault still as a 480x360 4:3 file, and it fills the space
+ *            either side of a vertical frame with a blown-up copy of that same
+ *            frame rather than with black bars. Dropped into a 16:9 stage the
+ *            result is three mismatched panels: a narrow real frame between
+ *            two enormous duplicates of itself. Marking the source lets the
+ *            stage take the recording's own shape, at which point the crop
+ *            lands exactly on the real frame and the duplicate never paints.
+ */
+export type VideoFraming = 'wide' | 'vertical';
+
 export type Video =
   | {
       id: string;
@@ -50,6 +77,8 @@ export type Video =
       youtubeId: string;
       title: string;
       description?: string;
+      /** Defaults to 'wide'. */
+      framing?: VideoFraming;
       onPages: string[];
     }
   | {
@@ -59,6 +88,8 @@ export type Video =
       title: string;
       poster?: string;
       description?: string;
+      /** Defaults to 'wide'. */
+      framing?: VideoFraming;
       onPages: string[];
     };
 
@@ -94,11 +125,20 @@ export const videos: Video[] = [
   },
 
   // == /reviews/: four video testimonials
+  // All four were shot vertically by the person speaking, which is why all four
+  // carry framing: 'vertical'. The round-3 QA pass profiled the column
+  // luminance of each rendered facade and found hard seams at 29% and 71% of
+  // the width on every one, with a mirror test ruling out a mirror (MAE 49.9
+  // about the seam against a 14.0 baseline). Those seams put the real frame at
+  // 42% of the 480px hqdefault, which is 202 columns: 9:16 to the pixel. What
+  // sits either side of it is a scaled copy of the same frame, not black bars.
+  // Removing any one of these lines puts that copy back on the page.
   {
     id: 'hardwood-lumbermens-association',
     kind: 'youtube',
     youtubeId: 'iZ85SxLyykA',
     title: 'Hardwood Lumbermen’s Association recommends Damian Mason',
+    framing: 'vertical',
     onPages: ['/reviews/'],
   },
   {
@@ -106,6 +146,7 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 't3iCvSKEyx0',
     title: 'Farm Credit Emerging Entrepreneurs Conference & Damian Mason',
+    framing: 'vertical',
     onPages: ['/reviews/'],
   },
   {
@@ -113,6 +154,7 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 'e79QDYxpJOE',
     title: 'Nutrien - a successful meeting!',
+    framing: 'vertical',
     onPages: ['/reviews/'],
   },
   {
@@ -120,6 +162,7 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 't6BkS7Eb9pE',
     title: 'The “Ations” of Agriculture & Ag’s Future',
+    framing: 'vertical',
     onPages: ['/reviews/'],
   },
 
@@ -173,7 +216,7 @@ export const videos: Video[] = [
     id: 'demo-food-waste',
     kind: 'mp4',
     file: '/video/dm-food-waste-720p.mp4',
-    poster: '/img/video-posters/dm-food-waste.jpg',
+    poster: '/img/video-posters/dm-food-waste.webp',
     title: 'Food Waste',
     description: 'A short cut from a live keynote on what the food waste argument gets wrong.',
     onPages: ['/keynote/'],
@@ -182,7 +225,7 @@ export const videos: Video[] = [
     id: 'demo-labor',
     kind: 'mp4',
     file: '/video/dm-labor-720p.mp4',
-    poster: '/img/video-posters/dm-labor.jpg',
+    poster: '/img/video-posters/dm-labor.webp',
     title: 'Labor',
     description: 'A short cut from a live keynote on where farm and food labor is headed.',
     onPages: ['/keynote/'],
@@ -192,7 +235,7 @@ export const videos: Video[] = [
     id: 'demo-innovation',
     kind: 'mp4',
     file: '/video/dm-innovation-720p.mp4',
-    poster: '/img/video-posters/dm-innovation.jpg',
+    poster: '/img/video-posters/dm-innovation.webp',
     title: 'Innovation',
     description: 'A short cut from a live keynote on ag innovation and who pays for it.',
     onPages: ['/keynote/', '/collaboration-opportunities/'],

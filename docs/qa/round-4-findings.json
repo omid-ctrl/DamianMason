@@ -1,0 +1,483 @@
+[
+  {
+    "severity": "blocker",
+    "route": "/about/",
+    "file": "app/about/page.tsx:176",
+    "summary": "The exact navigational-scaffolding sentence the brief names as the recurring failure is still rendered in the /about/ hero deck. It tells the visitor what order to read the page in.",
+    "evidence": "Rendered <main> line 4 of /about/: \"One industry, since 1994, and nobody to answer to but the client. That's why Damian will hand your growers the outlook and the uncomfortable half of it in the same hour. Read the credentials first if you're the one signing the contract.\" Round 3 flagged the whole deck (\"Below: the biography, the four credentials behind it, and the books. Read the credentials first if you're the one signing the contract.\"). Only the first half was removed; the instruction survived verbatim. `git grep 'Read the credentials first' HEAD -- app` returns nothing, so this string does not exist in the last commit: it was written by a fix. The round-4 fix pass identified it and explicitly declined to touch it (\"NOT MINE, AND STILL LIVE\") to avoid a collision, which means a half-removed sentence now reads as a completed fix and will ship. It is also the only sentence in the deck that is not about Damian.",
+    "suggestedFix": "Delete the sentence. The deck's first two sentences already carry the whole claim and end on a strong beat (\"the uncomfortable half of it in the same hour\"). If a third sentence is wanted, it must be about the man or the offer, not about the page.",
+    "isRegressionFromFix": true,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "major",
+    "route": "/reviews/",
+    "file": "app/reviews/page.tsx:91",
+    "summary": "A rendered cutline tells the visitor which copy on the page is verbatim and how complete the site's own attribution data is. This is a sourcing note, not copy.",
+    "evidence": "Rendered <main> line 8 of /reviews/: \"Every quote below is the sender's own wording. Nine of the ten came with a name attached.\" Both sentences are about the rebuild's editorial handling, not about Damian: the first is the verbatim-sourcing note the brief bans, the second exists only to pre-empt a reader noticing that one of the ten testimonials has no attribution line. Absent from HEAD (`git grep \"sender's own wording\" HEAD -- app` returns nothing), so a fix wrote it. A meeting planner assumes a testimonial is the sender's own wording; saying so out loud invites the opposite doubt.",
+    "suggestedFix": "Cut both sentences. If the section needs a standfirst above the wall, write one about what the notes have in common (they arrived unprompted, after the event, from the person who signed the contract) rather than about how they were transcribed.",
+    "isRegressionFromFix": true,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "major",
+    "route": "/reviews/",
+    "file": "app/reviews/page.tsx:226-229",
+    "summary": "The closing band panel added this round counts the page's own contents instead of stating a fact about the business, and restates the hero deck's arithmetic word for word.",
+    "evidence": "Rendered <main> lines 56-62 of /reviews/: \"ON THE RECORD / 14 / TESTIMONIALS ON THIS PAGE / Ten in writing, four on camera.\" The label is literally about the document. Every other route's closing panel carries a fact about the world: /contact-us/ \"2,400+ AUDIENCES ADDRESSED\", /join-the-conversation/ \"40,000+ SUBSCRIBERS\", /podcasts/ \"40,000+ MONTHLY LISTENERS\", /do-business-better-podcast/ \"1994 / THE YEAR HE QUIT THE FORTUNE 500 JOB\". It also duplicates the hero deck 500 words above it, which already reads \"ten written notes ... plus four on camera. Fourteen out of 2,400+ audiences since 1994\" (rendered line 4), so the page now states fourteen twice and the ten/four split twice. Absent from HEAD; the round-4 fix report documents adding it verbatim.",
+    "suggestedFix": "Keep the panel (the band did need one) but make it carry a fact rather than an inventory. The repeat-booking claim this route is built on has no figure attached anywhere on the site, so the honest options are the site's existing 2,400+ / SINCE 1994 pair, or drop the value/label to something the hero does not already spend.",
+    "isRegressionFromFix": true,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "major",
+    "route": "/boasg/",
+    "file": "app/boasg/page.tsx:311-312",
+    "summary": "The table-of-contents sentence deleted from /about/ this round reappeared on /boasg/, now listing /about/'s sections instead of its own.",
+    "evidence": "Rendered <main> line 42 of /boasg/, appended to Damian's bio paragraph: \"The full biography, the credentials, and the books are on the About page.\" That is the same three-item inventory, in the same order, as the round-3 defect the fix pass removed from the /about/ hero (\"Below: the biography, the four credentials behind it, and the books\"). `git show HEAD:app/boasg/page.tsx` renders that paragraph as bare `<p>{DAMIAN_BIO}</p>` with no trailing sentence, so a fix added it. /boasg/ also carries a second one at rendered line 29: \"If you'd rather sample him before you join, the keynote program is one place and The Business of Agriculture podcast is another.\"",
+    "suggestedFix": "Replace the inventory with a plain link on words that mean something to a reader (e.g. link \"Damian Mason\" or a short \"More about Damian\" action), and delete the enumeration of what the other page contains. Same treatment for the \"one place ... is another\" sentence at line 29.",
+    "isRegressionFromFix": true,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "major",
+    "route": "/the-business-of-agriculture/, /blog-news/, /blog/[slug]/",
+    "file": "app/the-business-of-agriculture/page.tsx:239",
+    "summary": "Three routes explain the site's own lazy-loading implementation to the visitor, including a payload size in megabytes.",
+    "evidence": "Rendered strings, all three visible in <main>: /the-business-of-agriculture/ line 30 \"Libsyn's player brings about 2.5MB of its own code and artwork with it, so it waits here until you want it.\"; /blog-news/ line 57 \"Nothing loads from YouTube until you press play.\" (app/blog-news/page.tsx:149); /blog/how-the-climate-crisis.../ line 16 \"Nothing loads until you press play.\" (app/blog/[slug]/page.tsx:79). These are performance-engineering decisions, not facts about Damian or the offer. All three are present in HEAD, so they are pre-existing rather than fix-introduced, which means three rounds of copy QA read past them.",
+    "suggestedFix": "Delete all three. A click-to-load facade is self-evident from the play button; no visitor needs the byte count or the loading strategy. If the Libsyn button needs a label at all, name what is behind it (\"Every episode, straight from the feed\") rather than why it waits.",
+    "isRegressionFromFix": false,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "major",
+    "route": "/speaking/, /keynote/, /reviews/, /collaboration-opportunities/",
+    "file": "app/keynote/page.tsx:379",
+    "summary": "The testimonial-count fact (ten written, four on video) is retold nine times in prose across four routes, three times within /speaking/ alone, and two of the retellings are the same sentence with the clauses swapped.",
+    "evidence": "Measured paraphrase-insensitively over rendered <main>: /speaking/ x3 (eyebrow \"TEN WRITTEN, FOUR ON VIDEO\"; line 48 \"Ten notes in writing and four on camera, sent by the people who signed the contract.\"; line 87 \"Ten written notes and four video testimonials are on the testimonials page.\"), /reviews/ x4 (hero line 4; eyebrow \"10 OF 2,400+\"; heading line 39 \"And what four of them said on camera\"; panel line 62 \"Ten in writing, four on camera.\"), /keynote/ x1 (line 89), /collaboration-opportunities/ x1 (line 109), plus two \"READ THE TEN WRITTEN REVIEWS\" CTA labels. At 9 prose instances on 4 routes this is now the most-repeated rebuild-written fact on the site, ahead of every fact in dupe-check's own table (top entry: book-direct-not-bureau, 7 says on 4 routes). It survived because there is no regex for it in scripts/dupe-check.mjs. The /keynote/ and /collaboration-opportunities/ versions are the defect shape the fix pass named on /contact-us/: \"There's ten more on the reviews page, plus four on video.\" against \"Ten more, plus four on video, are on the reviews page.\"",
+    "suggestedFix": "Let /reviews/ own the arithmetic and spend it once there. On the three routes that only point at it, the link label already says \"Read the ten written reviews\", so the prose sentence can drop the counts entirely and say something the reader does not already have.",
+    "isRegressionFromFix": false,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/keynote/",
+    "file": "app/keynote/page.tsx:448-449",
+    "summary": "An unlinked sentence tells the reader that a longer version of the copy exists on another page, directly above a button that says exactly that.",
+    "evidence": "Rendered <main> line 101 of /keynote/: \"He carries a Screen Actors Guild card, he has written a book about food and a book about business, and he hosts three podcasts between dates. If you want the long version, it's written up on the About page.\" Line 103, immediately below, is the CTA \"READ THE FULL BIOGRAPHY\". The sentence is plain text, not a link, so it is pure prose about the site's own structure that the button next to it already performs. Absent from HEAD (`git show HEAD:app/keynote/page.tsx` has no \"Screen Actors Guild card\" in this section), so it arrived with the section-9 replacement a fix wrote.",
+    "suggestedFix": "Delete the second sentence and let the button do its job. The first sentence lands the section on its own.",
+    "isRegressionFromFix": true,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/the-business-of-agriculture/",
+    "file": "app/the-business-of-agriculture/page.tsx:172",
+    "summary": "A figure cutline publishes the podcast's internal Libsyn show ID, which is hosting infrastructure and means nothing to a reader.",
+    "evidence": "Rendered <main> line 12: \"FIG. 01 Show art. The feed is Libsyn 504653, and a new episode lands every Monday.\" The number appears in _source only inside harvest notes as part of an RSS URL (_source/pages/the-business-of-agriculture.md:38, 81, 140) and in content/site.ts:93 as config; it is not source copy and appears in no rendered string on the live site. It is also the only cutline on the site that describes a hosting account rather than the picture. Present in HEAD, so pre-existing.",
+    "suggestedFix": "Drop the show ID: \"FIG. 01 Show art. A new episode lands every Monday.\" The feed URL is already reachable from the RSS action in the same section.",
+    "isRegressionFromFix": false,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/blog-news/, /the-business-of-agriculture/",
+    "file": "app/blog-news/page.tsx:101",
+    "summary": "Two routes open a section by describing the page's own link mechanics, using the same 'Every link/mark below' construction.",
+    "evidence": "/blog-news/ rendered line 6: \"Every link below leaves this site. That's the point of press coverage.\" /the-business-of-agriculture/ rendered line 57: \"Ten sponsors. Every mark below links straight to the company, and if you sell into Agriculture, they're the ones already spending money to reach that crowd.\" (app/the-business-of-agriculture/page.tsx:321). Both sentences describe what happens when the reader clicks, which the link styling and the site's own \", opens in a new tab\" sr-only strings already handle. Both present in HEAD. The second half of each sentence is genuinely in voice and worth keeping; only the mechanics clause is the problem.",
+    "suggestedFix": "Keep the argument, cut the mechanics: \"Nine appearances, and none of them on his own website. That's the point of press coverage.\" and \"Ten sponsors, and if you sell into Agriculture they're the ones already spending money to reach that crowd.\"",
+    "isRegressionFromFix": false,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/about/",
+    "file": "app/about/page.tsx:317",
+    "summary": "The /about/ stat-ledger note asserts an unsourced claim about Damian's work rhythm that also contradicts the Home page's note on the identical four numbers.",
+    "evidence": "/about/ rendered line 67: \"Three of these four are stages. The fourth is the podcast, which is where the same material goes on the weeks nobody has booked him.\" Home renders the same StatRow with app/page.tsx:203: \"The fourth number is what keeps the other three honest. He's in the argument every week on the podcast, so what your growers hear is this year's read and not a rerun.\" One says the podcast is where keynote material is recycled when he is unbooked; the other says the podcast is what stops the keynote being a rerun. Nothing in _source/pages/*.md supports either the unbooked-weeks claim or the same-material claim, and volunteering empty weeks on his own biography page works against the route. The 'N of these four' construction is also now a tic across three routes (about, collaboration-opportunities:203 \"You're buying two of these four\", home:203 \"the other three honest\"), all three commenting on the widget rather than on Damian.",
+    "suggestedFix": "Rewrite the /about/ note so it does not claim anything about booking gaps or content reuse. Home's framing is the defensible one, so /about/ should either say something different about the same numbers or say nothing.",
+    "isRegressionFromFix": false,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/keynote/",
+    "file": "app/keynote/page.tsx:379",
+    "summary": "'Ten more on the reviews page' is off by one: one of the three testimonials rendered on /keynote/ is itself one of the ten on /reviews/.",
+    "evidence": "/keynote/ rendered line 89: \"Three from meeting planners who were in the room while it happened. There's ten more on the reviews page, plus four on video.\" /keynote/ renders Titan Pro Team, Brooks Breymeyer and Tim Luthy. /reviews/ renders exactly ten written testimonials, and Brooks Breymeyer / Breymeyer Land and Livestock is one of them (confirmed by figcaption comparison: 'brooks breymeyer breymeyer land and livestock' is an exact repeat across keynote + reviews). So there are nine more, not ten. /collaboration-opportunities/'s parallel sentence is correct, because none of its three (Titan Pro, Tim Luthy, Wendy J. Ruud) appears on /reviews/.",
+    "suggestedFix": "Either say \"the rest are on the reviews page\", or drop Brooks Breymeyer from the /keynote/ row (which the quote-length curation this round already reshuffled), or drop the count as recommended in the ten/four repetition finding, which fixes both at once.",
+    "isRegressionFromFix": false,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/blog/eggflation-gives-producers-record-profits/, /blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+    "file": "app/blog/[slug]/page.tsx",
+    "summary": "Both blog post routes fall below VOICE.md's contraction floor, which the guide defines as a rewrite condition rather than a note.",
+    "evidence": "Measured over non-quote prose in rendered <main> (blockquotes, attributions, .dm-btn, .sr-only and .dm-faq stripped): post-eggflation 0.66 contractions per 100 words over 152 words, post-climate 0.74 over 136 words. VOICE.md section 8 check 3: \"Under 1 per 100 words means the register is wrong\", target 1.5 to 2.0. These are the only two routes on the site under the floor; the other 17 run 1.24 (/speaking/) to 3.61 (/join-the-conversation/), site aggregate 2.18 over 7,157 words. The copy is entirely rebuild-written, not parity: _source/pages/hello-world.md records JSON-LD wordCount 19 for the source post, so there is no verbatim body to preserve. Sample: \"Simone Del Rosario wrote it for Straight Arrow News in December 2022, and Damian is quoted in it: producers were booking record profits while the grocery aisle turned into a meme.\"",
+    "suggestedFix": "Add two or three contractions per post in the rebuild-written paragraphs (the standfirst and the closing booking band), which is enough to clear the floor on both without touching the quoted or attributed material.",
+    "isRegressionFromFix": false,
+    "area": "voice-audit"
+  },
+  {
+    "severity": "major",
+    "route": "/about/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/about/page.tsx",
+    "summary": "The /about/ hero deck still ends with a reading-order instruction: \"Read the credentials first if you're the one signing the contract.\" This is the exact navigational-scaffolding class the brief names, and it is a live regression introduced by a Phase 6 fix.",
+    "evidence": "Rendered <main> of /about/, third line: \"One industry, since 1994, and nobody to answer to but the client. That's why Damian will hand your growers the outlook and the uncomfortable half of it in the same hour. Read the credentials first if you're the one signing the contract.\" Source: app/about/page.tsx:176. Confirmed a regression by diffing against the last commit: `git show HEAD:app/about/page.tsx` line 128 carried a clean deck (\"Purdue Ag Econ degree. Second City Chicago. An Indiana farm of his own...\") with no instruction of any kind. The sentence exists only in the uncommitted Phase 6 working tree. The code comment at app/about/page.tsx:174-175 states the intent outright: \"it tells a meeting planner which section of this page is theirs without listing the sections\" - i.e. the surviving half is still doing the job the round-3 finding condemned, just without enumerating. The round-4 fix pass flagged this itself as \"NOT MINE, AND STILL LIVE\" and declined to touch it; it has now shipped through a second round.",
+    "suggestedFix": "Delete the third sentence. The first two are about the man and the offer and stand on their own. If the deck feels short, extend it with something about Damian (what an economist plus a comedian plus a farm owner does to a room), never with what to read or in what order.",
+    "area": "parity"
+  },
+  {
+    "severity": "major",
+    "route": "/the-business-of-agriculture/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/the-business-of-agriculture/page.tsx",
+    "summary": "The Libsyn player facade tells the visitor the site's own performance-engineering rationale, including a payload figure in megabytes: \"Libsyn's player brings about 2.5MB of its own code and artwork with it, so it waits here until you want it.\"",
+    "evidence": "app/the-business-of-agriculture/page.tsx:239-240, rendered inside <EmbedFacade> and confirmed in rendered <main> (line 19 of the stripped text, immediately above the \"Load the player\" button). This is a rendered string about how the page is built: it names a third-party dependency, quotes its transfer weight, and explains the site's lazy-load strategy. A meeting planner or a grower has no use for any of it. It predates Phase 6 (present at HEAD), so it is an original defect three QA rounds missed rather than a fix regression, but it is the single clearest instance of the class on the site.",
+    "suggestedFix": "Say what the thing is, not why it is deferred: \"Every episode, back to the start.\" or \"The whole archive, one player.\" The deferral is invisible to a visitor who presses the button and should stay that way. Keep the engineering rationale in the code comment that already sits above it.",
+    "area": "parity"
+  },
+  {
+    "severity": "major",
+    "route": "/blog-news/ and /blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/blog-news/page.tsx",
+    "summary": "Two routes tell the visitor about the video embed's loading behaviour: \"Nothing loads from YouTube until you press play\" and \"Nothing loads until you press play.\"",
+    "evidence": "app/blog-news/page.tsx:149 (\"...an interview about an upcoming date. Nothing loads from YouTube until you press play.\") and app/blog/[slug]/page.tsx:79 (\"Cheddar News booked Damian in April 2023 to talk about climate pressure and the global food supply. Here's the segment, in full. Nothing loads until you press play.\"). Both confirmed in rendered <main> (blog-news line 42, climate post line 12). Same class as the Libsyn string: a rendered sentence about the site's own embed implementation. Both predate Phase 6 (present at HEAD).",
+    "suggestedFix": "Cut both sentences. On /blog-news/ the paragraph already ends on a real observation about the Eagle Country interview being dated. On the climate post, \"Here's the segment, in full.\" is the whole job.",
+    "area": "parity"
+  },
+  {
+    "severity": "major",
+    "route": "/reviews/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/reviews/page.tsx",
+    "summary": "The /reviews/ hero carries a cutline that is an editorial sourcing note about the page's own copy rather than copy about Damian: \"Every quote below is the sender's own wording. Nine of the ten came with a name attached.\"",
+    "evidence": "app/reviews/page.tsx:91, rendered as <p class=\"dm-figure__caption\"> in the hero grid (rendered <main> line 5). The second sentence is pure page bookkeeping: it exists, per the code comment at app/reviews/page.tsx:80-82, to account for the one testimonial that shipped without a byline (\"It is where the missing byline on quote two gets accounted for\"). That is a de-duplication/sourcing rationale, which belongs in a code comment. It is aggravated by the fact that the hero renders no image at all (verified: the section is dm-hero--portrait with no <img>), so the string is a caption with nothing to caption. The same route's new closing panel adds a second self-referential string, label \"Testimonials on this page\" (app/reviews/page.tsx:228), which was introduced by a Phase 6 fix. Both are at HEAD/new respectively; the cutline itself predates Phase 6.",
+    "suggestedFix": "Delete the cutline or replace it with something a visitor wants: the hero deck already names the companies. If the missing byline needs handling, handle it at the card (render no byline, which the Quote primitive already does) rather than by explaining the gap in prose. For the panel, \"Testimonials\" or \"Rooms on the record\" says the same thing without pointing at the page.",
+    "area": "parity"
+  },
+  {
+    "severity": "major",
+    "route": "/keynote/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/keynote/page.tsx",
+    "summary": "A Phase 6 testimonial re-curation broke a factual claim: /keynote/ still says its three quotes are \"from meeting planners who were in the room while it happened,\" but one of the three is now Brooks Breymeyer, whom no source identifies as a meeting planner or as having attended anything.",
+    "evidence": "app/keynote/page.tsx:378 renders \"Three from meeting planners who were in the room while it happened.\" At HEAD the trio was wendy-j-ruud (Vice President), titan-pro-team (\"taking the time to speak at our kickoff event\") and tim-luthy (Helena Chemical, \"lots of compliments from the crowd\") - all three defensibly clients who booked him. The round-4 length-curation fix changed content/testimonials.ts:276 to ['titan-pro-team','brooks-breymeyer','tim-luthy']. Brooks Breymeyer of Breymeyer Land and Livestock is a /reviews/ quote reading \"If you haven't heard Damian before, look him up! If you don't learn anything, he'll at least make you laugh! I'll bet you do both. Can't wait to read your book!\" - a peer recommendation addressed to other people, with nothing in _source/pages/reviews.md tying him to an event he organised or attended. The claim is now untrue for one of three named real people.",
+    "suggestedFix": "Either restore a trio the sentence is true of, or reword the lead to what the quotes actually are: \"Three of the seventeen. The rest, plus four on video, are on the reviews page.\" Do not describe a named person's role beyond what _source supports.",
+    "area": "parity"
+  },
+  {
+    "severity": "minor",
+    "route": "/blog-news/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/blog-news/page.tsx",
+    "summary": "The /blog-news/ hero cutline opens on the page's own link mechanics: \"Every link below leaves this site.\"",
+    "evidence": "app/blog-news/page.tsx:101, rendered as the hero caption (rendered <main> line 4). Third instance of the same \"Every X below does Y\" construction on the site (the others being /reviews/ line 5 and /the-business-of-agriculture/ \"Every mark below links straight to the company\"). The second half, \"That's the point of press coverage,\" is a real editorial observation; the first half is site mechanics with a positional reference. Predates Phase 6.",
+    "suggestedFix": "Lead with the observation and drop the mechanics: \"Press coverage lives on somebody else's masthead. That is what makes it worth something.\" The (opens in a new tab) affordance already tells a visitor where each link goes.",
+    "area": "parity"
+  },
+  {
+    "severity": "minor",
+    "route": "/boasg/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/boasg/page.tsx",
+    "summary": "A Phase 6 de-duplication fix truncated the /boasg/ bio and lost a verbatim source clause site-wide, and the justification comment it left behind states a premise that is not true.",
+    "evidence": "At HEAD, app/boasg/page.tsx:117-118 carried the full source bio including \"...helping to prepare his listeners (and BoASG members) to navigate their way through the rapidly changing, volatile industry.\" (verbatim from _source/pages/boasg.md:38). The working tree cuts DAMIAN_BIO to one sentence (app/boasg/page.tsx:127-128) plus a pointer to /about/. Grepping the rendered <main> of all 19 routes for \"volatile\" and \"navigate\" returns zero hits, so that clause is gone from the site. The comment at app/boasg/page.tsx:116-119 justifies the cut as \"The full four-sentence bio ran here AND on /about/, word for word\" - but /about/ never carried that clause: /about/'s bio reads \"He gives you the truth about Ag without sugar coating the message, and he has spoken and consulted with the biggest names in Agriculture, in every segment of Ag.\" The clause is the only sentence in the whole 28-page mirror that says what BoASG membership does for a member, and it was dropped on the membership's own page.",
+    "suggestedFix": "Put the clause back into DAMIAN_BIO (it is the BoASG-specific half and is not duplicated anywhere), or, if the sentence is genuinely unwanted, correct the comment and add a row to the deliberately-dropped table in docs/CONTENT_MANIFEST.md so the loss is recorded rather than justified by a false premise.",
+    "area": "parity"
+  },
+  {
+    "severity": "minor",
+    "route": "/collaboration-opportunities/ and /contact-us/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/docs/CONTENT_MANIFEST.md",
+    "summary": "The route map in CONTENT_MANIFEST.md, the parity artifact itself, still promises a contact form on two routes that deliberately do not ship one, contradicting the decision recorded in OPEN-ITEMS.md item 2.",
+    "evidence": "docs/CONTENT_MANIFEST.md:116 says /collaboration-opportunities/ \"Keeps the three collaboration tracks, the credential blurbs, the video row and the contact form (form needs a new backend)\" and line 126 says /contact-us/ \"Gains a real H1, a working mailto:, a tel: link and (new) a contact form.\" Measured: neither route renders a <form> (form/input counts across all 19 routes: forms exist only on /contact-us/, /do-business-better-podcast/, /join-the-conversation/ and /the-business-of-agriculture/, and all four are the Mailchimp newsletter signup). The real decision is written twice - app/collaboration-opportunities/page.tsx:388-399 and docs/OPEN-ITEMS.md section 2 (\"The inquiry form is gone, site-wide... lead capture is mailto-only\"). No content is lost (the source /contact-us/ had no form at all, per _source/pages/contact-us.md:47), but the manifest a future reader will parity-check against says the opposite of what shipped. Predates Phase 6.",
+    "suggestedFix": "Amend both route-map rows to name the mailto-only decision and cross-reference OPEN-ITEMS.md item 2, so the manifest and the open-items log agree.",
+    "area": "parity"
+  },
+  {
+    "severity": "minor",
+    "route": "/meeting-coordinators/ and /reviews/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/reviews/page.tsx",
+    "summary": "The rebuild-written sentence \"Meeting planners book Damian twice.\" still opens the copy on two different routes verbatim, with a third variant on Home.",
+    "evidence": "app/meeting-coordinators/page.tsx:147 (\"Meeting planners book Damian twice. He and his office manager Lori do the research...\") and app/reviews/page.tsx:90 (hero deck: \"Meeting planners book Damian twice. Here's what they said the first time...\"), plus app/page.tsx rendered line 22 (\"That's the take-away meeting planners book him twice for.\"). Confirmed by the 9-gram cross-route scan and by reading the rendered text. This is a rebuild tic, not source: the source phrasing is \"Repeat business is the hallmark of a professional like Damian\" (_source/pages/meeting-coordinators.md:34), on one page only. It is improving (HEAD had it on three routes plus /speaking/ twice; /speaking/'s copies are now comments), but two identical opening sentences survive on two routes a booker will read back to back.",
+    "suggestedFix": "Let /meeting-coordinators/ own the claim, since that is where the source sentence lives. On /reviews/ open on the quotes themselves: \"Ten written notes from Michael Foods, Bayer, Farm Credit West...\" already carries the deck and does not need the setup line.",
+    "area": "parity"
+  },
+  {
+    "severity": "major",
+    "route": "/about/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/about/page.tsx",
+    "summary": "The /about/ hero deck still closes with a reading instruction, telling the visitor what order to read the page in. This is the exact recurring failure the brief names, it was flagged by the previous pass as still live, and it is still live.",
+    "evidence": "Rendered at http://localhost:3100/about/, third line of <main>: \"One industry, since 1994, and nobody to answer to but the client. That's why Damian will hand your growers the outlook and the uncomfortable half of it in the same hour. Read the credentials first if you're the one signing the contract.\" Source: app/about/page.tsx:176. Provenance: `git show HEAD:app/about/page.tsx` line 128 carries a clean, purely factual deck, deck=\"Purdue Ag Econ degree. Second City Chicago. An Indiana farm of his own. Since 1994 Damian has taken all three to 2,400 audiences in 50 states and 7 countries.\" A round-3 fix replaced that with the round-3 finding's own offending sentence (\"Below: the biography, the four credentials behind it, and the books. Read the credentials first if you're the one signing the contract.\"), and the round-4 pass deleted only the first half. The surviving clause is navigational scaffolding: it names an on-page section and prescribes a reading order. It also duplicates work already done by the page: the credential bar is the very next thing after the hero, so a reader does not need to be told to get to it. The route's own meta description is clean (\"Ag economist, comedian, and Indiana farm owner. Damian Mason has told Agriculture the truth about itself since 1994, with 2,400 audiences behind him.\"), which makes the deck the only place the instruction survives.",
+    "suggestedFix": "Delete the third sentence. The two that precede it are already a complete, in-voice deck. If a third beat is wanted, make it about the man or the offer rather than about the page, e.g. a fact the hero does not yet carry (Purdue Ag Econ, Second City, the Indiana farm) rather than an instruction.",
+    "isRegressionFromFix": true,
+    "area": "client-checklist"
+  },
+  {
+    "severity": "major",
+    "route": "/reviews/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/reviews/page.tsx",
+    "summary": "The new closing-band panel on /reviews/ is labelled \"Testimonials on this page\", making it the only proof panel on the site that describes the website instead of describing the world.",
+    "evidence": "Rendered at the foot of /reviews/: eyebrow \"ON THE RECORD\", value \"14\", label \"TESTIMONIALS ON THIS PAGE\", note \"Ten in writing, four on camera.\" Source: app/reviews/page.tsx:228. Provenance: absent from HEAD (`git show HEAD:app/reviews/page.tsx | grep 'on this page'` returns only an unrelated code comment); the panel was added by the round-4 fix that filled the empty navy band. Compare every sibling panel, which I dumped across all 17 non-post routes: Home \"THE BUSINESS OF AGRICULTURE / 70,000+ / VIEWS AND DOWNLOADS A MONTH\"; /speaking/ \"REPEAT BUSINESS / 2,400+ / AUDIENCES SINCE 1994\"; /podcasts/ \"THE REACH / 40,000+ / MONTHLY LISTENERS\"; /meeting-coordinators/ \"CALL THE OFFICE / 888.304.0702 / DIRECT LINE\". Each of those counts something in Damian's career or gives the reader something to act on. \"Testimonials on this page\" counts the page's own contents, so the figure 14 proves only that somebody assembled fourteen items, not that fourteen clients vouched. A meeting planner does not care how many testimonials this page holds. The number and the note are both true and both already earned elsewhere on the route (hero deck \"Fourteen out of 2,400+ audiences since 1994\", section eyebrow \"10 OF 2,400+\", section No. 03 \"FOUR VIDEOS\"), so only the label is at fault.",
+    "suggestedFix": "Relabel so the panel counts people rather than page furniture, e.g. \"CLIENTS ON THE RECORD\" or \"MEETING PLANNERS WHO PUT IT IN WRITING\". The eyebrow, the value 14 and the note \"Ten in writing, four on camera.\" can all stand unchanged.",
+    "isRegressionFromFix": true,
+    "area": "client-checklist"
+  },
+  {
+    "severity": "minor",
+    "route": "/keynote/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/keynote/page.tsx",
+    "summary": "A de-duplication fix left an unlinked \"it's written up on the About page\" pointer in prose, three lines above a real button that goes to exactly that page.",
+    "evidence": "app/keynote/page.tsx:447-449 renders \"He carries a Screen Actors Guild card, he has written a book about food and a book about business, and he hosts three podcasts between dates. If you want the long version, it's written up on the About page.\" The phrase \"the About page\" is plain text with no anchor. app/keynote/page.tsx:454-456, immediately below in the same block, is `<Button href=\"/about/\" variant=\"secondary\" size=\"lg\">Read the full biography</Button>`. Provenance: `git show HEAD:app/keynote/page.tsx | grep 'About page'` returns nothing, so the sentence was added by the fix that moved the full bio onto /about/. The result is prose telling the reader where to go, with no affordance, sitting directly on top of the affordance that does the same job. Where the corresponding /about/ pointer would be needed it is the button that carries it.",
+    "suggestedFix": "Cut the second sentence and let the button carry the wayfinding, or end the paragraph on a fact about Damian instead. If a prose link is genuinely wanted, it should be a link and the button should go.",
+    "isRegressionFromFix": true,
+    "area": "client-checklist"
+  },
+  {
+    "severity": "minor",
+    "route": "/boasg/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/boasg/page.tsx",
+    "summary": "The /boasg/ bio paragraph now ends by inventorying another route's sections, which is the cross-route form of the exact construction the brief names as the recurring failure.",
+    "evidence": "app/boasg/page.tsx:310-312 renders \"{DAMIAN_BIO} The full biography, the credentials, and the books are <Link href=\\\"/about/\\\">on the About page</Link>.\" Rendered on /boasg/ section No. 02 as: \"...On these calls that means the truth about Ag with no sugar coating on it. The full biography, the credentials, and the books are on the About page.\" Provenance: `git show HEAD:app/boasg/page.tsx | grep 'About page'` returns nothing. The `git diff HEAD` shows this arrived with the fix that cut the duplicated 78-word bio; the dedup rationale was correctly written into a code comment above DAMIAN_BIO, but the sentence itself made it into the rendered string. Structurally it is the same as the round-3 defect \"Below: the biography, the four credentials behind it, and the books\", just aimed at another route rather than at this one: it enumerates three of another page's section names. Note that this is the second of two fix-added \"on the About page\" sentences (the other is on /keynote/), so the dedup pass left the same residue twice.",
+    "suggestedFix": "Say what a person would say and let the link carry the rest, e.g. \"There's more of him on the About page.\" Or cut the sentence entirely and add an /about/ action to the section, which is what /keynote/ already does with its button.",
+    "isRegressionFromFix": true,
+    "area": "client-checklist"
+  },
+  {
+    "severity": "blocker",
+    "route": "/about/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/about/page.tsx",
+    "summary": "The /about/ hero deck still ends by telling the visitor what order to read the page in. This is the exact recurring meta-copy class the brief names, it was reported as round-3 finding 2, only its first half was removed, and it is live at 1440.",
+    "evidence": "app/about/page.tsx:176, deck prop, rendered in about-s1.png at x=96 y=743: \"One industry, since 1994, and nobody to answer to but the client. That's why Damian will hand your growers the outlook and the uncomfortable half of it in the same hour. Read the credentials first if you're the one signing the contract.\" The third sentence is navigational scaffolding: it is an instruction about reading order, not a statement about Damian or the offer. The prior fix pass flagged it explicitly as \"NOT MINE, AND STILL LIVE\" and declined to touch it to avoid a collision, so it is about to ship.",
+    "suggestedFix": "Delete the third sentence outright. The deck is already complete and in voice after \"...in the same hour.\" If a third beat is wanted, write one about the man, e.g. the Purdue degree and the farm, not about the page.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/the-business-of-agriculture/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/the-business-of-agriculture/page.tsx",
+    "summary": "The deferred Libsyn player card explains the site's own performance engineering to the visitor, naming a third-party payload size in megabytes.",
+    "evidence": "app/the-business-of-agriculture/page.tsx:239, rendered in the-business-of-agriculture-s2.png inside the bordered card at x=128 y=538: \"Libsyn's player brings about 2.5MB of its own code and artwork with it, so it waits here until you want it.\" A meeting planner or listener does not care what an embed weighs; this is lazy-loading rationale that belongs in a code comment. It is the same class as the two sentences round 2 and round 3 caught, and it survived this round's own meta-copy scan.",
+    "suggestedFix": "Say what the button gives the reader, not why the code defers: \"Every episode, straight from the feed. Downloads are on.\" Move the 2.5MB rationale into a comment above the deferred-embed component. Note the cutline directly under the card already says \"The full archive, streaming straight from the Libsyn feed. Downloads are on.\", so the eyebrow, the card copy and the cutline are currently making the same point three times.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/reviews/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/reviews/page.tsx",
+    "summary": "The /reviews/ hero cutline discloses that the quotes are verbatim and then explains a gap in the source data, both of which are editorial notes about how the page was assembled.",
+    "evidence": "app/reviews/page.tsx:91, rendered in reviews-s1.png at x=852 y=419: \"Every quote below is the sender's own wording. Nine of the ten came with a name attached.\" The second sentence exists only to pre-excuse the one testimonial in the ten (\"We received a ton of great feedback on both you and the event!\") that has no attribution, which I confirmed by reading all ten in reviews-s1/s2. That is de-duplication and sourcing rationale, addressed to a builder, sitting in the one slot on this route where every other hero puts a photograph cutline.",
+    "suggestedFix": "Cut the second sentence. The first can stay if it is rewritten as an authenticity claim in Damian's voice rather than a sourcing note, e.g. \"Nothing here is edited. These are the notes as they arrived.\" Better still, put a photograph in this hero as every other route does and let the cutline describe it.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/keynote/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/keynote/page.tsx",
+    "summary": "The keynote Reviews section says \"There's ten more on the reviews page\" directly above a button reading \"Read the ten written reviews\", and the claim became false when the round-3 quote-curation fix swapped a quote into this row that already appears on /reviews/.",
+    "evidence": "Rendered in keynote-s4.png: intro at y=818 \"Three from meeting planners who were in the room while it happened. There's ten more on the reviews page, plus four on video.\" and the CTA at y=1289 \"READ THE TEN WRITTEN REVIEWS\". content/testimonials.ts:276 now sets '/keynote/' to ['titan-pro-team','brooks-breymeyer','tim-luthy']; testimonials.ts:257 shows brooks-breymeyer is one of the ten on '/reviews/'. So only eight are additional, and \"three here plus ten more\" implies thirteen written notes when there are ten. Before the fix the row was wendy-j-ruud / titan-pro-team / tim-luthy, none of which is on /reviews/, and the sentence was correct. The in-file comment at app/keynote/page.tsx:391-393 still asserts the three \"appear nowhere on /reviews/\", which is now wrong.",
+    "suggestedFix": "Either restore a non-overlapping quote of similar length to brooks-breymeyer's 160 characters, or change the sentence to \"Ten are written up in full on the reviews page, with four more on video.\" Update the stale comment at page.tsx:391-393 either way.",
+    "isRegressionFromFix": true,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/reviews/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/reviews/page.tsx",
+    "summary": "The four video testimonials render as 288px-wide portrait stages left-aligned inside 600px figures, leaving 312 x 512px of dead ground beside each of the four. The round-3 pillarbox fix moved the empty ground from inside the poster to inside the cell and made it larger.",
+    "evidence": "Measured at 1440: figure 600x512, stage and img both 288x512 with object-fit cover, grid cell 600x576, columns at x=96 and x=744. Each video therefore occupies 96-384 and 744-1032 with 312px of empty warm ground to its right, four times over. Visible in reviews-s3.png and reviews-s4.png: full-width headings sit above narrow strips of video and the row stops reading as a two-up. I confirmed the 9:16 crop itself is correct by fetching i.ytimg.com/vi/t3iCvSKEyx0/hqdefault.jpg, which is a genuine vertical frame padded by YouTube, so the poster handling is right and only the containing layout is wrong.",
+    "suggestedFix": "Size the grid to the stage rather than the stage to a 16:9 grid: run the four 9:16 posters four-across in ~288px columns (4 x 288 + 3 x 24 = 1224, which fits the 1248 container), or centre the stage in its cell and reduce the figure to the stage width so the caption and rule track the frame. Do not stretch the poster.",
+    "isRegressionFromFix": true,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/acres-tv/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/acres-tv/page.tsx",
+    "summary": "The shared \"If it's Agriculture, it Needs Damian\" media band renders with a right-hand stat panel on /xtreme-ag/ and with nothing on /acres-tv/, leaving roughly 630 x 400px of empty navy on the terminal band of that route.",
+    "evidence": "Both routes render the same band from content/media-band.ts. On /xtreme-ag/ (xtreme-ag-s3.png) the band is 486px tall and carries a REACH / 40,000+ / LISTENERS A MONTH panel at x=925 w=419 h=220. On /acres-tv/ (acres-tv-s3.png) the same band is 516px tall with no panel: the eyebrow, H2 and orange CTA all stop at x=529 and the entire right half of the band is empty. Same wording, same CTA, two different treatments one click apart. This is the same void the round-3 audit named on /reviews/ and this pass closed there by adding a panel.",
+    "suggestedFix": "Give /acres-tv/ the same panel treatment its twin already has. The route's own honest figure is the runtime, e.g. eyebrow \"Every episode\", value \"41 to 54\", label \"Minutes per show\", note \"The whole conversation, not a clip.\" Nothing invented; both numbers are already in the hero deck and No. 02.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/do-business-better-podcast/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/do-business-better-podcast/page.tsx",
+    "summary": "The newsletter section is centred at x=320 rather than sitting on the site's 96px left spine, and it is the only off-axis section head left at 1440.",
+    "evidence": "Measured at 1440: h2 \"Subscribe to get notified of new releases.\" at x=320, form at x=320 w=800, inside a 96-1344 container, i.e. mathematically centred. Every other section head on all 19 routes reads x=96. The identical NewsletterForm section on the sibling route /the-business-of-agriculture/ measures h2 x=96, form x=96 w=896 (the-business-of-agriculture-s4.png). Visible in do-business-better-podcast-s3.png as a 224px indent with nothing in the left two columns. The round-3 fix moved five sections off centred narrow containers on four routes and touched this route in the same pass without correcting this one.",
+    "suggestedFix": "Give this section the same Container plus left-rail arrangement /the-business-of-agriculture/ uses so the head lands at 96 and the form fills the right columns.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/collaboration-opportunities/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/content/testimonials.ts",
+    "summary": "The No. 05 three-up quote row was not curated on length the way /speaking/ and /keynote/ were, so a 45-character quote sits beside a 174-character one and leaves a 176px hole in the third column.",
+    "evidence": "content/testimonials.ts:277 sets '/collaboration-opportunities/' to ['wendy-j-ruud','titan-pro-team','tim-luthy']. Wendy J. Ruud is \"I would highly recommend working with Damian!\", 45 characters, against titan-pro-team at 174 and tim-luthy at 142. Rendered in collaboration-opportunities-s4.png: column 1 bottoms out at y=1289, column 3 at y=1113. The length comment the fix added at testimonials.ts:261-275 lists six quotes and names 45-against-174 as the exact defect it was closing on /keynote/, but does not list wendy-j-ruud and this row was left as-is.",
+    "suggestedFix": "Swap wendy-j-ruud for a quote within about a line of the other two, or move it to the lead position where a short quote reads as a pull rather than a shortfall. Add its character count to the comment so the next edit does not repeat this.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/the-business-of-agriculture/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/the-business-of-agriculture/page.tsx",
+    "summary": "The Fig. 01 cutline prints the podcast's internal Libsyn show ID, an infrastructure identifier with no meaning to a listener.",
+    "evidence": "app/the-business-of-agriculture/page.tsx:172, rendered as \"Fig. 01 Show art. The feed is Libsyn 504653, and a new episode lands every Monday.\" A cutline should describe the artwork or the show; a hosting-platform record number describes the plumbing. Same family as the 2.5MB sentence 67 lines below it.",
+    "suggestedFix": "Replace the middle clause with something about the show or the art: \"Fig. 01 Show art. A new episode lands every Monday, and has since the feed opened.\"",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/reviews/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/reviews/page.tsx",
+    "summary": "The closing panel added by this round's fix restates the hero deck's own breakdown almost word for word, which is the de-duplication rule the same fix pass was enforcing everywhere else on the site.",
+    "evidence": "Hero deck (reviews-s1.png): \"...ten written notes from Michael Foods, Bayer, Farm Credit West, AgroLiquid, BW Fusion, and five more, plus four on camera. Fourteen out of 2,400+ audiences since 1994.\" Closing panel (reviews-s4.png): \"ON THE RECORD / 14 / TESTIMONIALS ON THIS PAGE / Ten in writing, four on camera.\" Both the count and the ten-plus-four split are spent twice on one route, roughly 6,000px apart. The fix deliberately withheld 2,400+ from this panel for exactly this reason and then repeated the other two facts.",
+    "suggestedFix": "Keep the panel, change what it counts to something the deck does not already carry, e.g. eyebrow \"On the record\", value \"9\", label \"Companies named\", or drop the note line and let the 14 stand alone.",
+    "isRegressionFromFix": true,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/collaboration-opportunities/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/collaboration-opportunities/page.tsx",
+    "summary": "The No. 03 video intro indexes the row by position (\"the first two... the third\") and names the two shows that the cutlines added by this round's fix now name directly underneath each video.",
+    "evidence": "Rendered in collaboration-opportunities-s3.png at y=583: \"Two full conversations and one cut from a live keynote. The first two come from The Business of Agriculture and Do Business Better. The third is the ag innovation segment, and it's the version you'd get on your stage.\" The cutlines directly below now read \"The Business of Agriculture, with Luke Roush...\" and \"Do Business Better, with Brad McDonald...\", both written by the round-3 fix. The middle sentence is therefore both redundant and a positional map of the layout rather than a statement about the work.",
+    "suggestedFix": "Cut the middle sentence. \"Two full conversations and one cut from a live keynote. The keynote cut is the version you'd get on your stage.\" says everything the cutlines do not.",
+    "isRegressionFromFix": true,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/boasg/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/boasg/page.tsx",
+    "summary": "The Damian bio on /boasg/ closes with a three-item inventory of what another page contains, which is the same table-of-contents construction round 3 flagged in the /about/ hero.",
+    "evidence": "Rendered at line 763 of the text dump: \"Damian Mason is a leading voice in the Agricultural industry... On these calls that means the truth about Ag with no sugar coating on it. The full biography, the credentials, and the books are on the About page.\" \"The biography, the credentials, and the books\" is verbatim the structure of the round-3 defect (\"Below: the biography, the four credentials behind it, and the books\"), relocated and pointed at another route. Compare /keynote/'s equivalent, \"If you want the long version, it's written up on the About page\", which links without enumerating and reads as ordinary wayfinding.",
+    "suggestedFix": "Match the /keynote/ phrasing: \"There's a longer version of all that on the About page.\" The link already tells the reader where to go; listing the destination's sections does not help them.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/blog/eggflation-gives-producers-record-profits/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/blog/[slug]/page.module.css",
+    "summary": "Both blog posts run three different left axes down one page: the article at x=400, the related-posts block at x=320, and the closing band at x=96, with the 400-to-320 step visible between adjacent blocks.",
+    "evidence": "Measured at 1440 on both posts: breadcrumb, H1 and \"Read it at the source\" / \"Watch the segment\" all start at x=400 (centred 640px article measure); \"More from the blog\" and its cards start at x=320 (centred 800px block); the closing band H2 and CTAs start at x=96. Visible in blog-eggflation-s1.png where \"Read it at the source\" at x=400 is followed by \"More from the blog\" at x=320, an 80px step between two stacked blocks. At 1030 and 1200 the article track is 657 and 646 so the step persists.",
+    "suggestedFix": "Set the related-posts block to the same measure and axis as the article above it so the page reads as one column stepping once into the full-width band, rather than twice.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/about/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/about/page.tsx",
+    "summary": "The /about/ hero deck still ends with a reading instruction that tells the visitor what order to read the page in. This is the exact navigational-scaffolding class the brief names as the recurring failure, and it is live in the rendered hero on the site's biography route.",
+    "evidence": "app/about/page.tsx:176 renders deck=\"One industry, since 1994, and nobody to answer to but the client. That's why Damian will hand your growers the outlook and the uncomfortable half of it in the same hour. Read the credentials first if you're the one signing the contract.\" Confirmed in rendered <main> at 390 (screenshot round-4-mobile/02-about-390.png, first tile) and by grep over the rendered text dump of all 19 routes (hit at line 196). The round-3 fix removed only the first half of the round-3 sentence (\"Below: the biography, the four credentials behind it, and the books.\"); the instruction clause survived, so a half-removed sentence is shipping as if it were a completed fix. The meta description is clean, so this is the only surviving instance on the route.",
+    "suggestedFix": "Delete the sentence \"Read the credentials first if you're the one signing the contract.\" The deck's first two sentences already say something about the man and need no third. If a third beat is wanted, make it a claim about Damian, not an instruction about the page.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "major",
+    "route": "/reviews/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/reviews/page.tsx",
+    "summary": "The /reviews/ hero cutline is a sourcing note: it tells the visitor which copy is verbatim and accounts for a missing byline. That is de-duplication and provenance rationale rendered as page copy.",
+    "evidence": "app/reviews/page.tsx:91 renders cutline=\"Every quote below is the sender's own wording. Nine of the ten came with a name attached.\" The code comment above it (lines 78-84) states the intent outright: \"It is where the missing byline on quote two gets accounted for, in two true sentences, instead of being papered over with an attribution nobody sent.\" That reasoning belongs in the comment, which is where it already is; the rendered sentence is the same family as round 3's \"What follows is the jacket copy, word for word\" on /about/. Read at 390 in round-4-mobile/05-reviews-390.png, immediately under the H1 and the CHECK YOUR DATE button, so it is the third thing on the route. It also carries a page-position reference (\"below\").",
+    "suggestedFix": "Cut the cutline entirely, or replace it with a fact about the rooms rather than about the copy, e.g. what kind of organisations sent them. If the missing byline on quote two needs handling, handle it at that card (an eyebrow of the organisation name, or nothing) rather than in a sitewide-visible note about how the quotes were gathered.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "major",
+    "route": "/the-business-of-agriculture/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/the-business-of-agriculture/page.tsx",
+    "summary": "The Libsyn player facade explains the site's own loading strategy and the third-party payload weight to the visitor. This is engineering rationale in a rendered string.",
+    "evidence": "app/the-business-of-agriculture/page.tsx:239 renders \"Libsyn's player brings about 2.5MB of its own code and artwork with it, so it waits here until you want it.\" inside the EmbedFacade, under the eyebrow \"The full archive\" and above a LOAD THE PLAYER button. Read at 390 in round-4-mobile/10-the-business-of-agriculture-390.png (second tile) and at 768. A listener does not care how many megabytes a third-party embed weighs; the fact that the archive loads on demand is already conveyed by the button. Same class as findings 1 and 2, and the only one of the three that is about the build rather than about the copy.",
+    "suggestedFix": "Replace the note with what the archive actually is, e.g. \"Every episode since 2016, straight from the feed.\" and let the button carry the interaction. Move the payload rationale into a code comment beside the EmbedFacade call, where the rest of that decision is already recorded.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "major",
+    "route": "/about/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/about/page.module.css",
+    "summary": "The two paired Food Fear jackets collapse to postage stamps at 768 and 390, rendering at 44% of the single Do Business Better jacket beside them. The round-3 fix that collapsed the shelf to two cards names this exact failure in its own code comment and reports it as MEASURED AFTER at 768, but it is still what renders.",
+    "evidence": "MEASURED, image bounding boxes on /about/: at 768 food-fear-book-cover 83x83 and food-fear-audiobook-cover 83x83 against do-business-better-book-cover 190x190 (2.29x). At 390: 146x146 and 146x146 against 315x240. At 1024: 198x198 vs 419x240. Only at 1440 do they reach parity (271x240 vs 566x240). Cause: app/about/page.module.css:127-141 sets .bookCover img { inline-size: 100%; block-size: auto; max-block-size: var(--size-jacket-h) }. In the two-up slot each jacket is a 1fr column, so at 768 the cover slot is 224px wide, minus 32px padding and a 24px gap leaves 84px per jacket. Width binds first and the 240px height cap never engages, so the comment's stated principle (\"Height, not width, is what makes two jackets peers here\") only holds at 1440. With object-fit: contain on a square-ish box the painted jacket art is roughly 44x62 at 768: the words FOOD FEAR are not readable and the audiobook edition the client supplied is not identifiable. Seen with my eyes in the 768 tile (round-4-mobile/02-about-768.png, fourth tile), where the pair read as two thumbnails beside a jacket 2.3x their size.",
+    "suggestedFix": "Drive the pair from the block axis rather than the inline axis: give the two-up slot a fixed row height (block-size: var(--size-jacket-h)) with each img at block-size: 100%, inline-size: auto, object-fit: contain, and let the column widths follow the art. Then re-measure at 390, 768, 1024 and 1440 and require the paired jacket height to be within about 10% of the single jacket's on the same row at every width, not just at 1440.",
+    "isRegressionFromFix": true,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "major",
+    "route": "/ (worst), also /speaking/, /keynote/, /acres-tv/, /do-business-better-podcast/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/src/styles/sections-core.css",
+    "summary": "The .dm-section-close convention introduced in round 3 is not one convention in the rendered output. The gap between a section's last line of content and its closing rule ranges from 32px to 146px across the eight instances, and on the homepage it produces a 120 to 146px band of empty space that reads as a hole at both 390 and 768.",
+    "evidence": "MEASURED, distance from the deepest painted descendant of the preceding block to the top of .dm-section-close, all eight instances, at 390 and 768:\n  /            128, 120, 128 (390) and 128, 120, 146 (768)\n  /speaking/    40\n  /keynote/     32, 32\n  /acres-tv/    64\n  /do-business-better-podcast/ 48\nThe shared rule at src/styles/sections-core.css:610 sets margin-block-start: var(--space-9) = 64px. Every route then overrides it: app/keynote/page.module.css:35 .actions { margin-block-start: var(--space-7) }, app/speaking/page.module.css:104 .actions { var(--space-8) }, app/do-business-better-podcast/page.module.css:91 .listFoot { var(--space-8) }. Only /acres-tv/ (page.module.css:88) matches. On Home the element carries col-span-6 md:col-span-12 inside a dm-grid12, so the grid's own row-gap stacks on top of the 64px margin and doubles it. Seen with my eyes as a hole in round-4-mobile/01-home-390.png tiles 6 and 8 and round-4-mobile/01-home-768.png tiles 5 and 7: on Home No. 07 the pull quote and paragraph end and roughly 150px of nothing follows before the rule.\nSame fix, second symptom: on /do-business-better-podcast/ the element also carries styles.stack (page.module.css:16-21, align-items: flex-start), which defeats the convention's own 390 branch (align-items: stretch). MEASURED: that CTA renders 270px wide at 390 where the identically-classed CTAs on Home, /speaking/, /keynote/ and /acres-tv/ all render 349px full-width. At 768 its rule spans 459px from x=278 instead of the container's 704 from x=32.",
+    "suggestedFix": "Make the shared rule the only source of the spacing: delete the margin-block-start declarations from .actions in app/keynote/page.module.css and app/speaking/page.module.css and from .listFoot in app/do-business-better-podcast/page.module.css, drop align-items: flex-start from the .stack applied alongside .dm-section-close there, and on Home either take the element out of the grid flow or zero its margin so the grid row-gap alone provides the separation. Then re-measure the content-to-rule gap on all eight and require a single number at both 390 and 768.",
+    "isRegressionFromFix": true,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/blog-news/ and /blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/blog-news/page.tsx",
+    "summary": "Two routes explain the site's lazy-loading of YouTube to the visitor in rendered prose.",
+    "evidence": "app/blog-news/page.tsx:149 ends the No. 02 intro with \"Nothing loads from YouTube until you press play.\" and app/blog/[slug]/page.tsx:79 ends the climate post's video intro with \"Here's the segment, in full. Nothing loads until you press play.\" Both read at 390 (round-4-mobile/13-blog-news-390.png third tile, 17-blog-climate-390.png first tile). The play facade already communicates that pressing play is what starts the video; what the visitor is being told instead is how the embed was implemented. Same class as the Libsyn 2.5MB note, weaker only because it is shorter.",
+    "suggestedFix": "Cut both sentences. Neither paragraph loses information: on /blog-news/ the preceding clause already sets up the clips, and on the post the phrase \"Here's the segment, in full\" is the whole message.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/the-business-of-agriculture/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/the-business-of-agriculture/page.tsx",
+    "summary": "The Fig. 01 cutline surfaces the podcast's Libsyn numeric feed ID, a build identifier no listener uses, in a caption that is nominally describing the show art.",
+    "evidence": "app/the-business-of-agriculture/page.tsx:172 renders \"Show art. The feed is Libsyn 504653, and a new episode lands every Monday.\" Read at 390 under the hero cover (round-4-mobile/10-the-business-of-agriculture-390.png, first tile). Neither the feed number nor the hosting provider is a fact about the artwork the cutline is attached to, and 504653 is meaningful only to whoever wired up the RSS URL. The Monday cadence is already stated by the hero eyebrow \"NEW EPISODES EVERY MONDAY\" directly above the same image.",
+    "suggestedFix": "Reduce to a fact about the mark or the show, e.g. \"Show art. The green half is the farm, the black half is the studio.\" Keep the feed ID in the constant next to LIBSYN_PLAYER where it is already recorded.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/reviews/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/reviews/page.tsx",
+    "summary": "The closing CTA panel added by a round-3 fix counts the webpage's own contents rather than stating a fact about the business.",
+    "evidence": "app/reviews/page.tsx:228 renders label: 'Testimonials on this page' under the figure 14, with note \"Ten in writing, four on camera.\" Read at 390 in round-4-mobile/05-reviews-390.png (seventh tile). Every other closing panel on the site states a business fact in the same slot (/speaking/ \"AUDIENCES SINCE 1994\", /join-the-conversation/ \"SUBSCRIBERS\", /blog-news/ \"LISTENERS PER MONTH\"); this one describes the document. It is the same instinct that produced the heading the fix itself removed (\"Fourteen rooms on the record\"), relocated into the panel rather than dropped.",
+    "suggestedFix": "Change the label to what the 14 are evidence of rather than where they sit, e.g. \"Meeting planners on the record\". The note \"Ten in writing, four on camera.\" already accounts for the arithmetic and can stay.",
+    "isRegressionFromFix": true,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/boasg/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/boasg/page.tsx",
+    "summary": "/boasg/ renders a three-item inventory of what another route contains, the same construction the round-3 fix removed from the /about/ hero deck.",
+    "evidence": "app/boasg/page.tsx:311 renders \"{DAMIAN_BIO} The full biography, the credentials, and the books are on the About page.\" Read at 390 in round-4-mobile/08-boasg-390.png (third tile). Compare the round-3 defect the brief cites: \"Below: the biography, the four credentials behind it, and the books.\" Identical three-item list, pointed at /about/ instead of at the current page. A visitor following a link does not need a table of contents for the destination.",
+    "suggestedFix": "Reduce to the link and drop the inventory: \"There is more about him on the About page.\" or simply make \"About page\" the link inside the preceding sentence.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/meeting-coordinators/ and /acres-tv/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/meeting-coordinators/page.tsx",
+    "summary": "The media band's background photograph is effectively invisible at 390 while a Fig. cutline is attached to it, so a caption is describing a picture the reader cannot see.",
+    "evidence": "MEASURED: element screenshot of the band at 390 on /meeting-coordinators/, greyscale luminance over the top 140px strip (no type in it) reads mean 10.6 of 255 with min 0. The microphones-background.jpg image element is 390x727 behind the section while the figure itself is 71px tall (the caption alone). app/meeting-coordinators/page.tsx:361 attaches cutlineFolio \"FIG. 04\" with cutline \"He trained in improv and he carries a Screen Actors Guild card. A live microphone isn't the thing to worry about.\" The microphone is not discernible in the rendered band. /acres-tv/ uses the same source image the same way (app/acres-tv/page.tsx:147) with \"Fig. 01 Damian and his guest talk for 41 to 54 minutes, and Acres TV carries all of it.\", a cutline that does not describe the image at all.",
+    "suggestedFix": "Either lift the band's image so the microphones are actually readable at 390, or drop the FIG. folio and cutline from the band variant and let the deck carry the copy. A numbered figure caption is a promise that there is a figure to look at.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/collaboration-opportunities/ and /keynote/",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/content/testimonials.ts",
+    "summary": "Two routes one nav click apart still show two of the same three testimonials in the same leading position, out of a pool of seventeen.",
+    "evidence": "content/testimonials.ts:274-275 sets '/keynote/': ['titan-pro-team', 'brooks-breymeyer', 'tim-luthy'] and '/collaboration-opportunities/': ['wendy-j-ruud', 'titan-pro-team', 'tim-luthy']. titan-pro-team and tim-luthy appear on both, with titan-pro-team leading /keynote/ and sitting first-after-Wendy on /collab/. Read at 390 in round-4-mobile/04-keynote-390.png and 07-collaboration-opportunities-390.png; on mobile the two rows are a single stacked column, so a visitor moving between the two routes reads the same two quotes twice. The round-3 curation improved this (it was 3 of 3 identical before) but stopped short of making the two rows disjoint, which the 17-quote pool allows.",
+    "suggestedFix": "Swap one of the two shared ids on /collaboration-opportunities/ for an unused quote of comparable length so the two routes share at most one. The length comment recorded in content/testimonials.ts gives the candidates: melissa-bockman 197, william-noland 190 and dusty-rich 180 are already spoken for by /speaking/, so pick from the remainder of the seventeen at 140-180 characters.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  }
+]

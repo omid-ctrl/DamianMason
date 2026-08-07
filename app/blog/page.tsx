@@ -56,7 +56,12 @@ const blogSchema: JsonLdDocument = {
     description: post.excerpt,
     datePublished: post.date,
     url: canonicalUrl(`/blog/${post.slug}/`),
-    author: { '@id': schemaIds.person },
+    // Same rule as the post template: a 'posted' entry is coverage of Damian
+    // written by somebody else, so the author of the page is the site.
+    author:
+      post.authorRole === 'posted'
+        ? { '@id': schemaIds.organization }
+        : { '@id': schemaIds.person },
   })),
 };
 
@@ -67,7 +72,10 @@ export default function BlogIndexPage() {
 
       <Hero
         id="blog"
-        eyebrow="Filed from the Indiana farm office"
+        /* "Filed from the Indiana farm office" is /about/'s running head, and
+           it was flying on three routes at once. A blog index gets a dateline
+           about the writing, not about the desk. */
+        eyebrow="Two interviews, written up"
         title="Blog"
         deck="Two posts. Both are about what food costs. When Straight Arrow News or Cheddar News needs an ag economist on the record about egg prices or a global food shortage, they call Damian. You’ll find both here, with the source attached."
         cutline="Both posts are Damian in somebody else’s newsroom: Straight Arrow News in December 2022, Cheddar News in April 2023."
@@ -122,7 +130,10 @@ export default function BlogIndexPage() {
         id="blog-booking"
         eyebrow="Booking"
         heading="Two posts here. Over 2,400 audiences out there."
-        copy="Since 1994 Damian has taken a Purdue Ag Econ degree and a Second City stage to 2,400 audiences in all 50 states and 7 foreign countries. Growers, lenders, agronomists: if you want that hour, the office keeps the calendar. It’s one email."
+        /* The "growers, lenders, agronomists" triplet was on seven routes. This
+           route's own audience is the one that reads the coverage, so it names
+           them instead. */
+        copy="The same analysis Straight Arrow News and Cheddar News put on air runs 60 to 90 minutes on a stage. If your association or your dealer meeting wants that hour, the office keeps the calendar. It’s one email."
         actions={[
           { label: 'Book Damian', href: '/contact-us/' },
           { label: 'See the keynote', href: '/keynote/', variant: 'secondary' },

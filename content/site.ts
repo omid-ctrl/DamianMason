@@ -42,8 +42,16 @@ export type NavItem = {
 };
 
 /**
- * Same information architecture as the live site. The two dropdown parents that
- * currently carry `href=""` (Speaking, Podcasts) now resolve to real hub pages.
+ * The live site's information architecture, with two deliberate changes.
+ *
+ * 1. The three dropdown parents that carry `href=""` today (Speaking,
+ *    Podcasts, Media) resolve to real hub pages.
+ * 2. Blog moves from a top-level item into the Media dropdown. On the old nav
+ *    it sat at position 5, immediately beside the Media parent whose only
+ *    real child was `/blog-news/`, so the two blog-ish destinations were
+ *    presented as unrelated peers. It is the one route on the site that costs
+ *    a reader one more interaction than it used to, and the trade is recorded
+ *    in docs/CONTENT_MANIFEST.md rather than made quietly.
  */
 export const nav: NavItem[] = [
   {

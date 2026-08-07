@@ -11,6 +11,7 @@ import { buildMetadata, SITE_LANGUAGE, absoluteUrl, canonicalUrl } from '@/lib/s
 import { buildBreadcrumbListSchema, schemaIds, type JsonLdDocument } from '@/lib/schema';
 
 import styles from './page.module.css';
+import { imageAlt } from '@/content/image-alt';
 
 /* ============================================================================
    /join-the-conversation/
@@ -31,6 +32,14 @@ import styles from './page.module.css';
    than 40,000 subscribers", which describes an audience rather than a schedule
    and conflicts with the site's own "more than 40,000 listeners per month".
    Inventing a cadence here would be a promise the office has to keep.
+
+   ONE 40,000 PER ROUTE. Both figures are in the harvest: 40,000 subscribers
+   (join-mailing-list.md:23) and 40,000 listeners per month
+   (collaboration-opportunities.md:38). This route's metadata and the site-wide
+   footer both say subscribers, so the listener figure is off this page
+   entirely and the stat panel is scoped to the list. Whether the two 40,000s
+   are the same 40,000 people is a question only the client can answer and it
+   is logged in docs/OPEN-ITEMS.md.
    ============================================================================ */
 
 const PATH = '/join-the-conversation/';
@@ -38,7 +47,7 @@ const MAILTO = `mailto:${contact.email}`;
 
 const HERO_IMAGE = {
   src: '/img/photos/portrait-light-jacket.jpg',
-  alt: 'Damian Mason in a grey plaid sport coat and open collar shirt, holding his reading glasses, outside a brick building.',
+  alt: imageAlt['/img/photos/portrait-light-jacket.jpg'],
   width: 1334,
   height: 2000,
 };
@@ -65,8 +74,12 @@ const pageSchema: JsonLdDocument = {
   '@type': 'WebPage',
   '@id': `${canonicalUrl(PATH)}#webpage`,
   name: 'Join the Conversation',
+  /* U+2019. This string is crawler-reachable in the served HTML, and the
+     <meta name="description"> for the same route already uses the curly form,
+     so a straight apostrophe here put two descriptions of one page in two
+     typographic styles. */
   description:
-    "Subscribe to Damian Mason's mailing list for new podcast episodes and his commentary on trends in the business of food, fuel, and fiber.",
+    'Subscribe to Damian Mason’s mailing list for new podcast episodes and his commentary on trends in the business of food, fuel, and fiber.',
   url: canonicalUrl(PATH),
   inLanguage: SITE_LANGUAGE,
   isPartOf: { '@id': schemaIds.website },
@@ -99,7 +112,7 @@ export default function JoinTheConversationPage() {
         id="join"
         eyebrow="The mailing list"
         title="Join the Conversation"
-        deck="New podcast episodes, plus Damian's read on the trends behind them: the business of food, fuel, and fiber. Free to join. If it stops earning its place in your inbox, there's an unsubscribe link at the bottom of every email."
+        deck="New podcast episodes, plus Damian’s read on the trends behind them: the business of food, fuel, and fiber. Free to join, and more than 40,000 people already have."
         actions={[
           {
             label: 'Add yourself to the list',
@@ -108,7 +121,8 @@ export default function JoinTheConversationPage() {
           },
         ] as const}
         image={HERO_IMAGE}
-        cutline="Purdue Ag Econ degree, Second City Chicago, and a farm in Indiana. All three show up in the writing."
+        cutlineFolio="Fig. 01"
+        cutline="One list, one address. There’s an unsubscribe link at the bottom of every email, and it works."
       />
 
       {/* --- No. 01, what you get, and the form ----------------------------- */}
@@ -153,7 +167,7 @@ export default function JoinTheConversationPage() {
                 idPrefix="join-signup"
                 headingLevel={3}
                 title="Add yourself to the list."
-                blurb="Email address is the only field the list actually needs. The names just mean Damian knows who he's talking to."
+                blurb="Email address is the only field the list actually needs. The names just mean Damian knows who he’s talking to."
               />
             </Card>
           </div>
@@ -162,24 +176,42 @@ export default function JoinTheConversationPage() {
 
       {/* --- No. 02, the refusal -------------------------------------------- */}
       <Section aria-labelledby="not-title">
-        <Container width="narrow">
+        {/* Standard container, not narrow. A narrow container centres itself,
+            which put this head on a 320px axis while every other head on the
+            route sat at 96. The reading measure belongs to the content column,
+            not to the section. */}
+        <Container>
+          <div className="dm-grid12">
+            <div className="col-span-6 md:col-span-4">
           <Eyebrow>What you won&rsquo;t get</Eyebrow>
           <Heading level={2} folio="No. 02" id="not-title" className={styles.sectionHeading}>
             No weather forecast, no commodity prices
           </Heading>
+            </div>
+            <div className="col-span-6 md:col-span-8">
           <Prose>
+            {/* This paragraph used to be the source's weather-forecast refusal
+                re-typed with the exclamation point softened and a tail bolted
+                on: 39 words that ran word for word against the No. 05 band on
+                Home. That paragraph is verbatim source copy at
+                `_source/pages/home.md:206` and Home is the only route with a
+                claim to it, so Home keeps it. The refusal itself is this
+                section's whole point and it is already made by the heading
+                above, so what the prose owes the reader is the other half of
+                the trade: what the list actually sends. */}
             <p>
-              You don&rsquo;t need anyone telling you the weather forecast or the commodity prices,
-              technology does that for you. What you need is a connection with real-world
-              Agriculture people and topics that inform, educate, and help you grow. The list
-              carries exactly that.
+              Your phone already has the forecast and the close. What it doesn&rsquo;t have is
+              somebody telling you which of this week&rsquo;s Ag stories is going to cost you
+              money, and that&rsquo;s the only reason worth handing over an email address for.
             </p>
             <p>
-              More than 40,000 people listen to the podcast every month. If you&rsquo;d rather
-              skip the inbox and just listen, start at the{' '}
-              <Link href="/podcasts/">podcast hub</Link>.
+              If you&rsquo;d rather skip the inbox and just listen, start at the{' '}
+              <Link href="/podcasts/">podcast hub</Link>. The list is how a lot of people hear
+              that an episode posted.
             </p>
           </Prose>
+            </div>
+          </div>
         </Container>
       </Section>
 
@@ -188,7 +220,9 @@ export default function JoinTheConversationPage() {
         eyebrow="Bookings"
         folio="No. 03"
         heading="Need a speaker, not an inbox?"
-        copy="Growers, ag lenders, association directors: if you have a date and a room, send both to the office. You'll have an answer inside one business day, from Damian or from his office manager Lori."
+        /* "from Damian or from his office manager Lori" is /contact-us/'s own
+           promise about who replies, and it ran here word for word. */
+        copy="Growers, ag lenders, association directors: if you have a date and a room, send both to the office. A mailing list won’t book anybody, and one email will."
         actions={[
           {
             label: 'Email the office',
@@ -202,11 +236,15 @@ export default function JoinTheConversationPage() {
           },
         ] as const}
         panel={{
-          eyebrow: 'Podcast reach',
+          eyebrow: 'The list',
           value: '40,000',
           plus: true,
-          label: 'listeners per month',
-          note: 'The list is how a lot of them hear an episode posted.',
+          label: 'subscribers',
+          /* Not the occupation triplet, which /the-business-of-agriculture/
+             owns, and not the same list this route's own CTA copy uses two
+             lines above. A subscriber list is defined by what it does, not by
+             a job title. */
+          note: 'People who would rather read it than be sold it.',
         }}
       />
     </>

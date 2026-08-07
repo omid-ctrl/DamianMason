@@ -9,10 +9,12 @@ import { JsonLd } from '@/components/seo';
 import { buildMetadata } from '@/lib/seo';
 import { buildBreadcrumbListSchema } from '@/lib/schema';
 import { brandAssets, brandAssetsExtra } from '@/content/brand-assets';
+import { mediaBand } from '@/content/media-band';
 import { podcasts } from '@/content/site';
 import type { PressItem } from '@/content/press';
 
 import styles from './page.module.css';
+import { imageAlt } from '@/content/image-alt';
 
 /**
  * /xtreme-ag/
@@ -116,7 +118,7 @@ export default function XtremeAgPage() {
           height: 1100,
         }}
         cutlineFolio="Fig. 01"
-        cutline="On stage for XtremeAg. Purdue Ag Econ degree, Second City Chicago, and an Indiana farm of his own. All three are working here."
+        cutline="On stage for XtremeAg. He also produces their video and works their field days and trade shows."
       />
 
       {/* SECTION 2. Both source paragraphs, verbatim. On the old page they were
@@ -135,6 +137,10 @@ export default function XtremeAgPage() {
               </div>
 
               <Prose>
+                <p>
+                  These are working farmers, not analysts, and here’s how they describe
+                  themselves.
+                </p>
                 <p>
                   XtremeAg is a community of highly successful farmers from across the United
                   States coming together to offer an Xtreme look into their personal farming
@@ -155,14 +161,14 @@ export default function XtremeAgPage() {
 
             <Card
               variant="bright"
-              className={`${styles.markPlate} col-span-6 md:col-span-5`}
+              className={`${styles.markPlate} ${styles.markPlateOnLight} col-span-6 md:col-span-5`}
             >
               <Image
                 className={styles.mark}
                 src={brandAssetsExtra.xtremeAgTransparent}
-                alt="XtremeAg"
-                width={242}
-                height={116}
+                alt={imageAlt['/img/brand/xtreme-ag-transparent.png']}
+                width={256}
+                height={122}
                 loading="lazy"
                 /* .mark caps the render at --logo-box-h, 72px, so the mark is
                    never wider than about 10rem. Without this the browser has
@@ -179,7 +185,14 @@ export default function XtremeAgPage() {
           macOS screen captures with the default capture filenames, one of them
           linked and one of them dead. Design system 6.4 rule 2: when a
           screenshot is the only asset for a slot, the slot becomes a ruled row
-          carrying the real headline and a link. */}
+          carrying the real headline and a link.
+
+          Fig. 02 is not a photograph either: it is a frame grab off an XtremeAg
+          broadcast and it carries a burned-in "DAMIAN MASON / CUTTING THE CURVE
+          PODCAST" lower third in the bottom right. It is the only asset on file
+          of Damian with the XtremeAg growers, so it ships, and it is listed on
+          the professional-photography open item in docs/OPEN-ITEMS.md along
+          with PLAN.md item 4. Crop the lower third or replace the frame. */}
       <Section aria-labelledby="featured-title">
         <Container>
           <div className={styles.head}>
@@ -187,6 +200,12 @@ export default function XtremeAgPage() {
             <Heading level={2} size="2xl" id="featured-title">
               Featured From XtremeAg
             </Heading>
+            <Prose measure="wide">
+              <p>
+                Two from the XtremeAg blog. Neither one stops to explain what a 2×2 is,
+                because you already know.
+              </p>
+            </Prose>
           </div>
 
           <div className="dm-grid12">
@@ -224,7 +243,15 @@ export default function XtremeAgPage() {
           site except one cross-promo link on /the-business-of-agriculture/.
           Written from the only three facts known: it is filmed with XtremeAg,
           it is filmed in a granary turned tavern on Damian's Indiana farm, and
-          it lives at xtremeag.farm/the-granary. */}
+          it lives at xtremeag.farm/the-granary. Nothing here asserts who did
+          the conversion, that a crew exists, who appears on the show, or what
+          it is about, because no source says any of that. The copy names the
+          room and then stops: the third sentence is a second-person turn that
+          claims nothing. A draft that said "that's where growers say it out
+          loud" and "what a top operation actually does" asserted a format and a
+          subject on no evidence, and also restated the XtremeAg card on
+          /podcasts/. One sentence on the show's format is still needed from the
+          client and it is logged in docs/OPEN-ITEMS.md. */}
       <Section surface="deep" aria-labelledby="granary-title">
         <Container>
           <div className="dm-grid12">
@@ -238,9 +265,9 @@ export default function XtremeAgPage() {
 
               <Prose>
                 <p>
-                  Damian turned a granary on his Indiana farm into a tavern. That’s where he
-                  and the XtremeAg crew film The Granary. An Ag show, shot in a bar, in a
-                  building that used to hold grain.
+                  The Granary is filmed with XtremeAg in a granary turned tavern on Damian’s
+                  Indiana farm. An Ag show, shot in a bar, in a building that used to hold
+                  grain. If you haven’t seen it, that’s where to start.
                 </p>
               </Prose>
 
@@ -266,9 +293,9 @@ export default function XtremeAgPage() {
               <Image
                 className={styles.markLarge}
                 src={brandAssets.granary}
-                alt="The Granary, an XtremeAg show"
-                width={800}
-                height={800}
+                alt={imageAlt['/img/brand/the-granary.png']}
+                width={508}
+                height={388}
                 loading="lazy"
                 /* .markLarge caps this at --size-thumb, so 10rem is the widest
                    it ever paints. Unhinted, an 800px square was being served
@@ -287,14 +314,20 @@ export default function XtremeAgPage() {
       <Section aria-labelledby="join-title">
         <Container>
           <div className="dm-grid12">
-            <div className="col-span-6 md:col-span-7">
+            {/* The split engages at lg, not at md. At 768 `md:col-span-5` gave
+                the button a 273px column and "Sign Up for Damian's Mailing
+                List" broke to three centred lines beside 431px of empty band,
+                which was the only three-line button on the site. The same
+                control on /acres-tv/ runs full width until lg for the same
+                reason. */}
+            <div className="col-span-6 md:col-span-12 lg:col-span-7">
               <Heading level={2} size="2xl" id="join-title">
                 Join the Conversation
               </Heading>
             </div>
-            <div className={`${styles.rowEnd} col-span-6 md:col-span-5`}>
+            <div className={`${styles.rowEnd} col-span-6 md:col-span-12 lg:col-span-5`}>
               <Button href="/join-the-conversation/" variant="secondary" size="lg">
-                Sign Up for Damian’s Mailing List
+                {mediaBand.mailingListLabel}
               </Button>
             </div>
           </div>
@@ -302,18 +335,17 @@ export default function XtremeAgPage() {
       </Section>
 
       {/* SECTION 6. Verbatim, and byte-identical to the same band on
-          /acres-tv/. The source H4 carried a no-break space plus a regular
-          space, which rendered as "As a  Leading Voice"; normalized to one
-          space. The old label read "Click Here to Inquire About Working With
-          Damian": "Click Here" is not link text, so it is gone and the verb
-          leads. */}
+          /acres-tv/, because both routes now read the strings out of
+          content/media-band.ts. The normalizations (the source's no-break space
+          after "As a", and dropping "Click Here to" from the button label) are
+          documented there. */}
       <CTABand
         id="work-with-damian"
-        eyebrow="As a Leading Voice in the Industry, Damian is Sought After for Conversations & Commentary on Hot Topics"
-        heading="If it’s Agriculture, it Needs Damian."
+        eyebrow={mediaBand.eyebrow}
+        heading={mediaBand.heading}
         actions={[
           {
-            label: 'Inquire About Working With Damian',
+            label: mediaBand.inquireLabel,
             href: '/contact-us/',
           },
         ]}
@@ -322,7 +354,11 @@ export default function XtremeAgPage() {
           value: '40,000',
           plus: true,
           label: 'listeners a month',
-          note: 'Growers, ag lenders, and agronomists, every month.',
+          /* Not the "growers, ag lenders, agronomists" triplet again.
+             /the-business-of-agriculture/ owns that list. XtremeAg's own
+             audience is the operators who run the trials and the people who
+             turn up to watch them, which is what this show is about. */
+          note: 'The people who run the trials, and the ones who come to the field days to see them.',
         }}
       />
     </>

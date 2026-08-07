@@ -22,9 +22,8 @@
   gap: var(--space-3);
 }
 
-/* The plate a partner mark sits on. A bright ground because both marks were
-   drawn for white and both carry black letterforms: on the navy of the deep
-   scope The Granary would simply disappear. */
+/* The frame a partner mark sits in: a hairline, generous padding, and the
+   eyebrow underneath. */
 .markPlate {
   align-items: center;
   justify-content: center;
@@ -33,14 +32,26 @@
   padding-inline: var(--space-6);
 }
 
+/* On a light section the plate gets no fill, per DESIGN_SYSTEM 6.5.2. The
+   --surface-bright ground that used to be here was the brightest stock in the
+   system sitting inside a sunken bone section, so the XtremeAg mark read as a
+   white rectangle with a visible edge rather than as a mark on the page. The
+   Granary plate below keeps its fill because its section is navy and a black
+   mark on navy is not a mark. */
+.markPlateOnLight {
+  background: transparent;
+}
+
 /* Both caps, always, exactly as the logo wall does it, so a wide mark is
    width-constrained and a square mark is height-constrained and the two land
-   at the same optical weight. */
+   at the same optical weight. Multiply is the 6.5.2 treatment: it resolves
+   whatever ground the supplied file carries into the surface behind it. */
 .mark {
   inline-size: auto;
   block-size: auto;
   max-inline-size: 100%;
   max-block-size: var(--logo-box-h);
+  mix-blend-mode: multiply;
 }
 
 /* The Granary mark is square and it is the subject of its section rather than
@@ -50,6 +61,7 @@
   block-size: auto;
   max-inline-size: 100%;
   max-block-size: var(--size-thumb);
+  mix-blend-mode: multiply;
 }
 
 /* Vertical rhythm between the parts of one section. */
@@ -63,7 +75,10 @@
   align-items: center;
 }
 
-@media (min-width: 48rem) {
+/* Flush right only once the row is actually split. Between 48rem and 64rem the
+   button owns the full twelve columns and sits under the heading, so it starts
+   where the heading starts. */
+@media (min-width: 64rem) {
   .rowEnd {
     justify-content: flex-end;
   }

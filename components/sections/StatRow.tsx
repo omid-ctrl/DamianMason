@@ -35,13 +35,31 @@ export const CREDIBILITY_STATS: StatRowItem[] = [
   { value: '40,000', plus: true, label: 'Monthly listeners' },
 ];
 
-/**
- * The prose restatement that sits under the ledger. If a glyph fails to render
- * or a screen reader skips the row, this sentence still carries the argument.
- * Body face, never mono, capped at the narrow measure.
+/*
+ * THERE IS NO DEFAULT RESTATEMENT, AND THAT IS DELIBERATE.
+ *
+ * This file used to export a CREDIBILITY_RESTATEMENT constant that the prose
+ * slot fell back to: "Since 1994, Damian has spoken to over 2,400 audiences in
+ * all 50 states and 7 foreign countries. Another 40,000 people listen to the
+ * podcast every month." Two routes took the fallback (/ and /keynote/) and so
+ * rendered that sentence byte for byte, while /speaking/ had hand-typed a third
+ * near-copy of it. Measured on the rendered <main> of all 19 routes, the clause
+ * "2,400 audiences in all 50 states and 7 foreign countries" was the single
+ * most repeated run on the site.
+ *
+ * It was also the worst place on the page to put it. The sentence re-read all
+ * four glyphs standing directly above it, which is the defect round 3 named on
+ * /podcasts/: a restatement that restates the ledger tells the reader nothing
+ * the ledger did not already say, and on / it repeated that route's own hero
+ * line as well.
+ *
+ * So the slot is now required to be written per route. The prose under the
+ * ledger should say what the four figures MEAN on this particular page, the way
+ * /about/ does ("Three of these four are stages. The fourth is the podcast..."),
+ * not read them back. Pass `restatement={null}` to suppress it outright.
+ *
+ * Keep it in the body face, never mono, capped at the narrow measure.
  */
-export const CREDIBILITY_RESTATEMENT =
-  'Since 1994, Damian has spoken to over 2,400 audiences in all 50 states and 7 foreign countries. Another 40,000 people listen to the podcast every month.';
 
 export type StatRowProps = {
   /** Defaults to the four credibility figures. */
@@ -52,9 +70,8 @@ export type StatRowProps = {
   /** Rank, independent of size. Defaults to h2. */
   level?: HeadingLevel;
   /**
-   * The prose under the row. Defaults to the credibility restatement, but only
-   * when the default figures are in use: a custom set of numbers needs a
-   * sentence written for it. Pass null to suppress it outright.
+   * The prose under the row. Written per route, never shared: see the note
+   * above CREDIBILITY_STATS. Omit it or pass null to render no prose at all.
    */
   restatement?: ReactNode;
   surface?: Surface;
@@ -86,7 +103,7 @@ export function StatRow({
   className,
 }: StatRowProps) {
   const rows = items ?? CREDIBILITY_STATS;
-  const prose = restatement !== undefined ? restatement : items ? null : CREDIBILITY_RESTATEMENT;
+  const prose = restatement ?? null;
   const headingId = id ? `${id}-title` : undefined;
 
   return (
@@ -109,7 +126,17 @@ export function StatRow({
             keep: four figures reading left to right is how the argument is
             meant to be taken in. See src/styles/motion.css. The row is fully
             visible without JavaScript. */}
-        <ul className="dm-statrow__list" role="list" data-reveal="stagger">
+        {/* data-count is what the ledger's column count is derived from. A
+            three-figure row in a fixed four-column grid drew its top rule
+            across the whole container while the bottom rule and the dividers
+            stopped three quarters of the way across, which reads as a broken
+            table rather than as a choice. */}
+        <ul
+          className="dm-statrow__list"
+          role="list"
+          data-count={rows.length}
+          data-reveal="stagger"
+        >
           {rows.map((row, i) => (
             <li key={row.label} className="dm-statrow__item">
               <Stat

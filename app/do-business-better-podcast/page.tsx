@@ -6,10 +6,12 @@ import { EpisodeCard } from '@/components/sections/EpisodeCard';
 import { NewsletterForm } from '@/components/sections/NewsletterForm';
 import { JsonLd } from '@/components/seo';
 import { brandAssetsExtra } from '@/content/brand-assets';
+import { NEW_TAB_NOTE, NEW_TAB_PROPS } from '@/lib/links';
 import { contact, podcasts, socials } from '@/content/site';
 import { buildBreadcrumbListSchema, buildDoBusinessBetterSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
 import styles from './page.module.css';
+import { imageAlt } from '@/content/image-alt';
 
 /* ============================================================================
    DO BUSINESS BETTER PODCAST
@@ -32,7 +34,12 @@ import styles from './page.module.css';
        now describes itself.
      - the "Latest Episode" block repeated episode 144 verbatim immediately
        above the list that already contained it. Rendered once.
-     - a 33 MB self-hosted MP3. Playback goes to the show's own host.
+     - a 33 MB self-hosted MP3 of episode 144, played by a native <audio>
+       element. Playback goes to the show's own host instead. Nothing on this
+       page replaces it, so this route no longer plays anything in place: every
+       listen now leaves for SoundCloud. That is a deliberate functional
+       reduction and it is the only one on the route, logged for the client in
+       docs/OPEN-ITEMS.md. A facade-loaded SoundCloud player would restore it.
      - the contact email was plain text. It is a mailto in two places here.
    ============================================================================ */
 
@@ -43,14 +50,14 @@ const SHOW_ART = {
   src: brandAssetsExtra.doBusinessBetterPodcast,
   width: 800,
   height: 800,
-  alt: 'Do Business Better podcast cover art: a yellow disc reading Do Business Better, A Podcast to Help You Succeed, Damian Mason.',
+  alt: imageAlt['/img/brand/do-business-better-podcast.png'],
 };
 
 const BOOK_COVER = {
   src: '/img/photos/do-business-better-book-cover.png',
   width: 1200,
   height: 1200,
-  alt: 'Cover of the book Do Business Better: Traits, Habits, and Actions to Help You Succeed, by Damian Mason.',
+  alt: imageAlt['/img/photos/do-business-better-book-cover.png'],
 };
 
 /**
@@ -148,8 +155,9 @@ export default function DoBusinessBetterPodcastPage() {
                 </p>
               </Prose>
               <div className="dm-hero__actions">
-                <Button href={show.soundcloud} variant="primary" size="lg">
+                <Button href={show.soundcloud} variant="primary" size="lg" {...NEW_TAB_PROPS}>
                   Listen on SoundCloud
+                  <span className="sr-only">{NEW_TAB_NOTE}</span>
                 </Button>
                 <Button href="#subscribe" variant="secondary" size="lg">
                   Get new episodes
@@ -204,12 +212,24 @@ export default function DoBusinessBetterPodcastPage() {
               </Heading>
               <ul className={styles.platforms}>
                 <li>
-                  <a href={show.soundcloud}>Every episode on SoundCloud</a>
+                  {/* .dm-action-link, because this is a standalone target
+                      with a caption under it, not a link inside a sentence:
+                      bare it measured 17px tall at both 390 and 768, under the
+                      24px floor WCAG 2.2 SC 2.5.8 sets. The class is
+                      inline-flex with align-items:center, so only the box
+                      grows and the type stays optically where it was. */}
+                  <a className="dm-action-link" href={show.soundcloud} {...NEW_TAB_PROPS}>
+                    Every episode on SoundCloud
+                    <span className="sr-only">{NEW_TAB_NOTE}</span>
+                  </a>
                   <p className={styles.platformNote}>The whole catalog lives here</p>
                 </li>
                 {youtube ? (
                   <li>
-                    <a href={youtube.href}>Damian Mason on YouTube</a>
+                    <a className="dm-action-link" href={youtube.href} {...NEW_TAB_PROPS}>
+                      Damian Mason on YouTube
+                      <span className="sr-only">{NEW_TAB_NOTE}</span>
+                    </a>
                     <p className={styles.platformNote}>His channel, not the show feed</p>
                   </li>
                 ) : null}
@@ -224,21 +244,31 @@ export default function DoBusinessBetterPodcastPage() {
           it listed were 144, 142 and 141. 143 is not among them, so the
           heading here does not claim to be the latest anything. */}
       <Section aria-labelledby="episodes-title">
+        {/* A left rail for the head and the reading column for the episodes.
+            The section used to run head and list at full container width, so
+            each episode's top rule spanned 1248px over a paragraph that stopped
+            at 830 and left 500px of nothing under every rule, and the intro
+            was set at a 420px measure while the bodies under it ran at 730. The
+            rail fixes both: the rules are now the width of the column they
+            rule, and the intro is set by the rail rather than by a second
+            measure nobody chose. */}
         <Container>
-          <div className={styles.stack}>
-            <Eyebrow>From the catalog</Eyebrow>
-            <Heading level={2} id="episodes-title">
-              Three episodes to start with
-            </Heading>
-            <Prose measure="narrow">
-              <p>
-                Episodes 144, 142, and 141: a consultant who started his own firm in his mid
-                50s, an engineer with a side hustle and a day job, and a beer brand brought
-                back from 1978. Start anywhere.
-              </p>
-            </Prose>
-          </div>
+          <div className="dm-grid12">
+            <div className={`${styles.stack} col-span-6 md:col-span-4`}>
+              <Eyebrow>From the catalog</Eyebrow>
+              <Heading level={2} id="episodes-title">
+                Three episodes to start with
+              </Heading>
+              <Prose>
+                <p>
+                  Episodes 144, 142, and 141: a consultant who started his own firm in his
+                  mid 50s, an engineer with a side hustle and a day job, and a beer brand
+                  brought back from 1978. Start anywhere.
+                </p>
+              </Prose>
+            </div>
 
+            <div className="col-span-6 md:col-span-8">
           <ul className={styles.episodeList}>
             {EPISODES.map((episode) => (
               <EpisodeCard
@@ -254,10 +284,13 @@ export default function DoBusinessBetterPodcastPage() {
             ))}
           </ul>
 
-          <div className={`${styles.stack} ${styles.listFoot}`}>
-            <Button href={show.soundcloud} variant="secondary">
+          <div className={`${styles.stack} ${styles.listFoot} dm-section-close`}>
+            <Button href={show.soundcloud} variant="secondary" {...NEW_TAB_PROPS}>
               All episodes on SoundCloud
+              <span className="sr-only">{NEW_TAB_NOTE}</span>
             </Button>
+          </div>
+            </div>
           </div>
         </Container>
       </Section>
@@ -281,8 +314,8 @@ export default function DoBusinessBetterPodcastPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">FIG. 02 </span>
-                Do Business Better: Traits, Habits, and Actions to Help You Succeed. The
-                podcast borrowed the title from the author. He agreed.
+                Do Business Better: Traits, Habits, and Actions to Help You Succeed. Wiley
+                published it, with a foreword by Larry Winget.
               </figcaption>
             </figure>
 
@@ -293,10 +326,15 @@ export default function DoBusinessBetterPodcastPage() {
               <Heading level={2} id="book-title">
                 The book the show is named after
               </Heading>
+              {/* The jacket copy in content/books.ts says "2,000 audiences
+                  across the world" and it stays verbatim there, on /about/,
+                  where it reads as a quotation. This paragraph is the
+                  rebuild's own sentence, so it carries the figure the rest of
+                  the site carries rather than a second, lower career total. */}
               <Prose>
                 <p>
                   Damian wrote Do Business Better after speaking to companies such as Merck,
-                  Land O’Lakes, and Cargill, and 2,000 audiences across the world. Most
+                  Land O’Lakes, and Cargill, and more than 2,400 audiences since 1994. Most
                   business books tell you how to reach success. This one makes you define
                   success first, because yours isn’t your neighbor’s.
                 </p>

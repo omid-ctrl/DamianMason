@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const [url, out, w=1440, h=1000] = process.argv.slice(2);
+const b = await chromium.launch();
+const c = await b.newContext({ viewport:{width:Number(w),height:Number(h)}, deviceScaleFactor:2, reducedMotion:'reduce' });
+const p = await c.newPage();
+await p.goto(url, { waitUntil:'networkidle' });
+await p.evaluate(()=>document.fonts?.ready);
+await p.waitForTimeout(500);
+await p.screenshot({ path: out });
+console.log('ok', out);
+await b.close();

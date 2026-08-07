@@ -15,10 +15,12 @@ import {
   Section,
   cx,
 } from '@/components/ui';
+import { mediaBand } from '@/content/media-band';
 import { buildBreadcrumbListSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
 
 import styles from './page.module.css';
+import { imageAlt } from '@/content/image-alt';
 
 /* ==========================================================================
    Constants
@@ -106,6 +108,12 @@ export default function AcresTvPage() {
           The source H1 was a 130 character sentence wrapped in <b>; the claim
           it carries is kept word for word in the deck and the heading is cut
           down to something a heading can actually be.
+
+          The photograph is stock and it documents nothing, so the cutline makes
+          no claim about it and the alt text says only what is in the frame. It
+          used to ship alt="" beside a cutline that described the picture, which
+          handed a screen reader a caption for an image it was told to ignore.
+          Same alt string as the same file on /meeting-coordinators/.
           ------------------------------------------------------------------ */}
       <Hero
         variant="band"
@@ -137,13 +145,13 @@ export default function AcresTvPage() {
         ]}
         image={{
           src: '/img/photos/microphones-background.jpg',
-          alt: '',
+          alt: imageAlt['/img/photos/microphones-background.jpg'],
           width: 2000,
           height: 1334,
           priority: true,
         }}
         cutlineFolio="Fig. 01"
-        cutline="Two microphones on a stand. Damian and his guest talk for 41 to 54 minutes, and Acres TV carries all of it."
+        cutline="Damian and his guest talk for 41 to 54 minutes, and Acres TV carries all of it."
       />
 
       {/* ------------------------------------------------------------------
@@ -271,7 +279,7 @@ export default function AcresTvPage() {
             ))}
           </ul>
 
-          <div className={styles.ledgerAction}>
+          <div className={`${styles.ledgerAction} dm-section-close`}>
             <Button href={ACRES_TV_URL} variant="secondary" size="lg" {...EXTERNAL}>
               Watch every episode
             </Button>
@@ -304,7 +312,7 @@ export default function AcresTvPage() {
                 </p>
               </Prose>
               <Button href="/join-the-conversation/" variant="secondary" size="lg">
-                Sign up for the mailing list
+                {mediaBand.mailingListLabel}
               </Button>
             </div>
           </div>
@@ -313,17 +321,19 @@ export default function AcresTvPage() {
 
       {/* ------------------------------------------------------------------
           No. 04 The close. Source section 4, byte-identical to the same band on
-          /xtreme-ag/. The double space after "As a" and the ampersand are
-          normalized; "Click Here to" is dropped from the button label.
+          /xtreme-ag/, and now literally the same strings: both routes read them
+          out of content/media-band.ts. This copy used to be typed out here in
+          sentence case while /xtreme-ag/ carried the source's Title Case, so
+          one band rendered two ways one nav click apart.
           ------------------------------------------------------------------ */}
       <CTABand
         id="inquire"
         folio="No. 04"
-        eyebrow="As a leading voice in the industry, Damian is sought after for conversations and commentary on hot topics"
-        heading={<>If it&rsquo;s Agriculture, it Needs Damian.</>}
+        eyebrow={mediaBand.eyebrow}
+        heading={mediaBand.heading}
         actions={[
           {
-            label: 'Inquire about working with Damian',
+            label: mediaBand.inquireLabel,
             href: '/contact-us/',
           },
         ]}

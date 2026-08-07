@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Button, Card, Heading, cx } from '@/components/ui';
+import { NEW_TAB_NOTE, NEW_TAB_PROPS, isExternalHref } from '@/lib/links';
 
 export type EpisodePlatformLink = {
   /** "Apple Podcasts", "Spotify", "Listen on Libsyn". */
@@ -129,10 +130,22 @@ export function EpisodeCard({
             </p>
           ) : null}
 
+          {/* The title link took whatever href the content layer gave it and
+              never checked whether it left the site, so the three episode
+              titles on /do-business-better-podcast/ replaced the page while the
+              platform links six lines below opened a new tab. Same component,
+              two behaviours. One test now covers both. */}
           <Heading level={headingLevel} size="lg" className="dm-episode__title">
             {href ? (
-              <a className="dm-episode__link dm-link-bare" href={href}>
+              <a
+                className="dm-episode__link dm-link-bare"
+                href={href}
+                {...(isExternalHref(href) ? NEW_TAB_PROPS : {})}
+              >
                 {title}
+                {isExternalHref(href) ? (
+                  <span className="sr-only">{NEW_TAB_NOTE}</span>
+                ) : null}
               </a>
             ) : (
               title
@@ -140,7 +153,17 @@ export function EpisodeCard({
           </Heading>
 
           {description ? (
-            <div className="dm-episode__body dm-prose dm-prose--wide">
+            /* The running-prose measure, not --wide. An episode summary is a
+               paragraph of running text, not a standfirst: these are the
+               longest paragraphs on the site and at --measure-wide they were
+               also set at the widest measure on the site, which is the wrong
+               pairing. Measured at 768, where the card takes the full 704px
+               content width, the three summaries on
+               /do-business-better-podcast/ ran 87, 90 and 95 characters per
+               line over seven and eight lines. --measure-wide is 76ch and 76ch
+               of Archivo is wider than the container at that width, so the cap
+               was doing nothing at all. */
+            <div className="dm-episode__body dm-prose">
               {typeof description === 'string' ? <p>{description}</p> : description}
             </div>
           ) : null}

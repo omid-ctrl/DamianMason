@@ -70,7 +70,14 @@ export function PressList({
         return (
           <Card as="li" variant="ruled" key={item.id} className="dm-press__item">
             <div className="dm-press__head">
-              <Eyebrow tone="accent">{item.outlet}</Eyebrow>
+              {/* The muted eyebrow, not the accent one. The outlet name is not
+                  clickable, and in --ink-accent it was set in the exact colour
+                  --link-ink uses, so on /blog-news/ twelve rows put the site's
+                  link orange on the one word in each row that is not a link
+                  while the row's only real link sat under it in navy. It now
+                  reads as what it is: metadata, on the same ink as the type
+                  badge beside it and the date below it. */}
+              <Eyebrow>{item.outlet}</Eyebrow>
               <span className="dm-press__badge">{TYPE_LABEL[item.type]}</span>
             </div>
 

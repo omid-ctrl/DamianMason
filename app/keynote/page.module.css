@@ -44,47 +44,11 @@
 
 /* The four credential cards. Real list semantics, unlike the source, which
    faked its bullets with a literal bullet character and a line break. */
+/* Spacing only. The bar itself is components/sections/CredentialBar.tsx and
+   its rules are .dm-pillars in src/styles/sections-core.css, shared with
+   /about/ so the two cannot drift into two different lists again. */
 .pillars {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.pillar {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  block-size: 100%;
-}
-
-.pillarPoints {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  color: var(--ink-secondary);
-  font-size: var(--fs-sm);
-  line-height: var(--lh-normal);
-}
-
-.pillarPoints li {
-  position: relative;
-  padding-inline-start: var(--space-5);
-}
-
-.pillarPoints li + li {
-  margin-block-start: var(--space-2);
-}
-
-/* A hairline dash rather than an orange marker: four cards of orange glyphs
-   would blow the three-element orange budget on its own. */
-.pillarPoints li::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 0;
-  inset-block-start: 0.7em;
-  inline-size: var(--space-3);
-  block-size: var(--border-thin);
-  background-color: var(--rule-strong);
+  margin-block-start: var(--space-8);
 }
 
 /* The two bookable formats, Keynote and Extensions. */

@@ -95,10 +95,10 @@ export default function MediaPage() {
 
       <Hero
         id="media"
-        eyebrow="Forbes · Newsmax · Cheddar News · Straight Arrow News"
+        eyebrow="Forbes · Newsmax · Cheddar News · Straight Arrow News · Eagle Country 95.9"
         title="News & Media"
-        deck="Reporters call when a story needs both halves: the commodity market and the grocery bill. Damian gives them the figure, then what it's doing to a farm in Indiana. Nine appearances, five outlets, three of them on video below."
-        cutline="Every link below leaves this site. That's the point of press coverage."
+        deck="Reporters call when a story needs both halves: the commodity market and the grocery bill. Damian gives them the figure, then what it’s doing to a farm in Indiana. Nine appearances, five outlets, three of them on video below."
+        cutline="When the price of eggs makes the national news, somebody has to explain why. Damian gets the call."
       />
 
       <Section id="coverage" aria-labelledby="coverage-title" surface="sunken">
@@ -146,7 +146,7 @@ export default function MediaPage() {
                 Cheddar News on climate and food shortages. Newsmax on wheat and food
                 price inflation. Eagle Country 95.9 on an event that&rsquo;s now several
                 years past, which is what happens to an interview about an upcoming
-                date. Nothing loads from YouTube until you press play.
+                date.
               </p>
               <p>
                 Longer sit-downs run on <Link href="/acres-tv/">Acres TV</Link>, where an

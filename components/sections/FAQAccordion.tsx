@@ -1,5 +1,8 @@
-import type { FaqItem } from '@/content/faq';
+import type { ReactElement, ReactNode } from 'react';
+
+import type { FaqItem, FaqLink } from '@/content/faq';
 import { buildFaqPageSchema, serializeJsonLd } from '@/lib/schema';
+import { NEW_TAB_NOTE, NEW_TAB_PROPS, isExternalHref } from '@/lib/links';
 import { cx } from '@/components/ui';
 
 export type FAQAccordionProps = {
@@ -28,6 +31,53 @@ function paragraphsOf(answer: string): string[] {
     .split(/\n{2,}/)
     .map((part) => part.trim())
     .filter((part) => part.length > 0);
+}
+
+/**
+ * Promotes each declared `links` run inside a paragraph to a real anchor.
+ *
+ * A harvested answer is a plain string, so a URL sitting inside it renders as
+ * text a visitor has to select and copy. `content/faq.ts` declares which run of
+ * the verbatim answer is a link and what it should read as; this walks the
+ * paragraph once per declaration and splits it around the match. A run that is
+ * not in this paragraph is skipped, so multi-paragraph answers are safe.
+ *
+ * An off-site declaration gets the site's outbound-link treatment from
+ * lib/links.ts. It did not when this was written, so the one declared FAQ link
+ * (Damian's YouTube channel) replaced the page on /, /keynote/ and
+ * /meeting-coordinators/ while every other outbound link on those same pages
+ * opened a new tab. Every FAQ link that will ever be declared here points off
+ * site, so the test is a formality, but it is the same test the rest of the
+ * build uses and it cannot go stale.
+ */
+function linkify(paragraph: string, links: FaqLink[] | undefined, key: string): ReactNode {
+  if (!links || links.length === 0) return paragraph;
+
+  type Part = string | ReactElement;
+  let parts: Part[] = [paragraph];
+
+  links.forEach((link, linkIndex) => {
+    parts = parts.flatMap((part, partIndex): Part[] => {
+      if (typeof part !== 'string') return [part];
+      const at = part.indexOf(link.match);
+      if (at === -1) return [part];
+      const external = isExternalHref(link.href);
+      return [
+        part.slice(0, at),
+        <a
+          key={`${key}-l${linkIndex}-${partIndex}`}
+          href={link.href}
+          {...(external ? NEW_TAB_PROPS : {})}
+        >
+          {link.label}
+          {external ? <span className="sr-only">{NEW_TAB_NOTE}</span> : null}
+        </a>,
+        part.slice(at + link.match.length),
+      ];
+    });
+  });
+
+  return parts.filter((part) => part !== '');
 }
 
 /**
@@ -74,7 +124,9 @@ export function FAQAccordion({
             </summary>
             <div className="dm-faq__answer dm-prose dm-prose--wide">
               {paragraphsOf(item.answer).map((paragraph, index) => (
-                <p key={`${item.id}-p${index}`}>{paragraph}</p>
+                <p key={`${item.id}-p${index}`}>
+                  {linkify(paragraph, item.links, `${item.id}-p${index}`)}
+                </p>
               ))}
             </div>
           </details>

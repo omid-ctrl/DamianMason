@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const b=await chromium.launch();
+const c=await b.newContext({viewport:{width:768,height:1024},deviceScaleFactor:2});
+const p=await c.newPage();
+await p.goto('http://localhost:3100/the-business-of-agriculture/',{waitUntil:'networkidle'});
+const el=await p.$('[class*="showLockup"]');
+await el.scrollIntoViewIfNeeded(); await p.waitForTimeout(400);
+const bb=await el.boundingBox();
+await p.screenshot({path:'/Users/omidebrahimi/Desktop/Projects/DamianMason/docs/qa/screenshots/round-1-mobile/zz-boa-lockup-768.png',clip:{x:0,y:bb.y-40,width:520,height:200}});
+console.log(JSON.stringify(bb));
+await b.close();

@@ -61,7 +61,7 @@ export function PostCard({ post, index, headingLevel = 2, className }: PostCardP
       </Prose>
 
       <p className={styles.more}>
-        <Link href={href}>
+        <Link className="dm-action-link" href={href}>
           Read the post
           <span className="sr-only">: {post.title}</span>
         </Link>

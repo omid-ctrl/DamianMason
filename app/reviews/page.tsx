@@ -87,8 +87,8 @@ export default function ReviewsPage() {
         id="testimonials"
         eyebrow="Speaking, on the record"
         title="Testimonials"
-        deck="Meeting planners book Damian twice. Here's what they said the first time: ten written notes from Michael Foods, Bayer, Farm Credit West, AgroLiquid, BW Fusion, and five more, plus four on camera. Fourteen out of 2,400+ audiences since 1994."
-        cutline="Every quote below is the sender's own wording. Nine of the ten came with a name attached."
+        deck="Meeting planners book Damian twice. Here’s what they said the first time: ten written notes from Michael Foods, Bayer, Farm Credit West, AgroLiquid, BW Fusion, and five more, plus four on camera. Fourteen out of 2,400+ audiences since 1994."
+        cutline="Nobody writes a thank-you note to a speaker they forgot by the parking lot."
         actions={
           [{ href: '/contact-us/', label: 'Check your date', variant: 'secondary' }] as const
         }
@@ -122,11 +122,20 @@ export default function ReviewsPage() {
                 </Heading>
               </div>
               <Prose>
+                {/* The career total came out of the middle of this paragraph.
+                    "Since 1994 Damian has worked 2,400+ audiences in all 50
+                    states and 7 foreign countries" is a paraphrase of the
+                    source bio sentence at `_source/pages/keynote.md:183`, which
+                    /about/ carries verbatim and owns, so the same nine words
+                    ran on two routes. This page had also already spent the
+                    figure 40 words earlier, in the hero deck's "Fourteen out of
+                    2,400+ audiences since 1994", and it spends it twice more in
+                    the two ratio eyebrows. A career total is not what proves
+                    repeat business anyway: the callback is. */}
                 <p>
                   A keynote gets graded twice: once in the room, and once when the meeting
-                  planner calls back next year. Since 1994 Damian has worked 2,400+ audiences
-                  in all 50 states and 7 foreign countries. That&rsquo;s the review that
-                  counts.
+                  planner calls back next year. Nobody books a speaker a second time to be
+                  polite. That&rsquo;s the review that counts.
                 </p>
               </Prose>
             </div>
@@ -144,6 +153,7 @@ export default function ReviewsPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
+                <span className="dm-figure__folio">Fig. 01 </span>
                 Book signing at the StoneX Ag and Dairy Market Outlook. The book is{' '}
                 <Link href="/about/#books">
                   Food Fear: How Fear is Ruining Your Dinner and Why You Should Celebrate
@@ -185,8 +195,19 @@ export default function ReviewsPage() {
         id="book"
         eyebrow="Booking"
         folio="No. 05"
-        heading="First step: check the date"
-        copy="First step: contact Damian to make sure he has your event date available. Programs run 60 to 90 minutes. He books his own airfare and car rental against one travel fee, quoted up front, and his fees are NET to him."
+        /* The heading used to spend the page's own figure ("Fourteen rooms on
+           the record") and the band then ran with no panel, which left the
+           right five columns of the close as empty navy. The figure moved into
+           the panel, where it is a proof rather than a sentence, and the
+           heading became the ask.
+
+           This band used to recite four booking facts: check the date, 60 to 90
+           minutes, airfare and travel fee, NET fees. None of them is what a
+           visitor who has just read fourteen testimonials is thinking about,
+           and all four are stated on /meeting-coordinators/ and in the verbatim
+           FAQ. The close runs on the page's own evidence instead. */
+        heading="Send the office your date."
+        copy="Every one of these came from somebody who had already watched Damian work a room like yours. Find out whether he can do it for yours."
         actions={
           [
             { href: '/contact-us/', label: 'Book Damian' },
@@ -197,6 +218,16 @@ export default function ReviewsPage() {
             },
           ] as const
         }
+        /* The arithmetic this page already states in its hero deck, set as the
+           proof it is. 10 written notes (No. 01) plus 4 on camera (No. 03).
+           2,400+ is deliberately not repeated here: this route already spends
+           it in the deck and in two section eyebrows. */
+        panel={{
+          eyebrow: 'On the record',
+          value: '14',
+          label: 'reviews in writing and on camera',
+          note: 'Ten in writing, four on camera.',
+        }}
       />
     </>
   );

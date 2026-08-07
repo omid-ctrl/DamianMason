@@ -30,6 +30,21 @@
     border-block-start: var(--border-thin) solid var(--rule-strong);
     padding-block-start: var(--space-5);
   }
+  /* THE RAGGED BOTTOM OF EACH ROW IS THE DEVICE, NOT A DEFECT. DO NOT MASONRY IT.
+     The rule is a top border on each cell, so the rules line up across a row and
+     a shorter quote leaves air under it. Measured on /reviews/ at 768, the ten
+     quotes' content heights are 572, 398 | 338, 338 | 307, 307 | 329, 298 | 246,
+     117, which leaves 174, 0, 0, 31 and 129 of air: 334 total.
+
+     Round 3 suggested reordering the quotes so each row pairs a long one with a
+     long one. That was checked and it buys nothing. Sorting all ten by height and
+     pairing adjacent gives 174 + 0 + 22 + 9 + 129 = 334, the same number, because
+     the source order is already close to descending and the two voids that matter
+     are set by the outliers at either end: a 572px quote has nothing to pair with,
+     and neither does a 117px one. The residual is the real spread in how much
+     people wrote, and app/reviews/page.tsx keeps the order the old page ran them
+     in. Masonry would buy the air back and cost the aligned rules, which are what
+     makes the block read as a ledger. Recorded so this is not re-litigated. */
   @media (min-width: 48rem) {
     .dm-testimonials--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .dm-testimonials--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -60,7 +75,36 @@
     overflow: hidden;
   }
 
+  /* A stage the shape of the recording. See the framing note in
+     content/videos.ts: YouTube pads a 9:16 upload out to a 480x360 still by
+     duplicating and blowing up the frame rather than by adding bars, so a 16:9
+     stage cropped that still to a narrow real frame flanked by two giant copies
+     of itself. At 9:16 the same object-fit: cover crop keeps the 202 real
+     columns and clips both copies, with no zoom, no transform and no per-video
+     tuning. Capped and centred because a full-column 9:16 frame runs 1067px
+     tall at 1440. */
+  .dm-video--vertical .dm-video__stage {
+    aspect-ratio: var(--ratio-video-vertical);
+    max-inline-size: var(--size-video-vertical-max);
+    /* Start-aligned, not centred. Centring a 288px frame in a 600px column
+       parks it 156px to the right of the title that names it and of every
+       other left edge in the section, which reads as a second misalignment
+       replacing the first one. */
+    margin-inline: 0;
+  }
+
+  /* The poster and the play control are the facade's only two children and
+     they occupy the SAME cell. Without the explicit grid-area they landed in
+     two implicit rows: the poster took the first row and sized to its native
+     4:3 (block-size: 100% resolves to auto against an indefinite grid area, so
+     object-fit: cover never applied), and the play control was pushed into a
+     second row that started below the stage's overflow: hidden edge. Measured
+     at 390 on the homepage, the control's top sat 66px past the clip, so
+     fourteen video facades across five routes shipped with no play affordance
+     painted at all. One cell for both, and cover crops the 480 by 360 still to
+     the 16:9 stage the way this component always claimed it did. */
   .dm-video__poster {
+    grid-area: 1 / 1;
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
@@ -72,6 +116,8 @@
     position: absolute;
     inset: 0;
     display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
     place-items: center;
     inline-size: 100%;
     block-size: 100%;
@@ -100,6 +146,8 @@
   }
 
   .dm-video__play {
+    grid-area: 1 / 1;
+    place-self: center;
     position: relative;
     z-index: var(--z-raised);
     display: grid;
@@ -143,6 +191,28 @@
     padding: var(--space-4);
   }
 
+  /* The no-JS YouTube anchor carries .dm-video__facade, so it inherits the
+     whole resting frame and the visitor sees exactly what a scripted visitor
+     sees. It needs only what an <a> does not get from the button rules. */
+  a.dm-video__facade {
+    text-decoration: none;
+    color: inherit;
+  }
+  /* The anchor's accessible name. Clipped rather than removed because the
+     frame itself is a cropped still with an unlabelled glyph over it, so
+     without this the only link on the card would announce as "link, image". */
+  .dm-video__nojs-label {
+    position: absolute;
+    inline-size: var(--border-hairline);
+    block-size: var(--border-hairline);
+    margin: calc(-1 * var(--border-hairline));
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
   /* ==========================================================================
      THIRD-PARTY EMBED FACADE
      Same trade as the video facade, for a provider that ships a whole player
@@ -157,23 +227,50 @@
   .dm-embed__frame,
   .dm-embed__plate {
     inline-size: 100%;
-    block-size: var(--size-embed-player-h);
   }
 
   .dm-embed__frame {
-    border: 0;
     display: block;
+    block-size: var(--size-embed-player-h);
+    border: 0;
   }
 
+  /* The plate used to be pinned to --size-embed-player-h, the provider's own
+     412px, so the swap to the real player cost no layout shift. The price was
+     an outlined box roughly three quarters empty: 1246 by 410 at 1440 with all
+     its content in the leftmost 380px, and 350 by 412 at 390 with about 250px
+     of bare paper inside the border on the width where vertical space is
+     scarcest.
+
+     It sizes to its content instead. The shift that reintroduces happens
+     inside 500ms of a click on the control, which is what the Core Web Vitals
+     definition of an unexpected layout shift excludes, so nothing is paid on
+     load. At 768 and up the plate also turns a row so the copy and the control
+     use the width they were already drawing a border around. */
   .dm-embed__plate {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    gap: var(--space-4);
+    gap: var(--space-5);
     border: var(--border-hairline) solid var(--rule-structural);
     background-color: var(--surface-raised);
-    padding: var(--space-7) var(--space-6);
+    padding: var(--space-6);
+  }
+
+  .dm-embed__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 48rem) {
+    .dm-embed__plate {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+      padding: var(--space-7) var(--space-6);
+    }
   }
 
   .dm-embed__note {
@@ -200,6 +297,21 @@
   @media (min-width: 48rem) {
     .dm-video-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .dm-video-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    /* The four homepage titles run 1, 2, 3 and 4 lines, so the four facades
+       under them started at four different heights and nothing in the row
+       lined up. Each item spans two rows of the parent grid and adopts them
+       with subgrid, so every title in a row shares the tallest title's height
+       and every frame in a row starts on the same line. */
+    :is(.dm-video-grid--2, .dm-video-grid--3) .dm-video-grid__item {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      /* A subgrid inherits its parent's gutters unless it states its own. The
+         parent's --gutter-column is right between one item and the next; the
+         title sits closer to its own frame than that. */
+      row-gap: var(--space-3);
+    }
   }
   @media (min-width: 64rem) {
     .dm-video-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }

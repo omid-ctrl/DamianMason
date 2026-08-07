@@ -1,7 +1,16 @@
 /**
  * Critical regression check: with JavaScript disabled, no content may be
- * invisible. A scroll-reveal that hides content by default and relies on an
- * IntersectionObserver to show it is the failure mode being hunted here.
+ * invisible and no media may be unreachable.
+ *
+ * Two failure modes are hunted here. The first is a scroll-reveal that hides
+ * content by default and relies on an IntersectionObserver to show it. The
+ * second is a facade: every video on this site rests behind a <button> that
+ * swaps in the player on click, and with scripting off that button is a dead
+ * control covering the whole frame. Ten of the thirteen YouTube embeds shipped
+ * that way, with no anchor and no <noscript>, so the video simply did not
+ * exist for a visitor without JavaScript. Every .dm-video must now offer a
+ * real route to its file: an <a href> or a <video> with controls, both of
+ * which a browser parses out of <noscript> when scripting is off.
  */
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -27,7 +36,60 @@ for (const t of targets) {
       textLength: document.body.innerText.trim().length,
       h1: [...document.querySelectorAll('h1')].map((h) => h.innerText.trim()),
       headings: [...document.querySelectorAll('h2,h3')].map((h) => h.innerText.trim()).filter(Boolean).length,
+      videos: 0,
+      unreachableVideos: [],
+      deadFacades: [],
     };
+
+    /**
+     * Every video facade must expose a real route to the media with scripting
+     * off. A <button> is not one: it needs JavaScript to do anything.
+     *
+     * Three things are asserted per figure, not one. A route that exists in
+     * the markup but is painted at zero size, or is display:none, is not a
+     * route, and an assertion that only reads the FIRST anchor in the figure
+     * would be satisfied by an unrelated link in the cutline. So: scan every
+     * anchor, require the matching one to be rendered, and separately require
+     * that the inert <button> facade is not still sitting on top of it.
+     */
+    const rendered = (el) => {
+      if (!el) return false;
+      const cs = getComputedStyle(el);
+      if (cs.display === 'none' || cs.visibility === 'hidden') return false;
+      const r = el.getBoundingClientRect();
+      return r.width > 1 && r.height > 1;
+    };
+
+    for (const fig of document.querySelectorAll('.dm-video')) {
+      out.videos += 1;
+      const name = (
+        fig.querySelector('.dm-video__facade')?.getAttribute('aria-label') ??
+        fig.querySelector('.dm-video__nojs-label')?.textContent?.trim() ??
+        fig.querySelector('figcaption')?.textContent?.trim() ??
+        '(unnamed)'
+      ).slice(0, 80);
+
+      // Any anchor in the figure may be the route, so all of them are read.
+      // A YouTube facade must reach the canonical watch page (the
+      // -nocookie.com host serves embeds only); a self-hosted file must reach
+      // the MP4 itself, either through a link or through a <video> the
+      // browser can actually play.
+      const route = [...fig.querySelectorAll('a[href]')].find((a) => {
+        const href = a.getAttribute('href') ?? '';
+        return href.includes('youtube.com/watch') || href.endsWith('.mp4');
+      });
+      const media = fig.querySelector('video[controls]');
+      const reachable = rendered(route) || rendered(media);
+      if (!reachable) out.unreachableVideos.push(name);
+
+      // The scripted facade is a <button> that cannot do anything here. If it
+      // is still painted it covers the whole 16:9 stage and swallows the
+      // press that was meant for the route underneath, so a route that exists
+      // is not yet a route a visitor can reach.
+      if (rendered(fig.querySelector('button.dm-video__facade'))) {
+        out.deadFacades.push(name);
+      }
+    }
     // Any element that directly holds visible text must actually be visible.
     const all = document.querySelectorAll('body *');
     for (const el of all) {
@@ -62,19 +124,50 @@ for (const t of targets) {
   results.push({ name: t.name, ...r });
   console.log(
     `${t.name.padEnd(34)} text:${String(r.textLength).padStart(6)} h1:${r.h1.length} h2/h3:${String(r.headings).padStart(3)}` +
-    ` revealAttrs:${r.revealAttrs} pending:${r.pending}` +
+    ` revealAttrs:${r.revealAttrs} pending:${r.pending} video:${r.videos}` +
     (r.hiddenTextNodes.length ? `  HIDDEN:${r.hiddenTextNodes.length}` : '') +
-    (r.offscreenTransformed.length ? `  SHIFTED:${r.offscreenTransformed.length}` : ''),
+    (r.offscreenTransformed.length ? `  SHIFTED:${r.offscreenTransformed.length}` : '') +
+    (r.unreachableVideos.length ? `  UNREACHABLE-VIDEO:${r.unreachableVideos.length}` : '') +
+    (r.deadFacades.length ? `  DEAD-FACADE:${r.deadFacades.length}` : ''),
   );
   if (r.hiddenTextNodes.length) console.log('    ' + r.hiddenTextNodes.slice(0, 5).join('\n    '));
   if (r.offscreenTransformed.length) console.log('    ' + r.offscreenTransformed.slice(0, 5).join('\n    '));
+  if (r.unreachableVideos.length) console.log('    unreachable: ' + r.unreachableVideos.join('\n    unreachable: '));
+  if (r.deadFacades.length) console.log('    dead facade: ' + r.deadFacades.join('\n    dead facade: '));
   await page.close();
 }
 
 await browser.close();
 fs.writeFileSync(process.argv[3], JSON.stringify(results, null, 2));
 const failures = results.filter(
-  (r) => r.pending > 0 || r.hiddenTextNodes.length > 0 || r.offscreenTransformed.length > 0 || r.textLength < 400,
+  (r) =>
+    r.pending > 0 ||
+    r.hiddenTextNodes.length > 0 ||
+    r.offscreenTransformed.length > 0 ||
+    r.unreachableVideos.length > 0 ||
+    r.deadFacades.length > 0 ||
+    r.textLength < 400,
 );
-console.log('\nFAILING ROUTES: ' + failures.length);
+const videoTotal = results.reduce((n, r) => n + r.videos, 0);
+const videoBad = results.reduce((n, r) => n + r.unreachableVideos.length, 0);
+const facadeBad = results.reduce((n, r) => n + r.deadFacades.length, 0);
+
+/**
+ * The reachability count is only meaningful against a known total. Without
+ * this floor a route that stopped rendering its videos altogether would pass
+ * the sweep by having nothing left to fail, which is how a regression hides.
+ * 18 figures across the 19 routes: 4 on /, 3 on /keynote/, 4 on /reviews/,
+ * 3 on /collaboration-opportunities/, 3 on /blog-news/, 1 on the climate post.
+ * Raise it when a route gains a video; never lower it to make the sweep pass.
+ */
+const EXPECTED_VIDEOS = 18;
+const countShort = videoTotal < EXPECTED_VIDEOS;
+
+console.log(`\nVIDEOS: ${videoTotal - videoBad}/${videoTotal} reachable with JS off`);
+if (facadeBad) console.log(`DEAD FACADES STILL PAINTED: ${facadeBad}`);
+if (countShort) {
+  console.log(`VIDEO COUNT SHORT: found ${videoTotal}, expected at least ${EXPECTED_VIDEOS}`);
+}
+console.log('FAILING ROUTES: ' + failures.length);
 for (const f of failures) console.log('  ' + f.name);
+process.exitCode = failures.length || countShort ? 1 : 0;

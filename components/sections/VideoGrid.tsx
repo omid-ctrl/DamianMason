@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import type { Video } from '@/content/videos';
 import { Heading, cx } from '@/components/ui';
 import { VideoEmbed, type VideoCaptionTrack } from './VideoEmbed';
@@ -21,6 +23,19 @@ export type VideoGridProps = {
   posters?: Record<string, string>;
   /** Caption tracks for the MP4 items, keyed by video id. */
   captions?: Record<string, VideoCaptionTrack>;
+  /**
+   * Per-route cutline overrides, keyed by video id. `VideoEmbed` already takes
+   * a `cutline` and falls back to `video.description`; this is the way a grid
+   * reaches it.
+   *
+   * It exists because one asset is placed on two routes. `demo-innovation` runs
+   * on /keynote/ and on /collaboration-opportunities/, and with a single
+   * description in content/videos.ts the two pages printed a byte-identical
+   * cutline under the same frame. The description in content/videos.ts stays
+   * the default and the sponsorship page says what the clip proves to a
+   * sponsor. Do not use this to restate the title.
+   */
+  cutlines?: Record<string, ReactNode>;
   /** Names the list for assistive tech when the section heading sits elsewhere. */
   label?: string;
   className?: string;
@@ -44,6 +59,7 @@ export function VideoGrid({
   showTitles = true,
   posters,
   captions,
+  cutlines,
   label,
   className,
 }: VideoGridProps) {
@@ -67,6 +83,7 @@ export function VideoGrid({
             video={video}
             poster={posters?.[video.id]}
             captions={captions?.[video.id]}
+            cutline={cutlines?.[video.id]}
           />
         </li>
       ))}

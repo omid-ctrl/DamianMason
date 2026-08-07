@@ -20,10 +20,16 @@
   gap: var(--space-5);
 }
 
+/* Capped at the brand-art ceiling, not at the portrait ceiling. A portrait is a
+   photograph and carries the duotone, so it can run to --size-portrait-max
+   without competing with anything. This figure holds the show's cover art,
+   which keeps its own colour per DESIGN_SYSTEM 6.5.1, so 6.5.4's ceiling is the
+   one that applies: at --size-portrait-max it rendered 426px square of full
+   saturation, which outweighs the single filled orange field on the page. */
 .figure {
   margin: 0;
   inline-size: 100%;
-  max-inline-size: var(--size-portrait-max);
+  max-inline-size: var(--size-brand-art-max);
 }
 
 /* Below 1024 the plate sits under the type at column width, so it aligns to
@@ -38,31 +44,45 @@
   }
 }
 
+/* A hairline and nothing else: DESIGN_SYSTEM 6.5. The --surface-bright fill
+   that used to be here was a second white behind artwork that already supplies
+   its own, and the multiply below resolves that artwork's white to whatever the
+   section ground is, so the fill only ever added an inner edge. */
 .plate {
   display: grid;
   place-items: center;
   aspect-ratio: var(--ratio-square);
   padding: var(--space-6);
-  background-color: var(--surface-bright);
   border: var(--border-hairline) solid var(--rule-structural);
 }
 
 .plate img {
   inline-size: 100%;
   block-size: auto;
+  /* The show art and the book mockup both carry their own hard white ground,
+     which read as a whiter rectangle inset inside the plate. Multiply resolves
+     that white to the plate itself, the same treatment the logo wall gives 21
+     white-backed marks. */
+  mix-blend-mode: multiply;
 }
 
 /* The book mockup carries its own white margin and drop shadow, so the plate
-   only has to supply the edge, not a second mat. */
+   only has to supply the edge, not a second mat.
+
+   The cap is the point of the rule in DESIGN_SYSTEM 6.5. This jacket rendered
+   474px square, about 224,000px2 of saturated yellow, which made it several
+   times the area of the single filled orange field section 5.1 allows per
+   viewport and therefore the loudest colour object anywhere on the site. The
+   book is not the call to action on this page. */
 .bookPlate {
   padding: var(--space-2);
+  max-inline-size: var(--size-brand-art-max);
 }
 
 .episodeList {
   display: grid;
   gap: var(--space-8);
   margin: 0;
-  margin-block-start: var(--space-8);
   padding: 0;
   list-style: none;
 }

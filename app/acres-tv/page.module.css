@@ -53,9 +53,19 @@
 }
 
 /* --- the episode ledger --------------------------------------------------- */
+/* The ledger sets row-gap for its own rows and nothing for the join above it,
+   so it butted straight against the .splitRow figure column. The figure is the
+   shorter of the two columns there, which meant what the ledger met was the
+   Fig. 03 cutline: measured at 1440, the figcaption's bottom edge and all three
+   cards' border-top both landed on y=2224, and because the rule starts 108px
+   inside the caption's text block it read as a strikethrough under the
+   caption's last two words rather than as structure. The margin matches
+   .ledgerAction below it, so the section now opens and closes on the same
+   interval whichever column is taller at a given width. */
 .ledger {
   list-style: none;
   margin: 0;
+  margin-block-start: var(--space-9);
   padding: 0;
   row-gap: var(--space-8);
 }
@@ -71,6 +81,9 @@
   row-gap: var(--space-1);
 }
 
+/* The margin comes from .dm-section-close now, which also supplies the
+   full-width hairline the action hangs from. Kept as the route's hook so the
+   ledger's own rhythm stays visible in one place. */
 .ledgerAction {
   margin-block-start: var(--space-9);
 }

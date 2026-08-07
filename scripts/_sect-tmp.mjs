@@ -1,0 +1,15 @@
+import { chromium } from 'playwright';
+const [url, width, out, sel] = process.argv.slice(2);
+const w = Number(width);
+const b = await chromium.launch();
+const c = await b.newContext({ viewport: { width: w, height: w < 500 ? 844 : 1000 }, deviceScaleFactor: 2, isMobile: w < 500, hasTouch: w < 500, reducedMotion: 'reduce' });
+const p = await c.newPage();
+await p.goto(url, { waitUntil: 'networkidle' });
+await p.evaluate(() => document.fonts?.ready);
+await p.evaluate(async () => { await new Promise((r) => { let y = 0; const s = () => { window.scrollBy(0, innerHeight); y += innerHeight; if (y < document.body.scrollHeight + innerHeight) requestAnimationFrame(s); else { scrollTo(0,0); r(); } }; s(); }); });
+await p.waitForTimeout(600);
+const el = await p.$(sel);
+await el.scrollIntoViewIfNeeded();
+await p.waitForTimeout(400);
+await el.screenshot({ path: out });
+await b.close();

@@ -59,7 +59,18 @@
   letter-spacing: var(--ls-normal);
 }
 
+/* The post headline stops growing where its column stops growing.
+   --fs-4xl runs 40px to 60px against the viewport, but the article measure is
+   set in ch and lands on 640 to 657px from 1024 up whatever the window does. A
+   headline that gains a line as the window widens is a wider window buying the
+   reader a taller, blockier headline, which is backwards: "Eggflation Gives
+   Producers Record Profits While Internet Mocks Outrageous Prices" set in four
+   lines at 1024 and 1100 and five at 1200, 1300 and 1440.
+
+   Capping the clamp rather than replacing it keeps the whole ramp below 1024,
+   where the measure genuinely is still moving. */
 .title {
+  font-size: min(var(--fs-4xl), var(--fs-post-title-max));
   margin-block-start: var(--space-4);
 }
 

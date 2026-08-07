@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
+import Link from 'next/link';
 import { cx } from './cx';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
@@ -57,6 +58,24 @@ export function Button(props: ButtonProps) {
     void _b;
     void _c;
     void _ch;
+
+    /* A path is a route on this site, so it goes through next/link: client-side
+       transition, prefetch, no full document reload. Everything else stays a
+       bare <a>, and every one of those cases needs to:
+         mailto: and tel:   the browser hands them to another application
+         #fragment          same document, and Link would re-run the router
+         https://           another origin, which Link cannot navigate to
+       Before this, "Book Damian" in the masthead, every Hero and CTABand
+       action and the podcast hub cards all triggered a full reload while
+       app/blog/ used next/link, so the codebase behaved two ways. */
+    if (anchorProps.href.startsWith('/')) {
+      return (
+        <Link className={classes} {...anchorProps}>
+          {children}
+        </Link>
+      );
+    }
+
     return (
       <a className={classes} {...anchorProps}>
         {children}

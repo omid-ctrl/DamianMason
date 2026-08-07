@@ -105,11 +105,13 @@ export function Header({ items = nav, className }: HeaderProps) {
 
                  Be aware this does not change the emitted network work today.
                  Next 16 preloads any non-lazy image, so the <link rel="preload"
-                 as="image"> for this 7KB mark is still there and neither form
-                 emits fetchpriority="high" in the SSR output. The reason to
-                 prefer `eager` anyway is that `priority` is the LCP signal, and
-                 if Next starts honouring it with a real priority hint we want
-                 that hint on the hero portrait alone. */
+                 as="image"> for this 7KB mark is still there. What it does not
+                 do is emit a priority hint: in Next 16 `priority` maps to
+                 preload only and the hint is the separate `fetchPriority` prop.
+                 Hero.tsx now passes that prop explicitly on both of its image
+                 sites, which is where the real LCP element always is. The
+                 masthead deliberately does not, so the one hint on the page
+                 stays pointed at the element that actually decides LCP. */
               loading="eager"
             />
           </Link>

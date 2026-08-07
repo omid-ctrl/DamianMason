@@ -33,12 +33,15 @@
   gap: var(--space-4);
 }
 
-/* The plate the mark sits on. Bright ground plus a hairline, so a white-corner
-   logo has an edge instead of bleeding into the bone. */
+/* The frame the mark sits in. A hairline and nothing else: DESIGN_SYSTEM 6.5.
+   It used to carry --surface-bright as well, and because two of the three marks
+   supply their own hard white ground the result was a plate inside a plate,
+   with a visible edge where the artwork's white met the frame's. The marks are
+   multiplied instead, which resolves their own white to whatever surface the
+   card is on, so the hairline is the only edge in the frame. */
 .showArt {
   align-items: center;
   aspect-ratio: var(--ratio-square);
-  background-color: var(--surface-bright);
   border: var(--border-hairline) solid var(--rule-structural);
   display: grid;
   inline-size: var(--size-thumb);
@@ -46,13 +49,39 @@
   padding: var(--space-4);
 }
 
+/* OPTICAL AREA, not the box. The three marks are two square cover arts and a
+   2.1:1 wordmark, and sizing them by the box gave the wordmark 126x60 beside
+   two 126x126 squares: the same defect the client wall had, in a row of three
+   where it is more obvious because the eye reads three cells as a set.
+
+   Each mark carries one factor, and it folds in two things. First its aspect
+   ratio, so width is G x sqrt(a) and height G / sqrt(a) and sqrt(w x h) is the
+   same for all three. Second its INK fraction, because these three files are
+   not equally tightly cropped and the box is not what a reader sees: the
+   Business of Agriculture cover carries its artwork in 92% of its width and
+   83% of its height, so without the correction it would read as the smallest
+   of the three while measuring the largest. Factor = sqrt(a) / sqrt(inkW x
+   inkH), measured off the files in public/img/brand.
+
+   The result at 1440: 87x78 of ink, 82x82 and 119x57, which is an optical
+   spread of 1.005x across the row. */
 .showArtImg {
   block-size: auto;
-  inline-size: auto;
+  inline-size: calc(var(--brand-art-optical) * var(--art-optical-factor, 1));
   max-block-size: 100%;
   max-inline-size: 100%;
   object-fit: contain;
+  /* Resolves each mark's own white ground to the card surface behind it, which
+     is what lets the frame above carry no fill of its own. */
+  mix-blend-mode: multiply;
 }
+
+/* 800x800 canvas, ink 92% x 83%. */
+.showArtImg[data-mark='business-of-agriculture-podcast'] { --art-optical-factor: 1.142; }
+/* 800x800 canvas, ink 96% x 96%. */
+.showArtImg[data-mark='do-business-better-podcast'] { --art-optical-factor: 1.043; }
+/* 256x122 canvas after scripts/normalize-brand-art.mjs, ink 95% x 95%. */
+.showArtImg[data-mark='xtreme-ag-transparent'] { --art-optical-factor: 1.525; }
 
 .showTitle {
   margin-block-start: var(--space-1);

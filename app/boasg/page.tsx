@@ -19,6 +19,7 @@ import { buildBreadcrumbListSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
 
 import styles from './page.module.css';
+import { imageAlt } from '@/content/image-alt';
 
 /* ============================================================================
    THE JOIN CTA
@@ -47,7 +48,12 @@ const JOIN_BODY = [
   '',
   'I read the BoASG page and I want in.',
   '',
-  "Here's who you'd be getting: [your name, your operation or company, what you grow or sell or finance, and your state].",
+  /* U+2019, not U+0027. This body is not percent-encoded in the rendered href
+     text a visitor's mail client shows, so a straight apostrophe here is a
+     straight apostrophe in a message signed with Damian's name, and it is the
+     only one the site would emit. encodeURIComponent handles the multibyte
+     character, so JOIN_HREF needs no other change. */
+  'Here’s who you’d be getting: [your name, your operation or company, what you grow or sell or finance, and your state].',
   '',
   'Send me the terms and the date of the next program.',
   '',
@@ -107,15 +113,19 @@ const DAMIAN_EXPERTISE = [
   'Sales and Training',
 ];
 
-/* Country count reconciled in Phase 4. The old /boasg/ bio was the only page on
-   the whole site that said 8 foreign countries; /keynote/ and
-   /collaboration-opportunities/ both said 7. Keynote is also the newer page
-   (article:modified_time 2024-08-05 against boasg's 2023-08-01), so 7 wins on
-   both frequency and recency and the site now says 7 everywhere. Flagged to the
-   client: if the real count is 8, one string here and every other 7 on the site
-   move together. */
+/* The full four-sentence bio ran here AND on /about/, word for word, so a
+   visitor who read both pages read the same 78 words twice. /about/ is the
+   biography page, so it keeps the paragraph and this route keeps its opening
+   sentence with a link to the rest.
+
+   The country count that used to sit at the end of this string is the one
+   factual conflict the harvest could not resolve: the old /boasg/ said 8
+   foreign countries and every other page said 7. The site normalized to 7 and
+   the full sentence now appears only on /about/. Logged for the client in
+   docs/OPEN-ITEMS.md: if the real count is 8, that one string and every other
+   7 on the site move together. */
 const DAMIAN_BIO =
-  'Damian Mason is a leading voice in the Agricultural industry, sought out by media, podcasts, and publications for his tell-it-like-it-is style of delivery. He gives you the truth about Ag without sugar coating the message, helping to prepare his listeners (and BoASG members) to navigate their way through the rapidly changing, volatile industry. He has spoken and consulted with the biggest names in Agriculture, in all 50 states, 7 foreign countries, and in every segment of Ag.';
+  'Damian Mason is a leading voice in the Agricultural industry, sought out by media, podcasts, and publications for his tell-it-like-it-is style of delivery. On these calls that means the truth about Ag with no sugar coating on it.';
 
 const TODD_EXPERTISE = [
   'Animal Performance',
@@ -297,7 +307,9 @@ export default function BoasgPage() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-                <p>{DAMIAN_BIO}</p>
+                <p>
+                  {DAMIAN_BIO} <Link href="/about/">More about Damian</Link>.
+                </p>
               </Prose>
             </div>
 
@@ -306,7 +318,7 @@ export default function BoasgPage() {
                 <Image
                   className="dm-photo__img"
                   src="/img/photos/portrait-black-suit.jpg"
-                  alt="Damian Mason with his arms folded, in a charcoal jacket and an open collar, looking straight down the lens."
+                  alt={imageAlt['/img/photos/portrait-black-suit.jpg']}
                   width={1333}
                   height={2000}
                   loading="lazy"
@@ -315,8 +327,8 @@ export default function BoasgPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 01 </span>
-                Damian Mason. Purdue Ag Econ degree, Second City Chicago. Both of them
-                turn up on the same call.
+                Damian Mason. Every other Friday at 11am Eastern, 60 to 90 minutes, and
+                the recording is there if you miss it.
               </figcaption>
             </figure>
           </div>

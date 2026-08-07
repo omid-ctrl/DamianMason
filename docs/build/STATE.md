@@ -161,9 +161,15 @@ colon. Meaning is unchanged; this is a deliberate editorial call, recorded here 
    every other page says 7; the 40,000+ and 70,000+ audience figures have no source in the old site; the three
    books have no retailer URL anywhere in the mirror; the Do Business Better description is truncated mid-word;
    and the footer claims a weekly newsletter cadence that `/join-the-conversation/` deliberately refuses to state.
+   **Now written up for the client in `docs/OPEN-ITEMS.md` items 4 and 5.** The 8-vs-7 normalization to 7 is
+   recorded there as an unrecorded build-time edit to a verbatim biography, which is what it was. The two
+   40,000s are now scoped one per route so no single page shows both.
 5. **Component conveniences, not breakage:** no `components/sections` barrel, `StatRow` has no folio prop,
-   `VideoGrid` has no per-item cutline, `FAQAccordion` renders answers as plain text so one bare YouTube URL
-   is unlinked.
+   `VideoGrid` has no per-item cutline. ~~`FAQAccordion` renders answers as plain text so one bare YouTube URL
+   is unlinked.~~ **RESOLVED in the copy and parity QA pass.** `FaqItem` gained an optional `links` array:
+   `answer` still carries the source string verbatim, which is what the FAQPage JSON-LD serializes, and `links`
+   names the run of that string to promote to an anchor plus the text a visitor should read. The href is the
+   same `socials` entry the footer uses, so the FAQ and the footer cannot drift.
 
 ---
 

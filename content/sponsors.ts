@@ -11,7 +11,8 @@
  * name, so none of them is a guess:
  *   AgView Solutions, farm transition planning, Rowley Iowa.
  *   EarthOptics, soil data mapping, Minneapolis.
- *   Harvest Returns, agriculture investment platform, Fort Worth.
+ *   Harvest Returns, agriculture investment platform, Fort Worth. The www
+ *     host is the live one: the apex has no A record at all.
  *   Life Scientific, crop protection, Dublin.
  *   NewFields Ag, liquid biologicals and seed treatments, Grand Mound Iowa.
  *   Redox Bio, plant bio-nutrition, Burley Idaho, trading as redoxgrows.com.
@@ -29,14 +30,21 @@ export type Sponsor = {
 };
 
 export const sponsors: Sponsor[] = [
-  { name: 'AgView Solutions', logo: '/img/sponsors/agview-solutions.jpg', url: 'https://agviewsolutions.com', width: 200, height: 200 },
-  { name: 'EarthOptics', logo: '/img/sponsors/earthoptics.png', url: 'https://earthoptics.com', width: 800, height: 205 },
-  { name: 'Good Agriculture', logo: '/img/sponsors/good-agriculture.png', url: 'https://goodagriculture.com', width: 690, height: 385 },
-  { name: 'Harvest Returns', logo: '/img/sponsors/harvest-returns.jpg', url: 'https://harvestreturns.com', width: 200, height: 188 },
-  { name: 'Heads Up Plant Protectants', logo: '/img/sponsors/heads-up-plant-protectants.jpg', url: 'https://headsupst.com', width: 800, height: 800 },
-  { name: 'Life Scientific', logo: '/img/sponsors/life-scientific.jpg', url: 'https://lifescientific.com', width: 200, height: 148 },
-  { name: 'Nano-Yield', logo: '/img/sponsors/nano-yield.webp', url: 'https://nano-yield.com', width: 640, height: 342 },
-  { name: 'NewFields Ag', logo: '/img/sponsors/newfields-ag.jpg', url: 'https://newfieldsag.com', width: 132, height: 132 },
-  { name: 'Redox Bio', logo: '/img/sponsors/redox-bio.png', url: 'https://redoxgrows.com', width: 270, height: 148 },
-  { name: 'Tidal Grow', logo: '/img/sponsors/tidal-grow.jpg', url: 'https://tidalgrowag.com', width: 200, height: 188 },
+  { name: 'AgView Solutions', logo: '/img/sponsors/agview-solutions.jpg', url: 'https://agviewsolutions.com', width: 247, height: 234 },
+  { name: 'EarthOptics', logo: '/img/sponsors/earthoptics.png', url: 'https://earthoptics.com', width: 466, height: 119 },
+  { name: 'Good Agriculture', logo: '/img/sponsors/good-agriculture.png', url: 'https://goodagriculture.com', width: 466, height: 113 },
+  { name: 'Harvest Returns', logo: '/img/sponsors/harvest-returns.jpg', url: 'https://www.harvestreturns.com', width: 362, height: 120 },
+  { name: 'Heads Up Plant Protectants', logo: '/img/sponsors/heads-up-plant-protectants.jpg', url: 'https://headsupst.com', width: 466, height: 160 },
+  { name: 'Life Scientific', logo: '/img/sponsors/life-scientific.jpg', url: 'https://lifescientific.com', width: 386, height: 68 },
+  { name: 'Nano-Yield', logo: '/img/sponsors/nano-yield.webp', url: 'https://nano-yield.com', width: 445, height: 234 },
+  { name: 'NewFields Ag', logo: '/img/sponsors/newfields-ag.jpg', url: 'https://newfieldsag.com', width: 201, height: 234 },
+  { name: 'Redox Bio', logo: '/img/sponsors/redox-bio.png', url: 'https://redoxgrows.com', width: 466, height: 178 },
+  /* "AgriScience" is not decoration on this one. The supplied mark is a
+     two-line logotype reading "Tidal Grow" over "AgriScience", and
+     _source/pages/the-business-of-agriculture.md:54 gives the visible link
+     label as "Tidal Grow Agriscience". The short form came from the supplied
+     filename, and because the wall renders the name as the logo's alt inside
+     an anchor, the short form was also the accessible name of the outbound
+     link. Casing follows the mark rather than the source page's typing. */
+  { name: 'Tidal Grow AgriScience', logo: '/img/sponsors/tidal-grow.jpg', url: 'https://tidalgrowag.com', width: 402, height: 202 },
 ];

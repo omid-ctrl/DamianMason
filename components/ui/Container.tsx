@@ -11,6 +11,17 @@ export type ContainerProps = {
    * text   46rem, for a blog post or a legal page.
    */
   width?: ContainerWidth;
+  /**
+   * Where a container narrower than `max` sits in the viewport.
+   *
+   * `center` is the default and the historical behaviour. `start` parks the
+   * narrow measure on the same left gutter the `max` container uses, which is
+   * what a page mixing widths needs: on /the-business-of-agriculture/ the
+   * sponsor wall opened at x=48, the episode sections at x=96 and the two
+   * narrow sections at x=320, so the page's left edge visibly wandered three
+   * times in one scroll. A broadsheet grid exists to prevent exactly that.
+   */
+  align?: 'center' | 'start';
   /** Drops the gutter, for a child that manages its own inline padding. */
   flush?: boolean;
   as?: ElementType;
@@ -27,6 +38,7 @@ const WIDTH_CLASS: Record<ContainerWidth, string> = {
 
 export function Container({
   width = 'max',
+  align = 'center',
   flush = false,
   as: Tag = 'div',
   className,
@@ -35,7 +47,13 @@ export function Container({
 }: ContainerProps) {
   return (
     <Tag
-      className={cx('dm-container', WIDTH_CLASS[width], flush && 'dm-container--flush', className)}
+      className={cx(
+        'dm-container',
+        WIDTH_CLASS[width],
+        align === 'start' && 'dm-container--start',
+        flush && 'dm-container--flush',
+        className,
+      )}
       {...rest}
     >
       {children}

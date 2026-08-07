@@ -189,5 +189,9 @@ Then confirm by hand:
 - Playwright screenshots in `docs/qa/screenshots/` at 390 / 768 / 1440 for every route
 - Lighthouse: Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO 100
 - `grep -rn "—" content/ app/ components/` returns nothing (no em dashes)
+- `grep -rnP "[A-Za-z]'[A-Za-z]" app/ content/ components/ --include='*.tsx' --include='*.ts'`
+  returns only comment lines (no straight apostrophes in copy). The source harvest logged mixed
+  apostrophe styles as a live-site defect on home, keynote and boasg, so new copy must not
+  reintroduce them. Nothing else catches this: the em dash grep does not.
 - `grep -rn "wpengine.com" .` returns nothing
 - `grep -rn 'href=""' app/ components/` returns nothing

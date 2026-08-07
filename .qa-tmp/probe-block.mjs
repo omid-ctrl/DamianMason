@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const c = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+await c.route('**://i.ytimg.com/**', r => r.abort());
+const p = await c.newPage();
+await p.goto('http://localhost:3100/reviews/', { waitUntil: 'networkidle' });
+await p.evaluate(async () => { const H=document.documentElement.scrollHeight; for(let y=0;y<H;y+=600){window.scrollTo(0,y); await new Promise(s=>setTimeout(s,150));} });
+await p.waitForTimeout(1000);
+const y = await p.evaluate(() => { const f=document.querySelectorAll('.dm-video__facade')[0]; f.scrollIntoView(); return Math.round(window.scrollY); });
+await p.waitForTimeout(600);
+await p.screenshot({ path: '/Users/omidebrahimi/Desktop/Projects/DamianMason/docs/qa/screenshots/round-1-mobile/zz-ytimg-blocked-390.png' });
+console.log(JSON.stringify(await p.evaluate(() => [...document.querySelectorAll('.dm-video__facade')].map(f => { const i=f.querySelector('img'); return { nw:i.naturalWidth, complete:i.complete, alt:i.alt.slice(0,50) }; })), null, 1));
+await b.close();

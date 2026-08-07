@@ -1,0 +1,451 @@
+[
+  {
+    "severity": "major",
+    "route": "sitewide (worst: /speaking/, /meeting-coordinators/, /keynote/, /)",
+    "summary": "The booking-logistics facts are retold across the site far more heavily than the weather-forecast line the fixers spent this round reducing. Five separate facts each run 8 to 10 times, several of them repeated two or three times WITHIN a single route in rebuild-written prose. This is the exact defect class round 2 named, applied to a different set of sentences, and no fix pass has touched it.",
+    "evidence": "Measured over the rendered <main> of all 19 routes, with the verbatim FAQ block (source-mandated on /, /keynote/, /meeting-coordinators/) counted separately from rebuild-written prose:\n\n\"books his own airfare and rental car\": 10 instances on 6 routes. /meeting-coordinators/ says it 3 times: \"Damian books his own airfare and rental car.\", \"Travel and hotel Damian books all of his own airfare and car rental.\", and the FAQ's \"Damian books all of his airfare and car rental.\"\n\n\"First step: check the date\": 10 instances on 9 routes, including both blog posts.\n\n\"fees are NET to him\": 9 instances on 6 routes. /speaking/ is a 723-word page that states it THREE times, none of them the verbatim FAQ (that route does not carry the FAQ), and two of the three are near-identical: app/speaking/page.tsx:149 \"Fees get quoted when you ask, and they're NET to him.\" and app/speaking/page.tsx:297 \"Fees are quoted when you inquire, and they're NET to him.\", plus app/speaking/page.tsx:94 \"...and fees that are NET to him.\"\n\n\"won't speak while people are eating or tables are being cleared\": 9 instances on 5 routes. /meeting-coordinators/ carries it 3 times (\"One rule never moves: he won't speak...\", \"Damian won't speak while the tables are being cleared.\", plus the FAQ). / and /keynote/ carry it twice each.\n\n\"a simple contract and a small deposit\": 8 instances on 6 routes; /speaking/ says it twice (\"A simple contract and a small deposit hold your date...\" and \"You'll get a simple contract, a small deposit to hold the date...\").\n\nFor scale: the weather-forecast line the fixers reduced this round now stands at 5 instances on 5 routes. Every one of the five facts above is worse than that.",
+    "suggestedFix": "Do not paraphrase these again, and do not simply delete instances at random, which is how round 1 moved duplicates onto new routes. Pick one owning route per fact and let the others link to it. /meeting-coordinators/ and the FAQ block already own the full booking terms verbatim, so the rebuild-written restatements on /speaking/, /reviews/, /contact-us/ and /about/ are the ones to cut. Within /speaking/ specifically, keep exactly one NET-to-him statement (app/speaking/page.tsx:297 sits in the booking section and is the natural home) and one contract/deposit statement, and let the cutline at :149 carry something only that photograph supports. Before writing any replacement, grep the rendered text of all 19 routes for the new string, since three of this round's replacements landed on copy that already ran elsewhere.",
+    "isRegressionFromFix": false,
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/speaking/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "major",
+    "route": "/about/",
+    "summary": "The books section tells the visitor about the rebuild's own sourcing method: \"What follows is the jacket copy, word for word, so it's the publisher's pitch and not ours.\" This is the same class as the blocker the orchestrator already removed from /join-the-conversation/, softer only because it is comprehensible. \"Word for word\" is the vocabulary of the build's verbatim-parity contract, and \"not ours\" is a defensive note about editorial ownership that no visitor asked for.",
+    "evidence": "app/about/page.tsx:278, rendered on /about/ between the No. 03 heading and the first book card: \"Books No. 03 Two books and an audiobook. Two subjects: food and business. What follows is the jacket copy, word for word, so it's the publisher's pitch and not ours. You don't have to book Damian to read the books.\" This line was added by a round-1 fix, and docs/qa/round-2-findings.json:17 already quotes it back approvingly (\"The 'What follows is the jacket copy, word for word' intro added in round 1 explains the tone but not why the same paragraph runs twice\"), so it has survived two rounds unexamined as copy in its own right. It also fails VOICE.md check 10, the stage test: it is not a sentence Damian says from a stage in front of 400 farmers.",
+    "suggestedFix": "Attribution here is legitimate; the parity-contract vocabulary is not. If the client wants the blurbs marked as the publisher's, use a conventional label on each card (\"From the publisher\") rather than a sentence of prose explaining the rebuild's method. Otherwise delete the sentence entirely: the section already reads correctly without it, and \"You don't have to book Damian to read the books\" is the in-voice line that should carry the intro.",
+    "isRegressionFromFix": true,
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/about/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "major",
+    "route": "/about/",
+    "summary": "The hero deck rewritten by this round's fix is a table of contents for the page rather than copy about Damian. The same structural narration was written into the meta description in the same fix, so it is now the SERP snippet too.",
+    "evidence": "app/about/page.tsx:140, rendered as the /about/ hero deck: \"Nine job titles and one industry. Below: the biography, the four credentials behind it, and the books. Read the credentials first if you're the one signing the contract.\" The middle sentence names the page's own section list. The meta description does the same: \"The biography, the four credentials, and the books: two titles, one of them also on audio. Behind all of it, 2,400 audiences in 50 states since 1994.\" Every other route's description opens on a fact about Damian or the offer; these two open on the page's furniture. Fails VOICE.md check 10 (stage test) and check 9 (specifics beat categories: \"the biography, the four credentials, and the books\" are categories of page section, not facts). Note the arithmetic is at least sound: the No. 01 heading does list nine job titles.",
+    "isRegressionFromFix": true,
+    "suggestedFix": "Rewrite the deck off a fact only /about/ carries. The fix's comment records two previously-rejected decks (the Fortune 500 quit, now owned by /do-business-better-podcast/, and Home's Purdue/Second City opener), so avoid both. Material this route holds exclusively and that neither neighbour states: the wife Lori and Arizona-winter sentence, and the Screen Actors Guild membership in prose. \"Read the credentials first if you're the one signing the contract\" is in-voice and second-person and can stay as the second sentence; it is the \"Below:\" inventory that has to go. Fix the meta description in the same edit.",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/about/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/keynote/",
+    "summary": "The section-9 replacement written by this round's fix opens by narrating the page's own layout, and the thing it points at is roughly 2,800 characters earlier with four sections in between, so the pointer does not resolve for a reader.",
+    "evidence": "app/keynote/page.tsx:410: \"What the credentials above leave out: a Screen Actors Guild card, two books and an audiobook, and the Indiana farm he goes home to between dates.\" Measured on the rendered /keynote/ <main>: the four-pillar credentials bar sits at character offset ~1126 to ~1262; this sentence sits at offset ~4044. Between them run the full program description, the three demo-reel videos and the testimonial block. The nearest thing actually above the sentence is the H2 at :404, which is a list of five job titles, not credentials. Same structural-narration class as the /about/ deck, and written in the same pass.",
+    "isRegressionFromFix": true,
+    "suggestedFix": "Drop the clause that refers to the page's furniture and state the facts directly, e.g. open on the Screen Actors Guild card and the farm without framing them as what something else omitted. The second sentence (\"If you want the long version, it's written up on the About page.\") is a legitimate cross-reference and can stay.",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/keynote/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/about/ and /boasg/",
+    "summary": "/about/ reprints the opening 23 words of the paragraph that is verbatim source copy for /boasg/, so the same sentence introduces Damian on two routes.",
+    "evidence": "Identical 23-word run detected by the n-gram pass on both routes: \"Damian Mason is a leading voice in the Agricultural industry, sought out by media, podcasts, and publications for his tell-it-like-it-is style of delivery.\" The verbatim source is _source/pages/boasg.md:38 and it exists on that page only; there is no about.md in _source/pages, so /about/'s use is a rebuild choice, not parity. app/about/page.tsx:177 carries the fuller paragraph including the parenthetical, rendered as \"...helping to prepare his listeners (and Business of Ag Success Group members) to navigate their way through the rapidly changing, volatile industry\" — a BoASG-specific aside transplanted into a general biography, where it reads as a non-sequitur. app/boasg/page.tsx:123 carries the same first sentence with a rewritten tail.",
+    "suggestedFix": "/boasg/ owns this paragraph, since that is the page the source wrote it for and the parenthetical only makes sense there. Give /about/'s biography an opening drawn from keynote.md's bio block, which /about/ already owns after this round's de-duplication and which /keynote/ no longer renders. At minimum, strip the \"(and Business of Ag Success Group members)\" aside from the /about/ instance.",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/about/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/keynote/",
+    "summary": "Two source blurbs are each printed twice on the page, so a visitor reads the same two sentences twice within about 2,000 characters. This one is source-faithful, so it needs a deliberate decision rather than an automatic rewrite.",
+    "evidence": "Detected as an 18-word within-route repeat: \"Damian speaks to companies around the globe that have a role in the world's most important industry: Agriculture.\" appears at app/keynote/page.tsx:104 (hero deck) and again at :246 (the \"What you can book / Keynote\" card). The \"Keynote not enough? No problem!\" hook repeats the same way at :107 and :259. Both duplications are faithful: _source/pages/keynote.md carries the first at lines 25 and 29 and the second at lines 27 and 30, because the old Divi page had a hero blurb and a service card holding the same text. The builder was evidently half-aware, since the second halves were paraphrased (\"He delivers breakouts and panel discussions too.\" vs \"Damian also delivers breakouts and panel discussions.\") while the repeated hooks were left verbatim.",
+    "suggestedFix": "Flagging for a decision, not prescribing a rewrite, because parity-a is a binding contract and cutting either instance is a parity change. If the orchestrator rules that the source's own duplication does not have to ship, keep the hero instance of each and let the \"What you can book\" card carry only what distinguishes the keynote from the extensions. Whichever way it goes, record the ruling next to both sites so a later agent does not re-litigate it.",
+    "isRegressionFromFix": false,
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/keynote/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/keynote/ and /collaboration-opportunities/",
+    "summary": "A video cutline is byte-identical on two routes, and a photo cutline shares its opening sentence across two more. Round 2 flagged repeated cutlines specifically, and these two survived the pass.",
+    "evidence": "Extracted all 57 figcaptions and compared bodies. Identical across routes: \"A short cut from a live keynote on ag innovation and who pays for it.\" on /keynote/ and /collaboration-opportunities/. Shared opening sentence: \"A breakout session at rounds, one screen.\" opens the Fig. 03 cutline on / and the FIG. 03 cutline on /meeting-coordinators/, then the two diverge (\"Extended sessions get booked alongside the keynote, not instead of it.\" vs \"Damian won't speak while the tables are being cleared.\"). Separately, /keynote/'s three demo-reel captions all run the same stem \"A short cut from a live keynote on ...\", which reads as a caption series within one page and is defensible; the cross-route instance is the defect.",
+    "suggestedFix": "The Innovation clip is the same asset on both routes, so vary the cutline by what each page is for: on /collaboration-opportunities/ the reader is a prospective sponsor, so the caption can name what the clip demonstrates about audience reaction rather than restating the topic. For the breakout photograph, /meeting-coordinators/'s version already adds the caveat, so give Home's a different first sentence. Check any replacement against the rendered text of all 19 routes before writing it.",
+    "isRegressionFromFix": false,
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/collaboration-opportunities/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/about/, /blog/, /contact-us/",
+    "summary": "The hero eyebrow \"Filed from the Indiana farm office\" runs on three routes, while this round's fix removed it from /keynote/ on the explicit written ground that it belongs to /about/ alone. The fix's stated rationale is false of the site that shipped.",
+    "evidence": "app/keynote/page.tsx:394-395 records: 'The eyebrow moved off \"Filed from the Indiana farm office\" for the same reason: that is the /about/ hero's running head.' But the string is still an eyebrow prop on three routes: app/about/page.tsx:128, app/blog/page.tsx:75, app/contact-us/page.tsx:107. Confirmed in rendered output: the phrase appears in the <main> of /about/, /blog/ and /contact-us/. So the fix removed the fourth instance while leaving the premise unsatisfied.",
+    "suggestedFix": "Either accept the eyebrow as a shared editorial dateline and correct the comment at app/keynote/page.tsx:394 so it no longer asserts exclusive ownership, or make the premise true by giving /blog/ and /contact-us/ their own eyebrows. The comment and the site must agree, because the next agent will read that comment as fact.",
+    "isRegressionFromFix": false,
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/keynote/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/podcasts/",
+    "summary": "The 40,000 figure runs three times on a 425-word page, including a restatement sitting directly beneath the ledger glyph that already carries it. This is the exact pattern the same fix pass identified and removed from /collaboration-opportunities/, so the rule was applied on one route and not the other.",
+    "evidence": "Three occurrences in the rendered <main> of /podcasts/: (1) the ledger glyph \"01 40,000 + Monthly listeners\", (2) immediately after that ledger, \"More than 40,000 people listen every month. They're growers, ag lenders, agronomists, and business owners.\", (3) the closing panel \"The reach 40,000 + Monthly listeners\". The fix report for /collaboration-opportunities/ states the reasoning that applies here verbatim: \"The stat-deck restatement dropped its 40,000 sentence, since the ledger glyph directly above already carries the figure.\" /podcasts/ kept its restatement, and the same agent rewrote that very sentence in this round.",
+    "suggestedFix": "Apply the same treatment: drop the figure from the restatement and keep the audience sentence, which is the part that adds information the glyph cannot carry. Note that the audience clause itself is one of eight near-identical occupation lists on the site, so prefer trimming to \"They're growers, ag lenders, agronomists, and business owners.\" only if that list is not already the closest neighbour's too.",
+    "isRegressionFromFix": false,
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/podcasts/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "sitewide (/, /podcasts/, /collaboration-opportunities/, /join-the-conversation/ and 4 more)",
+    "summary": "Two rebuild-written formulas have become site tics: the occupation list and the sponsor CTA. VOICE.md sanctions naming occupations, but not reprinting the same triplet eight times, and the CTA is VOICE.md's own worked example pasted onto three routes.",
+    "evidence": "Occupation list, 8 instances on 7 routes, twice on /join-the-conversation/: \"Growers, ag lenders, agronomists, and the agribusiness people who sell to them.\" (/the-business-of-agriculture/), \"They're growers, ag lenders, agronomists, and business owners.\" (/podcasts/), \"Growers, ag lenders, and agronomists, every month.\" (/xtreme-ag/), \"Growers, lenders, agronomists, and the people who sell to them.\" and \"Growers, ag lenders, association directors: ...\" (/join-the-conversation/), plus /keynote/, /blog/ and /contact-us/.\n\nSponsor CTA, 3 routes: \"If yours belongs in front of the same growers, say so and we'll talk.\" (/), \"If your brand belongs in front of them, say so and we'll talk.\" (/collaboration-opportunities/), \"If your brand belongs in front of growers, say so and we'll talk.\" (/podcasts/). The middle one is verbatim the \"After\" sentence in VOICE.md section 6, Pair 3, which was written as an illustration for one card and has been copied onto two further routes.",
+    "suggestedFix": "Keep the canonical instance of each and vary the rest by naming a different, real slice of the audience per route, which the source supports: pork producers and association boards on /keynote/, ag finance and planning and beet growers on /boasg/, agronomists and soil-data buyers on /collaboration-opportunities/. For the CTA, /collaboration-opportunities/ is the canonical home per VOICE.md Pair 3; give Home and /podcasts/ closes built from what those pages sell rather than the same six words.",
+    "isRegressionFromFix": false,
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/podcasts/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/keynote/",
+    "summary": "The nine-item job-title list renders three different ways across three routes, and /keynote/'s five-item version has drifted off its own verbatim source. Same root cause as the credentials bar this round centralised into content/credentials.ts: the list is hand-copied inline.",
+    "evidence": "_source/pages/keynote.md:180 and _source/pages/collaboration-opportunities.md:121 both carry the identical H2 \"Damian Mason is a Businessman, Agriculturist, Speaker, Podcaster, Media Guest, Ag Personality, Influencer, Author, and Consultant.\" The rebuild renders all nine on /about/ (\"Businessman, agriculturist, speaker, podcaster, media guest, Ag personality, influencer, author, and consultant.\") and all nine on /collaboration-opportunities/, but /keynote/ app/keynote/page.tsx:404 renders only five: \"Damian Mason: businessman, agriculturist, speaker, podcaster, author.\" So the one route whose own source file carries the full list is the route that dropped four items. Note this is also what makes the following sentence's \"the credentials above\" misfire, since a five-item job-title list is what actually sits above it.",
+    "suggestedFix": "Lift the list into a shared content module the way content/credentials.ts now holds the four pillars, and have all three routes import it, so it cannot drift again. If /keynote/ deliberately wants a short form, derive it from the same array rather than retyping it, and record why the short form exists. This overlaps the parity area, so coordinate rather than fixing it twice.",
+    "isRegressionFromFix": false,
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/keynote/page.tsx",
+    "area": "voice-audit"
+  },
+  {
+    "severity": "minor",
+    "route": "/boasg/ (mailto body) and /join-the-conversation/ (JSON-LD)",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/boasg/page.tsx",
+    "isRegressionFromFix": false,
+    "summary": "Two visitor- and crawler-reachable strings carry straight apostrophes, which PLAN.md's verification block names as a live-site defect that new copy must not reintroduce, and one of them is on /boasg/, one of the three routes the harvest flagged for it.",
+    "evidence": "PLAN.md Verification: `grep -rnP \"[A-Za-z]'[A-Za-z]\" app/ content/ components/ --include='*.tsx' --include='*.ts'` \"returns only comment lines (no straight apostrophes in copy). The source harvest logged mixed apostrophe styles as a live-site defect on home, keynote and boasg, so new copy must not reintroduce them.\" I ran that grep and filtered out comment lines: 46 lines survive, 44 of which are unasterisked continuation lines of block comments, and exactly 2 are copy.\n\n1. app/boasg/page.tsx:51, inside JOIN_BODY, the prefilled body of the client-required BOASG join mailto:\n   \"Here's who you'd be getting: [your name, your operation or company, what you grow or sell or finance, and your state].\",\n   Both apostrophes are U+0027. The served /boasg/ HTML contains the literal substrings \"Here's\" and \"you'd\" three times each (the two buttons plus the flight payload); they are not percent-encoded, so the visitor's mail client renders straight apostrophes in a message signed with Damian's name. Every other apostrophe the site emits is U+2019 (I scanned the rendered <main> visible text of all 19 routes for /\\w'\\w/ and got zero hits, which is what makes these two stand out rather than blend in).\n\n2. app/join-the-conversation/page.tsx:78, the WebPage node's description:\n   \"Subscribe to Damian Mason's mailing list for new podcast episodes and his commentary on trends in the business of food, fuel, and fiber.\"\n   Confirmed present verbatim in the served /join-the-conversation/ HTML inside one of that page's four application/ld+json blocks. The HTML <meta name=\"description\"> on the same route is clean and uses U+2019 (\"Damian’s read on the trends...\"), so the two descriptions for the same page disagree on apostrophe style.\n\nNot a regression: neither string was touched by the round-1 or round-2 fixes, and neither was reported in earlier rounds. Everything else on this line passes: 0 em dashes in content/ app/ components/ lib/ src/ and 0 in the rendered <main> of all 19 routes; the banned-word list produces one hit, \"fast-paced, humor-infused\" on /keynote/, which is verbatim client copy from _source/pages/keynote.md:88 and must stay.",
+    "suggestedFix": "Replace the four U+0027 with U+2019 in the two strings: app/boasg/page.tsx:51 becomes \"Here’s who you’d be getting: [...]\" (encodeURIComponent already handles the multibyte character, so JOIN_HREF needs no other change), and app/join-the-conversation/page.tsx:78 becomes \"Damian Mason’s mailing list\". Then re-run PLAN.md's grep and confirm only comment lines remain.",
+    "area": "client-checklist"
+  },
+  {
+    "severity": "major",
+    "route": "/, /reviews/, /collaboration-opportunities/",
+    "summary": "Ten of the thirteen YouTube videos are unreachable with JavaScript disabled: the facade is a bare <button> with no <noscript> fallback and no link to the video, where the old site server-rendered a working iframe.",
+    "evidence": "Rendered markup on /reviews/ for every video testimonial: `<button type=\"button\" class=\"dm-video__facade\" aria-label=\"Play video: ...\"><img class=\"dm-video__poster\" src=\"https://i.ytimg.com/vi/iZ85SxLyykA/hqdefault.jpg\" alt=\"\" loading=\"lazy\"/><span class=\"dm-video__play\" aria-hidden=\"true\">...</span></button>` — no anchor, no noscript. Counted in the served HTML: /home/ 4 YouTube posters, 0 <noscript>, 0 youtube.com/watch anchors; /reviews/ 4 posters, 0 noscript, 0 watch anchors; /collaboration-opportunities/ 2 YouTube posters, 1 noscript (the MP4 branch only), 0 watch anchors. The other three YouTube videos are safe because /blog-news/ carries all three as PressList anchors and the climate post carries \"Open the segment on YouTube\", so the exposure is exactly 10 of 13. The same component already solves this for the other branch: components/sections/VideoEmbed.tsx:98-104 builds a <noscript> string containing a real `<video controls>` plus a `Download the MP4` link, and /keynote/ serves three such blocks. The asymmetry is inside one file. Source parity: the old pages embedded `https://www.youtube.com/embed/<id>?feature=oembed` as server-rendered Divi iframes, which played with scripting off. Not a regression from the round-2/3 fixes — `git show HEAD:components/sections/VideoEmbed.tsx` already had the button facade with no noscript on the YouTube branch — but round 2's finding 24 added the noscript guarantee to the MP4 branch and did not extend it here, and no earlier round raised the YouTube case.",
+    "suggestedFix": "In components/sections/VideoEmbed.tsx, give the YouTube branch the same <noscript> treatment the MP4 branch got. The cheapest correct payload is a plain anchor, not an iframe: `<noscript><a href=\"https://www.youtube.com/watch?v=<id>\" target=\"_blank\" rel=\"noopener noreferrer\">Watch \"<title>\" on YouTube</a></noscript>`, built as an escaped string the same way MP4_NOSCRIPT already is, with a scoped rule hiding the inert facade the way `.dm-video--mp4 .dm-video__facade{display:none}` does. That costs zero bytes on the JS path (noscript content is inert text when scripting is on) and restores the no-JS reachability the old site had. The watch URL is already computed for the VideoObject JSON-LD on these routes, so there is nothing new to derive.",
+    "file": "components/sections/VideoEmbed.tsx",
+    "isRegressionFromFix": false,
+    "area": "parity"
+  },
+  {
+    "severity": "minor",
+    "route": "/about/",
+    "summary": "The books section still tells the reader \"What follows is the jacket copy, word for word\", but the audiobook card now renders a rebuild-written sentence instead of jacket copy.",
+    "evidence": "app/about/page.tsx:276-280 renders the section intro: \"Two subjects: food and business. What follows is the jacket copy, word for word, so it's the publisher's pitch and not ours.\" Three cards follow. Two carry the verbatim harvested description from content/books.ts; the third does not, because app/about/page.tsx:99-101 substitutes `FORMAT_NOTE['food-fear-audiobook'] = 'The same book as the print edition above, read aloud.'` at line 318-320. Confirmed in the rendered text of /about/: \"Audiobook Food Fear (Audiobook) How Fear is Ruining Your Dinner and Why You Should Celebrate Eating The same book as the print edition above, read aloud. Print edition Do Business Better ...\". A visitor reading the intro takes that sentence as the publisher's. This is a regression from the round-3 de-duplication fix, which reconciled the count wording in that same paragraph (\"Three titles, two subjects\" became \"Two subjects\") but left the word-for-word claim standing over a card that is no longer word-for-word anything.",
+    "suggestedFix": "Scope the claim to the cards it is still true of, without touching content/books.ts. One sentence does it, e.g. \"Two subjects: food and business. The descriptions below are the publisher's jacket copy, word for word, except the audiobook, which has none of its own.\" Alternatively mark the substituted line visually as an editorial note rather than body copy (it is the only card body that is not a quotation), or take the collapse-to-one-entry option already written up in docs/OPEN-ITEMS.md item 12, which removes the mismatch entirely.",
+    "file": "app/about/page.tsx",
+    "isRegressionFromFix": true,
+    "area": "parity"
+  },
+  {
+    "severity": "minor",
+    "route": "/speaking/",
+    "summary": "The biography's opening sentence still runs verbatim on /speaking/, so the round-3 bio de-duplication left a two-route overlap it did not check for.",
+    "evidence": "The source biography (_source/pages/keynote.md:183) opens \"Damian Mason speaks on the two subjects he knows best: Business and Agriculture.\" That exact ten-word run is rendered on two routes: app/about/page.tsx (the No. 01 Biography block, which now owns the bio) and app/speaking/page.tsx:136 as the hero deck — \"Damian speaks on the two subjects he knows best: Business and Agriculture. He quit a Fortune 500 job in 1994 to do it. ...\". Measured on the rendered <main> of all 19 routes: about.txt 1, speaking.txt 1. The round-3 fix report states it \"Verified: all three bio strings now return 1 on /about/ and 0 on /keynote/\" — /speaking/ was never in the sample, so the claim of completeness is narrower than it reads. Not caused by the fix: `git show HEAD:app/speaking/page.tsx:136` already carried the line, so it predates this round.",
+    "suggestedFix": "Rewrite the /speaking/ hero deck off material that route already owns and /about/ does not. /speaking/ is the hub whose job is routing (\"Start where your question is\"), so the deck can lead on the four destinations or on the direct-booking promise rather than restating the bio's first line. Whatever replacement is written, grep app/ and content/ for it first — the two decks already rejected on /about/ this round are recorded in the comment at app/about/page.tsx:21 and :132, and the Fortune 500 clause is spoken for by /do-business-better-podcast/.",
+    "file": "app/speaking/page.tsx",
+    "isRegressionFromFix": false,
+    "area": "parity"
+  },
+  {
+    "severity": "minor",
+    "route": "/the-business-of-agriculture/",
+    "summary": "The sponsor Tidal Grow AgriScience is named \"Tidal Grow\" site-wide, dropping the word carried by both the source page's own link label and the supplied artwork, and that shortened string is the accessible name of the outbound link.",
+    "evidence": "_source/pages/the-business-of-agriculture.md:54 gives the visible label verbatim as \"Tidal Grow Agriscience\" -> https://www.tidalgrowag.com/. content/sponsors.ts:42 sets `name: 'Tidal Grow'`, which the wall renders as `<img ... alt=\"Tidal Grow\">` inside an anchor whose only other content is the sr-only \", opens in a new tab\" span — so the computed accessible name of that link is \"Tidal Grow\". I opened public/img/sponsors/tidal-grow.jpg: the mark itself is a two-line logotype reading \"Tidal Grow\" over \"AgriScience\", so the alt does not describe the ink either. The name came from the supplied filename \"Tidal Grow.jpeg\", and the header comment in content/sponsors.ts records where the four client-supplied URLs came from but not that this one name was shortened. It is the only one of the four source-named sponsors that differs: Heads Up Plant Protectants, Nano-Yield and Good Agriculture all match.",
+    "suggestedFix": "Set `name: 'Tidal Grow AgriScience'` in content/sponsors.ts:42, which fixes the alt, the accessible link name and the label in one place. Note the casing the mark uses is AgriScience with a medial capital while the source page typed \"Agriscience\"; the mark is the better authority for a brand name. If any other sponsor name was taken from a supplied filename rather than the mark, check those too while the file is open.",
+    "file": "content/sponsors.ts",
+    "isRegressionFromFix": false,
+    "area": "parity"
+  },
+  {
+    "severity": "major",
+    "route": "/reviews/",
+    "file": "components/sections/VideoEmbed.tsx",
+    "summary": "All four video testimonials render as three mismatched vertical panels: a narrow real frame in the middle with a blown-up duplicate of the same frame filling the left and right thirds.",
+    "evidence": "Element-screenshotted each facade at 1440 and profiled column luminance. Every one of the four YouTube posters carries hard vertical seams at 29% and 71% of its width (delta 12 to 14 at x=348 and x=852 in a 1200px box). The centre strip is a 3:4 region; the outer thirds are a zoomed copy of the same frame, not black bars. On 'Farm Credit Emerging Entrepreneurs' the sign text 'AG / LIV' and 'OR / URAL / TERN' appears at roughly 4x the size it appears at in the centre strip, in the same tile. I ran a mirror test to be precise: MAE about the seam is 49.9 against an unrelated-region baseline of 14.0, so it is a scaled fill, not a mirror. The round-1 finding called it 'mirrored' and that word was wrong, but the visual defect it named is exactly this and it is untouched. It matters most here because these four tiles ARE the page's second half: /reviews/ is where /keynote/, /speaking/ and /collaboration-opportunities/ all send a meeting planner to see him on camera. The same component is clean on Home and /keynote/, whose sources are genuinely 16:9, so this is source framing, not a component bug: youtube's hqdefault is 480x360 and object-fit:cover crops exactly the 45px letterbox off a 16:9 source, which is why only these four show it.",
+    "suggestedFix": "Scale the poster past cover so the centre strip fills the 16:9 stage: add an opt-in class on .dm-video__poster that applies a transform scale (about 2.4 for these four) with transform-origin center, or set width to a multiple of 100% with object-position 50% 50%. That crops top and bottom of a talking head, which is a better portrait crop than what ships now. Alternative, cheaper: give these four a 3:4 stage via a --ratio override so no side fill is needed at all. Either way scope it to the four video ids in content, not to VideoEmbed globally, since the other twelve are correct.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/about/, /podcasts/, /do-business-better-podcast/, /xtreme-ag/, /the-business-of-agriculture/",
+    "file": "app/about/page.tsx:297",
+    "summary": "Eleven full-colour artwork islands ship with no filter, most of them on near-white plates inside bone sections, in a system whose photography is strictly cool-navy duotone.",
+    "evidence": "Queried every img in main whose computed filter is 'none': /about/ three book covers at 350x350 each; /podcasts/ three cover arts at 126x126, 126x126 and 126x60; /do-business-better-podcast/ a 426x426 cover plus a 474x474 book jacket; /xtreme-ag/ a 150x72 mark and a 160x160 mark. The 474px Do Business Better jacket is a saturated yellow field roughly 220,000px2, which makes it the single loudest colour object on the site, several times the area of the one permitted orange field. On /about/ the three covers sit on plates lighter than the bone ground, so each reads as a white box inside a bone box inside a bone section. DESIGN_SYSTEM section 6.2 fixes photography to cool navy and section 5.1 rations orange to one filled field per viewport specifically so nothing out-shouts the CTA; artwork is not named by either rule, so this passes the letter of the contract and breaks its whole premise. I am reporting it as a design-contract gap, not as a rule violation, because the contract genuinely has no clause for supplied artwork.",
+    "suggestedFix": "Decide the rule and write it into DESIGN_SYSTEM section 6 rather than fixing route by route, since 'brand art is exempt' and 'brand art is duotoned' are both defensible and only one can be true. If they stay in colour, at minimum drop the white inner plate so the art sits directly on the section surface (the covers already carry their own white ground), and cap the Do Business Better jacket well under 474px so it stops outweighing the orange budget. If they get treated, --photo-filter plus the duotone layers already exist and the podcast covers survive greyscale fine; the two book jackets do not, which is an argument for shrinking rather than filtering them.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/speaking/, /podcasts/, /join-the-conversation/, /meeting-coordinators/, /keynote/, /do-business-better-podcast/, /acres-tv/, /xtreme-ag/",
+    "file": "components/sections/Hero.tsx",
+    "summary": "The hero's type column is top-aligned in a section sized by the portrait, so eight routes open with 230 to 300px of empty bone under the CTAs, at the most expensive real estate on the site.",
+    "evidence": "Measured section height against type-column height at 1440 on all 19 routes. The hero section is 935px and the portrait plus cutline occupies 116 to 819, but the type column stops wherever the copy stops. Gap below the type column, minus the 116 to 132px that is normal section padding: /speaking/ 432 total so ~300 dead, /podcasts/ 410 so ~278, /join-the-conversation/ 377 so ~245, /meeting-coordinators/ 346, /keynote/ 308, /do-business-better-podcast/ 283, /acres-tv/ 264, /xtreme-ag/ 228. On /speaking/ that is a 750 by 300px rectangle of nothing directly under 'Check your event date', with a portrait beside it running 200px further down. Routes with long decks (Home, /about/, /collaboration-opportunities/) sit at 128 to 132 and look correct, which is the proof that the void is a consequence of short copy meeting a fixed-height image rather than an intended column of air.",
+    "suggestedFix": "Give the hero grid align-items: center at the lg breakpoint so the type column optically balances the portrait, or let the portrait's block-size shrink to the taller of the two columns. Centring is the smaller change and it fixes all eight at once; it will move Home and /about/ by only a few px because their columns are already near-equal. Do not solve it by adding copy: the short decks are the round-1 and round-2 de-duplication fixes doing their job.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/acres-tv/",
+    "file": "app/acres-tv/page.tsx:262",
+    "summary": "The Fig. 03 cutline and the top rule of episode card 03 land on the same line, so the rule reads as a strikethrough under the caption's last words.",
+    "evidence": "Measured in the DOM at 1440: the figcaption box bottom is y=2224 and all three episode cards' border-top is y=2224. Zero gap. Worse, the rule starts at x=960 while the caption starts at x=852, so the rule begins 108px inside the caption's own text block. In the native-res crop the black hairline runs directly under 'the clock.' and terminates mid-air at the caption's left edge, with a second orphaned rule stub visible to its left from column 01. It reads as an accidental underline, not as structure. Cause is in the markup: styles.ledger (app/acres-tv/page.module.css:56) sets row-gap but no margin-block-start, so the ul butts straight against the .splitRow figure column above it, and the figure column is the short one so its caption is what the ledger meets.",
+    "suggestedFix": "Add a margin-block-start of --space-9 or --space-10 to .ledger in app/acres-tv/page.module.css, matching the .ledgerAction spacing already below it. Check the same join at 1024 and 1200, where the figure column reflows and the caption lands at a different height.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "major",
+    "route": "/podcasts/",
+    "file": "app/podcasts/page.tsx:207",
+    "summary": "The three podcast cover arts sit in identically sized boxes at roughly 4.7x different ink heights, which is the exact box-not-ink defect the logo-wall pass just spent a whole fix eliminating.",
+    "evidence": "Measured the rendered img boxes: business-of-agriculture-podcast.jpg 126x126, do-business-better-podcast.png 126x126, xtreme-ag-transparent.png 126x60. Then measured visible ink in a native-res crop of the row: the BOA logotype reads about 85 CSS px tall, the DBB circle about 90, the XtremeAg glyph about 27 in a cell of the same 158px. That is a 3.3x ink spread inside three cells the eye reads as a set, and it is worse than the client wall now is (2.62x across 21 marks of far more mixed origin). Two of the three also nest a white square inside the bordered box, because the supplied art carries its own white ground and the box carries a hairline, so you see a plate inside a plate. scripts/normalize-logo-ink.mjs already solves precisely this and only runs over public/img/clients and public/img/sponsors, so public/img/brand never got the treatment.",
+    "suggestedFix": "Extend scripts/normalize-logo-ink.mjs to public/img/brand, or at least to the three files this row uses, so canvas aspect equals ink aspect and a single max-block-size sizes all three correctly. The sha1 ledger in _source/logo-ink.json already makes the pass idempotent so adding a directory is safe. Drop the hairline box while you are there, or drop the art's white ground, but not both boxes at once.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/, /speaking/, /keynote/, /reviews/, /do-business-better-podcast/, /the-business-of-agriculture/, /contact-us/",
+    "file": "app/page.tsx",
+    "summary": "At least eight section-closing CTAs sit left-aligned under column one of a multi-column grid at almost exactly one column's width, so each reads as belonging to that column rather than closing the section.",
+    "evidence": "Detected mechanically by finding every button that is a sibling of a grid of 2 or more columns, aligned to the grid's left edge within 4px, and no wider than 1.15 columns: /speaking/ 'Read the ten written reviews' 380px under a 416px column, /keynote/ 'More clips on YouTube' 305 under 416 and 'Read the ten written reviews' 303 under 416, /the-business-of-agriculture/ 'Subscribe' 155 under 448, /do-business-better-podcast/ 'Add me to the list' 244 under 400, /contact-us/ 'Join the list' 194 under 375. Two more that the detector missed because they sit inside the grid container I confirmed by eye on Home: 'Inquire about working with Damian' at 392px under the 384px first column of the No. 04 three-up, and 'More reviews' at 260px under column one of the No. 06 two-by-two, the latter separated from its own column's content by a 450px gap. The worst is /keynote/'s reviews CTA, which is additionally indented about 13px past the column's left edge so it does not even align to the thing it appears to belong to.",
+    "suggestedFix": "Pick one convention and apply it in the section shell rather than per route: either span the CTA across the full grid width with the label centred, or hang it on the last column so it closes the row it follows. Whichever you choose, make it a class on the section so a future page cannot reintroduce the other one. Fix the /keynote/ 13px indent regardless, it is a stray padding on the link and it is visible against the rule above it.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "all 19",
+    "file": "components/sections/LogoWall.tsx:165",
+    "summary": "Section headings sit on three different left axes across the site: 48px for the logo walls, 96px for everything standard, 320px for the text-container sections.",
+    "evidence": "Censused the first heading or eyebrow x-offset for every section on every route at 1440. Home has ten sections at 96 and one at 48 ('Client roster'). Same on /speaking/ ('Clients'), /reviews/ ('Who books him') and /the-business-of-agriculture/. The 48 comes from LogoWall passing Container width=\"wide\", which the seven-column grid genuinely needs, but the section HEAD rides along, so the eyebrow, the folio and the H2 all jog 48px left of the section above and below them. On Home that jog is directly visible: 'For meeting planners' at 96 then 'Client roster' at 48. Separately /keynote/, /meeting-coordinators/ and /join-the-conversation/ each carry exactly one section at 320 (the FAQ or a text block), and /contact-us/ carries two, so a reader scrolling those pages sees the spine move 224px and come back. This is the round-1 'left edge wandering between three values' item, now measured.",
+    "suggestedFix": "Keep the head in the standard Container and let only the ul go wide, which is a one-line change in LogoWall and removes the 48 axis entirely. For the 320 sections, either give the FAQ block the same left rail treatment Home's FAQ already uses (heading at 96, list in the right columns) or accept 320 but apply it consistently to every FAQ, not to two of the three routes that carry one.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/",
+    "file": "app/page.tsx",
+    "summary": "The homepage H1 breaks at the hyphen in 'Straight-Forward' at every width from 1030 to 1600, leaving 'Straight-' alone on line one with a 40px hyphen dangling in the rag.",
+    "evidence": "Swept 1000 to 1600 in 10px steps: the compound splits at 58 of 61 widths, including 1440. At 120px type the first line is 'Straight-' at about 460px in a 1000px measure, so the H1 opens on a half-empty line ending in a floating dash, then runs Forward / Agriculture / Dialogue. It is typographically legal, which is presumably why two rounds of fixes left it, but it reads as a hyphenation accident rather than a deliberate break, and it is the first thing anyone sees on the site. Note this is genuinely not the round-1 mid-word defect, which is fixed everywhere; it is the separate round-1 item 'splitting Straight-Forward across lines at 1140 and up', and that one is untouched.",
+    "suggestedFix": "Wrap the compound so it cannot break: white-space: nowrap on a span around 'Straight-Forward', which then wraps as one unit and the H1 becomes three lines. Check it does not overflow at 1024, where the word measures about 780px at 92px type against a 928px column, so it fits. Do not solve it by lowering the clamp max, that would shrink every other hero H1 too.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/about/",
+    "file": "app/about/page.tsx",
+    "summary": "The /about/ H1 puts 'Ag' alone on line one at 1440, and the break is better at 1300 than at the design's flagship width.",
+    "evidence": "Line breakdown per width: at 1024, 1100, 1200 and 1440 the H1 sets as Ag / economist, / comedian, / farm owner. At 1300 it sets as Ag economist, / comedian, / farm owner. So the two-character orphan appears at the widest breakpoint and disappears at a narrower one, because the font grows from 110.6px to 120px while the column does not. At 120px 'Ag' occupies about 220px of a 1000px line, leaving 78% of the site's biggest line empty. The same shape shows on /the-business-of-agriculture/ ('The' alone) and /blog-news/ ('News &' then 'Media'), both at every width.",
+    "suggestedFix": "Set text-wrap: balance or pretty on the hero H1, which resolves all three without hand-tuning. If balance is not acceptable for the display face, nowrap 'Ag economist,' on /about/ specifically and re-check at 1024 where it needs about 700px against a 928px column.",
+    "isRegressionFromFix": true,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/about/",
+    "file": "app/about/page.tsx",
+    "summary": "The Food Fear audiobook card is now a two-line stub under a 350px cover, leaving a 260px hole beside two neighbours that run to 670 and 800px.",
+    "evidence": "The three book cards share a row. Column one's body ends at y=672, column three's at y=798, column two's at y=540 because its description is now the single line 'The same book as the print edition above, read aloud.' The card is 350px of cover art, a subtitle, one sentence, then nothing. The three columns therefore bottom out 260px apart with no rule to justify the rag. This did not exist before the current fix batch: the audiobook previously carried the same 55-word jacket paragraph as the print edition, which was a real duplication defect, and the FORMAT_NOTE map that removed it did not account for what the card would look like afterwards. The fix agent's own OPEN-ITEMS entry 12 offers 'collapse to one entry' as an alternative and that alternative is now clearly the better-looking one.",
+    "suggestedFix": "Take the collapse option already logged in docs/OPEN-ITEMS.md item 12: make Food Fear one card with a format line reading print and audiobook, and let the row be two cards of comparable weight. That fixes the rag and the duplication together. If the client insists on three entries, the audiobook card needs the three missing facts (narrator, runtime, retailer) to earn its column, which is a content request, not a layout one.",
+    "isRegressionFromFix": true,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/speaking/, /keynote/",
+    "file": "app/speaking/page.tsx",
+    "summary": "The three-up testimonial rows still open 330 to 460px holes under columns two and three, which is the round-1 /reviews/ defect surviving on the two routes that were not rebuilt.",
+    "evidence": "/speaking/ No. 03: column one runs 14 lines to y=1030, column two 7 lines to y=680, column three 5 lines to y=570. Columns two and three therefore sit above 350 and 460px of empty bone, with no rule at the bottom to close them, and the section's CTA is stranded under column one in the middle of that emptiness. /keynote/ Reviews is the same shape: 7 lines, 6 lines, 2 lines, so column three shows a two-line quote above about 330px of nothing. /reviews/ itself was rebuilt as a two-column ruled table and now reads correctly, which is the pattern that should have propagated.",
+    "suggestedFix": "Either give these rows the same ruled-cell treatment /reviews/ now has, so each cell is a table row rather than a floating block and the rag reads as structure, or curate: pick three quotes within roughly two lines of each other, which the seventeen-testimonial pool comfortably allows. Curation is cheaper and looks better.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/keynote/, /about/",
+    "file": "content/credentials.ts",
+    "summary": "The four-pillar credentials bar now carries identical copy on both routes but renders in two visibly different treatments, so the shared source did not produce a shared appearance.",
+    "evidence": "Copy parity is genuinely fixed: both routes read Knowledgeable / Professional / Exceptionally funny / Relatable with the same bullets, /about/ adding only the Screen Actors Guild line. But /keynote/ renders each bullet with a leading dash glyph on a tight 24px rhythm, and /about/ renders the same list with no marker on a 38px rhythm. Side by side they read as two different components. Two smaller things ride along: 'Exceptionally funny' is sentence case while its three siblings are single words where casing cannot show, so the set has no visible casing rule; and the four columns hold 2, 4, 2 and 3 items on /about/, so the bar bottoms out ragged with column three ending 115px above column two.",
+    "suggestedFix": "Move the rendering into one component alongside content/credentials.ts, the way the copy already moved, so the marker and the rhythm cannot diverge again. Pick the /keynote/ treatment: the dash reads as a credential list rather than as links, and /about/'s unmarked blue items currently look like navigation.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/reviews/",
+    "file": "app/reviews/page.tsx",
+    "summary": "The closing CTA band renders with no right-hand panel, so its right half is roughly 620 by 430px of empty navy.",
+    "evidence": "On /reviews/ the 'First step: check the date' band carries an eyebrow, folio, H2, three lines and two buttons in the left column ending at y=930, and nothing at all from x=720 to 1344. Every other route's band fills that slot: /speaking/ has the 2,400+ panel, /podcasts/ the 40,000+ panel, /boasg/ the 2020 panel, /join-the-conversation/ the audience panel. So the omission reads as a missing element rather than as space, and it lands as the last impression of the page a meeting planner is sent to.",
+    "suggestedFix": "Give it a panel. The page already owns a figure that nothing else claims: fourteen testimonials out of 2,400+ audiences since 1994, which is the arithmetic the hero deck states and no other route repeats. Failing that, drop the band to a single centred column on this route so the emptiness is deliberate.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/do-business-better-podcast/",
+    "file": "app/do-business-better-podcast/page.tsx",
+    "summary": "The episode section draws rules across the full 1248px container over content that stops at 830px, and its intro paragraph is set to a different measure than the bodies beneath it.",
+    "evidence": "'Three episodes to start with' sets its intro at about a 420px measure (four short lines) while the three episode bodies below run at about 730px, so the section has two measures stacked with no reason for either. The horizontal rules between episodes span 96 to 1344, but no episode's text reaches past 830, leaving each rule with 500px of nothing under it. The whole right 38% of the section is empty for roughly 1,400px of scroll, and the section-closing 'All episodes on Soundcloud' button sits at the bottom left of it.",
+    "suggestedFix": "Either shorten the rules to the text column so they stop promising content that is not there, or use the right column: an episode number, a runtime and the Soundcloud link per row would fill it with material the page already has. Set the intro to the same measure as the bodies either way.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/collaboration-opportunities/",
+    "file": "app/collaboration-opportunities/page.tsx",
+    "summary": "One of three video cards in the same row carries a cutline and two do not, and the two without are podcast title-slide screenshots rather than photographs.",
+    "evidence": "In the row at y=1240: 'Managing For The Future' and 'Survival Strategies For Small Business' render a poster and stop; 'Innovation' renders a poster plus a hairline and a mono cutline. So the row bottoms out 60px apart for a structural reason a reader cannot see. The two uncaptioned posters are captures of podcast title cards, and the Survival Strategies one is a near-white slide that reads as a blank tile against its two dark neighbours. DESIGN_SYSTEM 6.1 requires a cutline on every photograph and 6.4.2 says a ruled card with a real headline beats a blurry rectangle when a screenshot is the only asset, so both halves of this are already legislated.",
+    "suggestedFix": "Caption all three or none. If the two title-slide captures cannot earn a cutline that states something true, apply 6.4.2 and swap them for ruled cards carrying the episode title, a mono folio and the link, which is what the /acres-tv/ episode ledger already does well.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "minor",
+    "route": "/blog/eggflation-gives-producers-record-profits/, /blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+    "file": "app/blog/[slug]/page.tsx",
+    "summary": "The article H1 gains a line as the viewport gets wider, because the type scales with the viewport while the article measure is fixed.",
+    "evidence": "The Eggflation H1 sets in four lines at 1024 and 1100 (56.8 and 58.6px type) and five lines at 1200, 1300 and 1440 (60px type), inside a 640px measure that never changes. So a wider window buys the reader a taller, blockier headline, which is backwards. At 1440 the result is five short lines stacked to 424px in a 640px column with 400px of empty bone on each side of it.",
+    "suggestedFix": "Either let the article measure widen past 640 at lg, or stop the H1 clamp scaling once the measure stops scaling: a fixed --fs for the post H1 at and above the width where the container locks removes the inversion in one line.",
+    "isRegressionFromFix": false,
+    "area": "vision-desktop"
+  },
+  {
+    "severity": "blocker",
+    "route": "all 19 routes",
+    "summary": "app/favicon.ico is the create-next-app scaffold icon - Vercel's white-triangle-in-black-circle mark - so every browser tab, bookmark and history entry for damianmason.com shows the framework vendor's logo. The client's own monogram sits unreferenced on disk two folders away.",
+    "evidence": "The committed Phase 0 file is byte-identical to the scaffold: md5 of `git show HEAD:app/favicon.ico` is c30c7d42707a47a3f4591831641e50dc, exactly matching /Users/omidebrahimi/.npm/_npx/cc2145a2fe1558fa/node_modules/create-next-app/dist/templates/app/ts/app/favicon.ico (both 25931 bytes). The CURRENT working-tree file is a different 2183-byte encoding (3 PNG frames at 16/32/48, mtime Aug 7 02:13, i.e. touched during Phase 6) but I extracted its 48x48 frame and rendered it: it is the SAME artwork, a white triangle inside a black circle. So an agent re-encoded the file during QA without replacing the mark, which also destroyed the byte-identity to the scaffold that would have made this greppable. It ships: `<link rel=\"icon\" href=\"/favicon.ico?favicon.21oc5w3iknmj8.ico\" sizes=\"48x48\" type=\"image/x-icon\"/>` is in the head of every route and /favicon.ico returns 200 image/x-icon 2183 bytes. Meanwhile the real mark harvested from the old site's own cropped-favicon.jpg is on disk and referenced by nothing: public/img/brand/dm-monogram.jpg is a navy 'DM' on white, and it is in the sweep's unreferenced-assets list. content/brand-assets.ts:38 even asserts the opposite of what ships: `dmMonogram: '/img/brand/dm-monogram.jpg', // favicon and app icon source, site wide`. Nothing in docs/ mentions the favicon at all - grep for 'favicon' across docs/ returns only link-report.json rows. There is no app/icon.png, no apple-icon and no web manifest either. This is the same defect class as the scaffold SVGs the round-1 fix removed from public/; that fix caught public/{file,globe,next,vercel,window}.svg and missed the one under app/.",
+    "suggestedFix": "Replace app/favicon.ico with an icon cut from public/img/brand/dm-monogram.jpg (it is already 512x512 navy-on-white and is the old site's own favicon source, so no new artwork is invented), emitting the same 16/32/48 frames. While there, correct the content/brand-assets.ts:38 comment so it describes what actually happens, and add a row to docs/CONTENT_MANIFEST.md recording that the site icon derives from cropped-favicon.jpg. Consider also adding app/apple-icon.png from the same source, since none exists.",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/app/favicon.ico",
+    "isRegressionFromFix": false,
+    "area": "links-assets"
+  },
+  {
+    "severity": "minor",
+    "route": "site-wide (build artifact, not a rendered route)",
+    "summary": "Thirteen processed screenshot-derived photographs, 8.0 MB, ship in public/img/photos/ referenced by no route and with no disposition row in CONTENT_MANIFEST.md. The round-1 fix documented five unplaced photographs and the 6-logo wall accurately, but this is a separate, larger bucket it does not cover.",
+    "evidence": "public/img/photos holds 37 files and 15 MB, of which 18 are referenced by nothing. Five of the 18 have accurate rows at docs/CONTENT_MANIFEST.md:274-277 (keynote-stage-wide, keynote-stage-xtremeag, book-signing-xtremeag, forbes-feature, speaking-collage) - I checked those and they are correct. The other 13 have none: acres-tv-episode-grid, cheddar-news-fertilizer-shortage, cheddar-news-food-supply, equipment-factory-tour, field-day-panel, food-inflation-episode, green-screen-studio, news-interview-cal-maine, san-interview-1, san-interview-2, xtremeag-cutting-the-curve-1, xtremeag-cutting-the-curve-2, xtremeag-video-interview. `du -ch` on those 13 is 8.0 MB. Each appears in docs/CONTENT_MANIFEST.md exactly 0 times but in _source/asset-map.json exactly once. Traced every one back through asset-map: 12 derive from `_source/media/Screenshot-*.png` and one from `_source/media/acres-tv-screenshot.png` - i.e. they ARE the macOS screenshots the manifest discusses at line 273. But that row says only that they 'are retained in `_source/media/` and mapped in `_source/asset-map.json`', which is true and incomplete: asset-map gives each of them an `out` entry into /img/photos/, so they were also transcoded and are deployed. The row's count is off too - asset-map holds 15 `Screenshot-*` sources plus acres-tv-screenshot.png, not 14. Net effect: a later reader cannot tell whether these 13 are deliberate carry-forward or pipeline leftovers, which is exactly the ambiguity the round-1 fix removed for the other five.",
+    "suggestedFix": "Add one 'Processed, not placed' row to docs/CONTENT_MANIFEST.md naming all 13 files, stating that they are the screenshot-derived captures, that they are processed into public/img/photos/ as well as retained in _source/media/, and that they are held against open item #4 (real photography). Correct the '14 macOS screenshots' count at line 273 to match asset-map. If the intent is that unplaced art should not ride in the deployed bundle at all, move the 13 out of public/ instead and say so in the same row.",
+    "file": "/Users/omidebrahimi/Desktop/Projects/DamianMason/docs/CONTENT_MANIFEST.md",
+    "isRegressionFromFix": false,
+    "area": "links-assets"
+  },
+  {
+    "severity": "blocker",
+    "route": "/podcasts/",
+    "file": "src/styles/sections-core.css:240",
+    "summary": "The stat ledger on /podcasts/ does not collapse to rows at 390: the three figures overflow their 116px cells and are drawn on top of the neighbouring labels, so the whole row is illegible.",
+    "evidence": "At 390 the .dm-statrow__list on /podcasts/ computes grid-template-columns: 116.328px 116.328px 116.344px. Measured, the figure in cell 1 overruns its item box by 34px and cell 2 by 34px, so \"40,000+\" paints across \"MONTHLY LISTENERS\" and \"70,000+\" paints across \"BUSINESS OF AG VIEWS AND DOWNLOADS\". Read it in docs/qa/screenshots/round-3-mobile/07-podcasts-390-t02.png: the line reads \"01 MO40,000+00 BUSI70,000+OF SHOWS\". Root cause is specificity, not a media query gap: sections-core.css:240 `.dm-statrow__list[data-count='3']` is 0-2-0 and sits outside any media query, so it beats the `@media (max-width: 47.9375rem) { .dm-statrow__list { grid-template-columns: minmax(0,1fr) } }` at line 287, which is only 0-1-0. Media queries add no specificity. The mobile row treatment the file's own comment at 296-320 describes therefore never applies to a three- or two-figure ledger. Scoped: I ran the same overflow probe on all 19 routes at 390 and 768 and this is the only hit; the four-figure ledgers on /, /speaking/, /keynote/, /about/ and /collaboration-opportunities/ collapse correctly to one column, and /podcasts/ itself is fine at 600, 767 and 768. Not a regression: the identical collision is visible in docs/qa/screenshots/round-1-mobile/09-podcasts-390-t02.png, so it survived both fix rounds unnoticed.",
+    "suggestedFix": "Move the data-count rules inside the desktop media query, or raise the mobile rule's specificity to match, e.g. `@media (max-width: 47.9375rem) { .dm-statrow__list[data-count] { grid-template-columns: minmax(0, 1fr); } }`. Re-check data-count='2' at the same time, which has the same defect and is currently unused only by accident.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "major",
+    "route": "/ (site-wide mobile nav)",
+    "file": "components/layout/Header.tsx",
+    "summary": "At 390 the open nav sheet hides About and Contact Us behind an opaque pinned foot, with no scroll affordance and no partial row peeking, so two top-level destinations read as not existing.",
+    "evidence": "Shot the sheet open by clicking .dm-masthead__menu (docs/qa/screenshots/round-3-mobile/00-navsheet-390-t01.png). Measured at scrollTop 0: .dm-menu scrollHeight 1051 in clientHeight 844, and .dm-menu__foot is position:sticky, background rgb(242,235,222) (fully opaque), occupying 691-844. The list items measure Speaking 84-322, BOASG 322-368, Podcasts 368-562, Media 562-712, About 712-757, Contact Us 757-802. About and Contact Us are therefore entirely behind the opaque foot, and the Media group ends 21px below the foot's 1px top rule, so what a visitor sees is the list terminating flush at a horizontal rule directly under \"Blog\". There is no fade, no scrim, no cut-off row. Round 1 reported this as \"1044px of content in an 844px viewport\"; it is now 1051px, so it was not addressed. The round-1 \"40px empty band before the foot rule\" is also still there, at 32px: scrolled to the bottom (00-navsheet-390-t02-bottom.png) the list bottom is at 595 and the foot top at 627, dead space that could have carried the cut-off row instead. At 768 the sheet needs only 29px of scroll and both items clear the foot, so this is 390-specific.",
+    "suggestedFix": "Either make the sheet fit (tighten the group spacing, or collapse the four disclosure groups so the top level fits in one screen) or make the overflow visible: give the sticky foot a top gradient/scrim over the scroll area and spend the 32px band on letting the next row peek. Do not simply shorten the foot; the phone number and Book Damian are the reason it is pinned.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "major",
+    "route": "/xtreme-ag/",
+    "file": "app/xtreme-ag/page.tsx:322",
+    "summary": "At 768 the \"Join the Conversation\" band squeezes its button into a 273px column so the label stacks to three centred lines, beside 431px of empty band, while the byte-identical band on /acres-tv/ renders it full width on one line.",
+    "evidence": "docs/qa/screenshots/round-3-mobile/12-xtreme-ag-768-t04.png shows a cream band whose left two-thirds is the heading \"Join the Conversation\" and whose right column holds a bordered button reading \"SIGN UP FOR / DAMIAN'S / MAILING LIST\" over three lines. Measured: the label is 3 lines at 79.8px block size, the only 3-line button anywhere on the site at either width. The cause is app/xtreme-ag/page.tsx:322, `className={`${styles.rowEnd} col-span-6 md:col-span-5`}`, which gives the button 273px at 768. app/acres-tv/page.tsx:305-315 renders the same mediaBand.mailingListLabel inside a `lg:col-span-7` stack with a deck paragraph, and docs/qa/screenshots/round-3-mobile/10-acres-tv-768-t04.png shows it on one line with room to spare. So the two sibling Media routes ship the same source band two structurally different ways, and the /xtreme-ag/ one is visibly broken. A visitor clicking between the two pages sees the same control laid out two ways one screen apart.",
+    "suggestedFix": "Give /xtreme-ag/ the same full-width stack /acres-tv/ uses (md:col-span-12 with the button under the heading), or drop the md breakpoint so the split only engages at lg where the column is wide enough for one line. Measure the label at the resulting width before committing; \"Sign Up for Damian's Mailing List\" needs roughly 300px at --fs-xs with --ls-widest.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/, /speaking/, /keynote/, /meeting-coordinators/, /acres-tv/, /boasg/, /xtreme-ag/, /collaboration-opportunities/",
+    "file": "app/globals.css:537",
+    "summary": "Mono uppercase button labels still wrap to two centred lines at 390 on eight routes, four of them the page's single orange primary field; round 1's fix styled the wrap rather than removing it.",
+    "evidence": "Measured at 390: \"Inquire About Working With Damian\" wraps on / (secondary), /meeting-coordinators/, /acres-tv/ and /xtreme-ag/ (all three dm-btn--primary, i.e. the orange field); \"Sign Up for Damian's Mailing List\" wraps on /, /acres-tv/, /boasg/ and /xtreme-ag/; \"Read the ten written reviews\" on /speaking/; \"Sign up for Damian's email list\" on /keynote/ (secondary) and /collaboration-opportunities/ (primary). At 768 \"See Fees, Travel, and AV\" wraps on / and \"Load the Libsyn player\" on /the-business-of-agriculture/. Seen in 01-home-390-t09.png and -t15.png and 04-meeting-coordinators-390-t07.png. The round-1 fix is visible and did help: globals.css:526-534 raises line-height off 1 and 537 adds text-wrap:balance, and the file comment names these exact labels, so this is a recorded decision rather than an oversight. Reporting it because two of the four instances the comment names still orphan a short second line ('SIGN UP FOR DAMIAN'S / MAILING LIST' at 390 is a 21-char line over a 12-char line inside a 349px button), and because a wrapped label is what let the /xtreme-ag/ three-line break happen unnoticed.",
+    "suggestedFix": "No CSS change needed if the client accepts it; the honest fix is shorter labels, and the labels are parity-constrained. If a change is wanted, drop --ls-widest to --ls-wide on dm-btn--lg only: that buys roughly 12% of the line and lands \"Sign Up for Damian's Mailing List\" on one line at 349px. Verify against DESIGN_SYSTEM before touching a type token.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/the-business-of-agriculture/",
+    "file": "public/img/brand/business-of-agriculture.png",
+    "summary": "The Business of Agriculture lockup carries a large baked-in semi-transparent grey halo, which paints as a visible dirty rectangle with hard right and bottom seams on the bone ground.",
+    "evidence": "Alpha profile of the file: 47% fully clear, 42% semi-transparent (alpha 1..250), 11% opaque. No other brand PNG is close (the-granary 5% semi, do-business-better-podcast 1%, xtreme-ag-transparent 5%). Sampling row y=60 gives runs of [182,182,182,alpha 7] and [51,51,51,alpha 5] filling the whole area right of the mark. Composited over the bone page those low-alpha greys darken a rectangle roughly 78 CSS px wide behind and to the right of the leaf mark, with a visible vertical seam. See the 4x crop docs/qa/screenshots/round-3-mobile/zz-boa-logo-crop.png and the in-page view at 08-the-business-of-agriculture-390-t04.png. The GROUND_FIXES pass in scripts/normalize-assets.mjs covers the 31 client and sponsor marks and this file is not in it, so it was never tested by the design system's own four-corners rule (which passes here anyway, because the corners are alpha 0 and the halo is interior). One route only: /podcasts/ uses business-of-agriculture-podcast.jpg, not this file.",
+    "suggestedFix": "Threshold the alpha on this one asset (drop everything under roughly alpha 40 to 0) and regenerate the webp sibling, or extend the ground test in normalize-assets.mjs from a corner check to a semi-transparent-fraction check so brand marks are covered too. Do not simply put it on a white plate; the surrounding section is bone and every other mark on the route composites directly.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/do-business-better-podcast/",
+    "file": "app/do-business-better-podcast/page.tsx:215",
+    "summary": "Two standalone action links in the \"Where to listen\" card are 17px tall at both 390 and 768, below the WCAG 2.2 SC 2.5.8 24px floor, and are not covered by the inline exemption.",
+    "evidence": "Swept every a[href] and button on all 19 routes at both widths for a target under 24px in either dimension whose parent contains no sibling text nodes (i.e. genuinely standalone, not a link in a sentence). Exactly two hits, both on this route and both at both widths: \"Every episode on SoundCloud\" 215.6x17 at 390 and 218.5x17 at 768, and \"Damian Mason on YouTube\" 194.5x17 / 197.1x17. Markup at app/do-business-better-podcast/page.tsx:213-226 is a <ul> of <li>, each holding a bare <a> followed by a <p className={styles.platformNote}> caption, so the link sits on its own line with a sub-caption under it, exactly the standalone case SC 2.5.8 covers. Every other sub-24px link on the site is inline in running prose and exempt: I classified all of them, and the remaining 15 (Food Fear in a figcaption, damianmasonoffice@gmail.com in three body paragraphs, keynote program, reviews page, blog, Acres TV, XtremeAg and so on) all sit mid-sentence. The round-1 fix introduced .dm-action-link (globals.css:505, min-block-size 44px) for precisely this and applied it to \"Tap to call\" on /meeting-coordinators/, which now measures 44px; these two were missed.",
+    "suggestedFix": "Add className=\"dm-action-link\" to both anchors at app/do-business-better-podcast/page.tsx:215 and the YouTube one below it. The class is inline-flex with align-items:center so the type stays optically where it is and only the box grows.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/blog-news/",
+    "file": "app/blog-news/page.tsx",
+    "summary": "Link affordance is inverted on the news index: the non-clickable outlet names are set in the site's link orange while the actual headline links are navy with no underline, and a real orange underlined link runs three lines above them.",
+    "evidence": "On /blog-news/ every row's outlet name is a <span class=\"dm-eyebrow dm-eyebrow--accent\"> computing to rgb(168,51,14), which is exactly --link-ink (tokens.css:235, palette-orange-700). None of them is inside an <a>. The headline directly under each is the row's only link (verified: every item's h3 wraps an anchor) and renders navy serif with text-decoration none. Immediately above the first row the intro paragraph carries a genuine inline link, \"blog\", in orange with an underline. So one screen (docs/qa/screenshots/round-3-mobile/13-blog-news-390-t02.png) teaches three contradictory rules: orange+underline is a link, orange alone is not a link, navy serif is a link. /blog/ does it the other way round: its \"READ THE POST\" controls are orange and underlined (14-blog-390-t02.png). Twelve rows on the route, and the headline is the only tap target in each.",
+    "suggestedFix": "Pick one. Either give the headline link the site's link treatment (underline on the h3 anchor, as /blog/ does for its control), or move the outlet name off --ink-accent onto the muted eyebrow colour used elsewhere so orange stops meaning two things on one screen. The second is smaller and also relieves the orange budget, which this route spends twelve times in a screen and a half.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/meeting-coordinators/",
+    "file": "app/meeting-coordinators/page.tsx",
+    "summary": "The media band's h2 is set 44% larger than every other h2 on the route and runs eight lines / 340px at 390, with two single-word lines, because text-wrap:balance stops balancing past six lines.",
+    "evidence": "Measured every heading on the route at 390. The h1 \"Meeting Coordinators\" is 57.7px over 2 lines. Six of the seven section h2s are 29px over 2-3 lines. The seventh, \"Available for Media Appearances, Content Co-Creation, Sponsorships, and Guest Appearances.\", is 41.7px over 8 lines and 340px tall, which is 40% of a 390x844 viewport spent on one heading before the deck. The rag is bad because Chrome stops applying text-wrap:balance past a small line count: line 4 ends \"Content Co-\", line 5 is \"Creation,\" alone, line 7 is \"Guest\" alone. See docs/qa/screenshots/round-3-mobile/04-meeting-coordinators-390-t07.png. I checked the other twelve routes for headings of 4+ lines at 390 and the only hits are h1s (4-5 lines, which is normal for the display scale); this is the single oversized h2 on the site.",
+    "suggestedFix": "Drop this h2 to the route's own 2xl step so it matches its six siblings, which also brings it back under the six-line ceiling where balance still works. If the larger size is deliberate for the band, cap the heading measure and accept the extra height, but fix the rag by shortening the string rather than leaving \"Creation,\" and \"Guest\" on their own lines.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/collaboration-opportunities/",
+    "file": "app/collaboration-opportunities/page.tsx",
+    "summary": "At 768 the \"Contact Damian today!\" ghost button wraps to two centred lines inside a 217px card column, sitting centred under left-aligned prose in a three-column row.",
+    "evidence": "docs/qa/screenshots/round-3-mobile/18-collaboration-opportunities-768-t03.png: the three \"ways to work together\" cards run 217px each at 768, and the first card's ghost control renders \"CONTACT / DAMIAN TODAY!\" over two centred lines while every other word in the card is left-aligned and left-flush. Measured: 2 lines, 54.3px, text-transform uppercase, class dm-btn dm-btn--ghost. It inherits text-align:center from .dm-btn (globals.css:532), which is right for a filled or outlined button but reads as a misalignment for a chromeless ghost link at the end of a left-aligned paragraph. The other two cards have no control, so the centred fragment is the only centred thing in the row.",
+    "suggestedFix": "Give dm-btn--ghost text-align:start and justify-content:start so a chromeless control aligns with the prose it follows, or move this one control out of the 217px column into the section's full-width foot alongside the other CTAs.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/reviews/",
+    "file": "src/styles/sections-core.css",
+    "summary": "The round-1 empty testimonial column is gone at 768, but the two-column grid still leaves 330-450px voids under the shorter quote in every row because the rows are height-locked to the taller cell.",
+    "evidence": "Measured: .dm-testimonials--2 at 768 is two columns of 335.75px with 10 children, so the count is even and there is no trailing empty cell; the round-1 \"455px empty column\" is resolved. What remains is intra-row: in docs/qa/screenshots/round-3-mobile/05-reviews-768-t02.png the right cell of row 1 ends about 430px above its row rule, and in -t03.png the final row's right cell ends about 330px early. Because the design draws a rule across the full row, the void reads as an unfinished cell rather than as air. Reporting it at minor because the aligned row rules are clearly a deliberate ledger device, not a bug, and masonry would break them.",
+    "suggestedFix": "If the voids are unwanted, order the ten testimonials so each row pairs a long quote with a long one, which costs nothing structurally. Otherwise leave it and record the decision, so round 4 does not re-litigate it.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  },
+  {
+    "severity": "minor",
+    "route": "/do-business-better-podcast/, /the-business-of-agriculture/",
+    "file": "app/do-business-better-podcast/page.tsx",
+    "summary": "The episode-summary paragraphs run 87-95 characters per line at 768 because they take the full 704px content width with no measure cap.",
+    "evidence": "Measured chars-per-line for every body paragraph over 120 characters on all 19 routes at 768. Five paragraphs exceed 85 cpl and the worst four are the episode bodies: /do-business-better-podcast/ at 87 cpl over 7 lines, 90 over 8, and 95 over 7 (the Alps Brau paragraph, visible in 09-do-business-better-podcast-768-t04.png running edge to edge across 704px), and /the-business-of-agriculture/ at 92 cpl over 7 lines. The rest of the site holds a comfortable measure; the two-column and card sections at 768 sit in the 45-60 cpl band. These are the longest paragraphs on the site and the ones at the widest measure, which is the wrong pairing.",
+    "suggestedFix": "Cap the episode body with the narrow-measure class the rest of the site uses, or drop it to an 8-of-12 span at md so it lands near 65-70 cpl. This affects reading only at 768; at 390 the same paragraphs are fine.",
+    "isRegressionFromFix": false,
+    "area": "vision-mobile"
+  }
+]

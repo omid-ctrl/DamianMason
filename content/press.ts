@@ -118,8 +118,14 @@ export const press: PressItem[] = [
   {
     // The on-page heading spells it "NewsMaxTV" and the iframe title spells it
     // "NewsmaxTV". The heading is used here, which is what a visitor read.
+    //
+    // `outlet` drops the "TV" because PressList prints the outlet in an eyebrow
+    // and the type label in the badge beside it, so "Newsmax TV" rendered as
+    // "Newsmax TV   TV". The medium is still on the row, in the badge, and the
+    // title below still carries the verbatim "NewsMaxTV" from the source
+    // heading, so nothing is lost.
     id: 'newsmax-wheat-food-price-inflation',
-    outlet: 'Newsmax TV',
+    outlet: 'Newsmax',
     title: 'Damian Mason discussing wheat and inflation of food prices on NewsMaxTV',
     url: 'https://www.youtube.com/watch?v=Ngfdu0YdBY8',
     type: 'tv',

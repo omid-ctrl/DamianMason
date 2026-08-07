@@ -288,7 +288,7 @@ Veil opacities are role-specific:
 | Role | Ratio | Focal point | Notes |
 |---|---|---|---|
 | Hero portrait | `--ratio-portrait` 4:5 | `--photo-focus-portrait` 50% 22% | `portrait-dark-blazer.jpg`. The meeting planner is buying a person and needs to see his face above the fold. |
-| Editorial plate | `--ratio-plate` 3:2 | 50% 40% | A captioned figure lower on the page. `keynote-stage-wide.jpg` lives here, demoted from the hero. |
+| Editorial plate | `--ratio-plate` 3:2 | 50% 40% | A captioned figure lower on the page, never a hero. |
 | Full-bleed band | `--ratio-band` 21:8, `--ratio-band-mobile` 4:3 | `--photo-focus-band` 50% 40% | Reversed type over the band. Ships with the 0.62 veil. |
 | Card thumbnail | `--ratio-square` 1:1 | 50% 30% | Episode and video grids. |
 
@@ -300,7 +300,23 @@ Veil opacities are role-specific:
 2. If a screenshot is the only asset for a slot, replace the slot with a typographic treatment: a `Card` in the `ruled` variant carrying the title, a mono folio and a link. A ruled card with a real headline beats a blurry rectangle every time.
 3. If a screenshot must appear as evidence, crop it to remove all browser and OS chrome, place it inside a `--surface-plate` figure with a hairline, and give it a cutline that says what it is.
 
-### 6.5 Loading
+### 6.5 Supplied brand artwork
+
+Photography is duotone. **Artwork is not photography**, and until round 3 of Phase 6 this document had no clause for it, so eleven full-colour islands shipped unfiltered, most of them on near-white plates inside bone sections, in a system that is otherwise two colours and a ration of orange. The gap is closed here rather than route by route, because "brand art is exempt" and "brand art is duotoned" are both defensible and only one can be true.
+
+Artwork means the three book covers, the two podcast cover arts, the Business of Agriculture lockup, the XtremeAg and Granary marks: files somebody else drew, that a reader is meant to recognise.
+
+1. **It keeps its colour.** The duotone recipe in 6.2 exists to make photographs one material. Running it over a partner's mark destroys the one thing the mark is on the page to do, which is be recognised. The two podcast covers survive greyscale; the two book jackets do not.
+2. **On a light surface it never gets a plate of its own.** Every one of these files carries its own hard white ground, so a `--surface-bright` fill behind it produced a plate inside a plate with a visible edge where the two whites met. Give the frame a hairline and nothing else, and set `mix-blend-mode: multiply` on the image, which resolves the artwork's white to whatever surface is behind it. This is the same treatment the logo wall gives 31 white-backed marks and it is the reason that wall has no inner edges. Multiply is unconditional even where the file is a transparent PNG, because `xtreme-ag.jpg` sitting next to two transparent PNGs in the same row is exactly how one white rectangle survives a review.
+
+   **The one exception is a mark on a deep surface**, where the marks are black letterforms and multiply against navy would erase them. There the plate is load bearing and it is a `data-surface="paper"` bone plate per section 3.3, never `--surface-bright`. The Granary mark on `/xtreme-ag/` is the only placement that qualifies. A bright plate inside a bone or sunken section is always the defect, never the exception.
+3. **It is sized by optical area, not by its box.** Two square covers and a 2.1:1 wordmark in identical boxes read as a 1.45x mismatch. Give each mark a factor that holds `sqrt(width x height)` constant, exactly as section 7.1 does for the logo walls, and correct that factor for the mark's ink fraction where the supplied file is loosely cropped. The worked example is the three-up on `/podcasts/`.
+4. **No single piece exceeds `--size-brand-art-max`, and that means every piece.** Section 5.1 rations orange to one filled field per viewport so nothing out-shouts the call to action. A 474px square of saturated yellow is several times that field's area and breaks the ration without ever using the colour. 22rem is the ceiling, and it is the ceiling for a hero cover art as much as for a credit in the corner: the rule was written and then three placements kept `--size-portrait-max` because they had been sized as if they were photographs, which put a 458px, a 426px and a 410px piece back over the line. `--size-portrait-max` is for a photograph of a person. Artwork takes `--size-brand-art-max`.
+
+   Where two pieces of artwork share a row, cap the axis that makes them peers rather than the one the grid already caps. Two book jackets side by side and one on its own bottomed out at 176px and 350px under an inline-size cap, because inline-size was the axis the column was already deciding; `--size-jacket-h` caps the block axis instead and the two cover rows land on one baseline.
+5. **The file is cleaned, not hidden.** `scripts/normalize-brand-art.mjs` trims each mark to its own ink and deletes near-transparent leftovers, including the RGB under fully transparent pixels. That last part is not cosmetic: the image optimizer emits AVIF with a lossy alpha channel and will rebuild a deleted ghost out of whatever colour the exporter left underneath it. See the header of that script.
+
+### 6.6 Loading
 
 `loading="lazy"` on every image below the fold and on all 21 logo-wall marks. Explicit `width` and `height` on every image so nothing shifts. The hero portrait is the only eager image on any page.
 
@@ -308,28 +324,53 @@ Veil opacities are role-specific:
 
 ## 7. The logo wall
 
-21 ragged client marks and 10 sponsor marks. Aspect ratios run from 1.00 (california-farm-bureau, 148 by 148) to 3.55 (usaedc, 423 by 119). Every file has an opaque white or near-white background: every JPEG by definition, and the PNGs are palette mode with white corners.
+21 ragged client marks and 10 sponsor marks. Every file in `public/img/clients` and `public/img/sponsors` has an opaque **pure white** ground, which is what `mix-blend-mode: multiply` needs to make the ground disappear into the bone cell.
 
-### 7.1 Normalization
+Every file is also trimmed to its own ink, by `scripts/normalize-logo-ink.mjs`, which runs at the end of `scripts/normalize-assets.mjs`. After that trim the canvas aspect ratio **is** the mark's aspect ratio, and those run from 0.86 (newfields-ag) to 6.05 (life-scientific). Before it they were the supplier's framing, and that is not the same thing: `claas.png` arrived as 168 by 148 with 27px of ink in it, so the cell gave it a full 72px box and 13px of visible mark. Measured on the live wall at 1440, ink height ran 13.1px to 72.0px on the clients and 15.6px to 69.8px on the sponsors, a 5.5x and a 4.5x spread inside cells that were the same size to the pixel. Trimmed, the same measurement is 26.6 to 67.9 and 36.0 to 67.7, and what is left is aspect ratio, which is real: a 5.6:1 logotype cannot be as tall as a square badge in a cell that is 2.2:1.
+
+**Do not normalize a mark in CSS.** Per-logo height overrides would need hand tuning for all 31 and would have to be redone on the next logo drop. The trim is a property of the file.
+
+Four of the 31 did not arrive that way and were fixed at the source rather than in CSS, in `GROUND_FIXES` in `scripts/normalize-assets.mjs`: `land-olakes-purina.png` had a 1px grey rule drawn down each side, `iowa-farm-bureau.jpg` sat on 244,243,241, `heads-up-plant-protectants.jpg` sat on a grey radial gradient, and `newfields-ag.jpg` was a shield cut out of a solid black square. Multiply erases white and nothing else, so each of those grounds rendered as a visible box around the mark in a wall where every neighbour vanished into the paper. **A new logo drop gets checked for this before it ships**: sample the four corners and the median of the border ring, and if either is not 255 the file needs an entry in `GROUND_FIXES`, not a per-cell override. Run against the two supplied folders that test still names exactly those four and no others, and run against the 31 files in `public/` it passes on all of them, so nothing has regressed and nothing new is hiding. The ink trim is applied after the ground fix for the same reason the fix exists: a ground that is not white is ink to a trim, and trimming to a baked-in frame would keep the frame and throw away the margin.
+
+### 7.1 Normalization is on OPTICAL AREA, not on height
+
+The ink trim above is the precondition, not the answer. It makes the canvas aspect equal the mark's aspect; it cannot make two marks look the same size, because a single cell cannot hand equal height AND equal width to shapes running from 0.86:1 to 6.05:1. Under a dual cap a wide wordmark hits `max-inline-size` and never reaches the height cap while a square badge fills it. Measured on the live wall at 1440 after the trim: claas 158.8 x 28.6, california-farm-bureau 72.0 x 72.0, a 2.52x height spread. At 390 it was 4.49x with claas at 17.8px, which is not legible.
+
+**Chasing equal height is the wrong target.** Two marks read as the same size when they carry the same amount of ink, which is why a designer sets a wide wordmark wider and shorter than a square badge and the pair still look like peers. Hold the geometric mean of the rendered box constant instead: `sqrt(width x height)` is the side of the square with the same area, so equal geometric mean is equal apparent visual weight.
 
 ```css
-.logo-cell        { background: var(--logo-cell-bg);
-                    border: var(--border-hairline) solid var(--logo-cell-rule);
-                    min-block-size: var(--logo-cell-min-h);   /* 116px */
-                    padding: var(--logo-cell-pad);            /* 16px */
-                    display: grid; place-items: center; }
-.logo-cell img    { max-inline-size: 100%;                    /* the guard direction 1 forgot */
-                    max-block-size: var(--logo-box-h);        /* 72px */
-                    inline-size: auto; block-size: auto;
-                    object-fit: contain;
-                    filter: var(--logo-filter);
-                    mix-blend-mode: var(--logo-blend);
-                    opacity: var(--logo-opacity); }
+.dm-logo-cell__img { inline-size: calc(var(--logo-optical) * var(--logo-ar-sqrt, 1));
+                     block-size: auto;
+                     max-inline-size: 100%;                     /* safety net */
+                     max-block-size: var(--logo-box-h-compact); /* safety net */
+                     object-fit: contain;
+                     filter: var(--logo-filter);
+                     mix-blend-mode: var(--logo-blend);
+                     opacity: var(--logo-opacity); }
 ```
 
-Both a width cap and a height cap. With only `max-height` and `width: auto`, usaedc.png computes to roughly 295px inside a 160px cell. A square mark is height-constrained at 72px, a 3.55:1 mark is width-constrained, and both land at the same optical weight.
+Each mark carries one number, `--logo-ar-sqrt` = `sqrt(width / height)` of its normalized canvas, generated per file into `src/styles/logo-optical.css` by `scripts/normalize-logo-ink.mjs`. Width is then `G x sqrt(a)` and height `G / sqrt(a)`, so `sqrt(w x h)` is `G` for every mark whatever its shape. `G` is `--logo-optical` (64px) below 768 and `--logo-optical-wide` (69px) from 768 up. Both are the largest value at which no mark on either wall touches either cap: 69 is bound by claas needing 162.6 of the 166.8px the client cell offers at 1440, 64 by the same mark needing 150.8 of the 157px a two-across cell offers at 390.
 
-Marks wider than 3:1 take `--logo-scale-wide` `0.86` so they do not visually dominate the row.
+Measured in Chromium after the change, at 1440 / 768 / 390 on both walls:
+
+| | client 1440 | sponsor 1440 | client 390 | sponsor 390 |
+|---|---|---|---|---|
+| optical spread before | 1.57x | 1.87x | 2.11x | 1.69x |
+| optical spread after | **1.00x** | **1.00x** | **1.00x** | **1.00x** |
+| height spread before | 2.52x | 1.73x | 4.49x | 2.89x |
+| height spread after | 2.39x | 2.57x | 2.38x | 2.57x |
+| smallest mark before | 28.6px | 41.5px | 17.8px | 27.7px |
+| smallest mark after | 29.3px | 29.0px | 27.2px | 26.9px |
+
+**The residual height spread is not a defect and must not be driven down.** It equals `sqrt(aspect_max / aspect_min)`, which is 2.39x for the 21 client marks and 2.57x for the 10 sponsors. It is the amount by which a 6:1 logotype is genuinely wider than it is tall. Rendering claas as tall as a square badge would give it 2.4x its correct visual weight and make it the loudest thing on the wall. **Report optical spread, not height spread.** `scripts/measure-logo-wall.mjs` measures all three in a real browser.
+
+**Do not hand-write a per-logo override in CSS.** The factor is derived from the file's real pixel dimensions by the same script that writes those dimensions, which is why `src/styles/logo-optical.css` is generated and carries a do-not-edit banner. A hand-tuned number can drift from the file it describes; a generated one cannot.
+
+There is no wide-mark backoff. `--logo-scale-wide` `0.86` existed because a wide FILE was usually a narrow mark inside a wide margin, and shaving 14% off stopped that margin pushing its neighbours around. Once the trim landed, a wide file means a wide mark, and those are the marks the cell already limits hardest. The backoff was subtracting from the wrong end, and it is gone.
+
+### 7.1.1 The section head does not ride the wide container
+
+The seven-column grid needs `Container width="wide"`; the section head does not. When the head rode along with it, every eyebrow, folio and H2 on a logo-wall section sat at x=48 while every other section on the same page sat at x=96, and on Home that jog was directly visible between "For meeting planners" and "Client roster". The head takes the standard container and only the `<ul>` goes wide.
 
 ### 7.2 Column counts are locked
 
@@ -337,10 +378,12 @@ Marks wider than 3:1 take `--logo-scale-wide` `0.86` so they do not visually dom
 
 | Set | 1024px and up | 768 to 1023 | below 768 |
 |---|---|---|---|
-| Clients (21) | **7** | **3** | **3** |
+| Clients (21) | **7** | **3** | **2** |
 | Sponsors (10) | **5** | **2** | **2** |
 
 No 4-across, no 5-across for clients, no 3-across for sponsors.
+
+**Below 768 the client wall is two across, not three, and the exception is measured.** Three across leaves 99px of content in a cell, and at the optical target in 7.1 a 5.55:1 logotype in 99px renders 17.8px tall. Two across offers 157px and carries the same mark to 27.2px, which is what makes the wall legible on a phone. It costs four extra rows of scroll. 21 is odd, so the twenty-first cell spans both columns rather than leaving a ruled hole, which is why the "no dead cells" property above still holds.
 
 ### 7.3 The dark ground
 

@@ -12,14 +12,14 @@
  */
 
 export const brandAssets = {
-  wordmark: '/img/brand/wordmark.png', // site header and footer, all pages
-  wordmarkWhite: '/img/brand/wordmark-white.png', // header over dark hero imagery, footer on the dark band
-  boasg: '/img/brand/boasg.jpg', // /boasg/ hero and the join CTA, plus social share cards
-  boasgWhite: '/img/brand/boasg-white.png', // /boasg/ badge placed over photography or a dark section
-  businessOfAgriculture: '/img/brand/business-of-agriculture.png', // /podcast/ masthead and the home page podcast block
-  businessOfAgriculturePodcast: '/img/brand/business-of-agriculture-podcast.jpg', // /podcast/ episode artwork and the feed cover
-  granary: '/img/brand/the-granary.png', // /the-granary/ hero
-  xtremeAg: '/img/brand/xtreme-ag.jpg', // /the-granary/ and /podcast/, the XtremeAg partnership credit
+  wordmark: '/img/brand/wordmark.png', // site header and footer on every route, plus the OG card and the Organization logo in lib/schema.ts
+  wordmarkWhite: '/img/brand/wordmark-white.png', // not placed anywhere: the wordmark never reverses. See DESIGN_SYSTEM section 10 rule 4
+  boasg: '/img/brand/boasg.jpg', // /boasg/ share card
+  boasgWhite: '/img/brand/boasg-white.png', // /boasg/ badge
+  businessOfAgriculture: '/img/brand/business-of-agriculture.png', // /the-business-of-agriculture/, the stacked lockup leading the subscribe band
+  businessOfAgriculturePodcast: '/img/brand/business-of-agriculture-podcast.jpg', // /the-business-of-agriculture/ and /podcasts/ cover art, and the PodcastSeries image
+  granary: '/img/brand/the-granary.png', // /the-business-of-agriculture/ and /xtreme-ag/, the Granary show mark
+  xtremeAg: '/img/brand/xtreme-ag.jpg', // /the-business-of-agriculture/, the XtremeAg partnership credit
 } as const;
 
 /**
@@ -29,13 +29,13 @@ export const brandAssets = {
  */
 
 export const brandAssetsExtra = {
-  boasgWhiteFlat: '/img/brand/boasg-white-flat.jpg', // /boasg/, opaque white background variant for print or email
-  doBusinessBetterPodcast: '/img/brand/do-business-better-podcast.png', // /about/#books and any Do Business Better cross promo
-  businessOfAgricultureLockup: '/img/brand/business-of-agriculture-lockup.png', // /podcast/ alternate lockup on a dark panel
-  businessOfAgricultureIconWhite: '/img/brand/business-of-agriculture-icon-white.png', // /podcast/ leaf icon over dark sections, favicon-scale use
-  businessOfAgricultureAvatar: '/img/brand/business-of-agriculture-avatar.png', // /podcast/ square avatar for feed and player embeds
-  xtremeAgTransparent: '/img/brand/xtreme-ag-transparent.png', // /the-granary/, transparent version for placing on color
-  dmMonogram: '/img/brand/dm-monogram.jpg', // favicon and app icon source, site wide
+  boasgWhiteFlat: '/img/brand/boasg-white-flat.jpg', // unplaced, the opaque duplicate of the boasgWhite badge. See docs/CONTENT_MANIFEST.md
+  doBusinessBetterPodcast: '/img/brand/do-business-better-podcast.png', // /podcasts/ and /do-business-better-podcast/ cover art, and the PodcastSeries image
+  businessOfAgricultureLockup: '/img/brand/business-of-agriculture-lockup.png', // unplaced, the horizontal alternate to businessOfAgriculture
+  businessOfAgricultureIconWhite: '/img/brand/business-of-agriculture-icon-white.png', // unplaced, the leaf icon on its own at favicon scale
+  businessOfAgricultureAvatar: '/img/brand/business-of-agriculture-avatar.png', // unplaced, the square avatar the player embeds carry themselves
+  xtremeAgTransparent: '/img/brand/xtreme-ag-transparent.png', // /podcasts/ and /xtreme-ag/, the transparent XtremeAg mark for placing on color
+  dmMonogram: '/img/brand/dm-monogram.jpg', // never referenced by a route: this is the SOURCE the site icons were cut from, not a shipped image. See app/icon.png
 } as const;
 
 export type BrandAssetKey = keyof typeof brandAssets;
