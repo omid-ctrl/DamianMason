@@ -241,10 +241,15 @@ export default function AboutPage() {
                     of this sentence: the paragraph directly above it is the
                     source line that carries those counts, so the page was
                     stating them twice inside 80 words. */}
+                {/* The sugar-coating sentence is not here any more. It is
+                    verbatim source copy for /boasg/ (_source/pages/boasg.md
+                    line 38), which owns it, and running it on both routes was
+                    the one duplication the final sweep flagged. What /about/
+                    keeps is the half of the source sentence /boasg/ does not
+                    carry: who he has actually worked for. */}
                 <p>
-                  He gives you the truth about Ag without sugar coating the message, and he has
-                  spoken and consulted with the biggest names in Agriculture, in every segment
-                  of Ag.
+                  He has spoken and consulted with the biggest names in Agriculture, in every
+                  segment of Ag.
                 </p>
                 <p>
                   Damian is a graduate of Purdue University with a degree in Agriculture Economics.

@@ -113,9 +113,14 @@ export default function KeynotePage() {
           </>
         }
         actions={[
-          // The masthead already spends this viewport's one filled orange field
-          // on the identical action, so this one is the navy outline.
-          { label: 'Book Damian', href: BOOKING_HREF, variant: 'secondary' },
+          // Primary, and it has to be. The comment here used to say the masthead
+          // already spent this viewport's one orange field on the same action,
+          // which was true until Phase 5 resolved the orange budget by making
+          // the masthead button secondary everywhere. That left the flagship
+          // booking page as the only route on the site with no orange CTA above
+          // the fold. Measured at 1440: / and /about/ each render one filled
+          // orange field in the first viewport, /keynote/ rendered zero.
+          { label: 'Book Damian', href: BOOKING_HREF },
         ]}
         image={{
           src: '/img/photos/portrait-light-jacket.jpg',

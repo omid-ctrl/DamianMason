@@ -455,6 +455,7 @@
     hyphens: auto;
   }
   .dm-display--masthead { line-height: var(--lh-solid); }
+
   .dm-heading--brand, .dm-display--brand { color: var(--ink-brand); }
   .dm-heading--muted { color: var(--ink-muted); }
 
@@ -1514,5 +1515,30 @@
      changes under it. */
   .dm-footer__folio {
     margin: 0;
+  }
+}
+
+/*
+ * Narrow-viewport guard for the display steps. UNLAYERED deliberately.
+ *
+ * The type scale bottoms out at 52px and at 320px the hero column is 280px
+ * wide, so "Coordinators" set 301px and /meeting-coordinators/ pushed 1px of
+ * horizontal scroll. `hyphens: auto` is already declared and is the right
+ * answer in a browser shipping a hyphenation dictionary, but it cannot be
+ * relied on, and the usual fallback `overflow-wrap: break-word` reintroduces
+ * the un-hyphenated mid-word break that was a blocker in QA round 3
+ * ("Coordinato / rs").
+ *
+ * This sits outside @layer because `text-6xl` is a Tailwind utility: the
+ * utilities layer beats the components layer no matter how specific the
+ * selector is. An unlayered rule beats every layer, which is the only way to
+ * win here without an !important.
+ *
+ * 390 and 768, the two widths the design was specified against, are untouched.
+ */
+@media (max-width: 22.5rem) {
+  .dm-display.text-6xl,
+  .dm-display.text-5xl {
+    font-size: var(--fs-4xl);
   }
 }

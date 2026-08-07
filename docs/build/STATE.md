@@ -79,28 +79,33 @@
       collapsed to 9. Round 6 was pure verification with no agent permitted to edit: **4 of 5 areas clean**,
       including the full client checklist and content parity. All 3 remaining findings fixed by hand.
 
-- [ ] **Phase 7 — Final QA & handoff**
+- [x] **Phase 7 — Final QA & handoff**
       Full re-verify, clean `next build`, write `docs/QA_REPORT.md`, `docs/HANDOFF.md`, `docs/CMS-READY.md`, `docs/OPEN-ITEMS.md`.
       **Gate:** zero open findings → stop the loop.
-      Result:
+      Result: **PASS.** Clean-tree `rm -rf .next && tsc && next build` exits 0 with zero warnings, 27 static
+      pages. **Lighthouse desktop 100/100/100/100 on all 13 routes; mobile Perf 93 to 95, A11y 100, SEO 100,
+      zero routes below target.** axe 0 violations across 38 runs. 461 URLs swept, 0 internal 404s, 0 empty
+      hrefs, 0 wpengine refs, 12/12 redirects 301 to 200. No-JS: 19/19 routes, 18/18 videos reachable.
+      Overflow: 114 checks (19 routes x 6 widths incl. 320px), 0 failures. CLS 0.000 everywhere.
+      Four handoff docs written; `OPEN-ITEMS.md` carries 20 questions for the client.
 
 ---
 
 ## Client requirement checklist (Phase 6 gate — every line must pass)
 
-- [ ] All 21 logos from `Client Logos/` on the client wall, replacing the current 6
-- [ ] All 10 logos from `Website - List of Podcast Sponsors - Logos/` on the podcast page
-- [ ] `LOGO-REVISION-B-A-F-01 copy.png` (Business · Agriculture · Food) appears nowhere
-- [ ] Header/footer wordmark is the current-site Damian Mason — Business Agriculture navy/orange logo
-- [ ] Business of Agriculture logos on `/the-business-of-agriculture/`; BoASG badge on `/boasg/`; XtremeAg + The Granary on `/xtreme-ag/`
-- [ ] No Shop / Cart / Checkout / product pages; no prices; no "Add to cart"
-- [ ] FAQ item "Do you have any products for sale?" removed
-- [ ] Media Kit link removed (both instances)
-- [ ] BOASG join CTA is `mailto:damianmasonoffice@gmail.com` with appropriate wording
-- [ ] Every page, section and image from the old site carried over or explicitly justified
-- [ ] Same IA and page flow; nothing became harder to reach
-- [ ] Copy reads as Damian, not as AI; zero em dashes
-- [ ] Every live-site defect listed in PLAN.md Context is fixed and none reproduced
+- [x] All 21 logos from `Client Logos/` on the client wall, replacing the current 6
+- [x] All 10 logos from `Website - List of Podcast Sponsors - Logos/` on the podcast page
+- [x] `LOGO-REVISION-B-A-F-01 copy.png` (Business · Agriculture · Food) appears nowhere
+- [x] Header/footer wordmark is the current-site Damian Mason — Business Agriculture navy/orange logo
+- [x] Business of Agriculture logos on `/the-business-of-agriculture/`; BoASG badge on `/boasg/`; XtremeAg + The Granary on `/xtreme-ag/`
+- [x] No Shop / Cart / Checkout / product pages; no prices; no "Add to cart"
+- [x] FAQ item "Do you have any products for sale?" removed
+- [x] Media Kit link removed (both instances)
+- [x] BOASG join CTA is `mailto:damianmasonoffice@gmail.com` with appropriate wording
+- [x] Every page, section and image from the old site carried over or explicitly justified
+- [x] Same IA and page flow; nothing became harder to reach
+- [x] Copy reads as Damian, not as AI; zero em dashes
+- [x] Every live-site defect listed in PLAN.md Context is fixed and none reproduced
 
 ---
 
@@ -194,6 +199,7 @@ belongs in `OPEN-ITEMS.md` for the client.
 _(append one line per completed phase: date, phase, agent count, outcome)_
 
 - 2026-08-06 · Phase 0 · 10 agents · PASS. 28 pages harvested, 70 assets mirrored, 46 logos normalized, VOICE.md written, gate reconciled 6 plan discrepancies.
+- 2026-08-07 · Phase 7 · 5 agents · PASS. Clean build verified, Lighthouse desktop 100 across the board, 12 minor findings all closed or disproved.
 - 2026-08-07 · Phase 6 · 60 agents over 6 rounds · PASS. 80 to 27 to 45 to 49 to 9 to 3 findings; copy freeze in round 5 was the turning point.
 - 2026-08-07 · Phase 5 · 7 agents · PASS. axe 0, CLS 0, video 106MB to 21MB, orange budget fixed on all 18 routes, 301s verified.
 - 2026-08-07 · Phase 4 · 6 agents (1 API error, work covered) · PASS. Voice pass killed 7 invented cutlines; 19 unique titles + descriptions verified from prerendered HTML.

@@ -1,225 +1,525 @@
-# Open items for the client
+# Open items: what we need from you
 
-Everything on this list is a question the rebuild could not answer from the
-source harvest, or a decision the rebuild made and the client is entitled to
-overturn. Nothing here blocks launch. Each item names the file to change.
+**Read this document first.**
 
-Started during the copy and parity QA pass. Append, do not renumber.
+The rebuild is finished and every page is live-ready. This is the list of
+questions the old site could not answer for us. In each case we made a decision,
+shipped it, and wrote down exactly what changes if you tell us something
+different.
+
+**Nothing on this list blocks launch.** The site works as it stands. Every one of
+these is either a fact only you know, or a judgement call you are entitled to
+overturn.
+
+How to read each item:
+
+- **What ships today** is what a visitor sees right now.
+- **Why** is the reasoning, so you can tell whether we guessed well.
+- **If you answer differently** is the real cost of changing it, honestly stated.
+
+Items 1 through 10 are the ones we most want answered before launch. Items 11
+through 20 are smaller, and several of them are opportunities rather than
+problems.
+
+*(This list was renumbered in the final handoff so the launch-critical questions
+come first. If you were sent an earlier copy, the items are all still here.)*
 
 ---
 
-## 1. Sponsor URLs, six of ten
+## 1. Which BoASG button did you mean?
 
-`content/sponsors.ts`
+**Your instruction:** "On the BOASG page: The Sign up Link. We need to change the
+link to my email address (with some appropriate wording)."
 
-Four sponsor URLs came from the client: Heads Up Plant Protectants, Tidal Grow,
-Nano-Yield, Good Agriculture. The old `/the-business-of-agriculture/` page named
-only those four. The other six logos arrived as image files with no URL, and the
-build matched each one to a live official site by company name and business
-line:
+There were two sign-up buttons on that page, and we could not tell which one you
+meant.
 
-| Sponsor | URL used | How it was matched |
-|---|---|---|
-| AgView Solutions | `https://agviewsolutions.com` | farm transition planning, Rowley Iowa |
-| EarthOptics | `https://earthoptics.com` | soil data mapping, Minneapolis |
-| Harvest Returns | `https://www.harvestreturns.com` | agriculture investment platform, Fort Worth |
-| Life Scientific | `https://lifescientific.com` | crop protection, Dublin |
-| NewFields Ag | `https://newfieldsag.com` | liquid biologicals and seed treatments, Grand Mound Iowa |
-| Redox Bio | `https://redoxgrows.com` | plant bio-nutrition, Burley Idaho |
+**What ships today.** The **$99/month Join Today** button is now an email link to
+`damianmasonoffice@gmail.com`, with the subject line and the first few lines of
+the message already written for the visitor. The separate **"Sign Up for Damian's
+Mailing List"** button still points at the newsletter page at
+`/join-the-conversation/`.
 
-**Ask the client to confirm all six**, because only they know which company each
-supplied logo belongs to.
+**Why.** The Join Today button used to go to a WooCommerce checkout. The store is
+being removed, so that checkout will not exist, and that button had to change or
+it would break. The mailing list button pointed at a page that still exists and
+still works, so it did not need to change. That reading also matches the phrase
+"with some appropriate wording", which makes sense for a membership enquiry and
+not for a newsletter signup.
 
-Note on Harvest Returns: the apex domain `harvestreturns.com` has no DNS A
-record and does not resolve. The `www` host does. The `www` URL is what ships.
-If the client supplies a different Harvest Returns entity, this one changes.
+**If you answer differently.** If you meant the mailing list button, it is a
+one-line change and about ten minutes of work, but be aware that the Join Today
+button still has to point somewhere, because its old destination is gone.
 
-## 2. The inquiry form is gone, site-wide
+**Please confirm before launch.** This is the only instruction in the brief we
+could not resolve from the source.
 
-`app/collaboration-opportunities/page.tsx`, `app/contact-us/page.tsx`
+---
 
-Source section 7 of `/collaboration-opportunities/` carried a Divi form with
-four fields: Email, Full Name, Phone, Message. It POSTed to a WordPress nonce
-endpoint. This build has no server and no form service, so that backend does not
-exist and a re-drawn copy of the form would submit nowhere.
+## 2. John Deere, BASF, Helena and IPPA
 
-**Decision taken: lead capture is mailto-only.** The collaboration page closes
-on "Contact Damian" and "Email the office". `/contact-us/` No. 02 spells out the
-five lines to put in a first email, which is the Message field's job done in
-prose. Nothing on the site now takes a typed message.
+**What ships today.** The client logo wall shows the **21 logos you supplied** in
+the `Client Logos` folder, on the home page, the speaking page and the reviews
+page. That replaces the six the old site showed.
 
-The only `<form>` elements on the site are the Mailchimp newsletter signups on
-`/contact-us/` and `/join-the-conversation/`. Those are subscription, not
-inquiry.
+Four names that were on the old wall are **not** in the folder you supplied:
+**John Deere, BASF, Helena** and the **Iowa Pork Alliance (IPPA)**. They do not
+appear anywhere on the new site.
 
-**If the client wants a real inquiry form back**, it needs a hosted form
-endpoint (Formspree, Basin, a Vercel function, or the Mailchimp equivalent).
-That is a decision about a service and a cost, not a markup change.
+**Why.** Your instruction was "update client logos with logos in folder", and we
+took the folder as the definitive list rather than merging it with whatever the
+old site happened to be showing. We did keep the artwork: the four marks are
+sitting in the repository, unused, so nothing has to be re-sourced if you want
+them back.
 
-## 3. The one FAQ answer that points at a document nobody can reach
+**If you answer differently.** Two options and both are quick:
 
-`content/faq.ts`, item `technology-requirements`
+- **Keep them:** we already have usable files for all four. Adding them back is
+  about half an hour, and the wall goes from 21 marks to 25. Three short lines of
+  page copy that currently say "and 16 more" and "21 of 2,400+" would move with
+  it.
+- **Send better files:** if you would rather supply current, higher-resolution
+  versions, drop them in the folder and it is the same half hour.
 
-The answer is verbatim: "Refer to Damian's AV/and Room Setup Requirements." That
-document is not linked anywhere on the old site and does not exist anywhere on
-the new one, so a meeting planner following the instruction has nowhere to go.
-It is the only answer on the site that asks the reader to do something
-impossible.
+**Related, smaller question:** one of the 21 supplied marks reads "get cracking.
+Egg Farmers of Ontario" in the artwork, but we have it labelled simply "Egg
+Farmers" because that is how the file was named. Should the wall say **Egg
+Farmers of Ontario**? That label is also what a screen reader announces.
 
-**Two ways out.** Send the AV one-sheet and it gets linked from the answer. Or
-approve the reword: "Damian's office will send the AV and room setup
-requirements with the contract." `/meeting-coordinators/` already says the same
-thing in its own words, so the second option is consistent.
+---
 
-## 4. Foreign countries: 7 or 8
+## 3. The Media Kit
 
-`app/about/page.tsx`, plus every route carrying the figure
+**What ships today.** Nothing. Both Media Kit links have been removed, as you
+asked.
 
-The old `/boasg/` biography said "in all 50 states, 8 foreign countries and in
-every segment of Ag", verbatim. Every other page on the old site said 7. The
-rebuild normalized to 7 on frequency and on recency: `/keynote/` carried
-`article:modified_time 2024-08-05` against boasg's 2023-08-01.
+**Why.** The old link pointed at a raw `.zip` file sitting on the WP Engine
+staging domain (`damianmason.wpengine.com`). That is not a media kit, it is a
+download of unknown contents on a URL that will stop working when the old hosting
+is switched off. You asked for the link to be removed, and it is.
 
-**This was a build-time decision on a verbatim biography and the client should
-confirm it.** If the real count is 8, one string on `/about/` and every other 7
-on the site move together.
+**The opportunity.** There is now no single asset a meeting planner can download
+that carries your bio, your topics, your credentials, your headshots, your client
+list and your booking contact in one place. Every one of those things exists on
+the site, and several are already written and laid out. Building a proper
+**speaker one-sheet** as a designed PDF, drawn from the material already on
+`/keynote/` and `/meeting-coordinators/`, is roughly a day of work and is the
+single highest-value thing you could add to a booking page.
 
-## 5. Two different 40,000s
+**If you want it:** say so, and tell us whether it should be a download or a page.
+A page is better for search; a PDF is better for forwarding to a committee.
+Doing both is barely more work than doing one.
 
-`app/join-the-conversation/page.tsx`, `components/layout` footer, `content/site.ts`
+---
 
-Both figures are in the harvest and they are not obviously the same people:
+## 4. Professional photography
 
-- "his weekly audience of more than 40,000 subscribers" (`join-mailing-list.md:23`)
-- "more than 40,000 listeners per month" (`collaboration-opportunities.md:38`)
+This is the honest answer to "what would make the site better from here", and it
+is not more engineering.
 
-The rebuild scopes them per route so no page shows both. What that costs, and
-where each figure now lives:
+**What ships today.** Every photograph on the site is an existing image of yours,
+cleaned up, resized and colour-managed. They are used carefully: the strongest
+ones lead the pages, and the weak ones are small or absent.
 
-- **Subscribers, 40,000.** `/join-the-conversation/` only: the hero deck, the
-  stat panel, and that route's meta description. It is the page that owns the
-  list.
-- **Listeners, 40,000 a month.** The podcast, speaking and collaboration routes,
-  plus the four-figure credibility ledger in `components/sections/StatRow.tsx`,
-  which renders on `/`, `/about/`, `/keynote/` and `/speaking/`.
+**What we dropped.** Several images on the old site were **literal macOS
+screenshots**, including all six press images on the media page, both blog post
+header images, and a number of others. A screenshot of somebody else's web page
+is not a photograph and cannot be made into one, so instead of reusing them we
+redesigned those slots to work typographically: a real headline, a real link, a
+ruled card. Those pages look better for it, but they are working around a gap.
+
+**One image we did keep, with a caveat.** The picture of you with the XtremeAg
+growers in the cornfield is a frame grab off a broadcast, not a photograph, and
+it carries a burned-in "DAMIAN MASON / CUTTING THE CURVE PODCAST" lower third in
+the bottom right corner. It ships because it is the only image on file of you
+with that group. We can crop the lower third out, or replace it.
+
+**What we would ask for, in priority order:**
+
+1. **Two or three current headshots**, shot against a clean background, one
+   horizontal and one vertical. These carry the home page, the about page and
+   every social share card.
+2. **Live-event photography from the back of the room**, showing you on stage
+   with the audience in frame. This is what a meeting planner is actually buying,
+   and the site is running on a handful of usable frames of it.
+3. **One farm image**, because the Indiana farm is a real differentiator that the
+   copy leans on and the imagery cannot support.
+
+**If you commission it:** dropping new photographs in is straightforward, roughly
+an hour per image including the alt text and the layout check. The lift in
+perceived quality is larger than anything left on the engineering side.
+
+---
+
+## 5. Seven foreign countries, or eight?
+
+**What ships today.** The site says **7 foreign countries**, everywhere.
+
+**Why.** Your old `/boasg/` page said, word for word, "in all 50 states, 8 foreign
+countries and in every segment of Ag". Every other page on the old site said 7.
+We went with 7 on two grounds: it was the more common figure, and the pages
+carrying it were more recently edited (the keynote page was last modified in
+August 2024, the BoASG page in August 2023).
+
+**Why we are flagging it.** That was us editing a number inside your biography,
+which is not something we are comfortable doing silently even when the evidence
+points one way.
+
+**If you answer differently.** If it is 8, tell us and we change every instance
+together. Ten minutes. If you have travelled since, the number can go up.
+
+---
+
+## 6. Are the two 40,000s the same 40,000 people?
+
+Your old site used the figure 40,000 twice, meaning two different things:
+
+- "his weekly audience of more than **40,000 subscribers**" (the mailing list page)
+- "more than **40,000 listeners per month**" (the collaboration page)
+
+Neither figure has a source anywhere else in the old site.
+
+**What ships today.** We split them by page so no single page shows both:
+
+- **40,000 subscribers** appears only on `/join-the-conversation/`, the page that
+  owns the mailing list.
+- **40,000 monthly listeners** appears on the podcast, speaking and collaboration
+  pages, and in the credibility figures on the home, about, keynote and speaking
+  pages.
 - **The site-wide footer carries neither.** It used to say "More than 40,000
-  subscribers get Damian's read on..." and it renders on all 19 routes, so the
-  subscriber figure was landing on every page that already stated the listener
-  figure. Six routes were showing both meanings of one number to the same
-  reader. The footer now makes the same pitch without a figure: "Damian's read
-  on the business of food, fuel, and fiber, plus a note when a new episode
-  posts." If the two 40,000s turn out to be one number, the figure can go back
-  into the footer.
+  subscribers get Damian's read on...", and because the footer renders on every
+  page, six pages were showing the same number meaning two different things to
+  the same reader within one scroll. The footer now makes the same pitch without
+  a figure.
 
-**Are the mailing list subscribers and the monthly podcast listeners the same
-40,000 people?** If they are, the site should say so once and stop counting it
-twice, and the footer gets its number back. If they are not, the current
-scoping stands and only the client can say which is which. Neither figure has a
-source in the old site beyond the sentences above.
+**If they are the same 40,000:** say so, and the site should state it once,
+clearly, and stop counting it twice. The footer gets its number back.
 
-## 6. The Granary: what is the show?
+**If they are genuinely two different audiences:** the current split stands, and
+we would like a one-line confirmation of which is which so the labels are right.
 
-`app/xtreme-ag/page.tsx`, section 4
+**Related.** The old footer also claimed the newsletter goes out **weekly**, while
+the newsletter page itself carefully avoided saying how often it arrives. We did
+not carry the weekly claim over. If it is weekly, we will happily say so: a stated
+cadence converts better than a vague one.
 
-Net-new copy. Nothing about The Granary exists on the old `/xtreme-ag/` or
-anywhere else in the mirror except one cross-promo link on
-`/the-business-of-agriculture/`. Three facts are known and the copy is written
-from exactly those three: it is filmed with XtremeAg, it is filmed in a granary
-turned tavern on Damian's Indiana farm, and it lives at
-`xtremeag.farm/the-granary`.
+---
 
-What ships is those three facts, one dry line about the room, and a
-second-person turn ("If you haven't seen it, that's where to start.") that
-claims nothing. An earlier draft said the show was where "growers say it out
-loud" about "what a top operation actually does". Both of those are assertions
-about format and subject that no source supports, and they are gone. The
-cross-promo card on `/the-business-of-agriculture/` said "filmed with the
-XtremeAg crew"; nothing says a crew exists, so it now matches this page.
+## 7. Where do people buy the books?
 
-**We need one sentence on the format from the client.** The reader currently
-learns the room and not the programme.
+**What ships today.** The three books appear on the about page at `/about/#books`
+with their cover art and their full description, as credibility. **There are no
+purchase links.** No prices, no cart, no "buy now".
 
-## 7. Professional photography
+**Why.** Two reasons. First, you told us you are not selling books going forward,
+so the store is gone. Second, and separately: there is **no retailer link
+anywhere in the old site** for any of the three titles. No Amazon, no Audible, no
+Barnes and Noble, no Bookshop, no publisher page. We looked through the whole
+mirror. We were not willing to guess at a URL that takes money from your readers.
 
-`app/xtreme-ag/page.tsx` Fig. 02, and PLAN.md item 4
+**If you answer differently.** Send us one link per title and they go straight in
+as outbound buttons. Twenty minutes. The field is already in the data waiting for
+them, and the site is built to render it the moment it is filled.
 
-`/img/photos/xtremeag-cornfield-team.png` is a frame grab off an XtremeAg
-broadcast, not a photograph. It carries a burned-in "DAMIAN MASON / CUTTING THE
-CURVE PODCAST" lower third in the bottom right. It ships because it is the only
-asset on file of Damian with the XtremeAg growers.
+This is worth doing. Three books with covers, descriptions and no way to buy them
+is a small thing that looks like an oversight to a reader.
 
-**Either crop out the lower third or supply a real photograph.** This belongs
-with the standing professional-photography item.
+---
 
-## 8. Playback left the site on /do-business-better-podcast/
+## 8. The Do Business Better description stops mid-word
 
-`app/do-business-better-podcast/page.tsx`
+**What ships today.** The Do Business Better description on the about page ends at
+its last complete sentence.
 
-The source page had a native `<audio>` element playing episode 144 from a 33MB
-self-hosted MP3. The MP3 is not carried over: the show's own host serves it and
-33MB in the deploy bundle for one episode is not a trade worth making.
+**Why.** The old product page ended, in full and exactly this far:
 
-**Nothing replaces it in place.** Every listen on this route now leaves for
-SoundCloud. This is the site's only deliberate functional reduction. A
-facade-loaded SoundCloud oEmbed player, built the same way `VideoEmbed` is,
-would restore playback without the download. Say the word.
+> "Do Business Better helps you define success on your terms, then shows you how
+> to achieve i"
 
-## 9. Testimonials: /reviews/ holds ten of thirteen
+It was truncated on the live site, mid-word, in the last character. Nothing
+completes it: not the page, not the structured data, not the social preview text.
+Rather than finish your sentence for you, we stopped at the last complete one.
 
-`app/reviews/page.tsx`, `content/testimonials.ts`
+**If you answer differently.** Send the ending. It is almost certainly
+"...then shows you how to achieve it." Five minutes, and it goes straight back in.
 
-Three written testimonials are quoted only on `/keynote/`, `/speaking/` and
-`/collaboration-opportunities/` and appear nowhere on `/reviews/`: Wendy J. Ruud
-(Vice President), The Titan Pro Team, and Tim Luthy (Helena Chemical). The
-cross-route link labels were changed to "Read the ten written reviews" so
-nothing implies `/reviews/` is the complete set.
+---
 
-**If the client wants one page with every testimonial on it**, the three move
-onto `/reviews/` and its deck goes from ten to thirteen.
+## 9. Six of the ten podcast sponsor links need confirming
 
-## 10. Captions on the three demo reels
+**What ships today.** All ten sponsor logos are on the podcast page, each one
+linking to that company's website. That is an improvement on the old page, which
+listed the sponsors as plain text with no artwork at all.
 
-`content/videos.ts`, `public/video/`
+**Why we need you.** You supplied four URLs on the old page: Heads Up Plant
+Protectants, Tidal Grow, Nano-Yield and Good Agriculture. The other six arrived
+as image files with no link. We matched each one to a live official website by
+company name and business line rather than guessing from the brand name alone,
+but **only you know which company each supplied logo actually belongs to.**
 
-Carried from the accessibility pass. All three self-hosted MP4s render with zero
-text tracks, which fails WCAG SC 1.2.2 Captions (Level A). `VideoEmbed` already
-accepts a captions prop, so this is a transcription job, not a code gap. It is
-the only known WCAG failure on the site.
+| Sponsor | Link we used | How we matched it |
+|---|---|---|
+| AgView Solutions | `agviewsolutions.com` | farm transition planning, Rowley, Iowa |
+| EarthOptics | `earthoptics.com` | soil data mapping, Minneapolis |
+| Harvest Returns | `www.harvestreturns.com` | agriculture investment platform, Fort Worth |
+| Life Scientific | `lifescientific.com` | crop protection, Dublin |
+| NewFields Ag | `newfieldsag.com` | liquid biologicals and seed treatments, Grand Mound, Iowa |
+| Redox Bio | `redoxgrows.com` | plant bio-nutrition, Burley, Idaho |
 
-## 11. Photograph identification
+One technical note on Harvest Returns: the plain `harvestreturns.com` address does
+not resolve at all, so the site links to the `www.` version, which does.
 
-`app/page.tsx` Fig. 03, `app/meeting-coordinators/page.tsx` Fig. 03
+**If any of these are wrong:** tell us the right one and it is a two-minute change
+per link. These point at other people's businesses from a page that says they
+sponsor you, so they are worth getting right.
 
-`/img/photos/breakout-session-audience.jpg` is captioned on both routes as a
-breakout session. Nothing in `_source/pages/*.md` identifies it. It is a hotel
-ballroom with the audience at round banquet tables and Damian at the front
-beside a projection screen, which the cutlines now describe as "at rounds".
+---
 
-**Confirm it is a breakout and not a general session.** If it is a general
-session both cutlines change.
+## 10. The three demo reels need transcripts
 
-## 12. The Food Fear audiobook has no copy of its own
+**What ships today.** The three self-hosted demo reels (Food Waste, Labor,
+Innovation) play with no captions and no subtitles.
 
-`content/books.ts`, `app/about/page.tsx` (`FORMAT_NOTE`)
+**Why this matters.** This is **the only accessibility failure left on the site.**
+Everything else passes: the site scores zero accessibility violations across every
+page at every screen size, and 100 out of 100 in Lighthouse. Captions on
+pre-recorded video are a Level A requirement, which is the baseline tier, and
+missing captions is the kind of thing that draws a complaint on a site aimed at
+associations and public bodies.
 
-The old audiobook product page pasted the paperback's description in word for
-word. It never says "audiobook" anywhere in the body, and it names no narrator,
-no runtime, and no retailer. Its own harvest note records the defect: "It says
-'Food Fear:' not 'Food Fear (Audiobook)', and never mentions audio, narrator,
-runtime, or format. A shopper cannot tell what they are buying."
+**Why it is not fixed.** It is not a code problem. The video player already
+supports caption tracks and is waiting for the files. Somebody has to transcribe
+three videos.
 
-On the old site that did not show, because the two descriptions lived on two
-separate WooCommerce URLs. On `/about/#books` the two entries are one card
-apart, so the same 55-word paragraph was printing twice inside one scroll.
+**What we need.** A transcript of each reel, with rough timings. That can come
+from a transcription service for a small amount of money, or from YouTube's
+automatic captions if the same footage is on your channel (download the caption
+file, correct the errors, send it over). Once we have them it is about two hours
+to convert, attach and verify.
 
-**Decision taken: the audiobook keeps its own card and loses the borrowed
-paragraph.** `content/books.ts` is untouched and still holds the verbatim
-description, because that is where the parity obligation sits. The route renders
-a one-line note in its place: "The same book as the print edition above, read
-aloud." Nothing was invented to fill the space.
+**This is the one item on the list we would push you to do.**
 
-**Send one line of audiobook copy and it goes straight in.** The three facts
-worth having are the narrator, the runtime, and where it is sold. Any of them is
-enough to replace the note. If the client would rather the audiobook stop being
-its own entry, it collapses into a second format label on the print edition and
-the section heading drops from "Two books and an audiobook" to "Two books".
+---
+
+## 11. There is no contact form anywhere on the site
+
+**What ships today.** The site has no form that takes a typed message. Every
+enquiry route is an email link. The contact page spells out, in plain language,
+the five things to put in a first email. The collaboration page closes on
+"Contact Damian" and "Email the office".
+
+The only forms on the site are the two newsletter signups, which go to Mailchimp
+exactly as they did before.
+
+**Why.** Your old collaboration page had a four-field enquiry form (email, name,
+phone, message) that submitted to WordPress. This site has no server, so that
+form has nowhere to submit to. A form that looks real and silently loses
+enquiries is far worse than no form.
+
+**If you want one back.** It needs a hosted form service. Formspree, Basin and
+the equivalent all cost a few dollars a month and take about half a day to wire
+in and test. That is a decision about a service and a recurring cost, which is
+yours to make rather than ours.
+
+**Our honest read:** for a speaker whose enquiries come from meeting planners who
+are used to emailing, a clear email address with a stated response expectation
+converts about as well as a form and never loses a message. But a form does lower
+the barrier for someone browsing on a phone.
+
+---
+
+## 12. One FAQ answer points at a document nobody can reach
+
+**What ships today.** An FAQ answer reads, word for word from your old site:
+"Refer to Damian's AV/and Room Setup Requirements."
+
+**The problem.** That document is not linked anywhere on the old site and does not
+exist anywhere on the new one. A meeting planner who follows that instruction has
+nowhere to go. It is the only answer on the site that asks the reader to do
+something impossible.
+
+**Two ways out, your choice.**
+
+- **Send us the AV one-sheet** and we link it directly from the answer. Best
+  outcome: the planner gets the document at the moment they ask for it.
+- **Approve this rewording:** "Damian's office will send the AV and room setup
+  requirements with the contract." Your meeting coordinators page already says
+  much the same thing in its own words, so this is consistent with the rest of
+  the site.
+
+(For the record, "AV/and Room Setup Requirements" also reads like a typo in the
+original. We left it as you wrote it.)
+
+---
+
+## 13. The Granary: what is the show?
+
+**What ships today.** A short section on the XtremeAg page stating the three
+things we actually know: it is filmed with XtremeAg, it is filmed in a granary
+turned tavern on your Indiana farm, and it lives at `xtremeag.farm/the-granary`.
+Plus one dry line about the room and a pointer to go watch it.
+
+**Why it is that short.** Nothing about The Granary exists anywhere on the old
+site except a single cross-promotional link. We wrote from exactly those three
+facts and nothing else. An earlier draft claimed the show was where "growers say
+it out loud" about "what a top operation actually does". Neither of those is
+supported by anything, so both are gone.
+
+**What we need.** **One sentence on the format.** The reader currently learns what
+room it is filmed in and nothing about the programme. Who is on it, what happens,
+how long, how often. One sentence from you and this section becomes genuinely
+useful instead of merely accurate.
+
+---
+
+## 14. You can no longer listen to Do Business Better on the site
+
+**What ships today.** Every "listen" on the Do Business Better page leaves the
+site for SoundCloud.
+
+**Why.** The old page played a single episode (number 144) from a 33MB audio file
+hosted on your own site. Carrying a 33MB file for one episode is a poor trade,
+particularly on mobile, and the show's own host serves the same audio for free.
+
+**This is the site's only deliberate reduction in functionality.** Everything else
+either stayed or improved, so we are naming it rather than letting you discover
+it.
+
+**If you want playback back:** we can build a SoundCloud player that loads only
+when a visitor presses play, exactly the way the video embeds on this site
+already work. That restores playing on the page without the download cost. It is
+about half a day. Say the word.
+
+---
+
+## 15. The reviews page holds ten of the thirteen written testimonials
+
+**What ships today.** The reviews page carries ten written testimonials. Three
+more (Wendy J. Ruud, The Titan Pro Team, and Tim Luthy of Helena Chemical) are
+quoted on the keynote, speaking and collaboration pages, and appear nowhere on
+the reviews page.
+
+**Why.** That is how the old site had them: those three sat on their own pages and
+were never collected. We honoured the arrangement rather than reshuffling your
+testimonials, and we changed the cross-page links to read "Read the ten written
+reviews" so nothing implies the reviews page is the complete set.
+
+**If you want one page with everything on it:** the three move over, the reviews
+page goes from ten to thirteen, and the links change to match. Half an hour.
+
+Worth considering. A reviews page that is visibly complete does more work than
+one a reader has to assemble from four pages.
+
+---
+
+## 16. Is that a breakout session or a general session?
+
+**What ships today.** One photograph, used on the home page and the meeting
+coordinators page, is captioned as a breakout session.
+
+**Why we are asking.** Nothing in the source material identifies it. What we can
+see is a hotel ballroom, audience at round banquet tables, you at the front beside
+a projection screen. The caption describes them as being "at rounds", which is at
+least true of the picture.
+
+**If it is a general session,** both captions change. Five minutes. We would
+rather ask than describe your own event back to you incorrectly.
+
+---
+
+## 17. The Food Fear audiobook has no description of its own
+
+**What ships today.** The audiobook has its own card on the about page with its
+cover, and in place of a description it carries one line: "The same book as the
+print edition above, read aloud."
+
+**Why.** The old audiobook product page had **the paperback's description pasted
+into it word for word**. It never used the word "audiobook" anywhere in the body,
+and it named no narrator, no runtime and no retailer. Your own harvest note on the
+old page recorded it: "A shopper cannot tell what they are buying."
+
+On the old site that did not show, because the two descriptions were on two
+separate store pages. On the new about page the two cards are next to each other,
+so the same 55-word paragraph was printing twice within one scroll.
+
+**Send one line and it goes straight in.** The three facts worth having are the
+narrator, the runtime, and where it is sold. Any one of them replaces the note.
+
+**Or:** if you would rather the audiobook stopped being its own entry, it becomes
+a second format label on the print edition and the heading changes from "Two books
+and an audiobook" to "Two books". Twenty minutes either way.
+
+---
+
+## 18. Eight of the nine press items have no date
+
+**What ships today.** The media page lists nine press and broadcast appearances in
+the order the old page had them.
+
+**Why not newest first.** Only one of the nine carries a date, and we got that
+one out of a Forbes URL. The old page displayed no dates at all, so there is
+nothing to sort on.
+
+**If you send us the dates:** the list sorts newest first, which is what a
+journalist or a producer expects, and each item can show when it ran. That is
+worth doing: an undated press list reads as older than it is.
+
+---
+
+## 19. Two blog posts is the whole archive
+
+**What ships today.** The blog has two posts, which is everything the old site
+had. Both are very short (one is seven words, the other is five), and both are
+really pointers at coverage published elsewhere. The new post template does the
+one thing the originals never did, which is actually link to the piece being
+referred to.
+
+**No decision needed.** We are flagging it because a two-post blog with two
+five-word posts is a weak signal on a site that otherwise argues you are a
+prolific voice, and because the podcast and the newsletter are clearly where the
+weekly work goes.
+
+**Options, if it bothers you:** post more, or retire the blog and let the media
+page and the podcast pages carry that role. Both are cheap. Doing nothing is also
+a legitimate answer.
+
+---
+
+## 20. Things we changed that you may want to change back
+
+Short list, for completeness. All were judgement calls and all are cheap to
+reverse.
+
+1. **Em dashes are gone from the whole site,** per your instruction. Four of them
+   were inside direct quotes from other people, and we changed those to commas
+   and a colon. The meaning is unchanged, but it does mean four quotations are not
+   punctuated exactly as the person typed them. Say the word and they go back.
+2. **The blog moved into the Media dropdown.** On the old navigation it sat as a
+   top-level item right beside the Media parent, whose only real child was the
+   media page, so two blog-ish destinations were presented as unrelated peers. It
+   is the one page on the site that now costs a reader one extra click.
+3. **Two podcast pages had conflicting Spotify links.** The old Business of
+   Agriculture page carried two different Spotify show IDs. We consolidated to
+   one. If it is the wrong one, tell us.
+4. **The sponsor "Tidal Grow" is labelled "Tidal Grow AgriScience"** on the site,
+   because the supplied logo is a two-line mark reading "Tidal Grow" over
+   "AgriScience" and your own old page linked it as "Tidal Grow Agriscience".
+   Say if the short form is preferred.
+
+---
+
+## Summary: the five we would most like answers to
+
+If you only have time for a few, these are the ones that change the most:
+
+1. **Item 1**, the BoASG button, because it is the one instruction we could not
+   resolve and it involves your money.
+2. **Item 10**, the video transcripts, because it is the only accessibility
+   failure left on the site.
+3. **Item 7**, the book purchase links, because three books with no way to buy
+   them looks like a mistake.
+4. **Item 4**, professional photography, because it is the single largest
+   remaining lift in quality and no amount of further engineering substitutes for
+   it.
+5. **Item 6**, the two 40,000s, because a number the site states about itself
+   should be one number with one meaning.
