@@ -89,9 +89,9 @@ export const metadata: Metadata = buildMetadata({
   path: '/acres-tv/',
   image: {
     url: '/img/photos/acres-tv-arlan-suderman.png',
-    width: 856,
-    height: 584,
-    alt: 'An Acres TV listing card for the Business of Agriculture episode with market analyst Arlan Suderman.',
+    width: 1320,
+    height: 732,
+    alt: 'Damian Mason and market analyst Arlan Suderman on a split screen, recording a Business of Agriculture episode for Acres TV.',
   },
 });
 
@@ -242,17 +242,17 @@ export default function AcresTvPage() {
               <div className={cx('dm-figure__media', styles.evidence)}>
                 <Image
                   src="/img/photos/acres-tv-arlan-suderman.png"
-                  alt="An Acres TV listing card: Damian Mason and market analyst Arlan Suderman on a split screen above the episode title Are These Good Times For Real, And For How Long, with a runtime of 42:01."
-                  width={856}
-                  height={584}
+                  alt="Damian Mason and market analyst Arlan Suderman on a split screen under a Business of Agriculture header, each captioned with their name."
+                  width={1320}
+                  height={732}
                   loading="lazy"
                   sizes="(min-width: 64rem) 30rem, 100vw"
                 />
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 03 </span>
-                One card from the Acres TV listing. Damian and Arlan Suderman on
-                a split screen, 42 minutes on the clock.
+                Damian and market analyst Arlan Suderman, 42 minutes on whether the
+                good times are real and how long they last.
               </figcaption>
             </figure>
           </div>

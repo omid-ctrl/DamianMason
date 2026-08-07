@@ -184,3 +184,23 @@ The genuine weakness is that there is no scroll AFFORDANCE, so at 360px and belo
 list continues. That is a real polish item and it is deliberately NOT being fixed at this stage: the nav is
 functional, every destination is reachable, and this build has a demonstrated history of late cosmetic fixes
 introducing regressions. Logged for the client instead.
+
+---
+
+# Disputed measurement, settled (Phase 7)
+
+Two auditors disagreed on the true ink optical spread of the logo walls:
+
+- Phase 6 client-checklist auditor: **1.06x**
+- Phase 7 contract auditor: **1.80x**, reported as a finding
+
+Settled by measuring the source files directly with `sharp.trim({threshold: 12})`, which returns each file's
+actual content bounding box. Every one of the 21 client logos is trimmed to between **0.926 and 0.946** ink
+fill, a ratio of **1.022x**. Examples: `claas.png` canvas 322x58 with ink 304x54; `cargill.png` canvas 428x190
+with ink 404x180.
+
+Since the rendered boxes measure equal optical area to within 1.002x, the true rendered ink optical spread is
+**about 1.02x**. The Phase 6 figure was close. The Phase 7 finding of 1.80x is wrong and was not actioned.
+
+Recorded because "an auditor said so" is not evidence, and the next person to read this file should not
+reopen a closed item on the strength of the higher number.
