@@ -508,6 +508,41 @@ reverse.
 
 ---
 
+## 21. The old logo is burned into all three demo reels
+
+**What you asked for.** "Please omit the logo that reads: Damian Mason - Business,
+Agriculture, Food. This has been changed to the one on his current website."
+
+**What we did.** That logo appears nowhere on the site. Not in the header, not in
+the footer, not on any page, and the file itself was never copied into the build.
+We check for it automatically and it comes back clean every time.
+
+**The problem.** It is burned into the video. All three demo reels carry a
+watermark in the bottom right corner reading **"Damian Mason - BUSINESS ·
+AGRICULTURE · FOOD"**, on screen for the whole runtime. We confirmed it by pulling
+still frames from each of the three files.
+
+**Why we did not fix it.** Removing it means re-encoding your marketing footage,
+either cropping the frame (which changes how every shot is composed) or covering
+the corner (which looks like a patch). Neither is our call to make to your video,
+and both would cost quality on a re-encode.
+
+**What we need.** One of these:
+
+1. **Re-export the reels from the original edit** with the current wordmark, or
+   with no watermark at all. This is the clean fix if whoever cut them still has
+   the project file. Send us the new MP4s and we will swap them in.
+2. **Tell us to crop it.** We can crop the bottom of the frame. You lose a little
+   image and the shots get slightly tighter, but the old logo goes.
+3. **Leave it.** It is a small watermark on three demo reels, and the reels are
+   there to show Damian working, not to show branding. Nobody is likely to notice
+   except you and us. This is a perfectly reasonable answer.
+
+**Our recommendation:** option 1 if the edit still exists, option 3 otherwise. It
+is not worth degrading the footage over.
+
+---
+
 ## Summary: the five we would most like answers to
 
 If you only have time for a few, these are the ones that change the most:

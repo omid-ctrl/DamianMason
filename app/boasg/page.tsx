@@ -212,8 +212,14 @@ export default function BoasgPage() {
                   className={styles.badgeImg}
                   src={brandAssets.boasgWhite}
                   alt="The Business of Ag Success Group seal, a wheat head over the BoASG monogram, established 2020."
-                  width={800}
-                  height={800}
+                  /* 508x504, not the supplied 800x800: scripts/normalize-brand-art.mjs
+                     trims this mark to its own ink like every other brand mark
+                     on the site. The raw file carried the seal in 65% of its
+                     canvas, so the declared square reserved a box a third
+                     wider than the artwork and the hairline frame around it
+                     read as empty. */
+                  width={508}
+                  height={504}
                   priority
                   sizes="(min-width: 64rem) 32rem, 100vw"
                 />

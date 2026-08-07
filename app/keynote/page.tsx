@@ -346,8 +346,17 @@ export default function KeynotePage() {
       {/* == 7. The photo band =============================================== */}
       {/* The source shipped a full-bleed parallax strip here with no rows, no
           columns and no content at all. It becomes a real captioned figure. */}
+      {/* The standard container, not `wide`. DESIGN_SYSTEM 7.1.1 settles this
+          for the logo wall and the same arithmetic applies here: a `wide`
+          container is 1536, so at 1440 it spans the viewport less the gutter
+          and opens its content at x=48, while every other section on this
+          route opens at x=96. The figure carried its cutline along with it, so
+          Fig. 04's rule and its first character sat 48px left of every heading,
+          eyebrow, folio and paragraph above and below them. Nothing about a
+          21:8 plate needs the extra 96px, and the left axis is the one thing a
+          broadsheet cannot spend. */}
       <Section as="div" density="tight">
-        <Container width="wide">
+        <Container>
           <figure className={styles.band}>
             <div className={'dm-photo dm-photo--band'}>
               <Image

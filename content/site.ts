@@ -6,11 +6,35 @@
  * a fetch is the whole "add a CMS" job.
  */
 
+/**
+ * The production origin. Every canonical URL, every Open Graph URL, the sitemap
+ * and robots.txt are built from this one value, so it is the only thing that
+ * has to change if the site ever moves.
+ *
+ * `NEXT_PUBLIC_SITE_URL` overrides it. The prefix is required, not decorative:
+ * `PrimaryNav` and `MobileMenu` are client components that import this file, so
+ * the value has to survive into the client bundle, and only NEXT_PUBLIC_ vars
+ * are inlined there.
+ *
+ * Vercel's own `VERCEL_URL` is deliberately not consulted. It names the
+ * per-deployment hostname, so canonicals and OG URLs on a preview would point
+ * at a throwaway origin that outranks nothing and expires. Preview deployments
+ * already ship `X-Robots-Tag: noindex` from the platform, so pointing their
+ * canonicals at production is both correct and stable.
+ */
+function resolveSiteUrl(): string {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!configured) return 'https://damianmason.com';
+  // A trailing slash here would double up in every `${site.url}/sitemap.xml`
+  // style template, so it is stripped once, at the source.
+  return configured.replace(/\/+$/, '');
+}
+
 export const site = {
   name: 'Damian Mason',
   legalName: 'Damian Mason Keynote Speaker',
   tagline: 'The Leading Voice in Agriculture',
-  url: 'https://damianmason.com',
+  url: resolveSiteUrl(),
   locale: 'en_US',
 } as const;
 

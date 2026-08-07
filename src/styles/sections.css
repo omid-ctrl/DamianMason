@@ -510,6 +510,114 @@
     max-inline-size: var(--measure-narrow);
   }
 
+  /* The one multi-line control on the site. Three field-heights is about six
+     lines of the message a booking inquiry actually runs to, and it grows from
+     there rather than scrolling inside itself. Vertical only: a horizontal
+     resize handle is the fastest way to break a grid column. */
+  .dm-field__control--area {
+    min-block-size: calc(var(--field-height) * 3);
+    padding-block: var(--space-3);
+    resize: vertical;
+  }
+
+  /* --- error state --------------------------------------------------------
+     Colour is the LAST of the three signals here, never the only one. The
+     message under the field is the signal a sighted visitor reads,
+     aria-invalid is the one a screen reader gets, and the red rule is the
+     one that finds the field on a long form. Removing the colour loses
+     nothing that matters. */
+  .dm-field__control[aria-invalid='true'] {
+    border-color: var(--field-rule-error);
+  }
+  .dm-field__error {
+    color: var(--field-error-ink);
+    font-family: var(--family-body);
+    font-size: var(--fs-xs);
+    font-weight: var(--weight-medium);
+    line-height: var(--lh-normal);
+    max-inline-size: var(--measure-narrow);
+  }
+
+  /* --- the live status line -----------------------------------------------
+     Always in the DOM so the aria-live region exists before it has anything
+     to say. An empty one is zero height and invisible; a region mounted at
+     the moment it gains text is a region a screen reader never announces. */
+  .dm-form__status {
+    color: var(--ink-secondary);
+    font-family: var(--family-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--ls-normal);
+    line-height: var(--lh-normal);
+    max-inline-size: var(--measure-narrow);
+  }
+  /* Mono, but NOT uppercase and not --fs-2xs. The rest of the mono furniture
+     on this site is a two-word running head; this line is a sentence a
+     visitor has to read under pressure, and uppercase mono at 12px is the
+     wrong place to make them do it.
+
+     It is NEVER display:none, not even while empty. A live region that is
+     display:none at the instant its text is written is one NVDA and JAWS can
+     skip entirely, and this is the region that says a booking inquiry failed.
+     Empty, it generates no line box and costs nothing; the margin only exists
+     once there is something under it. */
+  .dm-form__status:not(:empty) { margin-block-end: var(--space-4); }
+  .dm-form__status--error { color: var(--field-error-ink); }
+  /* It takes focus when a submission fails, so it needs a ring of its own. */
+  .dm-form__status:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* --- what stands where the form stood ------------------------------------
+     Success, or the no-provider fallback. It takes focus when it appears, so
+     it carries a focus ring of its own rather than borrowing the page's. */
+  .dm-form__result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .dm-form__result:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+  .dm-form__result-note {
+    color: var(--ink-secondary);
+    font-family: var(--family-body);
+    font-size: var(--fs-base);
+    line-height: var(--lh-body);
+    max-inline-size: var(--measure-narrow);
+  }
+
+  /* The email address and the phone number, at the size a meeting planner can
+     read across a desk. Same treatment as the ledger on /contact-us/, because
+     when this panel is showing it is doing the ledger's job. */
+  .dm-form__paths {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+  }
+  .dm-form__path {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding-block-start: var(--space-4);
+    border-block-start: var(--border-hairline) solid var(--rule-structural);
+  }
+  .dm-form__path:first-child {
+    padding-block-start: 0;
+    border-block-start: 0;
+  }
+  .dm-form__path dd { margin: 0; }
+  .dm-form__path-value {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--size-tap-target);
+    font-family: var(--family-serif);
+    font-size: var(--fs-md);
+    line-height: var(--lh-snug);
+    overflow-wrap: anywhere;
+  }
+
   /* Mailchimp's bot trap. Present in the DOM, empty, off screen for sighted
      users and removed from the accessibility tree by aria-hidden + tabindex in
      the markup. Clipped rather than display:none so a bot still fills it. */

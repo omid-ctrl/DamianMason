@@ -11,6 +11,7 @@ import {
   Section,
   SocialIcon,
 } from '@/components/ui';
+import { ContactForm } from '@/components/sections/ContactForm';
 import { CTABand } from '@/components/sections/CTABand';
 import { Hero } from '@/components/sections/Hero';
 import { NewsletterForm } from '@/components/sections/NewsletterForm';
@@ -31,16 +32,20 @@ import styles from './page.module.css';
    is fixed here: one h1, a real mailto, a real tel:, and the booking facts the
    old page made a meeting planner hunt for across three other pages.
 
-   There is no contact form. This build has no server and no form service, so a
-   form here would post nowhere. Email and phone are the real paths and they
-   are the loudest things on the page. This is also where the retired inquiry
-   form from /collaboration-opportunities/ lands: that form had four fields
-   (Email, Full Name, Phone, Message) and POSTed to a WordPress nonce endpoint
-   that does not exist in this build, so lead capture across the whole site is
-   mailto-only. No. 02 below spells out what to put in the first email so the
-   Message field's job is still done. Logged in docs/OPEN-ITEMS.md. The one
-   <form> on this route is the Mailchimp newsletter signup at No. 04 and it is
-   not an inquiry form.
+   THE FORM AT No. 03 posts to app/api/contact/route.ts, the one server route
+   on the site. Everything else here still prerenders. It is deliberately NOT
+   the loudest thing on the page: email and phone come first at No. 01 and
+   again in the ledger, because they are the paths that cannot fail. When the
+   endpoint has no delivery provider in its environment it answers 501 and the
+   form replaces itself with that same address and number, so the worst case
+   is a slower route to the same inbox rather than a message that goes nowhere.
+
+   This is also where the retired inquiry form from
+   /collaboration-opportunities/ lands: that form had four fields (Email, Full
+   Name, Phone, Message) and POSTed to a WordPress nonce endpoint that does not
+   exist in this build. No. 02 spells out what to put in the message so the
+   old Message field's job is still done. The other <form> on this route is the
+   Mailchimp newsletter signup at No. 05 and it is not an inquiry form.
 
    REPLY TIME. The source says "We typically respond within one business day."
    The hedge is the client's and it stays: this route states the promise twice,
@@ -282,7 +287,29 @@ export default function ContactUsPage() {
         </Container>
       </Section>
 
-      {/* --- No. 03, what happens next -------------------------------------- */}
+      {/* --- No. 03, the form ------------------------------------------------
+          Same grid as No. 05 below: head in a 4-column stack, the panel in the
+          remaining 8. Surface stays `page` rather than alternating, because a
+          second sunken band here would run straight into No. 04's. The bright
+          card is what separates this section from No. 02 above it, which is
+          exactly the job it does for the newsletter panel at No. 05. */}
+      <Section aria-labelledby="form-title">
+        <Container>
+          <div className="dm-grid12">
+            <div className="col-span-6 md:col-span-4">
+              <Eyebrow>Or use the form</Eyebrow>
+              <Heading level={2} folio="No. 03" id="form-title" className={styles.sectionHeading}>
+                Send it from here
+              </Heading>
+            </div>
+            <Card variant="bright" className="col-span-6 md:col-span-8">
+              <ContactForm idPrefix="contact-inquiry" labelledBy="form-title" />
+            </Card>
+          </div>
+        </Container>
+      </Section>
+
+      {/* --- No. 04, what happens next -------------------------------------- */}
       <Section surface="sunken" aria-labelledby="process-title">
         <Container>
           <div className={`dm-grid12 ${styles.rowTop}`}>
@@ -307,7 +334,7 @@ export default function ContactUsPage() {
 
             <div className="col-span-6 md:col-span-5">
               <Eyebrow>After you write</Eyebrow>
-              <Heading level={2} folio="No. 03" id="process-title" className={styles.sectionHeading}>
+              <Heading level={2} folio="No. 04" id="process-title" className={styles.sectionHeading}>
                 How a date gets held
               </Heading>
               <Prose measure="narrow">
@@ -333,7 +360,7 @@ export default function ContactUsPage() {
         </Container>
       </Section>
 
-      {/* --- No. 04, the list ------------------------------------------------ */}
+      {/* --- No. 05, the list ------------------------------------------------ */}
       <Section aria-labelledby="newsletter-title">
         {/* Standard container, not narrow. A narrow container centres itself,
             which put this head on a 320px axis while the heads above and below
@@ -342,7 +369,7 @@ export default function ContactUsPage() {
           <div className="dm-grid12">
             <div className="col-span-6 md:col-span-4">
               <Eyebrow>Not booking today</Eyebrow>
-              <Heading level={2} folio="No. 04" id="newsletter-title">
+              <Heading level={2} folio="No. 05" id="newsletter-title">
                 Get the list instead
               </Heading>
             </div>
@@ -360,7 +387,7 @@ export default function ContactUsPage() {
       <CTABand
         id="book"
         eyebrow="Bookings"
-        folio="No. 05"
+        folio="No. 06"
         heading="Have a date in mind?"
         copy="Send the date and the city. If it’s open, we talk about the room, the program, and the fee. If not, you’ll hear that back just as fast."
         actions={[

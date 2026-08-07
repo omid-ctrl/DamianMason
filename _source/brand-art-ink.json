@@ -46,5 +46,17 @@
     "sha1": "5dbb35eb357934764034200b110ad708025a858c",
     "width": 256,
     "height": 122
+  },
+  "boasg-white.png": {
+    "v": 3,
+    "sha1": "c68ef1499c964b1f86f4b83453c3acb92677cf44",
+    "width": 508,
+    "height": 504
+  },
+  "boasg-white.webp": {
+    "v": 3,
+    "sha1": "918ea1f072de2696952c5547870f55cd40dce1b2",
+    "width": 508,
+    "height": 504
   }
 }

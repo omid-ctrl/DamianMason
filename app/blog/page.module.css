@@ -81,3 +81,16 @@
   gap: var(--space-4);
   margin-block-start: var(--space-6);
 }
+
+/* The phone tier every other action row on this site already uses: below 480
+   a pair of buttons stacks and fills. Without it these two wrapped to
+   separate lines but kept their own content widths, so /blog/ closed on a
+   228px button above a 194px one while /, /keynote/ and every CTABand closed
+   on two flush 349px ones. Same breakpoint as .dm-hero__actions,
+   .dm-ctaband__actions and .dm-section-close. */
+@media (max-width: 29.9375rem) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

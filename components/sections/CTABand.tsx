@@ -10,7 +10,7 @@ import {
   Stat,
   cx,
 } from '@/components/ui';
-import type { HeadingLevel, SectionDensity, Surface } from '@/components/ui';
+import type { ContainerWidth, HeadingLevel, SectionDensity, Surface } from '@/components/ui';
 import type { SectionActions } from './types';
 
 /**
@@ -46,6 +46,19 @@ export type CTABandProps = {
   /** Deep by default. `deepest` when the band sits directly on the footer. */
   surface?: Surface;
   density?: SectionDensity;
+  /**
+   * The container the band's own content sits in. `max` on the seventeen
+   * routes that lay out against the 12-column grid, which is why it is the
+   * default and why nothing else passes this.
+   *
+   * The two blog posts are the exception and the reason this prop exists. They
+   * set every other section in `text`, so the breadcrumb, the h1, the body, the
+   * figures and the "More from the blog" heading all hang at x=400 at 1440,
+   * and the band closing the page opened at x=96: a 304px jog at the foot of
+   * an article whose whole layout is one narrow measure. A reader meets one
+   * page at a time, so the page's axis wins over the site's.
+   */
+  containerWidth?: ContainerWidth;
   className?: string;
 };
 
@@ -67,6 +80,7 @@ export function CTABand({
   panel,
   surface = 'deep',
   density,
+  containerWidth = 'max',
   className,
 }: CTABandProps) {
   const headingId = id ? `${id}-title` : undefined;
@@ -103,7 +117,7 @@ export function CTABand({
       density={density}
       className={cx('dm-ctaband', className)}
     >
-      <Container>
+      <Container width={containerWidth}>
         {/* Every route ends in one of these, so this is the reveal that every
             route gets. The ask and the proof panel arrive one beat apart. */}
         <div

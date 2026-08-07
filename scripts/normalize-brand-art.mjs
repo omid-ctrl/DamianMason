@@ -113,6 +113,24 @@ const MARKS = [
       'app/xtreme-ag/page.tsx, the show mark',
     ],
   },
+  /* Added in the desktop presentation pass. This one was missed when the list
+     was first written and it was the worst offender on the site: the seal
+     carried its ink in 66% of the canvas width and 65% of the height, against
+     92% to 96% for every other entry here. It is placed as the whole right
+     column of the /boasg/ hero, so at --size-brand-art-max the box measured
+     352 by 352 and the visible mark measured about 232, sitting inside a
+     hairline frame 493 wide. The frame read as an empty box with a small stamp
+     in the middle rather than as a mark on the page.
+
+     It is a mark, not a cover art: the two podcast covers are excluded above
+     because a platform requires their square margin, and nothing requires this
+     one. See the placement note below for the declared dimensions that move
+     with the trim. */
+  {
+    stem: 'boasg-white',
+    ground: 'white',
+    placements: ['app/boasg/page.tsx, the hero badge'],
+  },
 ];
 
 /** Under this, a pixel is treated as ghost data and deleted outright. */

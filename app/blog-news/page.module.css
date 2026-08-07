@@ -28,3 +28,36 @@
 .body {
   margin-block-start: var(--space-7);
 }
+
+/* --- the hero running head --------------------------------------------------
+
+   The five outlets are one list and "Eagle Country 95.9" is one station. In the
+   7-of-12 hero type track the line ran 830px against a 708px measure at 1440,
+   so it wrapped after "EAGLE COUNTRY" and left "95.9" alone on a second line:
+   the station's name split across the break with its frequency orphaned under
+   it. Every other hero eyebrow on the site is one line.
+
+   Only the eyebrow leaves the track, and only on this route. It sits at the top
+   of the hero, where the opposite column carries nothing: this hero's right
+   column holds a cutline block whose first rule starts 90px below the eyebrow's
+   baseline, so the wider running head crosses no other content at any width
+   from 1024 up. The h1, the deck and the actions keep the 7-column measure the
+   type ladder is built on.
+
+   The cap is `none` rather than a measure token: the running head is a fixed
+   list, so its max-content width IS the correct measure, and it is 830px
+   against the 928px the container offers at 1024, the narrowest viewport this
+   rule applies at. There is no width at which it can push the page wider than
+   the container.
+
+   Lifting the cap is necessary but not sufficient. The eyebrow is a flex item
+   in a column flex container, so `align-items: flex-start` sizes it to
+   fit-content, which clamps to the track whatever the max allows.
+   `inline-size: max-content` is what actually sets the box to the one line the
+   string wants. */
+@media (min-width: 64rem) {
+  .heroRunningHead :global(.dm-hero__type) > :global(.dm-eyebrow):first-child {
+    max-inline-size: none;
+    inline-size: max-content;
+  }
+}

@@ -4,6 +4,7 @@ import './globals.css';
 import { Footer, Header } from '@/components/layout';
 import { RevealController } from '@/components/motion';
 import { JsonLd } from '@/components/seo';
+import { site } from '@/content/site';
 import { buildSiteBaseSchema } from '@/lib/schema';
 
 /**
@@ -96,7 +97,11 @@ export const metadata: Metadata = {
   },
   description:
     'Damian Mason is an agricultural economist, keynote speaker, podcaster and author. Since 1994 he has spoken to over 2,400 audiences in all 50 states and 7 foreign countries.',
-  metadataBase: new URL('https://damianmason.com'),
+  // Built from content/site.ts, which reads NEXT_PUBLIC_SITE_URL and falls back
+  // to the production domain. This was hard coded, which meant the one origin
+  // Next resolves every relative metadata URL against could silently disagree
+  // with the origin lib/seo.ts writes into canonicals and Open Graph tags.
+  metadataBase: new URL(site.url),
 };
 
 /**

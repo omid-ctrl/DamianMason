@@ -118,3 +118,27 @@
   margin-block-start: var(--space-2);
   padding: 0;
 }
+
+/*
+ * Focal point for the hero portrait on this route, and only this route.
+ *
+ * portrait-office-seated.jpg is the one hero photograph that was shot
+ * landscape: 2000 by 1334 against a 4:5 plate. `cover` therefore crops the
+ * width, and the window it opens is 1069 source columns wide out of 2000, so
+ * where that window sits is the whole composition. At the default
+ * --photo-focus-portrait (50% 22%) it opens at column 465 and Damian's face
+ * lands at 61% of the plate, which leaves the left third of a hero portrait
+ * showing an empty wall and a window blind. The vertical half of the token
+ * does nothing here at all: the source is wider than 4:5 at every viewport, so
+ * the crop is horizontal only.
+ *
+ * 63% opens the window at column 587 and puts his face on the plate's vertical
+ * centre line, with the two office windows balanced either side of him. The
+ * other four hero portraits were shot upright and want the standing token; the
+ * override is scoped here rather than changed in tokens.css for that reason,
+ * and it does not reach the same file's 3:2 plate on /contact-us/, which shows
+ * the room on purpose.
+ */
+.heroFocus :global(.dm-photo--portrait) :global(.dm-photo__img) {
+  object-position: 63% 22%;
+}

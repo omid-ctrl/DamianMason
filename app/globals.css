@@ -956,11 +956,24 @@
     display: inline-flex;
     align-items: center;
     min-block-size: var(--size-tap-target);
-    flex: 0 0 auto;
+    /* `0 1 auto` with a zero min, not `0 0 auto`, so the mark is the element
+       that absorbs a narrow-phone deficit. The comment on .dm-masthead__actions
+       below already claimed this was the behaviour ("it is the wordmark that
+       gives way first") and it was not: a rigid basis here meant the deficit
+       landed on the actions row instead, and the smallest thing in that row is
+       the Menu trigger, whose label is visually hidden and whose min-content
+       width is therefore an 18px icon. Measured at 320 before this change, the
+       trigger rendered 5.5px wide by 44 tall on all 19 routes: a 3.5px sliver
+       of hamburger, and the only route to the navigation at that width. */
+    flex: 0 1 auto;
+    min-inline-size: 0;
     line-height: 0;
   }
   .dm-masthead__wordmark img {
     inline-size: var(--size-wordmark-w-compact);
+    /* The art is 800x199 with `block-size: auto`, so giving way costs height in
+       proportion and nothing else. It only ever gives way below 360. */
+    max-inline-size: 100%;
     block-size: auto;
   }
   @media (min-width: 80rem) {
@@ -974,14 +987,21 @@
     margin-inline-start: auto;
     /* `flex: 0 0 auto` alone refused to compress, so at 320px the wordmark and
        this row totalled 338px inside a 320px viewport and every route scrolled
-       sideways by 18px. `min-inline-size: 0` lets the row shrink below its
-       content width, and the wordmark beside it already has a fluid size, so
-       the two negotiate instead of overflowing. The book button keeps
-       `white-space: nowrap`, so it is the wordmark that gives way first, which
-       is the right order: the booking action is the thing a meeting planner
-       came for. */
-    flex: 0 1 auto;
-    min-inline-size: 0;
+       sideways by 18px. The row still shrinks, but it no longer shrinks by
+       crushing its own children: the two controls inside it are pinned (see
+       below) and the wordmark, which is art and scales, is what actually
+       yields. That is the order the next two sentences always described.
+       The book button keeps `white-space: nowrap`, so it is the wordmark that
+       gives way first, which is the right order: the booking action is the
+       thing a meeting planner came for.
+
+       `0 0 auto` is correct again now that the wordmark can yield. With this
+       row also shrinkable, flex split the 320px deficit between the two of
+       them by ratio, so the row was handed 149.9px to seat 162.5px of pinned
+       controls and the Menu trigger hung 12.6px into the right gutter, 7px
+       from the edge of the screen instead of 20. One shrinkable element in the
+       row means one place the deficit can land, and it lands on the art. */
+    flex: 0 0 auto;
   }
   /* The one field-sized orange in this viewport. Nothing else in the masthead
      may be a solid orange field. It keeps its full label at 390, so the
@@ -989,6 +1009,13 @@
   .dm-masthead__book {
     padding-inline: var(--space-3);
     white-space: nowrap;
+    /* Both controls in this row are pinned. A flex item's `min-width: auto`
+       protects it at its min-content width, and for this button that is the
+       label, which is why it survived; the Menu trigger's label is visually
+       hidden, so its min-content width is the icon and nothing protected it.
+       Stating `0 0 auto` on both makes the rule a property of the row rather
+       than an accident of which control happens to carry visible text. */
+    flex: 0 0 auto;
   }
   @media (min-width: 48rem) {
     .dm-masthead__book { padding-inline: var(--space-4); }
@@ -1000,6 +1027,7 @@
   .dm-masthead__menu {
     padding-inline: var(--space-4);
     white-space: nowrap;
+    flex: 0 0 auto;
   }
   /* Under 480 the trigger is the icon alone in a 44px square. The label is
      only visually hidden, so the button keeps the accessible name "Menu". */
@@ -1022,6 +1050,21 @@
   }
   @media (min-width: 64rem) {
     .dm-masthead__menu { display: none; }
+  }
+
+  /* Below 360 the bar has 280px of content box to seat a wordmark, a booking
+     control and a 44px Menu trigger, and at the default intervals those three
+     want 318.5. Two pinned controls means the wordmark absorbs all 38.5 of the
+     deficit and lands at 89px, which is 22px of art: the strapline rule under
+     "Damian Mason" stops resolving. So the row buys the mark back what the
+     spacing can spare, one step off each of the three intervals it owns, which
+     returns 24px and leaves the wordmark at about 105 (26px of art). This is
+     the same narrow-phone tier the display guard at the foot of this file
+     uses, and nothing at 360 and up is touched. */
+  @media (max-width: 22.5rem) {
+    .dm-masthead__bar-inner { gap: var(--space-3); }
+    .dm-masthead__actions { gap: var(--space-2); }
+    .dm-masthead__book { padding-inline: var(--space-2); }
   }
 
   /* --- the desktop nav ------------------------------------------------------ */
@@ -1161,6 +1204,18 @@
   }
   @media (min-width: 64rem) {
     .dm-menu { display: none; }
+  }
+  /* 768 to 1023 is the one band where this sheet IS the site's navigation and
+     the viewport is a tablet's. Left-parked panel rather than a stretched
+     phone sheet: see --size-menu-panel-w. The ground stays full bleed, because
+     the sheet is a modal and has to occlude the page it covers. */
+  @media (min-width: 48rem) {
+    .dm-menu__top,
+    .dm-menu__body,
+    .dm-menu__foot {
+      max-inline-size: var(--size-menu-panel-w);
+      margin-inline: 0 auto;
+    }
   }
   .dm-menu__top {
     display: flex;
@@ -1533,12 +1588,50 @@
  * utilities layer beats the components layer no matter how specific the
  * selector is. An unlayered rule beats every layer, which is the only way to
  * win here without an !important.
- *
- * 390 and 768, the two widths the design was specified against, are untouched.
  */
 @media (max-width: 22.5rem) {
   .dm-display.text-6xl,
   .dm-display.text-5xl {
     font-size: var(--fs-4xl);
+  }
+}
+
+/*
+ * The rest of the phone band, 361 to 479, and it is the band most of this
+ * client's traffic is actually in.
+ *
+ * The guard above stopped at 360 on the stated grounds that "390 is a width
+ * the design was specified against". Measured, it is the width the H1 misses
+ * hardest. --fs-6xl is clamp(52px, 26.1px + 8.10vw, 120px), so it climbs at
+ * 8.1% of viewport while the hero column climbs at 100% minus two gutters,
+ * and between 361 and about 425 the type outruns its measure. At 390 the
+ * headline sets 57.7px against a 349px column and the longest word pair on
+ * two routes needs more than that:
+ *
+ *   /about/                       [Ag] [economist,] [comedian,] [farm owner.]
+ *   /the-business-of-agriculture/ [The] [Business of] [Agriculture] [Podcast]
+ *
+ * A two-letter word alone on the first line of the masthead voice, on the
+ * biography page and on the flagship podcast page. Both routes set correctly
+ * at 320 and at 430 and broke only across 361 to 425, which is 375, 390, 393,
+ * 400 and 412: essentially every iPhone and Pixel in service.
+ *
+ * The step down is to --fs-5xl, not to --fs-4xl. 5xl is 50.7px at 390, still
+ * a legal DisplaySize, still well clear of the 40px floor Bodoni Moda's
+ * hairlines need, and it clears both routes with room rather than by a pixel.
+ * The band ends at 29.9375rem because that is the phone breakpoint the rest
+ * of the mobile layer already turns on (.dm-hero__actions,
+ * .dm-ctaband__actions, .dm-section-close, .dm-btn--lg), so this is one more
+ * rule in an existing tier and not a new one.
+ *
+ * text-5xl is deliberately NOT included. Verified across 361, 375, 390, 393,
+ * 400, 412, 414, 425, 430, 440, 460, 479 and 480: every H1 on all 19 routes
+ * sets without an orphaned line, and the three routes that already ask for
+ * 5xl (/boasg/, /do-business-better-podcast/, the /acres-tv/ band) were clean
+ * before and are untouched.
+ */
+@media (min-width: 22.5625rem) and (max-width: 29.9375rem) {
+  .dm-display.text-6xl {
+    font-size: var(--fs-5xl);
   }
 }

@@ -45,7 +45,19 @@
  *     Combined with `preload="none"`, a reel now costs 6KB to 18KB until
  *     someone presses play.
  *   - None of the three is captioned yet. `VideoEmbed` takes a `captions` prop
- *     and the VTT is still owed.
+ *     and the VTT is still owed. See scripts/captions.md for the three ways to
+ *     produce one and for why nothing was fabricated in the meantime.
+ *   - Until then, each reel's `description` is what a visitor who cannot hear
+ *     the audio gets, and it prints as the cutline under the frame. Every one
+ *     of them describes what the reel SHOWS and nothing it says: the venue, the
+ *     title card, the slides, and what is printed on them. Each was written
+ *     against frames sampled across the whole reel and read by eye, not
+ *     inferred from the file name. A description is not a caption and does not
+ *     satisfy WCAG SC 1.2.2, so do not let one become the reason the VTT never
+ *     gets ordered. If you edit these, re-sample the frames first: three of the
+ *     facts below are ones an earlier pass got wrong from memory. All three
+ *     reels are the same California Farm Bureau date, the same grey plaid coat
+ *     and lapel mic, and all three carry a white title card a few seconds in.
  *
  * `file` and `poster` are BOTH root-relative URLs served from `public/`. They
  * are the paths that actually ship, so a route renders a reel by handing the
@@ -218,7 +230,8 @@ export const videos: Video[] = [
     file: '/video/dm-food-waste-720p.mp4',
     poster: '/img/video-posters/dm-food-waste.webp',
     title: 'Food Waste',
-    description: 'A short cut from a live keynote on what the food waste argument gets wrong.',
+    description:
+      'Eighty-nine seconds on the California Farm Bureau stage. A title card reads FOOD WASTE, then Damian works a darkened room in front of a slide that says the same thing.',
     onPages: ['/keynote/'],
   },
   {
@@ -227,7 +240,8 @@ export const videos: Video[] = [
     file: '/video/dm-labor-720p.mp4',
     poster: '/img/video-posters/dm-labor.webp',
     title: 'Labor',
-    description: 'A short cut from a live keynote on where farm and food labor is headed.',
+    description:
+      'Sixty-nine seconds on the California Farm Bureau stage. A title card reads THE LABOR MARKET, then a slide headed “What If It Stays This Way?” On it, a restaurant door sign dated 7/11/2021: dining room closed, short staffed, drive thru open.',
     onPages: ['/keynote/'],
   },
   {
@@ -237,7 +251,8 @@ export const videos: Video[] = [
     file: '/video/dm-innovation-720p.mp4',
     poster: '/img/video-posters/dm-innovation.webp',
     title: 'Innovation',
-    description: 'A short cut from a live keynote on ag innovation and who pays for it.',
+    description:
+      'Ninety-four seconds on the California Farm Bureau stage. A title card reads INNOVATION, then two slides. One is headed “Automate Faster?” over a crew hand harvesting a field. The other is “Ag Innovation from Outside Ag,” over the Tesla, Uber, and Lyft marks.',
     onPages: ['/keynote/', '/collaboration-opportunities/'],
   },
 ];

@@ -150,6 +150,7 @@ export default function PodcastsPage() {
       />
 
       <Hero
+        className={styles.heroFocus}
         id="podcasts"
         eyebrow="Podcasts"
         title="Three shows. One host."

@@ -34,8 +34,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files. The example IS committed: it is the only record of which variables
+# the contact form needs, and a deploy with none of them set is a real scenario
+# the form handles, so the file has to travel with the code.
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -50,7 +53,21 @@ yarn-error.log*
 next-env.d.ts
 
 # Client-supplied originals and the harvested mirror of the old WordPress site.
-# Kept out of the deploy bundle; _source is reference material for QA parity.
+# _source is reference material for content-parity checks, not deploy input.
 /_source/html/
 /_source/css/
-.DS_Store
+
+# The harvested audio and video originals. 138MB across four files, all of them
+# superseded: the three 1080p reels were transcoded to the 720p copies that ship
+# in public/video, and the MP3 belonged to an inline player the rebuild dropped.
+# Damian holds the masters. Carrying them in git history would cost every clone
+# and every Vercel build 138MB to store encodes nothing references.
+/_source/media/*.mp4
+/_source/media/*.mp3
+
+# QA screenshots. 2,337 files and 1.47GB across eight audit rounds, every one of
+# them regenerable with `node scripts/shoot.mjs`. The JSON reports and the
+# measurement writeups beside them are kept, because those are the evidence.
+/docs/qa/screenshots/
+/docs/design/shots/
+

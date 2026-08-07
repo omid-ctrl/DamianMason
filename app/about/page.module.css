@@ -108,11 +108,21 @@
    inside a bone box inside a bone section, three of them in a row. The multiply
    below already resolves the artwork's own white to whatever is behind it, so
    the fill was doing nothing except adding the third box. */
+/* Jackets hang on the same left axis as the type under them.
+   `place-items: center` centred them in the slot instead, and because the slot
+   is a whole grid column the jackets floated off every other left edge on the
+   page: measured at 1440 the Food Fear pair opened at x=190 and the single Do
+   Business Better jacket at x=980, against x=96 and x=743 for the titles,
+   eyebrows and publisher copy directly beneath them. On the one-jacket card
+   that put a 130px cover in the middle of a 604px column with about 240px of
+   bare bone on either side, which reads as a hole rather than as a shelf. Only
+   the inline axis moves; the block axis still decides which end of the slot the
+   jackets sit at, which is what keeps the two cards on one baseline. */
 .bookCover {
   border: var(--border-hairline) solid var(--rule-quiet);
   display: grid;
   padding: var(--space-4);
-  place-items: center;
+  place-items: center start;
   /* Both cover slots reserve the same height whatever their jackets do, so the
      two cards on the shelf start their type on the same baseline. Without it
      the card carrying one jacket opened its cover row 90px taller than the card
@@ -148,7 +158,7 @@
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
     column-gap: var(--space-5);
-    place-items: end center;
+    place-items: end start;
   }
 
   /* The single jacket is capped to the same track a paired jacket gets: the

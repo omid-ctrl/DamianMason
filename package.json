@@ -2,8 +2,11 @@
   "name": "damian-mason",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3100",
     "build": "next build",
     "build:qa": "node scripts/build-qa.mjs",
     "build:icons": "node scripts/build-app-icons.mjs",

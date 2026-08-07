@@ -564,6 +564,16 @@
   --size-rule-short: 3.5rem;
   --size-rule-medium: 7rem;
   --size-dropdown-w: 22rem;
+  /* The mobile nav sheet's panel measure from 768 up. The sheet is the only
+     navigation between 768 and 1023, and it was a phone sheet stretched to the
+     full container: at 768 every nav row ran 704px with its disclosure caret
+     660px away from its label, and "Book Damian" was a 704px orange field.
+     Border-box, so at 768 this leaves a 352px content measure, which is the
+     same measure the sheet has on a 390 phone and the reason it is this value.
+     The panel parks on the left gutter rather than centring, per the
+     .dm-container--start argument in globals.css: a column that walks across
+     the screen is the one thing a broadsheet grid exists to prevent. */
+  --size-menu-panel-w: 26rem;
   --size-portrait-max: 32rem;
   --size-thumb: clamp(6rem, 4.2rem + 7.4vw, 10rem);  /* episode artwork column */
 

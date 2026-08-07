@@ -149,6 +149,28 @@
   mix-blend-mode: multiply;
 }
 
+/* Both mark slots reserve the same height whatever their marks do, so the two
+   cards in the row start their type on one baseline.
+
+   The marks are sized by optical area, not by height, which is the whole point
+   of DESIGN_SYSTEM 7.1 and must not change: the Granary badge is 1.31:1 and
+   renders 76px tall, the XtremeAg lockup is 2.10:1 and renders 48px. Left to
+   flow, that 28px difference pushed everything below it out of step, so at
+   1440 "The Granary" sat on y=447 against "The Cutting The Curve Podcast" on
+   y=432, and the two descriptions and the two buttons under them were 15px
+   apart as well. A reader does not see two marks of different heights, they
+   see a row where nothing lines up.
+
+   The wrapper takes the height the tallest mark can reach, --logo-box-h, and
+   the mark sits at the bottom of it. Bottom, not centre: these marks read as
+   sitting ON the line the heading starts from, exactly as the logo wall's
+   cells align their contents. */
+.crossMarkSlot {
+  display: flex;
+  align-items: flex-end;
+  min-block-size: var(--logo-box-h);
+}
+
 .crossAction {
   margin-block-start: var(--space-2);
 }

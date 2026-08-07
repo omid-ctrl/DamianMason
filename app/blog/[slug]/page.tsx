@@ -368,6 +368,10 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
 
       <CTABand
         id="post-booking"
+        /* The article is set in `text` from the breadcrumb down, so the band
+           closing it is too. See the prop's note in CTABand: at `max` this was
+           the only element on either post that did not hang at x=400. */
+        containerWidth="text"
         eyebrow="Booking"
         heading={BOOKING_HEADING[post.slug] ?? BOOKING_HEADING_FALLBACK}
         /* Per post, from BOOKING_COPY. The hard-coded string this replaces also

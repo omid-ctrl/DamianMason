@@ -95,6 +95,7 @@ export default function MediaPage() {
 
       <Hero
         id="media"
+        className={styles.heroRunningHead}
         eyebrow="Forbes · Newsmax · Cheddar News · Straight Arrow News · Eagle Country 95.9"
         title="News & Media"
         deck="Reporters call when a story needs both halves: the commodity market and the grocery bill. Damian gives them the figure, then what it’s doing to a farm in Indiana. Nine appearances, five outlets, three of them on video below."

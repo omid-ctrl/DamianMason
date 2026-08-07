@@ -344,15 +344,17 @@ export default function BusinessOfAgriculturePage() {
 
           <ul className={styles.crossGrid}>
             <li className={styles.crossItem}>
-              <Image
-                className={styles.crossMark}
-                src={brandAssets.granary}
-                alt={imageAlt['/img/brand/the-granary.png']}
-                width={508}
-                height={388}
-                loading="lazy"
-                sizes="8rem"
-              />
+              <div className={styles.crossMarkSlot}>
+                <Image
+                  className={styles.crossMark}
+                  src={brandAssets.granary}
+                  alt={imageAlt['/img/brand/the-granary.png']}
+                  width={508}
+                  height={388}
+                  loading="lazy"
+                  sizes="8rem"
+                />
+              </div>
               <Heading level={3} size="lg">
                 The Granary
               </Heading>
@@ -375,15 +377,17 @@ export default function BusinessOfAgriculturePage() {
             </li>
 
             <li className={styles.crossItem}>
-              <Image
-                className={styles.crossMark}
-                src={brandAssets.xtremeAg}
-                alt={imageAlt['/img/brand/xtreme-ag.jpg']}
-                width={508}
-                height={242}
-                loading="lazy"
-                sizes="8rem"
-              />
+              <div className={styles.crossMarkSlot}>
+                <Image
+                  className={styles.crossMark}
+                  src={brandAssets.xtremeAg}
+                  alt={imageAlt['/img/brand/xtreme-ag.jpg']}
+                  width={508}
+                  height={242}
+                  loading="lazy"
+                  sizes="8rem"
+                />
+              </div>
               <Heading level={3} size="lg">
                 The Cutting The Curve Podcast
               </Heading>

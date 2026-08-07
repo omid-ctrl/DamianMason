@@ -139,3 +139,12 @@
   gap: var(--space-4);
   margin-block-start: var(--space-7);
 }
+
+/* See app/blog/page.module.css. Measured at 390 on both posts, this row set a
+   126px "All posts" above a 228px "See the media archive". */
+@media (max-width: 29.9375rem) {
+  .backRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

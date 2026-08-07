@@ -38,6 +38,15 @@
   margin-block-start: var(--space-8);
 }
 
+/* See app/blog/page.module.css. Measured at 390 this row set a 163px
+   "Contact Damian" above a 181px "Email the office". */
+@media (max-width: 29.9375rem) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 .block {
   margin-block-start: var(--space-8);
 }
