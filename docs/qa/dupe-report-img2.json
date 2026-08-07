@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T23:11:55.286Z",
+  "generatedAt": "2026-08-07T23:30:52.371Z",
   "base": "http://localhost:3200",
   "routes": 19,
   "window": {
@@ -19,7 +19,7 @@
       "11": 125,
       "12": 108
     },
-    "proseWords": 9375
+    "proseWords": 9436
   },
   "rebuilt": [
     {
@@ -674,7 +674,7 @@
   "wordsPerRoute": {
     "home": 765,
     "about": 700,
-    "speaking": 747,
+    "speaking": 808,
     "keynote": 749,
     "reviews": 263,
     "meeting-coordinators": 633,
