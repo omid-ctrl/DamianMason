@@ -78,3 +78,20 @@
   margin: 0;
 }
 
+/*
+ * Focal point for this one photograph.
+ *
+ * The band ratio is 21/8 and the source is 4:3, so `cover` shows only about
+ * half the image height. At the default --photo-focus-band (50% 40%) that
+ * window opens at roughly 19.7% down, and Damian's head starts at about 18%,
+ * so the crop took his eyes and the top of his head off. Raising the focus to
+ * 28% opens the window around 13.8% and clears him with room above.
+ *
+ * Scoped to this figure rather than changed in tokens.css: the default is
+ * correct for the other band photographs, which are wider room shots with no
+ * subject near the top edge.
+ */
+.band :global(.dm-photo--band) :global(.dm-photo__img) {
+  object-position: 50% 28%;
+}
+

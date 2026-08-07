@@ -123,8 +123,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Header />
         {/* The skip link's target. Every route renders its content in here, so
-            the main landmark exists exactly once per page. */}
-        <main id="main" className="flex-1">
+            the main landmark exists exactly once per page.
+
+            tabIndex={-1} is what makes the skip link actually work. Without it
+            the browser scrolls to the anchor but leaves keyboard focus back on
+            the link, so the next Tab returns to the navigation the user just
+            asked to skip. A negative value keeps <main> out of the tab order
+            while still allowing it to receive focus programmatically. */}
+        <main id="main" tabIndex={-1} className="flex-1">
           {children}
         </main>
         <Footer />

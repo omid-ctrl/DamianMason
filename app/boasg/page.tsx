@@ -124,8 +124,14 @@ const DAMIAN_EXPERTISE = [
    the full sentence now appears only on /about/. Logged for the client in
    docs/OPEN-ITEMS.md: if the real count is 8, that one string and every other
    7 on the site move together. */
+/* The middle clause is restored from the source. A Phase 6 de-duplication pass
+   had trimmed the bio down to its first sentence and a rewritten second one,
+   which dropped the only sentence on the site that says what membership does
+   FOR a member: prepares them to navigate a volatile industry. /about/ carries
+   the career-totals sentence, so that one stays off this route, but this clause
+   belongs to BOASG and existed nowhere else. */
 const DAMIAN_BIO =
-  'Damian Mason is a leading voice in the Agricultural industry, sought out by media, podcasts, and publications for his tell-it-like-it-is style of delivery. On these calls that means the truth about Ag with no sugar coating on it.';
+  'Damian Mason is a leading voice in the Agricultural industry, sought out by media, podcasts, and publications for his tell-it-like-it-is style of delivery. He gives you the truth about Ag without sugar coating the message, helping to prepare his listeners, and BOASG members, to navigate their way through the rapidly changing, volatile industry.';
 
 const TODD_EXPERTISE = [
   'Animal Performance',
