@@ -258,12 +258,21 @@
   --layout-rule-w: 3.5rem;
   --layout-rule-w-lg: 6rem;
   --layout-wordmark-h: clamp(1.75rem, 2.4vw, 2.375rem);
-  --layout-client-logo-h: clamp(2rem, 3.4vw, 2.875rem);
+  --layout-client-logo-h: clamp(2.75rem, 4.4vw, 3.625rem);
+  --layout-client-logo-w: 10rem;
   --layout-logo-cell: 10rem;
   --layout-icon: 1.25rem;
   --layout-icon-btn: 2.5rem;
   --layout-bar-w: 1.5rem;
   --layout-quote-glyph: clamp(3.5rem, 7vw, 6.5rem);
+  --layout-dropdown-w: 9.5rem;
+  --layout-hero-pad-top: clamp(3.5rem, 8vw, 8.5rem);
+  --layout-photo-h: clamp(21rem, 36vw, 31rem);
+  --layout-photo-h-sm: clamp(15rem, 62vw, 22rem);
+  --layout-menu-btn-h: 2.75rem;
+  --layout-check: 1.375rem;
+  --layout-stat-rule: 4rem;
+  --layout-zero: 0px; /* explicit zero-length for calc()/max() guards */
 
   /* ---------------------------------------------------------------------
      6. RADII / BORDERS / ELEVATION
@@ -369,6 +378,7 @@
   --surface-page: var(--bone-100);
   --surface-raised: var(--bone-050);
   --surface-sunken: var(--bone-300);
+  --surface-veil: var(--scrim-paper);
   --ink-primary: var(--ink-950);
   --ink-secondary: var(--ink-600);
   --ink-muted: var(--ink-400);

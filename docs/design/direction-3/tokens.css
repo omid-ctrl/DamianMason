@@ -192,8 +192,11 @@
   /* Duotone stack — how weak photography is carried */
   --duotone-shadow: var(--color-navy-900);
   --duotone-highlight-cool: var(--color-bone-100);
-  --duotone-highlight-warm: var(--color-gold-300);
+  --duotone-highlight-warm: var(--color-gold-100);
   --duotone-filter: grayscale(1) contrast(1.08) brightness(1.02);
+  --duotone-filter-warm: grayscale(1) contrast(0.92) brightness(1.55);
+  --duotone-focus: 50% 18%;
+  --duotone-focus-band: 50% 0%;
   --duotone-blend-image: screen;
   --duotone-blend-tint: multiply;
   --logo-filter: grayscale(1) contrast(1.1);
@@ -286,15 +289,15 @@
   --size-wordmark-h: 2.625rem;
   --size-wordmark-h-compact: 2.125rem;
   --size-wordmark-h-footer: 3rem;
-  --size-logo-h: 3.5rem;
+  --size-logo-h: 4.5rem;
   --size-icon: 1.125rem;
-  --size-icon-lg: 2.75rem;
+  --size-icon-lg: 3.5rem;
   --size-rule-short: 3.5rem;
   --size-rule-medium: 7rem;
   --size-dropdown-w: 22rem;
   --size-tap-target: 2.75rem;
   --size-portrait-max: 30rem;
-  --ratio-portrait: 3 / 4;
+  --ratio-portrait: 4 / 5;
   --ratio-band: 21 / 8;
   --ratio-band-mobile: 4 / 3;
 
