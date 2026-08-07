@@ -1,0 +1,750 @@
+{
+  "Client Logos/AgFirst FC Logo.png": {
+    "out": [
+      "/img/clients/agfirst-farm-credit.png",
+      "/img/clients/agfirst-farm-credit.webp"
+    ],
+    "w": 204,
+    "h": 192
+  },
+  "Client Logos/Agromark.jpeg": {
+    "out": [
+      "/img/clients/agromark.jpg",
+      "/img/clients/agromark.webp"
+    ],
+    "w": 200,
+    "h": 147
+  },
+  "Client Logos/Almond Alliance logo.png": {
+    "out": [
+      "/img/clients/almond-alliance.png",
+      "/img/clients/almond-alliance.webp"
+    ],
+    "w": 270,
+    "h": 148
+  },
+  "Client Logos/CA Farm Bureau.png": {
+    "out": [
+      "/img/clients/california-farm-bureau.png",
+      "/img/clients/california-farm-bureau.webp"
+    ],
+    "w": 148,
+    "h": 148
+  },
+  "Client Logos/Cargill logo.png": {
+    "out": [
+      "/img/clients/cargill.png",
+      "/img/clients/cargill.webp"
+    ],
+    "w": 262,
+    "h": 148
+  },
+  "Client Logos/Claas logo.png": {
+    "out": [
+      "/img/clients/claas.png",
+      "/img/clients/claas.webp"
+    ],
+    "w": 168,
+    "h": 148
+  },
+  "Client Logos/Compeer.jpeg": {
+    "out": [
+      "/img/clients/compeer-financial.jpg",
+      "/img/clients/compeer-financial.webp"
+    ],
+    "w": 270,
+    "h": 148
+  },
+  "Client Logos/Egg Farmers Logo.jpg": {
+    "out": [
+      "/img/clients/egg-farmers.jpg",
+      "/img/clients/egg-farmers.webp"
+    ],
+    "w": 800,
+    "h": 800
+  },
+  "Client Logos/FCS of America Logo.png": {
+    "out": [
+      "/img/clients/farm-credit-services-of-america.png",
+      "/img/clients/farm-credit-services-of-america.webp"
+    ],
+    "w": 164,
+    "h": 148
+  },
+  "Client Logos/Hudson Insurance.png": {
+    "out": [
+      "/img/clients/hudson-insurance.png",
+      "/img/clients/hudson-insurance.webp"
+    ],
+    "w": 270,
+    "h": 148
+  },
+  "Client Logos/Indiana Farm Bureau.jpeg": {
+    "out": [
+      "/img/clients/indiana-farm-bureau.jpg",
+      "/img/clients/indiana-farm-bureau.webp"
+    ],
+    "w": 156,
+    "h": 148
+  },
+  "Client Logos/Iowa Farm Bureau.jpeg": {
+    "out": [
+      "/img/clients/iowa-farm-bureau.jpg",
+      "/img/clients/iowa-farm-bureau.webp"
+    ],
+    "w": 225,
+    "h": 144
+  },
+  "Client Logos/Land OLakes Purina.png": {
+    "out": [
+      "/img/clients/land-olakes-purina.png",
+      "/img/clients/land-olakes-purina.webp"
+    ],
+    "w": 257,
+    "h": 148
+  },
+  "Client Logos/Merck Logo.png": {
+    "out": [
+      "/img/clients/merck.png",
+      "/img/clients/merck.webp"
+    ],
+    "w": 800,
+    "h": 361
+  },
+  "Client Logos/NDGrain Dealers.jpeg": {
+    "out": [
+      "/img/clients/north-dakota-grain-dealers-association.jpg",
+      "/img/clients/north-dakota-grain-dealers-association.webp"
+    ],
+    "w": 204,
+    "h": 191
+  },
+  "Client Logos/Pioneer Seeds.png": {
+    "out": [
+      "/img/clients/pioneer-seeds.png",
+      "/img/clients/pioneer-seeds.webp"
+    ],
+    "w": 169,
+    "h": 148
+  },
+  "Client Logos/Prairie Oat Growers logo.jpeg": {
+    "out": [
+      "/img/clients/prairie-oat-growers-association.jpg",
+      "/img/clients/prairie-oat-growers-association.webp"
+    ],
+    "w": 204,
+    "h": 192
+  },
+  "Client Logos/SD Soybean Association.png": {
+    "out": [
+      "/img/clients/south-dakota-soybean-association.png",
+      "/img/clients/south-dakota-soybean-association.webp"
+    ],
+    "w": 204,
+    "h": 192
+  },
+  "Client Logos/Superior Livestock Auction.png": {
+    "out": [
+      "/img/clients/superior-livestock-auction.png",
+      "/img/clients/superior-livestock-auction.webp"
+    ],
+    "w": 218,
+    "h": 148
+  },
+  "Client Logos/USAEDC-logo.png": {
+    "out": [
+      "/img/clients/usaedc.png",
+      "/img/clients/usaedc.webp"
+    ],
+    "w": 423,
+    "h": 119
+  },
+  "Client Logos/Wilbur Ellis .jpeg": {
+    "out": [
+      "/img/clients/wilbur-ellis.jpg",
+      "/img/clients/wilbur-ellis.webp"
+    ],
+    "w": 270,
+    "h": 148
+  },
+  "Website - List of Podcast Sponsors - Logos/Agview solutions logo.jpeg": {
+    "out": [
+      "/img/sponsors/agview-solutions.jpg",
+      "/img/sponsors/agview-solutions.webp"
+    ],
+    "w": 200,
+    "h": 200
+  },
+  "Website - List of Podcast Sponsors - Logos/EarthOptics.png": {
+    "out": [
+      "/img/sponsors/earthoptics.png",
+      "/img/sponsors/earthoptics.webp"
+    ],
+    "w": 800,
+    "h": 205
+  },
+  "Website - List of Podcast Sponsors - Logos/Good Agriculture logo.png": {
+    "out": [
+      "/img/sponsors/good-agriculture.png",
+      "/img/sponsors/good-agriculture.webp"
+    ],
+    "w": 690,
+    "h": 385
+  },
+  "Website - List of Podcast Sponsors - Logos/Harvest Returns.jpeg": {
+    "out": [
+      "/img/sponsors/harvest-returns.jpg",
+      "/img/sponsors/harvest-returns.webp"
+    ],
+    "w": 200,
+    "h": 188
+  },
+  "Website - List of Podcast Sponsors - Logos/Heads Up logo.jpg": {
+    "out": [
+      "/img/sponsors/heads-up-plant-protectants.jpg",
+      "/img/sponsors/heads-up-plant-protectants.webp"
+    ],
+    "w": 800,
+    "h": 800
+  },
+  "Website - List of Podcast Sponsors - Logos/Life Scientific.jpeg": {
+    "out": [
+      "/img/sponsors/life-scientific.jpg",
+      "/img/sponsors/life-scientific.webp"
+    ],
+    "w": 200,
+    "h": 148
+  },
+  "Website - List of Podcast Sponsors - Logos/Nano-Yield- logo.webp": {
+    "out": [
+      "/img/sponsors/nano-yield.webp",
+      "/img/sponsors/nano-yield.png"
+    ],
+    "w": 640,
+    "h": 342
+  },
+  "Website - List of Podcast Sponsors - Logos/NewFields Ag.jpg": {
+    "out": [
+      "/img/sponsors/newfields-ag.jpg",
+      "/img/sponsors/newfields-ag.webp"
+    ],
+    "w": 132,
+    "h": 132
+  },
+  "Website - List of Podcast Sponsors - Logos/Redox Bio logo.png": {
+    "out": [
+      "/img/sponsors/redox-bio.png",
+      "/img/sponsors/redox-bio.webp"
+    ],
+    "w": 270,
+    "h": 148
+  },
+  "Website - List of Podcast Sponsors - Logos/Tidal Grow.jpeg": {
+    "out": [
+      "/img/sponsors/tidal-grow.jpg",
+      "/img/sponsors/tidal-grow.webp"
+    ],
+    "w": 200,
+    "h": 188
+  },
+  "Damian Mason Logos/BOASG-BRAND-LOGO-FINAL-LINKSHARE.jpg": {
+    "out": [
+      "/img/brand/boasg.jpg",
+      "/img/brand/boasg.webp"
+    ],
+    "w": 800,
+    "h": 563
+  },
+  "Damian Mason Logos/BOASG-BRAND-LOGO-FINAL-WHITE.jpg": {
+    "out": [
+      "/img/brand/boasg-white-flat.jpg",
+      "/img/brand/boasg-white-flat.webp"
+    ],
+    "w": 800,
+    "h": 800
+  },
+  "Damian Mason Logos/Business of AG-STACKED-black.png": {
+    "out": [
+      "/img/brand/business-of-agriculture.png",
+      "/img/brand/business-of-agriculture.webp"
+    ],
+    "w": 800,
+    "h": 345
+  },
+  "Damian Mason Logos/DM-BIZ-AG-PODCAST-LOGO (1).jpg": {
+    "out": [
+      "/img/brand/business-of-agriculture-podcast.jpg",
+      "/img/brand/business-of-agriculture-podcast.webp"
+    ],
+    "w": 800,
+    "h": 800
+  },
+  "Damian Mason Logos/The Granary 3x png@3x.PNG": {
+    "out": [
+      "/img/brand/the-granary.png",
+      "/img/brand/the-granary.webp"
+    ],
+    "w": 800,
+    "h": 800
+  },
+  "Damian Mason Logos/XAF logo.jpeg": {
+    "out": [
+      "/img/brand/xtreme-ag.jpg",
+      "/img/brand/xtreme-ag.webp"
+    ],
+    "w": 800,
+    "h": 480
+  },
+  "_source/media/LOGO-DM-BLUE-ORANGE-2000px-transparent.png": {
+    "out": [
+      "/img/brand/wordmark.png",
+      "/img/brand/wordmark.webp"
+    ],
+    "w": 800,
+    "h": 199
+  },
+  "_source/media/LOGO-DM-WHITE-2000px-transparent.png": {
+    "out": [
+      "/img/brand/wordmark-white.png",
+      "/img/brand/wordmark-white.webp"
+    ],
+    "w": 800,
+    "h": 199
+  },
+  "_source/media/BOASG-BRAND-LOGO-FINAL-WHITE-transparent.png": {
+    "out": [
+      "/img/brand/boasg-white.png",
+      "/img/brand/boasg-white.webp"
+    ],
+    "w": 800,
+    "h": 800
+  },
+  "_source/media/DBB-LOGO.png": {
+    "out": [
+      "/img/brand/do-business-better-podcast.png",
+      "/img/brand/do-business-better-podcast.webp"
+    ],
+    "w": 800,
+    "h": 800
+  },
+  "_source/media/THE-BIZ-OF-AGRICULTURE-PODCAST-GRAPHIC.png": {
+    "out": [
+      "/img/brand/business-of-agriculture-lockup.png",
+      "/img/brand/business-of-agriculture-lockup.webp"
+    ],
+    "w": 500,
+    "h": 500
+  },
+  "_source/media/biz-of-ag-podcast-icon-white.png": {
+    "out": [
+      "/img/brand/business-of-agriculture-icon-white.png",
+      "/img/brand/business-of-agriculture-icon-white.webp"
+    ],
+    "w": 380,
+    "h": 380
+  },
+  "_source/media/avatars-000339569153-fp12nh-t500x500.png": {
+    "out": [
+      "/img/brand/business-of-agriculture-avatar.png",
+      "/img/brand/business-of-agriculture-avatar.webp"
+    ],
+    "w": 218,
+    "h": 217
+  },
+  "_source/media/xtremelogo.png": {
+    "out": [
+      "/img/brand/xtreme-ag-transparent.png",
+      "/img/brand/xtreme-ag-transparent.webp"
+    ],
+    "w": 242,
+    "h": 116
+  },
+  "_source/media/cropped-favicon.jpg": {
+    "out": [
+      "/img/brand/dm-monogram.jpg",
+      "/img/brand/dm-monogram.webp"
+    ],
+    "w": 512,
+    "h": 512
+  },
+  "_source/media/19225_IPPA_Alliance_Logo_4C-scaled-1.jpg": {
+    "out": [
+      "/img/logos/iowa-pork-alliance.jpg",
+      "/img/logos/iowa-pork-alliance.webp"
+    ],
+    "w": 800,
+    "h": 389
+  },
+  "_source/media/BASF-Logo_bw.svg_.png": {
+    "out": [
+      "/img/logos/basf.png",
+      "/img/logos/basf.webp"
+    ],
+    "w": 800,
+    "h": 289
+  },
+  "_source/media/John_Deere_logo.svg_.png": {
+    "out": [
+      "/img/logos/john-deere.png",
+      "/img/logos/john-deere.webp"
+    ],
+    "w": 800,
+    "h": 535
+  },
+  "_source/media/lo-helenalogo.png": {
+    "out": [
+      "/img/logos/helena.png",
+      "/img/logos/helena.webp"
+    ],
+    "w": 500,
+    "h": 240
+  },
+  "_source/media/FCSAmerica-logo-400x192-1.jpg": {
+    "out": [
+      "/img/logos/farm-credit-services-of-america.jpg",
+      "/img/logos/farm-credit-services-of-america.webp"
+    ],
+    "w": 400,
+    "h": 192
+  },
+  "_source/media/merck-logo.png": {
+    "out": [
+      "/img/logos/merck.png",
+      "/img/logos/merck.webp"
+    ],
+    "w": 225,
+    "h": 225
+  },
+  "_source/media/acres-tv.png": {
+    "out": [
+      "/img/logos/acres-tv.png",
+      "/img/logos/acres-tv.webp"
+    ],
+    "w": 670,
+    "h": 366
+  },
+  "_source/media/2-background-microphones-on-a-stand-2022-11-16-19-05-19-utc-scaled.jpg": {
+    "out": [
+      "/img/photos/microphones-background.jpg"
+    ],
+    "w": 2000,
+    "h": 1334
+  },
+  "_source/media/331668334_973198694086419_2283442893014987447_n.jpeg": {
+    "out": [
+      "/img/photos/book-signing-table.jpg"
+    ],
+    "w": 2000,
+    "h": 1500
+  },
+  "_source/media/332503780_161776152950398_8554729294588018579_n.jpeg": {
+    "out": [
+      "/img/photos/keynote-stage-xtremeag.jpg"
+    ],
+    "w": 1500,
+    "h": 2000
+  },
+  "_source/media/458B0C93-D40F-4CF5-B0CC-BC1C89816092.jpeg": {
+    "out": [
+      "/img/photos/breakout-session-audience.jpg"
+    ],
+    "w": 2000,
+    "h": 1500
+  },
+  "_source/media/DM-audience-230102.jpg": {
+    "out": [
+      "/img/photos/speaking-to-audience.jpg"
+    ],
+    "w": 2000,
+    "h": 1336
+  },
+  "_source/media/DM-image0-1.jpeg": {
+    "out": [
+      "/img/photos/keynote-stage-podium.jpg"
+    ],
+    "w": 2000,
+    "h": 1500
+  },
+  "_source/media/DSC_7312-scaled.jpg": {
+    "out": [
+      "/img/photos/portrait-office-seated.jpg"
+    ],
+    "w": 2000,
+    "h": 1334
+  },
+  "_source/media/DSC_7419-scaled.jpg": {
+    "out": [
+      "/img/photos/portrait-light-jacket.jpg"
+    ],
+    "w": 1334,
+    "h": 2000
+  },
+  "_source/media/DSC_7639.jpg": {
+    "out": [
+      "/img/photos/portrait-black-suit.jpg"
+    ],
+    "w": 1333,
+    "h": 2000
+  },
+  "_source/media/Damian-Collab-crop-scaled.jpg": {
+    "out": [
+      "/img/photos/portrait-dark-blazer.jpg"
+    ],
+    "w": 1467,
+    "h": 2000
+  },
+  "_source/media/IMG_3597-rotated.jpg": {
+    "out": [
+      "/img/photos/keynote-stage-wide.jpg"
+    ],
+    "w": 1500,
+    "h": 2000
+  },
+  "_source/media/book-signing-IMG_2446.png": {
+    "out": [
+      "/img/photos/book-signing-xtremeag.png"
+    ],
+    "w": 1512,
+    "h": 1209
+  },
+  "_source/media/dbb-online-store.png": {
+    "out": [
+      "/img/photos/do-business-better-book-cover.png"
+    ],
+    "w": 1200,
+    "h": 1200
+  },
+  "_source/media/FOOD-FEAR-AUDIOBOOK-STORE.png": {
+    "out": [
+      "/img/photos/food-fear-audiobook-cover.png"
+    ],
+    "w": 1200,
+    "h": 1200
+  },
+  "_source/media/FoodFear-Mockup-Online-Store.png": {
+    "out": [
+      "/img/photos/food-fear-book-cover.png"
+    ],
+    "w": 1200,
+    "h": 1200
+  },
+  "_source/media/Forbes.png": {
+    "out": [
+      "/img/photos/forbes-feature.png"
+    ],
+    "w": 1280,
+    "h": 720
+  },
+  "_source/media/TODD-THURMAN-CROPPED.png": {
+    "out": [
+      "/img/photos/todd-thurman.png"
+    ],
+    "w": 500,
+    "h": 750
+  },
+  "_source/media/WEB-COLLAGE-2.png": {
+    "out": [
+      "/img/photos/speaking-collage.png"
+    ],
+    "w": 1152,
+    "h": 1500
+  },
+  "_source/media/acres-tv-screenshot.png": {
+    "out": [
+      "/img/photos/acres-tv-episode-grid.png"
+    ],
+    "w": 1692,
+    "h": 1852
+  },
+  "_source/media/Screenshot-2023-04-13-at-12.43.38-PM.png": {
+    "out": [
+      "/img/photos/acres-tv-arlan-suderman.png"
+    ],
+    "w": 856,
+    "h": 584
+  },
+  "_source/media/Screenshot-2023-04-18-at-5.52.49-PM.png": {
+    "out": [
+      "/img/photos/field-day-panel.png"
+    ],
+    "w": 1406,
+    "h": 1008
+  },
+  "_source/media/Screenshot-2023-04-18-at-5.55.45-PM.png": {
+    "out": [
+      "/img/photos/xtremeag-cutting-the-curve-1.png"
+    ],
+    "w": 1798,
+    "h": 1008
+  },
+  "_source/media/Screenshot-2023-04-19-at-11.40.07-AM.png": {
+    "out": [
+      "/img/photos/xtremeag-video-interview.png"
+    ],
+    "w": 1800,
+    "h": 1014
+  },
+  "_source/media/Screenshot-2023-04-19-at-11.46.37-AM.png": {
+    "out": [
+      "/img/photos/xtremeag-cutting-the-curve-2.png"
+    ],
+    "w": 1806,
+    "h": 1018
+  },
+  "_source/media/Screenshot-2023-04-19-at-12.16.28-PM.png": {
+    "out": [
+      "/img/photos/cheddar-news-food-supply.png"
+    ],
+    "w": 2000,
+    "h": 1124
+  },
+  "_source/media/Screenshot-2023-04-20-at-3.38.16-PM.png": {
+    "out": [
+      "/img/photos/agrigold-panel.png"
+    ],
+    "w": 1414,
+    "h": 798
+  },
+  "_source/media/Screenshot-2023-04-20-at-3.38.42-PM-1.png": {
+    "out": [
+      "/img/photos/xtremeag-cornfield-team.png"
+    ],
+    "w": 1372,
+    "h": 776
+  },
+  "_source/media/Screenshot-2023-04-25-at-10.51.10-AM.png": {
+    "out": [
+      "/img/photos/news-interview-cal-maine.png"
+    ],
+    "w": 2000,
+    "h": 1129
+  },
+  "_source/media/Screenshot-2023-04-25-at-10.52.49-AM.png": {
+    "out": [
+      "/img/photos/food-inflation-episode.png"
+    ],
+    "w": 1996,
+    "h": 1124
+  },
+  "_source/media/Screenshot-2023-04-25-at-10.56.20-AM.png": {
+    "out": [
+      "/img/photos/cheddar-news-fertilizer-shortage.png"
+    ],
+    "w": 1828,
+    "h": 1030
+  },
+  "_source/media/Screenshot-2023-04-25-at-2.44.31-PM.png": {
+    "out": [
+      "/img/photos/green-screen-studio.png"
+    ],
+    "w": 730,
+    "h": 414
+  },
+  "_source/media/Screenshot-2023-04-25-at-9.17.26-AM.png": {
+    "out": [
+      "/img/photos/equipment-factory-tour.png"
+    ],
+    "w": 1800,
+    "h": 1014
+  },
+  "_source/media/Screenshot-2024-08-21-at-11.48.25 AM.png": {
+    "out": [
+      "/img/photos/san-interview-1.png"
+    ],
+    "w": 951,
+    "h": 532
+  },
+  "_source/media/Screenshot-2024-08-21-at-11.49.00 AM.png": {
+    "out": [
+      "/img/photos/san-interview-2.png"
+    ],
+    "w": 952,
+    "h": 530
+  },
+  "skipped": [
+    {
+      "src": "Damian Mason Logos/LOGO-REVISION-B-A-F-01 copy.png",
+      "reason": "Client explicitly asked for this mark to be omitted from the site. Not read, not copied, not referenced."
+    },
+    {
+      "src": "_source/media/add-ons.png",
+      "reason": "Divi theme icon (generic line art), UI furniture."
+    },
+    {
+      "src": "_source/media/content-contributor.png",
+      "reason": "Divi theme icon (generic line art), UI furniture."
+    },
+    {
+      "src": "_source/media/custom_message.png",
+      "reason": "Divi theme icon (generic line art), UI furniture."
+    },
+    {
+      "src": "_source/media/influencer.png",
+      "reason": "Divi theme icon (generic line art), UI furniture."
+    },
+    {
+      "src": "_source/media/podcast.png",
+      "reason": "Divi theme icon (generic line art), UI furniture."
+    },
+    {
+      "src": "_source/media/process.png",
+      "reason": "Divi theme icon (generic line art), UI furniture."
+    },
+    {
+      "src": "_source/media/success.png",
+      "reason": "Divi theme icon (generic line art), UI furniture."
+    },
+    {
+      "src": "_source/media/company-67-a-pr-14.png",
+      "reason": "Decorative pull quote glyph from the page builder."
+    },
+    {
+      "src": "_source/media/company-67-a-pr-16.png",
+      "reason": "Decorative chevron section divider from the page builder."
+    },
+    {
+      "src": "_source/media/company-67-a-pr-18.png",
+      "reason": "Decorative chevron section divider from the page builder."
+    },
+    {
+      "src": "_source/media/company-67-a-pr-22.png",
+      "reason": "Decorative background ring from the page builder."
+    },
+    {
+      "src": "_source/media/company-67-a-pr-23.png",
+      "reason": "Decorative pull quote glyph, 69x49, from the page builder."
+    },
+    {
+      "src": "_source/media/orange-background-2.png",
+      "reason": "Decorative section background shape from the page builder."
+    },
+    {
+      "src": "_source/media/458B0C93-D40F-4CF5-B0CC-BC1C89816092-scaled.jpeg",
+      "reason": "WordPress auto-generated 2560px copy of 458B0C93-D40F-4CF5-B0CC-BC1C89816092.jpeg. The 4032px original is used instead."
+    },
+    {
+      "src": "_source/media/DSC_7639-scaled.jpg",
+      "reason": "WordPress auto-generated 2560px copy of DSC_7639.jpg. The 2400x3600 original is used instead."
+    },
+    {
+      "src": "_source/media/BOASG-BRAND-LOGO-FINAL-WHITE.jpg",
+      "reason": "Lower resolution (1000px) duplicate of the supplied Damian Mason Logos/BOASG-BRAND-LOGO-FINAL-WHITE.jpg (1500px), which is used instead."
+    },
+    {
+      "src": "_source/media/dm_-_food_waste-1080p.mp4",
+      "reason": "Video, not an image. Out of scope for this pass."
+    },
+    {
+      "src": "_source/media/dm_-_innovation-1080p.mp4",
+      "reason": "Video, not an image. Out of scope for this pass."
+    },
+    {
+      "src": "_source/media/dm_-_labor-1080p.mp4",
+      "reason": "Video, not an image. Out of scope for this pass."
+    },
+    {
+      "src": "_source/media/VisionTechMgmt.mp3",
+      "reason": "Audio, not an image. Out of scope for this pass."
+    }
+  ]
+}

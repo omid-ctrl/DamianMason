@@ -1,0 +1,177 @@
+# SOURCE EXTRACT: home
+URL: https://damianmason.com/
+
+## HEAD
+TITLE: Damian Mason | The Business of Agriculture
+META robots: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+META description: Damian Mason is the #1 Agricultural Speaker with a track record of massive success with audiences all over the world.
+META og:title: Damian Mason | The Business of Agriculture
+META og:description: Damian Mason is the #1 Agricultural Speaker with a track record of massive success with audiences all over the world.
+META og:image: https://damianmason.com/wp-content/uploads/2023/05/DSC_7312-scaled.jpg
+META viewport: width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0
+CANONICAL: https://damianmason.com/
+BODY CLASSES: home wp-singular page-template-default page page-id-99 custom-background wp-theme-Divi theme-Divi woocommerce-no-js metaslider-plugin et_pb_button_helper_class et_fixed_nav et_show_nav et_secondary_nav_enabled et_primary_nav_dropdown_animation_expand et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db
+
+
+## JSON-LD
+{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/damianmason.com\/","url":"https:\/\/damianmason.com\/","name":"Damian Mason | The Business of Agriculture","isPartOf":{"@id":"https:\/\/damianmason.com\/#website"},"about":{"@id":"https:\/\/damianmason.com\/#organization"},"primaryImageOfPage":{"@id":"https:\/\/damianmason.com\/#primaryimage"},"image":{"@id":"https:\/\/damianmason.com\/#primaryimage"},"thumbnailUrl":"https:\/\/damianmason.com\/wp-content\/uploads\/2023\/05\/DSC_7312-scaled.jpg","datePublished":"2022-12-20T15:47:52+00:00","dateModified":"2025-06-01T13:36:18+00:00","description":"Damian Mason is the #1 Agricultural Speaker with a track record of massive success with audiences all over the world.","breadcrumb":{"@id":"https:\/\/damianmason.com\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/damianmason.com\/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/damianmason.com\/#primaryimage","url":"https:\/\/damianmason.com\/wp-content\/uploads\/2023\/05\/DSC_7312-scaled.jpg","contentUrl":"https:\/\/damianmason.com\/wp-content\/uploads\/2023\/05\/DSC_7312-scaled.jpg","width":2560,"height":1707,"caption":"Damian Mason"},{"@type":"BreadcrumbList","@id":"https:\/\/damianmason.com\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https:\/\/damianmason.com\/#website","url":"https:\/\/damianmason.com\/","name":"Damian Mason Keynote Speaker","description":"The Leading Voice in Agriculture","publisher":{"@id":"https:\/\/damianmason.com\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/damianmason.com\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https:\/\/damianmason.com\/#organization","name":"Damian Mason Keynote Speaker","url":"https:\/\/damianmason.com\/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/damianmason.com\/#\/schema\/logo\/image\/","url":"https:\/\/i0.wp.com\/damianmason.com\/wp-content\/uploads\/2023\/04\/LOGO-DM-BLUE-ORANGE-600px-white.jpg?fit=600%2C149&ssl=1","contentUrl":"https:\/\/i0.wp.com\/damianmason.com\/wp-content\/uploads\/2023\/04\/LOGO-DM-BLUE-ORANGE-600px-white.jpg?fit=600%2C149&ssl=1","width":600,"height":149,"caption":"Damian Mason Keynote Speaker"},"image":{"@id":"https:\/\/damianmason.com\/#\/schema\/logo\/image\/"},"sameAs":["https:\/\/www.facebook.com\/DamianPMason","https:\/\/x.com\/DamianPMason","https:\/\/www.linkedin.com\/in\/damianmason\/","https:\/\/www.youtube.com\/DamianMasonChannel","https:\/\/www.instagram.com\/DamianPMason\/"]}]}
+
+## DOCUMENT FLOW (verbatim, in order)
+[LINK] "damianmasonoffice@gmail.com" -> mailto:damianmasonoffice@gmail.com
+[LINK] "0 Items" -> https://damianmason.com/cart/
+=== REGION: HEADER ===
+[LINK] "(no text)" -> https://damianmason.com/ (wraps img https://damianmason.wpengine.com/wp-content/uploads/2023/04/LOGO-DM-BLUE-ORANGE-2000px-transparent.png)
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/LOGO-DM-BLUE-ORANGE-2000px-transparent.png | alt="Damian Mason Keynote Speaker" | class=
+- Speaking Keynote
+[LINK] "Speaking" -> (EMPTY HREF)
+[LINK] "Keynote" -> https://damianmason.com/keynote/
+- Testimonials
+[LINK] "Testimonials" -> https://damianmason.com/reviews/
+- Meeting Coordinators
+[LINK] "Meeting Coordinators" -> https://damianmason.com/meeting-coordinators/
+- Collaboration Opportunities
+[LINK] "Collaboration Opportunities" -> https://damianmason.com/collaboration-opportunities/
+- The Business of Ag Success Group
+[LINK] "The Business of Ag Success Group" -> https://damianmason.com/boasg/
+- Podcasts The Business of Agriculture
+[LINK] "Podcasts" -> (EMPTY HREF)
+[LINK] "The Business of Agriculture" -> https://damianmason.com/the-business-of-agriculture/
+- Do Business Better
+[LINK] "Do Business Better" -> https://damianmason.com/do-business-better-podcast/
+- XtremeAg
+[LINK] "XtremeAg" -> https://damianmason.com/xtreme-ag/
+- Media Media
+[LINK] "Media" -> (EMPTY HREF)
+[LINK] "Media" -> https://damianmason.com/blog-news/
+- Acres TV
+[LINK] "Acres TV" -> https://damianmason.com/acres-tv/
+- Blog
+[LINK] "Blog" -> https://damianmason.com/blog/
+- Contact Us
+[LINK] "Contact Us" -> https://damianmason.com/contact-us/
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/company-67-a-pr-18.png | alt="" | class=wp-image-14
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/company-67-a-pr-16.png | alt="" | class=wp-image-15
+###### Keynote Speaker • Media Guest • Podcaster • Author
+# Straight-Forward Agriculture Dialogue
+A Powerhouse in the Agriculture industry, Damian Mason travels the globe to speak about the industry he loves.
+[LINK] "Book Now" -> https://damianmason.com/contact-us/
+[LINK] "Learn More" -> https://damianmason.com/keynote/
+#### Not Your Boring Ag Speaker, Damian is:
+## ✓ Thought Provoking
+## ✓ Engaging
+## ✓ Enthusiastic
+## ✓ Hilarious
+Damian Mason has an exceptional understanding of the Agriculture industry, he’s been involved in it his entire life. That, combined with his passion to stay one step ahead of what’s looming for the industry, he works tirelessly to stay up to date with current trends, research current events and news, and connect with industry leaders. He provides immediate take-aways, future outlooks, and insights, to his audiences, but most importantly, Damian has an uncanny ability to stir up feelings of dignity and pride for people working in the most important industry in the world.
+[LINK] "Explore Keynotes" -> https://damianmason.com/keynote/
+Man, that guy makes you think! I loved it!
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/company-67-a-pr-14.png | alt="" | class=wp-image-16
+Amy B., AgroLiquid
+[IFRAME] src=https://www.youtube.com/embed/yL33iAIS2K4?feature=oembed | title="Life Changing!"
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/company-67-a-pr-14.png | alt="" | class=wp-image-16
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/Screenshot-2023-04-20-at-3.38.42-PM-1.png | alt="" | class=wp-image-372
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/Screenshot-2023-04-25-at-9.17.26-AM.png | alt="" | class=wp-image-370
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/332503780_161776152950398_8554729294588018579_n.jpeg | alt="" | class=wp-image-369
+#### Some of Damian’s Clients:
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/02/John_Deere_logo.svg_.png | alt="John Deere Logo" | class=wp-image-138
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/02/lo-helenalogo.png | alt="" | class=wp-image-147
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/02/FCSAmerica-logo-400x192-1.jpg | alt="Farm Credit Services Logo" | class=wp-image-144
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/merck-logo.png | alt="" | class=wp-image-290
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/19225_IPPA_Alliance_Logo_4C-scaled-1.jpg | alt="cpda logo" | class=wp-image-344
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/02/BASF-Logo_bw.svg_.png | alt="" | class=wp-image-139
+#### A Win/Win/Win for…
+## Event Planners, Organizers and Audience Attendees
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/WEB-COLLAGE-2.png | alt="Damian Mason Photos" | class=wp-image-346
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/custom_message.png | alt="Custom Message" | class=wp-image-56
+#### Custom Messages
+Material that is fresh, new and relevant for your audience.
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/success.png | alt="success" | class=wp-image-57
+#### Guaranteed Success
+Leaves audiences thoroughly entertained and with immediate take-aways.
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/process.png | alt="" | class=wp-image-58
+#### Flawless Process
+From inquiry to the day of event the process is seamless.
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/add-ons.png | alt="" | class=wp-image-59
+#### Add-On Options
+Added value with in-depth, extended breakout sessions
+[LINK] "Go To Meeting Coordinators Page" -> https://damianmason.com/meeting-coordinators/
+#### As a Leading Voice in the Industry, Damian is Sought After for Conversations & Commentary on Hot Topics
+## If it’s Agriculture, it Needs Damian.
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/Screenshot-2023-04-18-at-5.55.45-PM.png | alt="" | class=wp-image-295
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/podcast.png | alt="podcast guest and host" | class=et-waypoint et_pb_animation_off et_pb_animation_off_tablet et_pb_animation_off_phone wp-image-65
+#### Podcast Host & Guest
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/Screenshot-2023-04-19-at-12.16.28-PM.png | alt="Damian Mason on Cheddar News" | class=wp-image-326
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/content-contributor.png | alt="content contributor" | class=et-waypoint et_pb_animation_off et_pb_animation_off_tablet et_pb_animation_off_phone wp-image-64
+#### News & Commentary
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/Screenshot-2023-04-25-at-2.44.31-PM.png | alt="" | class=wp-image-416
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/influencer.png | alt="" | class=et-waypoint et_pb_animation_off et_pb_animation_off_tablet et_pb_animation_off_phone wp-image-63
+#### Influencer & Promoter
+[LINK] "Click Here to Inquire About Working With Damian" -> https://damianmason.com/contact-us/
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/Screenshot-2023-04-18-at-5.52.49-PM.png | alt="XTREME AG 1" | class=wp-image-293
+## Connecting people of the world’s most important industry.
+You don’t need anyone telling you the weather forecast or the commodity prices, technology does that for you! What you need is a connection with real-world agriculture people and topics that inform, educate, and help you grow.
+THE BUSINESS OF AGRICULTURE:
+#### Podcast
+#### Success Group
+More Than 70,000 Views & Downloads Per Month
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/biz-of-ag-podcast-icon-white.png | alt="biz of ag icon" | class=et-waypoint et_pb_animation_off et_pb_animation_off_tablet et_pb_animation_off_phone wp-image-74
+#### The Business of Agriculture
+Podcast by Damian Mason
+#### RAVE REVIEWS
+## What People Are Saying…
+[IFRAME] src=https://www.youtube.com/embed/Tk8dPv_8Zo0?feature=oembed | title="Rocked It In Saskatchewan!"
+[IFRAME] src=https://www.youtube.com/embed/xmwijvcK1wY?feature=oembed | title="MFA Emerging Leaders Conference"
+[IFRAME] src=https://www.youtube.com/embed/jQAaQfcamVs?feature=oembed | title="Do Business Better for Lindsay Corporation"
+[LINK] "More Reviews" -> https://damianmason.com/reviews/
+## Join the Conversation
+[LINK] "Sign Up for Damian's Mailing List" -> https://damianmason.com/join-the-conversation/
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2022/12/company-67-a-pr-23.png | alt="" | class=wp-image-43
+I absolutely love this book! If you love food and hate the hype, this book is for you!
+[LINK] "Shop Now" -> https://damianmason.com/damian-mason-online-shop/
+## Do You Have Any Questions?
+#### Media Kit
+##### WHAT ARE YOUR SPEAKING FEES?
+Fees are quoted at the time of the inquiry. Damian’s fees are NET to him. Damian has been speaking to audiences for almost 30 years. He is well known and appreciated in the Agribusiness industry. His fees reflect that experience and attention to detail.
+##### HOW DO YOU MANAGE BOOKING AND TRAVEL AND TRAVEL EXPENSES?
+Damian books all of his airfare and car rental. Damian charges a set Travel Fee to cover these travel expenses, gratuity and meals which is quoted up front. His hotel stay is booked and paid for by the client.
+##### WHERE DO YOU TRAVEL?
+Wherever the client’s event is scheduled.
+##### HOW LONG IS YOUR PRESENTATION?
+Presentations typically run between 60 – 90 minutes in length.
+##### ARE YOU AVAILABLE FOR MULTI-DAY EVENTS?
+Yes. Rates may vary depending on time/date of the events.
+##### HOW WOULD YOU DESCRIBE YOUR PRESENTATION CONTENT?
+Damian’s presentation is a forward looking outlook about issues in the marketplace that will be impacting the business of Agriculture. It is fast paced, humor infused Ag commentary where he connects the dots from consumer issues to regulation to political movements to societal changes and current events and what it means for our industry. Also, he puts in a bit of feel good facts about the industry. And, he provides business reality and opportunity coverage, always bringing the issues back to the crowd and making it about them. Beginning 2023 Damian titled the program The “Ations” of Agriculture — addressing the words ending in “ation” that impact our industry: Immigration, population, regulation, confrontation, inflation, threats from other nations.
+##### CAN WE GET A SAMPLE/PREVIEW OF YOUR PRESENTATION?
+Yes, video links may be found on Damian’s Youtube channel (https://www.youtube.com/@DamianMasonChannel/videos), or viewed on his website.
+[LINK] "https://www.youtube.com/@DamianMasonChannel/videos" -> https://www.youtube.com/@DamianMasonChannel/videos
+##### Your Title Goes Here
+Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.
+##### HOW WOULD YOU DESCRIBE YOUR PRESENTATION DELIVERY STYLE?
+A forward looking futurist meets an agricultural economist – delivered with humor. Damian’s style makes his presentation entertaining, informative and memorable for your audience.
+##### WHAT ARE YOUR TECHNOLOGY REQUIREMENTS?
+Refer to Damian’s AV/and Room Setup Requirements.
+##### CAN WE RECORD OR PHOTOGRAPH YOUR PRESENTATION?
+Yes, as long as Damian receives a copy of the content to use as well.
+##### ARE YOU AVAILABLE FOR BREAK-OUTS, LUNCHEONS, OR PANEL DISCUSSIONS?
+Absolutely. The only caveat is that Damian will not speak while people are eating or tables are being cleared.
+##### WILL YOU HELP US PROMOTE OUR EVENT?
+Yes, Damian will work with you to help you make it a success. For example: Local Radio interviews are welcomed, Podcast guests, and short introductory videos may be pre recorded for your event. Headshots and Bio are available for your use for your own marketing efforts as well.
+##### DO YOU HAVE PRODUCTS FOR SALE?
+Books may be pre-ordered/ pre-purchased for your event. (Let’s talk about bulk pricing!) Also, individuals may visit Damian’s website to purchase books.
+##### SHOULD I BOOK DIRECTLY OR THROUGH A BUREAU?
+Damian books most of his events directly with his clients. A simple contract and small fraction of the total fee is required as a deposit to confirm the contracted date. The remaining fee is due at the time of the event. We do have a few bureaus whom we have successfully worked with over the years, but we do not endorse them. We find great success in booking directly with the client.
+[LINK] "Not Finding the Answer to Your Question? Email Us!" -> mailto:damianmasonoffice@gmail.com
+=== REGION: FOOTER ===
+- Keynote
+[LINK] "Keynote" -> https://damianmason.wpengine.com/?page_id=219
+- Contact Us
+[LINK] "Contact Us" -> https://damianmason.wpengine.com/?page_id=188
+- Home
+[LINK] "Home" -> http://DamianMason.com
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/LOGO-DM-WHITE-2000px-transparent-1024x255.png | alt="Damian Mason Logo" | class=wp-image-373
+- The Business of Ag
+[LINK] "The Business of Ag" -> https://damianmason.wpengine.com/?page_id=115
+- Do Business Better
+[LINK] "Do Business Better" -> https://damianmason.wpengine.com/?page_id=206
+- XtremeAg
+[LINK] "XtremeAg" -> https://damianmason.wpengine.com/?page_id=264

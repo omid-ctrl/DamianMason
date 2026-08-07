@@ -1,0 +1,21 @@
+# SOURCE EXTRACT: speaking
+URL: https://damianmason.com/speaking/
+
+## HEAD
+TITLE: Speaking - Damian Mason Keynote Speaker
+META robots: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+META og:title: Speaking
+META viewport: width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0
+CANONICAL: https://damianmason.com/speaking/
+BODY CLASSES: wp-singular page-template page-template-page-template-blank page-template-page-template-blank-php page page-id-102 custom-background wp-theme-Divi theme-Divi woocommerce-no-js metaslider-plugin et_pb_button_helper_class et_cover_background et_pb_gutter et_pb_gutters3 et_right_sidebar et_divi_theme et-db
+
+
+## JSON-LD
+{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/damianmason.com\/speaking\/","url":"https:\/\/damianmason.com\/speaking\/","name":"Speaking - Damian Mason Keynote Speaker","isPartOf":{"@id":"https:\/\/damianmason.com\/#website"},"datePublished":"2022-12-20T16:38:23+00:00","dateModified":"2022-12-20T17:24:41+00:00","breadcrumb":{"@id":"https:\/\/damianmason.com\/speaking\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/damianmason.com\/speaking\/"]}]},{"@type":"BreadcrumbList","@id":"https:\/\/damianmason.com\/speaking\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/damianmason.com\/"},{"@type":"ListItem","position":2,"name":"Speaking"}]},{"@type":"WebSite","@id":"https:\/\/damianmason.com\/#website","url":"https:\/\/damianmason.com\/","name":"Damian Mason Keynote Speaker","description":"The Leading Voice in Agriculture","publisher":{"@id":"https:\/\/damianmason.com\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/damianmason.com\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https:\/\/damianmason.com\/#organization","name":"Damian Mason Keynote Speaker","url":"https:\/\/damianmason.com\/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/damianmason.com\/#\/schema\/logo\/image\/","url":"https:\/\/i0.wp.com\/damianmason.com\/wp-content\/uploads\/2023\/04\/LOGO-DM-BLUE-ORANGE-600px-white.jpg?fit=600%2C149&ssl=1","contentUrl":"https:\/\/i0.wp.com\/damianmason.com\/wp-content\/uploads\/2023\/04\/LOGO-DM-BLUE-ORANGE-600px-white.jpg?fit=600%2C149&ssl=1","width":600,"height":149,"caption":"Damian Mason Keynote Speaker"},"image":{"@id":"https:\/\/damianmason.com\/#\/schema\/logo\/image\/"},"sameAs":["https:\/\/www.facebook.com\/DamianPMason","https:\/\/x.com\/DamianPMason","https:\/\/www.linkedin.com\/in\/damianmason\/","https:\/\/www.youtube.com\/DamianMasonChannel","https:\/\/www.instagram.com\/DamianPMason\/"]}]}
+
+## DOCUMENT FLOW (verbatim, in order)
+# Speaking
+[FORM] action=https://damianmason.com/ method=get
+[LABEL] Search
+[INPUT] type=search name=s placeholder="" value=""
+[BUTTON] Search

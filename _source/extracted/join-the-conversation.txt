@@ -1,0 +1,70 @@
+# SOURCE EXTRACT: join-the-conversation
+URL: https://damianmason.com/join-the-conversation/
+
+## HEAD
+TITLE: Join The Conversation! - Damian Mason Keynote Speaker
+META robots: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+META og:title: Join The Conversation!
+META og:description: Subscribe * indicates required First Name Last Name Email Address *
+META viewport: width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0
+CANONICAL: https://damianmason.com/join-the-conversation/
+BODY CLASSES: wp-singular page-template-default page page-id-303 custom-background wp-theme-Divi theme-Divi woocommerce-no-js metaslider-plugin et_pb_button_helper_class et_fixed_nav et_show_nav et_secondary_nav_enabled et_primary_nav_dropdown_animation_expand et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_full_width_page et_divi_theme et-db
+
+
+## JSON-LD
+{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/damianmason.com\/join-the-conversation\/","url":"https:\/\/damianmason.com\/join-the-conversation\/","name":"Join The Conversation! - Damian Mason Keynote Speaker","isPartOf":{"@id":"https:\/\/damianmason.com\/#website"},"datePublished":"2023-04-18T22:40:43+00:00","dateModified":"2023-04-18T22:40:52+00:00","breadcrumb":{"@id":"https:\/\/damianmason.com\/join-the-conversation\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/damianmason.com\/join-the-conversation\/"]}]},{"@type":"BreadcrumbList","@id":"https:\/\/damianmason.com\/join-the-conversation\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/damianmason.com\/"},{"@type":"ListItem","position":2,"name":"Join The Conversation!"}]},{"@type":"WebSite","@id":"https:\/\/damianmason.com\/#website","url":"https:\/\/damianmason.com\/","name":"Damian Mason Keynote Speaker","description":"The Leading Voice in Agriculture","publisher":{"@id":"https:\/\/damianmason.com\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/damianmason.com\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https:\/\/damianmason.com\/#organization","name":"Damian Mason Keynote Speaker","url":"https:\/\/damianmason.com\/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/damianmason.com\/#\/schema\/logo\/image\/","url":"https:\/\/i0.wp.com\/damianmason.com\/wp-content\/uploads\/2023\/04\/LOGO-DM-BLUE-ORANGE-600px-white.jpg?fit=600%2C149&ssl=1","contentUrl":"https:\/\/i0.wp.com\/damianmason.com\/wp-content\/uploads\/2023\/04\/LOGO-DM-BLUE-ORANGE-600px-white.jpg?fit=600%2C149&ssl=1","width":600,"height":149,"caption":"Damian Mason Keynote Speaker"},"image":{"@id":"https:\/\/damianmason.com\/#\/schema\/logo\/image\/"},"sameAs":["https:\/\/www.facebook.com\/DamianPMason","https:\/\/x.com\/DamianPMason","https:\/\/www.linkedin.com\/in\/damianmason\/","https:\/\/www.youtube.com\/DamianMasonChannel","https:\/\/www.instagram.com\/DamianPMason\/"]}]}
+
+## DOCUMENT FLOW (verbatim, in order)
+[LINK] "damianmasonoffice@gmail.com" -> mailto:damianmasonoffice@gmail.com
+[LINK] "0 Items" -> https://damianmason.com/cart/
+=== REGION: HEADER ===
+[LINK] "(no text)" -> https://damianmason.com/ (wraps img https://damianmason.wpengine.com/wp-content/uploads/2023/04/LOGO-DM-BLUE-ORANGE-2000px-transparent.png)
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/LOGO-DM-BLUE-ORANGE-2000px-transparent.png | alt="Damian Mason Keynote Speaker" | class=
+- Speaking Keynote
+[LINK] "Speaking" -> (EMPTY HREF)
+[LINK] "Keynote" -> https://damianmason.com/keynote/
+- Testimonials
+[LINK] "Testimonials" -> https://damianmason.com/reviews/
+- Meeting Coordinators
+[LINK] "Meeting Coordinators" -> https://damianmason.com/meeting-coordinators/
+- Collaboration Opportunities
+[LINK] "Collaboration Opportunities" -> https://damianmason.com/collaboration-opportunities/
+- The Business of Ag Success Group
+[LINK] "The Business of Ag Success Group" -> https://damianmason.com/boasg/
+- Podcasts The Business of Agriculture
+[LINK] "Podcasts" -> (EMPTY HREF)
+[LINK] "The Business of Agriculture" -> https://damianmason.com/the-business-of-agriculture/
+- Do Business Better
+[LINK] "Do Business Better" -> https://damianmason.com/do-business-better-podcast/
+- XtremeAg
+[LINK] "XtremeAg" -> https://damianmason.com/xtreme-ag/
+- Media Media
+[LINK] "Media" -> (EMPTY HREF)
+[LINK] "Media" -> https://damianmason.com/blog-news/
+- Acres TV
+[LINK] "Acres TV" -> https://damianmason.com/acres-tv/
+- Blog
+[LINK] "Blog" -> https://damianmason.com/blog/
+- Contact Us
+[LINK] "Contact Us" -> https://damianmason.com/contact-us/
+# Join The Conversation!
+[FORM] action=https://damianmason.us13.list-manage.com/subscribe/post?u=f08e63fefabed3435c6d1f97f&id=6456b31ef4&f_id=007b92e2f0 method=post
+[INPUT] type=text name=FNAME placeholder="" value=""
+[INPUT] type=text name=LNAME placeholder="" value=""
+[INPUT] type=email name=EMAIL placeholder="" value=""
+[INPUT] type=text name=b_f08e63fefabed3435c6d1f97f_6456b31ef4 placeholder="" value=""
+[INPUT] type=submit name=subscribe placeholder="" value="Subscribe"
+=== REGION: FOOTER ===
+- Keynote
+[LINK] "Keynote" -> https://damianmason.wpengine.com/?page_id=219
+- Contact Us
+[LINK] "Contact Us" -> https://damianmason.wpengine.com/?page_id=188
+- Home
+[LINK] "Home" -> http://DamianMason.com
+[IMG] src=https://damianmason.wpengine.com/wp-content/uploads/2023/04/LOGO-DM-WHITE-2000px-transparent-1024x255.png | alt="Damian Mason Logo" | class=wp-image-373
+- The Business of Ag
+[LINK] "The Business of Ag" -> https://damianmason.wpengine.com/?page_id=115
+- Do Business Better
+[LINK] "Do Business Better" -> https://damianmason.wpengine.com/?page_id=206
+- XtremeAg
+[LINK] "XtremeAg" -> https://damianmason.wpengine.com/?page_id=264

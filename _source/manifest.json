@@ -1,0 +1,1228 @@
+{
+  "crawledAt": "2026-08-06",
+  "sourcePages": [
+    {
+      "slug": "home",
+      "url": "https://damianmason.com/",
+      "seoTitle": "Damian Mason | The Business of Agriculture",
+      "metaDescription": "Damian Mason is the #1 Agricultural Speaker with a track record of massive success with audiences all over the world.",
+      "disposition": "keep",
+      "newRoute": "/",
+      "sections": 12,
+      "paragraphs": 13,
+      "images": 27,
+      "videos": 4,
+      "ctas": 14,
+      "testimonials": 2,
+      "faqItems": 16,
+      "defects": [
+        "Unedited Divi placeholder 'Your Title Goes Here' / 'Your content goes here...' shipped live as FAQ accordion 2 item 1, rendered OPEN by default",
+        "Empty FAQ accordion item (accordion 1 item 0): empty <h5> title and empty content div, also rendered OPEN",
+        "Dead invisible click target: et_pb_row_17 is an empty full-width et_clickable row whose registered URL is the literal string '#'",
+        "Every <img src> in MAIN points at damianmason.wpengine.com (staging host); only srcset uses the canonical domain",
+        "Media Kit link resolves to https://damianmason.wpengine.com/wp-content/uploads/2023/04/AG-MEDIA-KIT-3.zip - staging host, not mirrored, likely 404",
+        "Five macOS screenshots used as marketing imagery (Screenshot-2023-04-20-at-3.38.42-PM-1.png, Screenshot-2023-04-25-at-9.17.26-AM.png, Screenshot-2023-04-18-at-5.55.45-PM.png, Screenshot-2023-04-19-at-12.16.28-PM.png, Screenshot-2023-04-25-at-2.44.31-PM.png)",
+        "Wrong alt text: 19225_IPPA_Alliance_Logo_4C-scaled-1.jpg (IPPA Alliance logo) has alt='cpda logo'",
+        "11 of 27 images have empty alt, including 3 of the 6 client logos (Helena, Merck, BASF)",
+        "company-67-a-pr-14.png is a white quote glyph with no visible content on a light background, and it is placed twice",
+        "Testimonial attribution 'Amy B., AgroLiquid' is hard-coded color:#ffffff with no guaranteed dark background - invisible",
+        "company-67-a-pr-23.png is 69x49 px and is scaled up as a display graphic",
+        "Duplicated inline <style> block emitted three times (one per column) via three separate Divi Code modules",
+        "12 of the 14 real FAQ answers are byte-for-byte duplicates of the /keynote/ FAQ; two diverge in wording",
+        "Typo: 'HOW DO YOU MANAGE BOOKING AND TRAVEL AND TRAVEL EXPENSES?' duplicates the word TRAVEL",
+        "Double space inside a heading: 'As a  Leading Voice in the Industry'",
+        "Double spaces and trailing spaces throughout FAQ answers (pasted from a word processor)",
+        "Mixed quotation and apostrophe styles (curly vs straight) within single sentences",
+        "Unattributed testimonial: 'I absolutely love this book!...' has no name, title, organization, and never names the book",
+        "Unsourced statistic 'More Than 70,000 Views & Downloads Per Month' with no date, source or methodology",
+        "Non-semantic click targets: three blurbs and one row made clickable by et_link_options_data JS, not <a> - not focusable, not crawlable",
+        "Broken heading hierarchy: H2 used for four checklist bullets, H4 used as eyebrows above H2s",
+        "Viewport meta carries maximum-scale=1.0, user-scalable=0 - pinch-zoom disabled (WCAG 1.4.4 failure)",
+        "Two empty structural elements (et_pb_section_3 spacer-only section; et_pb_row_17 empty column) and two empty spacer paragraphs",
+        "Page-specific Divi section backgrounds live only in the un-mirrored et-cache/99/et-divi-dynamic-99.css and are unrecoverable from the mirror",
+        "Commerce CTA 'Shop Now' -> /damian-mason-online-shop/ (removed on the new site)"
+      ]
+    },
+    {
+      "slug": "keynote",
+      "url": "https://damianmason.com/keynote/",
+      "seoTitle": "Keynote - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/keynote/",
+      "sections": 8,
+      "paragraphs": 13,
+      "images": 5,
+      "videos": 3,
+      "ctas": 6,
+      "testimonials": 3,
+      "faqItems": 13,
+      "defects": [
+        "No meta description and no og:description",
+        "404 background image: .et_pb_section_2 requests .../2023/02/life-coach-03.jpg, a leftover Divi 'Life Coach' demo asset that is not in the mirror",
+        "wpengine.com staging URLs on both inline images, all three MP4 sources, the parallax background and the hero column background",
+        "Leftover Squarespace markup (sqs-block quote-block, figcaption.source, block-yui_* IDs) pasted into all three testimonials; Divi's own author fields are empty",
+        "Testimonial 1 renders as a quote followed by a trailing en dash with nothing after it",
+        "Testimonial 3 has a stray empty <p><span></span></p>",
+        "Empty FAQ answer: 'WHAT ARE THE TECHNOLOGY REQUIREMENTS?' has an empty toggle content div (home's equivalent question does have an answer)",
+        "Both inline images have empty alt; one (Screenshot-2023-04-20-at-3.38.16-PM.png) is a macOS screenshot used as marketing imagery",
+        "Heading order violation: H2 'DAMIAN MASON' and H6 tagline both precede the page's only H1",
+        "Two H2s in one section (bio title and 'Reviews')",
+        "Trailing space inside a heading: <h3>Food Waste </h3>",
+        "Bullet lists faked with literal U+2022 plus <br /> instead of <ul><li>",
+        "Three raw <video controls> MP4s with no poster, no preload, no captions/<track>, no fallback text",
+        "et_pb_section_5 is a parallax band containing zero rows, columns or modules",
+        "Content divergence with the home page on the same program description and the same travel FAQ question - two sources of truth, both live",
+        "Double spaces after sentence periods and trailing spaces throughout the bio, blockquote and FAQ answers",
+        "Internal link opens in a new tab with no rel=noopener ('Sign up for Damian's email list')",
+        "Leftover Gmail data-saferedirecturl tracking attribute and a <wbr /> inside the YouTube channel link",
+        "Viewport meta carries maximum-scale=1.0, user-scalable=0",
+        "Extract fidelity warning: _source/extracted/keynote.txt silently drops the <blockquote> program description in section 3"
+      ]
+    },
+    {
+      "slug": "reviews",
+      "url": "https://damianmason.com/reviews/",
+      "seoTitle": "Testimonials - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/reviews/",
+      "sections": 4,
+      "paragraphs": 1,
+      "images": 3,
+      "videos": 4,
+      "ctas": 1,
+      "testimonials": 10,
+      "faqItems": 0,
+      "defects": [
+        "No meta description",
+        "H1 says 'Reviews' but <title>, og:title, JSON-LD name and the nav all say 'Testimonials'",
+        "One testimonial has no attribution at all: 'We received a ton of great feedback on both you and the event!'",
+        "Large blocks of leftover Squarespace markup pasted inside Divi Text modules, including a full orphaned fluid-engine <section> fragment with serialized data-current-styles JSON",
+        "Duplicate/stale DOM IDs inherited from that pasted markup (block-yui_3_17_2_1_*)",
+        "The 128x128 ornament company-67-a-pr-14.png is output twice in a row with empty alt",
+        "Empty <blockquote> elements used purely to hold horizontal rules",
+        "Empty <p> elements inside et_pb_text_1 and et_pb_text_11",
+        "Inconsistent attribution dash: nine testimonials use an em dash, the Farm Credit West one uses an en dash",
+        "Mixed quote glyphs across testimonials",
+        "Typo/spacing defect in the Rolling Plains quote: 'for their meeting— so a win all around!'",
+        "'DUSTY RICH.' attribution uses a period rather than a comma after the surname",
+        "Video iframe title contains double-escaped HTML: renders literally as Ag&apos;s Future",
+        "All image src values point at damianmason.wpengine.com while srcset points at damianmason.com",
+        "book-signing-IMG_2446.png is a 1512x1209 photograph delivered as an 896 KB PNG",
+        "Testimonial wall has no heading - a screen reader hits ten blockquotes with no section label"
+      ]
+    },
+    {
+      "slug": "speaking",
+      "url": "https://damianmason.com/speaking/",
+      "seoTitle": "Speaking - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "new-route",
+      "newRoute": "/speaking/",
+      "sections": 2,
+      "paragraphs": 0,
+      "images": 0,
+      "videos": 0,
+      "ctas": 0,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "The page is EMPTY - entry-content contains nothing but whitespace; the only content is the word 'Speaking' in an H1",
+        "Uses the Divi BLANK page template, so it renders with NO site header and NO site footer - unbranded, no navigation, no way back",
+        "Indexable (index, follow) despite being empty and chromeless, and it sits in the JSON-LD breadcrumb trail",
+        "Missing meta description; no OG image",
+        "The header's 'Speaking' nav parent has an EMPTY HREF, so nothing in the site navigation points here - orphaned but indexed",
+        "Sidebar widget block-3 is an empty <h2 class='wp-block-heading'></h2>",
+        "Created and abandoned the same afternoon (2022-12-20), untouched since"
+      ]
+    },
+    {
+      "slug": "meeting-coordinators",
+      "url": "https://damianmason.com/meeting-coordinators/",
+      "seoTitle": "Meeting Coordinators - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/meeting-coordinators/",
+      "sections": 8,
+      "paragraphs": 8,
+      "images": 11,
+      "videos": 0,
+      "ctas": 8,
+      "testimonials": 1,
+      "faqItems": 16,
+      "defects": [
+        "Lorem Ipsum shipped live, twice: both FAQ accordions open on Divi's default placeholder ('Incidunt ut labore et dolore magnam?'), both et_pb_toggle_open",
+        "The two Lorem items are byte-identical duplicates of one another",
+        "No meta description",
+        "'Fill Out Inquiry Request' button has href='' - EMPTY HREF, goes nowhere",
+        "'Sign Up for Damian's Mailing List' button has href='' - EMPTY HREF (the same CTA links to /join-the-conversation/ on /reviews/ and /join-mailing-list/ on /collaboration-opportunities/)",
+        "The 'Media Kit' blurb carries et_clickable but has no href and no data-link - looks clickable, does nothing",
+        "Testimonial attribution '— National Ag Aviation Association' is hard-coded white on a light section - effectively invisible",
+        "Three Divi Text modules contain a pasted copy of their own wrapper markup, producing nested duplicate structure",
+        "Unclosed/empty <p class=''> left at the end of et_pb_text_5",
+        "A CSS <style> rule shipped inside an et_pb_code content module",
+        "Four sibling <h2><strong>checkmark</strong></h2> used as a checklist - heading levels abused for layout",
+        "The 128x128 ornament company-67-a-pr-14.png is emitted twice in a row with empty alt",
+        "Screenshot-2023-04-20-at-3.38.16-PM.png - a macOS screenshot used as a full-width marketing image",
+        "Two large photos carry empty alt; filenames are opaque device/CDN exports",
+        "Icon alt text inconsistent across the four benefit blurbs: 'Custom Message', 'success', '', ''",
+        "All image src values point at damianmason.wpengine.com while srcset points at damianmason.com",
+        "FAQ answer exposes a bare URL as its own link text",
+        "FAQ answer references 'Damian's AV/and Room Setup Requirements', a document never linked anywhere; 'AV/and' is itself a typo",
+        "Eyebrow heading padded with non-breaking spaces on both sides",
+        "'Added value with in-depth, extended breakout sessions' is missing its terminal period while its three siblings have one",
+        "Pervasive non-breaking spaces inside FAQ answers and hero copy will fight responsive re-flow",
+        "No video and no embedded booking form despite being the booking-intent page",
+        "Harvest file's own accordion split (9 + 7) does not match its 16 verbatim items, which split 8 + 8 - use the verbatim list as authoritative"
+      ]
+    },
+    {
+      "slug": "collaboration-opportunities",
+      "url": "https://damianmason.com/collaboration-opportunities/",
+      "seoTitle": "Join Damian Mason as a Memorable Podcast Guest",
+      "metaDescription": "Unlock exciting collaboration opportunities as a podcast guest with The Business of Agriculture's Damian Mason. Elevate your brand, share your expertise, and engage with niche audiences. Become a memorable podcast guest and make a lasting impact on the airwaves.",
+      "disposition": "keep",
+      "newRoute": "/collaboration-opportunities/",
+      "sections": 9,
+      "paragraphs": 5,
+      "images": 2,
+      "videos": 3,
+      "ctas": 6,
+      "testimonials": 3,
+      "faqItems": 0,
+      "defects": [
+        "Eyebrow heading reads 'COllaborate with damian' - broken capitalization, verbatim on the live site",
+        "Typo: 'complimentary industries' should be 'complementary'",
+        "Typo: 'knowledgable commentary' should be 'knowledgeable'",
+        "Screenshot-2023-04-18-at-5.52.49-PM.png used as a full-bleed parallax marketing band with no alt and no content in the section",
+        "Self-hosted dm_-_innovation-1080p.mp4 is 39 MB, served from the staging host, with no poster frame, no captions and no lazy loading",
+        "Page has no og:image",
+        "Hero intro paragraph is marked up as <h6> inside a <blockquote> - heading level used for body copy",
+        "Heading order inverted in the hero: the H2 eyebrow precedes the only H1",
+        "Two H2s inside a single CTA module",
+        "'Contact Damian today!' uses a relative href while all five other CTAs use absolute URLs",
+        "'Want to join the conversation?' section carries et_clickable with no data-link - dead whole-section click target",
+        "CTA labelled 'Have a question? Email us!' links to /contact-us/, not a mailto:",
+        "Mailing-list CTA points at /join-mailing-list/ while the identical CTA on /reviews/ points at /join-the-conversation/",
+        "Google SERP CSS class hgKElc left on all six checkmark bullets - copy pasted straight out of Google search results",
+        "Leftover Squarespace markup inside the Divi testimonial modules; Divi's own author/position/company fields are all empty",
+        "First testimonial ends with a dangling en dash",
+        "Third testimonial is followed by a stray empty <p><span></span></p>",
+        "Contact form uses type='text' for both the email and phone fields - no native validation, no mobile keyboard hinting",
+        "Contact form field order is Email -> Full Name -> Phone -> Message; every field duplicates its label as its placeholder",
+        "Contact form posts to the page URL with a WordPress nonce - no reusable endpoint",
+        "Empty <p>&nbsp;</p> spacer and an empty <strong></strong> left in the copy",
+        "Doubled and leading non-breaking spaces in the PODCAST HOST & GUEST copy",
+        "Credential bullets are <p> + literal bullet char + <br /> rather than real <ul>/<li>, repeated four times",
+        "Four decorative FontAwesome glyphs injected as text characters with no accessible name",
+        "Four base64-inlined SVG section dividers bloat the CSS payload",
+        "Page ships an unusually large DOM (356 KB of HTML) for a single marketing page",
+        "The three testimonials on this page are byte-identical duplicates of the three on /keynote/"
+      ]
+    },
+    {
+      "slug": "boasg",
+      "url": "https://damianmason.com/boasg/",
+      "seoTitle": "The Business of Ag Success Group - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/boasg/",
+      "sections": 5,
+      "paragraphs": 8,
+      "images": 4,
+      "videos": 0,
+      "ctas": 3,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Missing meta description entirely",
+        "Duplicate H1: 'The Business of Ag Success Group' and '$99/month' are both <h1>",
+        "All 4 image src values point at damianmason.wpengine.com; only srcset uses the production domain",
+        "Broken HTML: an unclosed empty <p class=''> before the Damian Mason bio, which is why the deterministic extract silently drops that whole paragraph",
+        "Inconsistent heading semantics for parallel content: 'Damian Mason Expertise:' is a bolded <p> while 'Todd Thurman Expertise:' is an <h3>",
+        "Both expertise lists are fake lists - bullet glyphs separated by <br /> inside one paragraph, extracting as a run-on string",
+        "The 'What you get:' list is split across two separate <ul> elements",
+        "Brand capitalization conflict: 'BoASG' vs 'BOASG' vs 'The Business of Ag Success Group' on one page",
+        "Cadence copy conflict: hero and bullets say 'bi-monthly', the footnote says 'Every other Friday'",
+        "Pasted-in Squarespace markup left inside Divi text modules (row sqs-row, sqs-block html-block, yui_* ids)",
+        "Hero decorative image has alt='' AND an empty title attribute",
+        "Orphan footnote marker: the schedule note begins with '*' but nothing on the page carries a matching asterisk",
+        "Redundant no-op gradient on the orange CTA band",
+        "Inline <style> shipped inside page content via a Divi code module",
+        "Mixed apostrophe styles: curly in body copy, straight in the mailing-list button label",
+        "og:image / JSON-LD primaryImageOfPage is BOASG-BRAND-LOGO-FINAL-WHITE.jpg but the page renders BOASG-BRAND-LOGO-FINAL-WHITE-transparent.png - two copies of the same asset",
+        "Both 'Join Today' CTAs are identical and go to the same WooCommerce product page - no secondary action anywhere",
+        "Viewport meta blocks pinch-zoom",
+        "Commerce dependency: the $99/month Join Today CTA points at a WooCommerce product page that will not exist on the new site"
+      ]
+    },
+    {
+      "slug": "the-business-of-agriculture",
+      "url": "https://damianmason.com/the-business-of-agriculture/",
+      "seoTitle": "The Business of Agriculture Podcast - Damian Mason Keynote Speaker",
+      "metaDescription": "Looking for smart talk with entertaining commentary about the business of food, fuel, and fiber? You've found it. This podcast offers tips for success, ideas for self betterment, and mental stimulation for people who make Agriculture their Business. Damian Mason is an agriculturist, entrepreneur, speaker, writer, and funny man. As he says, “You don't need any more Ag people discussing weather or commodity prices, you have that information on your phone!”",
+      "disposition": "keep",
+      "newRoute": "/the-business-of-agriculture/",
+      "sections": 9,
+      "paragraphs": 8,
+      "images": 2,
+      "videos": 0,
+      "ctas": 19,
+      "testimonials": 1,
+      "faqItems": 0,
+      "defects": [
+        "CONFLICTING SPOTIFY SHOW IDs: section 4 links open.spotify.com/show/0UDXsogtCT4uNF4CpDpUae, section 8 links open.spotify.com/show/5rSDDoG9qMqkSo3gp6qFDq - two different shows from one page",
+        "Hero background image 404: .../2023/02/Podcaster-34c.png is referenced with !important in the head CSS but is absent from the mirror; only the #060717 fallback colour survives",
+        "Triple H1: 'The Business of Agriculture Podcast', 'Will the Great American Cotton Plan Save U.S. Cotton?' and 'Listen Now:' are all <h1>",
+        "Hero show art avatars-000339569153-fp12nh-t500x500.png is actually 218x217, a scraped SoundCloud avatar, too low-res for any retina rendering",
+        "Hero show art has alt='' and title set to the raw filename",
+        "All 8 podcast-platform links have the identical accessible name 'Follow'; the platform lives only in the title attribute",
+        "Both newsletter 'Subscribe' buttons are <a href='#'>",
+        "Both newsletter <form> elements have no action attribute",
+        "Mailchimp list id, account name and signup checksum exposed in page source, twice",
+        "The same newsletter form is rendered twice with duplicate DOM ids, so the second label points at the first input",
+        "Near-duplicate subhead with inconsistent wording: 'New episodes every Monday' vs 'New releases every Monday'",
+        "The bottom subhead is an <h3> wrapped in a <blockquote> used purely for indent styling",
+        "'Episode Details' and 'All Episodes' are two buttons pointing at the identical URL",
+        "Sponsors are plain text links with no artwork, force-styled color:#ffffff so they are near-indistinguishable from body copy",
+        "Broken/nested inline markup on the sponsor lead-in splits the first two characters out of the span",
+        "Stray non-breaking spaces after sponsor names and inside the cross-promo paragraph",
+        "'DamianMason.com' links to https://www.damianmason.com/ - a self-link via the www host while the canonical is non-www",
+        "Testimonial has no attribution metadata; et_pb_testimonial_meta is empty and the byline is prefixed with an en dash inside the author span",
+        "Testimonial module is flagged no_image yet still emits a 1px x 1px portrait element",
+        "The 'Latest Episode' block is hardcoded HTML, not fed from the RSS feed - it will silently go stale",
+        "Massive leftover SoundCloud and Libsyn/Redactor markup pasted into Divi text modules, with the Libsyn wrapper stack nested inside itself twice",
+        "et_pb_section_1 carries et_pb_with_background but no background rule is generated - dead class",
+        "Meta description is ~440 characters, roughly 3x what Google will render",
+        "og:image is a different, higher-quality piece of show art than the avatar actually displayed, and it appears nowhere on the page",
+        "Contact email rendered as plain text with no mailto: link in the page-body Contact Us block",
+        "Extraction gaps: the testimonial byline and the bottom blockquote H3 are absent from _source/extracted/the-business-of-agriculture.txt"
+      ]
+    },
+    {
+      "slug": "do-business-better-podcast",
+      "url": "https://damianmason.com/do-business-better-podcast/",
+      "seoTitle": "Podcast | Do Business Better - Damian Mason Keynote Speaker",
+      "metaDescription": "This podcast is for you: the entrepreneur, business owner, solopreneur, self employed striver, or business person who wants to do it better. By better I mean more profitably, more happily, and for as many years as you choose. That's what doing business better is about. I quit my Fortune 500 job in 1994 to pursue a life and business of my choice. All these years later I'm still driven by my original “why” that made me an entrepreneur: to be more creative and rewarded financially for my accomplishments.",
+      "disposition": "keep",
+      "newRoute": "/do-business-better-podcast/",
+      "sections": 5,
+      "paragraphs": 6,
+      "images": 1,
+      "videos": 0,
+      "ctas": 10,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Wrong show's SoundCloud: the 'Follow on SoundCloud' icon points at soundcloud.com/thebusinessofagriculture (Damian's other podcast) instead of soundcloud.com/dobusinessbetter",
+        "Empty href placeholder: 'Follow on Youtube' social icon -> href='#'",
+        "Empty href placeholder: 'Follow on iTunes' social icon -> href='#'",
+        "Duplicate H1: 'Do Business Better Podcast' and 'Latest 3 Episodes' are both <h1>",
+        "Broken heading hierarchy: H1 -> H3 -> (H2 'Success!') -> H4 -> H2 -> H1 -> H3 x3 -> H2 -> H4",
+        "Hidden <h2>Success!</h2> present in the DOM at all times inside the newsletter success container",
+        "Duplicated content block: the entire 'Latest Episode' section repeats verbatim as item 1 of 'Latest 3 Episodes' directly below it",
+        "Squarespace markup pasted into WordPress around the 'Latest Episode' description",
+        "SoundCloud UI markup pasted into WordPress around the 'Start Listening Today!' paragraph, including the m-collapsed truncated-state class",
+        "'Latest 3 Episodes' is not the latest three - episodes 144, 142 and 141 are listed, 143 is skipped",
+        "Stale content: dateModified is 2023-06-20 and the newest episode shown is from that period",
+        "33 MB self-hosted MP3 (VisionTechMgmt.mp3) served from wp-content/uploads",
+        "Empty alt on DBB-LOGO.png - the show's identity art, the og:image and the schema primaryImageOfPage",
+        "Empty layout column: the final row's two-thirds column renders as et_pb_column_empty",
+        "Contact email is plain text with no mailto:",
+        "Newsletter form has no action attribute and its submit control is an <a href='#'> rather than a <button type='submit'>",
+        "Hidden form label: <label style='display: none;'>Email</label>, so the field is placeholder-only",
+        "Mailchimp list ID and account name exposed in plain HTML",
+        "Copy typo preserved: 'in his mid 50's no less!' (appears twice, once in each duplicate of the paragraph)",
+        "Double-encoded UTM tails on two episode links, copied from the SoundCloud share widget",
+        "Inconsistent underline markup between episode links (span-inside-anchor vs anchor-inside-span)"
+      ]
+    },
+    {
+      "slug": "xtreme-ag",
+      "url": "https://damianmason.com/xtreme-ag/",
+      "seoTitle": "XtremeAg - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/xtreme-ag/",
+      "sections": 5,
+      "paragraphs": 2,
+      "images": 5,
+      "videos": 0,
+      "ctas": 7,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Missing meta description",
+        "Both featured items are raw macOS screen captures retaining default filenames (812 KB and 776 KB PNGs)",
+        "og:image is a resize of a macOS screenshot - the social share card for this page is a screenshot",
+        "Copy promises videos that do not exist: 'click a video below' but there are zero videos, iframes or embeds; the two items below are static screenshots linking to XtremeAg blog posts",
+        "Empty href: 'Sign Up for Damian's Mailing List' has href='' (the identical button on /acres-tv/ correctly points at /join-the-conversation/)",
+        "Gmail paste residue: data-saferedirecturl with source=gmail on the inline link, plus <span class='il'> around each occurrence of 'Damian'",
+        "Body copy is not in paragraphs - both blocks are bare <div> elements with hardcoded inline colors (#3d3d3d, #050505, #333333)",
+        "Raw URL used as link text, with a <wbr /> inserted mid-string",
+        "Redundant link: the raw-URL inline link and the 'View More' button point to the same destination",
+        "Inconsistent linking between the two featured items - item 1's thumbnail is clickable, item 2's is not",
+        "Alt text does not match visible heading on both featured items (PLANTERS vs planter, X vs multiplication sign, 'and' vs '&')",
+        "Broken heading hierarchy: H3 -> H1 -> H5 -> H4 -> H4 -> H2 -> H2",
+        "Double space in copy: 'As a  Leading Voice in the Industry'",
+        "Stray whitespace nodes: trailing nbsp in the H3, an empty <p>&nbsp;</p>, and a <div><span>&nbsp;</span></div> spacer",
+        "Mixed apostrophe styles",
+        "Empty et_pb_code module that outputs only a <style> block",
+        "Missing rel='noopener' on the target=_blank image anchor",
+        "Screenshot-2023-04-19-at-11.46.37-AM.png is 1806x1018 but rendered in a half-width column",
+        "No 'The Granary' content exists on this page despite the brief expecting it - the only site-wide mention of The Granary is a cross-promo link on /the-business-of-agriculture/"
+      ]
+    },
+    {
+      "slug": "blog-news",
+      "url": "https://damianmason.com/blog-news/",
+      "seoTitle": "Media - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/blog-news/",
+      "sections": 11,
+      "paragraphs": 1,
+      "images": 6,
+      "videos": 3,
+      "ctas": 7,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Missing meta description",
+        "Duplicate H1: the page H1 is 'News & Media' and the Forbes item is also an H1",
+        "Five empty <h1><strong></strong></h1> elements used as vertical spacers above 'Damian Quoted In Forbes'",
+        "An empty Divi video module (et_pb_video_0) sits above the Soybeans image and renders as a blank gap",
+        "An entirely empty Divi section closes the page",
+        "Three press images and the section background load from damianmason.wpengine.com",
+        "Two 2024 image URLs contain a raw, unencoded U+202F NARROW NO-BREAK SPACE inside the filename",
+        "All 6 press images are raw macOS screenshots used as marketing imagery",
+        "All 6 press images have alt='' - zero accessible text for any press item",
+        "No dates on any of the 9 media items; the Eagle Country item references an 'upcoming event' that is years past",
+        "Trailing space inside <strong>Damian Mason on Straight Arrow News: </strong> on both SAN items",
+        "The second Straight Arrow News eyebrow H2 is missing the post-title class the first one carries",
+        "Heading case inconsistent across the page (sentence case vs Title Case)",
+        "'NewsMaxTV' on-page vs 'NewsmaxTV' in the iframe title",
+        "Two of the nine media items duplicate the two blog posts at different URLs with differently-cased titles",
+        "The og:image does not appear anywhere on the page",
+        "Only the Forbes item has a readable text CTA; the other eight are click-the-image-and-hope",
+        "Sized derivatives referenced in srcset are not all present in the mirror"
+      ]
+    },
+    {
+      "slug": "acres-tv",
+      "url": "https://damianmason.com/acres-tv/",
+      "seoTitle": "Acres TV - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/acres-tv/",
+      "sections": 5,
+      "paragraphs": 0,
+      "images": 5,
+      "videos": 0,
+      "ctas": 4,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Missing meta description",
+        "No body copy whatsoever - zero <p> elements in MAIN; the H1 plus three CTA labels is the entire text of the page",
+        "H1 is a 130-character full sentence used as body copy, additionally wrapped in <b>",
+        "acres-tv-screenshot.png is a raw macOS screen capture at 1692x1852 and 1.0 MB, serving as the page's primary visual",
+        "og:image is a screenshot that is never rendered anywhere in the page body",
+        "Empty alt on acres-tv.png, a logo that carries the 'Acres TV' wordmark and the tagline text",
+        "Orphan empty markup: <div><div dir='auto'></div></div> directly after the H1",
+        "Empty et_pb_code module that outputs only a <style> block",
+        "Broken heading hierarchy: H1 -> H4 -> H2 -> H2",
+        "Missing rel='noopener' on the target=_blank screenshot anchor and on the CTA button",
+        "Redundant destination: the button and the screenshot both link to the same URL, the only two outbound paths on the page",
+        "Brand-name inconsistency: 'AcresTV' vs 'Acres TV' vs 'watchacrestv'",
+        "Double space in copy: 'As a  Leading Voice in the Industry'",
+        "Mixed apostrophe styles",
+        "Sections 4 and 5 are byte-identical to /xtreme-ag/ sections 4 and 5 - content maintained by copy-paste in two places"
+      ]
+    },
+    {
+      "slug": "blog",
+      "url": "https://damianmason.com/blog/",
+      "seoTitle": "Blog - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/blog/",
+      "sections": 5,
+      "paragraphs": 4,
+      "images": 2,
+      "videos": 0,
+      "ctas": 8,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "No H1 on the page at all - the highest heading is the first post title (H2)",
+        "Missing meta description; no OG image",
+        "Only two posts exist, the newest from April 2023 - the blog reads as abandoned",
+        "Both posts are filed under 'Uncategorized', which is also the only category",
+        "Author byline is the raw staging username 'damianmasonstg', not a human name",
+        "Excerpt 2 is visibly broken: 'Damian featured in Straight Arrow NewsBy Simone Del Rosario' - the <br> is stripped and the sentences collide",
+        "Excerpt 1 truncates mid-phrase because the underlying post body is four words long",
+        "No 'Read more' affordance on either card",
+        "Post 2's permalink is still the WordPress default /hello-world/",
+        "Empty pagination block renders as dead markup",
+        "Sidebar widget block-3 is an empty <h2 class='wp-block-heading'></h2>",
+        "Both featured images are macOS screenshots requested at a -1080x675 size that is not in the mirrored media set"
+      ]
+    },
+    {
+      "slug": "hello-world",
+      "url": "https://damianmason.com/hello-world/",
+      "seoTitle": "'Eggflation' Gives Producers Record Profits While Internet Mocks Outrageous Prices - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/blog/eggflation-gives-producers-record-profits/",
+      "sections": 7,
+      "paragraphs": 4,
+      "images": 2,
+      "videos": 0,
+      "ctas": 7,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "The post body is SEVEN WORDS ('Damian featured in Straight Arrow News' / 'By Simone Del Rosario'). There is no article. JSON-LD confirms wordCount 19",
+        "Slug is still the WordPress default 'hello-world' - the seed post (post-1) was edited in place, never re-slugged, and is indexed at /hello-world/",
+        "The stock WordPress seed comment is live on a client production page, dated December 16, 2022",
+        "That seed comment's author link points to https://wpengine.com/",
+        "Duplicate H1: the post title is an H1 and the comments heading '1 Comment' is also an H1",
+        "Missing meta description (an og:description exists but no meta description)",
+        "The post links nowhere - no link to the Straight Arrow News source article, and the featured screenshot is not clickable",
+        "The featured image is a raw macOS screenshot of another publisher's webpage, used as the hero and as the OG image",
+        "The -1080x675 and -1024x577 derivatives referenced by the page and og:image are not in the mirror",
+        "Author byline is the raw staging username 'damianmasonstg'",
+        "Category is 'Uncategorized'",
+        "Comment form posts to wp-comments-post.php?wpe-comment-post=damianmason - a WP Engine-specific endpoint that breaks on any other host",
+        "Comment form uses type='text' for the Email and Website fields",
+        "Sidebar widget block-3 is an empty <h2 class='wp-block-heading'></h2>",
+        "The og:description contains prose copied from the source article that appears nowhere on the page"
+      ]
+    },
+    {
+      "slug": "how-the-climate-crisis-is-causing-food-shortages-globally",
+      "url": "https://damianmason.com/how-the-climate-crisis-is-causing-food-shortages-globally/",
+      "seoTitle": "How the Climate Crisis is Causing Food Shortages Globally - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+      "sections": 6,
+      "paragraphs": 3,
+      "images": 1,
+      "videos": 0,
+      "ctas": 4,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "The post body is FIVE WORDS ('Damian Mason featured in Cheddar News'). There is no article",
+        "An entire Divi builder layout (section > row > column > text module) was created to hold that one sentence",
+        "The post links nowhere - no link to the Cheddar News segment, and the featured screenshot is not clickable",
+        "The Cheddar segment is a YouTube video (5FUIE6Ks0Ok) embedded on /blog-news/, but this post shows only a still frame of it",
+        "Duplicate content: the same segment appears on /blog-news/ under a sentence-case heading",
+        "Missing meta description",
+        "The featured image is a raw macOS screenshot of a TV broadcast, used as the hero and as the OG image",
+        "The -1080x675 and -1024x575 derivatives referenced by the page and og:image are not in the mirror",
+        "Author byline is the raw staging username 'damianmasonstg'",
+        "Category is 'Uncategorized'",
+        "dateModified is 2026-01-09 while the content has not changed since 2023 - a false freshness signal",
+        "Empty comment section renders with no content and no fallback copy",
+        "Comment form posts to a WP Engine-specific endpoint and uses type='text' for Email and Website",
+        "Sidebar widget block-3 is an empty <h2 class='wp-block-heading'></h2>"
+      ]
+    },
+    {
+      "slug": "contact-us",
+      "url": "https://damianmason.com/contact-us/",
+      "seoTitle": "Contact Us - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/contact-us/",
+      "sections": 1,
+      "paragraphs": 5,
+      "images": 0,
+      "videos": 0,
+      "ctas": 1,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "No H1 anywhere in MAIN - 'Get in Touch' is only <p><strong>, so the page has no heading hierarchy at all",
+        "Broken mailto: href='damianmasonoffice@gmail.com' is missing the mailto: scheme, so the link resolves to https://damianmason.com/contact-us/damianmasonoffice@gmail.com",
+        "No meta description",
+        "No contact form on the Contact page - a rebuilder adding one is adding new functionality",
+        "AI-chat CSS classes left in production markup: all five paragraphs carry font-claude-response-body break-words whitespace-normal leading-[1.7]",
+        "Phone number is not a tel: link",
+        "No physical address, no booking-agent contact, no social links in the page body"
+      ]
+    },
+    {
+      "slug": "join-the-conversation",
+      "url": "https://damianmason.com/join-the-conversation/",
+      "seoTitle": "Join The Conversation! - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "keep",
+      "newRoute": "/join-the-conversation/",
+      "sections": 2,
+      "paragraphs": 1,
+      "images": 0,
+      "videos": 0,
+      "ctas": 1,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "No meta description; og:description is auto-generated from the form's own label text and reads as garbage in social shares",
+        "Duplicate page: this and /join-mailing-list/ embed the identical Mailchimp form; this one has no prose or value proposition at all",
+        "Broken markup from wpautop - the raw embed was pasted into the classic editor, producing unbalanced </p></div> sequences inside the form and <p> tags wrapping <link>/<style>/<script>",
+        "Hard-coded 600px form width in an inline <style> - not responsive",
+        "Render-blocking third-party CSS/JS over protocol-relative // URLs",
+        "target='_blank' + novalidate: the subscriber is thrown to a Mailchimp-hosted page in a new tab, no on-site success state, native validation disabled",
+        "Label whitespace artifacts: trailing spaces on First Name / Last Name, double space before the required asterisk",
+        "<br /> tags used between label and input instead of CSS"
+      ]
+    },
+    {
+      "slug": "join-mailing-list",
+      "url": "https://damianmason.com/join-mailing-list/",
+      "seoTitle": "Join Mailing List - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/join-the-conversation/",
+      "sections": 2,
+      "paragraphs": 2,
+      "images": 0,
+      "videos": 0,
+      "ctas": 1,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Empty heading: <h3></h3> renders with no content between the H1 and the real H3",
+        "H1 wrapped in <strong>",
+        "Broken heading order: H1 -> (empty H3) -> H3 -> H2",
+        "No meta description",
+        "Duplicate content: identical Mailchimp embed to /join-the-conversation/; two indexable URLs, one list",
+        "Inconsistent naming: H1 'Join the List Today!', title 'Join Mailing List', form heading 'Join the Conversation!'",
+        "Unverified hard-coded stat: 'more than 40,000 subscribers' with no source or date",
+        "Hard-coded 600px form width; render-blocking third-party CSS/JS over protocol-relative URLs",
+        "target='_blank' + novalidate on the form",
+        "No privacy/consent line next to the submit",
+        "MIGRATION RISK: the marketing headline and pitch copy live ONLY on this page and must be carried to /join-the-conversation/ before this URL is retired"
+      ]
+    },
+    {
+      "slug": "podcast-2",
+      "url": "https://damianmason.com/podcast-2/",
+      "seoTitle": "Podcasts - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/podcasts/",
+      "sections": 2,
+      "paragraphs": 0,
+      "images": 0,
+      "videos": 0,
+      "ctas": 0,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "The page is EMPTY - entry-content contains nothing but whitespace; the only content is the word 'Podcasts' in an H1",
+        "Uses the Divi BLANK page template - no site header, no site footer, no navigation, no branding",
+        "Slug/title mismatch: the URL is /podcast-2/ (singular plus WordPress's duplicate-slug suffix) while the page is titled 'Podcasts'",
+        "Indexable despite being empty and chromeless, and it sits in the JSON-LD breadcrumb trail",
+        "Missing meta description; no OG image",
+        "The header's 'Podcasts' nav parent has an EMPTY HREF, so nothing in the navigation points here",
+        "Sidebar widget block-3 is an empty <h2 class='wp-block-heading'></h2>",
+        "Byte-for-byte duplicate of /speaking/ except the H1 text - the same abandoned stub shipped twice"
+      ]
+    },
+    {
+      "slug": "shop",
+      "url": "https://damianmason.com/shop/",
+      "seoTitle": "Shop - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/about/#books",
+      "sections": 2,
+      "paragraphs": 0,
+      "images": 4,
+      "videos": 0,
+      "ctas": 4,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "No meta description and no og:image",
+        "No page copy at all: an H1 reading 'Shop' and nothing else",
+        "Four product cards render into a columns-3 grid, producing a 3 + 1 orphan row",
+        "Product H2s inside the loop with no H2 section label above them",
+        "BOASG-BRAND-LOGO-FINAL-WHITE-transparent.png is a white logo on a transparent background used as a product thumbnail on a white page - effectively invisible",
+        "The Food Fear paperback thumbnail's alt attribute is the entire 400+ character product description",
+        "The Business of Ag Success Group membership is sold here as a $99.00 WooCommerce product, duplicating /boasg/",
+        "Byte-for-byte content duplicate of /damian-mason-online-shop/ - duplicate-content SEO defect",
+        "Prices on the old site ($99.00, $19.95 x3) must not appear on the new site",
+        "Secondary bar exposes a live cart counter and a raw Gmail address as the business contact"
+      ]
+    },
+    {
+      "slug": "damian-mason-online-shop",
+      "url": "https://damianmason.com/damian-mason-online-shop/",
+      "seoTitle": "Damian Mason - Online Shop - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/about/#books",
+      "sections": 2,
+      "paragraphs": 0,
+      "images": 4,
+      "videos": 0,
+      "ctas": 4,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Duplicate page: the same content as /shop/ served at a second URL with a different title and canonical",
+        "H1 ('Shop') does not match the title or og:title ('Damian Mason - Online Shop')",
+        "No meta description",
+        "No page copy at all: an H1 and a product grid, zero paragraphs",
+        "Four products in a columns-3 grid, producing a 3 + 1 orphan row",
+        "White-on-transparent BOASG logo used as a product thumbnail on a white background - effectively invisible",
+        "Food Fear paperback thumbnail alt is the full product description",
+        "The BOASG membership is merchandised here as a product, duplicating /boasg/",
+        "The page's og:image is the Food Fear book mockup, so shares of the shop index look like a Food Fear book share",
+        "Prices on the old site ($99.00, $19.95 x3) must not appear on the new site"
+      ]
+    },
+    {
+      "slug": "cart",
+      "url": "https://damianmason.com/cart/",
+      "seoTitle": "Cart - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/about/#books",
+      "sections": 1,
+      "paragraphs": 1,
+      "images": 0,
+      "videos": 0,
+      "ctas": 1,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "No meta description (page is noindex, follow, so low impact)",
+        "No unique marketing content of any kind - the entire body is the stock WooCommerce empty-cart state",
+        "The mirror was captured with an empty cart, so the populated cart table, coupon form and totals were never rendered",
+        "Live WooCommerce/Stripe/WooPayments configuration (live publishable keys, WooPay session blobs, Klarna config) is inlined in the page HTML"
+      ]
+    },
+    {
+      "slug": "checkout",
+      "url": "https://damianmason.com/checkout/",
+      "seoTitle": "Cart - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/about/#books",
+      "sections": 1,
+      "paragraphs": 1,
+      "images": 0,
+      "videos": 0,
+      "ctas": 1,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "No meta description (page is noindex, follow)",
+        "Duplicate/conflicting identity: /checkout/ returns the Cart page - canonical, title, og:title and JSON-LD all say 'Cart' while the requested URL is /checkout/",
+        "The real checkout form (billing fields, payment methods) was never rendered and therefore never captured",
+        "Live Stripe publishable keys, account id, WooPay session blobs, Sift beacon key and Klarna config inlined in the page HTML"
+      ]
+    },
+    {
+      "slug": "my-account",
+      "url": "https://damianmason.com/my-account/",
+      "seoTitle": "My account - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/about/#books",
+      "sections": 1,
+      "paragraphs": 0,
+      "images": 0,
+      "videos": 0,
+      "ctas": 3,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "No meta description (page is noindex, follow)",
+        "No unique content - every word is WooCommerce/WordPress boilerplate",
+        "Empty heading in sidebar: <h2 class='wp-block-heading'></h2>",
+        "Empty form action on the login form (self-posting) - the route cannot be statically mirrored",
+        "Live WooCommerce/Stripe/WooPayments configuration inlined in the page HTML"
+      ]
+    },
+    {
+      "slug": "product__business-of-ag-success-group",
+      "url": "https://damianmason.com/product/business-of-ag-success-group/",
+      "seoTitle": "Business of Ag Success Group - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/boasg/",
+      "sections": 5,
+      "paragraphs": 2,
+      "images": 1,
+      "videos": 0,
+      "ctas": 6,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Price $99.00 on the old site must not appear on the new site",
+        "WRONG COPY: the short description above Add to cart is the Do Business Better BOOK description pasted onto a membership product",
+        "That wrong copy is TRUNCATED MID-WORD, ending 'then shows you how to achieve i', and the broken string is baked into the Product JSON-LD description and the og:description",
+        "Duplicate H1: 'Business of Ag Success Group' and 'THE BUSINESS OF AGRICULTURE SUCCESS GROUP'",
+        "Naming inconsistency for the same offering across one page (three different names)",
+        "Product is filed under 'Membership' AND 'Uncategorized', and 'Uncategorized' is what visitors see in the breadcrumb",
+        "Leftover rich-text-editor markup (yui_3_17_2_1_* ids) and nbsp characters in the source",
+        "The product image is a white logo on a transparent background displayed on a white page - effectively invisible",
+        "An <h2> carries a 200-character marketing question - body copy styled as a heading",
+        "The copy builds to a payoff line and then offers no join CTA; the only action is Add to cart",
+        "No meta description",
+        "The billing period is never stated in the pricing area - 'Monthly' appears only inside the Description tab body copy",
+        "A membership is sold through the same cart as physical books and carries a shipping-taxable class",
+        "The membership is offered with a quantity spinner with no max",
+        "Two conflicting BreadcrumbList JSON-LD blocks",
+        "Single-tab tab strip with nothing to switch to",
+        "Product JSON-LD hardcodes priceValidUntil / validThrough of 2027-12-31 and availability InStock",
+        "This page duplicates and competes with the dedicated /boasg/ page",
+        "WooCommerce/Stripe payment scaffolding with a live publishable key inlined into the page"
+      ]
+    },
+    {
+      "slug": "product__do-business-better-traits-habits-and-actions-to-help-you-succeed-limited-supply",
+      "url": "https://damianmason.com/product/do-business-better-traits-habits-and-actions-to-help-you-succeed-limited-supply/",
+      "seoTitle": "Do Business Better: Traits, Habits, and Actions to Help You Succeed (Limited Supply) - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/about/#books",
+      "sections": 5,
+      "paragraphs": 2,
+      "images": 4,
+      "videos": 0,
+      "ctas": 8,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Price $19.95 on the old site must not appear on the new site",
+        "TRUNCATED COPY: the product description ends mid-word with 'then shows you how to achieve i' and no punctuation; the same string is baked into the Product JSON-LD and og:description",
+        "No meta description; the og:description is separately truncated by Yoast and ends with a literal '[...]'",
+        "Inventory status baked into the product title: '(Limited Supply)' is part of the H1, title, og:title and JSON-LD product name",
+        "No short description above the Add to cart button - the H1 is followed straight by a price and a quantity box",
+        "The gallery renders the same image file (dbb-online-store.png) twice",
+        "Two conflicting BreadcrumbList JSON-LD blocks",
+        "Single-tab tab strip with nothing to switch to",
+        "No purchase link to any external retailer anywhere in the mirrored source",
+        "No author bio, endorsement quote, review, ISBN, publisher, page count or publication date",
+        "Product JSON-LD hardcodes priceValidUntil / validThrough of 2027-12-31 and availability InStock, contradicting the '(Limited Supply)' claim",
+        "JSON-LD copy uses straight apostrophes while the rendered HTML uses curly ones - inconsistent encoding of the same sentence",
+        "WooCommerce/Stripe payment scaffolding with a live publishable key inlined into the page"
+      ]
+    },
+    {
+      "slug": "product__food-fear-audiobook-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating",
+      "url": "https://damianmason.com/product/food-fear-audiobook-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating/",
+      "seoTitle": "Food Fear (Audiobook) How Fear is Ruining Your Dinner and Why You Should Celebrate Eating - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/about/#books",
+      "sections": 6,
+      "paragraphs": 2,
+      "images": 4,
+      "videos": 0,
+      "ctas": 9,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Price $19.95 on the old site must not appear on the new site",
+        "No meta description; the og:description is truncated mid-sentence and ends with a literal bracketed ellipsis",
+        "The description copy is the paperback's description pasted verbatim - it says 'Food Fear:' not 'Food Fear (Audiobook)' and never mentions audio, narrator, runtime or format",
+        "No short description above the Add to cart button, unlike the paperback page",
+        "The gallery renders the same image file twice; the second copy's alt is auto-suffixed '- Image 2'",
+        "This is the only product page with a right sidebar, breaking layout consistency across the four product pages",
+        "The sidebar contains an empty <h2 class='wp-block-heading'></h2> inside an empty group block",
+        "The product is classified as both downloadable and shipping-taxable - contradictory for an audiobook",
+        "Two conflicting BreadcrumbList JSON-LD blocks",
+        "Single-tab tab strip with nothing to switch to",
+        "The audiobook is filed under two overlapping categories, 'Audiobook' and 'Books'",
+        "No purchase link to any external retailer (no Audible, Amazon, Apple Books) anywhere in the mirrored source",
+        "No author bio, endorsement, blurb, review, narrator credit, runtime or publication date",
+        "Product JSON-LD hardcodes priceValidUntil / validThrough of 2027-12-31 and availability InStock",
+        "WooCommerce/Stripe payment scaffolding with a live publishable key inlined into the page"
+      ]
+    },
+    {
+      "slug": "product__food-fear-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating",
+      "url": "https://damianmason.com/product/food-fear-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating/",
+      "seoTitle": "Food Fear: How Fear is Ruining Your Dinner and Why You Should Celebrate Eating - Damian Mason Keynote Speaker",
+      "metaDescription": null,
+      "disposition": "redirect",
+      "newRoute": "/about/#books",
+      "sections": 5,
+      "paragraphs": 4,
+      "images": 4,
+      "videos": 0,
+      "ctas": 8,
+      "testimonials": 0,
+      "faqItems": 0,
+      "defects": [
+        "Price $19.95 on the old site must not appear on the new site",
+        "No meta description (only an og:description, which is the product description with the title prefixed)",
+        "Duplicate content on the page: the short description above the cart and the Description tab are byte-identical; the same copy appears a third time as the og:description and a fourth time as the featured image alt",
+        "The featured image alt attribute is the entire 4-sentence product description (400+ characters)",
+        "The gallery renders the same file twice, producing a two-thumbnail gallery of one identical image",
+        "Two conflicting BreadcrumbList JSON-LD blocks",
+        "The first paragraph of the description is not description copy at all - it is the product title restated",
+        "Single-tab tab strip with nothing to switch to",
+        "No purchase link to any external retailer anywhere in the mirrored source",
+        "No author bio, endorsement, blurb, review, ISBN, publisher, page count or publication date",
+        "Product JSON-LD hardcodes priceValidUntil / validThrough of 2027-12-31 and availability InStock",
+        "WooCommerce/Stripe payment scaffolding with a live publishable key inlined into the page"
+      ]
+    }
+  ],
+  "totals": {
+    "pages": 28,
+    "faqItems": 14,
+    "testimonials": 17,
+    "videos": 16,
+    "pressItems": 9,
+    "blogPosts": 2,
+    "clientLogos": 21,
+    "sponsorLogos": 10,
+    "brandLogos": 15,
+    "mediaAssets": 70
+  },
+  "videos": [
+    {
+      "id": "yL33iAIS2K4",
+      "kind": "youtube",
+      "title": "Life Changing!",
+      "onPages": [
+        "home"
+      ]
+    },
+    {
+      "id": "Tk8dPv_8Zo0",
+      "kind": "youtube",
+      "title": "Rocked It In Saskatchewan!",
+      "onPages": [
+        "home"
+      ]
+    },
+    {
+      "id": "xmwijvcK1wY",
+      "kind": "youtube",
+      "title": "MFA Emerging Leaders Conference",
+      "onPages": [
+        "home"
+      ]
+    },
+    {
+      "id": "jQAaQfcamVs",
+      "kind": "youtube",
+      "title": "Do Business Better for Lindsay Corporation",
+      "onPages": [
+        "home"
+      ]
+    },
+    {
+      "id": "iZ85SxLyykA",
+      "kind": "youtube",
+      "title": "Hardwood Lumbermen's Association recommends Damian Mason",
+      "onPages": [
+        "reviews"
+      ]
+    },
+    {
+      "id": "t3iCvSKEyx0",
+      "kind": "youtube",
+      "title": "Farm Credit Emerging Entrepreneurs Conference & Damian Mason",
+      "onPages": [
+        "reviews"
+      ]
+    },
+    {
+      "id": "e79QDYxpJOE",
+      "kind": "youtube",
+      "title": "Nutrien - a successful meeting!",
+      "onPages": [
+        "reviews"
+      ]
+    },
+    {
+      "id": "t6BkS7Eb9pE",
+      "kind": "youtube",
+      "title": "The \"Ations\" of Agriculture & Ag's Future",
+      "onPages": [
+        "reviews"
+      ]
+    },
+    {
+      "id": "M01PxhzRVFg",
+      "kind": "youtube",
+      "title": "Managing For The Future - A Candid Conversation with a 30 Year Old, 4th Gen Farmer",
+      "onPages": [
+        "collaboration-opportunities"
+      ]
+    },
+    {
+      "id": "csEaUJ52p3I",
+      "kind": "youtube",
+      "title": "Survival Strategies For Small Business",
+      "onPages": [
+        "collaboration-opportunities"
+      ]
+    },
+    {
+      "id": "5FUIE6Ks0Ok",
+      "kind": "youtube",
+      "title": "Damian Mason Discussing Climate & Food Shortage Truth on CheddarNews",
+      "onPages": [
+        "blog-news"
+      ]
+    },
+    {
+      "id": "-cmL21M1XF0",
+      "kind": "youtube",
+      "title": "Interview with Eagle Country 95.9",
+      "onPages": [
+        "blog-news"
+      ]
+    },
+    {
+      "id": "Ngfdu0YdBY8",
+      "kind": "youtube",
+      "title": "Damian Mason Discussing Wheat and Inflation of Food Prices on NewsmaxTV",
+      "onPages": [
+        "blog-news"
+      ]
+    },
+    {
+      "file": "dm_-_food_waste-1080p.mp4",
+      "kind": "mp4",
+      "title": "Food Waste",
+      "onPages": [
+        "keynote"
+      ]
+    },
+    {
+      "file": "dm_-_labor-1080p.mp4",
+      "kind": "mp4",
+      "title": "Labor",
+      "onPages": [
+        "keynote"
+      ]
+    },
+    {
+      "file": "dm_-_innovation-1080p.mp4",
+      "kind": "mp4",
+      "title": "Innovation (labelled \"Live Keynote Segment on Ag Innovation\" on /collaboration-opportunities/)",
+      "onPages": [
+        "keynote",
+        "collaboration-opportunities"
+      ]
+    }
+  ],
+  "deadAssets": [
+    {
+      "url": "https://damianmason.wpengine.com/wp-content/uploads/2023/02/Podcaster-34c.png",
+      "status": 404,
+      "usedOn": [
+        "the-business-of-agriculture"
+      ]
+    },
+    {
+      "url": "https://damianmason.wpengine.com/wp-content/uploads/2023/02/life-coach-03.jpg",
+      "status": 404,
+      "usedOn": [
+        "keynote"
+      ]
+    }
+  ],
+  "redirects": {
+    "/shop/": "/about/#books",
+    "/damian-mason-online-shop/": "/about/#books",
+    "/cart/": "/about/#books",
+    "/checkout/": "/about/#books",
+    "/my-account/": "/about/#books",
+    "/product/*": "/about/#books",
+    "/product/business-of-ag-success-group/": "/boasg/",
+    "/podcast-2/": "/podcasts/",
+    "/join-mailing-list/": "/join-the-conversation/",
+    "/hello-world/": "/blog/eggflation-gives-producers-record-profits/",
+    "/how-the-climate-crisis-is-causing-food-shortages-globally/": "/blog/how-the-climate-crisis-is-causing-food-shortages-globally/"
+  },
+  "routeMap": {
+    "/": {
+      "from": [
+        "home"
+      ],
+      "note": "Home. Rebuild without the Divi placeholder FAQ, the empty accordion item, the dead '#' click row and the Shop Now commerce CTA. Client logo wall grows from 6 to the 21 supplied logos."
+    },
+    "/about/": {
+      "from": [
+        "keynote",
+        "product__do-business-better-traits-habits-and-actions-to-help-you-succeed-limited-supply",
+        "product__food-fear-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating",
+        "product__food-fear-audiobook-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating",
+        "shop",
+        "damian-mason-online-shop"
+      ],
+      "note": "NEW route. Bio and credentials lifted from the /keynote/ bio block; the #books anchor carries the three book covers and descriptions as credibility only, with no prices and no cart. Destination of every commerce 301."
+    },
+    "/speaking/": {
+      "from": [
+        "speaking"
+      ],
+      "note": "NEW hub replacing the blank indexed stub. Fronts Keynote, Reviews, Meeting Coordinators and Collaboration Opportunities - the four items the old header nested under an href-less 'Speaking' parent."
+    },
+    "/keynote/": {
+      "from": [
+        "keynote"
+      ],
+      "note": "Keeps the program description, the four-pillar credential bar, the three MP4 demo reels and the FAQ. The 404 life-coach-03.jpg background is dropped."
+    },
+    "/reviews/": {
+      "from": [
+        "reviews"
+      ],
+      "note": "Ten written testimonials plus four video testimonials. Nav label stays 'Testimonials', slug stays /reviews/."
+    },
+    "/meeting-coordinators/": {
+      "from": [
+        "meeting-coordinators"
+      ],
+      "note": "Both Lorem Ipsum FAQ placeholders, the dead Media Kit blurb and the two empty-href CTAs are removed."
+    },
+    "/collaboration-opportunities/": {
+      "from": [
+        "collaboration-opportunities"
+      ],
+      "note": "Keeps the three collaboration tracks, the credential blurbs, the video row and the contact form (form needs a new backend)."
+    },
+    "/boasg/": {
+      "from": [
+        "boasg",
+        "product__business-of-ag-success-group"
+      ],
+      "note": "The $99/month Join Today CTA becomes a mailto: to damianmasonoffice@gmail.com. The accurate membership copy from the WooCommerce product page's Description tab is merged in."
+    },
+    "/podcasts/": {
+      "from": [
+        "podcast-2"
+      ],
+      "note": "NEW hub. The old /podcast-2/ stub carried no content; this hub fronts the three podcast pages that the old header nested under an href-less 'Podcasts' parent."
+    },
+    "/the-business-of-agriculture/": {
+      "from": [
+        "the-business-of-agriculture"
+      ],
+      "note": "Spotify consolidated to show 0UDXsogtCT4uNF4CpDpUae. The ten supplied sponsor logos replace the plain text sponsor links. Content-protection notice carried verbatim."
+    },
+    "/do-business-better-podcast/": {
+      "from": [
+        "do-business-better-podcast"
+      ],
+      "note": "SoundCloud corrected to soundcloud.com/dobusinessbetter; the two href='#' social placeholders are fixed or dropped; the duplicated Latest Episode block collapses to one."
+    },
+    "/xtreme-ag/": {
+      "from": [
+        "xtreme-ag"
+      ],
+      "note": "XtremeAg and The Granary brand marks placed here. The empty-href mailing-list CTA resolves to /join-the-conversation/. Screenshots replaced with real embeds or links."
+    },
+    "/blog-news/": {
+      "from": [
+        "blog-news"
+      ],
+      "note": "Label 'Media' in the nav, slug stays /blog-news/. Nine press items carried over."
+    },
+    "/acres-tv/": {
+      "from": [
+        "acres-tv"
+      ],
+      "note": "Needs real body copy - the old page has zero paragraphs. Shares the Leading Voice and Join the Conversation bands with /xtreme-ag/ as one component."
+    },
+    "/blog/": {
+      "from": [
+        "blog"
+      ],
+      "note": "Post index. Gains an H1, drops the empty pagination and sidebar widgets, and drops the 'damianmasonstg' byline and 'Uncategorized' category."
+    },
+    "/blog/[slug]": {
+      "from": [
+        "hello-world",
+        "how-the-climate-crisis-is-causing-food-shortages-globally"
+      ],
+      "note": "Two posts, both currently 5-7 words of body copy. Comments and the stock WordPress seed comment are dropped. /hello-world/ is re-slugged to /blog/eggflation-gives-producers-record-profits/."
+    },
+    "/contact-us/": {
+      "from": [
+        "contact-us"
+      ],
+      "note": "Gains a real H1, a working mailto:, a tel: link and (new) a contact form."
+    },
+    "/join-the-conversation/": {
+      "from": [
+        "join-the-conversation",
+        "join-mailing-list"
+      ],
+      "note": "Canonical newsletter route. The headline and pitch copy that existed only on /join-mailing-list/ are merged in before that URL is retired."
+    }
+  },
+  "gate": {
+    "expected": {
+      "pages": 28,
+      "livePageUrls": 21,
+      "posts": 3,
+      "productPages": 4,
+      "faqItems": 15,
+      "testimonials": 15,
+      "videos": 11,
+      "youtubeVideos": 8,
+      "mp4Videos": 3,
+      "pressItems": 9,
+      "blogPosts": 2,
+      "clientLogos": 21,
+      "sponsorLogos": 10
+    },
+    "actual": {
+      "pages": 28,
+      "livePageUrls": 22,
+      "posts": 2,
+      "productPages": 4,
+      "faqItems": 14,
+      "faqItemsRawToggles": 45,
+      "faqItemsCarriedOver": 13,
+      "testimonials": 17,
+      "testimonialsMatchingPlan": 15,
+      "videos": 16,
+      "youtubeVideos": 13,
+      "mp4Videos": 3,
+      "pressItems": 9,
+      "blogPosts": 2,
+      "clientLogos": 21,
+      "sponsorLogos": 10,
+      "brandLogos": 15,
+      "mediaAssets": 70,
+      "harvestFiles": 28,
+      "pageExtracts": 28,
+      "rawHtmlMirrors": 28
+    },
+    "pass": true,
+    "discrepancies": [
+      "VIDEOS: plan expected 11 (8 YouTube + 3 MP4). ACTUAL is 16 (13 YouTube + 3 MP4). All 13 YouTube IDs were verified distinct by grepping every embed URL in the 28 raw HTML mirrors: home has 4 (yL33iAIS2K4, Tk8dPv_8Zo0, xmwijvcK1wY, jQAaQfcamVs), reviews has 4 (iZ85SxLyykA, t3iCvSKEyx0, e79QDYxpJOE, t6BkS7Eb9pE), collaboration-opportunities has 2 (M01PxhzRVFg, csEaUJ52p3I), blog-news has 3 (5FUIE6Ks0Ok, -cmL21M1XF0, Ngfdu0YdBY8). NONE is site chrome and NONE is repeated on a second page - the header, footer and utility bar contain no video at all. The plan's 8 undercounts by 5. RESOLVED: build for 13 YouTube embeds plus the 3 MP4 demo reels. dm_-_innovation-1080p.mp4 is the only asset reused across pages (keynote and collaboration-opportunities), which is probably where the '8' came from if MP4 reuse was double-counted.",
+      "FAQ ITEMS: plan expected 15. ACTUAL is 14 distinct real questions. Raw on-page toggles total 45 across three pages (home 16, keynote 13, meeting-coordinators 16), of which 5 are junk: 1 completely empty toggle on home, 1 unedited Divi 'Your Title Goes Here' placeholder on home, 2 byte-identical Lorem Ipsum placeholders on meeting-coordinators, and 1 real question on keynote with an empty answer. The union of real questions is 14. Two of the 14 appear with divergent wording between pages ('HOW DO YOU MANAGE BOOKING AND TRAVEL AND TRAVEL EXPENSES?' on home vs 'HOW DO YOU MANAGE BOOKING TRAVEL & TRAVEL EXPENSES?' on keynote vs 'HOW DO YOU MANAGE BOOKING TRAVEL AND TRAVEL EXPENSES?' on meeting-coordinators; and 'WHAT ARE YOUR TECHNOLOGY REQUIREMENTS?' on home/meeting-coordinators vs 'WHAT ARE THE TECHNOLOGY REQUIREMENTS?' on keynote, where the keynote copy has no answer at all). The plan's 15 most likely counted those two wording variants as separate items. RESOLVED: 14 distinct, minus the 'DO YOU HAVE PRODUCTS FOR SALE?' item the client asked to remove, leaves 13 FAQ entries to carry over.",
+      "TESTIMONIALS: plan expected 15 (10 on /reviews/ plus 5 across other pages). That is EXACTLY right for page testimonials: /reviews/ has 10 written, /keynote/ has 3 (Wendy J. Ruud, The Titan Pro Team, Tim Luthy), /meeting-coordinators/ has 1 (National Ag Aviation Association) and /the-business-of-agriculture/ has 1 (Geoff Bastow). ACTUAL total distinct quotes is 17, because the plan did not count two more: the unattributed book endorsement on the home page ('I absolutely love this book!...') and the site-wide footer quote (B. Kettler, IHLA) which appears in the chrome on every page including /cart/ and /checkout/. Also note /collaboration-opportunities/ carries a byte-identical copy of the three /keynote/ testimonials (already counted once, not twice), and the home page's 'Man, that guy makes you think! I loved it!' is an abbreviated pull-quote of the Amy B., AgroLiquid testimonial that appears in full on /reviews/ (counted once). RESOLVED: 15 speaking testimonials + 1 book endorsement + 1 footer quote = 17.",
+      "PAGE / POST SPLIT: plan expected '21 live page URLs plus 3 posts and 4 product pages = 28'. The total of 28 is correct and every one is harvested, but the split is wrong. ACTUAL is 22 pages + 2 posts + 4 products = 28. There are only two WordPress posts (/hello-world/ and /how-the-climate-crisis-is-causing-food-shortages-globally/); /blog/ is the post archive, not a post. RESOLVED: no content is missing, only the plan's arithmetic.",
+      "THE GRANARY: the plan places The Granary on /xtreme-ag/. It is NOT there. A case-insensitive search of all 28 raw HTML mirrors finds 'granary' only in the-business-of-agriculture.html, as a cross-promo link to xtremeag.farm/the-granary. RESOLVED: the supplied 'The Granary 3x png@3x.PNG' brand mark still belongs on /xtreme-ag/ per the client requirement checklist, but there is no source copy to carry over - it must be written.",
+      "SPOTIFY: /the-business-of-agriculture/ links two different Spotify shows from one page (0UDXsogtCT4uNF4CpDpUae in the 'Listen Now:' row, 5rSDDoG9qMqkSo3gp6qFDq in the 'Start Listening Today!' row). RESOLVED per plan: consolidate to 0UDXsogtCT4uNF4CpDpUae.",
+      "BOASG PRODUCT REDIRECT: the plan's blanket rule is /product/* -> /about/#books. The BOASG product page is a membership, not a book, so it is redirected to /boasg/ instead. The specific rule wins over the wildcard. RESOLVED and recorded in the redirect map.",
+      "HELLO-WORLD SLUG: the plan says '/hello-world/ -> the real post slug' without naming it. The post's real title is \"'Eggflation' Gives Producers Record Profits While Internet Mocks Outrageous Prices\". RESOLVED: slug chosen is /blog/eggflation-gives-producers-record-profits/. The second post moves under /blog/ too, so /how-the-climate-crisis-is-causing-food-shortages-globally/ needs its own 301 that the plan did not list - added.",
+      "CLIENT LOGO OVERLAP: the 21 supplied client logos include Merck and FCS of America, which are already on the live wall, but do NOT include John Deere, BASF, Helena or IPPA, which are. Only Merck and Farm Credit Services survive the swap; the other four current logos have no supplied replacement. This is already open item #2 in the plan - flagged here, not silently resolved.",
+      "MEDIA ASSET MIRROR GAPS (not counted as dead assets): the Media Kit ZIP (AG-MEDIA-KIT-3.zip on the staging host) was never mirrored and is being removed per client instruction anyway. Several WordPress -1080x675 / -1024x577 / -300x300 derivatives referenced by srcset and og:image were not mirrored either - only the full-size originals were. Neither blocks the rebuild since the new site regenerates its own derivatives.",
+      "MEETING-COORDINATORS ACCORDION SPLIT: the harvest file's prose says the two accordions hold 9 and 7 items, but its own verbatim list enumerates 8 and 8 (16 total, which both agree on). RESOLVED: the verbatim list is authoritative; the total of 16 is unaffected."
+    ]
+  }
+}

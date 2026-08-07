@@ -1,0 +1,425 @@
+/* =============================================================================
+   DAMIAN MASON — DIRECTION 3: "LEDGER AND LAND"
+   Design tokens. Production-ready. Every value in the system resolves here.
+   -----------------------------------------------------------------------------
+   ORGANIZING IDEA
+   This man reads the numbers and works the ground. The page is set like a
+   well-kept financial table printed on good paper: warm bone stock, deep navy
+   ground, hairline rules doing structural work, harvest gold and deep field
+   green carrying weight, and exactly one hot orange reserved for the moments
+   that ask for a decision. Texture comes from paper tone and rule weight only.
+   No noise overlays, no distressed anything.
+
+   -----------------------------------------------------------------------------
+   GOOGLE FONTS — exact family strings and why
+
+   1. "Source Serif 4"   (display / editorial)
+      Humanist serif in the Fournier-and-Kis line, drawn by Frank Griesshammer.
+      It has genuine warmth in the ball terminals and a broad, open lower case,
+      but its axis is upright and businesslike, so it reads as an annual report
+      set by someone with taste rather than as a rustic revival. Variable
+      optical size (8..60) lets the 80px hero masthead and the 15px pull-quote
+      attribution both sit correctly without a second family. Its lining
+      tabular figures are the whole reason it is here: the stat ledger is set
+      in this face and it holds a column.
+
+   2. "Archivo"          (body / UI grotesk)
+      A neutral American grotesk with newsprint ancestry (Grilli Type-adjacent
+      grotesque skeleton, drawn for high performance at small sizes by Omnibus).
+      It is flatter and less opinionated than the serif, which is the point:
+      the serif carries voice, the grotesk carries information. Tall x-height
+      keeps 15px legal and FAQ text readable for a 55-year-old meeting planner
+      on a laptop in a hotel lobby.
+
+   3. "IBM Plex Mono"    (ledger / label / numeric key)
+      Humanist monospace, not a coding-terminal monospace. Used only for
+      eyebrows, row indices, table keys, captions and footnotes. It is the
+      typographic sound of a ruled ledger column and it is what makes the
+      numbers on this site feel counted rather than claimed.
+
+   Link:
+   https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap
+
+   -----------------------------------------------------------------------------
+   THE FIXED CONSTRAINT
+   The wordmark is navy #094D78 with orange #FF5325. Both are declared below as
+   --color-brand-navy and --color-brand-orange and neither is altered. The
+   palette is built outward from them: the navy family is a straight tonal
+   extension of the wordmark navy, and the orange appears in exactly one role
+   on the page (the primary action), filled orange with navy type, so the
+   button is literally the wordmark's two colors doing a job.
+
+   NOTE ON MEDIA QUERIES
+   CSS custom properties cannot be evaluated inside @media conditions. The
+   breakpoints are declared here as documentation tokens and repeated as
+   literals in the query conditions. That is the only place a raw value is
+   permitted outside this block.
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------------
+     1. COLOR — RAW RAMPS
+     Named by hue and step. Nothing in a component should reference these
+     directly; use the semantic tokens in section 2.
+     --------------------------------------------------------------------- */
+
+  /* Brand, fixed. Sampled from the wordmark file. Do not alter. */
+  --color-brand-navy: #094D78;
+  --color-brand-orange: #FF5325;
+  --color-brand-chevron: #F94D1C;
+
+  /* Navy — tonal extension of the wordmark navy, ground and deep sections */
+  --color-navy-950: #03192A;
+  --color-navy-900: #04263C;
+  --color-navy-800: #073A5A;
+  --color-navy-700: #094D78;
+  --color-navy-600: #0E679B;
+  --color-navy-500: #2C86BB;
+  --color-navy-300: #8FB4CC;
+  --color-navy-200: #BCD4E2;
+  --color-navy-100: #DCE8F0;
+
+  /* Bone — warm paper stock, never pure white */
+  --color-bone-50:  #FBF7F0;
+  --color-bone-100: #F5EFE4;
+  --color-bone-200: #EDE5D6;
+  --color-bone-300: #DFD4BF;
+  --color-bone-400: #C7B99E;
+
+  /* Harvest gold — structural secondary, rules, duotone highlight, warnings */
+  --color-gold-700: #7E5A14;
+  --color-gold-600: #9B6F1E;
+  --color-gold-500: #C08A2E;
+  --color-gold-400: #D6A448;
+  --color-gold-300: #E2B963;
+  --color-gold-100: #F1DFB8;
+
+  /* Deep field green — the second structural secondary, property accent */
+  --color-green-900: #0C2820;
+  --color-green-800: #12362B;
+  --color-green-600: #1F5343;
+  --color-green-400: #3E7B66;
+  --color-green-100: #D6E4DC;
+
+  /* Orange — the single hottest accent. -ink is the AA-safe text variant. */
+  --color-orange-600: #C4380F;
+  --color-orange-500: #FF5325;
+  --color-orange-400: #FF7A54;
+  --color-orange-100: #FFE2D8;
+
+  /* Red — destructive states only, deliberately distinct from brand orange */
+  --color-red-600: #A8321B;
+  --color-red-100: #F7DED8;
+
+  /* ---------------------------------------------------------------------
+     2. COLOR — SEMANTIC (light / bone scope, the default)
+     --------------------------------------------------------------------- */
+
+  /* Surfaces: ground layers, lightest to deepest */
+  --surface-page: var(--color-bone-100);
+  --surface-raised: var(--color-bone-50);
+  --surface-sunken: var(--color-bone-200);
+  --surface-inset: var(--color-bone-300);
+  --surface-deep: var(--color-navy-900);
+  --surface-deep-raised: var(--color-navy-800);
+  --surface-deepest: var(--color-navy-950);
+  --surface-accent: var(--color-orange-500);
+  --surface-gold: var(--color-gold-100);
+  --surface-green: var(--color-green-800);
+
+  /* Ink layers */
+  --ink-primary: #0C1F2C;
+  --ink-secondary: #33505F;
+  --ink-muted: #55697A;
+  --ink-faint: #8A9AA6;
+  --ink-inverse: var(--color-bone-100);
+  --ink-brand: var(--color-brand-navy);
+  --ink-accent: var(--color-orange-600);
+  --ink-hot: var(--color-orange-500); /* display sizes only, AA-large */
+  --ink-gold: var(--color-gold-700);
+  --ink-green: var(--color-green-600);
+  --ink-on-accent: var(--color-navy-950);
+
+  /* Borders and hairlines */
+  --border-color: var(--color-bone-300);
+  --border-color-strong: var(--color-bone-400);
+  --border-color-ink: var(--color-navy-900);
+  --border-color-accent: var(--color-orange-500);
+  --border-color-gold: var(--color-gold-500);
+
+  /* Focus */
+  --focus-ring-color: var(--color-orange-600);
+  --focus-ring-width: 0.1875rem;
+  --focus-ring-offset: 0.1875rem;
+
+  /* Selection */
+  --selection-bg: var(--color-gold-100);
+  --selection-ink: var(--ink-primary);
+
+  /* State colors — explicit, with paired surfaces */
+  --state-success-ink: var(--color-green-600);
+  --state-success-surface: var(--color-green-100);
+  --state-warning-ink: var(--color-gold-700);
+  --state-warning-surface: var(--color-gold-100);
+  --state-danger-ink: var(--color-red-600);
+  --state-danger-surface: var(--color-red-100);
+  --state-info-ink: var(--color-navy-700);
+  --state-info-surface: var(--color-navy-100);
+
+  /* Interaction states */
+  --state-hover-ink: var(--color-orange-600);
+  --state-hover-surface: var(--color-bone-200);
+  --state-active-surface: var(--color-bone-300);
+  --state-visited-ink: var(--color-navy-600);
+  --state-disabled-ink: var(--color-bone-400);
+  --state-disabled-surface: var(--color-bone-200);
+  --state-selected-surface: var(--color-gold-100);
+
+  /* Component-level color roles */
+  --btn-primary-surface: var(--color-orange-500);
+  --btn-primary-ink: var(--color-navy-950);
+  --btn-primary-surface-hover: var(--color-brand-chevron);
+  --btn-secondary-ink: var(--color-navy-900);
+  --btn-secondary-border: var(--color-navy-900);
+  --btn-secondary-surface-hover: var(--color-navy-900);
+  --btn-secondary-ink-hover: var(--color-bone-50);
+
+  --rule-hairline: var(--color-bone-300);
+  --rule-ink: var(--color-navy-900);
+  --rule-accent: var(--color-orange-500);
+  --rule-gold: var(--color-gold-500);
+
+  /* Duotone stack — how weak photography is carried */
+  --duotone-shadow: var(--color-navy-900);
+  --duotone-highlight-cool: var(--color-bone-100);
+  --duotone-highlight-warm: var(--color-gold-300);
+  --duotone-filter: grayscale(1) contrast(1.08) brightness(1.02);
+  --duotone-blend-image: screen;
+  --duotone-blend-tint: multiply;
+  --logo-filter: grayscale(1) contrast(1.1);
+  --logo-blend: multiply;
+  --logo-opacity: 0.72;
+  --logo-opacity-hover: 1;
+
+  /* ---------------------------------------------------------------------
+     3. TYPOGRAPHY
+     --------------------------------------------------------------------- */
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
+
+  /* Modular scale, fluid. 11 steps + 2 dedicated display steps. */
+  --text-2xs:  clamp(0.6875rem, 0.665rem + 0.11vw, 0.75rem);
+  --text-xs:   clamp(0.75rem,   0.723rem + 0.14vw, 0.8125rem);
+  --text-sm:   clamp(0.8125rem, 0.777rem + 0.18vw, 0.9375rem);
+  --text-base: clamp(0.9375rem, 0.902rem + 0.18vw, 1.0625rem);
+  --text-md:   clamp(1.0625rem, 1.00rem + 0.31vw, 1.25rem);
+  --text-lg:   clamp(1.1875rem, 1.045rem + 0.71vw, 1.5rem);
+  --text-xl:   clamp(1.375rem,  1.152rem + 1.11vw, 2rem);
+  --text-2xl:  clamp(1.75rem,   1.393rem + 1.79vw, 2.75rem);
+  --text-3xl:  clamp(2.125rem,  1.634rem + 2.46vw, 3.5rem);
+  --text-4xl:  clamp(2.5rem,    1.786rem + 3.57vw, 4.5rem);
+  --text-5xl:  clamp(3rem,      1.929rem + 5.36vw, 6rem);
+
+  /* Two purpose-built display steps, sized to the actual strings they set */
+  --text-masthead: clamp(2.5rem, 1.607rem + 4.46vw, 5rem);
+  --text-figure:   clamp(2.25rem, 1.679rem + 2.86vw, 4rem);
+
+  /* Line heights */
+  --leading-flat: 0.9;
+  --leading-tight: 1.04;
+  --leading-snug: 1.18;
+  --leading-normal: 1.35;
+  --leading-body: 1.6;
+  --leading-relaxed: 1.75;
+
+  /* Letter spacing */
+  --tracking-tightest: -0.032em;
+  --tracking-tight: -0.016em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.18em;
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Numeric behaviour — the ledger depends on this */
+  --numeric-tabular: tabular-nums lining-nums;
+  --numeric-proportional: proportional-nums lining-nums;
+
+  /* ---------------------------------------------------------------------
+     4. SPACE
+     --------------------------------------------------------------------- */
+  --space-4xs: 0.125rem;
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2rem;
+  --space-xl:  3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+  --space-5xl: 12rem;
+
+  /* Named layout tokens */
+  --gutter: clamp(1.25rem, 0.75rem + 2.5vw, 3.5rem);
+  --section-pad-block: clamp(3.5rem, 2rem + 5vw, 7.5rem);
+  --section-pad-block-tight: clamp(2.25rem, 1.5rem + 2.5vw, 4rem);
+  --container-max: 88rem;
+  --container-text: 52rem;
+  --measure: 64ch;
+  --measure-narrow: 46ch;
+  --measure-quote: 26ch;
+  --grid-gap: clamp(1.5rem, 0.75rem + 2.5vw, 4rem);
+  --grid-gap-tight: clamp(1rem, 0.75rem + 0.8vw, 1.5rem);
+  --stack-gap: var(--space-md);
+  --header-height: 5.25rem;
+  --header-height-compact: 4.25rem;
+
+  /* Component sizing */
+  --size-wordmark-h: 2.625rem;
+  --size-wordmark-h-compact: 2.125rem;
+  --size-wordmark-h-footer: 3rem;
+  --size-logo-h: 3.5rem;
+  --size-icon: 1.125rem;
+  --size-icon-lg: 2.75rem;
+  --size-rule-short: 3.5rem;
+  --size-rule-medium: 7rem;
+  --size-dropdown-w: 22rem;
+  --size-tap-target: 2.75rem;
+  --size-portrait-max: 30rem;
+  --ratio-portrait: 3 / 4;
+  --ratio-band: 21 / 8;
+  --ratio-band-mobile: 4 / 3;
+
+  /* Documentation-only breakpoints. Repeated as literals in @media. */
+  --bp-lg: 75rem;   /* 1200px */
+  --bp-md: 56.25rem; /* 900px */
+  --bp-sm: 37.5rem;  /* 600px */
+
+  /* ---------------------------------------------------------------------
+     5. RADII / BORDER WIDTHS / SHADOWS
+     Editorial restraint: the system is square. Radii exist for form controls
+     and nothing else.
+     --------------------------------------------------------------------- */
+  --radius-none: 0;
+  --radius-xs: 0.0625rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-pill: 62.5rem;
+
+  --border-hairline: 1px;
+  --border-rule: 2px;
+  --border-heavy: 3px;
+  --border-slab: 6px;
+
+  /* Exactly three. Warm-tinted, low, never glowy. */
+  --shadow-1: 0 1px 0 0 rgba(12, 31, 44, 0.06);
+  --shadow-2: 0 12px 32px -12px rgba(4, 38, 60, 0.28), 0 1px 0 0 rgba(4, 38, 60, 0.12);
+  --shadow-3: 0 24px 64px -20px rgba(4, 38, 60, 0.38);
+
+  /* ---------------------------------------------------------------------
+     6. MOTION
+     --------------------------------------------------------------------- */
+  --duration-instant: 90ms;
+  --duration-fast: 140ms;
+  --duration-base: 220ms;
+  --duration-slow: 420ms;
+  --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --ease-entrance: cubic-bezier(0.16, 0.84, 0.44, 1);
+  --ease-exit: cubic-bezier(0.6, 0, 0.9, 0.4);
+  --ease-linear: linear;
+  --transition-color: color var(--duration-fast) var(--ease-standard),
+                      background-color var(--duration-fast) var(--ease-standard),
+                      border-color var(--duration-fast) var(--ease-standard);
+  --transition-transform: transform var(--duration-base) var(--ease-standard);
+  --transition-opacity: opacity var(--duration-base) var(--ease-standard);
+
+  /* ---------------------------------------------------------------------
+     7. ELEVATION ORDER
+     --------------------------------------------------------------------- */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-dropdown: 200;
+  --z-overlay: 300;
+}
+
+/* =============================================================================
+   DEEP SURFACE SCOPE
+   Any element carrying data-surface="deep" re-maps the semantic ink, border and
+   surface tokens so nothing downstream hard-codes a light-on-dark value.
+   Nest freely; the scope is self-contained.
+   ========================================================================== */
+
+[data-surface="deep"] {
+  --surface-page: var(--color-navy-900);
+  --surface-raised: var(--color-navy-800);
+  --surface-sunken: var(--color-navy-950);
+  --surface-inset: var(--color-navy-950);
+
+  --ink-primary: var(--color-bone-50);
+  --ink-secondary: var(--color-navy-200);
+  --ink-muted: var(--color-navy-300);
+  --ink-faint: var(--color-navy-500);
+  --ink-inverse: var(--color-navy-950);
+  --ink-brand: var(--color-bone-50);
+  --ink-accent: var(--color-orange-400);
+  --ink-hot: var(--color-orange-500);
+  --ink-gold: var(--color-gold-300);
+  --ink-green: var(--color-green-400);
+
+  --border-color: var(--color-navy-800);
+  --border-color-strong: var(--color-navy-600);
+  --border-color-ink: var(--color-bone-300);
+
+  --rule-hairline: var(--color-navy-800);
+  --rule-ink: var(--color-navy-600);
+
+  --focus-ring-color: var(--color-gold-300);
+  --selection-bg: var(--color-gold-500);
+  --selection-ink: var(--color-navy-950);
+
+  --btn-secondary-ink: var(--color-bone-50);
+  --btn-secondary-border: var(--color-bone-300);
+  --btn-secondary-surface-hover: var(--color-bone-50);
+  --btn-secondary-ink-hover: var(--color-navy-900);
+
+  --state-hover-surface: var(--color-navy-800);
+  --state-active-surface: var(--color-navy-950);
+  --state-disabled-ink: var(--color-navy-800);
+
+  --logo-opacity: 0.6;
+  --logo-blend: screen;
+  --logo-filter: grayscale(1) contrast(1.1) invert(1);
+
+  color: var(--ink-primary);
+  background-color: var(--surface-page);
+}
+
+/* Deepest variant for footers sitting under a deep CTA band. */
+[data-surface="deepest"] {
+  --surface-page: var(--color-navy-950);
+  --surface-raised: var(--color-navy-900);
+  --border-color: var(--color-navy-800);
+  --rule-hairline: var(--color-navy-800);
+}
+
+/* =============================================================================
+   MOTION PREFERENCE
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 1ms;
+    --duration-fast: 1ms;
+    --duration-base: 1ms;
+    --duration-slow: 1ms;
+  }
+}
