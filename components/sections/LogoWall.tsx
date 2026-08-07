@@ -193,7 +193,9 @@ export function LogoWall({
           </Prose>
         ) : null}
 
-        <ul className="dm-logowall__grid" role="list">
+        {/* One observed container, not 21 observed cells. The stagger caps at
+            five beats so the wall lands as a sweep rather than a queue. */}
+        <ul className="dm-logowall__grid" role="list" data-reveal="stagger">
           {marks.map((item, i) => (
             <LogoCell
               key={item.logo}

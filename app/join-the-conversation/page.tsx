@@ -117,7 +117,7 @@ export default function JoinTheConversationPage() {
           <div className={`dm-grid12 ${styles.rowTop}`}>
             <div className="col-span-6 md:col-span-7">
               <Eyebrow>What you get</Eyebrow>
-              <Heading level={2} folio="No. 01" id="signup-title">
+              <Heading level={2} folio="No. 01" id="signup-title" className={styles.sectionHeading}>
                 Three things land in your inbox
               </Heading>
               <Prose>
@@ -145,8 +145,12 @@ export default function JoinTheConversationPage() {
             </div>
 
             <Card variant="bright" className="col-span-6 md:col-span-5">
+              {/* Not "join": the Hero above is id="join" and names its h1
+                  "join-title", so that prefix put the same id on the h1 and on
+                  this form's h3. The form's aria-labelledby then resolved to
+                  the page title instead of its own heading. */}
               <NewsletterForm
-                idPrefix="join"
+                idPrefix="join-signup"
                 headingLevel={3}
                 title="Add yourself to the list."
                 blurb="Email address is the only field the list actually needs. The names just mean Damian knows who he's talking to."
@@ -160,7 +164,7 @@ export default function JoinTheConversationPage() {
       <Section aria-labelledby="not-title">
         <Container width="narrow">
           <Eyebrow>What you won&rsquo;t get</Eyebrow>
-          <Heading level={2} folio="No. 02" id="not-title">
+          <Heading level={2} folio="No. 02" id="not-title" className={styles.sectionHeading}>
             No weather forecast, no commodity prices
           </Heading>
           <Prose>

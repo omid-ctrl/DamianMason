@@ -54,6 +54,7 @@ export function VideoGrid({
     <ul
       className={cx('dm-video-grid', COLUMN_CLASS[columns], className)}
       aria-label={label}
+      data-reveal="stagger"
     >
       {items.map((video) => (
         <li key={video.id} className="dm-video-grid__item">

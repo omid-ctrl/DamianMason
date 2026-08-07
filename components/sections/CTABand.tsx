@@ -80,7 +80,9 @@ export function CTABand({
       className={cx('dm-ctaband', className)}
     >
       <Container>
-        <div className="dm-grid12 dm-ctaband__grid">
+        {/* Every route ends in one of these, so this is the reveal that every
+            route gets. The ask and the proof panel arrive one beat apart. */}
+        <div className="dm-grid12 dm-ctaband__grid" data-reveal="stagger">
           <div className={cx('dm-ctaband__body', panel ? 'col-span-6 md:col-span-7' : 'col-span-6 md:col-span-8')}>
             {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
             <Heading level={level} size="3xl" folio={folio} id={headingId}>

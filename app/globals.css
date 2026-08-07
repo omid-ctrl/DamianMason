@@ -25,6 +25,11 @@
    duotone photo plate they share. Same @layer components, same token
    discipline. */
 @import "../src/styles/sections-core.css";
+/* Motion: the scroll reveal and the micro-interactions, on the duration and
+   easing tokens and nothing else. Nothing in that file hides anything by
+   default; the hidden state is written by components/motion/RevealController
+   and only for elements it has proven are below the fold. */
+@import "../src/styles/motion.css";
 
 /* ----------------------------------------------------------------------------
    2. NAMESPACE RESETS
@@ -323,6 +328,11 @@
     inset-inline-start: var(--space-4);
     inset-block-start: var(--space-4);
     z-index: var(--z-skip-link);
+    /* 12px of padding on a 19px line box lands at 43px, one pixel under the
+       floor. The min-block-size states the floor rather than tuning padding. */
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--size-tap-target);
     padding: var(--space-3) var(--space-5);
     background-color: var(--surface-accent);
     color: var(--ink-on-accent);
@@ -405,6 +415,23 @@
     letter-spacing: var(--ls-tightest);
     line-height: var(--lh-tight);
     text-wrap: balance;
+    /* --fs-6xl outgrows the hero's 7-column type track between about 1024 and
+       1380: "Coordinators" measures 632px against a 535px column at 1024 and
+       slid out from under the headline and behind the portrait on six routes.
+       The type scale is fixed by DESIGN_SYSTEM and the two-column hero cannot
+       start any later without giving up the desktop layout, so the heading is
+       allowed to hyphenate as a last resort instead of escaping its box. This
+       is inert wherever the line already fits, which includes 390, 768 and
+       1440, so no shipped breakpoint changes.
+
+       Two declarations, in order of preference. hyphens: auto breaks at a real
+       syllable and leaves a hyphen, which is what a broadsheet would do, but it
+       is a no-op in any browser that has not loaded hyphenation data. The
+       overflow-wrap backstop then guarantees the headline stays inside its
+       column instead of crossing the portrait. Both are inert once the line
+       fits, so neither shows at 390, 768 or 1440. */
+    hyphens: auto;
+    overflow-wrap: break-word;
   }
   .dm-display--masthead { line-height: var(--lh-solid); }
   .dm-heading--brand, .dm-display--brand { color: var(--ink-brand); }
@@ -523,6 +550,12 @@
     font-size: var(--fs-base);
     line-height: var(--lh-body);
     max-inline-size: var(--measure);
+    /* A harvested answer can carry a bare URL with no break opportunity in it.
+       The YouTube channel address in the FAQ is 55 characters and pushed 116px
+       out of the accordion at 390. break-word, not anywhere: `anywhere` feeds
+       the break back into the intrinsic minimum size and lets a grid squeeze
+       the column until ordinary words split too. */
+    overflow-wrap: break-word;
   }
   .dm-prose--narrow { max-inline-size: var(--measure-narrow); }
   .dm-prose--wide { max-inline-size: var(--measure-wide); }
@@ -814,8 +847,14 @@
     .dm-masthead__bar-inner { min-block-size: var(--header-height); }
   }
 
+  /* The wordmark is the Home link and it is the first thing a thumb reaches
+     for. The mark itself is only 32px tall at 390, so the link states the tap
+     floor and centres the art inside it. line-height: 0 stays, so the box is
+     the art plus the floor and nothing else. */
   .dm-masthead__wordmark {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--size-tap-target);
     flex: 0 0 auto;
     line-height: 0;
   }
@@ -905,8 +944,12 @@
   .dm-nav__link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-1);
     min-block-size: var(--size-tap-target);
+    /* The height already cleared the floor. A short label such as "About"
+       left the box 36px wide at 1024, and a target is measured on both axes. */
+    min-inline-size: var(--size-tap-target);
     border-block-end: var(--border-thin) solid transparent;
     color: var(--ink-primary);
     font-family: var(--family-body);
@@ -1230,8 +1273,9 @@
     text-decoration-line: none;
     /* Vertical padding on an inline element grows the hit area without growing
        the line box, so the column head clears the target-size floor and the
-       heading still sits on its own baseline. */
-    padding-block: var(--space-2);
+       heading still sits on its own baseline. --space-2 left it at 41px, three
+       short of the floor. */
+    padding-block: var(--space-3);
   }
   .dm-footer__nav-title-link:hover {
     color: var(--ink-accent);
@@ -1245,6 +1289,9 @@
     display: inline-flex;
     align-items: center;
     min-block-size: var(--size-tap-target);
+    /* The height already cleared the floor but a short label such as "Blog"
+       shrank the box to 29px wide. A target is measured on both axes. */
+    min-inline-size: var(--size-tap-target);
     color: var(--ink-secondary);
     font-family: var(--family-body);
     font-size: var(--fs-sm);

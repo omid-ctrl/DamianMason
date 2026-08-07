@@ -123,9 +123,27 @@ function NavDropdown({ item, submenu, pathname, open, onOpen, onClose }: NavDrop
     requestAnimationFrame(() => focusLink(index));
   }
 
+  /**
+   * Escape has to close the panel and leave it closed. The `<li>` opens on
+   * focus, so moving focus back to the parent re-fired that handler and the
+   * panel reopened in the same tick: the reader pressed Escape and nothing
+   * appeared to happen. The flag suppresses exactly that one re-entrant open
+   * and is released on the next frame, so tabbing away and back still opens.
+   */
+  const suppressFocusOpen = useRef(false);
+
   function returnFocusToParent() {
+    suppressFocusOpen.current = true;
     onClose();
     parentRef.current?.focus();
+    requestAnimationFrame(() => {
+      suppressFocusOpen.current = false;
+    });
+  }
+
+  function onItemFocus() {
+    if (suppressFocusOpen.current) return;
+    onOpen();
   }
 
   function onParentKeyDown(event: KeyboardEvent<HTMLAnchorElement>) {
@@ -194,7 +212,7 @@ function NavDropdown({ item, submenu, pathname, open, onOpen, onClose }: NavDrop
       className="dm-nav__item"
       onMouseEnter={onOpen}
       onMouseLeave={onPointerOut}
-      onFocus={onOpen}
+      onFocus={onItemFocus}
       onBlur={onItemBlur}
     >
       <Link

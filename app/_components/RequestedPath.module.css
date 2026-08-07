@@ -1,0 +1,34 @@
+/* ============================================================================
+   The echoed address block on the 404.
+
+   Every value resolves to a token in src/styles/tokens.css. No hex, no rgb(),
+   no arbitrary pixel value. Link color, underline and hover come from the base
+   layer's `a` rule, so nothing here restyles an anchor.
+   ============================================================================ */
+
+.root {
+  border-inline-start: var(--border-thin) solid var(--rule-structural);
+  margin-block-start: var(--space-6);
+  max-inline-size: var(--measure-narrow);
+  padding-inline-start: var(--space-4);
+}
+
+/* The address itself, set in the broadsheet furniture face. `anywhere` rather
+   than `break-word` so a 90 character query string breaks inside the token and
+   cannot open a horizontal scrollbar at 390. */
+.path {
+  color: var(--ink-primary);
+  font-family: var(--family-mono);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-normal);
+  margin-block-start: var(--space-2);
+  overflow-wrap: anywhere;
+}
+
+.note {
+  color: var(--ink-secondary);
+  font-family: var(--family-body);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  margin-block-start: var(--space-4);
+}

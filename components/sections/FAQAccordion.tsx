@@ -63,7 +63,7 @@ export function FAQAccordion({
 
   return (
     <>
-      <div className={cx('dm-faq', className)}>
+      <div className={cx('dm-faq', className)} data-reveal="stagger">
         {/* No `open` attribute, and no `name` group either: an exclusive
             accordion would close an answer a visitor is still reading. */}
         {rendered.map((item) => (

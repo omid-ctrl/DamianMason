@@ -70,6 +70,9 @@
   color: var(--ink-primary);
   text-decoration: none;
   transition: var(--transition-ink);
+  /* Same as the speaking card links: the show title is the row's target and
+     its line box alone sits under the 44px floor. */
+  padding-block: var(--space-2);
 }
 
 .showLink:hover {

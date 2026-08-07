@@ -25,19 +25,22 @@
  *     each carries a plain written `description` in addition to that label.
  * Nothing else was reworded. One title keeps an em dash, see the note on it.
  *
- * MP4 NOTES for a later phase:
- *   - `dm_-_innovation-1080p.mp4` is 39MB, uncompressed, and it is the only
- *     media asset on the old site used on two pages (/keynote/ and
- *     /collaboration-opportunities/, where it was labelled "Live Keynote
- *     Segment on Ag Innovation"). It must be compressed or moved to a
- *     streaming host before it ships.
- *   - The other two reels are 31MB and 35MB and want the same treatment.
- *   - No poster frame exists for any of the three. The old site shipped three
- *     bare `<video controls>` elements with no `poster`, no `<track>` and no
- *     `preload` hint, so a mobile visitor saw three black rectangles. `poster`
- *     is left undefined here until real frames are exported.
+ * MP4 NOTES:
+ *   - All three reels were re-encoded to 720p H.264 at CRF 25 with a faststart
+ *     atom, taking the set from 106MB to 21MB with the duration, framing and
+ *     audio of the originals intact. The 1080p sources are gone from the repo.
+ *   - Each one now carries a real `poster` frame grabbed four seconds in, so a
+ *     mobile visitor sees Damian on stage rather than the black rectangle the
+ *     old site shipped. Combined with `preload="none"` on VideoEmbed, a reel
+ *     costs about 25KB to 60KB until someone presses play.
+ *   - None of the three is captioned yet. `VideoEmbed` takes a `captions` prop
+ *     and the VTT is still owed.
  *
- * `file` is the filename exactly as it exists in `_source/media/`.
+ * `file` and `poster` are BOTH root-relative URLs served from `public/`. They
+ * are the paths that actually ship, so a route renders a reel by handing the
+ * record straight to VideoEmbed. Do not reintroduce a per-route filename map:
+ * the one that used to live in /keynote/ silently left the same reel broken on
+ * /collaboration-opportunities/, which never applied it.
  */
 
 export type Video =
@@ -169,7 +172,8 @@ export const videos: Video[] = [
   {
     id: 'demo-food-waste',
     kind: 'mp4',
-    file: 'dm_-_food_waste-1080p.mp4',
+    file: '/video/dm-food-waste-720p.mp4',
+    poster: '/img/video-posters/dm-food-waste.jpg',
     title: 'Food Waste',
     description: 'A short cut from a live keynote on what the food waste argument gets wrong.',
     onPages: ['/keynote/'],
@@ -177,17 +181,18 @@ export const videos: Video[] = [
   {
     id: 'demo-labor',
     kind: 'mp4',
-    file: 'dm_-_labor-1080p.mp4',
+    file: '/video/dm-labor-720p.mp4',
+    poster: '/img/video-posters/dm-labor.jpg',
     title: 'Labor',
     description: 'A short cut from a live keynote on where farm and food labor is headed.',
     onPages: ['/keynote/'],
   },
   {
-    // 39MB. Needs compression. Used on two pages, and it is the only asset on
-    // the old site that was.
+    // The only asset on the old site used by two pages.
     id: 'demo-innovation',
     kind: 'mp4',
-    file: 'dm_-_innovation-1080p.mp4',
+    file: '/video/dm-innovation-720p.mp4',
+    poster: '/img/video-posters/dm-innovation.jpg',
     title: 'Innovation',
     description: 'A short cut from a live keynote on ag innovation and who pays for it.',
     onPages: ['/keynote/', '/collaboration-opportunities/'],

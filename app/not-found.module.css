@@ -1,0 +1,92 @@
+/* ============================================================================
+   Route-scoped layout for the 404.
+
+   Everything resolves to a token in src/styles/tokens.css. No hex, no rgb(),
+   no arbitrary pixel value. The primitives do the type, the color and the
+   rules; this file only supplies the vertical rhythm between them and the one
+   grid the route needs that no shared section covers.
+   ============================================================================ */
+
+/* The eyebrow / heading / deck ladder. `Hero` owns this spacing on the 17
+   editorial routes, but the 404 is not a hero: it carries no photograph and no
+   proof figure, so it composes the primitives directly and states the gaps. */
+.title {
+  margin-block-start: var(--space-3);
+}
+
+.lead {
+  margin-block-start: var(--space-5);
+}
+
+.headRule {
+  margin-block-start: var(--space-5);
+}
+
+/* --- the four working destinations -----------------------------------------
+   Four cells at 1024 and up, two at 768, one at 390. Four divides by 1, 2 and
+   4, so no arrangement leaves a ragged tail of dead cells.
+   -------------------------------------------------------------------------- */
+.destinations {
+  display: grid;
+  gap: var(--gutter-column);
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin-block-start: var(--space-7);
+  padding: 0;
+}
+
+@media (min-width: 48rem) {
+  .destinations {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .destinations {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.destination {
+  display: flex;
+}
+
+.card {
+  block-size: 100%;
+  gap: var(--space-3);
+  inline-size: 100%;
+}
+
+/* The link is the whole heading. `--size-tap-target` is stated rather than
+   left to the type metrics, because at 390 the serif line box lands near 26px
+   and would miss the 44px floor on its own. Color and underline follow the
+   standing headline-link pattern in sections.css: ink at rest, accent and
+   underlined on hover. */
+.cardTitle {
+  font-family: var(--family-serif);
+  font-optical-sizing: auto;
+  font-size: var(--fs-lg);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+}
+
+.cardLink {
+  align-items: center;
+  color: var(--ink-primary);
+  display: flex;
+  min-block-size: var(--size-tap-target);
+  text-decoration: none;
+}
+
+.cardLink:hover {
+  color: var(--ink-accent);
+  text-decoration-line: underline;
+}
+
+.cardBlurb {
+  color: var(--ink-secondary);
+  font-family: var(--family-body);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+}

@@ -13,34 +13,34 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Commerce removed: the client is not selling books moving forward.
-      { source: '/shop', destination: '/about/#books', permanent: true },
-      { source: '/damian-mason-online-shop', destination: '/about/#books', permanent: true },
-      { source: '/cart', destination: '/about/#books', permanent: true },
-      { source: '/checkout', destination: '/about/#books', permanent: true },
-      { source: '/my-account', destination: '/about/#books', permanent: true },
+      { source: '/shop', destination: '/about/#books', statusCode: 301 },
+      { source: '/damian-mason-online-shop', destination: '/about/#books', statusCode: 301 },
+      { source: '/cart', destination: '/about/#books', statusCode: 301 },
+      { source: '/checkout', destination: '/about/#books', statusCode: 301 },
+      { source: '/my-account', destination: '/about/#books', statusCode: 301 },
       // The BOASG "product" was a membership, not a book. Specific rule must be
       // declared before the /product/* wildcard so it wins.
-      { source: '/product/business-of-ag-success-group', destination: '/boasg/', permanent: true },
-      { source: '/product/:slug*', destination: '/about/#books', permanent: true },
-      { source: '/product-category/:slug*', destination: '/about/#books', permanent: true },
+      { source: '/product/business-of-ag-success-group', destination: '/boasg/', statusCode: 301 },
+      { source: '/product/:slug*', destination: '/about/#books', statusCode: 301 },
+      { source: '/product-category/:slug*', destination: '/about/#books', statusCode: 301 },
 
       // Orphaned podcast stub now resolves to the real hub.
-      { source: '/podcast-2', destination: '/podcasts/', permanent: true },
+      { source: '/podcast-2', destination: '/podcasts/', statusCode: 301 },
 
       // Two newsletter routes collapsed into one.
-      { source: '/join-mailing-list', destination: '/join-the-conversation/', permanent: true },
+      { source: '/join-mailing-list', destination: '/join-the-conversation/', statusCode: 301 },
 
       // Both posts move under /blog/. The first shipped on WordPress's default
       // slug and was never renamed.
       {
         source: '/hello-world',
         destination: '/blog/eggflation-gives-producers-record-profits/',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/how-the-climate-crisis-is-causing-food-shortages-globally',
         destination: '/blog/how-the-climate-crisis-is-causing-food-shortages-globally/',
-        permanent: true,
+        statusCode: 301,
       },
     ];
   },

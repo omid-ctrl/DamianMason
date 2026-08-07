@@ -11,3 +11,13 @@
 .rowTop {
   align-items: start;
 }
+
+/* Every other route supplies the air under a section heading from a flex gap
+   on the block that wraps it. This route stacks Heading and Prose as plain
+   siblings, and preflight has zeroed both margins, so the body copy was
+   sitting on the heading's descenders at all three breakpoints. Stated here
+   rather than globally: a global adjacency rule stacks on top of the flex gaps
+   the other routes already use and loosens 279 correct blocks. */
+.sectionHeading {
+  margin-block-end: var(--space-4);
+}

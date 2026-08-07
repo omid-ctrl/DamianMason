@@ -1,0 +1,59 @@
+/* ============================================================================
+   Route-scoped layout for the error boundary.
+
+   Every value resolves to a token in src/styles/tokens.css. No hex, no rgb(),
+   no arbitrary pixel value. Link color and underline come from the base layer.
+   ============================================================================ */
+
+/* The eyebrow / heading / deck ladder. `Hero` owns this spacing on the
+   editorial routes; an error boundary composes the primitives directly and so
+   has to state the gaps itself. */
+.title {
+  margin-block-start: var(--space-3);
+}
+
+.lead {
+  margin-block-start: var(--space-5);
+}
+
+.digest {
+  align-items: baseline;
+  border-inline-start: var(--border-thin) solid var(--rule-structural);
+  color: var(--ink-primary);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--family-mono);
+  font-size: var(--fs-xs);
+  gap: var(--space-3);
+  line-height: var(--lh-normal);
+  margin-block-start: var(--space-6);
+  overflow-wrap: anywhere;
+  padding-inline-start: var(--space-4);
+}
+
+.digestLabel {
+  color: var(--ink-muted);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+}
+
+.rule {
+  margin-block-start: var(--space-7);
+}
+
+/* Wraps to a column at 390 so both controls keep a full-width 44px target. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-start: var(--space-6);
+}
+
+.aside {
+  color: var(--ink-secondary);
+  font-family: var(--family-body);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  margin-block-start: var(--space-6);
+  max-inline-size: var(--measure-narrow);
+}

@@ -63,7 +63,7 @@ export function PressList({
   if (rendered.length === 0) return null;
 
   return (
-    <ul className={cx('dm-press', className)} aria-label={label}>
+    <ul className={cx('dm-press', className)} aria-label={label} data-reveal="stagger">
       {rendered.map((item) => {
         const date = item.date ? formatDate(item.date) : undefined;
 

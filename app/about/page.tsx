@@ -218,7 +218,7 @@ export default function AboutPage() {
             </Prose>
           </div>
 
-          <ul className={styles.credentials} role="list">
+          <ul className={styles.credentials} role="list" data-reveal="stagger">
             {PILLARS.map((pillar) => (
               <li key={pillar.title}>
                 <Card variant="ruled" className={styles.credential}>
@@ -263,7 +263,12 @@ export default function AboutPage() {
             </Prose>
           </div>
 
-          <ul className={styles.books} role="list">
+          {/* This list sits inside #books, which is the live redirect target
+              for every retired commerce URL. The reveal controller measures
+              against the post-hash scroll position, so arriving on the anchor
+              finds the covers already shown rather than waiting on a scroll
+              that has already happened. */}
+          <ul className={styles.books} role="list" data-reveal="stagger">
             {books.map((book) => {
               const cover = COVERS[book.slug];
               return (

@@ -164,6 +164,10 @@ export default function XtremeAgPage() {
                 width={242}
                 height={116}
                 loading="lazy"
+                /* .mark caps the render at --logo-box-h, 72px, so the mark is
+                   never wider than about 10rem. Without this the browser has
+                   no width to reason about and pulls the 640px candidate. */
+                sizes="10rem"
               />
               <Eyebrow>Partner brand</Eyebrow>
             </Card>
@@ -266,6 +270,10 @@ export default function XtremeAgPage() {
                 width={800}
                 height={800}
                 loading="lazy"
+                /* .markLarge caps this at --size-thumb, so 10rem is the widest
+                   it ever paints. Unhinted, an 800px square was being served
+                   as a 1920px render into a 160px box. */
+                sizes="10rem"
               />
               <Eyebrow>An XtremeAg show</Eyebrow>
             </Card>

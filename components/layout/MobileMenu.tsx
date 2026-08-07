@@ -257,6 +257,10 @@ export function MobileMenu({
               <PhoneIcon className="dm-menu__icon" />
               {phone}
             </a>
+            {/* The one documented exception to "the masthead booking control is
+                secondary". The sheet is a modal that occludes the whole page,
+                so it is its own viewport, and this is the only filled orange
+                field inside it. See DESIGN_SYSTEM.md section 5. */}
             <Button href={bookingHref} variant="primary" block>
               {bookingLabel}
             </Button>

@@ -54,15 +54,11 @@ export const metadata: Metadata = buildMetadata({
    collaboration reviews. */
 const reviews = testimonialsFor(ROUTE);
 
-/* Two YouTube conversations and the innovation keynote cut. The MP4 gets a
-   real poster frame here: the source shipped a bare <video controls> with no
-   poster, no captions and no preload hint, so a phone rendered a black
-   rectangle. VideoEmbed sets preload="none" for every MP4 already. */
+/* Two YouTube conversations and the innovation keynote cut. The MP4 carries
+   its own poster and its own shipping path in content/videos.ts now, so this
+   route no longer patches either one. It used to patch neither, which is why
+   the reel here pointed at a filename that does not exist in public/. */
 const collaborationVideos = videosFor(ROUTE);
-
-const VIDEO_POSTERS = {
-  'demo-innovation': '/img/photos/keynote-stage-podium.jpg',
-} as const;
 
 const CREDENTIALS = [
   {
@@ -337,7 +333,6 @@ export default function CollaborationOpportunitiesPage() {
               videos={collaborationVideos}
               columns={3}
               headingLevel={3}
-              posters={VIDEO_POSTERS}
               label="Podcast and keynote samples"
             />
           </div>

@@ -95,6 +95,7 @@ export function TestimonialGrid({
     <ul
       className={cx('dm-testimonials', COLUMN_CLASS[columns], className)}
       aria-label={label}
+      data-reveal="stagger"
     >
       {usable.map((item) => (
         <li key={item.id} className="dm-testimonials__item">

@@ -86,6 +86,15 @@
   --palette-bone-600: #9a8e77;
   --palette-bone-650: #857c69;
   --palette-bone-700: #7e7460;
+  /* The faint ink step. bone-700 measured 3.89:1 on bone and 3.49:1 on sunken,
+     which fails SC 1.4.3 for any text under 24px however decorative it is and
+     however reliably it is aria-hidden. WCAG's "pure decoration" exemption is a
+     judgment call, and 90 flagged nodes is not a judgment worth defending in an
+     audit. bone-750 is the lightest value that still clears 4.5:1 on every
+     light ground in the system: 5.09 on bone, 4.56 on sunken, 5.45 on raised,
+     5.84 on bright. It is still a full step lighter than bone-800, so the
+     faint tier survives. */
+  --palette-bone-750: #6a6252;
   --palette-bone-800: #625a4b;
 
   /* Orange: the brand orange plus deepened print steps. The brand value is
@@ -150,9 +159,12 @@
   --ink-muted: var(--palette-bone-800);         /*  5.74:1. Captions, folios, labels,
                                                     running heads, stat descriptions.
                                                     Passes AA at body size. */
-  --ink-faint: var(--palette-bone-700);         /*  3.89:1. Decorative indices and
-                                                    disabled text ONLY. Never prose.
-                                                    Clears the 3:1 non-text floor. */
+  --ink-faint: var(--palette-bone-750);         /*  5.09:1 on bone, 4.56:1 on sunken.
+                                                    Decorative indices and disabled
+                                                    text ONLY. Never prose. Clears AA
+                                                    at any size on every light ground,
+                                                    so an aria-hidden index no longer
+                                                    rests on the decoration exemption. */
   --ink-accent: var(--palette-orange-700);      /*  5.63:1. Orange as TEXT on bone. */
   --ink-hot: var(--palette-orange-400);         /*  2.72:1 on bone. NOT TEXT on bone.
                                                     Fields, rules and marks only.
@@ -448,6 +460,10 @@
   --size-dropdown-w: 22rem;
   --size-portrait-max: 32rem;
   --size-thumb: clamp(6rem, 4.2rem + 7.4vw, 10rem);  /* episode artwork column */
+  --size-embed-player-h: 25.75rem;  /* 412px: the Libsyn embed's own height, so
+                                       the facade plate reserves exactly the box
+                                       the player takes and the swap costs no
+                                       layout shift */
 
   /* Breakpoints. CSS cannot read a custom property inside an @media condition,
      so these are documentation. The literal values are repeated in the query
@@ -666,7 +682,7 @@
   --ink-secondary: var(--palette-navy-800);
   --ink-brand: var(--palette-navy-700);
   --ink-muted: var(--palette-bone-800);
-  --ink-faint: var(--palette-bone-700);
+  --ink-faint: var(--palette-bone-750);
   --ink-accent: var(--palette-orange-700);
   --ink-hot: var(--palette-orange-400);
   --ink-gold: var(--palette-gold-700);

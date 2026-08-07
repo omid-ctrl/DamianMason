@@ -48,6 +48,16 @@
   overflow-wrap: anywhere;
 }
 
+/* The phone number and the email address are tel: and mailto: links and they
+   are the two things a meeting planner taps on this page. Their line box is
+   28px at 390, so a.ledgerValue states the floor. The block display is safe:
+   each already sits alone in its own <dd>. */
+a.ledgerValue {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--size-tap-target);
+}
+
 .ledgerNote {
   margin-block-start: var(--space-1);
   color: var(--ink-muted);
@@ -95,4 +105,11 @@
 
 .asideNote {
   margin-block-start: var(--space-6);
+}
+
+/* Same as /join-the-conversation/: Heading and Prose are plain siblings here
+   with no flex gap between them, so the deck sat on the heading's descenders.
+   Scoped to this route on purpose, see the note in that route's module. */
+.sectionHeading {
+  margin-block-end: var(--space-4);
 }

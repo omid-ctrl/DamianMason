@@ -37,6 +37,10 @@
 .cardLink {
   color: var(--ink-primary);
   text-decoration-line: none;
+  /* The card heading is the card's only target and its line box is 33px at
+     390. Padding on an inline element grows the hit area without reflowing
+     the card. */
+  padding-block: var(--space-2);
 }
 
 .cardLink:hover {

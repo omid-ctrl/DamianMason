@@ -86,8 +86,16 @@ export function VideoEmbed({
   const posterSrc =
     poster ?? (video.kind === 'youtube' ? youtubePoster(video.youtubeId) : video.poster);
 
+  /**
+   * Only a captioned embed is a figure. Without a cutline the `<figure>` would
+   * announce as a nameless group around a control that already names itself
+   * ("Play video: <title>"), which is noise, not structure. The visual box is
+   * identical either way.
+   */
+  const Frame = caption ? 'figure' : 'div';
+
   return (
-    <figure className={cx('dm-figure', 'dm-video', className)}>
+    <Frame className={cx('dm-figure', 'dm-video', className)}>
       {/* data-surface="deep" rather than a hand-written light-on-dark override:
           the play control, its rule and its focus ring all resolve against a
           dark ground no matter which scope the figure is dropped into. */}
@@ -169,7 +177,7 @@ export function VideoEmbed({
           {caption}
         </figcaption>
       ) : null}
-    </figure>
+    </Frame>
   );
 }
 

@@ -114,7 +114,7 @@ export default function ContactUsPage() {
           <div className={`dm-grid12 ${styles.rowTop}`}>
             <div className="col-span-6 md:col-span-7">
               <Eyebrow>Two ways in</Eyebrow>
-              <Heading level={2} folio="No. 01" id="reach-title">
+              <Heading level={2} folio="No. 01" id="reach-title" className={styles.sectionHeading}>
                 Email is the fastest. The phone works too.
               </Heading>
               <Prose>
@@ -209,7 +209,7 @@ export default function ContactUsPage() {
       <Section aria-labelledby="inquiry-title">
         <Container width="narrow">
           <Eyebrow>Before you write</Eyebrow>
-          <Heading level={2} folio="No. 02" id="inquiry-title">
+          <Heading level={2} folio="No. 02" id="inquiry-title" className={styles.sectionHeading}>
             What to put in the first email
           </Heading>
           <Prose>
@@ -266,7 +266,7 @@ export default function ContactUsPage() {
 
             <div className="col-span-6 md:col-span-5">
               <Eyebrow>After you write</Eyebrow>
-              <Heading level={2} folio="No. 03" id="process-title">
+              <Heading level={2} folio="No. 03" id="process-title" className={styles.sectionHeading}>
                 How a date gets held
               </Heading>
               <Prose measure="narrow">

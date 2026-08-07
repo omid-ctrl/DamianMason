@@ -30,6 +30,20 @@
   text-transform: uppercase;
 }
 
+/* The breadcrumb links are the only way back up from a post on a phone and a
+   12px mono line box makes them 31x21. Padding grows the hit area to the tap
+   floor; the negative block margin keeps the crumb row on its own baseline so
+   the rule below it does not move. */
+.crumb a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--size-tap-target);
+  /* "Home" is 31px wide on its own and a target is measured on both axes. */
+  min-inline-size: var(--size-tap-target);
+  margin-block: calc(var(--space-3) * -1);
+}
+
 /* Ornament between crumbs. The list structure carries the meaning, so the
    glyph is hidden from assistive tech and sits below the text floor on
    purpose. */

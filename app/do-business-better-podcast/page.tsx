@@ -316,7 +316,12 @@ export default function DoBusinessBetterPodcastPage() {
           straight to the same Mailchimp audience, has a real submit button and
           a real label, and works with scripting off. Secondary, because the
           CTA band below it owns the orange in this part of the page. */}
-      <Section id="subscribe" aria-labelledby="subscribe-title">
+      {/* The label has to name the heading NewsletterForm actually renders,
+          which is `${idPrefix}-title`. Pointing at a bare "subscribe-title"
+          resolved to nothing, which left the section unnamed: an unnamed
+          <section> maps to role generic, and generic prohibits
+          aria-labelledby, so one dangling reference broke two rules. */}
+      <Section id="subscribe" aria-labelledby="dbb-subscribe-title">
         <Container width="narrow">
           <NewsletterForm
             idPrefix="dbb-subscribe"

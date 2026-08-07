@@ -185,7 +185,7 @@ export default function PodcastsPage() {
             What each show is for
           </Heading>
 
-          <ul className={styles.showGrid} role="list">
+          <ul className={styles.showGrid} role="list" data-reveal="stagger">
             {SHOWS.map((show) => (
               <Card
                 key={show.href}
@@ -201,7 +201,10 @@ export default function PodcastsPage() {
                     width={show.width}
                     height={show.height}
                     loading="lazy"
-                    sizes="160px"
+                    /* The artwork column is --size-thumb, which tops out at
+                       10rem. Stated in rem to match every other slot hint on
+                       the site. */
+                    sizes="10rem"
                   />
                 </div>
 

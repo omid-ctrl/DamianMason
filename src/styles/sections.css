@@ -143,6 +143,47 @@
     padding: var(--space-4);
   }
 
+  /* ==========================================================================
+     THIRD-PARTY EMBED FACADE
+     Same trade as the video facade, for a provider that ships a whole player
+     application. The plate and the frame are both --size-embed-player-h, which
+     is the embed's own declared height, so activation swaps one for the other
+     with nothing below it moving.
+     ========================================================================== */
+  .dm-embed {
+    margin-block-start: var(--space-7);
+  }
+
+  .dm-embed__frame,
+  .dm-embed__plate {
+    inline-size: 100%;
+    block-size: var(--size-embed-player-h);
+  }
+
+  .dm-embed__frame {
+    border: 0;
+    display: block;
+  }
+
+  .dm-embed__plate {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-4);
+    border: var(--border-hairline) solid var(--rule-structural);
+    background-color: var(--surface-raised);
+    padding: var(--space-7) var(--space-6);
+  }
+
+  .dm-embed__note {
+    max-inline-size: var(--measure-narrow);
+    color: var(--ink-secondary);
+    font-family: var(--family-body);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+
   /* The grid the 13 facades sit in. */
   .dm-video-grid {
     display: grid;
@@ -328,6 +369,10 @@
   .dm-press__link {
     color: var(--ink-primary);
     text-decoration: none;
+    /* The title is the whole target of a press row and its line box is only
+       28px at 390. Padding on an inline element grows the hit area without
+       moving the baseline or reflowing the row. */
+    padding-block: var(--space-2);
   }
   .dm-press__link:hover {
     color: var(--ink-accent);
@@ -384,6 +429,9 @@
   .dm-episode__link {
     color: var(--ink-primary);
     text-decoration: none;
+    /* Same as .dm-press__link: the episode title is the row's target and its
+       line box alone sits under the floor. */
+    padding-block: var(--space-2);
   }
   .dm-episode__link:hover {
     color: var(--ink-accent);

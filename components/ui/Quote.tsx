@@ -28,8 +28,16 @@ export function Quote({
   className,
   ...rest
 }: QuoteProps) {
+  /**
+   * A `<figure>` exists to bind a caption to its content. An unattributed
+   * quote has no caption, so the figure would enter the accessibility tree as
+   * a nameless "figure" group wrapping a blockquote that already carries the
+   * meaning: pure announcement noise. Same box, same classes, neutral element.
+   */
+  const Wrapper = attribution ? 'figure' : 'div';
+
   return (
-    <figure className={cx('dm-quote', barred && 'dm-quote--barred', className)} {...rest}>
+    <Wrapper className={cx('dm-quote', barred && 'dm-quote--barred', className)} {...rest}>
       <blockquote className={cx('dm-quote__body', wide && 'dm-quote__body--wide')}>
         {'“'}
         {children}
@@ -38,7 +46,7 @@ export function Quote({
       {attribution ? (
         <figcaption className="dm-quote__attribution">{attribution}</figcaption>
       ) : null}
-    </figure>
+    </Wrapper>
   );
 }
 

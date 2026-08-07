@@ -84,11 +84,6 @@
   margin-block-start: var(--space-7);
 }
 
-.playerFrame {
-  inline-size: 100%;
-  border: 0;
-}
-
 .playerCutline {
   margin-block-start: var(--space-3);
 }

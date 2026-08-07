@@ -105,7 +105,11 @@ export function StatRow({
           </Heading>
         ) : null}
 
-        <ul className="dm-statrow__list" role="list">
+        {/* The ledger is the one place on the site where a stagger earns its
+            keep: four figures reading left to right is how the argument is
+            meant to be taken in. See src/styles/motion.css. The row is fully
+            visible without JavaScript. */}
+        <ul className="dm-statrow__list" role="list" data-reveal="stagger">
           {rows.map((row, i) => (
             <li key={row.label} className="dm-statrow__item">
               <Stat

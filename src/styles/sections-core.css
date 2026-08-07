@@ -91,6 +91,16 @@
     align-items: flex-start;
     gap: var(--space-5);
   }
+  /* align-items: flex-start sizes each child to its own max-content, and a
+     column flex item will not shrink below min-content. A one-word display
+     line such as "Coordinators" is 632px against a 535px track at 1024, so the
+     h1's BOX grew past the column and slid under the portrait, and because the
+     text fit inside that oversized box there was never any line-breaking
+     pressure for hyphens: auto to act on. Capping the child at the track
+     restores it. */
+  .dm-hero__type > * {
+    max-inline-size: 100%;
+  }
   .dm-hero__actions {
     display: flex;
     flex-wrap: wrap;
@@ -109,8 +119,15 @@
   .dm-hero__figure {
     margin: 0;
     inline-size: 100%;
-    max-inline-size: var(--size-portrait-max);
     justify-self: end;
+  }
+  /* The cap is a desktop guard: it stops a 5-column plate growing without limit
+     on a 1344px container. It must not apply below 1024, where the figure spans
+     all 12 columns. At 768 the cap held the plate at 512px inside a 704px
+     column and left a 192px orphan of bare bone down the right, which read as a
+     layout failure rather than as space. */
+  @media (min-width: 64rem) {
+    .dm-hero__figure { max-inline-size: var(--size-portrait-max); }
   }
   /* Below 1024 the plate sits under the type at full column width, so it aligns
      to the same edge as the masthead rather than floating off to the right. */
@@ -199,6 +216,26 @@
     margin-block-start: var(--space-6);
   }
   .dm-statrow__restatement { margin-block-start: var(--space-5); }
+
+  /* Between 768 and 1023 four columns give each figure about 134px of content
+     box while --fs-figure is still ~46px, so "40,000+" and "70,000+" overrun
+     their cell and the fourth column's rule is pushed past the container. Two
+     columns is the only other count that divides four, and it keeps the ledger
+     reading as a ledger rather than collapsing to the 390 row treatment. */
+  @media (min-width: 48rem) and (max-width: 63.9375rem) {
+    .dm-statrow__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* The adjacent-sibling rule above puts a left rule on every item after the
+       first. In two columns that lands a stray rule on the start of row two,
+       so the rule is re-stated per column position instead. */
+    .dm-statrow__item + .dm-statrow__item {
+      border-inline-start: 0;
+      padding-inline-start: 0;
+    }
+    .dm-statrow__item:nth-child(even) {
+      border-inline-start: var(--border-hairline) solid var(--rule-structural);
+      padding-inline-start: var(--gutter-column-tight);
+    }
+  }
 
   @media (max-width: 47.9375rem) {
     .dm-statrow__list { grid-template-columns: minmax(0, 1fr); }

@@ -15,6 +15,10 @@
 
 # next.js
 /.next/
+# An isolated distDir is the safe way to run `next build` while a dev server is
+# reading /.next. Ignored so a throwaway build can never be committed, and so
+# eslint does not try to lint several thousand generated chunks.
+/.next-*/
 /out/
 
 # production

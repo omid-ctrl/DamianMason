@@ -11,6 +11,7 @@ import {
   Section,
 } from '@/components/ui';
 import { CTABand } from '@/components/sections/CTABand';
+import { EmbedFacade } from '@/components/sections/EmbedFacade';
 import { EpisodeCard } from '@/components/sections/EpisodeCard';
 import { NewsletterForm } from '@/components/sections/NewsletterForm';
 import { SponsorWall } from '@/components/sections/SponsorWall';
@@ -220,15 +221,16 @@ export default function BusinessOfAgriculturePage() {
           {/* The old page shipped "Episode Details" and "All Episodes" as two
               buttons pointing at the identical URL. One link, one destination. */}
           <div className={styles.player}>
-            <iframe
-              className={styles.playerFrame}
+            <EmbedFacade
               src={LIBSYN_PLAYER}
               title="The Business of Agriculture Podcast player"
               height={LIBSYN_PLAYER_HEIGHT}
-              loading="lazy"
-              scrolling="no"
-              allowFullScreen
-            />
+              eyebrow="The full archive"
+              action="Load the Libsyn player"
+            >
+              Libsyn&rsquo;s player brings about 2.5MB of its own code and artwork with it, so
+              it waits here until you want it.
+            </EmbedFacade>
             <p className={`dm-figure__caption ${styles.playerCutline}`}>
               The full archive, streaming straight from the Libsyn feed. Downloads are on.
             </p>

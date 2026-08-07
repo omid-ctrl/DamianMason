@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Archivo, Bodoni_Moda, IBM_Plex_Mono, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import { Footer, Header } from '@/components/layout';
+import { RevealController } from '@/components/motion';
 import { JsonLd } from '@/components/seo';
 import { buildSiteBaseSchema } from '@/lib/schema';
 
@@ -14,13 +15,18 @@ import { buildSiteBaseSchema } from '@/lib/schema';
  */
 
 /** Display only, and only at --fs-4xl and above. Variable optical size, left
- *  on automatic so the browser matches the opsz master to the used size. */
+ *  on automatic so the browser matches the opsz master to the used size.
+ *
+ *  Roman only. The italic master was being preloaded on all 19 routes at
+ *  29.5KB and nothing on the site sets the Didone in italic: the one italic
+ *  rule in the build is .dm-quote__body, which is --family-serif, and the only
+ *  two <em> elements sit inside Prose, which is --family-body. */
 const bodoniModa = Bodoni_Moda({
   variable: '--font-bodoni',
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '500', '600'],
-  style: ['normal', 'italic'],
+  style: ['normal'],
 });
 
 /** Every serif job below 40px: proof figures, pull quotes, section headings. */
@@ -87,6 +93,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        {/* The scroll reveal. Renders nothing. It is the only thing on the site
+            that may hide content, it only ever hides what is already below the
+            fold, and with JavaScript off it never runs at all, which is why
+            every route is fully readable without it. */}
+        <RevealController />
         {/* Person, Organization and WebSite apply site-wide. Page-specific
             graphs (FAQPage, PodcastSeries, BreadcrumbList) are emitted by the
             routes that own them. */}

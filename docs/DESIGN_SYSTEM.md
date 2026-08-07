@@ -92,7 +92,7 @@ Thresholds: **4.5:1** for text under 24px (or under 18.66px bold), **3:1** for l
 | `--ink-accent` | `#A8330E` | **5.63** | AA | orange as text, links, section numbers |
 | `--ink-gold` | `#6F4E12` | **6.38** | AA | secondary property accent |
 | `--ink-green` | `#2F5638` | **7.06** | AAA | success text |
-| `--ink-faint` | `#7E7460` | **3.89** | 3:1 only | decorative indices, disabled text. **Never prose** |
+| `--ink-faint` | `#6A6252` | **5.09** | AA | decorative indices, disabled text. **Never prose** |
 | `--rule-structural` | `#857C69` | **3.48** | 3:1 pass | any rule that conveys structure |
 | `--rule-decorative` | `#D8CDB8` | 1.33 | decoration only | ornament. Deleting it must lose nothing |
 | `--ink-hot` | `#FF5325` | 2.72 | **not text here** | fields, rules, `aria-hidden` marks only |
@@ -104,13 +104,14 @@ Thresholds: **4.5:1** for text under 24px (or under 18.66px bold), **3:1** for l
 | Pair | Ground | Ratio | Verdict |
 |---|---|---|---|
 | `--ink-muted` `#625A4B` | raised `#F8F3E9` | **6.16** | AA |
-| `--ink-faint` `#7E7460` | raised `#F8F3E9` | **4.17** | 3:1 pass |
+| `--ink-faint` `#6A6252` | raised `#F8F3E9` | **5.45** | AA |
+| `--ink-faint` `#6A6252` | bright `#FDFBF7` | **5.84** | AA |
 | `--rule-structural` `#857C69` | raised `#F8F3E9` | **3.73** | 3:1 pass |
 | `--ink-primary` `#041826` | sunken `#E8DFCE` | **13.64** | AAA |
 | `--ink-brand` `#094D78` | sunken `#E8DFCE` | **6.77** | AA |
 | `--ink-muted` `#625A4B` | sunken `#E8DFCE` | **5.15** | AA |
 | `--ink-accent` `#A8330E` | sunken `#E8DFCE` | **5.05** | AA |
-| `--ink-faint` `#7E7460` | sunken `#E8DFCE` | **3.49** | 3:1 pass |
+| `--ink-faint` `#6A6252` | sunken `#E8DFCE` | **4.56** | AA |
 | `--rule-structural` `#857C69` | sunken `#E8DFCE` | **3.12** | 3:1 pass |
 | `--focus-ring-color` `#A8330E` | sunken `#E8DFCE` | **5.05** | 3:1 pass |
 | `--ink-muted` `#625A4B` | bright `#FDFBF7` | **6.59** | AA |
@@ -229,6 +230,31 @@ Not counting against the budget:
 **Where it never goes.** Body text on bone. Headings. Hover states on links in prose. Icon washes. Anything that is orange because orange is the brand color rather than because a decision is being asked for.
 
 **One primary button per viewport.** Not per page: per viewport. Two orange buttons visible at once make neither of them the action.
+
+### 5.1 The one filled field belongs to the page body, never to the pinned chrome
+
+Resolved in phase 5. This settles the conflict phase 3 escalated and it is binding on every route.
+
+**The rule, stated once:**
+
+> The masthead booking control is `secondary` at every breakpoint and on every route. The single filled orange field a viewport is allowed belongs to the page's own primary action: the first action of a `Hero` or a `CTABand`, or an explicitly `primary` `Button` in the page body. `Hero` and `CTABand` keep rendering their first action as `primary` by default.
+
+It is not conditional. The masthead does not change appearance depending on what the page under it renders.
+
+**Why the masthead is the one that yields.** The bar is `position: sticky`, so a filled field in it is not "one orange field in the first viewport", it is one orange field in *every* viewport of *every* route, forever. It spends the entire budget before a page has said anything. Measured before the fix, all 18 routes carried two filled orange fields in at least one viewport at 1440 and at 390, and on eight of them the two fields were the same words, `Book Damian`, pointing at the same route, `/contact-us/`, one pinned above the other. That is not emphasis. It is a duplicate control competing with itself.
+
+**Why the page body is the one that keeps it.** A meeting planner scans, and what they are scanning for is the point at which the argument stops and an action starts. That point is the close of the page, after the proof figures and the testimonials, not the chrome they scrolled past. Orange marks the place where a decision gets asked for, which is section 5's whole premise, and the chrome asks for nothing: it is always there whether or not you were about to act.
+
+**Findability does not suffer.** The masthead control is found by position and by persistence, not by hue. It is the rightmost item in a bar that never leaves the screen, it carries the same three words on all 18 routes, and as `secondary` it is navy on bone at **15.22:1**, which is a higher contrast ratio than the orange field it replaced (5.60:1). It also lets the wordmark's own orange rule read again instead of being out-shouted by a field ten times its area two inches to the right.
+
+**The rejected alternatives, and why.**
+
+- *Hero and CTABand stop defaulting to `primary`, masthead keeps the orange.* Rejected. It inverts the hierarchy this system is built on: the page's revenue action ends up quieter than a navigation affordance, and every route's close becomes a hairline outline on navy. It also throws away the one ground where `#FF5325` is both legal as a large field and at its best, the deep navy `CTABand`.
+- *The masthead is orange only when the page has no other primary action.* Rejected on two counts. It is architecturally fragile: in the App Router the layout renders without knowledge of the page beneath it, so this needs a hand-maintained route map that silently goes stale the first time someone adds a `Hero` action. And it is wrong even when it works, because persistent chrome that changes appearance between routes stops being learnable, which is the only thing persistent chrome is for.
+
+**The single exception, and it is the only one.** The mobile menu sheet keeps `primary` on its `Book Damian`. The sheet is a modal that fully occludes the page, so it *is* its own viewport, and that button is the only orange field inside it. Nothing else in the chrome gets this exception.
+
+**How to check compliance.** Count filled orange fields visible together, not per section. Walk the page in half-viewport steps at 1440 and at 390 and count elements whose computed `background-color` is `rgb(255, 83, 37)` and which measure at least 24 by 16. The ceiling is one field and three orange elements of any kind, at every scroll position, including the ones where sticky chrome overlaps a band.
 
 ---
 
@@ -371,8 +397,8 @@ One of the three standing humor slots, with the photo cutline and the section me
 
 Renders `<a>` when `href` is present and `<button>` otherwise. A thing that navigates is a link.
 
-- `primary`: an orange field with navy type, 5.60:1. **One per viewport.** It goes on the action that earns money: Book Damian, Contact, Join.
-- `secondary`: a navy hairline outline with navy type. Everything else.
+- `primary`: an orange field with navy type, 5.60:1. **One per viewport, and it belongs to the page body, never to the pinned masthead.** It goes on the action that earns money: Book Damian, Contact, Join. See section 5.1.
+- `secondary`: a navy hairline outline with navy type. Everything else, including the masthead booking control.
 - `ghost`: type only, for a tertiary or in-card action.
 
 `size` `default` or `lg`. `block` fills the container, which is how a 44px target gets its width at 390. Every variant carries `min-block-size: var(--size-tap-target)` (44px) already.
@@ -423,12 +449,24 @@ Fixed at `--fs-xl` (30px at 1440), exactly one step **below** a section `Heading
 
 - The masthead rail carries `EST. 1994, INDIANA`, `THE BUSINESS OF FOOD, FUEL, AND FIBER`, and the phone number at desktop, all in `--ink-muted` at `--fs-2xs`.
 - The phone number appears at **both** breakpoints. At 390 it is a 44px target inside the menu sheet.
-- A persistent **Book Damian** primary button sits to the right of the nav. That is the one field-sized orange in the masthead, and it satisfies the orange budget for that viewport.
+- A persistent **Book Damian** button sits to the right of the nav, in the `secondary` variant. Because the bar is sticky, a filled orange field here would spend the whole viewport budget on every route at every scroll position, so the masthead carries **no** field-sized orange and the page's own primary action carries it instead. Section 5.1 is the binding statement of this rule; the only exception is the mobile sheet, which is a modal and therefore its own viewport.
 - The wordmark sits at `--size-wordmark-w` between two hairlines. It does not reverse.
 
 ### Motion
 
 Nothing slides in from off screen. Things resolve in place. Durations `80` / `140` / `220` / `380` / `620` ms with the four easings in tokens. `prefers-reduced-motion: reduce` collapses every duration token to 1ms and the base layer additionally clamps `transition-duration` and `animation-duration` globally.
+
+**Only `opacity` and `transform` are ever animated.** Nothing in the motion layer can move a neighbour, so nothing in it can contribute to CLS or force a layout pass mid scroll. Measured CLS is 0 on every route at 390 and 1440.
+
+**The scroll reveal, and the one rule it cannot break.** The implementation is `src/styles/motion.css` plus `components/motion/RevealController.tsx`, and the markup contract is two attributes: `data-reveal="fade"` on a block, or `data-reveal="stagger"` on a container whose direct children arrive one `--duration-instant` beat apart, capped at five beats. The container is what gets observed, never the cells, so a 21 mark logo wall costs one observer entry.
+
+*Nothing is hidden by default.* No selector hides anything on its own. The hidden state is `data-reveal-state="pending"`, it is written only by the controller, and only for an element the controller has measured as sitting entirely below the fold. JavaScript off, bundle failed, `IntersectionObserver` missing, reduced motion requested, observer never reporting: every one of those paths ends with the attribute never written and the page fully visible. A reveal that hides content by default and depends on JavaScript to show it is the failure mode this design exists to make impossible. Do not invert it.
+
+Because an element already on screen is never armed, the fold never flashes and no LCP candidate is ever left waiting on a callback.
+
+*Reduced motion disables it, it does not shorten it.* The controller returns before arming anything, and `motion.css` carries an unlayered `prefers-reduced-motion` block that forces the final state and sets `transition-property: none` on everything the file touches. Verified in Chrome with the preference emulated: no element armed, no transform, no transition. State that happens to be expressed as a transform (the nav caret's rotate on an open panel, the skip link's parked position) survives, because that is state, not motion.
+
+`content-visibility` is deliberately **not** used anywhere. `/about/#books` is the live redirect target for every retired commerce URL and the anchor has to land exactly, at `scroll-padding-block-start: var(--header-height)`. Nothing was worth risking that for.
 
 ### Focus
 
@@ -447,8 +485,8 @@ Nothing slides in from off screen. Things resolve in place. Durations `80` / `14
 3. **Do not set a proof figure in the Didone at any size.** Figures are Source Serif 4, tabular, always.
 4. **Do not reverse the wordmark.** `wordmark-white.png` exists in the asset library and this system does not use it. A mark inside a navy region sits on a `surface="paper"` plate.
 5. **Do not use `#FF5325` as a letterform on bone.** It is 2.72:1. Use `--ink-accent` `#A8330E`, or put the type on navy.
-6. **Do not exceed the orange budget.** Three orange elements per viewport, one filled field. Two primary buttons on screen at once means neither is the action.
-7. **Do not use `--ink-faint` for prose.** It is 3.89:1 and it is for decorative indices and disabled text. Pair it with `aria-hidden` when it is an index.
+6. **Do not exceed the orange budget.** Three orange elements per viewport, one filled field. Two primary buttons on screen at once means neither is the action. **And do not put the filled field in the sticky masthead**: it is `secondary` there, permanently, because sticky chrome spends the budget in every viewport of every route. Section 5.1.
+7. **Do not use `--ink-faint` for prose.** It is for decorative indices and disabled text. Pair it with `aria-hidden` when it is an index. Phase 5 moved it from `#7E7460` to `#6A6252` so it clears 4.5:1 on every light ground: an `aria-hidden` index is still visible text to a low-vision reader, and WCAG's "pure decoration" exemption is too soft a thing to rest 90 nodes on.
 8. **Do not use `--rule-decorative` for a rule that carries structure.** If deleting it would lose meaning, it is `structural`.
 9. **Do not use `columns` for prose.** There is no multicolumn token and no multicolumn class.
 10. **Do not put type below `--fs-2xs`.** The floor is 12px at 390 and it applies to every mono label, folio and button on the site.

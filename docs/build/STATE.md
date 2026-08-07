@@ -60,9 +60,14 @@
       caught and removed **7 invented photo cutlines**, softened a promise the site made firmer than Damian
       does, and replaced 12 generic CTA labels with specific ones.
 
-- [ ] **Phase 5 — Motion, responsive, a11y, performance** (~6 agents)
+- [x] **Phase 5 — Motion, responsive, a11y, performance** (~6 agents)
       Restrained motion honoring `prefers-reduced-motion`; 390/768/1440 responsive; WCAG 2.1 AA; image + CWV optimization.
-      Result:
+      Result: **PASS (7 agents).** 57 screenshots across 19 routes x 3 breakpoints: zero overflow, zero broken
+      images, zero console errors, zero failed requests, zero empty hrefs. **axe: 0 violations** across 38
+      route/width runs. CLS measured 0.00000 on 10 full-scroll runs. Video 106MB to 21MB with posters generated.
+      Orange budget resolved: was 2 filled fields on all 18 routes, now exactly 1. JS-disabled harness confirms
+      no route hides content without JavaScript. All 12 redirects switched from 308 to the 301 the plan specifies
+      and verified landing on 200.
 
 - [ ] **Phase 6 — QA + fix-until-dry** (~12 agents, up to 3 rounds)
       Content-parity (old vs new, line by line) · client-requirement checklist · Playwright visual QA at 3 breakpoints
@@ -138,13 +143,18 @@ colon. Meaning is unchanged; this is a deliberate editorial call, recorded here 
 
 ## Carried into later phases (raised by Phase 3, not build defects)
 
-1. **Orange budget conflict, systemic.** The masthead ships a persistent filled-orange "Book Damian", and both
+1. ~~**Orange budget conflict, systemic.**~~ **RESOLVED in Phase 5.** The masthead button became secondary at
+   every breakpoint; Hero and CTABand keep their primary, so the one permitted orange field always belongs to
+   the page's own ask. Measured before and after: every route was at 2 co-visible filled fields, and on 8 of
+   them the two were literally the same three words pointing at the same route, stacked. Now exactly 1 everywhere.
+   Original description: The masthead ships a persistent filled-orange "Book Damian", and both
    `Hero` and `CTABand` default their first action to primary orange. That is two filled orange fields per
    viewport against DESIGN_SYSTEM's one-field rule. No single route can fix it. **Phase 5 decides:** masthead
    goes secondary, or Hero/CTABand stop defaulting to primary.
-2. **106MB of uncompressed 1080p MP4** in `public/video/` (31 + 39 + 36). `preload="none"` means no visitor
+2. ~~**106MB of uncompressed 1080p MP4**~~ **RESOLVED in Phase 5:** transcoded to 720p H.264 via macOS
+   `avconvert` (no ffmpeg on this machine), 106MB to 21MB, posters generated, originals deleted. Original note: in `public/video/` (31 + 39 + 36). `preload="none"` means no visitor
    downloads them unprompted, so no page is slow, but the deploy bundle carries them. **Phase 5 transcodes.**
-3. **Three en dashes (U+2013)** remain in `content/`: a numeric range "60 - 90 minutes" where an en dash is
+3. ~~**Three en dashes (U+2013)**~~ **RESOLVED in Phase 4.** Original note: remain in `content/`: a numeric range "60 - 90 minutes" where an en dash is
    correct typography, one used as an em dash would be, and one inside a verbatim quote. Zero em dashes (U+2014)
    anywhere, so the gate passes. **Phase 4 copy decision.**
 4. **Factual conflicts needing the client, not invention:** `/boasg/` says 8 foreign countries verbatim while
@@ -157,11 +167,24 @@ colon. Meaning is unchanged; this is a deliberate editorial call, recorded here 
 
 ---
 
+## Open accessibility item carried to Phase 7
+
+**SC 1.2.2 Captions (Level A) fails on the three self-hosted demo reels.** Confirmed at runtime: all 3 MP4s
+render with `tracks: 0`. `VideoEmbed` already accepts a captions prop, so this is a content-production
+dependency (someone has to transcribe them), not a code gap. It is the only known WCAG failure on the site and
+belongs in `OPEN-ITEMS.md` for the client.
+
+**Slashless legacy URLs take two hops** (308 to append the trailing slash, then the 301). All still terminate at
+200 at the correct destination. Inherent to `trailingSlash: true`; not worth disabling that convention over.
+
+---
+
 ## Log
 
 _(append one line per completed phase: date, phase, agent count, outcome)_
 
 - 2026-08-06 · Phase 0 · 10 agents · PASS. 28 pages harvested, 70 assets mirrored, 46 logos normalized, VOICE.md written, gate reconciled 6 plan discrepancies.
+- 2026-08-07 · Phase 5 · 7 agents · PASS. axe 0, CLS 0, video 106MB to 21MB, orange budget fixed on all 18 routes, 301s verified.
 - 2026-08-07 · Phase 4 · 6 agents (1 API error, work covered) · PASS. Voice pass killed 7 invented cutlines; 19 unique titles + descriptions verified from prerendered HTML.
 - 2026-08-06 · Phase 3 · 18 agents · PASS. 18 routes built, gate clean on first run, ~40 old-site defects dropped with written justification.
 - 2026-08-06 · Phase 2 · 6 agents · PASS. Chrome + SEO + 11 sections + content layer; footer agent fixed a data-surface token bug that rendered navy on navy.

@@ -1,0 +1,266 @@
+/* ============================================================================
+   DAMIAN MASON / BUSINESS AGRICULTURE
+   MOTION
+
+   Two things live here and nothing else: the scroll reveal, and the handful of
+   micro-interactions that make a control feel like a control. Every duration
+   and every easing is a token from src/styles/tokens.css section 19. Every
+   distance is a spacing or border token. There is no raw pixel and no hex.
+
+   ----------------------------------------------------------------------------
+   THE ONE RULE THAT MATTERS: NOTHING IS HIDDEN BY DEFAULT.
+
+   No selector in this file hides anything on its own. The hidden state is
+   [data-reveal-state="pending"], and that attribute is written by JavaScript,
+   in components/motion/RevealController.tsx, only after it has confirmed that
+   the element is below the fold and that the reader has not asked for reduced
+   motion. With JavaScript off, with the bundle failing, with the observer
+   never firing, or with reduced motion on, the attribute is never written and
+   the page renders exactly as the server sent it: everything visible, nothing
+   transitioning.
+
+   Corollary: an element already on screen at hydration is never armed, so the
+   fold never flashes and the LCP element is never delayed by an opacity ramp.
+
+   ----------------------------------------------------------------------------
+   WHAT IS ANIMATED: opacity and transform. Only. No height, no margin, no
+   inset, no display. Nothing here can move a neighbour, so nothing here can
+   contribute to CLS or force a layout pass mid-scroll.
+
+   NOTHING SLIDES IN FROM OFF SCREEN, per DESIGN_SYSTEM section 9. The rise is
+   --space-3 (12px) for a block and --space-2 (8px) for a staggered cell, which
+   is a resolve in place, not an entrance.
+   ============================================================================ */
+
+@layer components {
+  /* ==========================================================================
+     1. SCROLL REVEAL
+
+     Markup contract, two attributes:
+
+       data-reveal="fade"      this element fades and rises as one piece.
+       data-reveal="stagger"   this element is a container; its direct children
+                               fade and rise, each one a beat behind the last.
+
+     The container is what gets observed, not the 21 logo cells inside it, so a
+     full client wall costs one IntersectionObserver entry rather than 21.
+
+     data-reveal-state is written by the controller and is never authored in
+     markup. "pending" is hidden, "shown" is the final state, absent is also
+     the final state. Reveal happens once and never re-hides.
+     ========================================================================== */
+
+  /* The destination style. A transition is read from the after-change style,
+     which is why declaring it here and killing it in the pending block below
+     gives an instant arm and an animated reveal, rather than a visible fade
+     out at hydration followed by a fade back in. */
+  [data-reveal] {
+    transition:
+      opacity var(--duration-slow) var(--easing-entrance),
+      transform var(--duration-slow) var(--easing-entrance);
+  }
+
+  [data-reveal="fade"][data-reveal-state="pending"] {
+    transition: none;
+    opacity: 0;
+    transform: translateY(var(--space-3));
+  }
+
+  [data-reveal="stagger"] > * {
+    transition:
+      opacity var(--duration-slow) var(--easing-entrance),
+      transform var(--duration-slow) var(--easing-entrance);
+  }
+
+  [data-reveal="stagger"][data-reveal-state="pending"] > * {
+    transition: none;
+    opacity: 0;
+    transform: translateY(var(--space-2));
+  }
+
+  /* The stagger. One --duration-instant beat per cell, capped at five beats so
+     a 21 mark logo wall finishes in 400ms of offset rather than 1.7 seconds.
+     The sweep reads across the first row and the rest of the wall lands with
+     it, which is the point: a rhythm, not a queue. */
+  [data-reveal="stagger"] > *:nth-child(2) {
+    transition-delay: var(--duration-instant);
+  }
+  [data-reveal="stagger"] > *:nth-child(3) {
+    transition-delay: calc(var(--duration-instant) * 2);
+  }
+  [data-reveal="stagger"] > *:nth-child(4) {
+    transition-delay: calc(var(--duration-instant) * 3);
+  }
+  [data-reveal="stagger"] > *:nth-child(5) {
+    transition-delay: calc(var(--duration-instant) * 4);
+  }
+  [data-reveal="stagger"] > *:nth-child(n + 6) {
+    transition-delay: calc(var(--duration-instant) * 5);
+  }
+
+  /* ==========================================================================
+     2. MICRO-INTERACTIONS
+
+     Restrained on purpose. This is an editorial broadsheet, so a control
+     acknowledges a press and a card acknowledges a pointer, and that is the
+     whole vocabulary. Selectors carry one extra step of specificity where they
+     have to beat a rule already written in app/globals.css, because this file
+     is imported above that rule rather than below it.
+     ========================================================================== */
+
+  /* --- the press -----------------------------------------------------------
+     A button already animates its field and its ink through
+     --transition-surface. What it has never had is a physical acknowledgement,
+     so it takes exactly one hairline of travel, at the shortest duration in
+     the system. */
+  a.dm-btn,
+  button.dm-btn {
+    transition:
+      var(--transition-surface),
+      var(--transition-ink),
+      transform var(--duration-instant) var(--easing-standard);
+  }
+  a.dm-btn:active,
+  button.dm-btn:active {
+    transform: translateY(var(--border-hairline));
+  }
+
+  /* --- the card lift -------------------------------------------------------
+     Two pixels, and no shadow, because DESIGN_SYSTEM rule 20 says a card never
+     gets one. The ground change is still doing most of the work; the lift only
+     tells the pointer the whole card is the target. */
+  .dm-card.dm-card--interactive {
+    transition:
+      var(--transition-surface),
+      transform var(--duration-fast) var(--easing-standard);
+  }
+  .dm-card.dm-card--interactive:hover {
+    transform: translateY(calc(-1 * var(--border-thin)));
+  }
+  .dm-card.dm-card--interactive:active {
+    transform: translateY(0);
+  }
+
+  /* --- the nav caret -------------------------------------------------------
+     The rotate on [aria-expanded="true"] already ships in globals.css and it is
+     already on --duration-fast, so the travel is done. What was missing is that
+     the caret kept its --ink-muted while the label beside it went to
+     --ink-brand, which read as two half-hovered things rather than one hovered
+     control. It now moves with the label, on the same duration.
+
+     A translate on hover was tried here and removed: this nav opens its panel
+     on hover, so the pointer arriving and the caret rotating are the same
+     event, and a nudge underneath a rotate is noise. */
+  .dm-nav__link .dm-nav__caret {
+    transition:
+      transform var(--duration-fast) var(--easing-standard),
+      color var(--duration-fast) var(--easing-standard);
+  }
+  .dm-nav__link:hover .dm-nav__caret {
+    color: var(--ink-brand);
+  }
+
+  /* --- the underline -------------------------------------------------------
+     A standalone link (a press headline, an episode title, a footer column)
+     draws its underline at rest in a transparent ink and fades it in. The rule
+     is always in the box, so nothing reflows and nothing shifts; only its
+     color changes.
+
+     In-prose links are deliberately untouched. SC 1.4.1 requires their
+     underline to be permanently visible, and it already animates its color
+     with the link through --transition-ink in the base layer.
+
+     The `a.` qualifier is load-bearing, not decoration: globals.css sets
+     text-decoration-line: none on several of these at rest, and this file is
+     imported above it, so the tie has to be broken on specificity. */
+  a.dm-press__link,
+  a.dm-episode__link,
+  a.dm-footer__link,
+  a.dm-footer__nav-title-link,
+  a.dm-menu__link,
+  a.dm-menu__sublink,
+  a.dm-masthead__phone {
+    text-decoration-line: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: from-font;
+    text-underline-offset: 0.16em;
+    transition:
+      var(--transition-ink),
+      text-decoration-color var(--duration-fast) var(--easing-standard);
+  }
+  a.dm-press__link:hover,
+  a.dm-episode__link:hover,
+  a.dm-footer__link:hover,
+  a.dm-footer__nav-title-link:hover,
+  a.dm-menu__link:hover,
+  a.dm-menu__sublink:hover,
+  a.dm-masthead__phone:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* --- the video facade ----------------------------------------------------
+     The veil and the poster filter already respond. The control itself was the
+     one part of the composition that did not move at all. */
+  .dm-video__play {
+    transition: transform var(--duration-fast) var(--easing-standard);
+  }
+  .dm-video__facade:hover .dm-video__play,
+  .dm-video__facade:focus-visible .dm-video__play {
+    transform: scale(1.06);
+  }
+
+  /* --- the skip link -------------------------------------------------------
+     It already travels on focus. It just did it in zero milliseconds, which
+     read as a pop rather than as a thing arriving. */
+  .dm-skip-link {
+    transition: transform var(--duration-fast) var(--easing-entrance);
+  }
+}
+
+/* ============================================================================
+   3. REDUCED MOTION
+
+   The controller never arms a single element when this preference is set, so
+   in practice nothing above can run. This block is the belt to that brace: it
+   forces the final state and removes the transition outright rather than
+   shortening it, which is what the requirement actually asks for. It also
+   covers the reader who flips the preference mid-session with elements already
+   armed, and it sits outside @layer components so it beats every rule in it.
+   ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  /* Final state, no transition, whatever the controller may have written. */
+  [data-reveal],
+  [data-reveal] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    transition-delay: 0s;
+  }
+
+  /* Every transition this file opens, closed. Surgical rather than universal:
+     the caret's rotate on an open menu and the skip link's parked position are
+     state, not motion, and both have to survive. What goes is the travel. */
+  a.dm-btn,
+  button.dm-btn,
+  .dm-card--interactive,
+  .dm-nav__link .dm-nav__caret,
+  .dm-video__play,
+  .dm-skip-link,
+  a.dm-press__link,
+  a.dm-episode__link,
+  a.dm-footer__link,
+  a.dm-footer__nav-title-link,
+  a.dm-menu__link,
+  a.dm-menu__sublink,
+  a.dm-masthead__phone {
+    transition: none;
+  }
+  a.dm-btn:active,
+  button.dm-btn:active,
+  .dm-card.dm-card--interactive:hover,
+  .dm-card.dm-card--interactive:active,
+  .dm-video__facade:hover .dm-video__play,
+  .dm-video__facade:focus-visible .dm-video__play {
+    transform: none;
+  }
+}

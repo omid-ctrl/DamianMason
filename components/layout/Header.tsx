@@ -38,7 +38,17 @@ import { PrimaryNav } from './PrimaryNav';
  *        lines and a real tel: link.
  */
 
-/** The one action in the masthead that earns money, and the one orange field. */
+/**
+ * The one action in the masthead that earns money.
+ *
+ * It is `secondary`, not `primary`, and that is a system-level decision, not a
+ * local style choice. See DESIGN_SYSTEM.md section 5. The masthead is pinned,
+ * so a filled orange field here is present in every viewport of every route,
+ * which left no orange for the page's own ask and put two identical orange
+ * "Book Damian" fields on screen at once at the close of eight routes.
+ * Persistent chrome earns findability from position and persistence. The page
+ * body earns it from color. Do not change this to `primary`.
+ */
 const BOOKING_HREF = '/contact-us/';
 const BOOKING_LABEL = 'Book Damian';
 
@@ -87,14 +97,27 @@ export function Header({ items = nav, className }: HeaderProps) {
               width={800}
               height={199}
               sizes="(min-width: 80rem) 15rem, 10.5rem"
-              priority
+              /* Eager, because the mark is above the fold on all 19 routes, but
+                 deliberately NOT `priority`. LCP was measured on every route
+                 against a production build and the wordmark is the LCP element
+                 on none of them: it is always either the H1 or the hero
+                 portrait, so `priority` was asserting something untrue.
+
+                 Be aware this does not change the emitted network work today.
+                 Next 16 preloads any non-lazy image, so the <link rel="preload"
+                 as="image"> for this 7KB mark is still there and neither form
+                 emits fetchpriority="high" in the SSR output. The reason to
+                 prefer `eager` anyway is that `priority` is the LCP signal, and
+                 if Next starts honouring it with a real priority hint we want
+                 that hint on the hero portrait alone. */
+              loading="eager"
             />
           </Link>
 
           <PrimaryNav items={items} />
 
           <div className="dm-masthead__actions">
-            <Button href={BOOKING_HREF} variant="primary" className="dm-masthead__book">
+            <Button href={BOOKING_HREF} variant="secondary" className="dm-masthead__book">
               {BOOKING_LABEL}
             </Button>
 
@@ -146,7 +169,7 @@ export default Header;
        panel holds Acres TV and Blog. The child that used to duplicate the
        parent's label is gone.
    9.  Tab 8 and 9: "About" and "Contact Us".
-   10. Tab 10: "Book Damian", the primary button, an <a> to /contact-us/.
+   10. Tab 10: "Book Damian", the secondary button, an <a> to /contact-us/.
    11. Tab 11: the Menu trigger. It is display:none at this width, so it is not
        in the tab order at all and focus continues into #main.
    12. On the page the nav points at, that link carries aria-current="page" and

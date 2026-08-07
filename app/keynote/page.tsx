@@ -45,26 +45,16 @@ export const metadata: Metadata = buildMetadata({
 });
 
 /**
- * The three demo reels are self-hosted. `content/videos.ts` stores the bare
- * filename as it exists in `_source/media/`, so the route maps each one onto
- * the copy that actually ships from `public/video/`. The content file is owned
- * by another phase and is not edited here.
+ * The three demo reels are self-hosted. `content/videos.ts` now carries the
+ * path that actually ships from `public/video/` plus a real poster frame, so
+ * this route hands the records straight to VideoEmbed. The filename map that
+ * used to live here was applied on this page and nowhere else, which left the
+ * same innovation reel pointing at a 404 on /collaboration-opportunities/.
  *
- * All three are still the uncompressed 1080p originals, 31MB to 39MB, and none
- * of them has a poster frame or a caption track yet. `preload="none"` on the
- * VideoEmbed means nothing downloads until a visitor presses play.
+ * All three are 720p H.264, about 7MB each, and `preload="none"` on VideoEmbed
+ * means only the poster loads until a visitor presses play.
  */
-const REEL_FILES: Record<string, string> = {
-  'demo-food-waste': '/video/dm-food-waste-1080p.mp4',
-  'demo-labor': '/video/dm-labor-1080p.mp4',
-  'demo-innovation': '/video/dm-innovation-1080p.mp4',
-};
-
-const demoReels: Video[] = videosFor(ROUTE).map((video) =>
-  video.kind === 'mp4' && REEL_FILES[video.id]
-    ? { ...video, file: REEL_FILES[video.id] }
-    : video,
-);
+const demoReels: Video[] = videosFor(ROUTE);
 
 /**
  * The program description runs in full in the section that opens this page's
