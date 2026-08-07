@@ -150,7 +150,6 @@
   --text-figure: var(--fs-figure);
 
   /* --- rhythm -------------------------------------------------------------- */
-  --leading-solid: var(--lh-solid);
   --leading-tight: var(--lh-tight);
   --leading-snug: var(--lh-snug);
   --leading-heading: var(--lh-heading);
@@ -158,7 +157,6 @@
   --leading-body: var(--lh-body);
   --leading-loose: var(--lh-loose);
 
-  --tracking-tightest: var(--ls-tightest);
   --tracking-tighter: var(--ls-tighter);
   --tracking-tight: var(--ls-tight);
   --tracking-normal: var(--ls-normal);
@@ -424,14 +422,26 @@
     line-height: var(--lh-snug);
     text-wrap: balance;
   }
-  /* The Didone. Only ever at --fs-4xl and above, only with optical sizing on
-     automatic. Below 40px its hairlines drop under a device pixel at 1x. */
+  /* The masthead voice: an American newspaper gothic, and the only rule in the
+     build that sets --family-display.
+
+     There is no size floor here any more. Bodoni Moda had one, enforced in the
+     TypeScript type system, because a Didone's hairlines drop under a device
+     pixel at 1x below about 40px. A condensed gothic has no hairlines to lose,
+     so what replaced the floor is a RANK rule: see components/ui/Heading.tsx.
+     The constraint that mattered was never really legibility, it was that the
+     masthead voice must not reach the section-head step and flatten the ladder.
+
+     font-optical-sizing: auto is gone rather than carried over. It never did
+     anything: next/font only requests an opsz axis if you pass axes:, this app
+     does not, so the shipped Bodoni file had no optical-size master to drive.
+     Oswald has no opsz axis at all, so the question is now closed rather than
+     silently unanswered. */
   .dm-display {
     color: var(--ink-primary);
     font-family: var(--family-display);
-    font-optical-sizing: auto;
-    font-weight: var(--weight-medium);
-    letter-spacing: var(--ls-tightest);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--ls-display);
     line-height: var(--lh-tight);
     text-wrap: balance;
     /* --fs-6xl outgrows the hero's 7-column type track between 1024 and about
@@ -454,7 +464,13 @@
        hyphen is still the preferred outcome wherever a browser offers it. */
     hyphens: auto;
   }
-  .dm-display--masthead { line-height: var(--lh-solid); }
+  /* The 6xl masthead step takes the tighter of the two display tracking values.
+     No unlayered escape hatch is needed here, unlike the --fs-6xl rebind a few
+     files over: @theme declares --text-6xl but no --tracking-6xl, so the
+     text-6xl utility carries no competing letter-spacing and the components
+     layer wins cleanly. Worth saying, because the neighbouring font-size case
+     looks like it should behave the same way and does not. */
+  .dm-display.text-6xl { letter-spacing: var(--ls-display-masthead); }
 
   .dm-heading--brand, .dm-display--brand { color: var(--ink-brand); }
   .dm-heading--muted { color: var(--ink-muted); }

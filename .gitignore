@@ -71,3 +71,10 @@ next-env.d.ts
 /docs/qa/screenshots/
 /docs/design/shots/
 
+
+# Conflict copies. A file-sync client on this machine (the repo lives under
+# ~/Desktop) writes "name 2.ext" beside a file it thinks diverged. One of those,
+# a stale copy of tokens.css carrying the pre-revision palette, was swept into a
+# commit by git add -A. They are never wanted in the tree.
+*\ 2.*
+*\ [0-9].*

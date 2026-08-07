@@ -507,7 +507,10 @@
   /* app/layout.tsx injects --font-bodoni / --font-source-serif / --font-archivo
      / --font-plex-mono with next/font/google. The var() fallbacks keep this
      file standalone so the tokens still resolve if it is loaded on its own. */
-  --family-display: var(--font-bodoni, "Bodoni Moda"), "Times New Roman", Times, serif;
+  /* The fallback stack must go CONDENSED SANS, not serif. It is what renders
+     if the webfont fails, and a Times fallback behind a condensed gothic is a
+     40% width jump on the H1 rather than a slightly different texture. */
+  --family-display: var(--font-oswald, "Oswald"), "Arial Narrow", "Helvetica Neue Condensed", Helvetica, Arial, sans-serif;
   --family-serif: var(--font-source-serif, "Source Serif 4"), "Iowan Old Style", Georgia, serif;
   --family-figure: var(--family-serif);
   --family-body: var(--font-archivo, "Archivo"), "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -578,12 +581,40 @@
      different step, and --fs-6xl itself is untouched, so the ladder in
      DESIGN_SYSTEM section 8 still describes every non-hero display line.
 
-     One H1 is beyond reach and is meant to be: the homepage's
-     "Straight-Forward" is a single 916px token at 120px and 840px at 110px
-     against the same 708px track, so it breaks at its hyphen at every width
-     from about 1030 up. Fitting it needs a hero step 23 percent smaller than
-     every other route's. See the note at app/page.tsx. */
-  --fs-6xl-hero: clamp(5.75rem, 2.981rem + 4.327vw, 6.875rem); /* 92 → 110 */
+     ------------------------------------------------------------------------
+     RE-DERIVED FOR THE GOTHIC, Cool Modern Ag revision.
+
+     Everything above is evidence about Bodoni Moda. A display face swap
+     changes every glyph advance on the site, so it had to be measured again
+     rather than adjusted. scripts/_type-fit-tmp.mjs walks all 17 routes at six
+     widths and reports, per route, the size at which the H1's widest single
+     token would exactly fill its track. The binding case at EVERY width is the
+     homepage:
+
+       viewport   track   "Straight-Forward" fits up to
+       1024       535px   84.3px
+       1100       576px   90.7px
+       1200       630px   99.2px
+       1280       673px  106.0px
+       1380       708px  111.6px
+       1440       708px  111.5px
+
+     The paragraph above this one said that headline was "beyond reach and is
+     meant to be", and that fitting it needed a step 23% smaller than every
+     other route's. That was true of a Didone. It is not true here: this ramp
+     anchors at 1024 and 1440 with a 2% margin and clears the binding number at
+     all six widths, so the flagship H1 sets in three clean lines from 1024 up
+     and app/page.tsx's "NOT FIXABLE HERE" note is gone.
+
+     The next-tightest units are no longer close: "Conversation" and
+     "Coordinators" now have 18 to 32% headroom, where under the Didone they
+     were the constraint the ramp was fitted to. The word that binds moved,
+     which is exactly why this was measured instead of scaled.
+
+     83 to 109px, against the Didone's 92 to 110. It gives up 9px at the 1024
+     end, which almost nobody sees, and buys back the one headline a meeting
+     planner lands on first. */
+  --fs-6xl-hero: clamp(5.1875rem, 1.056rem + 6.42vw, 6.8125rem); /* 83 → 109 */
 
   /* The one size in the system that exists for a single job: the proof figure
      in the stat ledger. Set in Source Serif 4, not the Didone. */
@@ -592,7 +623,10 @@
   /* ==========================================================================
      13. TYPOGRAPHY / RHYTHM
      ========================================================================== */
-  --lh-solid: 0.90;    /* masthead-scale display only */
+  /* --lh-solid: 0.90 was here. Its only consumer was .dm-display--masthead,
+     which was never applied in any .tsx, and the leading-solid utility it
+     minted was never used in markup either. A token nobody sets, carrying a
+     comment that implies it ships, is worse than no token. */
   --lh-tight: 1.02;    /* H1 */
   --lh-snug: 1.12;     /* H2, H3, pull quotes */
   --lh-heading: 1.20;
@@ -600,7 +634,18 @@
   --lh-body: 1.60;     /* running text */
   --lh-loose: 1.72;    /* captions, small print */
 
-  --ls-tightest: -0.032em;  /* Didone at masthead size */
+  /* Display tracking, split in two because one value cannot serve 34px and
+     120px: optical tracking scales inversely with size, so a single number is
+     always over-tracked at one end.
+
+     It also had to move for the face. -0.032em was 5.9% of Bodoni's lowercase
+     advance but is 7.3% of Oswald's, a 24% harder squeeze on a face whose
+     sidebearings are already minimal by construction, and a condensed gothic
+     locks up (rn reading as m, round-to-round collisions) well before a Didone
+     does. --ls-tightest is retired rather than repointed: the name described a
+     Didone at masthead size and nothing else consumed it. */
+  --ls-display: -0.014em;           /* .dm-display, 3xl through 5xl */
+  --ls-display-masthead: -0.022em;  /* the 6xl masthead step only */
   --ls-tighter: -0.018em;
   --ls-tight: -0.010em;
   --ls-normal: 0em;

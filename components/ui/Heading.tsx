@@ -15,12 +15,24 @@ export type HeadingSize =
   | '6xl';
 
 /**
- * The only sizes the Didone is allowed at. Below --fs-4xl its hairlines fall
- * under one device pixel at 1x and the glyphs shed strokes, which is exactly
- * what destroyed the proof figures in the original comp. The type system is
- * the guardrail: `display` cannot be combined with a smaller size.
+ * The sizes the masthead voice is allowed at.
+ *
+ * This gate used to exist for legibility: the Didone it was written for shed
+ * strokes below --fs-4xl because its hairlines fall under one device pixel at
+ * 1x. A condensed gothic has no hairlines to lose, so that reason is gone.
+ *
+ * The gate is NOT gone, because it was quietly doing a second job that has
+ * nothing to do with rasterisation: it is the only thing preventing the
+ * masthead voice from reaching the section-head step and flattening the
+ * ladder. So the floor drops one step, to 3xl, and stops at 3xl rather than
+ * disappearing, because 2xl IS the section H2 step.
+ *
+ * What relaxing it buys, concretely: the /meeting-coordinators/ media band was
+ * forced out of the display face because an 89-character sentence at 4xl ran
+ * eight lines and 40% of the viewport at 390. In a face 18% narrower it fits
+ * at 3xl, and it gets its rank back.
  */
-export type DisplaySize = Extract<HeadingSize, '4xl' | '5xl' | '6xl'>;
+export type DisplaySize = Extract<HeadingSize, '3xl' | '4xl' | '5xl' | '6xl'>;
 
 /** Full class strings, never built by template literal, so Tailwind's scanner
  *  actually sees them. */
@@ -49,9 +61,21 @@ type HeadingBase = {
   children?: ReactNode;
 } & Omit<ComponentPropsWithoutRef<'h2'>, 'className' | 'children'>;
 
+/**
+ * `display: true` additionally requires `level: 1`.
+ *
+ * The size floor stops the masthead voice colliding with the section-head
+ * step; this stops it appearing twice on a page. "The masthead voice is the
+ * page's own name for itself" is only true if exactly one element per document
+ * gets to speak in it, and nothing else in the system enforced that.
+ *
+ * It costs nothing today: every existing `display` call site is already
+ * level 1. The one `level={2}` Hero on the site, the /meeting-coordinators/
+ * band, is already non-display.
+ */
 export type HeadingProps = HeadingBase &
   (
-    | { display: true; size: DisplaySize }
+    | { display: true; level: 1; size: DisplaySize }
     | { display?: false; size?: HeadingSize }
   );
 

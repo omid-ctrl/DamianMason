@@ -84,9 +84,11 @@ const DEFAULT_TITLE_SIZE: Record<HeroVariant, DisplaySize> = {
   band: '5xl',
 };
 
-/** The three steps the Didone is permitted at, as a value, so the render can
- *  decide whether this title is a display line or a serif one. */
-const DISPLAY_SIZES: DisplaySize[] = ['4xl', '5xl', '6xl'];
+/** The steps the masthead voice is permitted at, as a value, so the render can
+ *  decide whether this title is a display line or a serif one. 3xl joined the
+ *  list when the Didone left: the old floor existed because a Didone sheds
+ *  strokes below 40px, and a condensed gothic does not. */
+const DISPLAY_SIZES: DisplaySize[] = ['3xl', '4xl', '5xl', '6xl'];
 
 /** A band carries reversed type, so it defaults to the navy ground. */
 const DEFAULT_SURFACE: Record<HeroVariant, Surface> = {
@@ -160,7 +162,14 @@ export function Hero(props: HeroProps) {
   const size = titleSize ?? DEFAULT_TITLE_SIZE[variant];
   const headingId = id ? `${id}-title` : undefined;
   const band = variant === 'band';
-  const isDisplay = DISPLAY_SIZES.includes(size as DisplaySize);
+  /* A Hero speaks in the masthead voice only when it IS the page's H1.
+     The size check alone was not the rule, it was a proxy for it that happened
+     to hold: the one level-2 Hero on the site (the /meeting-coordinators/
+     media band) is also the one with a non-display size, so nothing enforced
+     the part that actually matters. Making rank explicit here means a future
+     level-2 band cannot quietly become a second masthead by picking a bigger
+     size, and it is what lets Heading's type gate narrow. */
+  const isDisplay = level === 1 && DISPLAY_SIZES.includes(size as DisplaySize);
 
   const type = (
     // Full width at 390 and at 768, where a 7-column masthead H1 would ladder

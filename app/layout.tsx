@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Archivo, Bodoni_Moda, IBM_Plex_Mono, Source_Serif_4 } from 'next/font/google';
+import { Archivo, IBM_Plex_Mono, Oswald, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import { Footer, Header } from '@/components/layout';
 import { RevealController } from '@/components/motion';
@@ -15,18 +15,49 @@ import { buildSiteBaseSchema } from '@/lib/schema';
  * var() fallback, so the token file stays valid on its own.
  */
 
-/** Display only, and only at --fs-4xl and above. Variable optical size, left
- *  on automatic so the browser matches the opsz master to the used size.
+/** The masthead voice.
  *
- *  Roman only. The italic master was being preloaded on all 19 routes at
- *  29.5KB and nothing on the site sets the Didone in italic: the one italic
- *  rule in the build is .dm-quote__body, which is --family-serif-italic, and
- *  the only two <em> elements sit inside Prose, which is --family-body. */
-const bodoniModa = Bodoni_Moda({
-  variable: '--font-bodoni',
+ *  Oswald is Vernon Adams' reworking of ATF Alternate Gothic, which is the
+ *  actual American newspaper and poster gothic lineage rather than something
+ *  gothic-adjacent. It replaced Bodoni Moda in the Cool Modern Ag revision for
+ *  three reasons, in order of how much they mattered.
+ *
+ *  1. REGISTER. A Didone is Vogue and Harper's: refinement and distance. The
+ *     H1 underneath it reads "Straight-Forward Agriculture Dialogue" and the
+ *     buyer is a farm credit executive. The face was arguing with the copy.
+ *
+ *  2. FIT. The home page H1 broke mid-word at 1024, 1200, 1280, 1380 and 1440,
+ *     measured, and app/page.tsx called it "NOT FIXABLE HERE". It was not
+ *     fixable in a Didone. Oswald's lowercase advance is 0.441 against Bodoni's
+ *     0.539, so the flagship word fits.
+ *
+ *  3. DIFFERENTIATION FROM THE BODY FACE. This is the one that is easy to get
+ *     wrong: Archivo is already a grotesk, and two grotesks that look alike
+ *     muddy every page. Oswald separates on TWO independent axes at once, width
+ *     (0.441 against Archivo's 0.540, -18%) and cap height (0.810 against
+ *     0.686, +18%). Libre Franklin was carried through the bake-off precisely
+ *     to test whether weight alone would do it. It would not: at 800 it is
+ *     wider than Bodoni, it breaks "Straight-Forward" at the hyphen, and next
+ *     to Archivo it reads as one face in two weights.
+ *
+ *  ONE WEIGHT, deliberately. .dm-display is the only rule that sets this face
+ *  and it sets 600. Asking for one weight gets a 12.4KB static instance where
+ *  asking for the range gets the variable master, the same mechanism the
+ *  Source Serif italic note below documents. Half of Bodoni's 25.2KB.
+ *
+ *  DO NOT PASS axes:. Oswald has no opsz and no wdth, so there is nothing to
+ *  request, and passing axes: would force weight: 'variable' and pull the full
+ *  variable font for nothing. Big Shoulders lost the bake-off on exactly this:
+ *  its static instance is the opsz-10 TEXT master, and getting the display
+ *  master costs 56.9KB on the file that gates LCP on 17 routes.
+ *
+ *  preload stays on. This face renders the H1, which is the LCP element on
+ *  desktop for most routes. */
+const oswald = Oswald({
+  variable: '--font-oswald',
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '600'],
+  weight: ['600'],
   style: ['normal'],
 });
 
@@ -120,7 +151,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${bodoniModa.variable} ${sourceSerif.variable} ${sourceSerifItalic.variable} ${archivo.variable} ${plexMono.variable} h-full`}
+      className={`${oswald.variable} ${sourceSerif.variable} ${sourceSerifItalic.variable} ${archivo.variable} ${plexMono.variable} h-full`}
     >
       <body className="flex min-h-full flex-col">
         <a href="#main" className="dm-skip-link">
