@@ -4,7 +4,7 @@ import type { Video } from '@/content/videos';
 import { Heading, cx } from '@/components/ui';
 import { VideoEmbed, type VideoCaptionTrack } from './VideoEmbed';
 
-export type VideoGridColumns = 1 | 2 | 3;
+export type VideoGridColumns = 1 | 2 | 3 | 4;
 
 export type VideoGridProps = {
   videos: Video[];
@@ -14,7 +14,11 @@ export type VideoGridProps = {
    */
   page?: string;
   columns?: VideoGridColumns;
-  /** Heading rank for each item title. Appearance stays fixed at --fs-lg. */
+  /**
+   * Heading rank for each item title. Appearance stays fixed at --fs-lg,
+   * except in the 4-up row, where the column is a 9:16 frame's width and the
+   * title steps down with it. See .dm-video-grid--4 in src/styles/sections.css.
+   */
   headingLevel?: 2 | 3 | 4;
   /** Drops the visible titles where the surrounding copy already names them.
    *  The play control keeps the title in its accessible name either way. */
@@ -45,6 +49,10 @@ const COLUMN_CLASS: Record<VideoGridColumns, string> = {
   1: '',
   2: 'dm-video-grid--2',
   3: 'dm-video-grid--3',
+  /* The 9:16 row. Four portrait frames across, because a portrait frame in a
+     landscape column can only ever be a narrow strip with dead ground beside
+     it. Sized so the column IS the frame. */
+  4: 'dm-video-grid--4',
 };
 
 /**

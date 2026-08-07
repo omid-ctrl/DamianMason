@@ -129,6 +129,16 @@ const SECOND_COVER: Record<string, keyof typeof COVERS> = {
 };
 
 /**
+ * One descriptor for every jacket on the shelf. The cover slot is one column
+ * wide at every breakpoint and a card's jackets take a row each below 64rem,
+ * so a paired jacket and a single jacket are laid out in boxes of the same
+ * width and there is no second case to describe. The three steps are the
+ * shelf's three arrangements: full-bleed column below 48rem, the 14rem cover
+ * track beside the copy from 48 to 64rem, and the two-column shelf above it.
+ */
+const JACKET_SIZES = '(min-width: 64rem) 18rem, (min-width: 48rem) 12rem, 100vw';
+
+/**
  * Splits a harvested description into paragraphs and drops any trailing
  * fragment that is not a complete sentence.
  *
@@ -373,7 +383,10 @@ export default function AboutPage() {
                           width={1200}
                           height={1200}
                           loading="lazy"
-                          sizes="(min-width: 48rem) 22rem, 100vw"
+                          /* Both jackets on a card get the same slot at every
+                             width now (page.module.css, .bookCover), so both
+                             Image tags carry the same descriptor. */
+                          sizes={JACKET_SIZES}
                         />
                         {second ? (
                           <Image
@@ -382,7 +395,7 @@ export default function AboutPage() {
                             width={1200}
                             height={1200}
                             loading="lazy"
-                            sizes="(min-width: 48rem) 11rem, 50vw"
+                            sizes={JACKET_SIZES}
                           />
                         ) : null}
                       </div>

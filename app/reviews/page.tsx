@@ -179,7 +179,10 @@ export default function ReviewsPage() {
 
           {/* Facades, not raw iframes: nothing loads from YouTube, and nothing
               plays, until a visitor presses one. */}
-          <VideoGrid videos={reviewVideos} columns={2} headingLevel={3} />
+          {/* Four across, not two. All four of these were filmed vertically,
+              so the column has to be the frame's shape or the frame is a strip
+              with dead ground beside it. See .dm-video-grid--4. */}
+          <VideoGrid videos={reviewVideos} columns={4} headingLevel={3} />
         </Container>
       </Section>
 

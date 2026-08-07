@@ -226,6 +226,53 @@
     max-inline-size: var(--measure-narrow);
   }
 
+  /* --- the band at 390: the figure stops being a backdrop -------------------
+     A full-bleed photograph behind reversed type works while the type has a
+     column and the photograph has the rest of the frame. At 768 it does: the
+     type takes 9 of 12 columns, the scrim is transparent by 82%, and the
+     microphone reads down the right of the frame. At 390 the type takes all
+     six columns, so the scrim covers the whole width and lands on top of the
+     0.62 band veil. MEASURED on /meeting-coordinators/ at 390: mean greyscale
+     luminance 10.6 of 255 over the top 140px of the band, minimum 0. There was
+     a numbered FIG. cutline attached to it, which is a promise that there is
+     something to look at, and there was not.
+
+     Below 48rem the media takes its own box in the flow instead. The section
+     ground is already --surface-deep, so the reversed type keeps its contrast
+     from the surface rather than from a scrim, the photograph gets the
+     portrait veil and is legible, and it lands directly above the figcaption
+     that describes it, which is where a figure's caption belongs. Nothing is
+     hidden at any width and no copy changes: this is the same figure, laid
+     out as a figure.
+     ------------------------------------------------------------------------ */
+  @media (max-width: 47.9375rem) {
+    .dm-hero--band .dm-hero__media {
+      position: static;
+      aspect-ratio: var(--ratio-band-mobile);
+      margin-block-start: var(--space-8);
+    }
+    /* The scrim exists to hold one line of reversed type off one blown
+       highlight. With no type over the photograph it is only darkness. */
+    .dm-hero--band .dm-hero__scrim { display: none; }
+    /* Out from under the type, the photograph takes the veil every other
+       photograph on the site takes. */
+    .dm-hero--band .dm-photo--veil-band::after {
+      opacity: var(--photo-veil-opacity);
+    }
+    /* The veil alone was not the reason nothing could be seen. Both band
+       consumers, /meeting-coordinators/ and /acres-tv/, carry the same
+       under-exposed asset, and the standing recipe darkens it further. See
+       --photo-filter-underexposed in src/styles/tokens.css for the
+       measurements. If a band ever carries a normally exposed photograph, this
+       correction moves to the asset that needs it rather than staying on the
+       variant. */
+    .dm-hero--band .dm-photo__img {
+      filter: var(--photo-filter-underexposed);
+    }
+    /* A caption sits on its figure, not a section interval away from it. */
+    .dm-hero__cutline--band { margin-block-start: var(--space-4); }
+  }
+
   /* ==========================================================================
      STAT LEDGER
      Grafted from direction 3. Mono index, serif tabular figure, the orange
@@ -524,6 +571,41 @@
     .dm-ctaband__panel { justify-self: end; }
   }
 
+  /* ------------------------------------------------------------------------
+     THE BAND WITH NO PANEL.
+
+     Eight of the routes close on a CTABand with no stat plate, and the band
+     had exactly one treatment: body across 8 of 12 columns, nothing in the
+     remaining 4. On navy that is not restraint, it is a hole, and it is
+     visible as one because the SAME band renders WITH a plate elsewhere. The
+     "If it's Agriculture, it Needs Damian" band is the proof: identical
+     eyebrow, heading and button on /acres-tv/ and /xtreme-ag/, one nav click
+     apart, and only /xtreme-ag/ passes a panel. Measured at 1440 before this
+     rule: /acres-tv/ body 816x285 inside a 1248 container, so 432x285 of bare
+     navy where its twin carries a 419x220 plate.
+
+     So the panel-less band closes the way every other section on this site
+     closes: the copy keeps its column, and the action hangs off a hairline
+     that spans the whole container. The full width is declared by the rule
+     rather than left undeclared, the two versions of the media band read as
+     one design with and without its figure, and the band reuses
+     .dm-section-close rather than inventing a ninth way to finish a section.
+
+     row-gap: 0 because .dm-section-close already owns that interval. With the
+     grid's own gutter left in, the close would sit at 48 + 64 and the band
+     would be the only place on the site where that measurement is different.
+     ------------------------------------------------------------------------ */
+  /* .dm-grid12 sets `gap` in app/globals.css, which is imported AFTER this
+     file and therefore wins at equal specificity. The compound selector is
+     what makes the row gap actually reach zero; a bare
+     .dm-ctaband__grid--solo measured 112px between the copy and the hairline
+     instead of 64. */
+  .dm-grid12.dm-ctaband__grid--solo { row-gap: 0; }
+  .dm-ctaband__close { inline-size: 100%; }
+  /* The row is the flex container .dm-section-close already provides; the
+     inner actions group would otherwise add a second one around the buttons. */
+  .dm-ctaband__close .dm-ctaband__actions { display: contents; }
+
   /* ==========================================================================
      CREDENTIAL BAR
      The four-pillar bar on /keynote/ and /about/. One rendering, two consumers:
@@ -617,4 +699,45 @@
       align-items: stretch;
     }
   }
+}
+
+/* ============================================================================
+   .dm-section-close, THE INTERVAL, ENFORCED.
+
+   Round 3 introduced the convention above and it was still not one convention
+   in rendered output, because everything in this file sits in @layer
+   components and a CSS module is unlayered, so ANY route module rule beat it
+   on the cascade without having to be more specific. Measured at 1440 before
+   this block, on the gap between a section's last element and its closing
+   action row:
+
+     /                                 64px   (.actions, no override)
+     /acres-tv/                        64px   (.ledgerAction, --space-9)
+     /speaking/                        48px   (.actions,      --space-8)
+     /do-business-better-podcast/      48px   (.listFoot,     --space-8)
+     /keynote/  (both of them)         40px   (.actions,      --space-7)
+
+   Three different intervals for one named convention, on five routes.
+
+   THE VALUE IS --space-9, 64px, from the last element to the hairline, then
+   --space-6, 32px, from the hairline to the buttons: 96px total, everywhere.
+
+   Doubling the class takes the selector to (0,2,0), which beats a single
+   module class whatever order the module stylesheets load in, and the rules
+   sit outside @layer components so a module cannot win on layer order either.
+   This is the one place in the build that does this, and it does it because
+   the alternative is restating the interval in every route module and trusting
+   the next edit not to drift. Route modules keep their own margins for the
+   action rows that are NOT section closes, e.g. the three inline .actions rows
+   on /keynote/; those are unaffected because they do not carry this class.
+
+   The CTA band's close is a grid row rather than a sibling in a flow, so its
+   grid would add its own row gap on top of this margin. .dm-ctaband__grid--solo
+   sets row-gap: 0 for exactly that reason, and the interval below is again the
+   only thing setting the distance.
+   ========================================================================== */
+.dm-section-close.dm-section-close {
+  margin-block-start: var(--space-9);
+  padding-block-start: var(--space-6);
+  border-block-start: var(--border-hairline) solid var(--rule-structural);
 }

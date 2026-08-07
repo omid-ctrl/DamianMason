@@ -51,6 +51,33 @@
   }
   @media (min-width: 64rem) {
     .dm-testimonials--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    /* THE THREE-UP IS NOT THE WALL, AND IT GETS THE OTHER TREATMENT.
+
+       The note above is about the /reviews/ wall: ten quotes, five rows, air
+       under the short cells, and a top rule on every cell so the rows still
+       read as a ledger. That works when there are rows. The three-up on
+       /keynote/ and /collaboration-opportunities/ is ONE row, so a short cell
+       has nothing under it and nothing beside it: it is the bottom of the
+       section. Measured at 1440 on /collaboration-opportunities/, the 45
+       character Wendy J. Ruud quote bottomed out at y=1113 against y=1289 for
+       its neighbours, a 176px shortfall with nothing below it.
+
+       content/testimonials.ts already ruled out fixing this by quoting
+       different people: both rows are constrained by sentences in the rendered
+       page about who the three are and how many are elsewhere. So the row gets
+       a second aligned baseline instead of a ragged one. The cell stretches to
+       the row, and the byline is pushed to the bottom of it, so all three top
+       rules line up and all three attributions line up. The air moves inside
+       the cell, between a quote and its own byline, where it reads as leading
+       rather than as a cell that ran out. */
+    .dm-testimonials--3 .dm-testimonials__item > .dm-quote {
+      flex: 1 1 auto;
+    }
+    .dm-testimonials--3 .dm-quote__attribution {
+      margin-block-start: auto;
+      padding-block-start: var(--space-4);
+    }
   }
 
   /* The featured pull quote runs at the relaxed measure and sits alone. */
@@ -81,15 +108,23 @@
      stage cropped that still to a narrow real frame flanked by two giant copies
      of itself. At 9:16 the same object-fit: cover crop keeps the 202 real
      columns and clips both copies, with no zoom, no transform and no per-video
-     tuning. Capped and centred because a full-column 9:16 frame runs 1067px
-     tall at 1440. */
+     tuning.
+
+     THE CAP IS THE FALLBACK, NOT THE PLAN. A 9:16 stage in a full 600px
+     landscape column runs 1067px tall, so a portrait video dropped into a
+     landscape grid has to be capped, and the cap is what put a 288px frame in
+     a 600px cell with 312px of dead ground beside it on all four /reviews/
+     testimonials. The fix is not a better cap: it is to stop putting portrait
+     frames in landscape columns. Use .dm-video-grid--4 below, where the column
+     is the frame. This rule stays as the guard for any single portrait figure
+     placed outside that grid. */
   .dm-video--vertical .dm-video__stage {
     aspect-ratio: var(--ratio-video-vertical);
     max-inline-size: var(--size-video-vertical-max);
-    /* Start-aligned, not centred. Centring a 288px frame in a 600px column
-       parks it 156px to the right of the title that names it and of every
-       other left edge in the section, which reads as a second misalignment
-       replacing the first one. */
+    /* Start-aligned, not centred. Centring a capped frame in a wider column
+       parks it to the right of the title that names it and of every other left
+       edge in the section, which reads as a second misalignment replacing the
+       first one. */
     margin-inline: 0;
   }
 
@@ -303,7 +338,7 @@
        lined up. Each item spans two rows of the parent grid and adopts them
        with subgrid, so every title in a row shares the tallest title's height
        and every frame in a row starts on the same line. */
-    :is(.dm-video-grid--2, .dm-video-grid--3) .dm-video-grid__item {
+    :is(.dm-video-grid--2, .dm-video-grid--3, .dm-video-grid--4) .dm-video-grid__item {
       display: grid;
       grid-row: span 2;
       grid-template-rows: subgrid;
@@ -315,6 +350,49 @@
   }
   @media (min-width: 64rem) {
     .dm-video-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  /* ------------------------------------------------------------------------
+     THE PORTRAIT ROW. Four 9:16 frames across, one per column.
+
+     This exists because /reviews/ carries four testimonials filmed vertically
+     on a phone, and every previous attempt put them in the same 2-up landscape
+     grid the rest of the site's video uses. Measured at 1440 before this rule:
+     grid 1248 wide, two 600px columns, figure 600x512, stage and poster
+     288x512 pinned to the column's left edge, so each of the four ran with
+     312x512 of bare page beside it and the section stopped reading as a row at
+     all. Capping the stage (round 3) only moved the void from inside the
+     poster to inside the cell and made it bigger.
+
+     A portrait frame cannot fill a landscape column, so the column stops being
+     landscape. Four equal tracks across the 1248 container give a 276px column
+     at 1440 and the 9:16 stage fills it exactly, top to bottom, which is also
+     under --size-video-vertical-max, so the guard above never engages and the
+     frames stay at their intended size. Below 64rem the row folds to two, and
+     below 48rem to one, where the column is already narrow enough that a
+     portrait frame is the natural shape rather than a strip.
+
+     The cap is switched off inside this grid on purpose: here the track is
+     already the frame's width, so a max-inline-size could only reintroduce the
+     dead ground it was added to prevent.
+     ------------------------------------------------------------------------ */
+  @media (min-width: 48rem) {
+    .dm-video-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 64rem) {
+    .dm-video-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  .dm-video-grid--4 .dm-video,
+  .dm-video-grid--4 .dm-video__stage {
+    max-inline-size: none;
+    inline-size: 100%;
+  }
+  /* A 276px track is not a --fs-lg track. The title is the accessible name of
+     the frame under it and it has to stay one readable block, not six words on
+     six lines. */
+  .dm-video-grid--4 .dm-heading {
+    font-size: var(--fs-base);
+    letter-spacing: var(--ls-normal);
   }
 
   /* ==========================================================================

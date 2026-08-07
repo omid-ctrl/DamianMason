@@ -76,7 +76,7 @@ const SOURCE_NOTE: Record<string, string> = {
   'eggflation-gives-producers-record-profits':
     'Simone Del Rosario wrote it for Straight Arrow News in December 2022, and Damian is quoted in it: producers were booking record profits while the grocery aisle turned into a meme. If you buy eggs or price them, it’s a short read.',
   'how-the-climate-crisis-is-causing-food-shortages-globally':
-    'Cheddar News booked Damian in April 2023 to talk about climate pressure and the global food supply. Here’s the segment, in full. Nothing loads until you press play.',
+    'Cheddar News booked Damian in April 2023 to talk about climate pressure and the global food supply. Here’s the segment, in full.',
 };
 
 function youtubeIdFrom(url: string): string | undefined {
@@ -337,7 +337,13 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
 
       {others.length > 0 ? (
         <Section surface="sunken" density="tight" aria-labelledby="more-posts">
-          <Container width="narrow">
+          {/* The same measure and the same axis as the article above it. At
+              width="narrow" this block opened at x=320 under an article that
+              opens at x=400, so a post ran three left edges down one page
+              (400, then 320, then the full-width band at 96) with the 80px step
+              landing between two stacked blocks. One measure for the reading
+              column, then one step out to the band. */}
+          <Container width="text">
             <Heading level={2} id="more-posts" className={styles.moreHead}>
               More from the blog
             </Heading>

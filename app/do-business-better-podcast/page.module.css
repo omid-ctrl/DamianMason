@@ -87,9 +87,10 @@
   list-style: none;
 }
 
-.listFoot {
-  margin-block-start: var(--space-8);
-}
+/* .listFoot is gone. It set a --space-8 margin on the episode list's closing
+   action row, which is one of the five different intervals a single named
+   convention had picked up across the routes. The row carries only
+   .dm-section-close now and the interval comes from there. */
 
 .platforms {
   display: grid;

@@ -388,9 +388,16 @@ export default function KeynotePage() {
           />
 
           <div className={`${styles.actions} dm-section-close`}>
-            {/* Not "every": three testimonials are quoted on this route,
-                /speaking/ and /collaboration-opportunities/ and appear nowhere
-                on /reviews/. The label says what that page holds.
+            {/* Not "every". Ten written reviews live on /reviews/, and the
+                three quoted above this button are not among them: they are the
+                trio this route's own source page carried, which is why the
+                standfirst can say "ten more". The label says what that page
+                holds, so it stays a flat count and does not have to move when a
+                row is re-cut. /speaking/ quotes three that ARE drawn from the
+                ten, and its own copy is written for that ("Ten written notes
+                and four video testimonials are on the testimonials page"), so
+                the two routes do not share a sentence. See the /keynote/ note
+                in content/testimonials.ts before touching either row.
 
                 Secondary, not ghost. Ghost carries the same inline padding
                 without the border that explains it, so this label alone sat

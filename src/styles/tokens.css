@@ -292,6 +292,24 @@
      ========================================================================== */
   --photo-filter: grayscale(1) contrast(1.08) brightness(1.02);
   --photo-filter-soft: grayscale(0.8) contrast(1.04);
+  /* The exposure correction, for the one asset on this site that was shot to be
+     a dark backdrop rather than a photograph. MEASURED on the file itself,
+     public/img/photos/microphones-background.jpg: mean greyscale luminance 9.3
+     of 255, maximum 66, before any treatment at all. --photo-filter's
+     contrast(1.08) pivots on mid-grey, so on a frame that dark it subtracts
+     rather than adds and takes the mean to 0. Behind reversed type at the 0.62
+     band veil that is exactly the intent and nothing is wrong. Standing as a
+     figure of its own with a numbered cutline attached to it, which is what the
+     band becomes below 48rem, it was a black rectangle: MEASURED mean 1.2 of
+     255 across the whole frame, maximum 37, and no microphone discernible in
+     it. The gain runs BEFORE the contrast so it lifts the original tonal range
+     instead of one already crushed to zero, and it stops at the point where the
+     subject reads rather than at the point where the frame looks bright: the
+     stage behind the microphone is genuinely dark and printing it grey would be
+     a different lie. MEASURED after: mean 11.1, standard deviation 18.8,
+     maximum 188. Grayscale and the two duotone layers are untouched, so the
+     material is the same one DESIGN_SYSTEM 6.2 specifies. */
+  --photo-filter-underexposed: grayscale(1) brightness(4.2) contrast(1.3);
   --duotone-shadow: var(--palette-navy-900);   /* multiply, the cool duotone */
   --duotone-highlight: var(--palette-bone-100);/* screen */
   --duotone-blend-shadow: multiply;

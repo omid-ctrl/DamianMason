@@ -284,13 +284,25 @@ export default function DoBusinessBetterPodcastPage() {
             ))}
           </ul>
 
-          <div className={`${styles.stack} ${styles.listFoot} dm-section-close`}>
+            </div>
+          </div>
+
+          {/* The close belongs to the section, not to the episode column.
+              Inside the col-span-8 wrapper its hairline started at the column
+              rather than at the container: MEASURED at 768 it ran 459px from
+              x=278 where the identically classed rules on /speaking/,
+              /keynote/ and /acres-tv/ run the container's 704 from x=32. It
+              also carried .stack, whose align-items: flex-start defeated the
+              convention's own 390 branch and left this the one section-closing
+              button on the site that did not fill the width at 390 (270px
+              against 349px everywhere else). .dm-section-close is already a
+              flex row and already owns the interval above it, so neither the
+              wrapper nor .stack has anything left to add. */}
+          <div className="dm-section-close">
             <Button href={show.soundcloud} variant="secondary" {...NEW_TAB_PROPS}>
               All episodes on SoundCloud
               <span className="sr-only">{NEW_TAB_NOTE}</span>
             </Button>
-          </div>
-            </div>
           </div>
         </Container>
       </Section>
@@ -359,8 +371,13 @@ export default function DoBusinessBetterPodcastPage() {
           resolved to nothing, which left the section unnamed: an unnamed
           <section> maps to role generic, and generic prohibits
           aria-labelledby, so one dangling reference broke two rules. */}
+      {/* align="start", like the identical section on the sibling route
+          /the-business-of-agriculture/. Centred, this was the only section head
+          on the site that did not open on the 96px left spine: it measured
+          x=320 against x=96 everywhere else, so the page's left edge stepped
+          224px in and back out again for one section. */}
       <Section id="subscribe" aria-labelledby="dbb-subscribe-title">
-        <Container width="narrow">
+        <Container width="narrow" align="start">
           <NewsletterForm
             idPrefix="dbb-subscribe"
             headingLevel={2}

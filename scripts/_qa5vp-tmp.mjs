@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const [url,width,y,out] = process.argv.slice(2);
+const b = await chromium.launch();
+const w=Number(width);
+const ctx = await b.newContext({viewport:{width:w,height:w<500?844:1024},deviceScaleFactor:2,isMobile:w<500,hasTouch:w<500,reducedMotion:'reduce'});
+const p = await ctx.newPage();
+await p.goto(url,{waitUntil:'networkidle'});
+await p.evaluate(async(yy)=>{await document.fonts.ready; window.scrollTo(0,yy); await new Promise(r=>setTimeout(r,1200));},Number(y));
+await p.screenshot({path:out});
+await b.close();
+console.log('ok');

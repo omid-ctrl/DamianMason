@@ -402,12 +402,21 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+          </div>
 
-            <div className={`${styles.actions} dm-section-close col-span-6 md:col-span-12`}>
-              <Button href="/contact-us/" variant="secondary">
-                Inquire About Working With Damian
-              </Button>
-            </div>
+          {/* Outside .sectionGrid, not inside it. .dm-section-close owns the
+              interval between a section's last content and its closing rule
+              (--space-9, src/styles/sections-core.css) and .sectionGrid sets a
+              row-gap of the same token, so as a grid item this row spent the
+              interval twice: MEASURED 128px at 390 and at 768 against 64px on
+              /speaking/, /keynote/ and /acres-tv/, which read as a hole rather
+              than as a close. As a sibling of the grid it takes the interval
+              from the shared rule alone, and full container width is what
+              col-span-12 was asking for anyway. */}
+          <div className={`${styles.actions} dm-section-close`}>
+            <Button href="/contact-us/" variant="secondary">
+              Inquire About Working With Damian
+            </Button>
           </div>
         </Container>
       </Section>
@@ -478,15 +487,18 @@ export default function HomePage() {
               />
             </div>
 
-            {/* The section's own closing row, at the section's left gutter.
-                Parked inside the video column it sat under the first of two
-                thumbnails with the whole left half of the section empty above
-                it, which made the section read as truncated. */}
-            <div className={`${styles.actions} dm-section-close col-span-6 md:col-span-12`}>
-              <Button href="/reviews/" variant="secondary">
-                More Reviews
-              </Button>
-            </div>
+          </div>
+
+          {/* The section's own closing row, at the section's left gutter.
+              Parked inside the video column it sat under the first of two
+              thumbnails with the whole left half of the section empty above
+              it, which made the section read as truncated. It sits outside
+              .sectionGrid for the reason recorded at section 04's close: as a
+              grid item it drew the interval twice. */}
+          <div className={`${styles.actions} dm-section-close`}>
+            <Button href="/reviews/" variant="secondary">
+              More Reviews
+            </Button>
           </div>
         </Container>
       </Section>
@@ -534,12 +546,13 @@ export default function HomePage() {
               </Prose>
             </div>
 
-            {/* Same closing row as section 06, for the same reason. */}
-            <div className={`${styles.actions} dm-section-close col-span-6 md:col-span-12`}>
-              <Button href="/about/#books" variant="secondary">
-                See the Books
-              </Button>
-            </div>
+          </div>
+
+          {/* Same closing row as section 06, for the same reason. */}
+          <div className={`${styles.actions} dm-section-close`}>
+            <Button href="/about/#books" variant="secondary">
+              See the Books
+            </Button>
           </div>
         </Container>
       </Section>

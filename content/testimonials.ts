@@ -264,16 +264,70 @@ const testimonialsByRoute: Record<string, readonly string[]> = {
      used to lead with the 389-character Mike Elliott quote beside a
      142-character one, which bottomed columns two and three out 350 and 460px
      above column one, with the section's own CTA stranded in the middle of it.
-     /keynote/ had the same defect at 45 against 174.
 
-     So each row is picked from quotes within about a line of each other. The
-     pool is seventeen and every quote still ships: the long ones run in full on
-     /reviews/, which is the page these rows send a reader to.
+     So each row is picked from quotes within about a line of each other where
+     length is the only constraint in play. The pool is seventeen and every
+     quote still ships: the long ones run in full on /reviews/, which is the
+     page these rows send a reader to.
 
      Lengths, for the next person who edits a row:
        melissa-bockman 197 · william-noland 190 · dusty-rich 180
-       titan-pro-team 174 · brooks-breymeyer 160 · tim-luthy 142 */
-  '/keynote/': ['titan-pro-team', 'brooks-breymeyer', 'tim-luthy'],
+       titan-pro-team 174 · brooks-breymeyer 160 · tim-luthy 142
+       b-kettler-ihla 109 · wendy-j-ruud 45
+
+     /keynote/ IS THE EXCEPTION, AND ON PURPOSE. Its row was re-cut on length
+     alone, swapping wendy-j-ruud (45) for brooks-breymeyer (160), and that
+     broke two claims the section's standfirst makes in the rendered page:
+
+       - "There's ten more on the reviews page" and "Read the ten written
+         reviews". brooks-breymeyer is one of the ten on /reviews/, so the
+         three quoted here overlapped that set and only nine were "more".
+       - "Three from meeting planners who were in the room while it happened".
+         Brooks Breymeyer writes as somebody who heard the program ("If you
+         haven't heard Damian before, look him up!"), not as the person who
+         booked it.
+
+     The row is restored to the three the source page itself carried, which is
+     the same trio /collaboration-opportunities/ runs. All three are event
+     hosts, none of them appears on /reviews/, and both counts are arithmetic
+     again. The cost is the 45-character Wendy J. Ruud cell, which bottoms out
+     early in whichever column the length sort drops it into, exactly as it
+     already does on /collaboration-opportunities/. Accuracy outranks the hole,
+     and the hole is a layout problem to solve in the grid, not by quoting the
+     wrong people. Do not "rebalance" this row without re-checking both
+     sentences in app/keynote/page.tsx section 8.
+
+     THE HOLE IS NOW SOLVED IN THE GRID, as that note said it should be. See
+     .dm-testimonials--3 in src/styles/sections.css: a three-up cell stretches
+     to the row and its byline is pushed to the bottom, so all three top rules
+     and all three attributions sit on shared baselines and a short quote reads
+     as leading rather than as a cell that ran out. /keynote/ keeps its trio
+     unchanged because both of the sentences above still depend on it.
+
+     /collaboration-opportunities/ IS NOT UNDER THOSE TWO CONSTRAINTS, so its
+     row is also curated on length. Its standfirst asks for two things only:
+     that all three came in after a live event rather than a podcast, and that
+     ten more are on /reviews/. b-kettler-ihla satisfies both. It is a
+     thank-you for presentations to the Indiana Hardwood Lumbermen's
+     Association, and it is not one of the ten on /reviews/, so the count in
+     the standfirst is still arithmetic. At 109 characters it sits between
+     tim-luthy's 142 and the row's shortest instead of at 45. It was harvested
+     for the old site's footer, and the `footer` key below still points at it;
+     nothing else renders that key today, so this is the first route it
+     appears on. */
+  '/keynote/': ['wendy-j-ruud', 'titan-pro-team', 'tim-luthy'],
+  /* The three the old page actually carried, byte-identical copies of the
+     /keynote/ trio. A round-5 reselect swapped wendy-j-ruud out for
+     b-kettler-ihla to even up the row's quote lengths, on the reasoning that
+     nothing else rendered the `footer` key. That was wrong: the site-wide
+     footer renders it on every route, so B. Kettler appeared twice on this
+     page. Three auditors caught it independently.
+
+     There is no third option. Every other quote is one of the ten on
+     /reviews/, which the standfirst's "Ten more" depends on; geoff-bastow is a
+     podcast guest, which the standfirst's "not a podcast" rules out; and the
+     book endorsement is not a speaking review. So the row keeps the short
+     quote and the grid handles the rag. */
   '/collaboration-opportunities/': ['wendy-j-ruud', 'titan-pro-team', 'tim-luthy'],
   '/meeting-coordinators/': ['national-ag-aviation-association'],
   '/the-business-of-agriculture/': ['geoff-bastow'],

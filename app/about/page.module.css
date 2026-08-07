@@ -85,6 +85,13 @@
   .book {
     display: grid;
     grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    /* The cover spans both rows, so on the card whose cover column is the
+       taller of the two the slack has to land somewhere. Undeclared, the two
+       auto rows split it and it opened between the subtitle and "From the
+       publisher", which put a hole inside the copy. `1fr` on the second row
+       sends all of it to the foot of the card instead, where it reads as the
+       card's own bottom margin. */
+    grid-template-rows: auto 1fr;
     column-gap: var(--gutter-column);
     align-items: start;
   }
@@ -113,15 +120,47 @@
   min-block-size: var(--size-jacket-h);
 }
 
-/* Two jackets in one slot, where a card stands for two editions. They sit on
-   one baseline at equal optical weight, which is what tells a reader at a
-   glance that this is one book in two formats rather than two books. */
+/* Two jackets in one slot, where a card stands for two editions. Whichever way
+   they are arranged they carry equal optical weight, which is what tells a
+   reader at a glance that this is one book in two formats rather than two
+   books.
+
+   WHY THE FLOW IS NOT ALWAYS `column`. A cover slot has one column's width. Two
+   jackets sharing that width side by side can never reach the size of the one
+   jacket in the slot on the card beside them, because width binds before the
+   --size-jacket-h cap ever engages: MEASURED at 390 the pair rendered 146
+   square against the single jacket's 240, and at 768, where the slot is the
+   14rem track below, 83 square against 190. That is 44% of a peer, and at 83px
+   the words FOOD FEAR are not legible and the audiobook edition the client
+   supplied is not identifiable. It is arithmetic, not a cap that failed: two
+   jackets plus a gap do not fit a one-jacket slot at a one-jacket scale.
+
+   So below the two-column shelf the pair takes a row each and every jacket on
+   the shelf is sized by an identically wide slot. Side by side resumes at
+   64rem, where the slot is wide enough that both arrangements land on the same
+   --size-jacket-h ceiling. */
 .bookCover[data-covers='two'] {
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  align-items: end;
-  column-gap: var(--space-5);
-  place-items: end center;
+  row-gap: var(--space-5);
+}
+
+@media (min-width: 64rem) {
+  .bookCover[data-covers='two'] {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    column-gap: var(--space-5);
+    place-items: end center;
+  }
+
+  /* The single jacket is capped to the same track a paired jacket gets: the
+     pair's two 1fr columns, less their column gap. Without it the shelf is
+     consistent only where --size-jacket-h binds on both cards, which at 1024
+     it does not: MEASURED 240 for the single against 198 for each of the pair.
+     Deriving the cap from the pair's own arithmetic rather than from a second
+     number means the two can not drift apart again at some width nobody
+     measured. */
+  .bookCover:not([data-covers='two']) img {
+    max-inline-size: calc((100% - var(--space-5)) / 2);
+  }
 }
 
 .bookCover img {
