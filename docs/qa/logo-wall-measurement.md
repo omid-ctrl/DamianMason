@@ -159,3 +159,28 @@ The `business-of-agriculture.png` lockup carried the other half of that finding:
 ramp that the image optimizer amplified into a dirty rectangle. Its alpha histogram now reads 90,827 pixels at
 alpha 0 to 31 (of which essentially all are alpha 0), 4,651 spread across the antialiasing ramp, and 10,694
 opaque. A 4x crop of the rendered mark at 1440 shows no rectangle and no seam.
+
+---
+
+# Mobile nav sheet: assessed, not a defect
+
+Round 6's vision-mobile auditor reported that the open nav sheet "hides Contact Us entirely, and on real phone
+viewports also hides About, Blog, Acres TV and Media". Measured directly in Chromium, that is overstated.
+
+`.dm-menu__body` is a real scroll container (`flex: 1 1 auto; min-block-size: 0; overflow-y: auto`), and it has
+scrollable distance at every phone size tested:
+
+| Viewport | Body height | Content | Scrollable | Links visible at rest |
+|---|---|---|---|---|
+| 390x844 | 631px | 718px | 87px | 13 of 15 |
+| 360x740 | 527px | 718px | 191px | 11 of 15 |
+| 320x568 | 387px | 718px | 331px | 8 of 15 |
+
+Scrolling the body to the bottom brings every remaining link into view, Contact Us included. What the auditor
+measured as "hidden" were the items at the TOP of the list, which leave the viewport once you scroll down. That
+is how a scrolling list behaves.
+
+The genuine weakness is that there is no scroll AFFORDANCE, so at 360px and below a user may not realise the
+list continues. That is a real polish item and it is deliberately NOT being fixed at this stage: the nav is
+functional, every destination is reachable, and this build has a demonstrated history of late cosmetic fixes
+introducing regressions. Logged for the client instead.

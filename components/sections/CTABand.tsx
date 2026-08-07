@@ -110,7 +110,20 @@ export function CTABand({
           className={cx('dm-grid12 dm-ctaband__grid', !panel && 'dm-ctaband__grid--solo')}
           data-reveal="stagger"
         >
-          <div className={cx('dm-ctaband__body', panel ? 'col-span-6 md:col-span-7' : 'col-span-6 md:col-span-8')}>
+          {/* The panelled split waits for lg, not md. At md (48rem) the panel's
+              5-column track is 293px while the stat plate's own content floors
+              it at 322px, so `justify-self: end` pushed its left edge 15px back
+              into the body's column and painted the plate over the paragraph,
+              clipping words mid-character. Measured on /meeting-coordinators/
+              at 768: panel x=414..736 against a paragraph running x=32..429.
+              Below lg the two stack full width, which is the convention the
+              rest of the site already uses for a body-and-plate pair. */}
+          <div
+            className={cx(
+              'dm-ctaband__body',
+              panel ? 'col-span-6 md:col-span-12 lg:col-span-7' : 'col-span-6 md:col-span-8',
+            )}
+          >
             {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
             <Heading level={level} size="3xl" folio={folio} id={headingId}>
               {heading}
@@ -122,7 +135,10 @@ export function CTABand({
           </div>
 
           {panel ? (
-            <Card variant="plate" className="dm-ctaband__panel col-span-6 md:col-span-5">
+            <Card
+              variant="plate"
+              className="dm-ctaband__panel col-span-6 md:col-span-12 lg:col-span-5"
+            >
               {panel.eyebrow ? <Eyebrow>{panel.eyebrow}</Eyebrow> : null}
               <Stat value={panel.value} plus={panel.plus} label={panel.label} note={panel.note} />
             </Card>

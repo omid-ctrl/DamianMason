@@ -971,7 +971,16 @@
     align-items: center;
     gap: var(--space-3);
     margin-inline-start: auto;
-    flex: 0 0 auto;
+    /* `flex: 0 0 auto` alone refused to compress, so at 320px the wordmark and
+       this row totalled 338px inside a 320px viewport and every route scrolled
+       sideways by 18px. `min-inline-size: 0` lets the row shrink below its
+       content width, and the wordmark beside it already has a fluid size, so
+       the two negotiate instead of overflowing. The book button keeps
+       `white-space: nowrap`, so it is the wordmark that gives way first, which
+       is the right order: the booking action is the thing a meeting planner
+       came for. */
+    flex: 0 1 auto;
+    min-inline-size: 0;
   }
   /* The one field-sized orange in this viewport. Nothing else in the masthead
      may be a solid orange field. It keeps its full label at 390, so the

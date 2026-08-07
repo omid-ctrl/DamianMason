@@ -567,7 +567,9 @@
     }
   }
   .dm-ctaband__panel { gap: var(--space-4); }
-  @media (min-width: 48rem) {
+  /* Matches the lg span the component now uses. At 48rem the plate is wider
+     than its own track, so ending it there pulled it back over the body. */
+  @media (min-width: 64rem) {
     .dm-ctaband__panel { justify-self: end; }
   }
 
