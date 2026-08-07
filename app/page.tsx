@@ -432,8 +432,16 @@ export default function HomePage() {
           primaries on this route are the hero and the close. A third filled
           field mid-page would spend the orange budget on an action that is not
           the one that earns money. */}
+      {/* Green, not navy. This route carries two dark bands: this one and the
+          close. Rendering both in the same navy is what made a 21,000px scroll
+          read as one column with two identical interruptions in it. The forest
+          scope exists for exactly this, and the split is not arbitrary: the
+          band that talks about agriculture is the green one, and the band that
+          asks for the booking stays navy, so the ground still tells you which
+          kind of thing you are looking at. */}
       <CTABand
         id="podcast"
+        surface="forest"
         folio="No. 05"
         eyebrow="Connect the dots"
         heading="Connecting people of the world’s most important industry."

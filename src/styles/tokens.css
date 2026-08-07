@@ -171,11 +171,43 @@
   --palette-gold-300: #e0be7a;
   --palette-gold-100: #f1dfb8;
 
-  /* Deep field green: second property accent, success states. */
-  --palette-green-800: #1e3524;
-  --palette-green-600: #2f5638;
-  --palette-green-400: #7ba98a;
-  --palette-green-100: #ddeadf;
+  /* Forest: the second dark ground, and the success family.
+     ------------------------------------------------------------------------
+     WHY THIS EXISTS. Every dark band on this site was navy, so a page's only
+     rhythm was light, light, light, navy. Agriculture has an obvious second
+     dark and the palette had been carrying it since phase 1 as a status colour
+     nobody looked at. It is promoted here.
+
+     WHY THE STEPS ARE THESE VALUES. Each one is LUMINANCE-MATCHED to the navy
+     step of the same number, to within 4%. That is not decoration: it means
+     every ink, rule, focus and form pair already measured against navy
+     transfers to green unchanged, so a whole new scope arrives carrying zero
+     new contrast risk. Verified by scripts/contrast-table.mjs.
+
+     THE ONE STEP THAT IS NOT MATCHED is the ground. forest-950 sits 72% above
+     navy-950 in luminance, deliberately. A luminance-matched green ground is
+     #0B1A12, which reads as near-black; at #12231B it reads as green, which is
+     the entire reason for adding it. That shifts only the ground column, and
+     everything below it still matches.
+
+     forest-900 is the darkest the alt ground may go while keeping #FF5325
+     legal as text on it: 4.77 at this value, falling through 4.5 at Y ~0.0205.
+     Navy-900's own number is 4.72. Same constraint, same answer.
+
+     THIS REPLACED --palette-green-*, it does not sit beside it. Two ramps for
+     one concept in one file is how the first person reaching for "the green
+     token" picks the wrong one, and section 3.1's whole premise is that the
+     naming is the guardrail. */
+  --palette-forest-950: #12231b;  /* the forest ground                       */
+  --palette-forest-900: #15291b;  /* ~ navy-900. Orange stays text-legal here */
+  --palette-forest-800: #1f3c2a;  /* ~ navy-800                              */
+  --palette-forest-700: #2b5039;  /* ~ navy-700. Success ink on a light ground */
+  --palette-forest-450: #639c7b;  /* ~ navy-450                              */
+  --palette-forest-400: #75ac8b;  /* ~ navy-400                              */
+  --palette-forest-300: #8bb89a;  /* ~ navy-300                              */
+  --palette-forest-200: #b7d1be;  /* ~ navy-200                              */
+  --palette-forest-100: #d3e2d5;  /* ~ navy-100                              */
+  --palette-forest-050: #dfeae1;  /* the success surface on a light ground   */
 
   /* Alert red: destructive only, deliberately far from the brand orange so a
      form error never reads as a call to action. */
@@ -235,7 +267,7 @@
                                                     is never text here, so what it has to
                                                     clear is SC 1.4.11, not SC 1.4.3. */
   --ink-gold: var(--palette-gold-700);          /* @on page >=4.5 */
-  --ink-green: var(--palette-green-600);        /* @on page >=4.5 */
+  --ink-green: var(--palette-forest-700);        /* @on page >=4.5 */
   --ink-inverse: var(--palette-stone-100);       /* type placed on a deep ground */
   --ink-on-accent: var(--palette-navy-950);     /*  5.60:1 on the orange field */
 
@@ -322,9 +354,9 @@
   /* ==========================================================================
      8. SEMANTIC COLOR / STATUS
      ========================================================================== */
-  --status-success-ink: var(--palette-green-600);
-  --status-success-bg: var(--palette-green-100);   /* 6.74:1 */
-  --status-success-rule: var(--palette-green-600);
+  --status-success-ink: var(--palette-forest-700);
+  --status-success-bg: var(--palette-forest-050);   /* 6.74:1 */
+  --status-success-rule: var(--palette-forest-700);
   --status-warning-ink: var(--palette-gold-700);
   --status-warning-bg: var(--palette-gold-100);    /* 5.76:1 */
   --status-warning-rule: var(--palette-gold-500);
@@ -797,7 +829,7 @@
                                                   legal as text here. Only here. */
   --ink-hot: var(--palette-orange-400);
   --ink-gold: var(--palette-gold-300);         /* 10.15:1 */
-  --ink-green: var(--palette-green-400);       /*  6.77:1 */
+  --ink-green: var(--palette-forest-400);       /*  6.77:1 */
   --ink-inverse: var(--palette-navy-950);
   --ink-on-accent: var(--palette-navy-950);
 
@@ -838,7 +870,7 @@
   --state-hover-bg: var(--palette-navy-900);
   --state-selected-bg: var(--palette-navy-800);
 
-  --status-success-ink: var(--palette-green-400);
+  --status-success-ink: var(--palette-forest-400);
   --status-success-bg: var(--palette-navy-800);
   --status-warning-ink: var(--palette-gold-300);
   --status-warning-bg: var(--palette-navy-800);
@@ -908,7 +940,7 @@
   --ink-accent: var(--palette-orange-700);
   --ink-hot: var(--palette-orange-400);
   --ink-gold: var(--palette-gold-700);
-  --ink-green: var(--palette-green-600);
+  --ink-green: var(--palette-forest-700);
   --ink-inverse: var(--palette-stone-100);
 
   --rule-structural: var(--palette-stone-650);
@@ -969,6 +1001,144 @@
   --rule-decorative: var(--palette-stone-500);
   --focus-ring-offset-color: var(--palette-stone-300);
   --state-hover-bg: var(--palette-stone-400);
+
+  color: var(--ink-primary);
+  background-color: var(--surface-page);
+}
+
+/* ============================================================================
+   FOREST SCOPE: the green band.
+
+   The second dark ground, added in the Cool Modern Ag revision so a long page
+   alternates light, sage, NAVY, light, GREEN, light rather than resolving every
+   dark band to the same navy.
+
+   IT IS CALLED "forest" AND NOT "field" ON PURPOSE. Section 9 of this file is
+   eighteen tokens named --field-bg, --field-ink, --field-rule, --field-rule-
+   focus and so on, every one of them meaning a form input. A --palette-field-450
+   green sitting a few screens above --field-rule, in a system whose stated
+   premise is that the naming is the guardrail, is a defect with a delivery date.
+
+   EVERY TOKEN THE DEEP SCOPE REDEFINES IS REDEFINED HERE. An attribute selector
+   does not match a different value, so anything omitted falls through to :root
+   and renders sage-grey ink on dark green. The generator catches that only for
+   tokens carrying an @on annotation, which is why the annotations live on the
+   :root declarations and inherit.
+
+   Ratios below are measured against forest-950 unless stated.
+   ============================================================================ */
+[data-surface="forest"] {
+  --surface-page: var(--palette-forest-950);
+  --surface-raised: var(--palette-forest-900);
+  --surface-bright: var(--palette-forest-800);
+  --surface-sunken: var(--palette-forest-900);
+  --surface-deep-raised: var(--palette-forest-800);
+  --surface-plate: var(--palette-forest-800);
+
+  --ink-primary: var(--palette-stone-100);     /* 15.77:1 */
+  --ink-secondary: var(--palette-forest-100);  /* 12.18:1 */
+  --ink-brand: var(--palette-stone-050);       /* 16.19:1 */
+  --ink-muted: var(--palette-forest-300);      /*  7.35:1 */
+  --ink-faint: var(--palette-forest-400);      /*  6.26:1 */
+  --ink-accent: var(--palette-orange-400);     /*  5.08:1 on the ground, 4.77 on
+                                                  raised. The brand orange is
+                                                  legal as text on a dark ground,
+                                                  and this is one. On --surface-
+                                                  bright it is 3.75, which is
+                                                  large text and UI only: exactly
+                                                  the caveat navy-800 carries at
+                                                  3.74. */
+  --ink-hot: var(--palette-orange-400);
+  --ink-gold: var(--palette-gold-300);         /*  9.22:1 */
+  /* Green cannot signal success on a green ground: the hue stops carrying the
+     meaning. So the success ink here is the plain light ink and the STATUS
+     SURFACE plus the icon do the signalling. Stating that is the point. Left
+     unset it would fall through to forest-700 on forest-950, which is 1.4:1. */
+  --ink-green: var(--palette-stone-100);
+  --ink-inverse: var(--palette-forest-950);
+  --ink-on-accent: var(--palette-navy-950);    /*  5.60:1 on the orange field */
+
+  --rule-structural: var(--palette-forest-450); /* 5.13:1, 3.78 on bright */
+  --rule-decorative: var(--palette-forest-800); /* 1.36:1, ornament only */
+  --rule-quiet: var(--palette-forest-900);
+  --rule-strong: var(--palette-stone-100);
+  /* NOT navy-500. A blue rule on a green ground reads as a mistake. */
+  --rule-brand: var(--palette-forest-450);
+  --border-color: var(--rule-structural);
+  --border-color-strong: var(--rule-strong);
+
+  --focus-ring-color: var(--palette-orange-300);   /* 6.65:1, 4.90 on bright */
+  --focus-ring-offset-color: var(--palette-forest-950);
+  --selection-bg: var(--palette-gold-300);
+  --selection-ink: var(--palette-navy-950);
+
+  --action-primary-bg: var(--palette-orange-400);
+  --action-primary-bg-hover: var(--palette-orange-500);
+  --action-primary-bg-active: var(--palette-orange-550);
+  --action-primary-ink: var(--palette-navy-950);
+
+  --action-secondary-bg: transparent;
+  --action-secondary-bg-hover: var(--palette-forest-800);
+  --action-secondary-bg-active: var(--palette-forest-700);
+  --action-secondary-ink: var(--palette-stone-100);
+  --action-secondary-rule: var(--palette-stone-100);
+
+  --action-ghost-bg-hover: var(--palette-forest-900);
+  --action-ghost-ink: var(--palette-forest-100);
+
+  --link-ink: var(--palette-orange-300);           /* 6.65:1 */
+  --link-ink-hover: var(--palette-orange-200);     /* 9.50:1 */
+  --link-ink-visited: var(--palette-forest-200);
+
+  --state-disabled-ink: var(--palette-forest-450);
+  --state-disabled-bg: var(--palette-forest-800);
+  --state-disabled-rule: var(--palette-forest-800);
+  --state-hover-bg: var(--palette-forest-900);
+  --state-selected-bg: var(--palette-forest-800);
+
+  --status-success-ink: var(--palette-forest-100);
+  --status-success-bg: var(--palette-forest-800);
+  --status-success-rule: var(--palette-forest-450);
+  --status-warning-ink: var(--palette-gold-300);
+  --status-warning-bg: var(--palette-forest-800);
+  --status-warning-rule: var(--palette-gold-500);
+  --status-danger-ink: var(--palette-orange-200);
+  --status-danger-bg: var(--palette-forest-800);
+  --status-danger-rule: var(--palette-orange-300);
+  --status-info-ink: var(--palette-forest-200);
+  --status-info-bg: var(--palette-forest-800);
+  --status-info-rule: var(--palette-forest-450);
+
+  --field-bg: var(--palette-forest-800);
+  --field-bg-hover: var(--palette-forest-700);
+  --field-bg-disabled: var(--palette-forest-900);
+  --field-ink: var(--palette-stone-100);           /* 11.63:1 on the field */
+  --field-placeholder-ink: var(--palette-forest-200); /* 7.41:1 */
+  --field-rule: var(--palette-forest-450);         /* 3.78:1 */
+  --field-rule-hover: var(--palette-forest-400);
+  --field-rule-focus: var(--palette-orange-300);   /* 4.90:1 */
+  --field-rule-error: var(--palette-orange-200);
+  --field-label-ink: var(--palette-forest-100);
+  --field-help-ink: var(--palette-forest-300);
+  --field-error-ink: var(--palette-orange-200);
+  --field-error-bg: var(--palette-forest-800);
+  --field-required-ink: var(--palette-orange-300);
+
+  /* Same reasoning as the deep scope: every client logo ships an opaque white
+     background, and the light-scope math erases the mark on any dark ground.
+     Green is a dark ground. */
+  --logo-filter: grayscale(1) contrast(1.1) invert(1);
+  --logo-blend: screen;
+  --logo-opacity: 0.72;
+  --logo-cell-bg: transparent;
+  --logo-cell-rule: var(--palette-forest-800);
+
+  --photo-veil-ink: var(--palette-forest-900);
+  --photo-veil-opacity: 0.24;
+  --duotone-highlight: var(--palette-forest-200);
+  /* --duotone-shadow stays navy. The cool duotone is an identity, not a
+     per-scope decision, and making it green here would be a new claim rather
+     than a migration. */
 
   color: var(--ink-primary);
   background-color: var(--surface-page);

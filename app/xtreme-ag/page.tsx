@@ -252,7 +252,12 @@ export default function XtremeAgPage() {
           subject on no evidence, and also restated the XtremeAg card on
           /podcasts/. One sentence on the show's format is still needed from the
           client and it is logged in docs/OPEN-ITEMS.md. */}
-      <Section surface="deep" aria-labelledby="granary-title">
+      {/* Forest rather than navy. The Granary is a building on Damian's own
+          farm that the show is filmed in, so of the two dark grounds this is
+          the one that belongs to it. The mark inside still sits on a paper
+          plate: the wordmark rule is that it never reverses AND never sits on
+          the green. */}
+      <Section surface="forest" aria-labelledby="granary-title">
         <Container>
           <div className="dm-grid12">
             <div className={`${styles.stack} col-span-6 md:col-span-7`}>
