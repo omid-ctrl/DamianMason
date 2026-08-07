@@ -305,7 +305,7 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
 
               {post.image ? (
                 <figure className={cx('dm-figure', styles.plate)}>
-                  <div className="dm-photo dm-photo--plate">
+                  <div className="dm-photo dm-photo--evidence dm-photo--uncropped">
                     <Image
                       className="dm-photo__img"
                       src={post.image.src}

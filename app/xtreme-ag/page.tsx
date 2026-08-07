@@ -165,8 +165,11 @@ export default function XtremeAgPage() {
                   the field day and the articles, but never the trade show
                   floor. This is it, and it is the only frame on file of it.
                   The XtremeAg watermark bottom right is theirs, burned in. */}
-              <figure className="dm-figure">
-                <div className={`dm-photo dm-photo--plate ${styles.evidence}`}>
+              <figure className={`dm-figure ${styles.stackFigure}`}>
+                {/* A role ratio here rather than --uncropped: this frame has no
+                    burned-in headline to protect and the 3:2 crop tightens it
+                    onto the three of them. */}
+                <div className="dm-photo dm-photo--plate dm-photo--evidence">
                   <Image
                     className="dm-photo__img"
                     src="/img/photos/equipment-factory-tour.png"
@@ -187,7 +190,7 @@ export default function XtremeAgPage() {
 
             <Card
               variant="bright"
-              className={`${styles.markPlate} ${styles.markPlateOnLight} col-span-6 md:col-span-5`}
+              className={`${styles.markPlate} ${styles.markPlateOnLight} ${styles.markPlateTop} col-span-6 md:col-span-5`}
             >
               <Image
                 className={styles.mark}
@@ -271,7 +274,10 @@ export default function XtremeAgPage() {
                   showed neither. Same hairline plate as Fig. 02: this is a
                   frame off the show, not a photograph. */}
               <figure className={`dm-figure ${styles.stackedFigure}`}>
-                <div className={`dm-photo dm-photo--plate ${styles.evidence}`}>
+                {/* --uncropped, unlike Fig. 02: this frame is 2.11:1 and a 3:2
+                    plate would take 29% off its width, which is both video
+                    panels' outer edges and the show badge between them. */}
+                <div className="dm-photo dm-photo--evidence dm-photo--uncropped">
                   <Image
                     className="dm-photo__img"
                     src="/img/photos/xtremeag-video-interview.png"

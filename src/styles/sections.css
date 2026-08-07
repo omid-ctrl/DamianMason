@@ -780,7 +780,7 @@
    wall on /speaking/: the wall answers WHO, this answers what kind and how
    many, which is the question a meeting planner is actually asking.
 
-   It is a ledger, not a chart. Seven categories with a maximum of five means an
+   It is a ledger, not a chart. Six categories with a maximum of six means an
    axis and gridlines would be more furniture than data, and the system already
    owns the object for figures in a ruled column.
 
@@ -927,9 +927,16 @@
   line-height: 1;
   justify-content: center;
 }
-/* The seven that carry no label. The fill is what separates "occupied, and we
-   cannot say by what" from an empty cell in the grid. */
-.dm-coverage__tile--blank { background-color: var(--surface-sunken); }
+/* The seven foreign tiles carry no modifier and no fill, which took one round
+   to get right. They shipped with background-color: var(--surface-sunken) on
+   the theory that a tint separates "occupied, and we cannot say by what" from
+   an empty cell. It does not: on the sunken band this component sits in,
+   --surface-sunken IS the ground, so the declaration painted the tile the exact
+   colour behind it, and on the page ground the two are 1.01 apart. There is no
+   token that reads as one step off the ground in every scope. The mono head
+   above the register already says what the seven are, so the tiles are simply
+   the same outlined square with nothing in them, which is the honest picture.
+   ------------------------------------------------------------------------- */
 /* A hole in the map. It still takes a track, because auto-placement with the
    holes skipped would slide every state after one of them a column west. */
 .dm-coverage__void { aspect-ratio: 1; }

@@ -12,14 +12,14 @@ const membersOf = (sector: string) =>
 /**
  * The client roster by kind.
  *
- * WHY IT IS NOT A CHART. Seven categories with a maximum value of five. An axis,
+ * WHY IT IS NOT A CHART. Six categories with a maximum value of six. An axis,
  * ticks and gridlines would be more furniture than data, and the design system
  * already owns the right object for figures in a ruled column: the stat ledger.
  * This is that object with a proportional bar added.
  *
  * WHY IT IS A <dl>. Every number is in the DOM as text, so the bar beside it is
  * decorative in the SC 1.4.11 sense and does not need to carry 3:1 on its own.
- * A screen reader gets "Commodity and grower groups, 6 of 21" and never has to
+ * A screen reader gets "Commodity and trade groups, 6" and never has to
  * interpret a shape. The row hairlines DO carry structure, so those are
  * --rule-structural.
  *

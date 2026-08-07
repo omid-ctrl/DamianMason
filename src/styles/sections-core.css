@@ -89,6 +89,26 @@
     .dm-photo--band { aspect-ratio: var(--ratio-band); }
   }
 
+  /* A cropped screen capture placed as evidence, per DESIGN_SYSTEM 6.4 rule 3.
+     The hairline is the rule's own requirement and it is the ONE visual
+     difference between a frame grab and a photograph on this site: a
+     photograph never gets a border, so the border is what says "this is a
+     picture of a screen". Combines with a role ratio, or with --uncropped
+     below where the ratio would cost the evidence. */
+  .dm-photo--evidence {
+    border: var(--border-hairline) solid var(--rule-structural);
+  }
+
+  /* No role ratio, for the frame grabs whose evidence is printed in their own
+     corners. Every ratio in 6.3 is narrower than a 16:9 broadcast frame, and
+     object-fit: cover therefore crops exactly the columns the kicker and the
+     lower thirds sit in. Measured: the Cal-Maine frame is 1998x1014, so a 3:2
+     plate takes 12% off each side and the burned-in kicker rendered as
+     "GGFLATION" over "AL-MAINE SEES PROFIT INCREASE 165X". The frame is on the
+     page because of that headline. Only ever used with --evidence. */
+  .dm-photo--uncropped { block-size: auto; }
+  .dm-photo--uncropped .dm-photo__img { block-size: auto; }
+
   /* ==========================================================================
      HERO
      Two variants and no third. `portrait` sets the type beside a 4:5 plate at

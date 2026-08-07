@@ -90,8 +90,26 @@ export function CoverageGrid({
           </div>
         ) : null}
 
+        {/* DOM ORDER IS THE READING ORDER, AND IT IS NOT THE VISUAL ORDER AT
+            1024 AND UP. The prose is what tells a reader the squares are meant
+            to be counted, so at 390, where the two stack, it has to arrive
+            before fifty of them do. It shipped the other way round for one
+            round and the phone layout read as fifty unexplained boxes followed
+            by a caption about a different subject.
+
+            From lg both are pinned to row 1 by explicit column placement, so
+            the plot keeps the wide left track and the prose keeps the narrow
+            right one whatever order they are written in. */}
         <div className="dm-grid12 dm-coverage__layout">
-          <figure className="dm-coverage__figure col-span-6 lg:col-span-7">
+          {intro ? (
+            <div className="dm-coverage__aside col-span-6 md:col-span-12 lg:col-span-5 lg:col-start-8 lg:row-start-1">
+              <Prose measure="full">
+                {typeof intro === 'string' ? <p>{intro}</p> : intro}
+              </Prose>
+            </div>
+          ) : null}
+
+          <figure className="dm-coverage__figure col-span-6 md:col-span-12 lg:col-span-7 lg:col-start-1 lg:row-start-1">
             <div className="dm-coverage__plot" role="img" aria-label={PLOT_LABEL}>
               {/* Eleven tracks, seven rows. An empty cell is emitted rather
                   than skipped: auto-placement with holes in it would slide
@@ -121,7 +139,7 @@ export function CoverageGrid({
                   single one of them, so nothing here does either. */}
               <div className="dm-coverage__grid dm-coverage__grid--foreign">
                 {Array.from({ length: foreignCountryCount }, (_, index) => (
-                  <span key={`foreign-${index}`} className="dm-coverage__tile dm-coverage__tile--blank" />
+                  <span key={`foreign-${index}`} className="dm-coverage__tile" />
                 ))}
               </div>
             </div>
@@ -143,14 +161,6 @@ export function CoverageGrid({
 
             {cutline ? <figcaption className="dm-figure__caption">{cutline}</figcaption> : null}
           </figure>
-
-          {intro ? (
-            <div className="dm-coverage__aside col-span-6 lg:col-span-5">
-              <Prose measure="full">
-                {typeof intro === 'string' ? <p>{intro}</p> : intro}
-              </Prose>
-            </div>
-          ) : null}
         </div>
       </Container>
     </Section>
