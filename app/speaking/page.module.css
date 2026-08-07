@@ -103,3 +103,8 @@
   gap: var(--space-4);
   margin-block-start: var(--space-8);
 }
+
+/* The from-the-audience frame closing section No. 01. */
+.roomFigure {
+  margin-block-start: var(--space-7);
+}

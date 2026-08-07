@@ -74,12 +74,19 @@ export default function ReviewsPage() {
     <>
       <JsonLd schema={schema} id="reviews-schema" />
 
-      {/* The masthead. No image here: the one photograph on this page is a wide
-          two-person shot, which section 6.3 of the design system demotes to a
-          3:2 editorial plate rather than forcing into a 4:5 portrait crop. The
-          cutline slot still earns its keep. It is where the missing byline on
-          quote two gets accounted for, in two true sentences, instead of being
-          papered over with an attribution nobody sent.
+      {/* The masthead. Still no image, and the reason survived the Cool Modern
+          Ag revision even though the route gained a second photograph.
+
+          Neither of this page's two photographs is a 4:5 portrait. The book
+          signing is a wide two-person shot, and the close-up harvested for the
+          section below is 502x452, so cropping it to a portrait at hero scale
+          would mean throwing away the raised hand, which is the half of the
+          frame that makes it worth having. Section 6.3 demotes both to 3:2
+          plates rather than forcing a crop neither supports.
+
+          The cutline slot still earns its keep. It is where the missing byline
+          on quote two gets accounted for, in two true sentences, instead of
+          being papered over with an attribution nobody sent.
 
           The header already carries the one filled orange field in this
           viewport, so the hero action is secondary. */}
@@ -107,6 +114,38 @@ export default function ReviewsPage() {
             </div>
             <Eyebrow>10 of 2,400+</Eyebrow>
           </div>
+
+          {/* The largest block on this route was ten quotes and nothing else.
+              A testimonials page should show the thing being reviewed, and the
+              thing being reviewed is Damian working, not Damian posed.
+
+              This frame spent seven phases inside speaking-collage.png, a
+              four-up composite the content manifest recorded as "wide room
+              shots", so nobody opened it. It is the tightest action frame in
+              the archive and it exists nowhere else. Harvested by CROPS in
+              scripts/normalize-assets.mjs.
+
+              Above the quotes rather than below them, because it is the
+              evidence the quotes are about. Still lazy: it sits roughly 900px
+              down and the hero above it is the LCP element. */}
+          <figure className={`dm-figure ${styles.writtenFigure}`}>
+            <div className="dm-photo dm-photo--plate">
+              <Image
+                className="dm-photo__img"
+                src="/img/photos/speaking-closeup.png"
+                alt="Damian Mason in three-quarter profile mid-sentence, one hand raised, a presentation clicker in the other, against a lit green wall panel."
+                width={502}
+                height={452}
+                loading="lazy"
+                sizes="(min-width: 64rem) 84rem, 100vw"
+              />
+            </div>
+            <figcaption className="dm-figure__caption">
+              <span className="dm-figure__folio">Fig. 01 </span>
+              Mid-sentence, mid-gesture. Ten of the notes below were written by people
+              who were in a room like this one.
+            </figcaption>
+          </figure>
 
           <TestimonialGrid items={written} columns={2} />
         </Container>
@@ -153,7 +192,7 @@ export default function ReviewsPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 01 </span>
+                <span className="dm-figure__folio">Fig. 02 </span>
                 Book signing at the StoneX Ag and Dairy Market Outlook. The book is{' '}
                 <Link href="/about/#books">
                   Food Fear: How Fear is Ruining Your Dinner and Why You Should Celebrate

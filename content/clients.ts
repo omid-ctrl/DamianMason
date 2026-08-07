@@ -39,11 +39,7 @@ export const clients: Client[] = [
   { name: 'Hudson Insurance', logo: '/img/clients/hudson-insurance.png', width: 466, height: 160 },
   { name: 'Indiana Farm Bureau', logo: '/img/clients/indiana-farm-bureau.jpg', width: 310, height: 152 },
   { name: 'Iowa Farm Bureau', logo: '/img/clients/iowa-farm-bureau.jpg', width: 414, height: 198 },
-  /* U+2019, matching the six other places the site sets this brand name and the
-     way the company sets it itself. This was the last U+0027 the site emitted:
-     `name` becomes the logo's alt text and therefore the accessible name of the
-     link around it. */
-  { name: 'Land O’Lakes Purina', logo: '/img/clients/land-olakes-purina.png', width: 434, height: 96 },
+  { name: 'Land O\'Lakes Purina', logo: '/img/clients/land-olakes-purina.png', width: 434, height: 96 },
   { name: 'Merck', logo: '/img/clients/merck.png', width: 466, height: 136 },
   { name: 'North Dakota Grain Dealers Association', logo: '/img/clients/north-dakota-grain-dealers-association.jpg', width: 292, height: 234 },
   { name: 'Pioneer Seeds', logo: '/img/clients/pioneer-seeds.png', width: 285, height: 234 },

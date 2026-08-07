@@ -39,12 +39,5 @@ export const sponsors: Sponsor[] = [
   { name: 'Nano-Yield', logo: '/img/sponsors/nano-yield.webp', url: 'https://nano-yield.com', width: 445, height: 234 },
   { name: 'NewFields Ag', logo: '/img/sponsors/newfields-ag.jpg', url: 'https://newfieldsag.com', width: 201, height: 234 },
   { name: 'Redox Bio', logo: '/img/sponsors/redox-bio.png', url: 'https://redoxgrows.com', width: 466, height: 178 },
-  /* "AgriScience" is not decoration on this one. The supplied mark is a
-     two-line logotype reading "Tidal Grow" over "AgriScience", and
-     _source/pages/the-business-of-agriculture.md:54 gives the visible link
-     label as "Tidal Grow Agriscience". The short form came from the supplied
-     filename, and because the wall renders the name as the logo's alt inside
-     an anchor, the short form was also the accessible name of the outbound
-     link. Casing follows the mark rather than the source page's typing. */
-  { name: 'Tidal Grow AgriScience', logo: '/img/sponsors/tidal-grow.jpg', url: 'https://tidalgrowag.com', width: 402, height: 202 },
+  { name: 'Tidal Grow', logo: '/img/sponsors/tidal-grow.jpg', url: 'https://tidalgrowag.com', width: 402, height: 202 },
 ];

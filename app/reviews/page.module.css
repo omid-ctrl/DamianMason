@@ -48,3 +48,9 @@
   border-block-start: var(--border-thick) solid var(--rule-strong);
   padding-block-start: var(--space-4);
 }
+
+/* The action frame above the written wall. It is the evidence the quotes are
+   about, so it opens the section rather than closing it. */
+.writtenFigure {
+  margin-block-end: var(--space-7);
+}

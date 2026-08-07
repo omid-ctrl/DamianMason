@@ -216,6 +216,37 @@ export default function SpeakingPage() {
               </li>
             ))}
           </ul>
+
+          {/* docs/OPEN-ITEMS.md item 4 asks the client for "live-event
+              photography from the back of the room with the audience in
+              frame", and records that the site runs on a handful of frames of
+              it. The site already had one. It was panel 3 of
+              speaking-collage.png, a four-up composite the content manifest
+              described as "wide room shots", so for seven phases nobody
+              opened it. Harvested by CROPS in scripts/normalize-assets.mjs.
+
+              It belongs on this route because this is the page that answers
+              "what is it like when he shows up", and a photograph taken from
+              row four answers that in a way a stage portrait cannot: it shows
+              the room, not the speaker. */}
+          <figure className={cx('dm-figure', styles.roomFigure)}>
+            <div className="dm-photo dm-photo--plate">
+              <Image
+                className="dm-photo__img"
+                src="/img/photos/tradeshow-floor-audience.png"
+                alt="A panel session on a trade show floor seen from behind a seated audience, five men on stools in front of a NACHURS booth, other exhibitors either side."
+                width={640}
+                height={498}
+                loading="lazy"
+                sizes="(min-width: 64rem) 84rem, 100vw"
+              />
+            </div>
+            <figcaption className="dm-figure__caption">
+              <span className="dm-figure__folio">Fig. 02 </span>
+              A trade show floor, seen from row four. Every one of those chairs was a
+              decision somebody made about how to spend an hour.
+            </figcaption>
+          </figure>
         </Container>
       </Section>
 
@@ -286,7 +317,7 @@ export default function SpeakingPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 02 </span>
+                <span className="dm-figure__folio">Fig. 03 </span>
                 InSite CDM Winter Forum, 2023. The lectern is right there. He isn’t
                 standing behind it.
               </figcaption>

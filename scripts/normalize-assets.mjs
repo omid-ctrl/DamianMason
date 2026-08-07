@@ -176,7 +176,12 @@ const PHOTOS = [
   { src: `${SRC_MEDIA}/FoodFear-Mockup-Online-Store.png`, base: 'food-fear-book-cover' },
   { src: `${SRC_MEDIA}/Forbes.png`, base: 'forbes-feature' },
   { src: `${SRC_MEDIA}/TODD-THURMAN-CROPPED.png`, base: 'todd-thurman' },
-  { src: `${SRC_MEDIA}/WEB-COLLAGE-2.png`, base: 'speaking-collage' },
+  /* One source, three outputs. The composite itself is NOT emitted: see
+     SKIPPED. Two panels are harvested out of it by CROPS, and the entry shape
+     already supports a repeated src, so this is a manifest change rather than a
+     pipeline change. */
+  { src: `${SRC_MEDIA}/WEB-COLLAGE-2.png`, base: 'speaking-closeup' },
+  { src: `${SRC_MEDIA}/WEB-COLLAGE-2.png`, base: 'tradeshow-floor-audience' },
   { src: `${SRC_MEDIA}/acres-tv-screenshot.png`, base: 'acres-tv-episode-grid' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-13-at-12.43.38-PM.png`, base: 'acres-tv-arlan-suderman' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-18-at-5.52.49-PM.png`, base: 'field-day-panel' },
@@ -227,6 +232,47 @@ const GROUND_FIXES = {
 };
 
 /**
+ * PHOTO CROPS, keyed by OUTPUT basename.
+ *
+ * WHY THIS LIVES HERE AND NOT IN ITS OWN SCRIPT. This file rewrites every
+ * output in public/img/photos/ on each run. A separate crop pass would be
+ * silently reverted the next time anyone touched an asset, with no error, and
+ * the frame with the play button in it would quietly come back.
+ *
+ * RECTANGLES ARE FRACTIONS OF THE FRAME, not pixels, so an entry survives a
+ * change to PHOTO_MAX or a re-export at a different size. `expect` is the
+ * emitted pixel size, asserted after the run: a rectangle that drifts fails
+ * loudly instead of shipping.
+ *
+ * The crop runs BEFORE the resize, and after the rotate, so EXIF orientation
+ * is baked before the rectangle means anything and no resolution is thrown
+ * away twice.
+ */
+const CROPS = {
+  // The four-panel collage. It shipped for seven phases and rendered on zero
+  // routes, because CONTENT_MANIFEST recorded it as "4 wide room shots" and
+  // nobody opened it. Two of the four panels are the best unused frames in the
+  // repo and exist nowhere else in the archive.
+  //
+  // Panel bounds measured off the 1152x1500 source. The panels OVERLAP, so
+  // each rectangle is the largest clean area of its own panel rather than the
+  // panel's full extent: panel 4 intrudes on panel 2 from x>=750, y>=790, and
+  // both rectangles below stay clear of it.
+  'speaking-closeup': {
+    from: 'speaking-collage',
+    rect: { left: 246 / 1152, top: 470 / 1500, width: 502 / 1152, height: 452 / 1500 },
+    expect: [502, 452],
+    why: 'Panel 2. A tight three-quarter close-up, mid-gesture, clicker in hand. Tighter than any standalone photograph on this site.',
+  },
+  'tradeshow-floor-audience': {
+    from: 'speaking-collage',
+    rect: { left: 56 / 1152, top: 933 / 1500, width: 640 / 1152, height: 498 / 1500 },
+    expect: [640, 498],
+    why: 'Panel 3. A trade-show floor session seen from BEHIND a seated audience. docs/OPEN-ITEMS.md item 4 asks the client for exactly this and records that the site does not have it. It did.',
+  },
+};
+
+/**
  * Everything deliberately left out of public/, with the reason recorded so the
  * decision is auditable rather than silent.
  */
@@ -234,6 +280,11 @@ const SKIPPED = [
   {
     src: `${SRC_BRAND}/LOGO-REVISION-B-A-F-01 copy.png`,
     reason: 'Client explicitly asked for this mark to be omitted from the site. Not read, not copied, not referenced.',
+  },
+  {
+    src: `${SRC_MEDIA}/WEB-COLLAGE-2.png (as a composite)`,
+    reason:
+      'The four-up composite itself is not emitted. It is barred from a hero or a band by DESIGN_SYSTEM 6.4, and as a figure it is four small frames where the site wants one. Two of its four panels ARE emitted, harvested by CROPS: speaking-closeup and tradeshow-floor-audience. Panel 1 is a wider take on a stage frame already covered; panel 4 duplicates the shipping keynote-stage-xtremeag-portrait.jpg.',
   },
 
   // Divi / theme icon set. Generic orange line icons, not brand assets.
@@ -471,6 +522,25 @@ async function process(entry) {
     ground = fixed.painted === null ? 'cropped' : `${(fixed.painted * 100).toFixed(1)}% ground repainted`;
   }
 
+  // A photo crop. Runs on the ORIGINAL, before the resize below, so no
+  // resolution is discarded twice, and after rotate() so EXIF orientation is
+  // baked before the rectangle means anything. Fractional, then rounded once.
+  const cropSpec = CROPS[entry.base];
+  if (cropSpec) {
+    const src = await sharp(input).rotate().toBuffer();
+    const m = await sharp(src).metadata();
+    const r = cropSpec.rect;
+    input = await sharp(src)
+      .extract({
+        left: Math.round(r.left * m.width),
+        top: Math.round(r.top * m.height),
+        width: Math.round(r.width * m.width),
+        height: Math.round(r.height * m.height),
+      })
+      .png()
+      .toBuffer();
+  }
+
   const ext = entry.ext ?? rasterExt(entry.src);
   const rasterPath = path.join(outDir, entry.base + ext);
   const info = await encode(base(input, cap), ext, entry.kind).toFile(rasterPath);
@@ -494,6 +564,19 @@ async function process(entry) {
       ]);
       await fsp.writeFile(webpPath, lossless.length < lossy.length ? lossless : lossy);
       out.push(`/img/${entry.dir}/${entry.base}.webp`);
+    }
+  }
+
+  // A crop that no longer emits what it claims is a silent defect: the whole
+  // point of a rectangle is that it excludes something, and if it drifts the
+  // thing it excluded comes back with no error. Assert, do not hope.
+  if (cropSpec?.expect) {
+    const [ew, eh] = cropSpec.expect;
+    if (info.width !== ew || info.height !== eh) {
+      throw new Error(
+        `CROPS.${entry.base} expected ${ew}x${eh} but emitted ${info.width}x${info.height}. ` +
+          `Re-measure the rectangle against the source; do not just update the expectation.`,
+      );
     }
   }
 
@@ -532,7 +615,18 @@ async function main() {
 
   for (const entry of entries) {
     const res = await process(entry);
-    map[entry.src] = res;
+    /* Recorded under BOTH keys, on purpose.
+       One source can now yield several outputs (the collage yields two
+       panels), and keying only by src meant the second overwrote the first:
+       the asset map would have recorded one panel and silently lost the other.
+       dir/base is unique per output and fixes that.
+       The src key stays because three emitters below still look up clients,
+       sponsors and brand marks by source path, and for those one source is one
+       output so the key was never ambiguous. Changing them would be a bigger
+       edit than the defect warrants. */
+    const key = `${entry.dir}/${entry.base}`;
+    map[key] = res;
+    dims.set(key, res);
     dims.set(entry.src, res);
     console.log(
       `${entry.src}  ->  ${res.out.join(', ')}  (${res.w}x${res.h})${res.ground ? `  [ground fix: ${res.ground}]` : ''}`,
