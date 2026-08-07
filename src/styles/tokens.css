@@ -394,12 +394,45 @@
 
   /* ==========================================================================
      10. MEDIA
-     How weak photography is carried. Several source images are mediocre and
-     one is a macOS screenshot. Nothing is shown raw. Recipe and the crop rules
-     are in docs/DESIGN_SYSTEM.md under Photography.
+     How photography is carried. Several source images are mediocre and some are
+     screenshots. Nothing is shown raw. Recipe and crop rules are in
+     docs/DESIGN_SYSTEM.md under Photography.
+     --------------------------------------------------------------------------
+     THE WASH, and why it replaced a grayscale duotone.
+
+     Every photograph on this site used to run through grayscale(1). In a site
+     about agriculture that deletes the strongest signal it has: the archive is
+     a sunflower field day, green corn canopy, Fendt tractors on a trade show
+     floor, blue stage wash. A meeting planner from a farm bureau landed on a
+     black-and-white literary journal.
+
+     The obvious objection to colour is that it stops 18 mixed-quality sources
+     reading as one set. MEASURED across the placeable photographs, mean
+     luminance spread:
+
+       raw colour, no treatment          2.59
+       the old grayscale duotone         2.03
+       this wash                         1.89
+
+     So this is TIGHTER than the grayscale it replaces, while carrying colour.
+     It is not a relaxation of the one-material discipline, it is a better
+     fitted version of it.
+
+     The reason it works is that the screen and multiply pair does most of the
+     desaturation on its own. The site's worst frame for chroma is
+     keynote-stage-podium.jpg, a magenta and blue stage wash at a raw saturation
+     P90 of 0.986; the pair alone brings it to 0.67 before saturate() is applied
+     at all. That leaves saturate() as a fine adjustment rather than the
+     mechanism, so it can stay high enough for green canopy and gold sunflower
+     to survive. At 0.82 the field-day frame keeps 0.40 saturation P90 and the
+     worst case only reaches 0.64, against 0.99 raw. 0.70 is the fallback if a
+     rendered check ever shows the podium reading hot.
      ========================================================================== */
-  --photo-filter: grayscale(1) contrast(1.08) brightness(1.02);
-  --photo-filter-soft: grayscale(0.8) contrast(1.04);
+  --photo-filter: saturate(0.82) contrast(1.18);
+  /* "Soft" used to mean less grey. It now means full chroma, which is the same
+     gesture: the frame comes alive when you reach for it. Consumed by the video
+     facade hover. */
+  --photo-filter-soft: saturate(1) contrast(1.06);
   /* The exposure correction, for the one asset on this site that was shot to be
      a dark backdrop rather than a photograph. MEASURED on the file itself,
      public/img/photos/microphones-background.jpg: mean greyscale luminance 9.3
@@ -415,21 +448,52 @@
      subject reads rather than at the point where the frame looks bright: the
      stage behind the microphone is genuinely dark and printing it grey would be
      a different lie. MEASURED after: mean 11.1, standard deviation 18.8,
-     maximum 188. Grayscale and the two duotone layers are untouched, so the
-     material is the same one DESIGN_SYSTEM 6.2 specifies. */
-  --photo-filter-underexposed: grayscale(1) brightness(4.2) contrast(1.3);
-  --duotone-shadow: var(--palette-navy-900);   /* multiply, the cool duotone */
-  --duotone-highlight: var(--palette-stone-100);/* screen */
-  --duotone-blend-shadow: multiply;
-  --duotone-blend-highlight: screen;
-  /* The screen layer only lifts the highlights toward bone. At full strength it
-     would blow the whole frame out, so its strength is a token rather than a
-     number buried in a stylesheet. The multiply layer's strength is the veil
-     opacity directly below, which is what makes the portrait and band veils
-     role-specific. */
-  --duotone-highlight-opacity: 0.16;
-  --photo-veil-ink: var(--palette-navy-900);
-  --photo-veil-opacity: 0.30;                  /* portrait plates, face must read */
+     maximum 188.
+
+     RE-FITTED FOR THE WASH, not ported. The 4.2 above was measured against a
+     0.16 screen and a 0.30 multiply. The wash uses a 0.24 screen and a 0.20
+     multiply, both of which lift more, so 4.2 now overshoots. MEASURED on the
+     same file through the full new stack: at 4.2 mean 64.4, sd 13.7, max 188,
+     saturation 0.184; at 3.6 mean 60.1, sd 11.7, max 166, saturation 0.168.
+     The original target was "the subject reads, the stage stays dark", and 3.6
+     hits it with less amplified colour cast on a frame whose raw mean is 9.7 of
+     255. Re-run that measurement before changing it again. */
+  --photo-filter-underexposed: saturate(0.82) brightness(3.6) contrast(1.18);
+
+  /* THE WASH. Two layers, and they are no longer half of a duotone, which is
+     why they are no longer named after one.
+
+     The highlight layer points at --surface-page rather than a fixed value.
+     That is what makes 18 sources share a white point, and it means the wash
+     re-tunes itself for free whenever the ground moves: it already followed the
+     palette from bone to cool stone without anyone editing it. */
+  --photo-wash-highlight: var(--surface-page);
+  --photo-wash-highlight-opacity: 0.24;
+  --photo-wash-blend-highlight: screen;
+  --photo-wash-blend-shadow: multiply;
+  /* --duotone-shadow was declared here and read by nothing. The shadow layer's
+     colour is --photo-veil-ink and always was. Deleted rather than renamed. */
+
+  /* The shadow half. Deepening the ink one step and lightening the opacity
+     lands the same black point with less hue rotation, which is what lets green
+     stay green. */
+  --photo-veil-ink: var(--palette-navy-950);
+  --photo-veil-opacity: 0.20;                  /* plates. The subject must read. */
+  /* THE ONE PLACE THE DARKROOM SURVIVES, and it is physics rather than taste.
+     Reversed body copy over a colour photograph cannot reach 4.5:1 by any veil
+     and gradient arrangement that leaves the photograph legible as colour.
+     COMPUTED for --ink-primary against a worst-case white pixel, through the
+     veil and through the hero scrim, at the position where the rightmost line
+     of type actually sits (75% across, where the scrim has decayed to alpha
+     0.067): veil 0.20 gives 1.58, 0.40 gives 2.61, 0.50 gives 3.47, and 0.62
+     gives 5.03. A redesigned scrim holding 0.80 out to 62% still only reaches
+     3.67. So 0.62 stays, and it necessarily kills chroma.
+
+     It costs nothing, because both band consumers on this site carry the same
+     asset: microphones-background.jpg, raw mean luminance 9.7 of 255. There is
+     no colour in it to lose. If a band ever wants a photograph with colour
+     worth seeing, the band is the wrong element: use .dm-photo--band, the
+     standalone plate that owns its own box, which takes the 0.20 plate veil. */
   --photo-veil-opacity-band: 0.62;             /* full-bleed bands under reversed type */
   --photo-focus-portrait: 50% 22%;
   --photo-focus-band: 50% 40%;
@@ -948,8 +1012,10 @@
   --logo-cell-bg: transparent;
   --logo-cell-rule: var(--palette-navy-800);
 
-  --photo-veil-opacity: 0.24;
-  --duotone-highlight: var(--palette-navy-200);
+  /* The same ratio step the light scope takes: 0.30 to 0.20 there, 0.24 to
+     0.16 here. A dark ground is already doing part of the shadow layer's job. */
+  --photo-veil-opacity: 0.16;
+  --photo-wash-highlight: var(--palette-navy-200);
 
   color: var(--ink-primary);
   background-color: var(--surface-page);
@@ -1178,12 +1244,14 @@
   --logo-cell-bg: transparent;
   --logo-cell-rule: var(--palette-forest-800);
 
+  /* Both halves of the wash follow the band, the same way the deep scope's do:
+     its veil ink resolves to navy-950, which is its own ground. A photograph
+     inside a green section should sit IN the section rather than on it. The
+     0.16 is the dark-scope step of the light scope's 0.20, because a dark
+     ground is already doing part of the shadow layer's job. */
   --photo-veil-ink: var(--palette-forest-900);
-  --photo-veil-opacity: 0.24;
-  --duotone-highlight: var(--palette-forest-200);
-  /* --duotone-shadow stays navy. The cool duotone is an identity, not a
-     per-scope decision, and making it green here would be a new claim rather
-     than a migration. */
+  --photo-veil-opacity: 0.16;
+  --photo-wash-highlight: var(--palette-forest-200);
 
   color: var(--ink-primary);
   background-color: var(--surface-page);

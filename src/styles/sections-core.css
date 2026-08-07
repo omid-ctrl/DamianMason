@@ -16,18 +16,31 @@
 
 @layer components {
   /* ==========================================================================
-     PHOTOGRAPHY: the duotone plate
+     PHOTOGRAPHY: the wash plate
 
      The recipe from docs/DESIGN_SYSTEM.md section 6.2, in three layers:
-       1. the image itself, grayscaled and contrast-lifted by --photo-filter
-       2. ::before, the highlight layer, --duotone-highlight screened on at
-          --duotone-highlight-opacity so the whites resolve toward bone
+       1. the image itself, graded by --photo-filter
+       2. ::before, the highlight layer, --photo-wash-highlight screened on at
+          --photo-wash-highlight-opacity so the whites resolve toward the page
        3. ::after, the shadow layer, --photo-veil-ink multiplied on at the
-          role-specific veil opacity: 0.30 for a portrait plate so the face
-          still reads, 0.62 for a band carrying reversed type
+          role-specific veil opacity: 0.20 for a plate so the subject reads,
+          0.62 for a band carrying reversed type
 
-     Cool navy only. The warm gold duotone is banned: it turned the podium shot
-     olive-khaki and read as a faded photocopy.
+     THE IMAGES CARRY COLOUR NOW. This was a grayscale duotone until the Cool
+     Modern Ag revision, and on a site about agriculture that deleted the
+     strongest signal it had. The wash keeps the one-material discipline the
+     duotone was for and measures TIGHTER than it did: mean luminance spread
+     1.89 against the duotone's 2.03 and raw colour's 2.59.
+
+     The two blend layers do most of the desaturation on their own, which is
+     why saturate() can stay high enough for a green canopy to survive. See the
+     token block in tokens.css section 10 for the measurements.
+
+     ONE PLACE STAYS A DARKROOM: .dm-photo--veil-band, at 0.62, because
+     reversed body copy over a colour photograph cannot reach 4.5:1 by any veil
+     arrangement that leaves the photograph legible as colour. That is computed,
+     not assumed. A full-bleed image with colour worth seeing belongs in
+     .dm-photo--band instead, which owns its own box and takes the plate veil.
 
      isolation: isolate keeps both blend layers inside the plate, so a photo
      never multiplies into the page behind it.
@@ -52,13 +65,13 @@
     pointer-events: none;
   }
   .dm-photo::before {
-    background-color: var(--duotone-highlight);
-    mix-blend-mode: var(--duotone-blend-highlight);
-    opacity: var(--duotone-highlight-opacity);
+    background-color: var(--photo-wash-highlight);
+    mix-blend-mode: var(--photo-wash-blend-highlight);
+    opacity: var(--photo-wash-highlight-opacity);
   }
   .dm-photo::after {
     background-color: var(--photo-veil-ink);
-    mix-blend-mode: var(--duotone-blend-shadow);
+    mix-blend-mode: var(--photo-wash-blend-shadow);
     opacity: var(--photo-veil-opacity);
   }
   /* The only place the heavier veil is legal: a full-bleed band with reversed
