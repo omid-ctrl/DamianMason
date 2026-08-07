@@ -151,26 +151,39 @@
      Ratios below are against --surface-page in the active scope. Every value
      here has been measured. See the table in docs/DESIGN_SYSTEM.md.
      ========================================================================== */
-  --ink-primary: var(--palette-navy-950);       /* 15.22:1 on bone. Body copy. */
-  --ink-secondary: var(--palette-navy-800);     /* 10.17:1. Decks, secondary prose. */
-  --ink-brand: var(--palette-navy-700);         /*  7.56:1. Headlines and figures.
-                                                    The wordmark navy, reserved for
-                                                    display type and proof numbers. */
-  --ink-muted: var(--palette-bone-800);         /*  5.74:1. Captions, folios, labels,
-                                                    running heads, stat descriptions.
-                                                    Passes AA at body size. */
-  --ink-faint: var(--palette-bone-750);         /*  5.09:1 on bone, 4.56:1 on sunken.
+  /* The @on annotations below are the machine-readable form of the contrast
+     table in docs/DESIGN_SYSTEM.md section 4, which scripts/contrast-table.mjs
+     regenerates from these values. A token's @on states the job it has to do
+     (which grounds it lands on, and the floor it must clear on each) and that
+     job is inherited by every data-surface scope, so one annotation covers the
+     light scope, the paper scope and every dark scope at once. Repoint a token
+     and the generator recomputes; drop it below its floor and the build fails.
+     See the header of scripts/contrast-table.mjs. */
+  --ink-primary: var(--palette-navy-950);       /* @on page,sunken >=4.5   Body copy. */
+  --ink-secondary: var(--palette-navy-800);     /* @on page >=4.5   Decks, secondary prose. */
+  --ink-brand: var(--palette-navy-700);         /* @on page,sunken >=4.5   Headlines and
+                                                    figures. The wordmark navy, reserved
+                                                    for display type and proof numbers. */
+  --ink-muted: var(--palette-bone-800);         /* @on page,raised,bright,sunken >=4.5
+                                                    Captions, folios, labels, running
+                                                    heads, stat descriptions. */
+  --ink-faint: var(--palette-bone-750);         /* @on page,raised,bright,sunken >=4.5
                                                     Decorative indices and disabled
                                                     text ONLY. Never prose. Clears AA
                                                     at any size on every light ground,
                                                     so an aria-hidden index no longer
                                                     rests on the decoration exemption. */
-  --ink-accent: var(--palette-orange-700);      /*  5.63:1. Orange as TEXT on bone. */
-  --ink-hot: var(--palette-orange-400);         /*  2.72:1 on bone. NOT TEXT on bone.
-                                                    Fields, rules and marks only.
-                                                    Legal as text in the deep scope. */
-  --ink-gold: var(--palette-gold-700);          /*  6.38:1 */
-  --ink-green: var(--palette-green-600);        /*  7.06:1 */
+  --ink-accent: var(--palette-orange-700);      /* @on page,sunken >=4.5   Orange as TEXT. */
+  --ink-hot: var(--palette-orange-400);         /* @on page,sunken >=3
+                                                    @allow-fail "the brand orange is a field,
+                                                    a rule or an aria-hidden mark on a light
+                                                    ground, never a letterform. Legal as text
+                                                    only in a dark scope. DESIGN_SYSTEM 5."
+                                                    NOTE the floor is 3, not 4.5: this token
+                                                    is never text here, so what it has to
+                                                    clear is SC 1.4.11, not SC 1.4.3. */
+  --ink-gold: var(--palette-gold-700);          /* @on page >=4.5 */
+  --ink-green: var(--palette-green-600);        /* @on page >=4.5 */
   --ink-inverse: var(--palette-bone-100);       /* type placed on a deep ground */
   --ink-on-accent: var(--palette-navy-950);     /*  5.60:1 on the orange field */
 
@@ -183,8 +196,11 @@
      --rule-decorative is ornament only. It may sit below 3:1. If deleting the
        rule would lose meaning, it was the wrong token.
      ========================================================================== */
-  --rule-structural: var(--palette-bone-650);   /* 3.48:1 on bone, 3.12:1 on sunken */
-  --rule-decorative: var(--palette-bone-400);   /* 1.33:1, ornament only */
+  --rule-structural: var(--palette-bone-650);   /* @on page,raised,bright,sunken >=3 */
+  --rule-decorative: var(--palette-bone-400);   /* @on page >=3
+                                                   @allow-fail "ornament by definition.
+                                                   If deleting the rule would lose meaning
+                                                   it was the wrong token. DESIGN_SYSTEM 5." */
   --rule-quiet: var(--palette-bone-300);
   --rule-strong: var(--palette-navy-950);       /* the heavy broadsheet rule */
   --rule-brand: var(--palette-navy-700);
@@ -200,7 +216,7 @@
      bone scope  #a8330e: 5.63 on page, 5.05 on sunken, 6.46 on a form field
      deep scope  #ff8154: 7.32 on navy-950, 6.17 on navy-900, 4.89 on navy-800
      ========================================================================== */
-  --focus-ring-color: var(--palette-orange-700);
+  --focus-ring-color: var(--palette-orange-700);  /* @on page,sunken,bright >=3 */
   --focus-ring-offset-color: var(--surface-page);
   --focus-ring-width: 0.1875rem;
   --focus-ring-offset: 0.125rem;
@@ -232,8 +248,8 @@
   --action-ghost-ink: var(--palette-navy-800);               /* 10.17:1 */
   --action-ghost-rule: transparent;
 
-  --link-ink: var(--palette-orange-700);                     /* 5.63:1 on bone */
-  --link-ink-hover: var(--palette-orange-800);
+  --link-ink: var(--palette-orange-700);                     /* @on page,sunken >=4.5 */
+  --link-ink-hover: var(--palette-orange-800);               /* @on page >=4.5 */
   --link-ink-visited: var(--palette-navy-700);
   --link-underline: currentColor;   /* the non-color cue required by SC 1.4.1 */
 
