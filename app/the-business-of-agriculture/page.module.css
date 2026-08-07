@@ -1,0 +1,143 @@
+/* ============================================================================
+   /the-business-of-agriculture/
+   Route-scoped layout only. Every value resolves to a token in
+   src/styles/tokens.css: no hex, no rgb(), no arbitrary pixel value.
+
+   Nothing here restyles a shared component. It places things: the cover-art
+   plate in the hero, the platform row, the Libsyn player frame, the two
+   cross-promo cards and the rights line.
+   ============================================================================ */
+
+/* --- shared section head ---------------------------------------------------
+   Eyebrow over Heading, with the gap the broadsheet section head wants. The
+   Eyebrow never replaces the Heading, it sits above it. */
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-block-end: var(--space-7);
+}
+
+.intro {
+  margin-block-end: var(--space-6);
+}
+
+/* --- hero cover art --------------------------------------------------------
+   The show art is a mark on an opaque white field, not a photograph, so it
+   gets none of the duotone recipe. It sits on a bone plate inside the navy
+   section, which is exactly what data-surface="paper" exists for, and the
+   cutline sits outside the plate on the navy so it reads as page furniture. */
+.artFigure {
+  margin: 0;
+  inline-size: 100%;
+  max-inline-size: var(--size-portrait-max);
+  justify-self: end;
+}
+
+@media (max-width: 63.9375rem) {
+  .artFigure {
+    justify-self: start;
+    max-inline-size: var(--size-portrait-max);
+  }
+}
+
+.artPlate {
+  padding: var(--space-4);
+  border: var(--border-hairline) solid var(--rule-structural);
+}
+
+.art {
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: var(--ratio-square);
+  object-fit: contain;
+}
+
+.artCutline {
+  margin-block-start: var(--space-3);
+}
+
+/* --- platform row ----------------------------------------------------------
+   Five real, named destinations. On the old page these were eight links whose
+   only accessible name was the word "Follow". */
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 29.9375rem) {
+  .platforms {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* --- Libsyn player ---------------------------------------------------------
+   The height attribute on the iframe is the embed's own, carried from the
+   player URL, so the frame reserves its box before the third party answers. */
+.player {
+  margin-block-start: var(--space-7);
+}
+
+.playerFrame {
+  inline-size: 100%;
+  border: 0;
+}
+
+.playerCutline {
+  margin-block-start: var(--space-3);
+}
+
+/* --- cross promo ----------------------------------------------------------- */
+.crossGrid {
+  display: grid;
+  gap: var(--grid-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .crossGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.crossItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.crossMark {
+  inline-size: auto;
+  block-size: auto;
+  max-inline-size: 100%;
+  max-block-size: var(--logo-box-h);
+}
+
+.crossAction {
+  margin-block-start: var(--space-2);
+}
+
+.crossFooter {
+  margin-block-start: var(--space-7);
+}
+
+/* --- rights notice ---------------------------------------------------------
+   Carried verbatim from the old page, including the missing space after the
+   copyright glyph. It is a rights statement, so it is not rewritten. */
+.rights {
+  margin-block-start: var(--space-5);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  line-height: var(--lh-loose);
+  letter-spacing: var(--ls-wide);
+  color: var(--ink-muted);
+}

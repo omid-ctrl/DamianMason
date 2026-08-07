@@ -1,0 +1,88 @@
+/*
+ * Route-scoped styles for /podcasts/.
+ *
+ * Three show cards. Everything here resolves to a token from
+ * src/styles/tokens.css: no hex, no rgb(), no arbitrary length.
+ *
+ * The artwork column is deliberately capped at --size-thumb, the same token the
+ * episode card uses, because all three marks are white-ground logo art rather
+ * than photography. A 400px square of white inside a bone column reads as a
+ * hole in the page; a 160px plate with a hairline reads as a mark.
+ */
+
+.showGrid {
+  display: grid;
+  gap: var(--space-9);
+  list-style: none;
+  margin: 0;
+  margin-block-start: var(--space-8);
+  padding: 0;
+}
+
+/* Three across only from 1024. At 768 a third of the container is a 28 character
+   measure, which ladders every description into fifteen lines. Below that the
+   cards stack full width and the artwork stays at --size-thumb. */
+@media (min-width: 64rem) {
+  .showGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gutter-column);
+  }
+}
+
+.show {
+  gap: var(--space-4);
+}
+
+/* The plate the mark sits on. Bright ground plus a hairline, so a white-corner
+   logo has an edge instead of bleeding into the bone. */
+.showArt {
+  align-items: center;
+  aspect-ratio: var(--ratio-square);
+  background-color: var(--surface-bright);
+  border: var(--border-hairline) solid var(--rule-structural);
+  display: grid;
+  inline-size: var(--size-thumb);
+  justify-items: center;
+  padding: var(--space-4);
+}
+
+.showArtImg {
+  block-size: auto;
+  inline-size: auto;
+  max-block-size: 100%;
+  max-inline-size: 100%;
+  object-fit: contain;
+}
+
+.showTitle {
+  margin-block-start: var(--space-1);
+}
+
+/* The card is a flex column. Letting the description take the free space lands
+   all three platform rows on the same baseline across the row. */
+.showBody {
+  flex: 1 1 auto;
+}
+
+/* The card is an <li>, so the base layer would underline every anchor inside
+   it. The heading link opts out with .dm-link-bare and states its own hover. */
+.showLink {
+  color: var(--ink-primary);
+  text-decoration: none;
+  transition: var(--transition-ink);
+}
+
+.showLink:hover {
+  color: var(--ink-accent);
+  text-decoration-line: underline;
+}
+
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  margin-block-start: var(--space-2);
+  padding: 0;
+}

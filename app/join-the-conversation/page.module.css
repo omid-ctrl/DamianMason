@@ -1,0 +1,13 @@
+/* ============================================================================
+   /join-the-conversation/ route styles.
+
+   One rule. The signup row is a pitch column beside a form card, and the two
+   have very different heights: without this the short card would centre itself
+   against the tall column and the form would float away from its heading.
+   Every value resolves to a token in src/styles/tokens.css. No hex, no rgb(),
+   no arbitrary length.
+   ============================================================================ */
+
+.rowTop {
+  align-items: start;
+}

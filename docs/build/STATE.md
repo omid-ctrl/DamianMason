@@ -41,11 +41,14 @@
       11 shared sections + 5 typed content files (17 testimonials, 13 FAQ, 16 videos, 9 press, 2 posts).
       `tsc` + `next build` clean.
 
-- [ ] **Phase 3 — Page build** (pipeline, ~17 agents, one per route)
+- [x] **Phase 3 — Page build** (pipeline, ~17 agents, one per route)
       Each agent gets `_source/pages/<slug>.md` + `docs/DESIGN_SYSTEM.md` + `docs/VOICE.md`, builds its route,
       self-verifies against its source manifest before leaving the pipeline.
       **Gate:** every route in the IA renders; every source item accounted for.
-      Result:
+      Result: **PASS (18 agents).** All 18 routes built and prerendering. Gate ran clean on first pass: `tsc` 0,
+      `next build` 0, and every violation grep at zero (empty href, `href="#"`, wpengine, Media Kit, em dash,
+      commerce, raw hex). Exactly one `<h1>` per route, verified against the 19 prerendered HTML files rather
+      than by reading source. All 31 `next/image` tags carry explicit dimensions.
 
 - [ ] **Phase 4 — Copy & SEO** (~6 agents)
       Voice-consistent copy, unique title + meta description per page, alt text, internal linking, one H1 per page.
@@ -128,10 +131,32 @@ colon. Meaning is unchanged; this is a deliberate editorial call, recorded here 
 
 ---
 
+## Carried into later phases (raised by Phase 3, not build defects)
+
+1. **Orange budget conflict, systemic.** The masthead ships a persistent filled-orange "Book Damian", and both
+   `Hero` and `CTABand` default their first action to primary orange. That is two filled orange fields per
+   viewport against DESIGN_SYSTEM's one-field rule. No single route can fix it. **Phase 5 decides:** masthead
+   goes secondary, or Hero/CTABand stop defaulting to primary.
+2. **106MB of uncompressed 1080p MP4** in `public/video/` (31 + 39 + 36). `preload="none"` means no visitor
+   downloads them unprompted, so no page is slow, but the deploy bundle carries them. **Phase 5 transcodes.**
+3. **Three en dashes (U+2013)** remain in `content/`: a numeric range "60 - 90 minutes" where an en dash is
+   correct typography, one used as an em dash would be, and one inside a verbatim quote. Zero em dashes (U+2014)
+   anywhere, so the gate passes. **Phase 4 copy decision.**
+4. **Factual conflicts needing the client, not invention:** `/boasg/` says 8 foreign countries verbatim while
+   every other page says 7; the 40,000+ and 70,000+ audience figures have no source in the old site; the three
+   books have no retailer URL anywhere in the mirror; the Do Business Better description is truncated mid-word;
+   and the footer claims a weekly newsletter cadence that `/join-the-conversation/` deliberately refuses to state.
+5. **Component conveniences, not breakage:** no `components/sections` barrel, `StatRow` has no folio prop,
+   `VideoGrid` has no per-item cutline, `FAQAccordion` renders answers as plain text so one bare YouTube URL
+   is unlinked.
+
+---
+
 ## Log
 
 _(append one line per completed phase: date, phase, agent count, outcome)_
 
 - 2026-08-06 · Phase 0 · 10 agents · PASS. 28 pages harvested, 70 assets mirrored, 46 logos normalized, VOICE.md written, gate reconciled 6 plan discrepancies.
+- 2026-08-06 · Phase 3 · 18 agents · PASS. 18 routes built, gate clean on first run, ~40 old-site defects dropped with written justification.
 - 2026-08-06 · Phase 2 · 6 agents · PASS. Chrome + SEO + 11 sections + content layer; footer agent fixed a data-surface token bug that rendered navy on navy.
 - 2026-08-06 · Phase 1 · 7 agents · PASS. Editorial Broadsheet wins 2 of 3 lenses; 15 ideas grafted from losers; all contrast failures repaired; tsc + next build clean.

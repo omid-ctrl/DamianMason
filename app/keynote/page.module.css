@@ -1,0 +1,116 @@
+/* ============================================================================
+   Route-scoped layout for /keynote/.
+
+   Everything here resolves to a token in src/styles/tokens.css. No hex, no
+   rgb(), no arbitrary pixel value, no color that is not already in the
+   WCAG table in docs/DESIGN_SYSTEM.md section 4.
+
+   This file only does spacing and flow. Every surface, ink, rule and action
+   value comes from the semantic layer through the shared components.
+   ============================================================================ */
+
+/* The standard section head: eyebrow, heading, then the copy under it. */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-block-end: var(--space-8);
+}
+
+/* A head that opens a column inside a grid, so it does not push the whole
+   section down. */
+.headTight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-block-end: var(--space-6);
+}
+
+/* One button, or two side by side. At 390 they stack and fill, which is how a
+   44px target gets its width. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-start: var(--space-7);
+}
+
+@media (max-width: 29.9375rem) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* The four credential cards. Real list semantics, unlike the source, which
+   faked its bullets with a literal bullet character and a line break. */
+.pillars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  block-size: 100%;
+}
+
+.pillarPoints {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--ink-secondary);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+}
+
+.pillarPoints li {
+  position: relative;
+  padding-inline-start: var(--space-5);
+}
+
+.pillarPoints li + li {
+  margin-block-start: var(--space-2);
+}
+
+/* A hairline dash rather than an orange marker: four cards of orange glyphs
+   would blow the three-element orange budget on its own. */
+.pillarPoints li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.7em;
+  inline-size: var(--space-3);
+  block-size: var(--border-thin);
+  background-color: var(--rule-strong);
+}
+
+/* The two bookable formats, Keynote and Extensions. */
+.formats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.format {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* A captioned plate sitting beside a column of copy. */
+.plate {
+  margin: 0;
+  inline-size: 100%;
+}
+
+/* The photo band that replaces the source's empty parallax strip. */
+.band {
+  margin: 0;
+}
+

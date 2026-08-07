@@ -1,0 +1,98 @@
+/* ============================================================================
+   /contact-us/ route styles.
+
+   Route-scoped because nothing here recurs elsewhere: a contact ledger, a
+   labelled social row, and two small layout helpers. Every value resolves to a
+   token from src/styles/tokens.css. No hex, no raw pixel, no arbitrary length.
+   ============================================================================ */
+
+/* The 12-column rows on this route align to the top, not to the baseline of
+   the tallest column, so a short card never floats against a long column. */
+.rowTop {
+  align-items: start;
+}
+
+/* --- the contact ledger ---------------------------------------------------- */
+/* A description list, because that is what it is: four terms and four values.
+   Rows are separated by a structural hairline, so deleting the rule would lose
+   the row boundary. */
+.ledger {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.ledgerRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-block-start: var(--space-4);
+  border-block-start: var(--border-hairline) solid var(--rule-structural);
+}
+
+.ledgerRow:first-child {
+  padding-block-start: 0;
+  border-block-start: 0;
+}
+
+.ledgerRow dd {
+  margin: 0;
+}
+
+/* The address is long and the card is narrow at 390, so the value is allowed
+   to break rather than to overflow its cell. */
+.ledgerValue {
+  font-family: var(--family-serif);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  overflow-wrap: anywhere;
+}
+
+.ledgerNote {
+  margin-block-start: var(--space-1);
+  color: var(--ink-muted);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-normal);
+}
+
+/* --- the social row -------------------------------------------------------- */
+.socialHeading {
+  margin-block-start: var(--space-7);
+}
+
+.socialList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  /* Pulls the first 44px target back so its glyph optically aligns with the
+     ledger terms above rather than with the target's padding edge. */
+  margin: var(--space-3) 0 0 calc(var(--space-3) * -1);
+  padding: 0;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: var(--size-tap-target);
+  padding-inline: var(--space-3);
+  color: var(--ink-secondary);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  text-decoration-line: none;
+  text-transform: uppercase;
+}
+
+.socialLink:hover {
+  color: var(--ink-accent);
+}
+
+/* --- misc ------------------------------------------------------------------ */
+.figureColumn {
+  margin: 0;
+}
+
+.asideNote {
+  margin-block-start: var(--space-6);
+}

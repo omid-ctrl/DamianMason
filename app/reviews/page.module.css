@@ -1,0 +1,50 @@
+/* ============================================================================
+   Route-scoped layout for /reviews/ (labelled "Testimonials" in the nav).
+
+   Only the three things this page needs that no shared component owns: the
+   broadsheet section head with its metadata line, and the two-up that sets the
+   editorial plate beside its argument. Every value resolves to a token in
+   src/styles/tokens.css. No hex, no raw color function, no arbitrary length,
+   no inline style in the .tsx.
+   ============================================================================ */
+
+/* The section head. A thick ink rule, the heading under it, and the mono
+   metadata line pushed to the far edge, which is one of the three standing
+   slots the dry humor lives in. Wraps to its own line below the heading before
+   the two ever collide. */
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  border-block-start: var(--border-thick) solid var(--rule-strong);
+  padding-block-start: var(--space-4);
+  margin-block-end: var(--space-8);
+}
+
+.headText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* The plate sits beside its argument at 1024 and above and under it below,
+   where a 5-column paragraph would run at a 24-character measure. */
+.plateGrid {
+  align-items: start;
+  row-gap: var(--space-8);
+}
+
+.plateBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Same broadsheet rule as .head, but the column below it already owns its
+   rhythm through .plateBody, so this one contributes no bottom margin. */
+.plateHead {
+  border-block-start: var(--border-thick) solid var(--rule-strong);
+  padding-block-start: var(--space-4);
+}

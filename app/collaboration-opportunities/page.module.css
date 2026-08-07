@@ -1,0 +1,59 @@
+/* Route-scoped layout only. Every value resolves to a token in
+   src/styles/tokens.css. No color, no type, no raw length lives here: the
+   shared .dm-* classes and the primitives own all three. */
+
+/* The section head: eyebrow, heading, and an optional standfirst under it. */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.headIntro {
+  margin-block-start: var(--space-5);
+}
+
+/* A row of cards hung off the shared 12-column grid. The row gap is larger
+   than the column gap so a stacked column at 390 reads as separate items. */
+.grid {
+  margin-block-start: var(--space-8);
+  row-gap: var(--space-9);
+}
+
+.card {
+  gap: var(--space-4);
+}
+
+/* A button inside a flex-column card would stretch to the full card width
+   without this, which turns a tertiary action into a bar. */
+.cardAction {
+  display: flex;
+  margin-block-start: var(--space-2);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-start: var(--space-8);
+}
+
+.block {
+  margin-block-start: var(--space-8);
+}
+
+.checklist {
+  margin-block-start: var(--space-5);
+}
+
+/* Text beside a captioned plate. `start` rather than the grid default so a
+   short figure does not stretch to the height of a long list. */
+.split {
+  margin-block-start: var(--space-8);
+  row-gap: var(--space-9);
+  align-items: start;
+}
+
+.figure {
+  margin: 0;
+}

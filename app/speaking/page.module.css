@@ -1,0 +1,101 @@
+/* ============================================================================
+   /speaking/ , route-scoped layout only.
+
+   Nothing here invents a color, a size or a spacing value: every declaration
+   resolves to a token in src/styles/tokens.css. This file exists because the
+   hub needs three arrangements that no shared section owns yet: a four-up card
+   list of child routes, the "Ations" subject ledger, and the section head that
+   pairs a running head with a folioed heading.
+   ============================================================================ */
+
+/* --- the standing section head ------------------------------------------- */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-block-end: var(--space-8);
+  max-inline-size: var(--measure);
+}
+
+/* --- the four child routes ------------------------------------------------ */
+/* Composed with .dm-grid12, so the column definition stays shared. Only the
+   row gap is retuned: the grid gutter is set for columns, and four ruled cards
+   stacked at 390 need the larger vertical step to read as separate items. */
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  row-gap: var(--space-8);
+}
+
+.card {
+  gap: var(--space-4);
+}
+
+/* The card title is the card's only link, so the affordance is the hover
+   state rather than a permanent underline competing with the rule above it. */
+.cardLink {
+  color: var(--ink-primary);
+  text-decoration-line: none;
+}
+
+.cardLink:hover {
+  color: var(--ink-brand);
+  text-decoration-line: underline;
+}
+
+/* --- the "Ations" subject ledger ------------------------------------------ */
+.ations {
+  row-gap: var(--space-9);
+}
+
+.ationsBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Six words, on hairline rows. A real list, because the old site set these as
+   a single paragraph of bullet characters and line breaks. */
+.ationsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-block-start: var(--border-hairline) solid var(--rule-structural);
+  max-inline-size: var(--measure-narrow);
+}
+
+.ationsItem {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  border-block-end: var(--border-hairline) solid var(--rule-structural);
+  padding-block: var(--space-3);
+  color: var(--ink-primary);
+  font-family: var(--family-serif);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+}
+
+/* Decorative index. --ink-faint is 3.89:1 and is never prose, so this is
+   aria-hidden in the markup. */
+.ationsIndex {
+  flex: 0 0 auto;
+  color: var(--ink-faint);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wider);
+  line-height: var(--lh-loose);
+}
+
+.plate {
+  align-self: start;
+}
+
+/* --- a trailing action row ------------------------------------------------ */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-start: var(--space-8);
+}

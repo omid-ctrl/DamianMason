@@ -1,0 +1,30 @@
+/* ============================================================================
+   /blog-news/ (labelled "Media" in the nav)
+
+   Route-local layout only. Every value resolves to a token from
+   src/styles/tokens.css: no hex, no rgb(), no arbitrary pixel value. There is
+   no shared section-head class in the primitive layer yet, so the two section
+   heads on this route are composed here out of Eyebrow, Heading and Prose.
+   ============================================================================ */
+
+/* The mono running head, the serif h2 and its standfirst, stacked. Matches the
+   gap the hero type block uses so the two read as the same system. */
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+/* The structural rule that caps a block with no rule of its own. The press
+   rows already carry a thick rule each from Card variant="ruled", so only the
+   video wall gets one. */
+.headRule {
+  margin-block-start: var(--space-6);
+}
+
+/* Separates a section head from the content it heads, when the two sit in the
+   same grid column rather than side by side. */
+.body {
+  margin-block-start: var(--space-7);
+}

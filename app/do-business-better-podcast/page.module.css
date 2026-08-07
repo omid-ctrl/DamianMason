@@ -1,0 +1,89 @@
+/* ============================================================================
+   Route-scoped styles for /do-business-better-podcast/
+
+   Only what the shared components genuinely do not cover: the two brand-art
+   plates. Every value resolves to a token in src/styles/tokens.css. No hex,
+   no rgb(), no arbitrary pixel value.
+
+   Why the show art is not a Hero `image`: the Hero image slot renders into
+   .dm-photo, which applies the duotone recipe (grayscale, navy multiply, bone
+   screen). That recipe is for photographs. Running it over the show's yellow
+   and cyan cover art would strip the identity out of the one image on the page
+   that IS the identity. Brand marks sit on a bright plate behind a hairline,
+   which is the same treatment the logo wall gives every other mark.
+   ============================================================================ */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.figure {
+  margin: 0;
+  inline-size: 100%;
+  max-inline-size: var(--size-portrait-max);
+}
+
+/* Below 1024 the plate sits under the type at column width, so it aligns to
+   the same edge as the masthead rather than floating off to the right. */
+.heroFigure {
+  justify-self: start;
+}
+
+@media (min-width: 64rem) {
+  .heroFigure {
+    justify-self: end;
+  }
+}
+
+.plate {
+  display: grid;
+  place-items: center;
+  aspect-ratio: var(--ratio-square);
+  padding: var(--space-6);
+  background-color: var(--surface-bright);
+  border: var(--border-hairline) solid var(--rule-structural);
+}
+
+.plate img {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+/* The book mockup carries its own white margin and drop shadow, so the plate
+   only has to supply the edge, not a second mat. */
+.bookPlate {
+  padding: var(--space-2);
+}
+
+.episodeList {
+  display: grid;
+  gap: var(--space-8);
+  margin: 0;
+  margin-block-start: var(--space-8);
+  padding: 0;
+  list-style: none;
+}
+
+.listFoot {
+  margin-block-start: var(--space-8);
+}
+
+.platforms {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  margin-block-start: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.platformNote {
+  color: var(--ink-muted);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  margin-block-start: var(--space-1);
+}

@@ -1,0 +1,70 @@
+/* ============================================================================
+   Route-scoped layout for /xtreme-ag/.
+
+   Only what the shared primitives genuinely do not cover: two column stacks,
+   a mark plate, and the vertical gaps Preflight zeroes out. Every value
+   resolves to a token in src/styles/tokens.css. No hex, no rgb(), no
+   arbitrary pixel value, no inline style.
+   ============================================================================ */
+
+/* The standard column stack: eyebrow, heading, prose, action. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+/* A heading sitting tight under its running head. */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* The plate a partner mark sits on. A bright ground because both marks were
+   drawn for white and both carry black letterforms: on the navy of the deep
+   scope The Granary would simply disappear. */
+.markPlate {
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding-block: var(--space-8);
+  padding-inline: var(--space-6);
+}
+
+/* Both caps, always, exactly as the logo wall does it, so a wide mark is
+   width-constrained and a square mark is height-constrained and the two land
+   at the same optical weight. */
+.mark {
+  inline-size: auto;
+  block-size: auto;
+  max-inline-size: 100%;
+  max-block-size: var(--logo-box-h);
+}
+
+/* The Granary mark is square and it is the subject of its section rather than
+   a credit in the corner of one, so it gets the thumbnail box instead. */
+.markLarge {
+  inline-size: auto;
+  block-size: auto;
+  max-inline-size: 100%;
+  max-block-size: var(--size-thumb);
+}
+
+/* Vertical rhythm between the parts of one section. */
+.spaced {
+  margin-block-start: var(--space-8);
+}
+
+/* The two-up row on Join the Conversation: heading left, action right. */
+.rowEnd {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 48rem) {
+  .rowEnd {
+    justify-content: flex-end;
+  }
+}

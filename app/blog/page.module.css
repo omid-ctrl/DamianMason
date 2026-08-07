@@ -1,0 +1,83 @@
+/* ============================================================================
+   /blog/ , the post index, plus the shared post card used by /blog/[slug]/.
+
+   Route-scoped only. Every value resolves to a token from src/styles/tokens.css
+   and remaps automatically inside a [data-surface] scope, so nothing here
+   writes a color, a raw pixel or a light-on-dark override by hand.
+   ========================================================================== */
+
+/* The list rides the shared .dm-grid12. This only strips the list chrome and
+   opens the row gap, because two entries side by side want more air between
+   rows than between columns. */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  row-gap: var(--space-9);
+}
+
+.item {
+  gap: var(--space-1);
+}
+
+/* The mono meta row above a post title: the decorative index and the dateline.
+   Same furniture as the episode row, kept local so the two cannot drift. */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  color: var(--ink-muted);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  font-variant-numeric: var(--numeric-tabular);
+  letter-spacing: var(--ls-widest);
+  line-height: var(--lh-loose);
+  text-transform: uppercase;
+}
+
+/* 3.89:1 and aria-hidden. A decorative index, never read aloud. */
+.index {
+  color: var(--ink-faint);
+}
+
+.title {
+  margin-block-start: var(--space-3);
+}
+
+.titleLink {
+  color: var(--ink-primary);
+  text-decoration: none;
+}
+
+.titleLink:hover {
+  color: var(--ink-accent);
+  text-decoration-line: underline;
+}
+
+.excerpt {
+  margin-block-start: var(--space-4);
+}
+
+/* The "Read more" affordance the old archive never had. */
+.more {
+  margin-block-start: var(--space-5);
+  margin-block-end: 0;
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  line-height: var(--lh-loose);
+  text-transform: uppercase;
+}
+
+.blurb {
+  margin-block-start: var(--space-5);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-start: var(--space-6);
+}

@@ -1,0 +1,142 @@
+/* ============================================================================
+   HOME ROUTE, local styling only.
+
+   Everything here resolves to a token in src/styles/tokens.css. No hex, no
+   rgb(), no arbitrary pixel value. These four blocks exist because they are
+   route-local compositions, not shared components: the claims checklist from
+   the "Not Your Boring Ag Speaker" section, the row rhythm the twelve-column
+   grid needs when a section stacks three rows into one grid, the vertical
+   flow inside a section head and inside a ruled card, and the two lists that
+   carry cards and therefore need the browser list styling reset.
+   ============================================================================ */
+
+/* --- section scaffolding --------------------------------------------------- */
+
+/* .dm-grid12 supplies the column gap. A section that stacks a head row, a
+   content row and a figure row into one grid needs a larger row gap than
+   column gap, or the rows read as one block. */
+.sectionGrid {
+  row-gap: var(--space-9);
+}
+
+/* Eyebrow and Heading both ship with zero margin, on purpose: the flow gap
+   belongs to whatever composes them. */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: flex-start;
+}
+
+.stackTight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+@media (max-width: 29.9375rem) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    inline-size: 100%;
+  }
+}
+
+/* --- the claims checklist -------------------------------------------------- */
+
+/* Four claims that were four separate <h2> elements on the old page. They are
+   claims, not headings, so they are a list: hairline rows, a mono index that
+   is decoration and hidden from assistive tech, and the term in the serif at
+   one full step below the section heading.
+
+   No checkmark glyph. The literal U+2713 the old page prefixed each item with
+   would have to be orange to read as a mark, and four orange marks in one
+   viewport is over the budget in docs/DESIGN_SYSTEM.md section 5. The words
+   are the content; the rule carries the structure. */
+.claims {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-block-start: var(--border-thin) solid var(--rule-strong);
+  inline-size: 100%;
+}
+
+.claim {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  border-block-end: var(--border-hairline) solid var(--rule-structural);
+  padding-block: var(--space-4);
+}
+
+.claimIndex {
+  color: var(--ink-faint);
+  flex: none;
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  line-height: var(--lh-loose);
+}
+
+.claimTerm {
+  color: var(--ink-primary);
+  font-family: var(--family-serif);
+  font-size: var(--fs-xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+}
+
+/* --- card lists ------------------------------------------------------------ */
+
+/* Card is a <div> by default and carries no list semantics. Where a set of
+   cards is genuinely a list, the <ul> needs its browser styling cleared. */
+.cardList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  block-size: 100%;
+}
+
+.cardIndex {
+  color: var(--ink-faint);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  line-height: var(--lh-loose);
+}
+
+/* Pins the card's link to the bottom edge so a row of three cards with copy
+   of different lengths still lines its links up. */
+.cardLink {
+  margin-block-start: auto;
+  padding-block-start: var(--space-3);
+}
+
+/* --- figures --------------------------------------------------------------- */
+
+/* .dm-figure, .dm-photo and .dm-figure__caption do all the work. This only
+   stops a 3:2 plate from running the full 1344px container, which would make
+   it 896px tall. */
+.plate {
+  inline-size: 100%;
+}

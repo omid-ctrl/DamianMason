@@ -1,0 +1,76 @@
+/* ----------------------------------------------------------------------------
+   /acres-tv/ route styles.
+
+   Only what the shared primitives genuinely do not cover: the gaps inside a
+   ruled episode card, the plate the Acres TV brand mark sits on, and the
+   hairline the design system requires around a screenshot used as evidence
+   (DESIGN_SYSTEM 6.4.3).
+
+   Every value resolves to a token in src/styles/tokens.css. No hex, no rgb(),
+   no arbitrary pixel value.
+   ---------------------------------------------------------------------------- */
+
+/* --- two-up rows ---------------------------------------------------------- */
+.splitRow {
+  align-items: start;
+  row-gap: var(--space-9);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+/* --- the Acres TV brand mark ---------------------------------------------- */
+/* The lockup is a third-party mark on its own dark studio ground, so it is not
+   run through the duotone plate: greyscaling it would kill the green field mark
+   that is the whole identity. It sits on --surface-plate instead, which is the
+   navy the system already reserves as the ground a picture sits on. */
+.brandPlate {
+  display: grid;
+  place-items: center;
+  padding-block: var(--space-7);
+}
+
+.brandPlate img {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+/* --- a screenshot used as evidence ---------------------------------------- */
+/* DESIGN_SYSTEM 6.4.3: cropped free of browser and OS chrome, on a plate, with
+   a hairline and a cutline that says what it is. */
+.evidence {
+  border: var(--border-hairline) solid var(--rule-structural);
+}
+
+.evidence img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+/* --- the episode ledger --------------------------------------------------- */
+.ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  row-gap: var(--space-8);
+}
+
+.episode {
+  gap: var(--space-3);
+}
+
+.episodeMeta {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-5);
+  row-gap: var(--space-1);
+}
+
+.ledgerAction {
+  margin-block-start: var(--space-9);
+}

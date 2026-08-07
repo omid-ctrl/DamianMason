@@ -1,0 +1,116 @@
+/* ============================================================================
+   /blog/[slug]/ , the post template.
+
+   Route-scoped only. Every value resolves to a token from src/styles/tokens.css.
+   ========================================================================== */
+
+.breadcrumb {
+  margin-block-end: var(--space-6);
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--ink-muted);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-wide);
+  line-height: var(--lh-loose);
+}
+
+.crumb {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  text-transform: uppercase;
+}
+
+/* Ornament between crumbs. The list structure carries the meaning, so the
+   glyph is hidden from assistive tech and sits below the text floor on
+   purpose. */
+.crumbMark {
+  color: var(--ink-faint);
+}
+
+/* The current page keeps its real casing: a 79 character headline set in
+   uppercase mono at 12px is a wall, not a running head. */
+.crumbCurrent {
+  color: var(--ink-primary);
+  text-transform: none;
+  letter-spacing: var(--ls-normal);
+}
+
+.title {
+  margin-block-start: var(--space-4);
+}
+
+/* Byline and dateline, on one mono row under the masthead headline. */
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-6);
+  margin-block: var(--space-6) 0;
+  color: var(--ink-muted);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  font-variant-numeric: var(--numeric-tabular);
+  letter-spacing: var(--ls-widest);
+  line-height: var(--lh-loose);
+  text-transform: uppercase;
+}
+
+.headRule {
+  margin-block-start: var(--space-5);
+}
+
+.body {
+  margin-block-start: var(--space-7);
+}
+
+/* The source block: the single biggest defect on both original posts was that
+   neither of them linked to the thing it was about. */
+.source {
+  margin-block-start: var(--space-10);
+}
+
+.sourceCopy {
+  margin-block-start: var(--space-5);
+}
+
+.sourceMedia {
+  margin-block-start: var(--space-6);
+}
+
+/* The no-JavaScript route to the segment, under the player facade. */
+.sourceFallback {
+  margin-block-start: var(--space-5);
+  margin-block-end: 0;
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  line-height: var(--lh-loose);
+  text-transform: uppercase;
+}
+
+.moreList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.moreHead {
+  margin-block-end: var(--space-7);
+}
+
+.backRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-start: var(--space-7);
+}

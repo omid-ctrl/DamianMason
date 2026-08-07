@@ -1,0 +1,89 @@
+/* ============================================================================
+   /boasg/ , route-scoped layout only.
+
+   Nothing here sets a color, a font or a raw pixel value. Every declaration
+   resolves to a token in src/styles/tokens.css. Anything that could belong to
+   more than one route was left in the shared layer instead.
+   ============================================================================ */
+
+/* A vertical stack with the same rhythm the hero type column uses, so a
+   section head, its deck and its action sit on the same beat everywhere. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.stackTight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+/* The gap between a section head and the block of content under it. */
+.rows {
+  margin-block-start: var(--space-9);
+}
+
+/* Two equal columns at 768 and up: "What you get" beside "What you won't get",
+   and nothing below that width, where a two-up list is unreadable. */
+.pairs {
+  display: grid;
+  gap: var(--space-7);
+}
+
+@media (min-width: 48rem) {
+  .pairs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* One leader: the bio column and the portrait plate. Two of these stacked. */
+.leader {
+  align-items: start;
+}
+
+.leader + .leader {
+  margin-block-start: var(--space-10);
+}
+
+/* The BoASG badge is line art, not a photograph, so it never goes through the
+   duotone plate. It sits on the brightest stock in the system, which is the
+   ground the mark was drawn for. */
+.badge {
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-7);
+}
+
+.badgeImg {
+  inline-size: 100%;
+  max-inline-size: var(--size-portrait-max);
+  block-size: auto;
+}
+
+/* The schedule footnote. Mono, muted, under a hairline, capped at the narrow
+   measure: the same treatment the system gives a photo cutline. */
+.note {
+  border-block-start: var(--border-hairline) solid var(--rule-structural);
+  color: var(--ink-muted);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  line-height: var(--lh-loose);
+  margin-block-start: var(--space-7);
+  max-inline-size: var(--measure-narrow);
+  padding-block-start: var(--space-3);
+}
+
+/* The expertise label above each leader's list. A mono label, not a heading:
+   the leader already has one. The live site set one of these as a bold
+   paragraph and its twin as an h3, for two visually identical elements. */
+.expertise {
+  margin-block-start: var(--space-5);
+}
+
+.leaderProse {
+  margin-block-start: var(--space-4);
+}

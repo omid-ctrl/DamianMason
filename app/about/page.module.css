@@ -1,0 +1,135 @@
+/* ============================================================================
+   Route-scoped layout for /about/.
+
+   Everything here resolves to a token in src/styles/tokens.css. No hex, no
+   rgb(), no arbitrary pixel value. Shared primitives do the type, the color and
+   the rules; this file only arranges them into the two grids the route needs
+   that no shared section covers: the four-pillar credential row and the books
+   shelf at #books.
+   ============================================================================ */
+
+/* --- the biography two-up --------------------------------------------------
+   The prose column and the editorial plate. Below 1024 the plate drops under
+   the prose at full width, which is the same break the hero uses.
+   -------------------------------------------------------------------------- */
+.stack {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.bioFigure {
+  margin-block-start: var(--space-8);
+}
+
+@media (min-width: 64rem) {
+  .bioFigure {
+    margin-block-start: 0;
+  }
+}
+
+/* --- the four credential pillars -------------------------------------------
+   Four cells at 1024 and up, two at 480, one at 390. Four divides by 1, 2 and
+   4, so no arrangement leaves a ragged tail.
+   -------------------------------------------------------------------------- */
+.credentials {
+  display: grid;
+  gap: var(--gutter-column);
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin-block-start: var(--space-8);
+  padding: 0;
+}
+
+@media (min-width: 30rem) {
+  .credentials {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .credentials {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.credential {
+  block-size: 100%;
+  gap: var(--space-4);
+}
+
+.credentialList {
+  color: var(--ink-secondary);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  list-style: none;
+  padding: 0;
+}
+
+.credentialList li {
+  border-block-start: var(--border-hairline) solid var(--rule-quiet);
+  padding-block-start: var(--space-2);
+}
+
+.credentialList li + li {
+  margin-block-start: var(--space-2);
+}
+
+/* --- the books shelf -------------------------------------------------------
+   Three titles, three columns, one column below 768. There is no price, no
+   cart and no purchase link anywhere in this block by construction: the route
+   renders title, subtitle, cover and description and nothing else.
+   -------------------------------------------------------------------------- */
+.books {
+  display: grid;
+  gap: var(--space-9);
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin-block-start: var(--space-9);
+  padding: 0;
+}
+
+@media (min-width: 48rem) {
+  .books {
+    gap: var(--gutter-column);
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.book {
+  block-size: 100%;
+  gap: var(--space-5);
+}
+
+/* The cover art is a rendered mockup on a white canvas, not a photograph, so
+   it does not take the duotone plate. It sits on the brightest surface in the
+   system behind a hairline, which is the same treatment a logo cell gets. */
+.bookCover {
+  background-color: var(--surface-bright);
+  border: var(--border-hairline) solid var(--rule-quiet);
+  display: grid;
+  padding: var(--space-4);
+  place-items: center;
+}
+
+.bookCover img {
+  block-size: auto;
+  inline-size: 100%;
+  max-inline-size: var(--size-portrait-max);
+}
+
+.bookHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.bookSubtitle {
+  color: var(--ink-secondary);
+  font-family: var(--family-serif);
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+}
