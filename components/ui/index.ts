@@ -25,6 +25,9 @@ export type { RuleProps, RuleWeight, RuleTone, RuleLength } from './Rule';
 export { Section } from './Section';
 export type { SectionProps, Surface, SectionDensity } from './Section';
 
+export { SocialIcon } from './SocialIcon';
+export type { SocialIconProps, SocialIconName } from './SocialIcon';
+
 export { Stat } from './Stat';
 export type { StatProps } from './Stat';
 

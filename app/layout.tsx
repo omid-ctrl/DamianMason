@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import { Archivo, Bodoni_Moda, IBM_Plex_Mono, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
+import { Footer, Header } from '@/components/layout';
+import { JsonLd } from '@/components/seo';
+import { buildSiteBaseSchema } from '@/lib/schema';
 
 /**
  * Four families, loaded with next/font/google so they are self-hosted and
@@ -77,7 +80,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="dm-skip-link">
           Skip to content
         </a>
-        {children}
+        <Header />
+        {/* The skip link's target. Every route renders its content in here, so
+            the main landmark exists exactly once per page. */}
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        {/* Person, Organization and WebSite apply site-wide. Page-specific
+            graphs (FAQPage, PodcastSeries, BreadcrumbList) are emitted by the
+            routes that own them. */}
+        <JsonLd schema={buildSiteBaseSchema()} />
       </body>
     </html>
   );

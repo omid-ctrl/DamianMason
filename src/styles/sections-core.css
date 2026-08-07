@@ -1,0 +1,385 @@
+/* ============================================================================
+   DAMIAN MASON / BUSINESS AGRICULTURE
+   Core section components: the hero, the stat ledger, the two logo walls and
+   the CTA band. Companion to the primitive classes in app/globals.css section
+   5 and to src/styles/sections.css, same rules: every value resolves to a
+   token in src/styles/tokens.css. No hex, no rgb(), no arbitrary pixel value,
+   no inline style in a .tsx file.
+
+   Consumed by:
+     components/sections/Hero.tsx
+     components/sections/StatRow.tsx
+     components/sections/LogoWall.tsx
+     components/sections/SponsorWall.tsx
+     components/sections/CTABand.tsx
+   ============================================================================ */
+
+@layer components {
+  /* ==========================================================================
+     PHOTOGRAPHY: the duotone plate
+
+     The recipe from docs/DESIGN_SYSTEM.md section 6.2, in three layers:
+       1. the image itself, grayscaled and contrast-lifted by --photo-filter
+       2. ::before, the highlight layer, --duotone-highlight screened on at
+          --duotone-highlight-opacity so the whites resolve toward bone
+       3. ::after, the shadow layer, --photo-veil-ink multiplied on at the
+          role-specific veil opacity: 0.30 for a portrait plate so the face
+          still reads, 0.62 for a band carrying reversed type
+
+     Cool navy only. The warm gold duotone is banned: it turned the podium shot
+     olive-khaki and read as a faded photocopy.
+
+     isolation: isolate keeps both blend layers inside the plate, so a photo
+     never multiplies into the page behind it.
+     ========================================================================== */
+  .dm-photo {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: var(--surface-plate);
+  }
+  .dm-photo__img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    filter: var(--photo-filter);
+  }
+  .dm-photo::before,
+  .dm-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .dm-photo::before {
+    background-color: var(--duotone-highlight);
+    mix-blend-mode: var(--duotone-blend-highlight);
+    opacity: var(--duotone-highlight-opacity);
+  }
+  .dm-photo::after {
+    background-color: var(--photo-veil-ink);
+    mix-blend-mode: var(--duotone-blend-shadow);
+    opacity: var(--photo-veil-opacity);
+  }
+  /* The only place the heavier veil is legal: a full-bleed band with reversed
+     type over it. */
+  .dm-photo--veil-band::after { opacity: var(--photo-veil-opacity-band); }
+
+  .dm-photo--portrait { aspect-ratio: var(--ratio-portrait); }
+  .dm-photo--portrait .dm-photo__img { object-position: var(--photo-focus-portrait); }
+  .dm-photo--plate { aspect-ratio: var(--ratio-plate); }
+  .dm-photo--plate .dm-photo__img { object-position: var(--photo-focus-band); }
+  /* A band plate that owns its own box rather than filling a hero. */
+  .dm-photo--band { aspect-ratio: var(--ratio-band-mobile); }
+  .dm-photo--band .dm-photo__img { object-position: var(--photo-focus-band); }
+  @media (min-width: 48rem) {
+    .dm-photo--band { aspect-ratio: var(--ratio-band); }
+  }
+
+  /* ==========================================================================
+     HERO
+     Two variants and no third. `portrait` sets the type beside a 4:5 plate at
+     the 0.30 veil, which is the crop a meeting planner needs: she is buying a
+     person and has to see his face above the fold. `band` runs the image
+     full-bleed behind reversed type at the 0.62 veil.
+     ========================================================================== */
+  .dm-hero { position: relative; }
+  .dm-hero__grid { align-items: end; }
+  .dm-hero__type {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+  .dm-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+  /* At 390 a side-by-side pair of buttons cannot hold a 44px target and a
+     readable label at once, so they stack and fill instead. */
+  @media (max-width: 29.9375rem) {
+    .dm-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+      inline-size: 100%;
+    }
+  }
+
+  .dm-hero__figure {
+    margin: 0;
+    inline-size: 100%;
+    max-inline-size: var(--size-portrait-max);
+    justify-self: end;
+  }
+  /* Below 1024 the plate sits under the type at full column width, so it aligns
+     to the same edge as the masthead rather than floating off to the right. */
+  @media (max-width: 63.9375rem) {
+    .dm-hero__figure { justify-self: start; }
+  }
+
+  /* --- band ---------------------------------------------------------------- */
+  .dm-hero--band { overflow: hidden; }
+  /* The media is absolutely positioned against .dm-hero--band, so the <figure>
+     that carries it stays a static, zero-height block whose only rendered box
+     is the cutline. That keeps <figcaption> a real child of <figure> instead
+     of a descendant buried inside the container. Declared after .dm-photo so
+     the absolute positioning wins at equal specificity. */
+  .dm-hero__figure--band { margin: 0; }
+  .dm-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-base);
+  }
+  .dm-hero__inner {
+    position: relative;
+    z-index: var(--z-raised);
+  }
+  /* The legibility scrim. A veil is uniform, and a photograph is not: a white
+     tablecloth or a stage light lands under a line of reversed type and takes
+     it below 4.5:1 on its own. This darkens the column the type actually
+     occupies and is gone before the far edge of the frame. It sits above both
+     duotone layers because it is a child of the plate, not a pseudo-element of
+     it. */
+  .dm-hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-raised);
+    background-image: linear-gradient(to right, var(--surface-scrim), transparent 82%);
+    pointer-events: none;
+  }
+  /* The band cutline sits below the type and lines up with the container edge
+     rather than the viewport edge. */
+  .dm-hero__cutline--band {
+    position: relative;
+    z-index: var(--z-raised);
+    inline-size: 100%;
+    margin-block-start: var(--space-7);
+    margin-inline: auto;
+    max-inline-size: var(--width-container-max);
+    padding-inline: var(--gutter);
+  }
+  /* <figcaption> has to be a direct child of <figure>, so the geometry sits on
+     the caption and the cutline styling sits on a block-level child of it. */
+  .dm-hero__cutline--band > * {
+    display: block;
+    max-inline-size: var(--measure-narrow);
+  }
+
+  /* ==========================================================================
+     STAT LEDGER
+     Grafted from direction 3. Mono index, serif tabular figure, the orange
+     plus as an aria-hidden glyph, mono label, and a hairline under every row.
+
+     Below 768 the four columns collapse to four hairline rows reading
+     label-left / figure-right, which is the only arrangement that keeps a
+     54px figure and a 12px mono label on the same line at 390.
+     ========================================================================== */
+  .dm-statrow__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-block-start: var(--border-hairline) solid var(--rule-structural);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .dm-statrow__item {
+    border-block-end: var(--border-hairline) solid var(--rule-structural);
+    padding-block: var(--space-5);
+    padding-inline-end: var(--gutter-column-tight);
+  }
+  .dm-statrow__item + .dm-statrow__item {
+    border-inline-start: var(--border-hairline) solid var(--rule-structural);
+    padding-inline-start: var(--gutter-column-tight);
+  }
+  /* Preflight zeroes every margin, so the vertical rhythm is stated once here
+     and only when the element it follows actually exists. */
+  .dm-statrow__title { margin-block-start: var(--space-2); }
+  :is(.dm-eyebrow, .dm-statrow__title) + .dm-statrow__list {
+    margin-block-start: var(--space-6);
+  }
+  .dm-statrow__restatement { margin-block-start: var(--space-5); }
+
+  @media (max-width: 47.9375rem) {
+    .dm-statrow__list { grid-template-columns: minmax(0, 1fr); }
+    .dm-statrow__item {
+      padding-block: var(--space-4);
+      padding-inline: 0;
+    }
+    .dm-statrow__item + .dm-statrow__item {
+      border-inline-start: 0;
+      padding-inline-start: 0;
+    }
+    /* Explicit placement, because the DOM order is index, figure, label and
+       the reading order stays that way while the row reads label then figure
+       left to right. Every child is pinned to row 1 so auto-placement cannot
+       wrap the label onto a second line. */
+    .dm-statrow__item .dm-stat {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: baseline;
+      column-gap: var(--space-4);
+    }
+    .dm-statrow__item .dm-stat__index {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    .dm-statrow__item .dm-stat__label {
+      grid-row: 1;
+      grid-column: 2;
+    }
+    .dm-statrow__item .dm-stat__figure {
+      grid-row: 1;
+      grid-column: 3;
+      font-size: var(--fs-2xl);
+      justify-self: end;
+      text-align: end;
+    }
+  }
+
+  /* ==========================================================================
+     LOGO WALL
+     21 client marks and 10 sponsor marks of wildly mixed quality, every one of
+     them shipping an opaque white or near-white background.
+
+     Column counts are locked to the divisors of the set: 7 and 3 for the 21
+     clients, 5 and 2 for the 10 sponsors. Any other count leaves a ragged tail
+     of dead cells at exactly the width a meeting planner on a laptop sees.
+
+     The hairlines are drawn once. Every cell owns its block-start and
+     inline-start edge and the grid closes the other two, so no rule ever
+     doubles up where two cells meet.
+     ========================================================================== */
+  .dm-logowall__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-5);
+  }
+  .dm-logowall__title { margin-block-start: var(--space-2); }
+  .dm-logowall__head + .dm-logowall__intro { margin-block-start: var(--space-5); }
+  :is(.dm-logowall__head, .dm-logowall__intro) + .dm-logowall__grid {
+    margin-block-start: var(--space-7);
+  }
+  .dm-logowall__grid {
+    display: grid;
+    border-block-end: var(--border-hairline) solid var(--logo-cell-rule);
+    border-inline-end: var(--border-hairline) solid var(--logo-cell-rule);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .dm-logowall--cols-7 .dm-logowall__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dm-logowall--cols-5 .dm-logowall__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 64rem) {
+    .dm-logowall--cols-7 .dm-logowall__grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+    .dm-logowall--cols-5 .dm-logowall__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+
+  .dm-logo-cell {
+    position: relative;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+    background-color: var(--logo-cell-bg);
+    border-block-start: var(--border-hairline) solid var(--logo-cell-rule);
+    border-inline-start: var(--border-hairline) solid var(--logo-cell-rule);
+    min-block-size: var(--logo-cell-min-h);
+    /* Optical centering: a mark reads as centered when it sits a hair above
+       the true middle, so the block-end padding carries the extra step. */
+    padding: var(--logo-cell-pad);
+    padding-block-end: calc(var(--logo-cell-pad) + var(--space-1));
+  }
+  /* <picture> contributes no box of its own, so the <img> stays the grid item
+     and place-items keeps doing the centering. */
+  .dm-logo-cell picture { display: contents; }
+
+  .dm-logo-cell__img {
+    /* Both caps, always. With a height cap alone, usaedc.png (423 by 119)
+       computes to roughly 295px inside a 160px cell and overruns its
+       neighbours. A square mark is height-constrained, a 3.55:1 mark is
+       width-constrained, and the two land at the same optical weight. */
+    max-inline-size: 100%;
+    max-block-size: var(--logo-box-h);
+    inline-size: auto;
+    block-size: auto;
+    object-fit: contain;
+    filter: var(--logo-filter);
+    mix-blend-mode: var(--logo-blend);
+    opacity: var(--logo-opacity);
+    transition: var(--transition-media);
+  }
+  /* Anything wider than 3:1 backs off so it does not visually dominate a row
+     of square marks. */
+  .dm-logo-cell--wide .dm-logo-cell__img {
+    max-inline-size: calc(100% * var(--logo-scale-wide));
+    max-block-size: calc(var(--logo-box-h) * var(--logo-scale-wide));
+  }
+
+  @media (max-width: 47.9375rem) {
+    .dm-logo-cell {
+      padding: var(--space-2);
+      padding-block-end: calc(var(--space-2) + var(--space-1));
+    }
+    .dm-logo-cell__img { max-block-size: var(--logo-box-h-compact); }
+    .dm-logo-cell--wide .dm-logo-cell__img {
+      max-block-size: calc(var(--logo-box-h-compact) * var(--logo-scale-wide));
+    }
+  }
+
+  .dm-logo-cell__link {
+    display: grid;
+    place-items: center;
+    inline-size: 100%;
+    block-size: 100%;
+    text-decoration: none;
+  }
+  .dm-logo-cell__link:hover .dm-logo-cell__img,
+  .dm-logo-cell__link:focus-visible .dm-logo-cell__img {
+    filter: var(--logo-filter-hover);
+    opacity: var(--logo-opacity-hover);
+  }
+
+  /* Decoration. aria-hidden in the markup, --ink-faint here, so a screen
+     reader reads the mark's name and not a number. */
+  .dm-logo-cell__index {
+    position: absolute;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    color: var(--ink-faint);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    letter-spacing: var(--ls-wider);
+    line-height: 1;
+  }
+
+  /* ==========================================================================
+     CTA BAND
+     The deep navy close. Every route ends here. The ink comes from
+     data-surface="deep" on the Section, never from a hand-written light value.
+     ========================================================================== */
+  .dm-ctaband__grid { align-items: start; }
+  .dm-ctaband__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+  .dm-ctaband__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+  @media (max-width: 29.9375rem) {
+    .dm-ctaband__actions {
+      flex-direction: column;
+      align-items: stretch;
+      inline-size: 100%;
+    }
+  }
+  .dm-ctaband__panel { gap: var(--space-4); }
+  @media (min-width: 48rem) {
+    .dm-ctaband__panel { justify-self: end; }
+  }
+}

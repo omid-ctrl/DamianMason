@@ -284,6 +284,12 @@
   --duotone-highlight: var(--palette-bone-100);/* screen */
   --duotone-blend-shadow: multiply;
   --duotone-blend-highlight: screen;
+  /* The screen layer only lifts the highlights toward bone. At full strength it
+     would blow the whole frame out, so its strength is a token rather than a
+     number buried in a stylesheet. The multiply layer's strength is the veil
+     opacity directly below, which is what makes the portrait and band veils
+     role-specific. */
+  --duotone-highlight-opacity: 0.16;
   --photo-veil-ink: var(--palette-navy-900);
   --photo-veil-opacity: 0.30;                  /* portrait plates, face must read */
   --photo-veil-opacity-band: 0.62;             /* full-bleed bands under reversed type */
@@ -294,6 +300,7 @@
   --ratio-band: 21 / 8;
   --ratio-band-mobile: 4 / 3;
   --ratio-square: 1 / 1;
+  --ratio-video: 16 / 9;       /* the 13 YouTube facades and the 3 self-hosted MP4s */
 
   /* Logo wall. Ragged marks, opaque white JPEG backgrounds, aspect ratios from
      1.00 to 3.55. Multiply on bone is the only treatment that works on the
@@ -440,6 +447,7 @@
   --size-rule-medium: 7rem;
   --size-dropdown-w: 22rem;
   --size-portrait-max: 32rem;
+  --size-thumb: clamp(6rem, 4.2rem + 7.4vw, 10rem);  /* episode artwork column */
 
   /* Breakpoints. CSS cannot read a custom property inside an @media condition,
      so these are documentation. The literal values are repeated in the query
@@ -526,8 +534,15 @@
    the mark sits on a bone plate (data-surface="paper"), it does not knock out
    to white. That property is the strongest evidence the system was built
    around the retained mark rather than around it.
+
+   "deepest" is a variant of this scope, not a separate one, so it matches here
+   too and then steps only its grounds darker in the block further down. An
+   attribute selector does not match a longer value, so without this second
+   selector a footer marked data-surface="deepest" would keep the ROOT ink and
+   render navy-950 type on a navy-950 ground.
    ============================================================================ */
-[data-surface="deep"] {
+[data-surface="deep"],
+[data-surface="deepest"] {
   --surface-page: var(--palette-navy-950);
   --surface-raised: var(--palette-navy-900);
   --surface-bright: var(--palette-navy-800);

@@ -30,11 +30,16 @@
       ledger stat row and duotone portrait and direction 2's `[data-surface="paper"]` scope. `tsc` clean,
       `next build` clean, zero raw hex in components, zero em dashes, `user-scalable` absent.
 
-- [ ] **Phase 2 — Global chrome & shared sections** (~6 agents)
+- [x] **Phase 2 — Global chrome & shared sections** (~6 agents)
       Header (dropdown + mobile), Footer (socials, copyright, contact, newsletter), SEO infra (metadata, JSON-LD,
       sitemap, robots, OG images), shared section components.
       **Gate:** `user-scalable=0` absent; every nav parent resolves to a real route.
-      Result:
+      Result: **PASS (6 agents).** Header with masthead rail, keyboard-operable dropdowns, real mobile sheet with
+      focus trap; all three href-less nav parents now resolve to `/speaking/`, `/podcasts/`, `/blog-news/`. Footer
+      rebuilt from nothing: socials, copyright, contact, nav columns generated from the same `nav` tree so header
+      and footer cannot drift. SEO infra (metadata builder, 8 JSON-LD builders, sitemap, robots, OG image).
+      11 shared sections + 5 typed content files (17 testimonials, 13 FAQ, 16 videos, 9 press, 2 posts).
+      `tsc` + `next build` clean.
 
 - [ ] **Phase 3 — Page build** (pipeline, ~17 agents, one per route)
       Each agent gets `_source/pages/<slug>.md` + `docs/DESIGN_SYSTEM.md` + `docs/VOICE.md`, builds its route,
@@ -111,9 +116,22 @@ dead invisible full-width clickable row on the homepage.
 
 ---
 
+## Build notes
+
+**Dev server port: 3100.** Port 3000 on this machine is occupied by an unrelated Next 15 project. Always run
+`npx next dev -p 3100` and point QA targets at `http://localhost:3100`, or screenshots will silently capture
+someone else's site.
+
+**Em dashes in quoted source content:** four appeared inside verbatim third-party quotes (2 testimonials, 1 FAQ
+answer, 1 video title). The client asked for none on the site, so the punctuation was normalized to commas and a
+colon. Meaning is unchanged; this is a deliberate editorial call, recorded here because it alters direct quotes.
+
+---
+
 ## Log
 
 _(append one line per completed phase: date, phase, agent count, outcome)_
 
 - 2026-08-06 · Phase 0 · 10 agents · PASS. 28 pages harvested, 70 assets mirrored, 46 logos normalized, VOICE.md written, gate reconciled 6 plan discrepancies.
+- 2026-08-06 · Phase 2 · 6 agents · PASS. Chrome + SEO + 11 sections + content layer; footer agent fixed a data-surface token bug that rendered navy on navy.
 - 2026-08-06 · Phase 1 · 7 agents · PASS. Editorial Broadsheet wins 2 of 3 lenses; 15 ideas grafted from losers; all contrast failures repaired; tsc + next build clean.

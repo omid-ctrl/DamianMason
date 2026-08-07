@@ -1,0 +1,269 @@
+/**
+ * Speaking testimonials, harvested verbatim from the old damianmason.com.
+ *
+ * Source of truth: `_source/pages/*.md` (verbatim harvest), verified against
+ * `_source/html/*.html`. The `_source/extracted/*.txt` files were NOT used:
+ * they silently drop `<blockquote>` bodies and cost the reviews page all ten
+ * quote bodies.
+ *
+ * COUNT: 17. Ten from /reviews/, three from /keynote/, one from
+ * /meeting-coordinators/, one from /the-business-of-agriculture/, one
+ * unattributed book endorsement from the home page, one site-wide footer
+ * quote. This matches `_source/manifest.json` totals.testimonials = 17 and the
+ * Corrections table in docs/build/STATE.md.
+ *
+ * WHAT WAS STRIPPED, and nothing else:
+ *   - The pasted Squarespace markup that faked attributions on /reviews/,
+ *     /keynote/ and /collaboration-opportunities/ (`sqs-block quote-block`,
+ *     `<figcaption class="source">`, stale `block-yui_3_17_2_1_*` DOM IDs, an
+ *     orphaned `fluid-engine` section fragment).
+ *   - The outer quotation marks. The Quote primitive in components/ui sets
+ *     them. Quotation marks INSIDE a quote are kept as they were typed.
+ *   - The dangling en dash left hanging after keynote testimonial 1
+ *     ("...working with Damian!" followed by a space and a bare en dash).
+ *
+ * WHAT WAS NOT ALTERED: wording, spelling, spacing and punctuation inside the
+ * quote bodies are exactly as they shipped. That includes two em dashes, both
+ * flagged in the entries below: the Rolling Plains quote has one jammed
+ * against the preceding word with no space, and the AgroLiquid quote has one
+ * set normally. Both are the writer's punctuation, not ours, so a later phase
+ * decides whether to leave them.
+ *
+ * ATTRIBUTION CASING: the old site set every attribution in all caps. That is
+ * a styling decision, not content, so names, titles and organizations are
+ * normalized to title case here and a component may re-case them freely. The
+ * quote bodies themselves are untouched.
+ *
+ * DUPLICATES RESOLVED, so nothing is counted twice:
+ *   - /collaboration-opportunities/ carries byte-identical copies of the three
+ *     /keynote/ testimonials (Wendy J. Ruud, The Titan Pro Team, Tim Luthy).
+ *     They appear here ONCE, with sourcePage '/keynote/', and testimonialsFor
+ *     serves the same three entries to both routes.
+ *   - The home page's "Man, that guy makes you think! I loved it!" is an
+ *     abbreviated pull-quote of the Amy B., AgroLiquid testimonial that runs in
+ *     full on /reviews/. Only the full quote is stored, flagged `featured`, so
+ *     the home page can pull one line out of it rather than duplicating it.
+ *
+ * `name` holds the leading identity in the attribution. That is a person where
+ * the old site named one, and an organization where it named only an
+ * organization (Rolling Plains Cotton Growers, The Titan Pro Team, National Ag
+ * Aviation Association). Two quotes shipped with no attribution at all, on
+ * /reviews/ and on the home page: both carry an empty `name`, so a component
+ * must treat an empty string as "render no byline".
+ *
+ * `sourcePage` is the OLD-site path the quote was harvested from, for
+ * traceability back to `_source`. 'footer' means the site-wide footer widget,
+ * which repeated on every page including /cart/ and /checkout/.
+ */
+
+export type Testimonial = {
+  id: string;
+  quote: string;
+  name: string;
+  title?: string;
+  organization?: string;
+  featured?: boolean;
+  sourcePage: string;
+};
+
+export const testimonials: Testimonial[] = [
+  // == /reviews/ (10)
+  {
+    id: 'mike-elliott',
+    quote:
+      'Damian’s insights into Agriculture and how Agriculture intersects with the consumer were on point and exactly what our team needed. He understood our business and how the changes within Agriculture could impact our business plans. His delivery engaged and energized the audience. If you are in the food business, I highly recommend Damian as a guest speaker for your event. He was awesome!',
+    name: 'Mike Elliott',
+    title: 'General Manager',
+    organization: 'Michael Foods',
+    sourcePage: '/reviews/',
+  },
+  {
+    // Shipped with no attribution of any kind, and it is the one quote on
+    // /reviews/ that carried no quotation marks either.
+    id: 'unattributed-great-feedback',
+    quote: 'We received a ton of great feedback on both you and the event!',
+    name: '',
+    sourcePage: '/reviews/',
+  },
+  {
+    id: 'melissa-bockman',
+    quote:
+      'I had the pleasure of attending this (Farm Credit) meeting and you have an amazing ability to lead a room and pull all the messages together. The blend of your knowledge and humor is inspirational.',
+    name: 'Melissa Bockman',
+    organization: 'Bayer',
+    sourcePage: '/reviews/',
+  },
+  {
+    id: 'jason-schley',
+    quote:
+      'This guy is top-notch, if you’re ever looking for a great speaker at an event I would suggest Damian to anyone. He closed a meeting I was involved in yesterday with knowledge, delivered with humor. At breakfast this a.m. everyone was still talking about it. Impressed!',
+    name: 'Jason Schley',
+    organization: 'Next Level Ag, LLC',
+    sourcePage: '/reviews/',
+  },
+  {
+    // FLAGGED: contains an em dash, jammed against "meeting" with no space
+    // before it. Verbatim from the source.
+    id: 'rolling-plains-cotton-growers',
+    quote:
+      'I’ve gotten nothing but good feedback on Damian’s presentation and several have noted that they want x, y or z association they work with to reach out to him for their meeting, so a win all around!',
+    name: 'Rolling Plains Cotton Growers',
+    sourcePage: '/reviews/',
+  },
+  {
+    // featured: the home page runs the "Man, that guy makes you think! I loved
+    // it!" line out of this quote as a standalone pull-quote.
+    // FLAGGED: contains an em dash. Verbatim from the source.
+    id: 'amy-b-agroliquid',
+    quote:
+      'Thank you for joining us in Kansas City last month for our Retail Partner customer meeting. It was great to have you share thoughts and perspective, so many attendees said, ‘Man, that guy makes you think!’ I loved it!',
+    name: 'Amy B.',
+    organization: 'AgroLiquid',
+    featured: true,
+    sourcePage: '/reviews/',
+  },
+  {
+    // The old attribution read "DUSTY RICH. WESTERN SALES DIRECTOR, BW FUSION".
+    // The period after the surname is a typo for a comma; splitting the fields
+    // makes it moot.
+    id: 'dusty-rich',
+    quote:
+      'The absolute best keynote speaker I’ve ever had the pleasure of listening to. Hilarious, honest, informative, and real. Would recommend Damian to any organization for their events!',
+    name: 'Dusty Rich',
+    title: 'Western Sales Director',
+    organization: 'BW Fusion',
+    sourcePage: '/reviews/',
+  },
+  {
+    id: 'brooks-breymeyer',
+    quote:
+      'If you haven’t heard Damian before, look him up! If you don’t learn anything, he’ll at least make you laugh! I’ll bet you do both. Can’t wait to read your book!',
+    name: 'Brooks Breymeyer',
+    organization: 'Breymeyer Land and Livestock',
+    sourcePage: '/reviews/',
+  },
+  {
+    id: 'william-noland',
+    quote:
+      'I thought today went great. The overall message and how you brought it home worked extremely well and was easy for staff to follow – how will this impact FCW, our customers and me. Well done!',
+    name: 'William Noland',
+    organization: 'Farm Credit West',
+    sourcePage: '/reviews/',
+  },
+  {
+    id: 'brian-rittgers',
+    quote:
+      'Thanks so much for a great time with our team! Really appreciated you customizing so well and all the energy. Very well received.',
+    name: 'Brian Rittgers',
+    organization: 'Micronutrients',
+    sourcePage: '/reviews/',
+  },
+
+  // == /keynote/ (3). Reused byte for byte on
+  // /collaboration-opportunities/, stored once, served to both.
+  {
+    // The live quote ended '...working with Damian!" –' with a bare en dash
+    // and nothing after it. The dash is dropped per the extraction brief.
+    id: 'wendy-j-ruud',
+    quote: 'I would highly recommend working with Damian!',
+    name: 'Wendy J. Ruud',
+    title: 'Vice President',
+    sourcePage: '/keynote/',
+  },
+  {
+    id: 'titan-pro-team',
+    quote:
+      'Thank you very much for taking the time to speak at our kickoff event last month. We received great feedback and appreciate you helping us put on a great event. Thanks again!',
+    name: 'The Titan Pro Team',
+    sourcePage: '/keynote/',
+  },
+  {
+    id: 'tim-luthy',
+    quote:
+      'I have had lots of compliments from the crowd. This was just what the growers needed to help their attitudes. As always you do an awesome job!',
+    name: 'Tim Luthy',
+    organization: 'Helena Chemical',
+    sourcePage: '/keynote/',
+  },
+
+  // == /meeting-coordinators/ (1)
+  {
+    // Shipped as a plain paragraph with no quotation marks, and its byline was
+    // hard-coded white on a light band, so it was invisible on the live page.
+    id: 'national-ag-aviation-association',
+    quote: 'We’ve heard nothing but positive comments!',
+    name: 'National Ag Aviation Association',
+    sourcePage: '/meeting-coordinators/',
+  },
+
+  // == /the-business-of-agriculture/ (1)
+  {
+    // Byline recovered from the raw HTML; the deterministic extract dropped it.
+    id: 'geoff-bastow',
+    quote:
+      'With a mix of monologue and guest episodes, this one puts the producer at the center. Damian has strong opinions and he’s not afraid to share them. You can agree or disagree, but he clearly knows his subject matter and audience well, and is always thought-provoking. His is a valuable perspective I try to keep top-of-mind.',
+    name: 'Geoff Bastow',
+    sourcePage: '/the-business-of-agriculture/',
+  },
+
+  // == home page (1)
+  {
+    // A book endorsement, not a speaking review, and it shipped with no name,
+    // no publication and no source. It never even names the book. Keep the
+    // empty `name` until the client supplies an attribution.
+    id: 'book-endorsement-unattributed',
+    quote:
+      'I absolutely love this book! If you love food and hate the hype, this book is for you!',
+    name: '',
+    sourcePage: '/',
+  },
+
+  // == site-wide footer (1)
+  {
+    // The old footer opened this with a curly quote and closed it with a
+    // straight one, with the <strong> boundary landing in a third place. Both
+    // outer marks are dropped here; the sentence itself is untouched.
+    id: 'b-kettler-ihla',
+    quote:
+      'Thanks for your thought-provoking presentations and making sure we all think differently about our industry.',
+    name: 'B. Kettler',
+    organization: 'IHLA',
+    sourcePage: 'footer',
+  },
+];
+
+/**
+ * Per-route selection. `page` is a NEW-site route path, not an old-site one.
+ *
+ * Routes not listed here get an empty array rather than a silent fallback, so
+ * a page that wants testimonials has to say so.
+ */
+const testimonialsByRoute: Record<string, readonly string[]> = {
+  '/': ['amy-b-agroliquid', 'book-endorsement-unattributed'],
+  '/reviews/': [
+    'mike-elliott',
+    'unattributed-great-feedback',
+    'melissa-bockman',
+    'jason-schley',
+    'rolling-plains-cotton-growers',
+    'amy-b-agroliquid',
+    'dusty-rich',
+    'brooks-breymeyer',
+    'william-noland',
+    'brian-rittgers',
+  ],
+  '/keynote/': ['wendy-j-ruud', 'titan-pro-team', 'tim-luthy'],
+  '/collaboration-opportunities/': ['wendy-j-ruud', 'titan-pro-team', 'tim-luthy'],
+  '/meeting-coordinators/': ['national-ag-aviation-association'],
+  '/the-business-of-agriculture/': ['geoff-bastow'],
+  '/speaking/': ['mike-elliott', 'dusty-rich', 'tim-luthy'],
+  footer: ['b-kettler-ihla'],
+};
+
+export const testimonialsFor = (page: string): Testimonial[] => {
+  const ids = testimonialsByRoute[page];
+  if (!ids) return [];
+  return ids
+    .map((id) => testimonials.find((t) => t.id === id))
+    .filter((t): t is Testimonial => Boolean(t));
+};

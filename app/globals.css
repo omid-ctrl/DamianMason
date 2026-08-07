@@ -17,6 +17,14 @@
 
 @import "../src/styles/tokens.css";
 @import "tailwindcss";
+/* Shared section components (testimonials, video, FAQ, forms, press,
+   episodes). Same @layer components, same token discipline, kept in its own
+   file so this one stays the primitive layer. */
+@import "../src/styles/sections.css";
+/* Core section components (hero, stat ledger, logo walls, CTA band), plus the
+   duotone photo plate they share. Same @layer components, same token
+   discipline. */
+@import "../src/styles/sections-core.css";
 
 /* ----------------------------------------------------------------------------
    2. NAMESPACE RESETS
@@ -672,5 +680,637 @@
     color: var(--ink-faint);
     letter-spacing: var(--ls-wider);
     text-transform: uppercase;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   6. GLOBAL CHROME, BASE ADDITIONS
+   Two rules the masthead needs from the base layer rather than from a
+   component: the sticky bar must not cover what a link jumps to, and the
+   mobile menu sheet must be able to lock the page behind it without any
+   component writing an inline style.
+   ---------------------------------------------------------------------------- */
+@layer base {
+  /* SC 2.4.11 Focus Not Obscured. --header-height is the height of the pinned
+     bar, which is the only part of the masthead that stays on screen. */
+  html {
+    scroll-padding-block-start: var(--header-height);
+  }
+
+  /* Set and cleared by components/layout/MobileMenu.tsx while the sheet is
+     open. Written as a data attribute so the lock lives in the stylesheet. */
+  html[data-scroll-locked] {
+    overflow: hidden;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   7. THE MASTHEAD
+   Three decks: an 8px navy top rule, the identity rail, then the bar carrying
+   the wordmark, the nav and the one booking action.
+
+   Sticky behavior, and why it is written this way. The whole <header> is the
+   sticky element, offset upward by exactly the height of the top rule plus the
+   rail. A sticky box can only stick inside its own containing block, so making
+   only the bar sticky would unpin it the moment the masthead scrolled past.
+   With the negative offset the rail rides up out of view and the bar lands
+   flush against the top of the viewport, which is the shrinking header the old
+   Divi theme faked with a scroll listener. No JavaScript, nothing to animate,
+   and nothing for prefers-reduced-motion to fight.
+
+   THE WORDMARK NEVER REVERSES. The masthead ground is --surface-page in every
+   scope it can appear in, so the mark always sits on the bone it was drawn for.
+   ---------------------------------------------------------------------------- */
+@layer components {
+  .dm-masthead {
+    position: sticky;
+    /* The top rule, the rail row, and the hairline under the rail. Every term
+       is a token, so the offset cannot drift out of step with the decks. */
+    inset-block-start: calc(
+      -1 * (var(--border-masthead) + var(--size-tap-target) + var(--border-hairline))
+    );
+    z-index: var(--z-sticky);
+    background-color: var(--surface-page);
+    border-block-start: var(--border-masthead) solid var(--rule-strong);
+    color: var(--ink-primary);
+  }
+
+  /* --- deck 1, the identity rail ------------------------------------------- */
+  /* Load-bearing identity, not navigation. The two mono lines stand down as the
+     viewport narrows; the phone number never does, because for a meeting
+     planner it is the primary action. */
+  .dm-masthead__rail {
+    border-block-end: var(--border-hairline) solid var(--rule-decorative);
+  }
+  .dm-masthead__rail-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    /* Fixed, not minimum: the sticky offset above is measured against it. */
+    block-size: var(--size-tap-target);
+  }
+  .dm-masthead__identity {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    min-inline-size: 0;
+  }
+  .dm-masthead__est,
+  .dm-masthead__strap {
+    display: none;
+    white-space: nowrap;
+  }
+  @media (min-width: 30rem) {
+    .dm-masthead__est { display: block; }
+  }
+  @media (min-width: 64rem) {
+    .dm-masthead__strap {
+      display: block;
+      border-inline-start: var(--border-hairline) solid var(--rule-decorative);
+      padding-inline-start: var(--space-5);
+    }
+  }
+
+  .dm-masthead__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    block-size: var(--size-tap-target);
+    color: var(--ink-muted);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    font-variant-numeric: var(--numeric-tabular);
+    letter-spacing: var(--ls-widest);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .dm-masthead__phone:hover {
+    color: var(--ink-accent);
+    text-decoration: underline;
+  }
+  .dm-masthead__phone-label { display: none; }
+  @media (min-width: 48rem) {
+    .dm-masthead__phone-label { display: inline; }
+  }
+
+  /* --- deck 2, the bar ------------------------------------------------------ */
+  .dm-masthead__bar {
+    background-color: var(--surface-page);
+    /* A hairline drawn as a shadow so it costs no layout height. This is the
+       one shadow the sticky header is allowed. */
+    box-shadow: var(--elevation-rule);
+  }
+  .dm-masthead__bar-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    min-block-size: var(--header-height-compact);
+  }
+  @media (min-width: 48rem) {
+    .dm-masthead__bar-inner { gap: var(--space-5); }
+  }
+  @media (min-width: 64rem) {
+    .dm-masthead__bar-inner { min-block-size: var(--header-height); }
+  }
+
+  .dm-masthead__wordmark {
+    display: block;
+    flex: 0 0 auto;
+    line-height: 0;
+  }
+  .dm-masthead__wordmark img {
+    inline-size: var(--size-wordmark-w-compact);
+    block-size: auto;
+  }
+  @media (min-width: 80rem) {
+    .dm-masthead__wordmark img { inline-size: var(--size-wordmark-w); }
+  }
+
+  .dm-masthead__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-inline-start: auto;
+    flex: 0 0 auto;
+  }
+  /* The one field-sized orange in this viewport. Nothing else in the masthead
+     may be a solid orange field. It keeps its full label at 390, so the
+     padding is what gives way, never the words. */
+  .dm-masthead__book {
+    padding-inline: var(--space-3);
+    white-space: nowrap;
+  }
+  @media (min-width: 48rem) {
+    .dm-masthead__book { padding-inline: var(--space-4); }
+  }
+  @media (min-width: 80rem) {
+    .dm-masthead__book { padding-inline: var(--space-6); }
+  }
+
+  .dm-masthead__menu {
+    padding-inline: var(--space-4);
+    white-space: nowrap;
+  }
+  /* Under 480 the trigger is the icon alone in a 44px square. The label is
+     only visually hidden, so the button keeps the accessible name "Menu". */
+  @media (max-width: 29.9375rem) {
+    .dm-masthead__menu {
+      inline-size: var(--size-tap-target);
+      padding-inline: 0;
+    }
+    .dm-masthead__menu-label {
+      position: absolute;
+      inline-size: var(--border-hairline);
+      block-size: var(--border-hairline);
+      margin: calc(-1 * var(--border-hairline));
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+  }
+  @media (min-width: 64rem) {
+    .dm-masthead__menu { display: none; }
+  }
+
+  /* --- the desktop nav ------------------------------------------------------ */
+  .dm-nav { display: none; }
+  @media (min-width: 64rem) {
+    .dm-nav {
+      display: block;
+      flex: 1 1 auto;
+      min-inline-size: 0;
+    }
+  }
+  .dm-nav__list {
+    display: flex;
+    /* Insurance only. Between 1024 and 1280 the type and the gaps step down
+       far enough that six labels, one of them 32 characters long, hold a
+       single row. Wrapping is what happens if a label is ever added, and a
+       second row is a better failure than an overflow. */
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media (min-width: 80rem) {
+    .dm-nav__list { gap: var(--space-4); }
+  }
+  .dm-nav__item { position: relative; }
+
+  .dm-nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-block-size: var(--size-tap-target);
+    border-block-end: var(--border-thin) solid transparent;
+    color: var(--ink-primary);
+    font-family: var(--family-body);
+    /* The floor of the scale between 1024 and 1280, a step up above it. The
+       nav is the one place on the site where the label length is set by the
+       client's own page names and cannot be edited to fit. */
+    font-size: var(--fs-2xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--ls-normal);
+    line-height: var(--lh-normal);
+    text-decoration: none;
+    transition: var(--transition-ink), var(--transition-surface);
+  }
+  @media (min-width: 80rem) {
+    .dm-nav__link {
+      font-size: var(--fs-xs);
+      letter-spacing: var(--ls-wide);
+    }
+  }
+  .dm-nav__link:hover {
+    color: var(--ink-brand);
+    border-block-end-color: var(--rule-brand);
+  }
+  /* The current page. Navy, never orange: the masthead's orange budget is
+     already spent on the booking button. */
+  .dm-nav__link[aria-current="page"] {
+    color: var(--ink-brand);
+    border-block-end-color: var(--rule-strong);
+  }
+  /* A child of this hub is the current page. */
+  .dm-nav__link[data-branch="current"] {
+    border-block-end-color: var(--rule-structural);
+  }
+  .dm-nav__caret {
+    inline-size: var(--size-icon);
+    block-size: var(--size-icon);
+    color: var(--ink-muted);
+    transition: transform var(--duration-fast) var(--easing-standard);
+  }
+  .dm-nav__link[aria-expanded="true"] .dm-nav__caret { transform: rotate(180deg); }
+
+  .dm-nav__panel {
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline-start: 0;
+    z-index: var(--z-dropdown);
+    /* As wide as its longest label, never wider than the dropdown token, never
+       narrower than the parent it hangs from. Keeps a short menu from throwing
+       a 22rem plate across the bar. */
+    inline-size: max-content;
+    min-inline-size: 100%;
+    max-inline-size: var(--size-dropdown-w);
+    margin: 0;
+    padding-block: var(--space-2);
+    list-style: none;
+    background-color: var(--surface-raised);
+    border: var(--border-hairline) solid var(--rule-structural);
+    box-shadow: var(--elevation-lifted);
+  }
+  .dm-nav__panel-link {
+    display: flex;
+    align-items: center;
+    min-block-size: var(--size-tap-target);
+    border-inline-start: var(--border-thin) solid transparent;
+    padding-inline: calc(var(--space-4) - var(--border-thin)) var(--space-4);
+    color: var(--ink-primary);
+    font-family: var(--family-body);
+    font-size: var(--fs-xs);
+    line-height: var(--lh-normal);
+    text-decoration: none;
+    transition: var(--transition-ink), var(--transition-surface);
+  }
+  .dm-nav__panel-link:hover {
+    background-color: var(--state-hover-bg);
+    color: var(--ink-brand);
+  }
+  .dm-nav__panel-link[aria-current="page"] {
+    border-inline-start-color: var(--rule-strong);
+    color: var(--ink-brand);
+    font-weight: var(--weight-semibold);
+  }
+
+  /* --- the mobile sheet ----------------------------------------------------- */
+  /* Full viewport, so it never has to know how tall the masthead is and never
+     leaves half a header showing above it. Focus is trapped inside, the page
+     behind it is scroll locked, and Escape returns focus to the trigger. */
+  .dm-menu {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--surface-page);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  @media (min-width: 64rem) {
+    .dm-menu { display: none; }
+  }
+  .dm-menu__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-block-size: var(--header-height-compact);
+    border-block-end: var(--border-hairline) solid var(--rule-structural);
+  }
+  .dm-menu__body { padding-block: var(--space-5) var(--space-9); }
+  .dm-menu__list,
+  .dm-menu__sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .dm-menu__row {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: var(--space-3);
+    border-block-end: var(--border-hairline) solid var(--rule-quiet);
+  }
+  .dm-menu__link {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    min-block-size: var(--size-tap-target);
+    padding-block: var(--space-2);
+    color: var(--ink-primary);
+    font-family: var(--family-body);
+    font-size: var(--fs-md);
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+  }
+  .dm-menu__link[aria-current="page"] {
+    color: var(--ink-brand);
+    font-weight: var(--weight-semibold);
+  }
+  .dm-menu__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    inline-size: var(--size-tap-target);
+    min-block-size: var(--size-tap-target);
+    background-color: transparent;
+    border: 0;
+    color: var(--ink-secondary);
+    cursor: pointer;
+  }
+  .dm-menu__toggle-icon {
+    inline-size: var(--size-icon);
+    block-size: var(--size-icon);
+    transition: transform var(--duration-fast) var(--easing-standard);
+  }
+  .dm-menu__toggle[aria-expanded="true"] .dm-menu__toggle-icon { transform: rotate(180deg); }
+  .dm-menu__sublist {
+    border-inline-start: var(--border-hairline) solid var(--rule-structural);
+    margin-inline-start: var(--space-2);
+    padding-block: var(--space-2);
+    padding-inline-start: var(--space-4);
+  }
+  .dm-menu__sublink {
+    display: flex;
+    align-items: center;
+    min-block-size: var(--size-tap-target);
+    color: var(--ink-secondary);
+    font-family: var(--family-body);
+    font-size: var(--fs-sm);
+    text-decoration: none;
+  }
+  .dm-menu__sublink[aria-current="page"] {
+    color: var(--ink-brand);
+    font-weight: var(--weight-semibold);
+  }
+  .dm-menu__foot {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+    margin-block-start: var(--space-7);
+    border-block-start: var(--border-hairline) solid var(--rule-structural);
+    padding-block-start: var(--space-6);
+  }
+  .dm-menu__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-block-size: var(--size-tap-target);
+    color: var(--ink-primary);
+    font-family: var(--family-mono);
+    font-size: var(--fs-md);
+    font-variant-numeric: var(--numeric-tabular);
+    letter-spacing: var(--ls-wide);
+    text-decoration: none;
+  }
+  .dm-menu__phone:hover { color: var(--ink-accent); }
+  .dm-menu__icon {
+    inline-size: var(--size-icon);
+    block-size: var(--size-icon);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   6. GLOBAL CHROME: FOOTER
+   components/layout/Footer.tsx and components/ui/SocialIcon.tsx.
+
+   Appended as its own @layer components block so it merges into the primitive
+   layer above without editing a line of it. Same rules apply: every value is a
+   token, there is no hex, no rgb(), no raw pixel and no inline style.
+   ---------------------------------------------------------------------------- */
+@layer components {
+  /* --- social icon --------------------------------------------------------- */
+  /* The glyph takes its color from the link that wraps it, so one component
+     serves the bone scope and the deep scope with no second rule. */
+  .dm-social-icon {
+    inline-size: var(--size-icon);
+    block-size: var(--size-icon);
+  }
+
+  /* --- the footer plane ---------------------------------------------------- */
+  /* The closing rule of the broadsheet. --rule-strong resolves to bone in the
+     deep scope, so the footer reads as a plane separate from the navy CTA band
+     it sits under. No orange: the footer's one orange element is the bar on the
+     testimonial. */
+  .dm-footer {
+    border-block-start: var(--border-thick) solid var(--rule-strong);
+  }
+  .dm-footer__stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+  .dm-footer__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+  }
+
+  /* The wordmark never reverses to white. wordmark-white.png exists in the
+     asset library and this system does not use it: inside a navy plane the mark
+     sits on a bone plate carrying data-surface="paper", which is where its
+     ground and its hover come from. */
+  .dm-footer__plate {
+    display: inline-flex;
+    padding: var(--space-4);
+    transition: var(--transition-surface);
+  }
+  .dm-footer__plate:hover {
+    background-color: var(--surface-raised);
+  }
+  .dm-footer__wordmark {
+    inline-size: var(--size-wordmark-w-footer);
+    block-size: auto;
+  }
+
+  /* --- contact ------------------------------------------------------------- */
+  .dm-footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: 0;
+  }
+  .dm-footer__contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .dm-footer__contact-row dd {
+    margin-inline-start: 0;
+  }
+  .dm-footer__value {
+    color: var(--ink-primary);
+    font-family: var(--family-body);
+    font-size: var(--fs-base);
+    line-height: var(--lh-normal);
+    /* break-word, not anywhere: `anywhere` feeds the break back into the
+       intrinsic minimum size, which lets the grid squeeze the column until the
+       address splits mid-word. */
+    overflow-wrap: break-word;
+  }
+  /* A 44px target on the mailto and the tel, and an underline doing the work
+     that color is not allowed to do alone. */
+  a.dm-footer__value {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--size-tap-target);
+    text-decoration-line: underline;
+    text-decoration-thickness: from-font;
+    text-underline-offset: 0.16em;
+  }
+  a.dm-footer__value:hover {
+    color: var(--ink-accent);
+  }
+
+  /* --- navigation columns -------------------------------------------------- */
+  /* The group list is the shared 12-column grid, not a bespoke template. It
+     only retunes the grid's own gap variable: a 12-column grid nested inside 8
+     of 12 columns spends eleven full page gutters on gaps, which at 768 leaves
+     the columns narrower than the words in them. */
+  .dm-footer__nav-groups,
+  .dm-footer__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .dm-footer__nav-groups {
+    --grid-gap: var(--gutter-column-tight);
+    row-gap: var(--space-7);
+  }
+  .dm-footer__nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .dm-footer__nav-title {
+    color: var(--ink-primary);
+  }
+  .dm-footer__nav-title-link {
+    color: inherit;
+    text-decoration-line: none;
+    /* Vertical padding on an inline element grows the hit area without growing
+       the line box, so the column head clears the target-size floor and the
+       heading still sits on its own baseline. */
+    padding-block: var(--space-2);
+  }
+  .dm-footer__nav-title-link:hover {
+    color: var(--ink-accent);
+    text-decoration-line: underline;
+  }
+  .dm-footer__nav-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .dm-footer__link {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--size-tap-target);
+    color: var(--ink-secondary);
+    font-family: var(--family-body);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+    text-decoration-line: none;
+  }
+  .dm-footer__link:hover {
+    color: var(--ink-primary);
+    text-decoration-line: underline;
+  }
+
+  /* --- social row ---------------------------------------------------------- */
+  .dm-footer__social {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    /* Pulls the first 44px target back so the glyph optically aligns with the
+       text above it rather than the target's edge. */
+    margin-inline-start: calc(var(--space-3) * -1);
+    padding: 0;
+  }
+  .dm-footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: var(--size-tap-target);
+    min-block-size: var(--size-tap-target);
+    color: var(--ink-muted);
+    text-decoration-line: none;
+    transition: var(--transition-ink);
+  }
+  .dm-footer__social-link:hover {
+    color: var(--ink-primary);
+  }
+
+  /* --- newsletter capture -------------------------------------------------- */
+  .dm-footer__signup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  /* --- the bottom bar ------------------------------------------------------ */
+  /* #footer-bottom rendered completely empty on the old site. It carries the
+     copyright and the folio now. */
+  .dm-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-6);
+  }
+  .dm-footer__copyright {
+    margin: 0;
+    color: var(--ink-muted);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    letter-spacing: var(--ls-wide);
+    line-height: var(--lh-loose);
+  }
+  /* The folio is an Eyebrow rendered as a paragraph, so it already carries the
+     mono treatment. This only holds the margin at zero if the reset ever
+     changes under it. */
+  .dm-footer__folio {
+    margin: 0;
   }
 }
