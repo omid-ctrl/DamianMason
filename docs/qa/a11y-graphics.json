@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T23:07:37.109Z",
+  "generatedAt": "2026-08-07T23:08:27.923Z",
   "base": "http://localhost:3210",
   "widths": [
     1440,
@@ -23,119 +23,14 @@
   },
   "byRule": [],
   "structuralFlags": {
-    "routesWithoutExactlyOneH1": [
-      "reviews@1440:n/a",
-      "meeting-coordinators@1440:n/a",
-      "collaboration-opportunities@1440:n/a",
-      "boasg@1440:n/a",
-      "podcasts@1440:n/a",
-      "the-business-of-agriculture@1440:n/a",
-      "do-business-better-podcast@1440:n/a",
-      "xtreme-ag@1440:n/a",
-      "blog-news@1440:n/a",
-      "acres-tv@1440:n/a",
-      "blog@1440:n/a",
-      "blog-eggflation@1440:n/a",
-      "blog-climate-crisis@1440:n/a",
-      "contact-us@1440:n/a",
-      "join-the-conversation@1440:n/a",
-      "home@390:n/a",
-      "about@390:n/a",
-      "speaking@390:n/a",
-      "keynote@390:n/a",
-      "reviews@390:n/a",
-      "meeting-coordinators@390:n/a",
-      "collaboration-opportunities@390:n/a",
-      "boasg@390:n/a",
-      "podcasts@390:n/a",
-      "the-business-of-agriculture@390:n/a",
-      "do-business-better-podcast@390:n/a",
-      "xtreme-ag@390:n/a",
-      "blog-news@390:n/a",
-      "acres-tv@390:n/a",
-      "blog@390:n/a",
-      "blog-eggflation@390:n/a",
-      "blog-climate-crisis@390:n/a",
-      "contact-us@390:n/a",
-      "join-the-conversation@390:n/a"
-    ],
-    "routesWithoutExactlyOneMain": [
-      "reviews@1440:n/a",
-      "meeting-coordinators@1440:n/a",
-      "collaboration-opportunities@1440:n/a",
-      "boasg@1440:n/a",
-      "podcasts@1440:n/a",
-      "the-business-of-agriculture@1440:n/a",
-      "do-business-better-podcast@1440:n/a",
-      "xtreme-ag@1440:n/a",
-      "blog-news@1440:n/a",
-      "acres-tv@1440:n/a",
-      "blog@1440:n/a",
-      "blog-eggflation@1440:n/a",
-      "blog-climate-crisis@1440:n/a",
-      "contact-us@1440:n/a",
-      "join-the-conversation@1440:n/a",
-      "home@390:n/a",
-      "about@390:n/a",
-      "speaking@390:n/a",
-      "keynote@390:n/a",
-      "reviews@390:n/a",
-      "meeting-coordinators@390:n/a",
-      "collaboration-opportunities@390:n/a",
-      "boasg@390:n/a",
-      "podcasts@390:n/a",
-      "the-business-of-agriculture@390:n/a",
-      "do-business-better-podcast@390:n/a",
-      "xtreme-ag@390:n/a",
-      "blog-news@390:n/a",
-      "acres-tv@390:n/a",
-      "blog@390:n/a",
-      "blog-eggflation@390:n/a",
-      "blog-climate-crisis@390:n/a",
-      "contact-us@390:n/a",
-      "join-the-conversation@390:n/a"
-    ],
+    "routesWithoutExactlyOneH1": [],
+    "routesWithoutExactlyOneMain": [],
     "routesWithHeadingSkips": [],
     "imagesMissingAlt": [],
     "unlabelledControls": [],
     "horizontalOverflow": [],
     "duplicateOrMissingNavLabels": [],
-    "errors": [
-      "reviews@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/reviews/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/reviews/\", waiting until \"networkidle\"\u001b[22m\n",
-      "meeting-coordinators@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/meeting-coordinators/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/meeting-coordinators/\", waiting until \"networkidle\"\u001b[22m\n",
-      "collaboration-opportunities@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/collaboration-opportunities/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/collaboration-opportunities/\", waiting until \"networkidle\"\u001b[22m\n",
-      "boasg@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/boasg/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/boasg/\", waiting until \"networkidle\"\u001b[22m\n",
-      "podcasts@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/podcasts/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/podcasts/\", waiting until \"networkidle\"\u001b[22m\n",
-      "the-business-of-agriculture@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/the-business-of-agriculture/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/the-business-of-agriculture/\", waiting until \"networkidle\"\u001b[22m\n",
-      "do-business-better-podcast@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/do-business-better-podcast/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/do-business-better-podcast/\", waiting until \"networkidle\"\u001b[22m\n",
-      "xtreme-ag@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/xtreme-ag/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/xtreme-ag/\", waiting until \"networkidle\"\u001b[22m\n",
-      "blog-news@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog-news/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog-news/\", waiting until \"networkidle\"\u001b[22m\n",
-      "acres-tv@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/acres-tv/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/acres-tv/\", waiting until \"networkidle\"\u001b[22m\n",
-      "blog@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/\", waiting until \"networkidle\"\u001b[22m\n",
-      "blog-eggflation@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/eggflation-gives-producers-record-profits/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/eggflation-gives-producers-record-profits/\", waiting until \"networkidle\"\u001b[22m\n",
-      "blog-climate-crisis@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/\", waiting until \"networkidle\"\u001b[22m\n",
-      "contact-us@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/contact-us/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/contact-us/\", waiting until \"networkidle\"\u001b[22m\n",
-      "join-the-conversation@1440: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/join-the-conversation/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/join-the-conversation/\", waiting until \"networkidle\"\u001b[22m\n",
-      "home@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/\", waiting until \"networkidle\"\u001b[22m\n",
-      "about@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/about/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/about/\", waiting until \"networkidle\"\u001b[22m\n",
-      "speaking@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/speaking/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/speaking/\", waiting until \"networkidle\"\u001b[22m\n",
-      "keynote@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/keynote/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/keynote/\", waiting until \"networkidle\"\u001b[22m\n",
-      "reviews@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/reviews/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/reviews/\", waiting until \"networkidle\"\u001b[22m\n",
-      "meeting-coordinators@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/meeting-coordinators/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/meeting-coordinators/\", waiting until \"networkidle\"\u001b[22m\n",
-      "collaboration-opportunities@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/collaboration-opportunities/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/collaboration-opportunities/\", waiting until \"networkidle\"\u001b[22m\n",
-      "boasg@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/boasg/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/boasg/\", waiting until \"networkidle\"\u001b[22m\n",
-      "podcasts@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/podcasts/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/podcasts/\", waiting until \"networkidle\"\u001b[22m\n",
-      "the-business-of-agriculture@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/the-business-of-agriculture/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/the-business-of-agriculture/\", waiting until \"networkidle\"\u001b[22m\n",
-      "do-business-better-podcast@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/do-business-better-podcast/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/do-business-better-podcast/\", waiting until \"networkidle\"\u001b[22m\n",
-      "xtreme-ag@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/xtreme-ag/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/xtreme-ag/\", waiting until \"networkidle\"\u001b[22m\n",
-      "blog-news@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog-news/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog-news/\", waiting until \"networkidle\"\u001b[22m\n",
-      "acres-tv@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/acres-tv/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/acres-tv/\", waiting until \"networkidle\"\u001b[22m\n",
-      "blog@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/\", waiting until \"networkidle\"\u001b[22m\n",
-      "blog-eggflation@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/eggflation-gives-producers-record-profits/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/eggflation-gives-producers-record-profits/\", waiting until \"networkidle\"\u001b[22m\n",
-      "blog-climate-crisis@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/\", waiting until \"networkidle\"\u001b[22m\n",
-      "contact-us@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/contact-us/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/contact-us/\", waiting until \"networkidle\"\u001b[22m\n",
-      "join-the-conversation@390: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/join-the-conversation/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/join-the-conversation/\", waiting until \"networkidle\"\u001b[22m\n"
-    ]
+    "errors": []
   },
   "results": [
     {
@@ -384,272 +279,1901 @@
       "route": "/reviews/",
       "url": "http://localhost:3210/reviews/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/reviews/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/reviews/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Testimonials"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 5,
+        "totalImages": 29,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "meeting-coordinators",
       "route": "/meeting-coordinators/",
       "url": "http://localhost:3210/meeting-coordinators/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/meeting-coordinators/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/meeting-coordinators/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 6,
+          "targets": [
+            [
+              ".md\\:col-span-9 > .dm-eyebrow"
+            ],
+            [
+              "#leading-voice-title"
+            ],
+            [
+              ".md\\:col-span-9 > .dm-prose--lead.dm-prose > p"
+            ],
+            [
+              ".md\\:col-span-9 > .dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-hero__cutline--band > .dm-figure__caption"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Meeting Coordinators"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 6,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "collaboration-opportunities",
       "route": "/collaboration-opportunities/",
       "url": "http://localhost:3210/collaboration-opportunities/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/collaboration-opportunities/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/collaboration-opportunities/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "If it’s Agriculture, it needs Damian."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "boasg",
       "route": "/boasg/",
       "url": "http://localhost:3210/boasg/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/boasg/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/boasg/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Ag Success Group"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "podcasts",
       "route": "/podcasts/",
       "url": "http://localhost:3210/podcasts/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/podcasts/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/podcasts/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Three shows. One host."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 6,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "the-business-of-agriculture",
       "route": "/the-business-of-agriculture/",
       "url": "http://localhost:3210/the-business-of-agriculture/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/the-business-of-agriculture/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/the-business-of-agriculture/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 31,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Agriculture Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 16,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "do-business-better-podcast",
       "route": "/do-business-better-podcast/",
       "url": "http://localhost:3210/do-business-better-podcast/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/do-business-better-podcast/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/do-business-better-podcast/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Do Business Better Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "xtreme-ag",
       "route": "/xtreme-ag/",
       "url": "http://localhost:3210/xtreme-ag/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/xtreme-ag/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/xtreme-ag/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "What’s XtremeAg, You Ask?"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 8,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "blog-news",
       "route": "/blog-news/",
       "url": "http://localhost:3210/blog-news/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog-news/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog-news/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "News & Media"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 10,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "acres-tv",
       "route": "/acres-tv/",
       "url": "http://localhost:3210/acres-tv/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/acres-tv/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/acres-tv/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 25,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 7,
+          "targets": [
+            [
+              ".dm-hero__type > .dm-eyebrow"
+            ],
+            [
+              "#acres-tv-title"
+            ],
+            [
+              ".dm-prose--lead > p"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg[rel=\"noopener noreferrer\"]"
+            ],
+            [
+              ".dm-btn--lg.dm-btn--secondary[href=\"/the-business-of-agriculture/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Damian’s Business of Agriculture streams on Acres TV."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "blog",
       "route": "/blog/",
       "url": "http://localhost:3210/blog/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 25,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Blog"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "blog-eggflation",
       "route": "/blog/eggflation-gives-producers-record-profits/",
       "url": "http://localhost:3210/blog/eggflation-gives-producers-record-profits/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/eggflation-gives-producers-record-profits/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/eggflation-gives-producers-record-profits/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 25,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "‘Eggflation’ Gives Producers Record Profits While Internet Mocks Outrageous Pric"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "blog-climate-crisis",
       "route": "/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
       "url": "http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "How the Climate Crisis is Causing Food Shortages Globally"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 2,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "contact-us",
       "route": "/contact-us/",
       "url": "http://localhost:3210/contact-us/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/contact-us/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/contact-us/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Get in Touch"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 3,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "join-the-conversation",
       "route": "/join-the-conversation/",
       "url": "http://localhost:3210/join-the-conversation/",
       "width": 1440,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/join-the-conversation/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/join-the-conversation/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Join the Conversation"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 3,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "home",
       "route": "/",
       "url": "http://localhost:3210/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 29,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Straight-Forward Agriculture Dialogue"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 5,
+        "totalImages": 33,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "about",
       "route": "/about/",
       "url": "http://localhost:3210/about/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/about/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/about/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Ag economist, comedian, farm owner."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "speaking",
       "route": "/speaking/",
       "url": "http://localhost:3210/speaking/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/speaking/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/speaking/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Hire a Speaker that Works for YOU."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 26,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "keynote",
       "route": "/keynote/",
       "url": "http://localhost:3210/keynote/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/keynote/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/keynote/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "A Leading Agriculture Presenter Who Talks Candidly About Current Events."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 9,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "reviews",
       "route": "/reviews/",
       "url": "http://localhost:3210/reviews/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/reviews/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/reviews/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Testimonials"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 5,
+        "totalImages": 29,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "meeting-coordinators",
       "route": "/meeting-coordinators/",
       "url": "http://localhost:3210/meeting-coordinators/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/meeting-coordinators/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/meeting-coordinators/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Meeting Coordinators"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 6,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "collaboration-opportunities",
       "route": "/collaboration-opportunities/",
       "url": "http://localhost:3210/collaboration-opportunities/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/collaboration-opportunities/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/collaboration-opportunities/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "If it’s Agriculture, it needs Damian."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "boasg",
       "route": "/boasg/",
       "url": "http://localhost:3210/boasg/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/boasg/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/boasg/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Ag Success Group"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "podcasts",
       "route": "/podcasts/",
       "url": "http://localhost:3210/podcasts/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/podcasts/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/podcasts/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Three shows. One host."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 6,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "the-business-of-agriculture",
       "route": "/the-business-of-agriculture/",
       "url": "http://localhost:3210/the-business-of-agriculture/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/the-business-of-agriculture/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/the-business-of-agriculture/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 31,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Agriculture Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 16,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "do-business-better-podcast",
       "route": "/do-business-better-podcast/",
       "url": "http://localhost:3210/do-business-better-podcast/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/do-business-better-podcast/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/do-business-better-podcast/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Do Business Better Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "xtreme-ag",
       "route": "/xtreme-ag/",
       "url": "http://localhost:3210/xtreme-ag/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/xtreme-ag/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/xtreme-ag/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "What’s XtremeAg, You Ask?"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 8,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "blog-news",
       "route": "/blog-news/",
       "url": "http://localhost:3210/blog-news/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog-news/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog-news/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "News & Media"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 10,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "acres-tv",
       "route": "/acres-tv/",
       "url": "http://localhost:3210/acres-tv/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/acres-tv/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/acres-tv/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Damian’s Business of Agriculture streams on Acres TV."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "blog",
       "route": "/blog/",
       "url": "http://localhost:3210/blog/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Blog"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "blog-eggflation",
       "route": "/blog/eggflation-gives-producers-record-profits/",
       "url": "http://localhost:3210/blog/eggflation-gives-producers-record-profits/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/eggflation-gives-producers-record-profits/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/eggflation-gives-producers-record-profits/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "‘Eggflation’ Gives Producers Record Profits While Internet Mocks Outrageous Pric"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "blog-climate-crisis",
       "route": "/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
       "url": "http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/blog/how-the-climate-crisis-is-causing-food-shortages-globally/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "How the Climate Crisis is Causing Food Shortages Globally"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 2,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "contact-us",
       "route": "/contact-us/",
       "url": "http://localhost:3210/contact-us/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/contact-us/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/contact-us/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Get in Touch"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 3,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     },
     {
       "name": "join-the-conversation",
       "route": "/join-the-conversation/",
       "url": "http://localhost:3210/join-the-conversation/",
       "width": 390,
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3210/join-the-conversation/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3210/join-the-conversation/\", waiting until \"networkidle\"\u001b[22m\n",
-      "violations": []
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 0,
+      "incomplete": [],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Join the Conversation"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 3,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
     }
   ]
 }
