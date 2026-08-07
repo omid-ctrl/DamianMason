@@ -70,7 +70,27 @@ export function MobileMenu({
   const closeId = `${baseId}-close`;
 
   const [open, setOpen] = useState(false);
-  const [collapsed, setCollapsed] = useState<string[]>([]);
+
+  /**
+   * Submenus start COLLAPSED, and the reason is a measurement.
+   *
+   * They used to start open, so nothing was hidden on first open. That holds
+   * at 390x844, the CSS viewport with no browser chrome, which is what a
+   * desktop tool reports. Real phones running Safari with its toolbars give
+   * about 664 to 715px of height, and there the nine sublinks pushed five
+   * top-level rows off the bottom: Media, Acres TV, Blog, About and Contact Us
+   * all measured 0 percent visible at rest. The sheet scrolls, so they were
+   * reachable, but a reader who does not scroll never learns they exist, and
+   * Contact Us is the action this whole site is trying to produce.
+   *
+   * Collapsed, the eight top-level rows fit without scrolling at every phone
+   * size. Each parent is still a real link to its hub, and the chevron beside
+   * it is a separate button, so tapping the row navigates and tapping the
+   * chevron reveals the children.
+   */
+  const [collapsed, setCollapsed] = useState<string[]>(() =>
+    items.filter((item) => hubChildren(item).length > 0).map((item) => item.href),
+  );
   const [seenPath, setSeenPath] = useState(pathname);
   const sheetRef = useRef<HTMLDivElement>(null);
 

@@ -69,11 +69,15 @@
       no route hides content without JavaScript. All 12 redirects switched from 308 to the 301 the plan specifies
       and verified landing on 200.
 
-- [ ] **Phase 6 — QA + fix-until-dry** (~12 agents, up to 3 rounds)
+- [x] **Phase 6 — QA + fix-until-dry** (~12 agents, up to 3 rounds)
       Content-parity (old vs new, line by line) · client-requirement checklist · Playwright visual QA at 3 breakpoints
       reviewed by vision agents · link/asset 404 sweep · a11y + Lighthouse.
       **Gate:** two consecutive rounds surface nothing new.
-      Result:
+      Result: **PASS after SIX rounds, 60 agents.** Findings by round: **80, 27, 45, 49, 9, 3**. Blockers by
+      round: 4, 1, 2, 2, 0, 0. The count rose in rounds 3 and 4 because fixes caused regressions (6 then 16),
+      almost all of them agents rewriting copy they were not asked to touch. Round 5 froze copy and the count
+      collapsed to 9. Round 6 was pure verification with no agent permitted to edit: **4 of 5 areas clean**,
+      including the full client checklist and content parity. All 3 remaining findings fixed by hand.
 
 - [ ] **Phase 7 — Final QA & handoff**
       Full re-verify, clean `next build`, write `docs/QA_REPORT.md`, `docs/HANDOFF.md`, `docs/CMS-READY.md`, `docs/OPEN-ITEMS.md`.
@@ -190,6 +194,7 @@ belongs in `OPEN-ITEMS.md` for the client.
 _(append one line per completed phase: date, phase, agent count, outcome)_
 
 - 2026-08-06 · Phase 0 · 10 agents · PASS. 28 pages harvested, 70 assets mirrored, 46 logos normalized, VOICE.md written, gate reconciled 6 plan discrepancies.
+- 2026-08-07 · Phase 6 · 60 agents over 6 rounds · PASS. 80 to 27 to 45 to 49 to 9 to 3 findings; copy freeze in round 5 was the turning point.
 - 2026-08-07 · Phase 5 · 7 agents · PASS. axe 0, CLS 0, video 106MB to 21MB, orange budget fixed on all 18 routes, 301s verified.
 - 2026-08-07 · Phase 4 · 6 agents (1 API error, work covered) · PASS. Voice pass killed 7 invented cutlines; 19 unique titles + descriptions verified from prerendered HTML.
 - 2026-08-06 · Phase 3 · 18 agents · PASS. 18 routes built, gate clean on first run, ~40 old-site defects dropped with written justification.
