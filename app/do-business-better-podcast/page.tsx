@@ -102,7 +102,7 @@ const EPISODES = [
 export const metadata: Metadata = buildMetadata({
   title: 'Do Business Better Podcast',
   description:
-    'Damian Mason talks with owners, solopreneurs and self employed strivers about what actually worked. Three recent episodes, plus the full catalogue on SoundCloud.',
+    'Damian quit his Fortune 500 job in 1994. Now he asks owners, solopreneurs and self employed strivers what actually worked. Three episodes to start with.',
   path: '/do-business-better-podcast/',
   image: {
     url: SHOW_ART.src,
@@ -205,7 +205,7 @@ export default function DoBusinessBetterPodcastPage() {
               <ul className={styles.platforms}>
                 <li>
                   <a href={show.soundcloud}>Every episode on SoundCloud</a>
-                  <p className={styles.platformNote}>The whole catalogue lives here</p>
+                  <p className={styles.platformNote}>The whole catalog lives here</p>
                 </li>
                 {youtube ? (
                   <li>
@@ -226,13 +226,13 @@ export default function DoBusinessBetterPodcastPage() {
       <Section aria-labelledby="episodes-title">
         <Container>
           <div className={styles.stack}>
-            <Eyebrow>From the catalogue</Eyebrow>
+            <Eyebrow>From the catalog</Eyebrow>
             <Heading level={2} id="episodes-title">
               Three episodes to start with
             </Heading>
             <Prose measure="narrow">
               <p>
-                Episodes 144, 142 and 141: a consultant who started his own firm in his mid
+                Episodes 144, 142, and 141: a consultant who started his own firm in his mid
                 50s, an engineer with a side hustle and a day job, and a beer brand brought
                 back from 1978. Start anywhere.
               </p>
@@ -281,7 +281,7 @@ export default function DoBusinessBetterPodcastPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">FIG. 02 </span>
-                Do Business Better, published by Wiley, foreword by Larry Winget. The
+                Do Business Better: Traits, Habits, and Actions to Help You Succeed. The
                 podcast borrowed the title from the author. He agreed.
               </figcaption>
             </figure>
@@ -295,10 +295,10 @@ export default function DoBusinessBetterPodcastPage() {
               </Heading>
               <Prose>
                 <p>
-                  Damian wrote Do Business Better after 2,000 audiences and companies such as
-                  Merck, Land O’Lakes, and Cargill. Most business books tell you how to
-                  reach success. This one makes you define success first, because yours
-                  isn’t your neighbor’s.
+                  Damian wrote Do Business Better after speaking to companies such as Merck,
+                  Land O’Lakes, and Cargill, and 2,000 audiences across the world. Most
+                  business books tell you how to reach success. This one makes you define
+                  success first, because yours isn’t your neighbor’s.
                 </p>
               </Prose>
               <Button href="/about/#books" variant="secondary">

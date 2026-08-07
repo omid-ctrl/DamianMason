@@ -40,9 +40,9 @@ import styles from './page.module.css';
  */
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Speaking',
+  title: 'Hire an Agricultural Speaker',
   description:
-    'Everything a meeting planner needs to book Damian Mason: the keynote program, client reviews, fees and travel, and the ways to work with him off the stage.',
+    'The keynote program, the client reviews, the fees and travel, and the ways to work with Damian off the stage. Everything a meeting planner needs to decide.',
   path: '/speaking/',
 });
 
@@ -62,7 +62,7 @@ const childRoutes = [
     meta: 'Program, extensions, FAQ',
     body: (
       <>
-        Sixty to ninety minutes of forward looking Ag commentary, delivered with humor. He
+        60 to 90 minutes of forward looking Ag commentary, delivered with humor. He
         connects the dots from consumer issues to regulation to political movements to
         societal changes, and what all of it means for your industry. Keynote not enough?
         He’ll also do breakouts, luncheons, and panel discussions.
@@ -133,10 +133,10 @@ export default function SpeakingPage() {
         eyebrow="Speaking"
         title="Hire a Speaker that Works for YOU."
         titleSize="5xl"
-        deck="Damian speaks on the two subjects he knows best: Business and Agriculture. He quit a Fortune 500 job in 1994 to do it, and he hasn’t stopped since. He works directly with you on the mix of humor, content, and take-away value your crowd needs."
+        deck="Damian speaks on the two subjects he knows best: Business and Agriculture. He quit a Fortune 500 job in 1994 to do it. He works directly with you on the mix of humor, content, and take-away value your crowd needs."
         actions={[
-          { label: 'Book Damian', href: '/contact-us/' },
-          { label: 'See the keynote', href: '/keynote/' },
+          { label: 'Check your event date', href: '/contact-us/' },
+          { label: 'See the keynote program', href: '/keynote/' },
         ]}
         image={{
           src: '/img/photos/portrait-black-suit.jpg',
@@ -145,7 +145,7 @@ export default function SpeakingPage() {
           height: 2000,
         }}
         cutlineFolio="Fig. 01"
-        cutline="He wears the jacket for the headshot. He works the stage in jeans."
+        cutline="Keynote, breakout, luncheon, panel. Fees get quoted when you ask, and they’re NET to him."
       />
 
       <StatRow
@@ -197,10 +197,10 @@ export default function SpeakingPage() {
               <Prose measure="full">
                 <p>
                   Beginning in 2023 Damian titled the program The “Ations” of Agriculture.
-                  The subject is what’s coming at the business of food, fuel, and fiber:
-                  fast paced, humor infused, connecting the dots from consumer issues to
-                  regulation to political movements to societal changes. Six words carry
-                  it.
+                  The subject is what’s coming at the business of food, fuel, and fiber.
+                  Fast paced, humor infused, connecting the dots from consumer issues to
+                  regulation to political movements to societal changes. Six subjects
+                  carry it.
                 </p>
               </Prose>
 
@@ -226,7 +226,7 @@ export default function SpeakingPage() {
 
               <div className={styles.actions}>
                 <Button href="/keynote/" variant="secondary" size="lg">
-                  Read the keynote page
+                  See the keynote program
                 </Button>
               </div>
             </div>
@@ -245,7 +245,7 @@ export default function SpeakingPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 02 </span>
-                InSite CDM Winter Forum, 2023. The lectern is right there. He is not
+                InSite CDM Winter Forum, 2023. The lectern is right there. He isn’t
                 standing behind it.
               </figcaption>
             </figure>
@@ -269,7 +269,7 @@ export default function SpeakingPage() {
 
           <div className={styles.actions}>
             <Button href="/reviews/" variant="secondary" size="lg">
-              Read all the reviews
+              Read all ten reviews
             </Button>
           </div>
         </Container>
@@ -281,7 +281,7 @@ export default function SpeakingPage() {
         eyebrow="Clients"
         title="Who hires him"
         folio="No. 04"
-        intro="Cargill, Merck, Land O’Lakes Purina, CLAAS, Pioneer Seeds, and Wilbur-Ellis have all booked him, and so have three state Farm Bureaus. That’s 21 marks out of 2,400 audiences since 1994."
+        intro="Cargill, Merck, Land O’Lakes Purina, CLAAS, Pioneer Seeds, and Wilbur-Ellis have all booked him, and so have three state Farm Bureaus. That’s 21 marks out of 2,400+ audiences since 1994."
       />
 
       <CTABand
@@ -291,7 +291,7 @@ export default function SpeakingPage() {
         folio="No. 05"
         copy="Damian books most of his events directly with his clients. A simple contract and a small deposit hold your date, and the rest is due the day of the event. Fees are quoted when you inquire, and they’re NET to him."
         actions={[
-          { label: 'Book Damian', href: '/contact-us/' },
+          { label: 'Check your event date', href: '/contact-us/' },
           {
             label: 'Email the office',
             href: `mailto:${contact.email}`,

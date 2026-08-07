@@ -62,7 +62,7 @@ const LIBSYN_PLAYER_HEIGHT = 412;
 export const metadata: Metadata = buildMetadata({
   title: 'The Business of Agriculture Podcast',
   description:
-    'Smart talk about the business of food, fuel, and fiber. New episodes every Monday, over 40,000 listeners a month, and Damian’s strong opinions on the record.',
+    'Smart talk about the business of food, fuel, and fiber. New episodes every Monday, more than 40,000 listeners a month, and opinions Damian won’t soften.',
   path: ROUTE,
   image: {
     url: brandAssets.businessOfAgriculturePodcast,
@@ -319,7 +319,7 @@ export default function BusinessOfAgriculturePage() {
               <Image
                 className={styles.crossMark}
                 src={brandAssets.granary}
-                alt="The Granary logo."
+                alt="The Granary"
                 width={800}
                 height={800}
                 loading="lazy"
@@ -328,7 +328,7 @@ export default function BusinessOfAgriculturePage() {
               <Heading level={3} size="lg">
                 The Granary
               </Heading>
-              <p>Damian’s video series, filmed with the XtremeAg crew.</p>
+              <p>Filmed with the XtremeAg crew in a granary turned tavern on Damian’s Indiana farm.</p>
               <Button
                 className={styles.crossAction}
                 href={podcasts.xtremeAg.granary}
@@ -345,7 +345,7 @@ export default function BusinessOfAgriculturePage() {
               <Image
                 className={styles.crossMark}
                 src={brandAssets.xtremeAg}
-                alt="XtremeAg logo."
+                alt="XtremeAg"
                 width={800}
                 height={480}
                 loading="lazy"
@@ -408,7 +408,7 @@ export default function BusinessOfAgriculturePage() {
             idPrefix="podcast-subscribe"
             headingLevel={2}
             title="New episodes every Monday."
-            blurb="Subscribe and you’ll hear when an episode drops, plus news and special updates. No daily clutter, no pitches."
+            blurb="Subscribe and you’ll hear when an episode drops. No daily clutter, no pitches."
             submitLabel="Subscribe"
             submitVariant="secondary"
           />

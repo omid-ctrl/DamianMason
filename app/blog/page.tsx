@@ -27,9 +27,9 @@ import styles from './page.module.css';
 const posts = postsByDate();
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Blog',
+  title: 'Agriculture Blog',
   description:
-    'Damian Mason on the record about what food costs: record egg profits for producers in 2022, and climate pressure behind global food shortages in 2023.',
+    'Two posts on what food actually costs: record 2022 egg profits for producers, and the climate pressure behind global food shortages. Read them both.',
   path: '/blog/',
 });
 
@@ -69,8 +69,8 @@ export default function BlogIndexPage() {
         id="blog"
         eyebrow="Filed from the Indiana farm office"
         title="Blog"
-        deck="Two posts. Both are about what food costs. When Straight Arrow News or Cheddar News needs an ag economist on the record about egg prices or a global food shortage, Damian is the call they make. You’ll find both here, with the source attached."
-        cutline="Both posts are Damian on somebody else’s air: Straight Arrow News in December 2022, Cheddar News in April 2023."
+        deck="Two posts. Both are about what food costs. When Straight Arrow News or Cheddar News needs an ag economist on the record about egg prices or a global food shortage, they call Damian. You’ll find both here, with the source attached."
+        cutline="Both posts are Damian in somebody else’s newsroom: Straight Arrow News in December 2022, Cheddar News in April 2023."
       />
 
       <Section surface="sunken">
@@ -99,10 +99,10 @@ export default function BlogIndexPage() {
               </Heading>
               <Prose className={styles.blurb}>
                 <p>
-                  Two posts is the whole blog archive. The weekly work goes somewhere else:
-                  over 40,000 people listen to the podcast every month, and the Media page
-                  carries nine appearances, from Forbes to Newsmax. If you want volume,
-                  that’s where it is.
+                  Two posts is the whole blog archive. The weekly work goes somewhere else: a
+                  new podcast episode every Monday for more than 40,000 listeners, and nine
+                  press appearances on the Media page, from Forbes to Newsmax. If you want
+                  volume, that’s where it is.
                 </p>
               </Prose>
               <div className={styles.actions}>

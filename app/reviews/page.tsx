@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import { CTABand } from '@/components/sections/CTABand';
@@ -18,9 +19,9 @@ import styles from './page.module.css';
 const ROUTE = '/reviews/';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Testimonials',
+  title: 'Speaker Reviews and Testimonials',
   description:
-    'Ten written reviews and four video testimonials for agriculture keynote speaker Damian Mason, from Michael Foods, Bayer, Farm Credit West, AgroLiquid, BW Fusion, Next Level Ag, and Micronutrients.',
+    'Ten written reviews and four on camera, from Michael Foods, Bayer, Farm Credit West, AgroLiquid and Micronutrients. Meeting planners book him twice.',
   path: ROUTE,
 });
 
@@ -86,7 +87,7 @@ export default function ReviewsPage() {
         id="testimonials"
         eyebrow="Speaking, on the record"
         title="Testimonials"
-        deck="Meeting planners book Damian twice. Here's what they said the first time: ten written notes from growers, ag lenders, and sales directors, plus four more on camera. Fourteen out of 2,400+ audiences since 1994."
+        deck="Meeting planners book Damian twice. Here's what they said the first time: ten written notes from Michael Foods, Bayer, Farm Credit West, AgroLiquid, BW Fusion, and five more, plus four on camera. Fourteen out of 2,400+ audiences since 1994."
         cutline="Every quote below is the sender's own wording. Nine of the ten came with a name attached."
         actions={
           [{ href: '/contact-us/', label: 'Check your date', variant: 'secondary' }] as const
@@ -143,8 +144,12 @@ export default function ReviewsPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                Book signing at the StoneX Ag and Dairy Market Outlook. The book is Food Fear:
-                How Fear is Ruining Your Dinner and Why You Should Celebrate Eating.
+                Book signing at the StoneX Ag and Dairy Market Outlook. The book is{' '}
+                <Link href="/about/#books">
+                  Food Fear: How Fear is Ruining Your Dinner and Why You Should Celebrate
+                  Eating
+                </Link>
+                .
               </figcaption>
             </figure>
           </div>
@@ -181,7 +186,7 @@ export default function ReviewsPage() {
         eyebrow="Booking"
         folio="No. 05"
         heading="First step: check the date"
-        copy="Tell the office what you're planning. Damian will confirm the date, and programs run 60 to 90 minutes. He books his own airfare and car rental, and his fees are NET to him."
+        copy="First step: contact Damian to make sure he has your event date available. Programs run 60 to 90 minutes. He books his own airfare and car rental against one travel fee, quoted up front, and his fees are NET to him."
         actions={
           [
             { href: '/contact-us/', label: 'Book Damian' },

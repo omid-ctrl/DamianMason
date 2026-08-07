@@ -50,10 +50,15 @@
       commerce, raw hex). Exactly one `<h1>` per route, verified against the 19 prerendered HTML files rather
       than by reading source. All 31 `next/image` tags carry explicit dimensions.
 
-- [ ] **Phase 4 — Copy & SEO** (~6 agents)
+- [x] **Phase 4 — Copy & SEO** (~6 agents)
       Voice-consistent copy, unique title + meta description per page, alt text, internal linking, one H1 per page.
       **Gate:** zero em dashes; zero banned AI phrases.
-      Result:
+      Result: **PASS (5 of 6 agents; the titles agent died mid-response and its work was already covered).**
+      19 unique titles (all under 62 chars), 19 unique descriptions (all 146 to 158 chars), one h1 per route,
+      zero broken internal hrefs, zero em dashes and zero banned phrases in `app/`, `components/`, `content/`.
+      Verified independently against the 21 prerendered HTML files, not agent self-report. The voice pass
+      caught and removed **7 invented photo cutlines**, softened a promise the site made firmer than Damian
+      does, and replaced 12 generic CTA labels with specific ones.
 
 - [ ] **Phase 5 — Motion, responsive, a11y, performance** (~6 agents)
       Restrained motion honoring `prefers-reduced-motion`; 390/768/1440 responsive; WCAG 2.1 AA; image + CWV optimization.
@@ -157,6 +162,7 @@ colon. Meaning is unchanged; this is a deliberate editorial call, recorded here 
 _(append one line per completed phase: date, phase, agent count, outcome)_
 
 - 2026-08-06 · Phase 0 · 10 agents · PASS. 28 pages harvested, 70 assets mirrored, 46 logos normalized, VOICE.md written, gate reconciled 6 plan discrepancies.
+- 2026-08-07 · Phase 4 · 6 agents (1 API error, work covered) · PASS. Voice pass killed 7 invented cutlines; 19 unique titles + descriptions verified from prerendered HTML.
 - 2026-08-06 · Phase 3 · 18 agents · PASS. 18 routes built, gate clean on first run, ~40 old-site defects dropped with written justification.
 - 2026-08-06 · Phase 2 · 6 agents · PASS. Chrome + SEO + 11 sections + content layer; footer agent fixed a data-surface token bug that rendered navy on navy.
 - 2026-08-06 · Phase 1 · 7 agents · PASS. Editorial Broadsheet wins 2 of 3 lenses; 15 ideas grafted from losers; all contrast failures repaired; tsc + next build clean.

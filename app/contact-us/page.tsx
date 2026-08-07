@@ -47,9 +47,9 @@ const OG_IMAGE = {
 };
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Contact Us',
+  title: 'Contact and Booking',
   description:
-    'Book Damian Mason for your event. Email damianmasonoffice@gmail.com or call 888.304.0702. Bookings are handled direct from the Indiana office, and every inquiry gets an answer within one business day.',
+    'Email damianmasonoffice@gmail.com or call 888.304.0702. Bookings run direct through the Indiana office, and every inquiry gets an answer in one business day.',
   path: PATH,
   image: OG_IMAGE,
 });
@@ -120,9 +120,9 @@ export default function ContactUsPage() {
               <Prose>
                 <p>
                   Email gets you a written record of the date, the fee, and the room, which is
-                  what your committee will ask for. Call if the date is close. Either way
-                  you&rsquo;re reading a reply from Damian or from his office manager Lori within
-                  one business day, not from a bureau.
+                  what your committee will ask for. Call if the date is close. Either way you
+                  get a reply from Damian or from his office manager Lori inside one business
+                  day, not from a bureau.
                 </p>
                 <p>
                   Press, podcast producers and brands looking at a partnership use the same
@@ -272,10 +272,10 @@ export default function ContactUsPage() {
               <Prose measure="narrow">
                 <p>
                   Damian books most of his events directly with the client. A simple contract and
-                  a small share of the fee hold your date, and the balance is due the day of the
-                  event. He books his own airfare and rental car against one travel fee, quoted
-                  before you sign. You book the hotel. After that it&rsquo;s Lori&rsquo;s
-                  calendar, not yours.
+                  a small deposit hold your date, and the balance is due the day of the event. He
+                  books his own airfare and rental car against one travel fee, quoted up front.
+                  You book the hotel. After that the date is on Lori&rsquo;s calendar and off
+                  your list.
                 </p>
                 <p className={styles.asideNote}>
                   There are a few bureaus we have worked with successfully over the years. We

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import { CTABand } from '@/components/sections/CTABand';
@@ -44,15 +45,11 @@ const JOIN_SUBJECT = 'BoASG: I want in';
 const JOIN_BODY = [
   'Damian,',
   '',
-  'I read the BoASG page and I want to join. Here is where I sit in the business:',
+  'I read the BoASG page and I want in.',
   '',
-  'Name:',
-  'Operation or company:',
-  'What I grow, sell, or finance:',
-  'State:',
-  'Phone:',
+  "Here's who you'd be getting: [your name, your operation or company, what you grow or sell or finance, and your state].",
   '',
-  'Send me the monthly terms, the next program date, and how to get on the calls.',
+  'Send me the terms and the date of the next program.',
   '',
   'Thanks,',
 ].join('\n');
@@ -70,14 +67,21 @@ const MAILTO_PLAIN = `mailto:${contact.email}`;
    old site had. Kept in constants so the typographic apostrophes survive JSX.
    ============================================================================ */
 
+/* Cadence reconciled in Phase 4. The source page said "we gather bi-monthly"
+   in the hero and "Bi-monthly online programs" in the bullets, then "Every other
+   Friday at 11am Eastern" in the footnote. "Bi-monthly" reads either as twice a
+   month or as every two months, and only one of those agrees with the footnote.
+   The footnote is the specific, operational statement and it is on the same
+   page, so it wins and the ambiguous word is gone. Nothing new was asserted:
+   every schedule word below is the source's own. */
 const HERO_INTRO =
-  'The Business of Ag Success Group is an information-packed community of ag professionals that span the industry, from pig farmers to beet growers, to ag finance and planning. Together, we gather bi-monthly in an incredible information exchange, led by world recognized Agriculturist, Damian Mason and International Swine Management Consultant Todd Thurman. If you’re looking for a community to join where you get take-aways at every turn, this is it.';
+  'The Business of Ag Success Group is an information-packed community of ag professionals that span the industry, from pig farmers to beet growers, to ag finance and planning. Together, we gather every other Friday in an incredible information exchange, led by world recognized Agriculturist, Damian Mason and International Swine Management Consultant Todd Thurman. If you’re looking for a community to join where you get take-aways at every turn, this is it.';
 
 const POSITIONING =
   'The Business of Ag Success Group (BoASG) is a business outlook, advisory, and networking community for Ag professionals.';
 
 const WHAT_YOU_GET = [
-  'Bi-monthly online programs addressing Business and Agricultural topics',
+  'Online programs every other Friday addressing Business and Agricultural topics',
   'Guest presenters delivering pertinent information and implementable ideas',
   'Special promotions',
   'Networking opportunities within the group',
@@ -103,8 +107,15 @@ const DAMIAN_EXPERTISE = [
   'Sales and Training',
 ];
 
+/* Country count reconciled in Phase 4. The old /boasg/ bio was the only page on
+   the whole site that said 8 foreign countries; /keynote/ and
+   /collaboration-opportunities/ both said 7. Keynote is also the newer page
+   (article:modified_time 2024-08-05 against boasg's 2023-08-01), so 7 wins on
+   both frequency and recency and the site now says 7 everywhere. Flagged to the
+   client: if the real count is 8, one string here and every other 7 on the site
+   move together. */
 const DAMIAN_BIO =
-  'Damian Mason is a leading voice in the Agricultural industry, sought out by media, podcasts, and publications for his tell-it-like-it-is style of delivery. He gives you the truth about Ag without sugar coating the message, helping to prepare his listeners (and BoASG members) to navigate their way through the rapidly changing, volatile industry. He has spoken and consulted with the biggest names in Agriculture, in all 50 states, 8 foreign countries, and in every segment of Ag.';
+  'Damian Mason is a leading voice in the Agricultural industry, sought out by media, podcasts, and publications for his tell-it-like-it-is style of delivery. He gives you the truth about Ag without sugar coating the message, helping to prepare his listeners (and BoASG members) to navigate their way through the rapidly changing, volatile industry. He has spoken and consulted with the biggest names in Agriculture, in all 50 states, 7 foreign countries, and in every segment of Ag.';
 
 const TODD_EXPERTISE = [
   'Animal Performance',
@@ -124,7 +135,7 @@ const MAILING_LIST_COPY =
   'Damian’s mailing list is the shorter commitment. You get what he’s seeing in the business of food, fuel, and fiber, and you can join the group later.';
 
 const JOIN_QUESTION =
-  'Are you an Ag professional who could benefit from outside perspectives, ideas, insights, and vision? Joining starts with an email. Tell Damian what you grow, sell, or finance, and he’ll send you the details and the next program date.';
+  'Are you an Ag professional who could benefit from outside perspectives, ideas, insights, and vision? There’s no checkout. Tell Damian what you grow, sell, or finance, and he’ll send you the terms and the next program date.';
 
 const JOIN_FALLBACK_LEAD = 'The button opens your email app with the message started. If it doesn’t, write to ';
 
@@ -133,7 +144,7 @@ const JOIN_FALLBACK_LEAD = 'The button opens your email app with the message sta
 export const metadata: Metadata = buildMetadata({
   title: 'The Business of Ag Success Group',
   description:
-    'A bi-monthly business outlook, advisory, and networking community for Ag professionals, led by Damian Mason and swine consultant Todd Thurman. Email Damian to join.',
+    'Every other Friday at 11am Eastern, 60 to 90 minutes of Ag outlook and an interactive Q&A, led by Damian and swine consultant Todd Thurman. Email to join.',
   path: '/boasg/',
   image: {
     url: brandAssets.boasg,
@@ -184,7 +195,7 @@ export default function BoasgPage() {
                 <Image
                   className={styles.badgeImg}
                   src={brandAssets.boasgWhite}
-                  alt="The Business of Ag Success Group badge, established 2020"
+                  alt="The Business of Ag Success Group seal, a wheat head over the BoASG monogram, established 2020."
                   width={800}
                   height={800}
                   priority
@@ -260,6 +271,17 @@ export default function BoasgPage() {
               <Heading level={2} size="2xl" folio="No. 02" id="who-leads-it-title">
                 Led by Damian Mason and Todd Thurman
               </Heading>
+              <Prose measure="wide">
+                <p>
+                  Damian works keynote dates between calls. If you&rsquo;d rather sample him
+                  before you join, the{' '}
+                  <Link href="/keynote/">keynote program</Link> is one place and{' '}
+                  <Link href="/the-business-of-agriculture/">
+                    The Business of Agriculture podcast
+                  </Link>{' '}
+                  is another.
+                </p>
+              </Prose>
             </div>
           </div>
 
@@ -284,7 +306,7 @@ export default function BoasgPage() {
                 <Image
                   className="dm-photo__img"
                   src="/img/photos/portrait-black-suit.jpg"
-                  alt="Damian Mason, arms folded, in a dark blazer beside a window."
+                  alt="Damian Mason with his arms folded, in a charcoal jacket and an open collar, looking straight down the lens."
                   width={1333}
                   height={2000}
                   loading="lazy"
@@ -329,8 +351,8 @@ export default function BoasgPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 02 </span>
-                Todd Thurman, founder of SwineTex Consulting Services. Twenty years in
-                swine production, most of it spent inside other people&rsquo;s operations.
+                Todd Thurman, founder of SwineTex Consulting Services. More than 20 years
+                spent making other people&rsquo;s pork operations more profitable.
               </figcaption>
             </figure>
           </div>
@@ -392,7 +414,7 @@ export default function BoasgPage() {
         panel={{
           eyebrow: 'The group',
           value: '2020',
-          label: 'meeting since',
+          label: 'established',
           note: 'Damian Mason and Todd Thurman host every program.',
         }}
       />

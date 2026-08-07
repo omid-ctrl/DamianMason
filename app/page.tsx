@@ -45,9 +45,9 @@ import styles from './page.module.css';
  */
 
 export const metadata = buildMetadata({
-  title: 'Damian Mason, Agriculture Keynote Speaker and Podcaster',
+  title: 'Damian Mason, Agricultural Keynote Speaker',
   description:
-    'Purdue Ag Econ degree, Second City Chicago, and an Indiana farm. Since 1994 Damian Mason has taken all three to over 2,400 audiences in all 50 states. Book the keynote, or hear the podcast 40,000 people listen to every month.',
+    'Since 1994 Damian Mason has spoken to over 2,400 audiences in all 50 states and 7 foreign countries. Book the keynote, or start with the Monday podcast.',
   path: '/',
   titleIsAbsolute: true,
 });
@@ -74,7 +74,7 @@ const PLANNER_BENEFITS = [
   },
   {
     title: 'Add-On Options',
-    body: 'Extended breakout sessions, in depth. Keynote not enough? No problem!',
+    body: 'Keynote not enough? No problem! Add an in-depth, extended breakout session alongside it.',
   },
 ] as const;
 
@@ -89,9 +89,9 @@ const ROLES = [
   },
   {
     title: 'News and Commentary',
-    body: 'Cheddar News on the food supply. NewsmaxTV on wheat and food inflation. When a network needs somebody who can explain fertilizer prices on camera, they call.',
+    body: 'Cheddar News on climate and food shortages. NewsmaxTV on wheat and food price inflation. When a network needs the fertilizer shortage explained on camera, they call.',
     href: '/blog-news/',
-    linkLabel: 'See the media appearances',
+    linkLabel: 'Watch the on-air clips',
   },
   {
     title: 'Influencer and Promoter',
@@ -174,7 +174,7 @@ export default function HomePage() {
                 <p>
                   Damian Mason has an exceptional understanding of the Agriculture industry,
                   he’s been involved in it his entire life. He reads the research, tracks
-                  current events, and calls the industry leaders who tell him what is actually
+                  current events, and calls the industry leaders who tell him what’s actually
                   coming. Your growers get the outlook, not the forecast.
                 </p>
                 <p>
@@ -186,7 +186,7 @@ export default function HomePage() {
               </Prose>
               <div className={styles.actions}>
                 <Button href="/keynote/" variant="secondary">
-                  See What He Speaks About
+                  See the Keynote Program
                 </Button>
               </div>
             </div>
@@ -196,7 +196,7 @@ export default function HomePage() {
                 <Image
                   className="dm-photo__img"
                   src="/img/photos/speaking-to-audience.jpg"
-                  alt="Damian Mason speaking to a seated room of farmers at long tables, most of them laughing."
+                  alt="Damian Mason, seen from behind in a tan sport coat, working a room of growers seated at long banquet tables, several of them grinning back at him."
                   width={2000}
                   height={1336}
                   loading="lazy"
@@ -205,7 +205,7 @@ export default function HomePage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 02 </span>
-                Damian runs 60 to 90 minutes. He will not speak while people are eating or
+                Damian runs 60 to 90 minutes. He won’t speak while people are eating or
                 tables are being cleared.
               </figcaption>
             </figure>
@@ -269,14 +269,14 @@ export default function HomePage() {
             <div className={`${styles.stack} col-span-6 md:col-span-5`}>
               <Prose measure="narrow">
                 <p>
-                  Booking a date, sizing up a program, or working out what a travel line item
-                  looks like? The meeting coordinator page has the contract, the room setup,
-                  and the answers.
+                  Booking a date, sizing up a program, or working out the travel line item?
+                  The meeting coordinators page has the contract terms, the travel fee, and
+                  the room setup.
                 </p>
               </Prose>
               <div className={styles.actions}>
                 <Button href="/meeting-coordinators/" variant="secondary">
-                  Go to Meeting Coordinators
+                  See Fees, Travel, and AV
                 </Button>
               </div>
             </div>
@@ -433,9 +433,9 @@ export default function HomePage() {
               <Prose>
                 <p>
                   Two titles: <em>Food Fear</em>, on why the hype around your dinner is wrong,
-                  and <em>Do Business Better</em>, on running a business you actually want.
-                  Damian wrote both after speaking to companies such as Merck, Land O’Lakes,
-                  and Cargill.
+                  and <em>Do Business Better</em>, on defining success on your own terms.
+                  Damian wrote the second one after speaking to companies such as Merck, Land
+                  O’Lakes, and Cargill.
                 </p>
               </Prose>
               <div className={styles.actions}>

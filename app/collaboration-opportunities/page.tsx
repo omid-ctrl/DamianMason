@@ -34,9 +34,9 @@ const NEWSLETTER = '/join-the-conversation/';
 const OFFICE_MAILTO = `mailto:${contact.email}`;
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Collaboration Opportunities',
+  title: 'Podcast Sponsorship and Collaboration',
   description:
-    'Podcast guesting, episode sponsorship, media commentary and content partnerships with Damian Mason. More than 40,000 people hear the podcast every month, and they work in food, fuel, and fiber.',
+    'Sponsor an episode, guest on one, or pitch a content partnership. The podcast reaches more than 40,000 listeners a month in food, fuel, and fiber.',
   path: ROUTE,
   // The old page shipped no og:image at all, so every share of it rendered as
   // a bare link. The root opengraph-image does not cascade to this segment.
@@ -211,9 +211,9 @@ export default function CollaborationOpportunitiesPage() {
               <Prose measure="full">
                 <p>
                   Damian hosts two podcasts and runs the{' '}
-                  <a href="/boasg/">Business of Ag Success Group</a>. He books guests
-                  every week, and he’ll say yes to other people’s shows too. Want your
-                  story in front of an audience that already works in your business?
+                  <a href="/boasg/">Business of Ag Success Group</a>. He books guests for
+                  his own shows, and he says yes to other people’s. Want your story in
+                  front of an audience that already works in your business?
                 </p>
               </Prose>
               <div className={styles.cardAction}>
@@ -235,7 +235,7 @@ export default function CollaborationOpportunitiesPage() {
                 <p>
                   A story breaks and you need someone who can say what it does to a
                   grower’s balance sheet. Look no further. Damian has done it on Cheddar
-                  News, Newsmax TV, Straight Arrow News and Eagle Country 95.9, and he
+                  News, NewsmaxTV, Straight Arrow News, and Eagle Country 95.9, and he
                   doesn’t need a briefing packet first.
                 </p>
               </Prose>
@@ -268,7 +268,7 @@ export default function CollaborationOpportunitiesPage() {
         id="guest-appearance"
         eyebrow="Booking"
         heading="For your next guest appearance."
-        copy="Tell us the show, the date and who’s listening. We answer within one business day."
+        copy="Tell us the show, the date, and who’s listening. We typically answer within one business day."
         actions={[{ label: 'Contact Damian', href: CONTACT }]}
       />
 
@@ -404,9 +404,8 @@ export default function CollaborationOpportunitiesPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">FIG. 02 </span>
-                Growers, agronomists and ag lenders at a winter meeting. This is the room
-                a collaboration puts you in front of. Damian is the one with his back to
-                the camera.
+                Growers, agronomists, and ag lenders. This is the room a sponsorship puts
+                you in front of. Damian is the one with his back to the camera.
               </figcaption>
             </figure>
           </div>
@@ -431,7 +430,7 @@ export default function CollaborationOpportunitiesPage() {
           <Prose className={styles.headIntro}>
             <p>
               All three of these came in after a live event, not a podcast. It’s the same
-              prep either way. More of them, including the video ones, are on the{' '}
+              prep either way. Ten more, plus four on video, are on the{' '}
               <a href="/reviews/">reviews page</a>.
             </p>
           </Prose>

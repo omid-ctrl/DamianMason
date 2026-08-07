@@ -47,6 +47,13 @@
 export type Post = {
   slug: string;
   title: string;
+  /**
+   * The `<title>` for the post, when the headline is too long to survive a
+   * SERP. Both headlines here run past 55 characters before the site suffix is
+   * even added, so both carry one. It is the headline cut down, never a
+   * different claim. Falls back to `title` when absent.
+   */
+  seoTitle?: string;
   /** ISO date, from the WordPress `datePublished` in the page's JSON-LD. */
   date: string;
   excerpt: string;
@@ -63,6 +70,7 @@ export const posts: Post[] = [
     slug: 'eggflation-gives-producers-record-profits',
     title:
       '‘Eggflation’ Gives Producers Record Profits While Internet Mocks Outrageous Prices',
+    seoTitle: '‘Eggflation’ Gives Producers Record Profits',
     date: '2022-12-16',
     // Written for the rebuild. Not from the source.
     excerpt:
@@ -80,10 +88,11 @@ export const posts: Post[] = [
   {
     slug: 'how-the-climate-crisis-is-causing-food-shortages-globally',
     title: 'How the Climate Crisis is Causing Food Shortages Globally',
+    seoTitle: 'Climate Crisis and Global Food Shortages',
     date: '2023-04-19',
     // Written for the rebuild. Not from the source.
     excerpt:
-      'Damian went on Cheddar News to explain how climate pressure turns into real food shortages. Watch the segment before your next board meeting.',
+      'Cheddar News called in April 2023 to ask how climate pressure turns into real food shortages. Damian took the question on camera. Watch the segment here.',
     author: 'Damian Mason',
     // Verbatim and complete. A whole Divi section, row, column and text module
     // were built to hold this one sentence.

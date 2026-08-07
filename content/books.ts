@@ -18,9 +18,17 @@
  * anywhere in the mirrored source), so every `buyUrl` is an empty string and
  * must be filled in before the books block ships with live purchase links.
  *
- * OPEN ITEM: the Do Business Better description below is reproduced verbatim
- * from the old site, where it was truncated mid-word and ends at "how to
- * achieve i". The client must supply the complete final sentence.
+ * OPEN ITEM: the old Do Business Better product page ended mid-word. Its final
+ * sentence read, in full and exactly this far:
+ *
+ *   "Do Business Better helps you define success on your terms, then shows you
+ *    how to achieve i"
+ *
+ * Nothing on the live site, in the JSON-LD, or in the og:description completed
+ * it, so there is no source for the ending and none has been written here. The
+ * description below stops at the last complete sentence instead. The client
+ * needs to supply that final sentence (it is almost certainly "...then shows
+ * you how to achieve it."), at which point it goes back in.
  */
 
 export type Book = {
@@ -69,9 +77,18 @@ export const books: Book[] = [
     title: 'Do Business Better',
     subtitle: 'Traits, Habits, and Actions to Help You Succeed',
     format: 'paperback',
-    // Verbatim, including the truncation at the end. See OPEN ITEM above.
+    // Verbatim through the last complete sentence, then cut. The old site's
+    // final sentence stopped mid-word at "how to achieve i" and shipping that
+    // string would reproduce the defect in the page copy, the metadata, and the
+    // JSON-LD, which is where it lived on the old site. Nothing was written to
+    // replace it. See OPEN ITEM above.
+    //
+    // The "2,000 audiences across the world" figure is the book jacket's, not
+    // the site's. It is older than the 2,400 the rest of the site carries and it
+    // is left alone: it is a quotation of the book, and the two numbers do not
+    // contradict, they date from different years.
     description:
-      'Build your best life by forging your own path to business success\n\nAfter speaking to companies such as Merck, Land O’Lakes, and Cargill, and 2,000 audiences across the world, Damian Mason, successful businessman, agriculturalist, podcaster, and writer, wants to help you achieve your entrepreneurial goals and live a better life. While other business books claim to tell you how to reach success, they fall short because they don’t address the fact that success is different for each of us. Do Business Better helps you define success on your terms, then shows you how to achieve i',
+      'Build your best life by forging your own path to business success\n\nAfter speaking to companies such as Merck, Land O’Lakes, and Cargill, and 2,000 audiences across the world, Damian Mason, successful businessman, agriculturalist, podcaster, and writer, wants to help you achieve your entrepreneurial goals and live a better life. While other business books claim to tell you how to reach success, they fall short because they don’t address the fact that success is different for each of us.',
     cover: 'dbb-online-store.png',
     buyUrl: '',
     buyLabel: 'Buy the book',

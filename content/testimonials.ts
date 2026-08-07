@@ -144,8 +144,14 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 'william-noland',
+    // The live quote used an en dash where an em dash would go ("easy for staff
+    // to follow – how will this impact FCW"). Normalized to a colon, which is
+    // exactly the job the dash was doing: the second half names what "follow"
+    // meant. This matches the call already recorded in STATE.md, where the four
+    // em dashes inside verbatim third-party quotes were normalized to commas
+    // and a colon. Wording is untouched.
     quote:
-      'I thought today went great. The overall message and how you brought it home worked extremely well and was easy for staff to follow – how will this impact FCW, our customers and me. Well done!',
+      'I thought today went great. The overall message and how you brought it home worked extremely well and was easy for staff to follow: how will this impact FCW, our customers and me. Well done!',
     name: 'William Noland',
     organization: 'Farm Credit West',
     sourcePage: '/reviews/',

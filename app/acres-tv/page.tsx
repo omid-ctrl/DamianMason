@@ -81,9 +81,9 @@ const episodes = [
    ========================================================================== */
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Acres TV',
+  title: 'Acres TV: Business of Agriculture',
   description:
-    'Damian Mason’s Business of Agriculture streams on Acres TV, the platform built for Agricultural programming. Episodes run 40 to 55 minutes, with guests from market analyst Arlan Suderman to fourth generation farmer Luke Roush.',
+    'Acres TV is the streaming format built for Ag programming, and Business of Agriculture is a top-rated show on it. Six episodes run 41 to 54 minutes.',
   path: '/acres-tv/',
   image: {
     url: '/img/photos/acres-tv-arlan-suderman.png',
@@ -118,7 +118,7 @@ export default function AcresTvPage() {
           <>
             <p>
               It&rsquo;s a top-rated show on Acres TV, the streaming format
-              dedicated to Agricultural programming. Episodes run 40 to 55
+              dedicated to Agricultural programming. Episodes run 41 to 54
               minutes. You get the whole conversation, not a 90 second clip.
             </p>
           </>
@@ -143,7 +143,7 @@ export default function AcresTvPage() {
           priority: true,
         }}
         cutlineFolio="Fig. 01"
-        cutline="Two microphones, one video call. Damian and his guest talk for 40 to 55 minutes, and Acres TV carries all of it."
+        cutline="Two microphones on a stand. Damian and his guest talk for 41 to 54 minutes, and Acres TV carries all of it."
       />
 
       {/* ------------------------------------------------------------------
@@ -169,11 +169,11 @@ export default function AcresTvPage() {
               <Prose>
                 <p>
                   Acres TV streams Agricultural programming and nothing else.
-                  The tagline is &ldquo;Committed to Agriculture,&rdquo; and the
-                  lineup backs it up. Damian&rsquo;s Business of Agriculture is
-                  one of the top-rated shows on the platform, and the guest list
-                  runs from market analyst Arlan Suderman to a fourth generation
-                  farmer in his thirties.
+                  Its tagline is &ldquo;Committed to Agriculture.&rdquo;
+                  Damian&rsquo;s Business of Agriculture is one of the top-rated
+                  shows on the platform, and the guest list runs from market
+                  analyst Arlan Suderman to 30 year old fourth generation farmer
+                  Luke Roush.
                 </p>
                 <p>
                   You don&rsquo;t need another Ag show reading you the weather
@@ -243,8 +243,8 @@ export default function AcresTvPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 03 </span>
-                One card from the Acres TV listing. Damian on the right, Arlan
-                Suderman on the left, 42 minutes on the clock.
+                One card from the Acres TV listing. Damian and Arlan Suderman on
+                a split screen, 42 minutes on the clock.
               </figcaption>
             </figure>
           </div>

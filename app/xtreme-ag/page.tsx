@@ -39,9 +39,9 @@ import styles from './page.module.css';
 const XTREMEAG_PODCASTS = 'https://www.xtremeag.farm/podcasts';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'XtremeAg',
+  title: 'XtremeAg: Cutting the Curve',
   description:
-    'Damian Mason makes video, works field days, and hosts Cutting the Curve for XtremeAg. The Granary is filmed in a granary turned tavern on his Indiana farm.',
+    'XtremeAg is farmers across the United States sharing what works on their own operations. Damian makes video, works field days, and hosts Cutting the Curve.',
   path: '/xtreme-ag/',
 });
 
@@ -116,7 +116,7 @@ export default function XtremeAgPage() {
           height: 1100,
         }}
         cutlineFolio="Fig. 01"
-        cutline="On stage for XtremeAg. Purdue Ag Econ degree, Second City Chicago, and an Indiana farm he still owns."
+        cutline="On stage for XtremeAg. Purdue Ag Econ degree, Second City Chicago, and an Indiana farm of his own. All three are working here."
       />
 
       {/* SECTION 2. Both source paragraphs, verbatim. On the old page they were
@@ -160,7 +160,7 @@ export default function XtremeAgPage() {
               <Image
                 className={styles.mark}
                 src={brandAssetsExtra.xtremeAgTransparent}
-                alt="XtremeAg farm logo."
+                alt="XtremeAg"
                 width={242}
                 height={116}
                 loading="lazy"
@@ -208,8 +208,7 @@ export default function XtremeAgPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 02 </span>
-                Damian with XtremeAg growers in a standing cornfield, filmed for Cutting the
-                Curve. He is the one in shorts.
+                Damian with XtremeAg growers in a standing cornfield. He’s the one in shorts.
               </figcaption>
             </figure>
           </div>
@@ -235,9 +234,9 @@ export default function XtremeAgPage() {
 
               <Prose>
                 <p>
-                  Damian turned a grain building on his Indiana farm into a tavern. That’s
-                  where he and the XtremeAg crew film The Granary. If you’ve ever wanted to
-                  see an Ag show shot in a bar, the episodes are at xtremeag.farm.
+                  Damian turned a granary on his Indiana farm into a tavern. That’s where he
+                  and the XtremeAg crew film The Granary. An Ag show, shot in a bar, in a
+                  building that used to hold grain.
                 </p>
               </Prose>
 
@@ -263,7 +262,7 @@ export default function XtremeAgPage() {
               <Image
                 className={styles.markLarge}
                 src={brandAssets.granary}
-                alt="The Granary logo, hand lettered above a wheat head and the XtremeAg farm mark."
+                alt="The Granary, an XtremeAg show"
                 width={800}
                 height={800}
                 loading="lazy"
@@ -315,7 +314,7 @@ export default function XtremeAgPage() {
           value: '40,000',
           plus: true,
           label: 'listeners a month',
-          note: 'Across Damian’s podcasts, every month.',
+          note: 'Growers, ag lenders, and agronomists, every month.',
         }}
       />
     </>

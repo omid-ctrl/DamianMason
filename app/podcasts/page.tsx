@@ -36,18 +36,22 @@ import styles from './page.module.css';
  */
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Podcasts',
+  title: 'Agriculture Podcasts',
   description:
-    'Damian Mason hosts three shows: The Business of Agriculture every Monday, Do Business Better, and Cutting the Curve with the farmers of XtremeAg. More than 40,000 listeners a month.',
+    'Three shows, one host: The Business of Agriculture every Monday, Do Business Better, and Cutting the Curve with XtremeAg. Pick one and press play.',
   path: '/podcasts/',
 });
 
 /* The two audience figures are the ones the old site published: "more than
    40,000 listeners per month" (collaboration-opportunities) and "More Than
-   70,000 Views & Downloads Per Month" (home). They are quoted, not rounded. */
+   70,000 Views & Downloads Per Month" (home). They are quoted, not rounded.
+
+   The 70,000 is scoped. On the source page it sits directly under the line
+   "THE BUSINESS OF AGRICULTURE:", so it belongs to that one show and not to all
+   three, and the label says so. */
 const AUDIENCE_STATS: StatRowItem[] = [
   { value: '40,000', plus: true, label: 'Monthly listeners' },
-  { value: '70,000', plus: true, label: 'Monthly views and downloads' },
+  { value: '70,000', plus: true, label: 'Business of Ag views and downloads' },
   { value: '3', label: 'Shows he hosts' },
 ];
 
@@ -115,7 +119,7 @@ const SHOWS: Show[] = [
     width: 242,
     height: 116,
     body:
-      "XtremeAg is a group of high performing farmers from across the country who open up their own operations, numbers included. Damian hosts Cutting the Curve, produces video, and works their field days and trade shows. If you want to know what a top operation actually does, that's the show.",
+      "XtremeAg is a group of high performing farmers from across the country who open up their own operations and share what they've learned about turning a profit. Damian hosts Cutting the Curve, produces video, and works their field days and trade shows. If you want to know what a top operation actually does, that's the show.",
     platforms: [
       { label: 'Cutting the Curve', href: `${xag.site}/podcasts` },
       { label: 'The Granary', href: xag.granary },
@@ -171,7 +175,7 @@ export default function PodcastsPage() {
         eyebrow="The audience"
         title="Who is on the other end"
         items={AUDIENCE_STATS}
-        restatement="More than 40,000 people listen every month. Add the video and the total tops 70,000 views and downloads. They're growers, ag lenders, agronomists, and business owners, and they work in the business you sell into."
+        restatement="More than 40,000 people listen every month, and The Business of Agriculture alone runs more than 70,000 views and downloads. They're growers, ag lenders, agronomists, and business owners, and they work in the business you sell into."
       />
 
       <Section id="shows" aria-labelledby="shows-title">
@@ -256,7 +260,7 @@ export default function PodcastsPage() {
           value: '40,000',
           plus: true,
           label: 'Monthly listeners',
-          note: 'Plus more than 70,000 views and downloads a month.',
+          note: 'The Business of Agriculture runs more than 70,000 views and downloads a month.',
         }}
       />
     </>

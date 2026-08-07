@@ -32,9 +32,9 @@ const BOOKING_HREF = '/contact-us/';
 const YOUTUBE_CHANNEL = 'https://www.youtube.com/@DamianMasonChannel/videos';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Keynote',
+  title: 'Agricultural Keynote Speaker',
   description:
-    'A forward-looking, humor-infused keynote on the business of Agriculture. Watch three demo reels, read the booking FAQ, and check Damian Mason on your event date.',
+    'A forward looking futurist meets an Agricultural economist, for 60 to 90 minutes. Watch three demo reels, read the booking FAQ, then check your date.',
   path: ROUTE,
   image: {
     url: '/img/photos/keynote-stage-podium.jpg',
@@ -136,7 +136,7 @@ export default function KeynotePage() {
           height: 2000,
         }}
         cutlineFolio="Fig. 01"
-        cutline="Damian Mason. A Purdue Ag Econ degree, a Second City Chicago improv education, and an Indiana farm of his own."
+        cutline="Damian Mason. He studied Ag Econ at Purdue and improv at Second City, and he uses both in the same hour."
       />
 
       {/* == 2. The ledger =================================================== */}
@@ -214,7 +214,7 @@ export default function KeynotePage() {
 
               <div className={styles.actions}>
                 <Button href={BOOKING_HREF} variant="secondary" size="lg">
-                  Inquire about booking
+                  Check your event date
                 </Button>
               </div>
             </div>
@@ -295,8 +295,8 @@ export default function KeynotePage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 03 </span>
-                Damian moderating a grower panel for AgriGold. Breakouts, luncheons and
-                panels book alongside the keynote.
+                Damian moderating a grower panel for AgriGold. Breakouts, luncheons, and
+                panels book alongside the keynote, not instead of it.
               </figcaption>
             </figure>
           </div>
@@ -353,7 +353,7 @@ export default function KeynotePage() {
             </div>
             <figcaption className="dm-figure__caption">
               <span className="dm-figure__folio">Fig. 04 </span>
-              InSite CDM Winter Forum, 2023. The lectern is where he set the clicker down.
+              InSite CDM Winter Forum, 2023. One of over 2,400 rooms since 1994.
             </figcaption>
           </figure>
         </Container>
@@ -368,8 +368,8 @@ export default function KeynotePage() {
             </Heading>
             <Prose>
               <p>
-                Three from meeting planners who sat in the room while it happened. There
-                are more where these came from.
+                Three from meeting planners who sat in the room while it happened. Ten
+                more, plus four on video, are on the reviews page.
               </p>
             </Prose>
           </div>
@@ -420,7 +420,7 @@ export default function KeynotePage() {
 
               <div className={styles.actions}>
                 <Button href={BOOKING_HREF} variant="secondary" size="lg">
-                  Contact us
+                  Book Damian for your event
                 </Button>
               </div>
             </div>
@@ -438,8 +438,9 @@ export default function KeynotePage() {
             </Heading>
             <Prose>
               <p>
-                Fees, travel, room setup and what happens between the handshake and the
-                stage. Damian books most of his events directly with his clients.
+                Fees, travel, room setup, and what happens between the handshake and the
+                stage. Damian books most of his events directly with his clients, so
+                you’re asking the man who shows up.
               </p>
             </Prose>
           </div>

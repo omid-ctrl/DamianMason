@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import { Button, Card, Container, Eyebrow, Heading, Prose, Section } from '@/components/ui';
@@ -18,9 +19,9 @@ const MAILTO = `mailto:${contact.email}`;
 const YOUTUBE = 'https://www.youtube.com/@DamianMasonChannel/videos';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Meeting Coordinators',
+  title: 'Meeting Coordinators: How to Book',
   description:
-    'What a meeting planner needs to book Damian Mason: fees, travel, AV and room setup, the contract and deposit, and answers to the questions organizers ask most. Call the office at 888.304.0702.',
+    'Fees, travel, AV and room setup, the contract and the deposit, answered before you ask. Damian and his office manager Lori do the rest. Call 888.304.0702.',
   path: ROUTE,
 });
 
@@ -115,7 +116,7 @@ export default function MeetingCoordinatorsPage() {
           priority: true,
         }}
         cutlineFolio="FIG. 01"
-        cutline="Damian Mason, keynote speaker and agricultural economist. All 50 states and 7 foreign countries so far."
+        cutline="Damian Mason, agricultural economist. All 50 states and 7 foreign countries so far, and he booked the flights himself."
       />
 
       {/* ================================================================== */}
@@ -197,7 +198,7 @@ export default function MeetingCoordinatorsPage() {
               </ul>
 
               <Button href="/contact-us/" variant="secondary">
-                Fill Out an Inquiry Request
+                Check Your Event Date
               </Button>
             </div>
 
@@ -215,8 +216,9 @@ export default function MeetingCoordinatorsPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">FIG. 02 </span>
-                Attendees waiting for a signed copy after a keynote. Nobody went straight to the
-                parking lot.
+                Attendees waiting for a signed copy of{' '}
+                <Link href="/about/#books">Food Fear</Link> after a keynote. Nobody went
+                straight to the parking lot.
               </figcaption>
             </figure>
           </div>
@@ -278,8 +280,8 @@ export default function MeetingCoordinatorsPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">FIG. 03 </span>
-                A breakout session, rounds of ten and one screen. Damian will not speak while the
-                tables are being cleared.
+                A breakout session at rounds, one screen. Damian won’t speak while the tables
+                are being cleared.
               </figcaption>
             </figure>
           </div>
@@ -308,7 +310,7 @@ export default function MeetingCoordinatorsPage() {
           priority: false,
         }}
         cutlineFolio="FIG. 04"
-        cutline="A stand of press microphones. More than 40,000 people a month listen to Damian's podcast, and some of them will be in your room."
+        cutline="A stand of press microphones. Cheddar News, NewsmaxTV, Straight Arrow News, and Eagle Country 95.9 have all put him on."
       />
 
       {/* ================================================================== */}
@@ -339,7 +341,7 @@ export default function MeetingCoordinatorsPage() {
               <a href={YOUTUBE} target="_blank" rel="noopener noreferrer">
                 Damian&rsquo;s YouTube channel
               </a>
-              . If your question is not answered above, email the office at{' '}
+              . If your question isn’t answered above, email the office at{' '}
               <a href={MAILTO}>{contact.email}</a>.
             </p>
           </Prose>

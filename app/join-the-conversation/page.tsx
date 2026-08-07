@@ -44,9 +44,9 @@ const HERO_IMAGE = {
 };
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Join the Conversation',
+  title: 'Ag Newsletter and Mailing List',
   description:
-    "Damian Mason's mailing list: new episodes of The Business of Agriculture and Do Business Better, plus his read on the trends behind them in the business of food, fuel, and fiber. Free to join, unsubscribe any time.",
+    'More than 40,000 subscribers get Damian’s read on the trends in food, fuel, and fiber. Free to join, unsubscribe any time. Add yourself to the list.',
   path: PATH,
   image: {
     url: HERO_IMAGE.src,
@@ -139,8 +139,7 @@ export default function JoinTheConversationPage() {
                   </li>
                 </ul>
                 <p>
-                  One address, one list. You can unsubscribe from the bottom of any email, and the
-                  form below takes about twenty seconds.
+                  One address, one list. Unsubscribe from the bottom of any email.
                 </p>
               </Prose>
             </div>
@@ -172,8 +171,8 @@ export default function JoinTheConversationPage() {
               carries exactly that.
             </p>
             <p>
-              More than 40,000 people a month listen to the podcast this list follows. If
-              you&rsquo;d rather skip the inbox and just listen, start at the{' '}
+              More than 40,000 people listen to the podcast every month. If you&rsquo;d rather
+              skip the inbox and just listen, start at the{' '}
               <Link href="/podcasts/">podcast hub</Link>.
             </p>
           </Prose>
@@ -185,7 +184,7 @@ export default function JoinTheConversationPage() {
         eyebrow="Bookings"
         folio="No. 03"
         heading="Need a speaker, not an inbox?"
-        copy="Growers, ag lenders, association directors: if you have a date and a room, send them to the office. You'll have an answer inside one business day, from Damian or from his office manager Lori."
+        copy="Growers, ag lenders, association directors: if you have a date and a room, send both to the office. You'll have an answer inside one business day, from Damian or from his office manager Lori."
         actions={[
           {
             label: 'Email the office',
@@ -203,7 +202,7 @@ export default function JoinTheConversationPage() {
           value: '40,000',
           plus: true,
           label: 'listeners per month',
-          note: 'The mailing list is how a lot of them hear an episode posted.',
+          note: 'The list is how a lot of them hear an episode posted.',
         }}
       />
     </>

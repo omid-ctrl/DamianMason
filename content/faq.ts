@@ -68,7 +68,12 @@ export const faq: FaqItem[] = [
     id: 'speaking-fees',
     question: 'What are your speaking fees?',
     answer:
-      'Fees are quoted at the time of the inquiry. Damian’s fees are NET to him. Damian has been speaking to audiences for almost 30 years. He is well known and appreciated in the Agribusiness industry. His fees reflect that experience and attention to detail.',
+      // The source read "almost 30 years", written on a page last modified in
+      // 2023, when 1994 was 29 years back. It is now more than 30, so the
+      // relative phrase both understates and contradicts the site's own "Three
+      // decades of business ownership". Replaced with the fixed date the source
+      // gives everywhere else, which is exact and never goes stale.
+      'Fees are quoted at the time of the inquiry. Damian’s fees are NET to him. Damian has been speaking to audiences since 1994. He is well known and appreciated in the Agribusiness industry. His fees reflect that experience and attention to detail.',
     topics: ['fees', 'booking'],
   },
   {
@@ -87,6 +92,9 @@ export const faq: FaqItem[] = [
   {
     id: 'presentation-length',
     question: 'How long is your presentation?',
+    // The en dash here is a numeric range, which is what an en dash is for.
+    // Kept as source typography. The client's "no em dashes" instruction is
+    // about U+2014, and there is none on the site.
     answer: 'Presentations typically run between 60 – 90 minutes in length.',
     topics: ['program'],
   },
@@ -116,7 +124,10 @@ export const faq: FaqItem[] = [
     id: 'delivery-style',
     question: 'How would you describe your presentation delivery style?',
     answer:
-      'A forward looking futurist meets an agricultural economist – delivered with humor. Damian’s style makes his presentation entertaining, informative and memorable for your audience.',
+      // The source ran an en dash here doing an em dash's job ("agricultural
+      // economist – delivered with humor"). Replaced with a comma per VOICE.md
+      // section 5: light aside, so a comma, not the colon. Meaning unchanged.
+      'A forward looking futurist meets an agricultural economist, delivered with humor. Damian’s style makes his presentation entertaining, informative and memorable for your audience.',
     topics: ['program', 'audience'],
   },
   {

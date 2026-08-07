@@ -42,9 +42,9 @@ import styles from './page.module.css';
 const ROUTE = '/blog-news/';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Media',
+  title: 'Ag News and Media Appearances',
   description:
-    'Damian Mason in the press: nine appearances across Forbes, Newsmax, Cheddar News, Straight Arrow News, and Eagle Country 95.9, with three broadcast segments you can watch here.',
+    'Nine press appearances, from Forbes to Newsmax to Cheddar News, plus three broadcast segments you can watch here. When Ag makes news, they call Damian.',
   path: ROUTE,
 });
 
@@ -97,7 +97,7 @@ export default function MediaPage() {
         id="media"
         eyebrow="Forbes · Newsmax · Cheddar News · Straight Arrow News"
         title="News & Media"
-        deck="Reporters call when a story needs both halves: the commodity market and the grocery bill. Damian gives them the figure, then what it's actually doing to a farm. Nine appearances so far. Forbes, Newsmax, Cheddar News, Straight Arrow News, and Eagle Country 95.9."
+        deck="Reporters call when a story needs both halves: the commodity market and the grocery bill. Damian gives them the figure, then what it's doing to a farm in Indiana. Nine appearances, five outlets, three of them on video below."
         cutline="Every link below leaves this site. That's the point of press coverage."
       />
 
@@ -147,6 +147,10 @@ export default function MediaPage() {
                 price inflation. Eagle Country 95.9 on an event that&rsquo;s now several
                 years past, which is what happens to an interview about an upcoming
                 date. Nothing loads from YouTube until you press play.
+              </p>
+              <p>
+                Longer sit-downs run on <Link href="/acres-tv/">Acres TV</Link>, where an
+                episode goes 41 to 54 minutes.
               </p>
             </Prose>
           </div>

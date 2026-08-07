@@ -14,9 +14,9 @@ import { buildMetadata } from '@/lib/seo';
 import styles from './page.module.css';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'About Damian Mason',
+  title: 'Ag Economist, Comedian, Farm Owner',
   description:
-    'Purdue Ag Econ degree, Second City Chicago, and a working Indiana farm. The bio, the credentials and the books behind 2,400 audiences in 50 states since 1994.',
+    'Purdue Ag Econ degree. Second City Chicago. An Indiana farm of his own. The bio, the credentials, and the three books behind 2,400 audiences since 1994.',
   path: '/about/',
   type: 'profile',
 });
@@ -33,8 +33,8 @@ export const metadata: Metadata = buildMetadata({
    ========================================================================== */
 
 const HERO_ACTIONS: SectionActions = [
-  { label: 'Book Damian', href: '/contact-us/' },
-  { label: 'See the keynote', href: '/keynote/', variant: 'secondary' },
+  { label: 'Check your event date', href: '/contact-us/' },
+  { label: 'See the keynote program', href: '/keynote/', variant: 'secondary' },
 ];
 
 const CLOSING_ACTIONS: SectionActions = [
@@ -103,9 +103,11 @@ const FORMAT_LABEL: Record<string, string> = {
  * fragment that is not a complete sentence.
  *
  * This exists for one entry. The Do Business Better description was truncated
- * mid-word on the old site and ends at "how to achieve i". Nothing is invented
- * to finish it: the text is cut back to its last full stop, and the missing
- * final sentence is logged as an open item for the client.
+ * mid-word on the old site at "how to achieve i". As of Phase 4 the cut is made
+ * in content/books.ts instead, so the broken fragment cannot reach a meta
+ * description or a JSON-LD node the way it did on the old site. This guard
+ * stays as a belt and braces for any description harvested later. Nothing is
+ * invented to finish the sentence; it is logged as an open item for the client.
  */
 function bookParagraphs(description: string): string[] {
   const lastStop = description.lastIndexOf('.');
@@ -127,12 +129,12 @@ export default function AboutPage() {
         actions={HERO_ACTIONS}
         image={{
           src: '/img/photos/portrait-dark-blazer.jpg',
-          alt: 'Damian Mason in a dark blazer and jeans, leaning against a window frame.',
+          alt: 'Damian Mason in a charcoal blazer and jeans, one hand in a pocket, leaning against a whitewashed brick window frame.',
           width: 1467,
           height: 2000,
         }}
         cutlineFolio="Fig. 01"
-        cutline="Damian Mason, between dates. He books his own airfare and rental car. His office manager Lori handles everything after that."
+        cutline="Damian Mason. A Screen Actors Guild card and an Indiana farm, both in the same name."
       />
 
       {/* ================================================================
@@ -190,8 +192,7 @@ export default function AboutPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 <span className="dm-figure__folio">Fig. 02 </span>
-                A room of growers, mid program. Damian will not speak while people are eating or
-                tables are being cleared.
+                A room of growers, mid program. Since 1994 that’s happened over 2,400 times.
               </figcaption>
             </figure>
           </div>
@@ -256,8 +257,8 @@ export default function AboutPage() {
             </Heading>
             <Prose measure="wide">
               <p>
-                Three titles, two subjects: food and business. Here’s the long version of what you
-                get from the stage.
+                Three titles, two subjects: food and business. Here’s the long version of what
+                your audience gets in 60 to 90 minutes from the stage.
               </p>
             </Prose>
           </div>

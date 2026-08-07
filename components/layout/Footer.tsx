@@ -91,9 +91,16 @@ export function Footer({ className, ...rest }: FooterProps) {
                 Join the conversation
               </Heading>
               <Prose measure="narrow">
+                {/* No send cadence is claimed here. The only cadence word in
+                    the source is "his weekly audience of more than 40,000
+                    subscribers" (join-mailing-list), which describes the
+                    audience, not the schedule, and /join-the-conversation/
+                    deliberately states none for that reason. "Notified of new
+                    podcast releases and more" is that page's own subhead. */}
                 <p>
                   More than 40,000 subscribers get Damian{'’'}s read on the business of food,
-                  fuel, and fiber every week. Add yourself to the list.
+                  fuel, and fiber, plus a note when a new episode posts. Add yourself to the
+                  list.
                 </p>
               </Prose>
               {/* The Mailchimp form itself lives on the destination route and in

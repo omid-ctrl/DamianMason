@@ -106,8 +106,11 @@ export async function generateMetadata({
     });
   }
 
+  // `seoTitle` is the headline cut to fit a SERP. Both live headlines run long
+  // enough that the site suffix would push them past 60 characters and Google
+  // would rewrite them for us. The H1 on the page is still `post.title`.
   return buildMetadata({
-    title: post.title,
+    title: post.seoTitle ?? post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}/`,
     type: 'article',
@@ -257,7 +260,7 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
                       <VideoEmbed
                         video={video}
                         folio="FIG. 01"
-                        cutline={`${source.outlet}, ${formatPostDate(post.date)}. Damian Mason on climate pressure and the global food supply. The player loads from YouTube only after you press play.`}
+                        cutline={`${source.outlet}, ${formatPostDate(post.date)}. A national news desk calling an Indiana farm owner about the global food supply.`}
                       />
                       {/* The player is a facade, so it needs JavaScript. This
                           link does not, which keeps the source reachable no
