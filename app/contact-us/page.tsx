@@ -109,10 +109,11 @@ export default function ContactUsPage() {
 
       <Hero
         id="contact"
-        /* "Filed from the Indiana farm office" is /about/'s running head. It
-           was flying on three routes at once while a comment on /keynote/
-           asserted it belonged to one. This route's own dateline is the thing
-           it is actually promising: a person on the other end. */
+        /* "Filed from the Indiana farm office" was flying on three routes at
+           once while a comment on /keynote/ asserted it belonged to one. It
+           came off this route first, and off the site entirely in the Cool
+           Modern Ag revision. This eyebrow says the thing the route is actually
+           promising: a person on the other end. */
         eyebrow="Booking, press, and partnerships"
         title="Get in Touch"
         deck="Booking a date, pitching a collaboration, or just curious about the program? Email the office or call. We typically answer within one business day, and you’ll be talking to Damian or to Lori, not to a bureau."

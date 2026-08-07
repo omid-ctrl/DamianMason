@@ -448,9 +448,13 @@ export default function KeynotePage() {
           credential pillars come out of `content/credentials.ts`.
 
           The eyebrow moved off "Filed from the Indiana farm office" because
-          that is the /about/ hero's running head. /blog/ and /contact-us/ were
-          also flying it and now have their own, so the statement is true of the
-          site that ships, not just of this file.
+          that string was flying on four routes at once. It is now on none:
+          /blog/ and /contact-us/ got their own, and /about/, its last holdout,
+          lost it in the Cool Modern Ag revision. It was the one piece of
+          furniture on the site that was newspaper costume rather than
+          biography. The Indiana farm is still stated, in prose here and on
+          /about/, in the masthead rail as EST. 1994, INDIANA, and in the
+          footer.
           ==================================================================== */}
       <Section id="about-damian" aria-labelledby="about-damian-title">
         <Container>

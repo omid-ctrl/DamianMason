@@ -163,7 +163,14 @@ export default function AboutPage() {
     <>
       <Hero
         id="about"
-        eyebrow="Filed from the Indiana farm office"
+        /* Was "Filed from the Indiana farm office", a newspaper dateline.
+           Dropped in the Cool Modern Ag revision: it is the one piece of
+           furniture on the site that is costume rather than biography. The
+           Indiana farm is a real and load-bearing fact, and it is still stated
+           on this page in prose, in the masthead rail as EST. 1994, INDIANA,
+           and in the footer. What went is the pretence that a speaker's About
+           page is a wire report. */
+        eyebrow="Purdue Ag Econ, Second City Chicago, and a farm of his own"
         title="Ag economist, comedian, farm owner."
         /* Three decks have already been ruled out of this slot, and the comment
            records all three so a fourth attempt does not repeat any of them.

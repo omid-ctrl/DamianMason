@@ -72,9 +72,11 @@ export default function BlogIndexPage() {
 
       <Hero
         id="blog"
-        /* "Filed from the Indiana farm office" is /about/'s running head, and
-           it was flying on three routes at once. A blog index gets a dateline
-           about the writing, not about the desk. */
+        /* "Filed from the Indiana farm office" used to fly on three routes at
+           once. It came off this one first, and off /about/, its last holdout,
+           in the Cool Modern Ag revision: it was costume rather than
+           biography. A blog index gets an eyebrow about the writing anyway,
+           not about the desk. */
         eyebrow="Two interviews, written up"
         title="Blog"
         deck="Two posts. Both are about what food costs. When Straight Arrow News or Cheddar News needs an ag economist on the record about egg prices or a global food shortage, they call Damian. You’ll find both here, with the source attached."
