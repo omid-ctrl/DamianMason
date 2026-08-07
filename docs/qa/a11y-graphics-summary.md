@@ -1,6 +1,6 @@
 # Accessibility report
 
-Generated 2026-08-07T23:08:27.923Z against http://localhost:3210
+Generated 2026-08-07T23:16:10.154Z against http://localhost:3210
 
 Tags: `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa`. Best-practice rules excluded on purpose: the target is WCAG 2.1 AA, and folding opinions into the count hides the real number.
 

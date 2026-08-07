@@ -659,9 +659,16 @@
       grid-template-columns: var(--size-thumb) minmax(0, 1fr);
     }
   }
+  /* --size-thumb on BOTH axes of the breakpoint, not just inside the track.
+     Below 30rem the rail wraps above the row, and without the cap it filled
+     the column: five 346px squares on /blog-news/ at 390, which is a rail that
+     turns into five heroes the moment it stops being a rail. Same call
+     /podcasts/ makes for its stacked artwork and the post card makes for its
+     thumb, so all three 1:1 thumbs on the site are one size. */
   .dm-press__thumb {
     aspect-ratio: var(--ratio-square);
     inline-size: 100%;
+    max-inline-size: var(--size-thumb);
   }
   /* The 1:1 focal point from the crops table in DESIGN_SYSTEM 6.3. Every one
      of these five is a 16:9 broadcast frame with a face in the upper half and
@@ -789,6 +796,13 @@
    a numeral beside it, which makes the bar decorative under SC 1.4.11 rather
    than a meaningful graphic owing 3:1 on its own.
    ========================================================================== */
+/* Preflight zeroes every margin, so the head's rhythm is stated once here and
+   only for the elements that actually render. Same two steps the logo wall's
+   head uses, because this section sits directly under that wall and the two
+   heads have to read as peers. */
+.dm-sectors__title { margin-block-start: var(--space-2); }
+.dm-sectors__intro { margin-block-start: var(--space-5); }
+
 .dm-sectors__list {
   margin: var(--space-5) 0 0;
   display: grid;

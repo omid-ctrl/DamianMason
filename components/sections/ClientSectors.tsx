@@ -1,5 +1,8 @@
+import type { ReactNode } from 'react';
+
 import { clientSectors, clientTotal, sectorTally } from '@/content/client-sectors';
-import { Eyebrow } from '@/components/ui';
+import { Eyebrow, Heading, Prose } from '@/components/ui';
+import type { HeadingLevel } from '@/components/ui';
 
 /** The members of a bucket, so a row can be checked against the wall above it
  *  rather than asking to be believed. Derived from the same map the counts are,
@@ -29,12 +32,66 @@ const membersOf = (sector: string) =>
  * cannot answer that. This can, and every value in it is derived from the same
  * generated list the wall renders, so the two cannot disagree.
  *
+ * IT TAKES A REAL HEADING, AND THAT IS NOT OPTIONAL. It shipped for one round
+ * as an Eyebrow reading "The roster by kind" over a Section carrying nothing but
+ * an aria-label, which is precisely the substitution DESIGN_SYSTEM section 8 and
+ * do-not item 11 forbid: a mono label above a section is not a section heading,
+ * in the outline or in the render. axe does not catch it, because a missing
+ * heading is not a WCAG failure, which is the reason the rule is written down
+ * rather than left to the checker. The section now points its aria-labelledby at
+ * an h2 that exists.
+ *
  * Server component. No client JS, no dependency, nothing animates.
  */
-export function ClientSectors({ id }: { id?: string }) {
+export type ClientSectorsProps = {
+  id?: string;
+  /**
+   * The id put on the heading, for the wrapping Section's aria-labelledby.
+   *
+   * PASSED IN, NOT DERIVED FROM `id`, and that is the fix for a real defect.
+   * Every other section component in this directory owns its own Section and
+   * can derive `${id}-title` from the id it was given. This one does not: the
+   * route wraps it. Deriving here meant the page had to pass id="sectors" to
+   * BOTH the Section and this component to get the ids to line up, which put
+   * the same id on two elements. Duplicate ids are invalid HTML and axe will
+   * not catch it, because duplicate-id is a best-practice rule and
+   * scripts/a11y.mjs excludes those on purpose.
+   */
+  titleId?: string;
+  eyebrow?: ReactNode;
+  title?: ReactNode;
+  /** Rank, independent of size. Defaults to h2. */
+  level?: HeadingLevel;
+  /** The numbered prefix, rendered inside the heading. */
+  folio?: string;
+  /** Prose between the head and the ledger. */
+  intro?: ReactNode;
+};
+
+export function ClientSectors({
+  id,
+  titleId,
+  eyebrow = 'The roster by kind',
+  title,
+  level = 2,
+  folio,
+  intro,
+}: ClientSectorsProps) {
+  const headingId = titleId;
+
   return (
     <div className="dm-sectors" id={id}>
-      <Eyebrow>The roster by kind</Eyebrow>
+      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+      {title ? (
+        <Heading level={level} size="2xl" folio={folio} id={headingId} className="dm-sectors__title">
+          {title}
+        </Heading>
+      ) : null}
+      {intro ? (
+        <Prose className="dm-sectors__intro">
+          {typeof intro === 'string' ? <p>{intro}</p> : intro}
+        </Prose>
+      ) : null}
       <dl className="dm-sectors__list">
         {sectorTally.map(({ sector, label, count }) => (
           /* data-count rather than an inline style. DESIGN_SYSTEM section 10

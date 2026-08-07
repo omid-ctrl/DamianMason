@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T23:03:25.600Z",
+  "generatedAt": "2026-08-07T23:11:55.286Z",
   "base": "http://localhost:3200",
   "routes": 19,
   "window": {
@@ -19,7 +19,7 @@
       "11": 125,
       "12": 108
     },
-    "proseWords": 9377
+    "proseWords": 9375
   },
   "rebuilt": [
     {
@@ -683,7 +683,7 @@
     "podcasts": 342,
     "the-business-of-agriculture": 508,
     "do-business-better-podcast": 805,
-    "xtreme-ag": 347,
+    "xtreme-ag": 345,
     "blog-news": 427,
     "acres-tv": 383,
     "blog": 253,

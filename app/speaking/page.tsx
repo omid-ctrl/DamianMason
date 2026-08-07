@@ -409,9 +409,27 @@ export default function SpeakingPage() {
 
           Every value is derived from content/clients.ts, the same generated
           list the wall renders, so the two cannot disagree. */}
-      <Section id="sectors" surface="sunken" density="tight" aria-label="Client roster by sector">
+      {/* aria-labelledby, not aria-label. The section used to carry an
+          aria-label and no heading at all, so the ledger sat under a mono
+          eyebrow doing a heading's job. See the note in ClientSectors.tsx. */}
+      <Section
+        id="sectors"
+        surface="sunken"
+        density="tight"
+        aria-labelledby="sectors-title"
+      >
         <Container>
-          <ClientSectors />
+          <ClientSectors
+            titleId="sectors-title"
+            eyebrow="The roster by kind"
+            title="21 clients, six kinds of business."
+            /* The finding, stated once, in the place a reader meets the ledger.
+               Nine of the 21 are member organizations, which is to say nine of
+               them run an annual meeting, and an annual meeting is the thing a
+               keynote gets booked for. The wall above cannot say that: it asks a
+               reader to recognise 21 marks and do the sorting themselves. */
+            intro="The wall above answers who. This answers what kind. Nine of the 21 are commodity groups, trade associations or Farm Bureaus, so nine of them run an annual meeting and they’ve got a room to fill. The other twelve sell into that room: ag lenders, input suppliers, grain and livestock buyers, and one combine maker."
+          />
         </Container>
       </Section>
 
