@@ -87,7 +87,7 @@ export function Header({ items = nav, className }: HeaderProps) {
       <div className="dm-masthead__bar">
         <Container className="dm-masthead__bar-inner">
           <Link href="/" className="dm-masthead__wordmark dm-link-bare">
-            {/* The wordmark never reverses to white. Its ground is bone in
+            {/* The wordmark never reverses to white, and never sits on green. Its ground is the light stone in
                 every scope the masthead can appear in, which is the whole
                 argument of the design system. public/img/brand/wordmark-white
                 .png exists and is not used here or anywhere else. */}

@@ -101,11 +101,11 @@
      type column is the shorter of the two and the difference has to go
      somewhere. Both ends have been tried and both were wrong on their own.
      Aligning to the end put all of it above the H1: /speaking/ and /podcasts/
-     opened with about 430px of bare bone between the masthead rule and their
+     opened with about 430px of bare ground between the masthead rule and their
      first word and the orange primary action fell to y=910, below the fold of a
      900px window, on the two routes whose whole job is to get it pressed.
      Aligning to the start put all of it below the buttons instead, which was
-     measured at 228 to 300px of empty bone on eight routes and simply moved the
+     measured at 228 to 300px of empty ground on eight routes and simply moved the
      hole rather than closing it.
 
      Centring halves it and puts the type column's optical centre on the
@@ -138,9 +138,14 @@
   /* The masthead step, re-fitted to the measure it actually gets.
      From 1024 the type track is 7 of 12 columns, which is 535px at 1024 and
      708px at 1440, but --fs-6xl reaches its 120px ceiling at a 1159px viewport.
-     "Coordinators" and "Conversation" are roughly 700px of Bodoni at 120px, so
-     between 1024 and about 1340 the single longest word in six H1s could not
-     fit a line of its own at any break point. The old answer was to let the
+     "Coordinators" and "Conversation" were roughly 700px of the OLD Didone at
+     120px, which is what this override was originally fitted to. In the current
+     condensed gothic they have 18 to 32% headroom and "Straight-Forward" binds
+     instead: see --fs-6xl-hero in tokens.css, which is re-derived by
+     measurement rather than scaled.
+
+     Under the old face, between 1024 and about 1340, the single longest word in
+     six H1s could not fit a line of its own at any break point. The old answer was to let the
      word break mid syllable, which rendered "Coordinato / rs" and
      "Conversati / on" on the two pages a meeting planner is most likely to
      land on. The measure is fixed by the layout and the word is fixed by the
@@ -180,7 +185,7 @@
   /* The cap is a desktop guard: it stops a 5-column plate growing without limit
      on a 1344px container. It must not apply below 1024, where the figure spans
      all 12 columns. At 768 the cap held the plate at 512px inside a 704px
-     column and left a 192px orphan of bare bone down the right, which read as a
+     column and left a 192px orphan of bare ground down the right, which read as a
      layout failure rather than as space. */
   @media (min-width: 64rem) {
     .dm-hero__figure { max-inline-size: var(--size-portrait-max); }
@@ -212,7 +217,7 @@
      tablecloth or a stage light lands under a line of reversed type and takes
      it below 4.5:1 on its own. This darkens the column the type actually
      occupies and is gone before the far edge of the frame. It sits above both
-     duotone layers because it is a child of the plate, not a pseudo-element of
+     wash layers because it is a child of the plate, not a pseudo-element of
      it. */
   .dm-hero__scrim {
     position: absolute;

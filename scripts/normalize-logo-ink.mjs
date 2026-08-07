@@ -402,7 +402,7 @@ async function readLedger() {
  */
 async function normalizedBuffer(file, box, planned) {
   // flatten to white before the crop: the wall composites with
-  // mix-blend-mode: multiply over a bone cell, which needs an opaque pure white
+  // mix-blend-mode: multiply over a light cell, which needs an opaque pure white
   // ground, and DESIGN_SYSTEM section 7 requires every file in these two
   // folders to carry one.
   return sharp(file)

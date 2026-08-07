@@ -5,7 +5,7 @@ export type EyebrowTone = 'muted' | 'accent' | 'brand' | 'faint';
 
 export type EyebrowProps = {
   /**
-   * muted  the default. 5.74:1 on bone, so it is legal as real content.
+   * muted  the default. 5.76:1 on the page ground, so it is legal as real content.
    * accent the deepened print orange, 5.63:1. For a section number or a folio.
    * brand  the wordmark navy, 7.56:1.
    * faint  3.89:1. Decorative indices only, and pair it with aria-hidden.

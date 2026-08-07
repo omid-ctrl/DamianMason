@@ -5,7 +5,7 @@ export type CardVariant = 'raised' | 'bright' | 'ruled' | 'plate';
 
 export type CardProps = {
   /**
-   * raised the default. A bone card with a hairline border.
+   * raised the default. A light card with a hairline border.
    * bright the whitest surface in the system. Logo cells, form panels.
    * ruled  no box at all: a 2 unit rule across the top and nothing else. This is
    *        the broadsheet default for an episode row, a press item or a list.

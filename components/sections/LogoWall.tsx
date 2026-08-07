@@ -147,7 +147,7 @@ export type LogoWallProps = {
  * ink.mjs trims each file to its own ink, so the aspect ratio the cell sees is
  * the mark's and not the supplier's margin. src/styles/sections-core.css then
  * does the sizing: a height cap AND a width cap, contrast-lifted grayscale,
- * multiply on bone and invert plus screen on navy, and optical centering.
+ * multiply on a light ground and invert plus screen on a dark one, and optical centering.
  *
  * Column counts are locked by docs/DESIGN_SYSTEM.md section 7.2 and are not a
  * matter of taste: 7 at 1024 and up, 3 below it, because 7 and 3 are the only

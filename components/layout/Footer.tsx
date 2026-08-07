@@ -47,7 +47,7 @@ export function Footer({ className, ...rest }: FooterProps) {
                 column wider than the address is, and four above it. */}
             <div className="col-span-6 md:col-span-5 lg:col-span-4 dm-footer__brand">
               {/* The footer mark IS a link, and it does not reverse to white.
-                  Inside a navy plane it sits on a bone plate, which is what the
+                  Inside a dark plane it sits on a light plate, which is what the
                   paper scope exists for. */}
               <Link
                 className="dm-footer__plate"

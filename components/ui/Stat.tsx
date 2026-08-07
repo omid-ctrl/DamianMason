@@ -22,7 +22,9 @@ export type StatProps = {
 
 /**
  * The proof figure. Set in Source Serif 4 with tabular lining figures, at
- * --fs-figure, not in the Didone. The numbers are the entire brand argument
+ * --fs-figure, never in the display face: no condensed gothic has tabular
+ * figures, and a ledger column that does not align is not a ledger. The
+ * numbers are the entire brand argument
  * and they are not allowed to be the most fragile marks on the page.
  */
 export function Stat({ index, value, plus = false, label, note, className, ...rest }: StatProps) {

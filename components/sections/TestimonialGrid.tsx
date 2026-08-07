@@ -54,7 +54,7 @@ function attributionOf(item: Testimonial): string | undefined {
  * Row height in a CSS grid is set by the tallest cell in the row, and a
  * harvested testimonial wall runs from one line to sixteen. On /reviews/ that
  * put a 10-line quote from Michael Foods next to the 2-line unattributed one
- * and left about 330px of bare bone under the short cell, four times down the
+ * and left about 330px of bare ground under the short cell, four times down the
  * page, on the one route a meeting planner opens to check social proof.
  *
  * There is no masonry to reach for here: `grid-template-rows: masonry` is not
@@ -83,7 +83,7 @@ function balanceByLength(items: Testimonial[]): Testimonial[] {
  * `<figure>` and no `<figcaption>` anywhere, and one of those attributions was
  * hard-coded white on a light ground and therefore invisible. Every quote here
  * is a real `<figure>` with a real `<figcaption>`, and the caption color comes
- * from `.dm-quote__attribution` (--ink-muted, 5.74:1 on bone, 8.04:1 on navy),
+ * from `.dm-quote__attribution` (--ink-muted, 5.76:1 on the page ground, 8.04:1 on navy),
  * so it cannot go invisible in any surface scope.
  */
 export function TestimonialGrid({

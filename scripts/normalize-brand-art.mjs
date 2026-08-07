@@ -146,7 +146,7 @@ const GHOST_ALPHA = 24;
  * emits AVIF with a LOSSY alpha channel, and a lossy alpha channel does not
  * reproduce zero exactly. Fetching the optimizer's own output for the lockup
  * and profiling it: the region that should be fully transparent came back at
- * alpha 6 to 7 carrying grey 146, which over the bone ground darkens the paper
+ * alpha 6 to 7 carrying grey 146, which over the page ground darkens it
  * by about 7 levels in a rectangle the size of the deleted ghost. That is the
  * dirty rectangle, rebuilt by the encoder out of data the file did not need to
  * be carrying.

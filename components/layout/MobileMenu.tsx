@@ -10,7 +10,7 @@
  *
  * What it does, in order of the requirements it answers:
  *   trigger      a real <button> with aria-expanded and aria-controls
- *   sheet        role="dialog" aria-modal, full viewport, bone ground
+ *   sheet        role="dialog" aria-modal, full viewport, light ground
  *   focus        moved to Close on open, trapped while open, returned to the
  *                trigger on Escape or Close
  *   scroll       the page behind is locked through a data attribute, never an

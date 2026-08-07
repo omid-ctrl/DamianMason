@@ -22,7 +22,7 @@ export type SocialIconProps = {
  * happened to be authored.
  *
  * The SVG carries no color of its own. It inherits currentColor from the link
- * that wraps it, which is how the same icon works in the bone scope and in the
+ * that wraps it, which is how the same icon works in the light scope and in the
  * deep scope with no second stylesheet.
  */
 const GLYPH: Record<SocialIconName, ReactNode> = {
