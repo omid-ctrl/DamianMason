@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T23:46:17.074Z",
+  "generatedAt": "2026-08-08T01:37:18.666Z",
   "base": "http://localhost:3200",
   "routesCrawled": 19,
   "routes": [
@@ -168,10 +168,10 @@
   ],
   "blankWithoutNoopener": [],
   "totals": {
-    "uniqueUrlsChecked": 582,
-    "internal": 511,
+    "uniqueUrlsChecked": 615,
+    "internal": 544,
     "external": 71,
-    "anchors": 1335,
+    "anchors": 1338,
     "images": 190,
     "cssUrls": 570,
     "jsonLdBlocks": 41
@@ -182,7 +182,8 @@
       "route": "/, /about/, /speaking/, /keynote/, /reviews/, /meeting-coordinators/, /collaboration-opportunities/, /boasg/, /podcasts/, /the-business-of-agriculture/, /do-business-better-podcast/, /xtreme-ag/, /blog-news/, /acres-tv/, /blog/, /contact-us/, /join-the-conversation/, /blog/eggflation-gives-producers-record-profits/, /blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
       "type": "unreachable",
       "url": "https://www.facebook.com/DamianPMason",
-      "status": 400,
+      "status": null,
+      "error": "fetch failed",
       "sources": [
         {
           "route": "/",
@@ -1607,7 +1608,7 @@
       {
         "route": "/join-the-conversation/",
         "index": 0,
-        "bytes": 1168,
+        "bytes": 1160,
         "parses": true,
         "types": [
           "WebPage",
@@ -1621,7 +1622,7 @@
           "https://damianmason.com/join-the-conversation/",
           "https://damianmason.com/#website",
           "https://damianmason.com/#person",
-          "https://damianmason.com/img/photos/portrait-light-jacket.jpg",
+          "https://damianmason.com/img/photos/portrait-check-jacket.jpg",
           "https://damianmason.com/"
         ]
       },
@@ -1848,7 +1849,7 @@
         "url": "https://www.linkedin.com/in/damianmason/",
         "ok": false,
         "status": 999,
-        "method": "GET",
+        "method": "HEAD",
         "final": "https://www.linkedin.com/in/damianmason/"
       },
       {
@@ -2370,11 +2371,11 @@
         "final": "https://damianmason.com/join-the-conversation/"
       },
       {
-        "url": "https://damianmason.com/img/photos/portrait-light-jacket.jpg",
+        "url": "https://damianmason.com/img/photos/portrait-check-jacket.jpg",
         "ok": false,
         "status": 404,
         "method": "GET",
-        "final": "https://damianmason.com/img/photos/portrait-light-jacket.jpg"
+        "final": "https://damianmason.com/img/photos/portrait-check-jacket.jpg"
       },
       {
         "url": "https://straightarrownews.com/cc/eggflation-gives-producers-record-profits-while-internet-mocks-outrageous-prices/",
@@ -2420,8 +2421,8 @@
       "note": "Generated against a production server. Every check in this file is authoritative."
     },
     "publicAssets": {
-      "onDisk": 144,
-      "referenced": 95,
+      "onDisk": 162,
+      "referenced": 100,
       "unreferencedFormatSiblings": [
         "/img/brand/boasg-white.webp",
         "/img/brand/boasg.webp",
@@ -2570,12 +2571,64 @@
           "bytes": 4862
         },
         {
+          "file": "/img/photos/audience-from-the-back.jpg",
+          "bytes": 185628
+        },
+        {
+          "file": "/img/photos/food-fear-hardback.jpg",
+          "bytes": 85526
+        },
+        {
           "file": "/img/photos/forbes-feature.png",
           "bytes": 236122
         },
         {
+          "file": "/img/photos/green-screen-setup.jpg",
+          "bytes": 173048
+        },
+        {
           "file": "/img/photos/green-screen-studio.png",
           "bytes": 118136
+        },
+        {
+          "file": "/img/photos/podcast-desk.jpg",
+          "bytes": 157697
+        },
+        {
+          "file": "/img/photos/portrait-headshot.jpg",
+          "bytes": 278571
+        },
+        {
+          "file": "/img/photos/portrait-window-light.jpg",
+          "bytes": 274103
+        },
+        {
+          "file": "/img/photos/stage-blue-jacket.jpg",
+          "bytes": 128892
+        },
+        {
+          "file": "/img/photos/stage-crop-protection-slide.jpg",
+          "bytes": 254985
+        },
+        {
+          "file": "/img/photos/stage-dairy-case.jpg",
+          "bytes": 271844
+        },
+        {
+          "file": "/img/photos/stage-labor-slide.jpg",
+          "bytes": 327011
+        },
+        {
+          "file": "/img/photos/stage-mid-sentence.jpg",
+          "bytes": 299764
+        },
+        {
+          "file": "/img/photos/stage-walking-the-front.jpg",
+          "bytes": 151464
+        },
+        {
+          "file": "/img/photos/stage-white-wall.jpg",
+          "bytes": 125234
         },
         {
           "file": "/img/photos/xtremeag-cutting-the-curve-1.png",
@@ -2829,6 +2882,20 @@
       "method": "HEAD",
       "final": "https://www.youtube.com/@DamianMasonChannel"
     },
+    "http://localhost:3200/docs/av-and-room-setup-requirements.pdf": {
+      "url": "http://localhost:3200/docs/av-and-room-setup-requirements.pdf",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/docs/av-and-room-setup-requirements.pdf",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/docs/av-and-room-setup-requirements.pdf",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
     "http://localhost:3200/join-the-conversation/": {
       "url": "http://localhost:3200/join-the-conversation/",
       "ok": true,
@@ -2846,9 +2913,9 @@
     "https://www.facebook.com/DamianPMason": {
       "url": "https://www.facebook.com/DamianPMason",
       "ok": false,
-      "status": 400,
+      "status": null,
       "method": "GET",
-      "final": "https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2FDamianPMason"
+      "error": "fetch failed"
     },
     "https://x.com/DamianPMason": {
       "url": "https://x.com/DamianPMason",
@@ -2885,15 +2952,15 @@
         }
       ]
     },
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75": {
-      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75",
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=640&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=640&q=75",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75",
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=640&q=75",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75",
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=640&q=75",
           "status": 200,
           "location": null
         }
@@ -3361,15 +3428,15 @@
         }
       ]
     },
-    "http://localhost:3200/_next/static/chunks/2o0nihdsap8xv.css": {
-      "url": "http://localhost:3200/_next/static/chunks/2o0nihdsap8xv.css",
+    "http://localhost:3200/_next/static/chunks/144_836dnxwl4.css": {
+      "url": "http://localhost:3200/_next/static/chunks/144_836dnxwl4.css",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/static/chunks/2o0nihdsap8xv.css",
+      "final": "http://localhost:3200/_next/static/chunks/144_836dnxwl4.css",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/static/chunks/2o0nihdsap8xv.css",
+          "url": "http://localhost:3200/_next/static/chunks/144_836dnxwl4.css",
           "status": 200,
           "location": null
         }
@@ -3445,29 +3512,29 @@
         }
       ]
     },
-    "http://localhost:3200/_next/static/chunks/18y5dncf4aknj.js": {
-      "url": "http://localhost:3200/_next/static/chunks/18y5dncf4aknj.js",
+    "http://localhost:3200/_next/static/chunks/01z1_bd2cwy-q.js": {
+      "url": "http://localhost:3200/_next/static/chunks/01z1_bd2cwy-q.js",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/static/chunks/18y5dncf4aknj.js",
+      "final": "http://localhost:3200/_next/static/chunks/01z1_bd2cwy-q.js",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/static/chunks/18y5dncf4aknj.js",
+          "url": "http://localhost:3200/_next/static/chunks/01z1_bd2cwy-q.js",
           "status": 200,
           "location": null
         }
       ]
     },
-    "http://localhost:3200/_next/static/chunks/16r03p8l9i-91.js": {
-      "url": "http://localhost:3200/_next/static/chunks/16r03p8l9i-91.js",
+    "http://localhost:3200/_next/static/chunks/3eaej6b5uy2el.js": {
+      "url": "http://localhost:3200/_next/static/chunks/3eaej6b5uy2el.js",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/static/chunks/16r03p8l9i-91.js",
+      "final": "http://localhost:3200/_next/static/chunks/3eaej6b5uy2el.js",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/static/chunks/16r03p8l9i-91.js",
+          "url": "http://localhost:3200/_next/static/chunks/3eaej6b5uy2el.js",
           "status": 200,
           "location": null
         }
@@ -3487,43 +3554,43 @@
         }
       ]
     },
-    "http://localhost:3200/_next/static/chunks/1vhg7lwz6907n.js": {
-      "url": "http://localhost:3200/_next/static/chunks/1vhg7lwz6907n.js",
+    "http://localhost:3200/_next/static/chunks/3wpfyzl7gn4ic.js": {
+      "url": "http://localhost:3200/_next/static/chunks/3wpfyzl7gn4ic.js",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/static/chunks/1vhg7lwz6907n.js",
+      "final": "http://localhost:3200/_next/static/chunks/3wpfyzl7gn4ic.js",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/static/chunks/1vhg7lwz6907n.js",
+          "url": "http://localhost:3200/_next/static/chunks/3wpfyzl7gn4ic.js",
           "status": 200,
           "location": null
         }
       ]
     },
-    "http://localhost:3200/_next/static/chunks/3lpble3yuh2lc.js": {
-      "url": "http://localhost:3200/_next/static/chunks/3lpble3yuh2lc.js",
+    "http://localhost:3200/_next/static/chunks/0ze1zogn0igly.js": {
+      "url": "http://localhost:3200/_next/static/chunks/0ze1zogn0igly.js",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/static/chunks/3lpble3yuh2lc.js",
+      "final": "http://localhost:3200/_next/static/chunks/0ze1zogn0igly.js",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/static/chunks/3lpble3yuh2lc.js",
+          "url": "http://localhost:3200/_next/static/chunks/0ze1zogn0igly.js",
           "status": 200,
           "location": null
         }
       ]
     },
-    "http://localhost:3200/_next/static/chunks/1oc6sfdgycv_6.js": {
-      "url": "http://localhost:3200/_next/static/chunks/1oc6sfdgycv_6.js",
+    "http://localhost:3200/_next/static/chunks/1ki21oxa_c4i5.js": {
+      "url": "http://localhost:3200/_next/static/chunks/1ki21oxa_c4i5.js",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/static/chunks/1oc6sfdgycv_6.js",
+      "final": "http://localhost:3200/_next/static/chunks/1ki21oxa_c4i5.js",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/static/chunks/1oc6sfdgycv_6.js",
+          "url": "http://localhost:3200/_next/static/chunks/1ki21oxa_c4i5.js",
           "status": 200,
           "location": null
         }
@@ -3634,20 +3701,6 @@
         }
       ]
     },
-    "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css": {
-      "url": "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css",
-      "ok": true,
-      "status": 200,
-      "final": "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css",
-      "hops": 0,
-      "chain": [
-        {
-          "url": "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css",
-          "status": 200,
-          "location": null
-        }
-      ]
-    },
     "http://localhost:3200/_next/static/chunks/33s8p3dxj849i.css": {
       "url": "http://localhost:3200/_next/static/chunks/33s8p3dxj849i.css",
       "ok": true,
@@ -3657,6 +3710,20 @@
       "chain": [
         {
           "url": "http://localhost:3200/_next/static/chunks/33s8p3dxj849i.css",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css": {
+      "url": "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css",
           "status": 200,
           "location": null
         }
@@ -3718,15 +3785,15 @@
         }
       ]
     },
-    "http://localhost:3200/_next/static/chunks/1pi-woq__2xft.js": {
-      "url": "http://localhost:3200/_next/static/chunks/1pi-woq__2xft.js",
+    "http://localhost:3200/_next/static/chunks/2e-fwc9_rujp9.js": {
+      "url": "http://localhost:3200/_next/static/chunks/2e-fwc9_rujp9.js",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/static/chunks/1pi-woq__2xft.js",
+      "final": "http://localhost:3200/_next/static/chunks/2e-fwc9_rujp9.js",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/static/chunks/1pi-woq__2xft.js",
+          "url": "http://localhost:3200/_next/static/chunks/2e-fwc9_rujp9.js",
           "status": 200,
           "location": null
         }
@@ -3760,15 +3827,15 @@
         }
       ]
     },
-    "http://localhost:3200/_next/static/chunks/0v--zg4mzn8wf.js": {
-      "url": "http://localhost:3200/_next/static/chunks/0v--zg4mzn8wf.js",
+    "http://localhost:3200/_next/static/chunks/26_s_9dvbfg5q.js": {
+      "url": "http://localhost:3200/_next/static/chunks/26_s_9dvbfg5q.js",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/static/chunks/0v--zg4mzn8wf.js",
+      "final": "http://localhost:3200/_next/static/chunks/26_s_9dvbfg5q.js",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/static/chunks/0v--zg4mzn8wf.js",
+          "url": "http://localhost:3200/_next/static/chunks/26_s_9dvbfg5q.js",
           "status": 200,
           "location": null
         }
@@ -4054,99 +4121,99 @@
         }
       ]
     },
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75": {
-      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75",
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=750&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=750&q=75",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75",
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=750&q=75",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75",
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=750&q=75",
           "status": 200,
           "location": null
         }
       ]
     },
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75": {
-      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75",
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=828&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=828&q=75",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75",
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=828&q=75",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75",
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=828&q=75",
           "status": 200,
           "location": null
         }
       ]
     },
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75": {
-      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75",
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1080&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1080&q=75",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75",
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1080&q=75",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75",
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1080&q=75",
           "status": 200,
           "location": null
         }
       ]
     },
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75": {
-      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75",
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1200&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1200&q=75",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75",
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1200&q=75",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75",
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1200&q=75",
           "status": 200,
           "location": null
         }
       ]
     },
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75": {
-      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75",
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1920&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1920&q=75",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75",
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1920&q=75",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75",
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1920&q=75",
           "status": 200,
           "location": null
         }
       ]
     },
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75": {
-      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75",
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=2048&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=2048&q=75",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75",
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=2048&q=75",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75",
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=2048&q=75",
           "status": 200,
           "location": null
         }
       ]
     },
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75": {
-      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75",
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=3840&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=3840&q=75",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75",
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=3840&q=75",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75",
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=3840&q=75",
           "status": 200,
           "location": null
         }
@@ -5293,6 +5360,20 @@
         }
       ]
     },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Ftradeshow-floor-audience.png&w=1920&q=75": {
       "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Ftradeshow-floor-audience.png&w=1920&q=75",
       "ok": true,
@@ -5327,6 +5408,104 @@
       "status": 200,
       "method": "HEAD",
       "final": "https://damianmason.com/speaking/"
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
     },
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Ftradeshow-floor-audience.png&w=640&q=75": {
       "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Ftradeshow-floor-audience.png&w=640&q=75",
@@ -6077,6 +6256,20 @@
         }
       ]
     },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=640&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=640&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=640&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=640&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fbook-signing-table.jpg&w=640&q=75": {
       "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fbook-signing-table.jpg&w=640&q=75",
       "ok": true,
@@ -6111,6 +6304,104 @@
       "status": 200,
       "method": "HEAD",
       "final": "https://damianmason.com/meeting-coordinators/"
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=750&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=750&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=750&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=750&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=828&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=828&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=828&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=828&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1080&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1080&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1080&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1080&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1200&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1200&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1200&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1200&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1920&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1920&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1920&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1920&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=2048&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=2048&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=2048&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=2048&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=3840&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=3840&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=3840&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=3840&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
     },
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fbook-signing-table.jpg&w=750&q=75": {
       "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fbook-signing-table.jpg&w=750&q=75",
@@ -6308,6 +6599,20 @@
         }
       ]
     },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=640&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=640&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=640&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=640&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
     "https://i.ytimg.com/vi/M01PxhzRVFg/hqdefault.jpg": {
       "url": "https://i.ytimg.com/vi/M01PxhzRVFg/hqdefault.jpg",
       "ok": true,
@@ -6328,6 +6633,104 @@
       "status": 200,
       "method": "HEAD",
       "final": "https://damianmason.com/collaboration-opportunities/"
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=750&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=750&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=750&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=750&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=828&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=828&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=828&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=828&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1080&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1080&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1080&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1080&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1200&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1200&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1200&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1200&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1920&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1920&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1920&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1920&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=2048&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=2048&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=2048&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=2048&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=3840&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=3840&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=3840&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=3840&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
     },
     "http://localhost:3200/img/photos/speaking-to-audience.jpg": {
       "url": "http://localhost:3200/img/photos/speaking-to-audience.jpg",
@@ -10214,6 +10617,20 @@
         }
       ]
     },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=640&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=640&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=640&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=640&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
     "https://damianmason.com/join-the-conversation/": {
       "url": "https://damianmason.com/join-the-conversation/",
       "ok": true,
@@ -10221,15 +10638,113 @@
       "method": "HEAD",
       "final": "https://damianmason.com/join-the-conversation/"
     },
-    "http://localhost:3200/img/photos/portrait-light-jacket.jpg": {
-      "url": "http://localhost:3200/img/photos/portrait-light-jacket.jpg",
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=750&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=750&q=75",
       "ok": true,
       "status": 200,
-      "final": "http://localhost:3200/img/photos/portrait-light-jacket.jpg",
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=750&q=75",
       "hops": 0,
       "chain": [
         {
-          "url": "http://localhost:3200/img/photos/portrait-light-jacket.jpg",
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=750&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=828&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=828&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=828&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=828&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1080&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1080&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1080&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1080&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1200&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1200&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1200&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1200&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1920&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1920&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1920&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1920&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=2048&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=2048&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=2048&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=2048&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=3840&q=75": {
+      "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=3840&q=75",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=3840&q=75",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=3840&q=75",
+          "status": 200,
+          "location": null
+        }
+      ]
+    },
+    "http://localhost:3200/img/photos/portrait-check-jacket.jpg": {
+      "url": "http://localhost:3200/img/photos/portrait-check-jacket.jpg",
+      "ok": true,
+      "status": 200,
+      "final": "http://localhost:3200/img/photos/portrait-check-jacket.jpg",
+      "hops": 0,
+      "chain": [
+        {
+          "url": "http://localhost:3200/img/photos/portrait-check-jacket.jpg",
           "status": 200,
           "location": null
         }
@@ -18645,6 +19160,32 @@
         "inFooter": true
       }
     ],
+    "http://localhost:3200/docs/av-and-room-setup-requirements.pdf": [
+      {
+        "route": "/",
+        "kind": "a",
+        "text": "AV and Room Setup Requirements (PDF)",
+        "raw": "/docs/av-and-room-setup-requirements.pdf",
+        "inNav": false,
+        "inFooter": false
+      },
+      {
+        "route": "/keynote/",
+        "kind": "a",
+        "text": "AV and Room Setup Requirements (PDF)",
+        "raw": "/docs/av-and-room-setup-requirements.pdf",
+        "inNav": false,
+        "inFooter": false
+      },
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "a",
+        "text": "AV and Room Setup Requirements (PDF)",
+        "raw": "/docs/av-and-room-setup-requirements.pdf",
+        "inNav": false,
+        "inFooter": false
+      }
+    ],
     "http://localhost:3200/join-the-conversation/": [
       {
         "route": "/",
@@ -19855,32 +20396,14 @@
         "kind": "img[srcset]"
       }
     ],
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75": [
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=640&q=75": [
       {
         "route": "/",
         "kind": "img",
-        "alt": "Damian Mason with his arms folded, in a charcoal woven jacket and an open white collar, leaning against a white door jamb."
+        "alt": "Damian Mason in a charcoal woven jacket and a black open-collar shirt, hands behind his back, half smiling."
       },
       {
         "route": "/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/speaking/",
-        "kind": "img",
-        "alt": "Damian Mason with his arms folded, in a charcoal woven jacket and an open white collar, leaning against a white door jamb."
-      },
-      {
-        "route": "/speaking/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/boasg/",
-        "kind": "img",
-        "alt": "Damian Mason with his arms folded, in a charcoal woven jacket and an open white collar, leaning against a white door jamb."
-      },
-      {
-        "route": "/boasg/",
         "kind": "img[srcset]"
       }
     ],
@@ -21709,7 +22232,7 @@
         "raw": "http://localhost:3200/_next/static/media/effe91970fc4db64-s.p.0oace-s_gkfks.woff2"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/2o0nihdsap8xv.css": [
+    "http://localhost:3200/_next/static/chunks/144_836dnxwl4.css": [
       {
         "route": "/",
         "kind": "link"
@@ -22253,7 +22776,7 @@
         "kind": "script"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/18y5dncf4aknj.js": [
+    "http://localhost:3200/_next/static/chunks/01z1_bd2cwy-q.js": [
       {
         "route": "/",
         "kind": "script"
@@ -22331,7 +22854,7 @@
         "kind": "script"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/16r03p8l9i-91.js": [
+    "http://localhost:3200/_next/static/chunks/3eaej6b5uy2el.js": [
       {
         "route": "/",
         "kind": "script"
@@ -22487,7 +23010,7 @@
         "kind": "script"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/1vhg7lwz6907n.js": [
+    "http://localhost:3200/_next/static/chunks/3wpfyzl7gn4ic.js": [
       {
         "route": "/",
         "kind": "script"
@@ -22565,7 +23088,7 @@
         "kind": "script"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/3lpble3yuh2lc.js": [
+    "http://localhost:3200/_next/static/chunks/0ze1zogn0igly.js": [
       {
         "route": "/",
         "kind": "script"
@@ -22643,7 +23166,7 @@
         "kind": "script"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/1oc6sfdgycv_6.js": [
+    "http://localhost:3200/_next/static/chunks/1ki21oxa_c4i5.js": [
       {
         "route": "/",
         "kind": "script"
@@ -23558,7 +24081,7 @@
         "kind": "link"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css": [
+    "http://localhost:3200/_next/static/chunks/33s8p3dxj849i.css": [
       {
         "route": "/",
         "kind": "link"
@@ -23636,7 +24159,7 @@
         "kind": "link"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/33s8p3dxj849i.css": [
+    "http://localhost:3200/_next/static/chunks/40wm24q0990-c.css": [
       {
         "route": "/",
         "kind": "link"
@@ -24026,7 +24549,7 @@
         "kind": "link"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/1pi-woq__2xft.js": [
+    "http://localhost:3200/_next/static/chunks/2e-fwc9_rujp9.js": [
       {
         "route": "/",
         "kind": "script"
@@ -24260,7 +24783,7 @@
         "kind": "link"
       }
     ],
-    "http://localhost:3200/_next/static/chunks/0v--zg4mzn8wf.js": [
+    "http://localhost:3200/_next/static/chunks/26_s_9dvbfg5q.js": [
       {
         "route": "/",
         "kind": "script"
@@ -26962,101 +27485,45 @@
         "kind": "img[srcset]"
       }
     ],
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75": [
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=750&q=75": [
       {
         "route": "/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/speaking/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/boasg/",
         "kind": "img[srcset]"
       }
     ],
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75": [
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=828&q=75": [
       {
         "route": "/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/speaking/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/boasg/",
         "kind": "img[srcset]"
       }
     ],
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75": [
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1080&q=75": [
       {
         "route": "/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/speaking/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/boasg/",
         "kind": "img[srcset]"
       }
     ],
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75": [
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1200&q=75": [
       {
         "route": "/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/speaking/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/boasg/",
         "kind": "img[srcset]"
       }
     ],
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75": [
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=1920&q=75": [
       {
         "route": "/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/speaking/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/boasg/",
         "kind": "img[srcset]"
       }
     ],
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75": [
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=2048&q=75": [
       {
         "route": "/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/speaking/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/boasg/",
         "kind": "img[srcset]"
       }
     ],
-    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75": [
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&w=3840&q=75": [
       {
         "route": "/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/speaking/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/boasg/",
         "kind": "img[srcset]"
       }
     ],
@@ -30083,24 +30550,6 @@
       {
         "route": "/about/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/meeting-coordinators/",
-        "kind": "img",
-        "alt": "Damian Mason in a charcoal blazer and jeans, one hand in a pocket, leaning against a whitewashed brick window frame."
-      },
-      {
-        "route": "/meeting-coordinators/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/collaboration-opportunities/",
-        "kind": "img",
-        "alt": "Damian Mason in a charcoal blazer and jeans, one hand in a pocket, leaning against a whitewashed brick window frame."
-      },
-      {
-        "route": "/collaboration-opportunities/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Ffood-fear-audiobook-cover.png&w=640&q=75": [
@@ -30124,27 +30573,11 @@
       {
         "route": "/about/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/meeting-coordinators/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/collaboration-opportunities/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-dark-blazer.jpg&w=828&q=75": [
       {
         "route": "/about/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/meeting-coordinators/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/collaboration-opportunities/",
         "kind": "img[srcset]"
       }
     ],
@@ -30152,27 +30585,11 @@
       {
         "route": "/about/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/meeting-coordinators/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/collaboration-opportunities/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-dark-blazer.jpg&w=1200&q=75": [
       {
         "route": "/about/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/meeting-coordinators/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/collaboration-opportunities/",
         "kind": "img[srcset]"
       }
     ],
@@ -30180,41 +30597,17 @@
       {
         "route": "/about/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/meeting-coordinators/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/collaboration-opportunities/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-dark-blazer.jpg&w=2048&q=75": [
       {
         "route": "/about/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/meeting-coordinators/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/collaboration-opportunities/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-dark-blazer.jpg&w=3840&q=75": [
       {
         "route": "/about/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/meeting-coordinators/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/collaboration-opportunities/",
         "kind": "img[srcset]"
       }
     ],
@@ -30260,6 +30653,26 @@
         "kind": "img[srcset]"
       }
     ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=640&q=75": [
+      {
+        "route": "/speaking/",
+        "kind": "img",
+        "alt": "Damian Mason with his arms folded, in a charcoal woven jacket and an open white collar, leaning against a white door jamb."
+      },
+      {
+        "route": "/speaking/",
+        "kind": "img[srcset]"
+      },
+      {
+        "route": "/boasg/",
+        "kind": "img",
+        "alt": "Damian Mason with his arms folded, in a charcoal woven jacket and an open white collar, leaning against a white door jamb."
+      },
+      {
+        "route": "/boasg/",
+        "kind": "img[srcset]"
+      }
+    ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Ftradeshow-floor-audience.png&w=1920&q=75": [
       {
         "route": "/speaking/",
@@ -30290,6 +30703,76 @@
       {
         "route": "/speaking/",
         "kind": "link"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=750&q=75": [
+      {
+        "route": "/speaking/",
+        "kind": "img[srcset]"
+      },
+      {
+        "route": "/boasg/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=828&q=75": [
+      {
+        "route": "/speaking/",
+        "kind": "img[srcset]"
+      },
+      {
+        "route": "/boasg/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1080&q=75": [
+      {
+        "route": "/speaking/",
+        "kind": "img[srcset]"
+      },
+      {
+        "route": "/boasg/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1200&q=75": [
+      {
+        "route": "/speaking/",
+        "kind": "img[srcset]"
+      },
+      {
+        "route": "/boasg/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=1920&q=75": [
+      {
+        "route": "/speaking/",
+        "kind": "img[srcset]"
+      },
+      {
+        "route": "/boasg/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=2048&q=75": [
+      {
+        "route": "/speaking/",
+        "kind": "img[srcset]"
+      },
+      {
+        "route": "/boasg/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&w=3840&q=75": [
+      {
+        "route": "/speaking/",
+        "kind": "img[srcset]"
+      },
+      {
+        "route": "/boasg/",
+        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Ftradeshow-floor-audience.png&w=640&q=75": [
@@ -30436,15 +30919,6 @@
       {
         "route": "/keynote/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/join-the-conversation/",
-        "kind": "img",
-        "alt": "Damian Mason in a grey plaid sport coat and open collar shirt, holding his reading glasses, outside a brick building."
-      },
-      {
-        "route": "/join-the-conversation/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fagrigold-panel.png&w=640&q=75": [
@@ -30494,19 +30968,11 @@
       {
         "route": "/keynote/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/join-the-conversation/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-light-jacket.jpg&w=828&q=75": [
       {
         "route": "/keynote/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/join-the-conversation/",
         "kind": "img[srcset]"
       }
     ],
@@ -30514,19 +30980,11 @@
       {
         "route": "/keynote/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/join-the-conversation/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-light-jacket.jpg&w=1200&q=75": [
       {
         "route": "/keynote/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/join-the-conversation/",
         "kind": "img[srcset]"
       }
     ],
@@ -30534,29 +30992,17 @@
       {
         "route": "/keynote/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/join-the-conversation/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-light-jacket.jpg&w=2048&q=75": [
       {
         "route": "/keynote/",
         "kind": "img[srcset]"
-      },
-      {
-        "route": "/join-the-conversation/",
-        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-light-jacket.jpg&w=3840&q=75": [
       {
         "route": "/keynote/",
-        "kind": "img[srcset]"
-      },
-      {
-        "route": "/join-the-conversation/",
         "kind": "img[srcset]"
       }
     ],
@@ -30754,6 +31200,17 @@
         "kind": "img[srcset]"
       }
     ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=640&q=75": [
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "img",
+        "alt": "Damian Mason in a grey check sport coat and jeans, perched on the edge of a conference table in a room of orange chairs."
+      },
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "img[srcset]"
+      }
+    ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fbook-signing-table.jpg&w=640&q=75": [
       {
         "route": "/meeting-coordinators/",
@@ -30789,6 +31246,48 @@
       {
         "route": "/meeting-coordinators/",
         "kind": "link"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=750&q=75": [
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=828&q=75": [
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1080&q=75": [
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1200&q=75": [
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=1920&q=75": [
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=2048&q=75": [
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&w=3840&q=75": [
+      {
+        "route": "/meeting-coordinators/",
+        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fbook-signing-table.jpg&w=750&q=75": [
@@ -30903,6 +31402,17 @@
         "kind": "img[srcset]"
       }
     ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=640&q=75": [
+      {
+        "route": "/collaboration-opportunities/",
+        "kind": "img",
+        "alt": "Damian Mason in a charcoal woven jacket and a black open-collar shirt, hands behind his back, against a plain studio wall."
+      },
+      {
+        "route": "/collaboration-opportunities/",
+        "kind": "img[srcset]"
+      }
+    ],
     "https://i.ytimg.com/vi/M01PxhzRVFg/hqdefault.jpg": [
       {
         "route": "/collaboration-opportunities/",
@@ -30921,6 +31431,48 @@
       {
         "route": "/collaboration-opportunities/",
         "kind": "link"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=750&q=75": [
+      {
+        "route": "/collaboration-opportunities/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=828&q=75": [
+      {
+        "route": "/collaboration-opportunities/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1080&q=75": [
+      {
+        "route": "/collaboration-opportunities/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1200&q=75": [
+      {
+        "route": "/collaboration-opportunities/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=1920&q=75": [
+      {
+        "route": "/collaboration-opportunities/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=2048&q=75": [
+      {
+        "route": "/collaboration-opportunities/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&w=3840&q=75": [
+      {
+        "route": "/collaboration-opportunities/",
+        "kind": "img[srcset]"
       }
     ],
     "http://localhost:3200/img/photos/speaking-to-audience.jpg": [
@@ -31963,6 +32515,14 @@
         "route": "/the-business-of-agriculture/",
         "kind": "img",
         "alt": "Nano-Yield"
+      },
+      {
+        "route": "/the-business-of-agriculture/",
+        "kind": "source"
+      },
+      {
+        "route": "/the-business-of-agriculture/",
+        "kind": "source[srcset]"
       }
     ],
     "http://localhost:3200/img/sponsors/newfields-ag.webp": [
@@ -33852,22 +34412,75 @@
         "advertised": "https://damianmason.com/img/photos/portrait-office-seated.jpg"
       }
     ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=640&q=75": [
+      {
+        "route": "/join-the-conversation/",
+        "kind": "img",
+        "alt": "Damian Mason in a grey check sport coat over a white shirt and navy trousers, one hand in a pocket, grinning."
+      },
+      {
+        "route": "/join-the-conversation/",
+        "kind": "img[srcset]"
+      }
+    ],
     "https://damianmason.com/join-the-conversation/": [
       {
         "route": "/join-the-conversation/",
         "kind": "link"
       }
     ],
-    "http://localhost:3200/img/photos/portrait-light-jacket.jpg": [
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=750&q=75": [
+      {
+        "route": "/join-the-conversation/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=828&q=75": [
+      {
+        "route": "/join-the-conversation/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1080&q=75": [
+      {
+        "route": "/join-the-conversation/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1200&q=75": [
+      {
+        "route": "/join-the-conversation/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=1920&q=75": [
+      {
+        "route": "/join-the-conversation/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=2048&q=75": [
+      {
+        "route": "/join-the-conversation/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-check-jacket.jpg&w=3840&q=75": [
+      {
+        "route": "/join-the-conversation/",
+        "kind": "img[srcset]"
+      }
+    ],
+    "http://localhost:3200/img/photos/portrait-check-jacket.jpg": [
       {
         "route": "/join-the-conversation/",
         "kind": "meta:og:image",
-        "advertised": "https://damianmason.com/img/photos/portrait-light-jacket.jpg"
+        "advertised": "https://damianmason.com/img/photos/portrait-check-jacket.jpg"
       },
       {
         "route": "/join-the-conversation/",
         "kind": "meta:twitter:image",
-        "advertised": "https://damianmason.com/img/photos/portrait-light-jacket.jpg"
+        "advertised": "https://damianmason.com/img/photos/portrait-check-jacket.jpg"
       }
     ],
     "https://damianmason.com/blog/eggflation-gives-producers-record-profits/": [

@@ -105,7 +105,7 @@
         "Empty <p> elements inside et_pb_text_1 and et_pb_text_11",
         "Inconsistent attribution dash: nine testimonials use an em dash, the Farm Credit West one uses an en dash",
         "Mixed quote glyphs across testimonials",
-        "Typo/spacing defect in the Rolling Plains quote: 'for their meeting— so a win all around!'",
+        "Typo/spacing defect in the Rolling Plains quote: 'for their meeting\u2014 so a win all around!'",
         "'DUSTY RICH.' attribution uses a period rather than a comma after the surname",
         "Video iframe title contains double-escaped HTML: renders literally as Ag&apos;s Future",
         "All image src values point at damianmason.wpengine.com while srcset points at damianmason.com",
@@ -158,7 +158,7 @@
         "'Fill Out Inquiry Request' button has href='' - EMPTY HREF, goes nowhere",
         "'Sign Up for Damian's Mailing List' button has href='' - EMPTY HREF (the same CTA links to /join-the-conversation/ on /reviews/ and /join-mailing-list/ on /collaboration-opportunities/)",
         "The 'Media Kit' blurb carries et_clickable but has no href and no data-link - looks clickable, does nothing",
-        "Testimonial attribution '— National Ag Aviation Association' is hard-coded white on a light section - effectively invisible",
+        "Testimonial attribution '\u2014 National Ag Aviation Association' is hard-coded white on a light section - effectively invisible",
         "Three Divi Text modules contain a pasted copy of their own wrapper markup, producing nested duplicate structure",
         "Unclosed/empty <p class=''> left at the end of et_pb_text_5",
         "A CSS <style> rule shipped inside an et_pb_code content module",
@@ -261,7 +261,7 @@
       "slug": "the-business-of-agriculture",
       "url": "https://damianmason.com/the-business-of-agriculture/",
       "seoTitle": "The Business of Agriculture Podcast - Damian Mason Keynote Speaker",
-      "metaDescription": "Looking for smart talk with entertaining commentary about the business of food, fuel, and fiber? You've found it. This podcast offers tips for success, ideas for self betterment, and mental stimulation for people who make Agriculture their Business. Damian Mason is an agriculturist, entrepreneur, speaker, writer, and funny man. As he says, “You don't need any more Ag people discussing weather or commodity prices, you have that information on your phone!”",
+      "metaDescription": "Looking for smart talk with entertaining commentary about the business of food, fuel, and fiber? You've found it. This podcast offers tips for success, ideas for self betterment, and mental stimulation for people who make Agriculture their Business. Damian Mason is an agriculturist, entrepreneur, speaker, writer, and funny man. As he says, \u201cYou don't need any more Ag people discussing weather or commodity prices, you have that information on your phone!\u201d",
       "disposition": "keep",
       "newRoute": "/the-business-of-agriculture/",
       "sections": 9,
@@ -304,7 +304,7 @@
       "slug": "do-business-better-podcast",
       "url": "https://damianmason.com/do-business-better-podcast/",
       "seoTitle": "Podcast | Do Business Better - Damian Mason Keynote Speaker",
-      "metaDescription": "This podcast is for you: the entrepreneur, business owner, solopreneur, self employed striver, or business person who wants to do it better. By better I mean more profitably, more happily, and for as many years as you choose. That's what doing business better is about. I quit my Fortune 500 job in 1994 to pursue a life and business of my choice. All these years later I'm still driven by my original “why” that made me an entrepreneur: to be more creative and rewarded financially for my accomplishments.",
+      "metaDescription": "This podcast is for you: the entrepreneur, business owner, solopreneur, self employed striver, or business person who wants to do it better. By better I mean more profitably, more happily, and for as many years as you choose. That's what doing business better is about. I quit my Fortune 500 job in 1994 to pursue a life and business of my choice. All these years later I'm still driven by my original \u201cwhy\u201d that made me an entrepreneur: to be more creative and rewarded financially for my accomplishments.",
       "disposition": "keep",
       "newRoute": "/do-business-better-podcast/",
       "sections": 5,
@@ -1169,6 +1169,10 @@
         "join-mailing-list"
       ],
       "note": "Canonical newsletter route. The headline and pitch copy that existed only on /join-mailing-list/ are merged in before that URL is retired."
+    },
+    "/speaker-one-sheet/": {
+      "from": [],
+      "note": "NET-NEW route, added 2026-08-07, and the only one on the site with no source page behind it. The old site pointed twice at a Media Kit .zip on the staging host and delivered a speaker asset zero times; the client asked for those links removed, and docs/OPEN-ITEMS.md item 3 recorded the gap that left. This is the destination. It invents no facts: every figure, credential, sector, state, testimonial and FAQ answer on it is read from content/, and the photography is the media kit recovered from the client's own WordPress library on the same date. Not called a media kit, per the client instruction and the QA assertion."
     }
   },
   "gate": {

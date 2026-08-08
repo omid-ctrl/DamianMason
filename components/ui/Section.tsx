@@ -10,6 +10,10 @@ import { cx } from './cx';
  * page     cool stone. The default, and where most routes live.
  * sunken   the sage band one step darker, for alternating rhythm.
  * deep     full-bleed navy. The CTA band, the podcast band, the footer lead-in.
+ * deep-alt the second navy register, one step lighter in the grounds and
+ *          identical in the ink. Every route closes on `deep`, so a dark band
+ *          earlier in the page has to be a step off that one or the close stops
+ *          reading as an arrival.
  * deepest  the footer plane sitting under a deep band.
  * forest   full-bleed green. The second dark ground, so a long page alternates
  *          light, sage, navy, light, GREEN rather than resolving every dark band
@@ -18,13 +22,24 @@ import { cx } from './cx';
  *          a navy or forest region, because the wordmark never reverses to white
  *          and never sits on the green.
  */
-export type Surface = 'page' | 'sunken' | 'deep' | 'deepest' | 'forest' | 'paper';
+export type Surface = 'page' | 'sunken' | 'deep' | 'deep-alt' | 'deepest' | 'forest' | 'paper';
 
 export type SectionDensity = 'default' | 'tight' | 'loose' | 'flush';
 
 export type SectionProps = {
   surface?: Surface;
   density?: SectionDensity;
+  /**
+   * The section above this one is on the same ground. Drops this section's own
+   * block-start interval, so the pair reads as one band with a break in it
+   * rather than as two bands with a hole between them.
+   *
+   * OPT-IN, NOT A SIBLING SELECTOR. `[data-surface="sunken"] + [data-surface="sunken"]`
+   * expresses this in one rule and then silently changes every route that
+   * already abuts, which on this site is five of them. A prop is greppable, it
+   * is decided per placement, and it cannot act at a distance.
+   */
+  seam?: boolean;
   as?: ElementType;
   className?: string;
   children?: ReactNode;
@@ -40,6 +55,7 @@ const DENSITY_CLASS: Record<SectionDensity, string> = {
 export function Section({
   surface = 'page',
   density = 'default',
+  seam = false,
   as: Tag = 'section',
   className,
   children,
@@ -48,7 +64,7 @@ export function Section({
   return (
     <Tag
       data-surface={surface === 'page' ? undefined : surface}
-      className={cx('dm-section', DENSITY_CLASS[density], className)}
+      className={cx('dm-section', DENSITY_CLASS[density], seam && 'dm-section--seam', className)}
       {...rest}
     >
       {children}

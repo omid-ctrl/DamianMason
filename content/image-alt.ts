@@ -36,6 +36,43 @@ export const imageAlt = {
   '/img/photos/portrait-black-suit.jpg':
     'Damian Mason with his arms folded, in a charcoal woven jacket and an open white collar, leaning against a white door jamb.',
 
+  /* --- The recovered media kit ----------------------------------------
+     Studio and stage photography that was sitting unreferenced in the client's
+     WordPress library until 2026-08-07. Provenance, dimensions and SHA-256s
+     are in _source/media-kit/PROVENANCE.md. Every string below was written
+     against the file, per the rule at the head of this module. */
+
+  /** /, and the source frame of the cut-out below. Charcoal woven jacket over
+   *  a black open-collar shirt, hands behind his back, weight on one hip. The
+   *  studio ground is not described because the file does not have one. */
+  '/img/photos/portrait-cutout.png':
+    'Damian Mason in a charcoal woven jacket and a black open-collar shirt, hands behind his back, half smiling.',
+
+  /** /reviews/, /meeting-coordinators/, /speaking/. The frame OPEN-ITEMS asked
+   *  the client to commission: shot from the back of the room, Damian small in
+   *  the middle distance and the audience the actual subject. */
+  '/img/photos/audience-from-the-back.jpg':
+    'Damian Mason from the back of the room, mid gesture in a tan sport coat, with a hall of growers at long tables watching him and several of them laughing.',
+
+  /** /keynote/, /collaboration-opportunities/. Tight, mid-sentence, both hands
+   *  up. The closest thing in the archive to a portrait of him working. */
+  '/img/photos/stage-mid-sentence.jpg':
+    'Damian Mason close up on stage, mid sentence with both hands raised, against a dark curtain and a reclaimed-wood wall.',
+
+  /** /collaboration-opportunities/ and /speaker-one-sheet/. Same shoot as the
+   *  cut-out above, uncut. */
+  '/img/photos/portrait-charcoal-jacket.jpg':
+    'Damian Mason in a charcoal woven jacket and a black open-collar shirt, hands behind his back, against a plain studio wall.',
+
+  /** /keynote/, and the one full-width photograph on the program page. */
+  '/img/photos/stage-dairy-case.jpg':
+    'Damian Mason on stage in a brown windowpane jacket, one hand out toward a screen showing a row of dairy and plant-milk cartons.',
+
+  /** /join-the-conversation/, /acres-tv/, /blog/. Where the newsletter, the
+   *  podcasts and the posts actually get made. */
+  '/img/photos/podcast-desk.jpg':
+    'Damian Mason at a walnut desk behind a boom-mounted microphone and a laptop, lit for camera.',
+
   /** /about/, /meeting-coordinators/, /collaboration-opportunities/. */
   '/img/photos/portrait-dark-blazer.jpg':
     'Damian Mason in a charcoal blazer and jeans, one hand in a pocket, leaning against a whitewashed brick window frame.',

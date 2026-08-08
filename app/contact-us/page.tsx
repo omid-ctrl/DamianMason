@@ -128,15 +128,36 @@ export default function ContactUsPage() {
             href: contact.phoneHref,
           },
         ] as const}
+        /* This route ran a type-only hero because the archive had no portrait
+           left to give it: five photographs were covering eleven hero slots and
+           four of them were doing double duty. The media-kit rescue supplies
+           five studio frames the site had never seen, so the page that asks a
+           stranger to make contact now opens on the face they would be
+           contacting. */
+        image={{
+          src: '/img/photos/portrait-window-light.jpg',
+          /* Single call site, so the string lives here rather than in
+             content/image-alt.ts, per the rule at the head of that module. */
+          alt: 'Damian Mason in a charcoal jacket and jeans, one hand in a pocket, standing in a whitewashed brick corridor.',
+          width: 1333,
+          height: 2000,
+          feature: true,
+        }}
+        cutline="Two people read this inbox. Neither of them is a booking agency."
       />
 
-      {/* --- No. 01, the two ways in ---------------------------------------- */}
-      <Section surface="sunken" aria-labelledby="reach-title">
+      {/* --- The two ways in -------------------------------------------------
+          NAVY, and on this route it is not only rhythm. The ledger in this
+          section holds the email address, the phone number and the reply-time
+          promise, which is the entire reason a stranger opens this page. It was
+          the second of two near-identical greys; it is now the one block on the
+          route a reader cannot scroll past. */}
+      <Section surface="deep-alt" aria-labelledby="reach-title">
         <Container>
           <div className={`dm-grid12 ${styles.rowTop}`}>
             <div className="col-span-6 md:col-span-7">
               <Eyebrow>Two ways in</Eyebrow>
-              <Heading level={2} folio="No. 01" id="reach-title" className={styles.sectionHeading}>
+              <Heading level={2} id="reach-title" className={styles.sectionHeading}>
                 Email is the fastest. The phone works too.
               </Heading>
               <Prose>
@@ -245,9 +266,9 @@ export default function ContactUsPage() {
             it sat at 96. The reading measure belongs to the content column. */}
         <Container>
           <div className="dm-grid12">
-            <div className="col-span-6 md:col-span-4">
+            <div className="dm-rail col-span-6 md:col-span-4">
           <Eyebrow>Before you write</Eyebrow>
-          <Heading level={2} folio="No. 02" id="inquiry-title" className={styles.sectionHeading}>
+          <Heading level={2} id="inquiry-title" className={styles.sectionHeading}>
             What to put in the first email
           </Heading>
             </div>
@@ -297,9 +318,9 @@ export default function ContactUsPage() {
       <Section aria-labelledby="form-title">
         <Container>
           <div className="dm-grid12">
-            <div className="col-span-6 md:col-span-4">
+            <div className="dm-rail col-span-6 md:col-span-4">
               <Eyebrow>Or use the form</Eyebrow>
-              <Heading level={2} folio="No. 03" id="form-title" className={styles.sectionHeading}>
+              <Heading level={2} id="form-title" className={styles.sectionHeading}>
                 Send it from here
               </Heading>
             </div>
@@ -314,7 +335,7 @@ export default function ContactUsPage() {
       <Section surface="sunken" aria-labelledby="process-title">
         <Container>
           <div className={`dm-grid12 ${styles.rowTop}`}>
-            <figure className={`dm-figure ${styles.figureColumn} col-span-6 md:col-span-7`}>
+            <figure className={`dm-figure ${styles.figureColumn} col-span-6 md:col-span-7`} data-reveal="wipe">
               <div className="dm-photo dm-photo--plate">
                 <Image
                   className="dm-photo__img"
@@ -327,7 +348,6 @@ export default function ContactUsPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 01 </span>
                 In the office, between dates. The email goes to Damian. The calendar belongs to
                 Lori.
               </figcaption>
@@ -335,7 +355,7 @@ export default function ContactUsPage() {
 
             <div className="col-span-6 md:col-span-5">
               <Eyebrow>After you write</Eyebrow>
-              <Heading level={2} folio="No. 04" id="process-title" className={styles.sectionHeading}>
+              <Heading level={2} id="process-title" className={styles.sectionHeading}>
                 How a date gets held
               </Heading>
               <Prose measure="narrow">
@@ -368,9 +388,9 @@ export default function ContactUsPage() {
             it sat at 96. The reading measure belongs to the content column. */}
         <Container>
           <div className="dm-grid12">
-            <div className="col-span-6 md:col-span-4">
+            <div className="dm-rail col-span-6 md:col-span-4">
               <Eyebrow>Not booking today</Eyebrow>
-              <Heading level={2} folio="No. 05" id="newsletter-title">
+              <Heading level={2} id="newsletter-title">
                 Get the list instead
               </Heading>
             </div>
@@ -388,7 +408,6 @@ export default function ContactUsPage() {
       <CTABand
         id="book"
         eyebrow="Bookings"
-        folio="No. 06"
         heading="Have a date in mind?"
         copy="Send the date and the city. If it’s open, we talk about the room, the program, and the fee. If not, you’ll hear that back just as fast."
         actions={[

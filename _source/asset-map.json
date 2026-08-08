@@ -31,6 +31,14 @@
     "w": 148,
     "h": 148
   },
+  "clients/basf": {
+    "out": [
+      "/img/clients/basf.png",
+      "/img/clients/basf.webp"
+    ],
+    "w": 800,
+    "h": 289
+  },
   "clients/cargill": {
     "out": [
       "/img/clients/cargill.png",
@@ -71,6 +79,14 @@
     "w": 164,
     "h": 148
   },
+  "clients/helena": {
+    "out": [
+      "/img/clients/helena.png",
+      "/img/clients/helena.webp"
+    ],
+    "w": 500,
+    "h": 240
+  },
   "clients/hudson-insurance": {
     "out": [
       "/img/clients/hudson-insurance.png",
@@ -95,6 +111,22 @@
     "w": 225,
     "h": 144,
     "ground": "68.0% ground repainted"
+  },
+  "clients/iowa-pork-alliance": {
+    "out": [
+      "/img/clients/iowa-pork-alliance.jpg",
+      "/img/clients/iowa-pork-alliance.webp"
+    ],
+    "w": 800,
+    "h": 389
+  },
+  "clients/john-deere": {
+    "out": [
+      "/img/clients/john-deere.png",
+      "/img/clients/john-deere.webp"
+    ],
+    "w": 800,
+    "h": 535
   },
   "clients/land-olakes-purina": {
     "out": [
@@ -220,8 +252,8 @@
   },
   "sponsors/nano-yield": {
     "out": [
-      "/img/sponsors/nano-yield.webp",
-      "/img/sponsors/nano-yield.png"
+      "/img/sponsors/nano-yield.png",
+      "/img/sponsors/nano-yield.webp"
     ],
     "w": 640,
     "h": 342
@@ -258,14 +290,6 @@
     ],
     "w": 800,
     "h": 563
-  },
-  "brand/boasg-white-flat": {
-    "out": [
-      "/img/brand/boasg-white-flat.jpg",
-      "/img/brand/boasg-white-flat.webp"
-    ],
-    "w": 800,
-    "h": 800
   },
   "brand/business-of-agriculture": {
     "out": [
@@ -370,38 +394,6 @@
     ],
     "w": 512,
     "h": 512
-  },
-  "logos/iowa-pork-alliance": {
-    "out": [
-      "/img/logos/iowa-pork-alliance.jpg",
-      "/img/logos/iowa-pork-alliance.webp"
-    ],
-    "w": 800,
-    "h": 389
-  },
-  "logos/basf": {
-    "out": [
-      "/img/logos/basf.png",
-      "/img/logos/basf.webp"
-    ],
-    "w": 800,
-    "h": 289
-  },
-  "logos/john-deere": {
-    "out": [
-      "/img/logos/john-deere.png",
-      "/img/logos/john-deere.webp"
-    ],
-    "w": 800,
-    "h": 535
-  },
-  "logos/helena": {
-    "out": [
-      "/img/logos/helena.png",
-      "/img/logos/helena.webp"
-    ],
-    "w": 500,
-    "h": 240
   },
   "logos/farm-credit-services-of-america": {
     "out": [
@@ -630,6 +622,132 @@
     "w": 952,
     "h": 478
   },
+  "photos/portrait-window-light": {
+    "out": [
+      "/img/photos/portrait-window-light.jpg"
+    ],
+    "w": 1333,
+    "h": 2000
+  },
+  "photos/portrait-charcoal-jacket": {
+    "out": [
+      "/img/photos/portrait-charcoal-jacket.jpg"
+    ],
+    "w": 1333,
+    "h": 2000
+  },
+  "photos/portrait-check-jacket": {
+    "out": [
+      "/img/photos/portrait-check-jacket.jpg"
+    ],
+    "w": 1333,
+    "h": 2000
+  },
+  "photos/portrait-headshot": {
+    "out": [
+      "/img/photos/portrait-headshot.jpg"
+    ],
+    "w": 1333,
+    "h": 2000
+  },
+  "photos/portrait-boardroom": {
+    "out": [
+      "/img/photos/portrait-boardroom.jpg"
+    ],
+    "w": 2000,
+    "h": 2000
+  },
+  "photos/stage-dairy-case": {
+    "out": [
+      "/img/photos/stage-dairy-case.jpg"
+    ],
+    "w": 2000,
+    "h": 1333
+  },
+  "photos/stage-mid-sentence": {
+    "out": [
+      "/img/photos/stage-mid-sentence.jpg"
+    ],
+    "w": 2000,
+    "h": 1333
+  },
+  "photos/stage-labor-slide": {
+    "out": [
+      "/img/photos/stage-labor-slide.jpg"
+    ],
+    "w": 2000,
+    "h": 1333
+  },
+  "photos/stage-crop-protection-slide": {
+    "out": [
+      "/img/photos/stage-crop-protection-slide.jpg"
+    ],
+    "w": 2000,
+    "h": 1334
+  },
+  "photos/audience-from-the-back": {
+    "out": [
+      "/img/photos/audience-from-the-back.jpg"
+    ],
+    "w": 2000,
+    "h": 1125
+  },
+  "photos/stage-walking-the-front": {
+    "out": [
+      "/img/photos/stage-walking-the-front.jpg"
+    ],
+    "w": 2000,
+    "h": 1253
+  },
+  "photos/stage-white-wall": {
+    "out": [
+      "/img/photos/stage-white-wall.jpg"
+    ],
+    "w": 2000,
+    "h": 1125
+  },
+  "photos/stage-blue-jacket": {
+    "out": [
+      "/img/photos/stage-blue-jacket.jpg"
+    ],
+    "w": 2000,
+    "h": 1375
+  },
+  "photos/podcast-desk": {
+    "out": [
+      "/img/photos/podcast-desk.jpg"
+    ],
+    "w": 2000,
+    "h": 1308
+  },
+  "photos/green-screen-setup": {
+    "out": [
+      "/img/photos/green-screen-setup.jpg"
+    ],
+    "w": 2000,
+    "h": 1334
+  },
+  "photos/food-fear-hardback": {
+    "out": [
+      "/img/photos/food-fear-hardback.jpg"
+    ],
+    "w": 1555,
+    "h": 1103
+  },
+  "photos/portrait-cutout": {
+    "out": [
+      "/img/photos/portrait-cutout.png"
+    ],
+    "w": 933,
+    "h": 1400
+  },
+  "photos/portrait-cutout-card": {
+    "out": [
+      "/img/photos/portrait-cutout-card.png"
+    ],
+    "w": 347,
+    "h": 520
+  },
   "skipped": [
     {
       "src": "Damian Mason Logos/LOGO-REVISION-B-A-F-01 copy.png",
@@ -638,6 +756,34 @@
     {
       "src": "_source/media/WEB-COLLAGE-2.png (as a composite)",
       "reason": "The four-up composite itself is not emitted. It is barred from a hero or a band by DESIGN_SYSTEM 6.4, and as a figure it is four small frames where the site wants one. Two of its four panels ARE emitted, harvested by CROPS: speaking-closeup and tradeshow-floor-audience. Panel 1 is a wider take on a stage frame already covered; panel 4 duplicates the shipping keynote-stage-xtremeag-portrait.jpg."
+    },
+    {
+      "src": "_source/media-kit/PROVENANCE.md",
+      "reason": "The inventory itself. Source URLs, dimensions, byte sizes and SHA-256s for every file in both recovered archives, including the ones not kept. It is documentation living beside the thing it documents, not a pipeline input."
+    },
+    {
+      "src": "_source/media-kit/logo-bayer.png",
+      "reason": "Recovered from the WordPress library, where it sat unreferenced by any page. It is NOT in the \"Client Logos\" folder the client supplied, and OPEN-ITEMS item 2 records the decision to treat that folder as the definitive list. Putting a company on a wall captioned \"some of Damian's clients\" is a claim about a commercial relationship, and it is not ours to make. Held pending a one-line answer."
+    },
+    {
+      "src": "_source/media-kit/logo-agco.png",
+      "reason": "Same as logo-bayer.png: recovered, unreferenced, not in the supplied client folder."
+    },
+    {
+      "src": "_source/media-kit/logo-boehringer-ingelheim.png",
+      "reason": "Same as logo-bayer.png: recovered, unreferenced, not in the supplied client folder."
+    },
+    {
+      "src": "_source/media-kit/logo-fast-genetics.png",
+      "reason": "Same as logo-bayer.png: recovered, unreferenced, not in the supplied client folder."
+    },
+    {
+      "src": "_source/media-kit/logo-cpda.jpeg",
+      "reason": "Same as logo-bayer.png, plus one of its own: at 367x208 it is the smallest mark in the rescue and it would land under the wall's optical floor even if the relationship were confirmed."
+    },
+    {
+      "src": "Damian Mason Logos/BOASG-BRAND-LOGO-FINAL-WHITE.jpg",
+      "reason": "The opaque duplicate of BOASG-BRAND-LOGO-FINAL-WHITE-transparent.png, which ships as boasg-white and is placed on /boasg/. Two files for one mark, and the transparent one is strictly more useful. It shipped as an \"unplaced extra\" for seven phases; reviewed 2026-08-07 and dropped rather than carried."
     },
     {
       "src": "_source/media/add-ons.png",

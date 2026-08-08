@@ -56,98 +56,164 @@ could not resolve from the source.
 
 ---
 
-## 2. John Deere, BASF, Helena and IPPA
+## 2. John Deere, BASF, Helena and IPPA, restored
 
-**What ships today.** The client logo wall shows the **21 logos you supplied** in
-the `Client Logos` folder, on the home page, the speaking page and the reviews
-page. That replaces the six the old site showed.
+**Status: shipped, with one question left.**
 
-Four names that were on the old wall are **not** in the folder you supplied:
-**John Deere, BASF, Helena** and the **Iowa Pork Alliance (IPPA)**. They do not
-appear anywhere on the new site.
+**What we told you before.** That the wall showed the 21 logos in the folder you
+supplied, that four names from the old wall were missing because they were not in
+that folder, and that adding them back was "about half an hour".
 
-**Why.** Your instruction was "update client logos with logos in folder", and we
-took the folder as the definitive list rather than merging it with whatever the
-old site happened to be showing. We did keep the artwork: the four marks are
-sitting in the repository, unused, so nothing has to be re-sourced if you want
-them back.
+**What ships today.** All four are back. The wall carries **25 marks** on the home
+page, the speaking page and the reviews page.
 
-**If you answer differently.** Two options and both are quick:
+**Why we changed our mind.** The original reading was defensible: you said "update
+client logos with logos in folder" and we took the folder as the definitive list.
+But these four were on your own wall, we had usable artwork for every one of them,
+and a client roster that quietly loses John Deere and BASF is a weaker argument
+than one that keeps them. If you actually meant the folder to REPLACE the old
+wall rather than refresh it, say so and they come straight back out.
 
-- **Keep them:** we already have usable files for all four. Adding them back is
-  about half an hour, and the wall goes from 21 marks to 25. Three short lines of
-  page copy that currently say "and 16 more" and "21 of 2,400+" would move with
-  it.
-- **Send better files:** if you would rather supply current, higher-resolution
-  versions, drop them in the folder and it is the same half hour.
+**The half hour was wrong, and it is worth saying why**, because it is the kind of
+estimate that hides work. 21 divides by 7 and by 3; 25 divides by 5 and by nothing
+else useful. So the wall's column counts changed, a CSS rule that spans the odd
+last cell had to be scoped so it does not leave a ruled half-row at tablet width,
+three build guards that assert the roster is 21 had to be re-derived, the sector
+ledger on the speaking page gained two rows' worth of members, and six lines of
+page copy quoted the old number. It was most of a day.
 
-**Related, smaller question:** one of the 21 supplied marks reads "get cracking.
-Egg Farmers of Ontario" in the artwork, but we have it labelled simply "Egg
-Farmers" because that is how the file was named. Should the wall say **Egg
-Farmers of Ontario**? That label is also what a screen reader announces.
+**Two things moved on the sector ledger**, which you can check against the wall:
 
----
+- **Equipment went from one mark to two.** It was a bucket of one, and there is a
+  long note in the code explaining why a bucket of one was honest rather than
+  tidy. John Deere settles that.
+- **Ten of the 25 are now member organizations** rather than nine, which is the
+  figure the speaking page leads with, because ten of them run an annual meeting
+  and an annual meeting is what a keynote gets booked for.
 
-## 3. The Media Kit
+**The question we still need answered.** The IPPA file is
+`19225_IPPA_Alliance_Logo_4C-scaled-1.jpg` and the artwork itself reads **Iowa
+Pork Producers Association**. Our earlier note called it "Iowa Pork Alliance". We
+have shipped the artwork's own wording, because that is what we can see, but a
+logo-wall label is what a screen reader announces and it should be the name the
+organisation uses.
 
-**What ships today.** Nothing. Both Media Kit links have been removed, as you
-asked.
+**Same question, still open, on Egg Farmers:** the artwork reads "get cracking.
+Egg Farmers of Ontario" and the wall says **Egg Farmers**, because that is how the
+file was named. Should it say Egg Farmers of Ontario?
 
-**Why.** The old link pointed at a raw `.zip` file sitting on the WP Engine
-staging domain (`damianmason.wpengine.com`). That is not a media kit, it is a
-download of unknown contents on a URL that will stop working when the old hosting
-is switched off. You asked for the link to be removed, and it is.
-
-**The opportunity.** There is now no single asset a meeting planner can download
-that carries your bio, your topics, your credentials, your headshots, your client
-list and your booking contact in one place. Every one of those things exists on
-the site, and several are already written and laid out. Building a proper
-**speaker one-sheet** as a designed PDF, drawn from the material already on
-`/keynote/` and `/meeting-coordinators/`, is roughly a day of work and is the
-single highest-value thing you could add to a booking page.
-
-**If you want it:** say so, and tell us whether it should be a download or a page.
-A page is better for search; a PDF is better for forwarding to a committee.
-Doing both is barely more work than doing one.
+**If you would rather supply better files** for any of the four, drop them in the
+folder and it is a re-run of one script.
 
 ---
 
-## 4. Professional photography
+## 3. The Media Kit, found
 
-This is the honest answer to "what would make the site better from here", and it
-is not more engineering.
+**Status: resolved, and it changes items 4 and 12 as well.**
 
-**What ships today.** Every photograph on the site is an existing image of yours,
-cleaned up, resized and colour-managed. They are used carefully: the strongest
-ones lead the pages, and the weak ones are small or absent.
+**What we told you before.** That both Media Kit links had been removed, that the
+one we found pointed at a raw `.zip` on a staging domain, and that it was "a
+download of unknown contents on a URL that will stop working when the old
+hosting is switched off".
 
-**What we dropped.** Several images on the old site were **literal macOS
-screenshots**, including all six press images on the media page, both blog post
-header images, and a number of others. A screenshot of somebody else's web page
-is not a photograph and cannot be made into one, so instead of reusing them we
-redesigned those slots to work typographically: a real headline, a real link, a
-ruled card. Those pages look better for it, but they are working around a gap.
+**What is actually true.** The contents are no longer unknown. The mirror in this
+repository was built by crawling your 29 pages, so anything sitting in your
+WordPress media library that no page linked was invisible to it. We went back
+and read the library itself. Two archives came out of it:
 
-**One image we did keep, with a caveat.** The picture of you with the XtremeAg
-growers in the cornfield is a frame grab off a broadcast, not a photograph, and
-it carries a burned-in "DAMIAN MASON / CUTTING THE CURVE PODCAST" lower third in
-the bottom right corner. It ships because it is the only image on file of you
-with that group. We can crop the lower third out, or replace it.
+- **`MEDIA-KIT-PHOTOS.zip`**, 22.4 MB, eleven professional photographs: six
+  studio portraits at 2400x3600, an office portrait at 2200x2200, four live
+  stage photographs, and one shot from the back of the room with you on stage
+  and the audience in frame.
+- **`AG-MEDIA-KIT-3.zip`**, 13.9 MB, nine more, three of them stage shots at
+  3000px wide.
 
-**What we would ask for, in priority order:**
+Both are now in the repository at `_source/media-kit/`, with every file listed by
+source URL, dimensions, byte size and SHA-256 in `_source/media-kit/PROVENANCE.md`,
+including the ones we chose not to use and why. **None of it existed anywhere
+outside the old hosting**, so it would have gone when the site was switched off.
 
-1. **Two or three current headshots**, shot against a clean background, one
-   horizontal and one vertical. These carry the home page, the about page and
-   every social share card.
-2. **Live-event photography from the back of the room**, showing you on stage
-   with the audience in frame. This is what a meeting planner is actually buying,
-   and the site is running on a handful of usable frames of it.
-3. **One farm image**, because the Indiana farm is a real differentiator that the
-   copy leans on and the imagery cannot support.
+**What ships today.** Seventeen of them are through the build pipeline and in
+`public/img/photos/`, and seven are placed on pages so far: six heroes and the
+audience shot on the reviews page. The rest are ready and waiting for a slot.
+See item 4, which is the item this find really answers.
 
-**If you commission it:** dropping new photographs in is straightforward, roughly
-an hour per image including the alt text and the layout check. The lift in
-perceived quality is larger than anything left on the engineering side.
+**And the one-sheet now exists.** `/speaker-one-sheet/` carries the program, the
+credentials, the client roster sorted by kind of business, the fifty states, three
+named reviews, the five questions planners actually ask, and the number to call.
+There is a **PDF of the same page** at
+`/docs/damian-mason-speaker-one-sheet.pdf`, which is the thing a planner forwards
+to a committee.
+
+**The PDF is generated FROM the page, not drawn separately**, and that is the part
+worth knowing. A designed PDF looks better for exactly one edit; after that
+somebody changes a fee answer or a client joins the wall, and the file in
+somebody's inbox says something the website does not. A script rebuilds it from
+the page and then reads the text back out and checks that all eight figures and
+both contact details are really in it. It caught a real defect the first time it
+ran: the page had your email only as a button label, so the printed version had
+no address on it at all.
+
+**It is linked** from the Speaking menu, from the meeting coordinators page where
+the old Media Kit button used to be, from the speaking hub, and from the FAQ
+answer that has been promising headshots and a bio since the old site.
+
+**It is not called a media kit**, per your instruction.
+
+---
+
+## 4. Professional photography, found
+
+**Status: two of the three things we asked you for already existed.**
+
+**What we asked for.** Two or three current headshots, and live-event photography
+from the back of the room showing you on stage with the audience in frame. We
+called it "the single largest remaining lift in quality" and we were right about
+that. We were wrong that it did not exist.
+
+**What we found, in your own media library.**
+
+1. **Six studio portraits at 2400x3600.** One is the frame the site was already
+   using, at the same resolution; the other five it had never seen. Before this,
+   five photographs were covering eleven hero slots: one portrait was the hero of
+   THREE separate routes and two more were doing double duty. Every route now has
+   its own. The five new frames are the heroes of `/reviews/`, `/contact-us/`,
+   `/collaboration-opportunities/`, `/meeting-coordinators/` and
+   `/join-the-conversation/`, and the first two of those had no hero photograph
+   at all before, including the testimonials page, whose entire job is proof.
+2. **A transparent-background cut-out** of you, 1500x2250. This is the single
+   best asset in the set and it is why the home page looks different: you now
+   stand at full height on the page itself, uncropped and unveiled, instead of
+   inside a small rectangle. Nothing else on the site can do that.
+3. **`DamianMason-audience.jpg`.** Shot from the back of the room, you on stage,
+   the audience the actual subject, several of them laughing. **This is the exact
+   photograph we asked you to commission**, word for word. It is now the lead
+   figure on the testimonials page, where it replaced a 502x452 crop that was
+   being blown up to 1344px wide.
+4. **Seven more stage photographs**, up to 3000px wide.
+5. **Studio product photography of the Food Fear hardback** on a walnut table
+   between two stacks of it. Through the pipeline and not yet placed: the books
+   section on the home page deliberately shows the JACKET ARTWORK rather than a
+   photograph, for reasons written into that section, so dropping this in is a
+   layout decision on `/about/#books` rather than a swap. It is the best-looking
+   book image you have and it should get a slot.
+
+**One ask survives.** **A farm image.** Nothing in either archive is a farm, and
+the Indiana farm is a real differentiator the copy leans on and the imagery still
+cannot support. That is now the only photograph the site is missing.
+
+**And the caveat from before still stands** on the XtremeAg cornfield frame,
+which is a broadcast grab carrying a burned-in lower third. It ships because it
+is the only image on file of you with that group.
+
+**One question for you.** `DamianMason-audience.jpg` shows identifiable people at
+somebody else's event. You published it yourself for press use, which is the
+fact that matters, and it is the strongest asset we have. It is also the one
+worth a sentence of confirmation from you before it runs large.
+
+**And one we cannot answer.** Neither archive carries a photographer credit that
+survived, and our pipeline strips EXIF by design. If a shooting contract requires
+a credit line, nobody here knows it.
 
 ---
 
@@ -301,54 +367,61 @@ to convert, attach and verify.
 
 ---
 
-## 11. There is no contact form anywhere on the site
+## 11. The contact form: which provider, and is the key set?
 
-**What ships today.** The site has no form that takes a typed message. Every
-enquiry route is an email link. The contact page spells out, in plain language,
-the five things to put in a first email. The collaboration page closes on
-"Contact Damian" and "Email the office".
+**Rewritten 2026-08-07. The previous version of this item said there was no
+contact form on the site. That has not been true for some time.**
 
-The only forms on the site are the two newsletter signups, which go to Mailchimp
-exactly as they did before.
+**What ships today.** `/contact-us/` carries a real booking form. It posts to a
+server route on this site, validates in the browser, announces its result to a
+screen reader, and moves focus to the confirmation. The two newsletter signups
+still go to Mailchimp exactly as they did before.
 
-**Why.** Your old collaboration page had a four-field enquiry form (email, name,
-phone, message) that submitted to WordPress. This site has no server, so that
-form has nowhere to submit to. A form that looks real and silently loses
-enquiries is far worse than no form.
+**What still needs a decision from you, and it is a launch item.** The endpoint
+needs somewhere to deliver to: either a transactional email provider (Resend, a
+few dollars a month) or a webhook into whatever you already use. Both are
+supported and either is a matter of setting one value in the production
+environment.
 
-**If you want one back.** It needs a hosted form service. Formspree, Basin and
-the equivalent all cost a few dollars a month and take about half a day to wire
-in and test. That is a decision about a service and a recurring cost, which is
-yours to make rather than ours.
+**What happens if nobody sets it.** Nothing breaks and nothing is lost. The
+endpoint answers politely, the form replaces itself with the email address and
+the phone number, and the visitor is one click from the same inbox. It is a
+slower route to the same place rather than a message that vanishes, which was the
+whole reason the old page's form was not carried over.
 
-**Our honest read:** for a speaker whose enquiries come from meeting planners who
-are used to emailing, a clear email address with a stated response expectation
-converts about as well as a form and never loses a message. But a form does lower
-the barrier for someone browsing on a phone.
+**Our honest read is unchanged.** For a speaker whose enquiries come from meeting
+planners who are used to emailing, a clear address with a stated response
+expectation converts about as well as a form and never loses a message. The form
+lowers the barrier for somebody browsing on a phone, which is why it is there.
 
 ---
 
-## 12. One FAQ answer points at a document nobody can reach
+## 12. The AV requirements document, found
 
-**What ships today.** An FAQ answer reads, word for word from your old site:
-"Refer to Damian's AV/and Room Setup Requirements."
+**Status: resolved. No rewording needed.**
 
-**The problem.** That document is not linked anywhere on the old site and does not
-exist anywhere on the new one. A meeting planner who follows that instruction has
-nowhere to go. It is the only answer on the site that asks the reader to do
-something impossible.
+**What we told you before.** That an FAQ answer read "Refer to Damian's AV/and
+Room Setup Requirements", that the document was linked nowhere on the old site
+and existed nowhere on the new one, and that it was the only answer on the site
+asking a reader to do something impossible. We offered you a choice between
+sending us the document and approving a reworded answer.
 
-**Two ways out, your choice.**
+**Neither is needed.** It was in your media library the whole time, at
+`AVRoomSetUp2018.pdf`, one page, nine numbered requirements and a signature
+block. It ships at `/docs/av-and-room-setup-requirements.pdf` and the FAQ answer
+now links straight to it.
 
-- **Send us the AV one-sheet** and we link it directly from the answer. Best
-  outcome: the planner gets the document at the moment they ask for it.
-- **Approve this rewording:** "Damian's office will send the AV and room setup
-  requirements with the contract." Your meeting coordinators page already says
-  much the same thing in its own words, so this is consistent with the rest of
-  the site.
+**The answer text is unchanged**, including "AV/and", because that string is what
+the FAQ structured data serialises and we do not edit your words inside it. The
+LINK reads "AV and Room Setup Requirements (PDF)", which is what the label field
+exists for.
 
-(For the record, "AV/and Room Setup Requirements" also reads like a typo in the
-original. We left it as you wrote it.)
+**Worth knowing:** it is a genuinely good document. Lectern and cordless lapel
+mic, a Mac-compatible projector, the audience at least 50% lit, no five-minute
+stretch immediately before you take the stage, seat people within six to eight
+feet of the front, and no children. That is meeting-planner content most speakers
+do not have, and there is a case for putting those nine points on the page as
+well as behind the download. Tell us if you want that.
 
 ---
 
@@ -427,27 +500,26 @@ rather ask than describe your own event back to you incorrectly.
 
 ---
 
-## 17. The Food Fear audiobook has no description of its own
+## 17. The Food Fear audiobook: three facts would fix it
 
-**What ships today.** The audiobook has its own card on the about page with its
-cover, and in place of a description it carries one line: "The same book as the
-print edition above, read aloud."
+**Rewritten 2026-08-07. The previous version described a layout that changed.**
 
-**Why.** The old audiobook product page had **the paperback's description pasted
-into it word for word**. It never used the word "audiobook" anywhere in the body,
-and it named no narrator, no runtime and no retailer. Your own harvest note on the
-old page recorded it: "A shopper cannot tell what they are buying."
+**What ships today.** The audiobook does **not** have a card of its own. Food Fear
+appears once on `/about/#books`, with both jackets on one card, labelled as print
+and audio. The heading over the section says "Two books and an audiobook", which
+is accurate.
 
-On the old site that did not show, because the two descriptions were on two
-separate store pages. On the new about page the two cards are next to each other,
-so the same 55-word paragraph was printing twice within one scroll.
+**Why.** The old audiobook product page had the paperback's description pasted
+into it word for word. It never used the word "audiobook" in the body, and it
+named no narrator, no runtime and no retailer. Your own note on that page
+recorded it: "A shopper cannot tell what they are buying." On two separate store
+pages that did not show. Next to each other on one page it printed the same
+55-word paragraph twice in one scroll, so the two formats became one entry, which
+is the second of the two options the earlier version of this item offered you.
 
-**Send one line and it goes straight in.** The three facts worth having are the
-narrator, the runtime, and where it is sold. Any one of them replaces the note.
-
-**Or:** if you would rather the audiobook stopped being its own entry, it becomes
-a second format label on the print edition and the heading changes from "Two books
-and an audiobook" to "Two books". Twenty minutes either way.
+**What we still need, and it is three facts.** The **narrator**, the **runtime**,
+and **where it is sold**. Any one of them turns the format label into a real line.
+All three and it earns its own card back.
 
 ---
 
@@ -611,23 +683,78 @@ meeting planner reads fastest.
 
 ---
 
+## 24. The Success Group has no member testimonial
+
+**New item, added 2026-08-07.**
+
+`/boasg/` is the one page on the site that asks somebody to pay a monthly
+subscription, and it is the only page with no social proof of any kind on it. The
+page now has a photograph of you, a ledger of how the calls run, both leaders'
+credentials and the two lists of what a member gets and does not get. What it
+does not have is one member saying it was worth it.
+
+**Why we did not borrow one.** There are seventeen testimonials on the site and
+every one of them is about a speaking engagement. Putting a keynote review on a
+membership page would read as a member endorsing the group, which is not what any
+of those people said.
+
+**What we need.** One sentence from one member, with a name and a business. That
+is the single highest-value thing missing from that route, and it is worth more
+than anything else we could build on it.
+
+---
+
+## 25. The rescued podcast back catalogue
+
+**New item, added 2026-08-07, and it is a question rather than a problem.**
+
+The WordPress library also holds about fifty `.mp3` files: episodes of The
+Business of Agriculture, self-hosted on the old site. They are not on the new
+one, deliberately, because the show streams from Libsyn and SoundCloud and the
+site self-hosts no audio.
+
+**They will go when the hosting does.** Damian holds the masters, so this is
+probably nothing, but it is worth ten minutes of somebody's time to check two
+things: whether any episode in that folder is missing from the Libsyn feed, and
+in particular whether Do Business Better episode 144 is one of them, since item
+14 records that as the one thing the rebuild dropped.
+
+We have not copied them into the repository. Fifty podcast episodes carry guest
+voices and possibly licensed music beds, and archiving them privately is a
+different decision from republishing them.
+
+---
+
 ## Summary: the five we would most like answers to
 
-If you only have time for a few, these are the ones that change the most:
+**Rewritten 2026-08-07.** Two of the five that used to be on this list are now
+answered, and both were answered out of your own WordPress media library rather
+than by us building anything: the professional photography and the AV document
+were there the whole time. What is left is genuinely things only you know.
 
 1. **Item 1**, the BoASG button, because it is the one instruction we could not
    resolve and it involves your money.
 2. **Item 10**, the video transcripts, because it is the only accessibility
-   failure left on the site.
+   failure left on the site. Everything else passes.
 3. **Item 7**, the book purchase links, because three books with no way to buy
    them looks like a mistake.
-4. **Item 4**, professional photography, because it is the single largest
-   remaining lift in quality and no amount of further engineering substitutes for
-   it.
-5. **Item 6**, the two 40,000s, because a number the site states about itself
+4. **Item 6**, the two 40,000s, because a number the site states about itself
    should be one number with one meaning.
+5. **Item 24**, a member testimonial for the Success Group, because it is the
+   only page on the site asking for money with nothing on it from anybody who
+   has paid.
 
-**And one more, added late:** **item 22**, the seven countries, because it is now
-the only question on this list that a visitor to the site can see. It ships as
-seven blank squares and an honest caption. Naming them turns a gap into a
-credential.
+**And one more, still:** **item 22**, the seven countries. It is the only
+question on this list a visitor to the site can see: it ships as seven blank
+squares and an honest caption. Naming them turns a gap into a credential.
+
+**Two smaller ones that block a wall each:** the display name for the **Iowa Pork
+Producers Association** and for **Egg Farmers of Ontario**, both in item 2. A logo
+wall label is what a screen reader announces, so it should be the name the
+organisation actually uses.
+
+**And one that is a launch risk rather than a question:** item 11. The contact
+form ships and works, but it needs a delivery provider in the production
+environment. Without one it answers cleanly and replaces itself with the email
+address and phone number, so nothing is lost, but nobody gets a form submission
+either.

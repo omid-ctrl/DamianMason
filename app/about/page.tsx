@@ -198,8 +198,8 @@ export default function AboutPage() {
           alt: imageAlt['/img/photos/portrait-dark-blazer.jpg'],
           width: 1467,
           height: 2000,
+          feature: true,
         }}
-        cutlineFolio="Fig. 01"
         cutline="Damian Mason. A Screen Actors Guild card and an Indiana farm, both in the same name."
       />
 
@@ -224,7 +224,7 @@ export default function AboutPage() {
                   has no source page of its own, so a third copy of it here was
                   the rebuild repeating itself rather than parity. The heading
                   below is drawn from the source bio's own first clause. */}
-              <Heading level={2} folio="No. 01" id="biography-title">
+              <Heading level={2} id="biography-title">
                 The two subjects he knows best.
               </Heading>
               <Prose>
@@ -292,7 +292,6 @@ export default function AboutPage() {
                   supports, and this one is grounded in the alt text: banquet
                   tables, growers, several of them grinning back at him. */}
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 02 </span>
                 A room of growers at banquet tables, mid program. The ones grinning came for
                 the market outlook.
               </figcaption>
@@ -304,11 +303,16 @@ export default function AboutPage() {
       {/* ================================================================
           No. 02, the credentials
           ================================================================ */}
-      <Section id="credentials" aria-labelledby="credentials-title" surface="sunken">
+      {/* Green. The split is the one app/page.tsx already states at its
+          podcast band: the section that talks about the man, the land or the
+          work goes forest, and the band that asks for the booking stays navy.
+          A biography is the first of those, and the dated spine reads better on
+          a ground that is not the same ground as the ledger above it. */}
+      <Section id="credentials" aria-labelledby="credentials-title" surface="forest">
         <Container>
           <div className={styles.stack}>
             <Eyebrow>Credentials</Eyebrow>
-            <Heading level={2} folio="No. 02" id="credentials-title">
+            <Heading level={2} id="credentials-title">
               Not your boring Ag speaker.
             </Heading>
             <Prose measure="wide">
@@ -359,7 +363,12 @@ export default function AboutPage() {
           foreign countries", which is the source sentence the biography above
           opens on, so this route was printing it twice. This one says what the
           four figures are without restating the first paragraph. */}
-      <StatRow restatement="Three of these four are stages. The fourth is the podcast, which is where the same material goes on the weeks nobody has booked him." />
+      <StatRow
+        /* Navy. See the note on the same prop in app/page.tsx: this route ran
+           hero, biography, credentials and books across five bands and only
+           changed ground once, at the closing CTA. */
+        surface="deep-alt"
+        restatement="Three of these four are stages. The fourth is the podcast, which is where the same material goes on the weeks nobody has booked him." />
 
       {/* ================================================================
           No. 03, the books. This section is the redirect target for every
@@ -372,7 +381,7 @@ export default function AboutPage() {
         <Container>
           <div className={styles.stack}>
             <Eyebrow>Books</Eyebrow>
-            <Heading level={2} folio="No. 03" id="books-title">
+            <Heading level={2} id="books-title">
               Two books and an audiobook.
             </Heading>
             {/* This paragraph used to run "What follows is the jacket copy,
@@ -474,7 +483,6 @@ export default function AboutPage() {
           ================================================================ */}
       <CTABand
         id="book-damian"
-        folio="No. 04"
         eyebrow="Next step"
         heading="Booking a date, or just curious?"
         /* The booking terms are not restated here. "First step: check the

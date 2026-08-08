@@ -1,0 +1,61 @@
+/* /speaker-one-sheet/
+   ----------------------------------------------------------------------------
+   Two classes. Everything else on this route is a shared section component,
+   which is the point: a one-sheet that used its own layout would drift from the
+   pages it summarises the first time either changed. */
+
+.head {
+  margin-block-end: var(--space-8);
+}
+
+/* The download rail. Two up from 768, because each card is a title plus two
+   lines and four in a row would set a 12-word paragraph in a 200px column. */
+.downloads {
+  display: grid;
+  gap: var(--gutter-column);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .downloads {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* The contact ledger. A definition list rather than a card, because the thing
+   being communicated is a set of labelled facts and that is what a <dl> is. It
+   is also the only block on the page whose job survives being printed on paper,
+   which is why the values are text and not buttons. */
+.ledger {
+  margin: 0;
+  border-block-start: var(--border-thin) solid var(--rule-strong);
+}
+
+.ledgerRow {
+  display: grid;
+  gap: var(--space-1) var(--gutter-column);
+  padding-block: var(--space-4);
+  border-block-end: var(--border-hairline) solid var(--rule-structural);
+}
+
+.ledgerRow dt {
+  color: var(--ink-muted);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+}
+
+.ledgerRow dd {
+  margin: 0;
+  font-size: var(--fs-md);
+}
+
+@media (min-width: 30rem) {
+  .ledgerRow {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: baseline;
+  }
+}

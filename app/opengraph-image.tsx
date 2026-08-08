@@ -56,8 +56,43 @@ async function loadWordmark(): Promise<string | null> {
   }
 }
 
+/**
+ * The cut-out portrait, inlined the same way and for the same reason.
+ *
+ * WHY THE CARD NOW HAS A FACE ON IT. Every route on this site shared one
+ * typographic card, so nothing Damian or a meeting planner ever shared carried
+ * a photograph of the man being booked. The card is the only part of this site
+ * most people see before they decide whether to click, and a speaker's card
+ * with no speaker on it is the one place the restraint was costing something
+ * real.
+ *
+ * The cut-out is the only asset that can do this. Any other portrait is a
+ * rectangle, and a rectangle inside a 1200x630 card is a photo pasted onto a
+ * layout; a transparent subject stands ON the card's own ground, which is the
+ * same gesture the home hero makes.
+ *
+ * THE CARD-SCALE DERIVATIVE, NOT THE MASTER. Satori has no image pipeline: it
+ * decodes what it is handed and cannot resize. Handed the 1400px master it
+ * fails outright with "Input buffer contains unsupported image format", which
+ * is a decoder giving up rather than a malformed file. See the note on the
+ * `portrait-cutout-card` entry in scripts/normalize-assets.mjs.
+ *
+ * Degrades to the typographic card if the file is missing, exactly as the
+ * wordmark does. Nothing here can fail a build.
+ */
+async function loadCutout(): Promise<string | null> {
+  try {
+    const file = await readFile(
+      join(process.cwd(), 'public', 'img', 'photos', 'portrait-cutout-card.png'),
+    );
+    return `data:image/png;base64,${file.toString('base64')}`;
+  } catch {
+    return null;
+  }
+}
+
 export default async function OpengraphImage() {
-  const wordmark = await loadWordmark();
+  const [wordmark, cutout] = await Promise.all([loadWordmark(), loadCutout()]);
 
   return new ImageResponse(
     (
@@ -109,7 +144,10 @@ export default async function OpengraphImage() {
           </div>
         </div>
 
-        {/* The argument, in two lines and one orange rule. */}
+        {/* The argument, in two lines and one orange rule, with the man beside
+            it. Satori has no grid, so this is a row and the type column takes
+            the remaining width. */}
+        <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center', gap: 40 }}>
         <div
           style={{
             display: 'flex',
@@ -119,7 +157,7 @@ export default async function OpengraphImage() {
             paddingTop: 40,
           }}
         >
-          <div style={{ fontSize: 112, letterSpacing: -3, lineHeight: 1.05, color: TOKENS.ink }}>
+          <div style={{ fontSize: 96, letterSpacing: -3, lineHeight: 1.05, color: TOKENS.ink }}>
             {site.name}
           </div>
           {/* The single orange element on the card. A rule, not a letterform. */}
@@ -133,12 +171,23 @@ export default async function OpengraphImage() {
               marginBottom: 30,
             }}
           />
-          <div style={{ fontSize: 46, letterSpacing: -0.5, color: TOKENS.inkBrand }}>
+          <div style={{ fontSize: 42, letterSpacing: -0.5, color: TOKENS.inkBrand }}>
             {site.tagline}
           </div>
         </div>
 
-        {/* Folio line. */}
+          {/* Bottom-aligned and slightly over-height, so he stands on the
+              folio rule rather than floating above it. 2:3, the file's own
+              ratio, so nothing is squashed. */}
+          {/* Bottom-aligned and slightly over-height, so he stands on the
+              standing line rather than floating above it. 347x520 is the
+              card-scale derivative's own size, so nothing is squashed. */}
+          {cutout ? (
+            <img src={cutout} width={253} height={380} alt="" />
+          ) : null}
+        </div>
+
+        {/* The standing line. */}
         <div
           style={{
             display: 'flex',

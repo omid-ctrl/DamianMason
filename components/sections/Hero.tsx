@@ -12,7 +12,7 @@ import {
 import type { DisplaySize, HeadingLevel, HeadingSize, SectionDensity, Surface } from '@/components/ui';
 import type { SectionActions } from './types';
 
-export type HeroVariant = 'portrait' | 'band';
+export type HeroVariant = 'portrait' | 'band' | 'cutout';
 
 export type HeroImage = {
   src: string;
@@ -26,6 +26,16 @@ export type HeroImage = {
    * true. Set it false when a route puts a Hero below the fold.
    */
   priority?: boolean;
+  /**
+   * Take the feature grade instead of the wash. The test is the FILE, not the
+   * placement: shot on purpose, by a professional, at 2000px or better. A
+   * broadcast frame grab in a hero is still a frame grab. DESIGN_SYSTEM 6.2.1.
+   *
+   * Ignored on `band`, where the 0.62 veil is computed for reversed type and
+   * outranks it. The stylesheet enforces that rather than trusting source
+   * order, so setting it there is a no-op and a defect in review.
+   */
+  feature?: boolean;
 };
 
 type HeroBase = {
@@ -33,6 +43,12 @@ type HeroBase = {
    * portrait the type sits beside a 4:5 plate at the 0.30 veil, because a
    *          meeting planner is buying a person and has to see his face.
    * band     the image runs full-bleed behind reversed type at the 0.62 veil.
+   * cutout   a transparent subject stands at full height beside the type, on
+   *          no plate, with no crop and no veil, on a rule. It is the same
+   *          argument as `portrait` made at twenty per cent more scale and at
+   *          full chroma, and it is only available to a file with a real alpha
+   *          channel. See .dm-hero--cutout in sections-core.css for why it
+   *          takes none of .dm-photo.
    */
   variant?: HeroVariant;
   /** Anchor target, and the stem of the heading id used by aria-labelledby. */
@@ -60,8 +76,6 @@ type HeroBase = {
   /** At most two. The first is rendered primary, which is the one filled
    *  orange field this viewport is allowed. */
   actions?: SectionActions;
-  /** "FIG. 01", when the page carries more than one image. */
-  cutlineFolio?: string;
   surface?: Surface;
   density?: SectionDensity;
   className?: string;
@@ -82,6 +96,7 @@ export type HeroProps = HeroBase &
 const DEFAULT_TITLE_SIZE: Record<HeroVariant, DisplaySize> = {
   portrait: '6xl',
   band: '5xl',
+  cutout: '6xl',
 };
 
 /** The steps the masthead voice is permitted at, as a value, so the render can
@@ -90,10 +105,18 @@ const DEFAULT_TITLE_SIZE: Record<HeroVariant, DisplaySize> = {
  *  strokes below 40px, and a condensed gothic does not. */
 const DISPLAY_SIZES: DisplaySize[] = ['3xl', '4xl', '5xl', '6xl'];
 
-/** A band carries reversed type, so it defaults to the navy ground. */
+/** A band carries reversed type, so it defaults to the navy ground.
+ *
+ *  A cut-out stays on `page` and that is not a default so much as a
+ *  requirement. The masthead ground is --surface-page in every scope it can
+ *  appear in, so a hero continuing it is the only one with no seam under the
+ *  wordmark. A cut-out on `deep` is wrong twice over: a charcoal jacket on navy
+ *  loses the silhouette that is the entire point of a cut-out, and it puts
+ *  reversed type in the first viewport of the flagship route. */
 const DEFAULT_SURFACE: Record<HeroVariant, Surface> = {
   portrait: 'page',
   band: 'deep',
+  cutout: 'page',
 };
 
 function Deck({ deck }: { deck: ReactNode }) {
@@ -125,15 +148,6 @@ function Actions({ actions }: { actions: SectionActions }) {
   );
 }
 
-function Cutline({ folio, children }: { folio?: string; children: ReactNode }) {
-  return (
-    <>
-      {folio ? <span className="dm-figure__folio">{folio} </span> : null}
-      {children}
-    </>
-  );
-}
-
 /**
  * The page-opening section, in two variants and no third.
  *
@@ -153,7 +167,6 @@ export function Hero(props: HeroProps) {
     actions = [] as const,
     image,
     cutline,
-    cutlineFolio,
     surface,
     density,
     className,
@@ -162,6 +175,7 @@ export function Hero(props: HeroProps) {
   const size = titleSize ?? DEFAULT_TITLE_SIZE[variant];
   const headingId = id ? `${id}-title` : undefined;
   const band = variant === 'band';
+  const cutout = variant === 'cutout';
   /* A Hero speaks in the masthead voice only when it IS the page's H1.
      The size check alone was not the rule, it was a proxy for it that happened
      to hold: the one level-2 Hero on the site (the /meeting-coordinators/
@@ -178,7 +192,18 @@ export function Hero(props: HeroProps) {
     <div
       className={cx(
         'dm-hero__type',
-        band ? 'col-span-6 md:col-span-9' : 'col-span-6 md:col-span-12 lg:col-span-7',
+        band
+          ? 'col-span-6 md:col-span-9'
+          : /* The explicit lg placement is only on the cut-out, and it is
+               required rather than tidy: its figure IS explicitly placed, and
+               CSS sparse auto-placement will not put an auto-placed item on the
+               same row as one that named its column. The track itself is
+               unchanged at 7 of 12, so --fs-6xl-hero keeps the exact 708px at
+               1440 and 535px at 1024 it was fitted against. */
+            cx(
+              'col-span-6 md:col-span-12 lg:col-span-7',
+              cutout && 'lg:col-start-1 lg:row-start-1',
+            ),
       )}
     >
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
@@ -208,15 +233,60 @@ export function Hero(props: HeroProps) {
       aria-labelledby={headingId}
       surface={surface ?? DEFAULT_SURFACE[variant]}
       density={density ?? (band ? 'loose' : 'default')}
-      className={cx('dm-hero', band ? 'dm-hero--band' : 'dm-hero--portrait', className)}
+      className={cx(
+        'dm-hero',
+        band && 'dm-hero--band',
+        cutout && 'dm-hero--cutout',
+        !band && !cutout && 'dm-hero--portrait',
+        className,
+      )}
     >
       <Container className={band ? 'dm-hero__inner' : undefined}>
         <div className="dm-grid12 dm-hero__grid">
           {type}
 
-          {!band && image ? (
+          {cutout && image ? (
+            <figure className="dm-figure dm-hero__figure--cutout col-span-6 md:col-span-12 lg:col-span-5 lg:col-start-8 lg:row-start-1">
+              {/* THE CUTLINE COMES FIRST, and the HTML spec allows it:
+                  <figcaption> may be the figure's first OR its last child. It
+                  is first because from 1024 the picture runs to the section's
+                  own bottom edge, so a caption after it would either sit
+                  outside the section it belongs to or force the figure to stop
+                  short of the rule it is standing on. At the head of the column
+                  it sits level with the eyebrow and reads as a marginal note,
+                  which is what a broadsheet cutline beside a masthead is.
+                  Section 6.1 is satisfied either way: every photograph is a
+                  <figure> with a cutline, and this is one. */}
+              <figcaption className="dm-figure__caption">
+                {cutline}
+              </figcaption>
+              <div className="dm-hero__cutout">
+                <Image
+                  className="dm-hero__cutout-img"
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  priority={image.priority ?? true}
+                  /* Same pairing and the same reason as the portrait plate
+                     below: in Next 16 `priority` maps to preload only and the
+                     hint is a separate prop. This element is LCP on the
+                     flagship route. */
+                  fetchPriority="high"
+                  /* 31rem is --size-cutout-max-h times 2/3, the widest this
+                     ever renders. */
+                  sizes="(min-width: 64rem) 31rem, (min-width: 48rem) 22rem, 100vw"
+                />
+              </div>
+            </figure>
+          ) : null}
+
+          {!band && !cutout && image ? (
             <figure className="dm-figure dm-hero__figure col-span-6 md:col-span-12 lg:col-span-5">
-              <div className="dm-photo dm-photo--portrait">
+              <div
+                className="dm-photo dm-photo--portrait"
+                data-photo={image.feature ? 'feature' : undefined}
+              >
                 <Image
                   className="dm-photo__img"
                   src={image.src}
@@ -237,7 +307,7 @@ export function Hero(props: HeroProps) {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <Cutline folio={cutlineFolio}>{cutline}</Cutline>
+                {cutline}
               </figcaption>
             </figure>
           ) : null}
@@ -251,7 +321,7 @@ export function Hero(props: HeroProps) {
                 band ? 'col-span-6 md:col-span-9' : 'col-span-6 md:col-span-12 lg:col-span-5',
               )}
             >
-              <Cutline folio={cutlineFolio}>{cutline}</Cutline>
+              {cutline}
             </p>
           ) : null}
         </div>
@@ -280,7 +350,7 @@ export function Hero(props: HeroProps) {
           </div>
           <figcaption className="dm-hero__cutline--band">
             <span className="dm-figure__caption">
-              <Cutline folio={cutlineFolio}>{cutline}</Cutline>
+              {cutline}
             </span>
           </figcaption>
         </figure>

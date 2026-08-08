@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import { CTABand } from '@/components/sections/CTABand';
+import { StatRow, type StatRowItem } from '@/components/sections/StatRow';
 import { JsonLd } from '@/components/seo';
 import {
   Button,
@@ -175,6 +176,18 @@ const breadcrumbs = buildBreadcrumbListSchema([
   { name: 'The Business of Ag Success Group', path: '/boasg/' },
 ]);
 
+/**
+ * Every figure is already in SCHEDULE_NOTE above or on the seal itself, which
+ * reads "established 2020". Nothing here is a new claim, and the membership
+ * price is deliberately still absent: see the header note.
+ */
+const BOASG_STATS: StatRowItem[] = [
+  { value: '2020', countFrom: '2010', label: 'Running since' },
+  { value: '26', label: 'Calls a year' },
+  { value: '90', label: 'Minutes, at most' },
+  { value: '2', label: 'People leading it' },
+];
+
 export default function BoasgPage() {
   return (
     <>
@@ -206,25 +219,36 @@ export default function BoasgPage() {
               </div>
             </div>
 
-            <div className="col-span-6 md:col-span-12 lg:col-span-5">
-              <Card variant="bright" className={styles.badge}>
+            {/* THE PHOTOGRAPH, NOT THE SEAL, and the swap is the point.
+
+                This route sold a paid membership off a hero that showed a logo.
+                A seal identifies a thing; it is not evidence that the thing is
+                worth $99 a month, and the one asset that carries any weight
+                here is the face of the man running the call. The seal has not
+                gone: it moves down into the membership section, at mark scale,
+                where identifying the group is exactly its job.
+
+                --photo-filter-feature, because this is a 2400x3600 studio frame
+                and the wash is fitted to the eighteen mixed sources rather than
+                to this one. */}
+            <figure className="dm-figure dm-hero__figure col-span-6 md:col-span-12 lg:col-span-5">
+              <div className="dm-photo dm-photo--portrait" data-photo="feature">
                 <Image
-                  className={styles.badgeImg}
-                  src={brandAssets.boasgWhite}
-                  alt="The Business of Ag Success Group seal, a wheat head over the BoASG monogram, established 2020."
-                  /* 508x504, not the supplied 800x800: scripts/normalize-brand-art.mjs
-                     trims this mark to its own ink like every other brand mark
-                     on the site. The raw file carried the seal in 65% of its
-                     canvas, so the declared square reserved a box a third
-                     wider than the artwork and the hairline frame around it
-                     read as empty. */
-                  width={508}
-                  height={504}
+                  className="dm-photo__img"
+                  src="/img/photos/portrait-black-suit.jpg"
+                  alt={imageAlt['/img/photos/portrait-black-suit.jpg']}
+                  width={1333}
+                  height={2000}
                   priority
-                  sizes="(min-width: 64rem) 32rem, 100vw"
+                  fetchPriority="high"
+                  sizes="(min-width: 48rem) 32rem, 100vw"
                 />
-              </Card>
-            </div>
+              </div>
+              <figcaption className="dm-figure__caption">
+                Damian Mason. Every other Friday at 11am Eastern, 60 to 90 minutes,
+                and the recording is there if you miss it.
+              </figcaption>
+            </figure>
           </div>
         </Container>
       </Section>
@@ -238,7 +262,7 @@ export default function BoasgPage() {
           <div className="dm-grid12">
             <div className={`${styles.stack} col-span-6 md:col-span-12 lg:col-span-8`}>
               <Eyebrow>The membership</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 01" id="membership-title">
+              <Heading level={2} size="2xl" id="membership-title">
                 What you get, and what you won&rsquo;t
               </Heading>
               <Prose measure="wide">
@@ -281,6 +305,29 @@ export default function BoasgPage() {
         </Container>
       </Section>
 
+      {/* The one thing this route had none of: a figure a reader can weigh.
+
+          It sold a paid membership on two bulleted lists and two biographies,
+          with no number anywhere on the page except the ones inside the
+          schedule sentence. Every figure below is lifted straight out of
+          SCHEDULE_NOTE and the seal's own artwork; nothing here is new.
+
+          What it still has none of is a MEMBER TESTIMONIAL, and that is not
+          something to work around: testimonialsByRoute has no /boasg/ key and
+          none of the seventeen quotes is from a member. Borrowing a speaking
+          testimonial onto a membership page would read as a member endorsing
+          the group. Logged in docs/OPEN-ITEMS.md instead.
+
+          Navy, and it is this route's only dark ground before the close. */}
+      <StatRow
+        id="how-it-runs"
+        surface="deep-alt"
+        eyebrow="How it runs"
+        title="Every other Friday, since 2020"
+        items={BOASG_STATS}
+        restatement="Two people who do this for a living, in a room small enough to ask a question in. Miss one and the recording is there."
+      />
+
       {/* --- Who leads it ----------------------------------------------------
           Source sections 2 (second half) and 3. Both expertise lists were
           runs of bullet glyphs separated by <br /> inside one paragraph. They
@@ -290,7 +337,7 @@ export default function BoasgPage() {
           <div className="dm-grid12">
             <div className={`${styles.stack} col-span-6 md:col-span-12 lg:col-span-8`}>
               <Eyebrow>Who runs the calls</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 02" id="who-leads-it-title">
+              <Heading level={2} size="2xl" id="who-leads-it-title">
                 Led by Damian Mason and Todd Thurman
               </Heading>
               <Prose measure="wide">
@@ -325,24 +372,26 @@ export default function BoasgPage() {
               </Prose>
             </div>
 
-            <figure className="dm-figure col-span-6 md:col-span-4">
-              <div className="dm-photo dm-photo--portrait">
+            {/* The seal, where identifying the group is the job. It was the
+                hero until the media-kit rescue put a real portrait in that
+                slot; it is supplied artwork under DESIGN_SYSTEM 6.5, so it
+                keeps its colour, takes no filter and carries no cutline. */}
+            <div className="col-span-6 md:col-span-4">
+              <Card variant="bright" className={styles.badge}>
                 <Image
-                  className="dm-photo__img"
-                  src="/img/photos/portrait-black-suit.jpg"
-                  alt={imageAlt['/img/photos/portrait-black-suit.jpg']}
-                  width={1333}
-                  height={2000}
+                  className={styles.badgeImg}
+                  src={brandAssets.boasgWhite}
+                  alt="The Business of Ag Success Group seal, a wheat head over the BoASG monogram, established 2020."
+                  /* 508x504, not the supplied 800x800: scripts/normalize-brand-art.mjs
+                     trims this mark to its own ink like every other brand mark
+                     on the site. */
+                  width={508}
+                  height={504}
                   loading="lazy"
-                  sizes="(min-width: 48rem) 28rem, 100vw"
+                  sizes="(min-width: 48rem) 24rem, 100vw"
                 />
-              </div>
-              <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 01 </span>
-                Damian Mason. Every other Friday at 11am Eastern, 60 to 90 minutes, and
-                the recording is there if you miss it.
-              </figcaption>
-            </figure>
+              </Card>
+            </div>
           </div>
 
           <div className={`${styles.leader} dm-grid12`}>
@@ -374,7 +423,6 @@ export default function BoasgPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 02 </span>
                 Todd Thurman, founder of SwineTex Consulting Services. More than 20 years
                 spent making other people&rsquo;s pork operations more profitable.
               </figcaption>
@@ -396,7 +444,7 @@ export default function BoasgPage() {
           <div className="dm-grid12">
             <div className={`${styles.stack} col-span-6 md:col-span-12 lg:col-span-7`}>
               <Eyebrow>Lower commitment</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 03" id="mailing-list-title">
+              <Heading level={2} size="2xl" id="mailing-list-title">
                 Join the Conversation
               </Heading>
               <Prose>
@@ -415,7 +463,6 @@ export default function BoasgPage() {
       <CTABand
         id="join"
         eyebrow="Membership"
-        folio="No. 04"
         heading="Join the group"
         copy={
           <>

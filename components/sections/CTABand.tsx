@@ -37,8 +37,6 @@ export type CTABandProps = {
   heading: ReactNode;
   /** Rank, independent of size. Defaults to h2. */
   level?: HeadingLevel;
-  /** The numbered prefix, e.g. "No. 07", rendered inside the heading. */
-  folio?: string;
   copy?: ReactNode;
   /** At most two. The first is the one filled orange field in this viewport. */
   actions?: SectionActions;
@@ -46,6 +44,8 @@ export type CTABandProps = {
   /** Deep by default. `deepest` when the band sits directly on the footer. */
   surface?: Surface;
   density?: SectionDensity;
+  /** Sits directly under a section on the same ground. See Section. */
+  seam?: boolean;
   /**
    * The container the band's own content sits in. `max` on the seventeen
    * routes that lay out against the 12-column grid, which is why it is the
@@ -74,12 +74,12 @@ export function CTABand({
   eyebrow,
   heading,
   level = 2,
-  folio,
   copy,
   actions = [] as const,
   panel,
   surface = 'deep',
   density,
+  seam,
   containerWidth = 'max',
   className,
 }: CTABandProps) {
@@ -115,6 +115,7 @@ export function CTABand({
       aria-labelledby={headingId}
       surface={surface}
       density={density}
+      seam={seam}
       className={cx('dm-ctaband', className)}
     >
       <Container width={containerWidth}>
@@ -139,7 +140,7 @@ export function CTABand({
             )}
           >
             {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-            <Heading level={level} size="3xl" folio={folio} id={headingId}>
+            <Heading level={level} size="3xl" id={headingId}>
               {heading}
             </Heading>
             {copy ? (

@@ -50,8 +50,6 @@ export type VideoEmbedProps = {
   captions?: VideoCaptionTrack;
   /** The cutline under the frame. Falls back to `video.description`. */
   cutline?: ReactNode;
-  /** "FIG. 03" style prefix, for a page carrying more than one figure. */
-  folio?: string;
   /** Only the hero asset on a page should ever be eager. */
   loading?: 'lazy' | 'eager';
   className?: string;
@@ -164,7 +162,6 @@ export function VideoEmbed({
   poster,
   captions,
   cutline,
-  folio,
   loading = 'lazy',
   className,
 }: VideoEmbedProps) {
@@ -341,7 +338,6 @@ export function VideoEmbed({
 
       {caption ? (
         <figcaption className="dm-figure__caption">
-          {folio ? <span className="dm-figure__folio">{folio} </span> : null}
           {caption}
         </figcaption>
       ) : null}

@@ -28,6 +28,7 @@ import Link from 'next/link';
 import { Container, Eyebrow, Heading, Prose, Rule, Section } from '@/components/ui';
 import { Hero } from '@/components/sections/Hero';
 import { PressList } from '@/components/sections/PressList';
+import { StatRow, type StatRowItem } from '@/components/sections/StatRow';
 import { VideoGrid } from '@/components/sections/VideoGrid';
 import { CTABand } from '@/components/sections/CTABand';
 import { JsonLd } from '@/components/seo';
@@ -88,6 +89,17 @@ const CTA_ACTIONS = [
   },
 ] as const;
 
+/**
+ * Derived, not typed. Nine press items, the distinct outlets among them, and
+ * the three that carry video, so the ledger cannot disagree with the two lists
+ * further down the page.
+ */
+const MEDIA_STATS: StatRowItem[] = [
+  { value: String(press.length), label: 'Appearances' },
+  { value: String(new Set(press.map((item) => item.outlet)).size), label: 'Outlets' },
+  { value: String(pageVideos.length), label: 'On camera' },
+];
+
 export default function MediaPage() {
   return (
     <>
@@ -99,15 +111,48 @@ export default function MediaPage() {
         eyebrow="Forbes · Newsmax · Cheddar News · Straight Arrow News · Eagle Country 95.9"
         title="News & Media"
         deck="Reporters call when a story needs both halves: the commodity market and the grocery bill. Damian gives them the figure, then what it’s doing to a farm in Indiana. Nine appearances, five outlets, three of them on video below."
+        /* This route ran a type-only hero AND no call to action above the
+           closing band, on the page a producer or a booker lands on when they
+           are deciding whether to put him on air. Both are fixed here: the
+           green-screen frame is the only photograph in the archive of the
+           actual apparatus a remote television hit is done on, which is the
+           thing this page is selling. */
+        image={{
+          src: '/img/photos/green-screen-setup.jpg',
+          /* Single call site, so the string lives here rather than in
+             content/image-alt.ts, per the rule at the head of that module. */
+          alt: 'Damian Mason waving on a green-screen stage, between a studio light and a camera on a tripod.',
+          width: 2000,
+          height: 1334,
+          feature: true,
+        }}
+        actions={[
+          { label: 'Book Damian for a segment', href: '/contact-us/' },
+          { label: 'Watch the clips', href: '#segments', variant: 'secondary' },
+        ] as const}
         cutline="When the price of eggs makes the national news, somebody has to explain why. Damian gets the call."
+      />
+
+      {/* The deck above states three figures in prose and the page then never
+          shows them. A ledger is the block this site uses for exactly that, and
+          it puts a dark band on a route that had none: /blog-news/ ran 5,193px
+          of one grey before its closing CTA. Every number here is arithmetic on
+          content/press.ts and content/videos.ts, not a new claim. */}
+      <StatRow
+        id="record"
+        surface="deep-alt"
+        eyebrow="On the record"
+        title="Who calls, and how often"
+        items={MEDIA_STATS}
+        restatement="Three networks, three subjects, one phone call each. The ones with video are below; the rest are linked where they ran."
       />
 
       <Section id="coverage" aria-labelledby="coverage-title" surface="sunken">
         <Container>
           <div className="dm-grid12">
-            <div className={`${styles.head} col-span-6 md:col-span-4`}>
+            <div className={`dm-rail ${styles.head} col-span-6 md:col-span-4`}>
               <Eyebrow>Print, web, and broadcast</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 01" id="coverage-title">
+              <Heading level={2} size="2xl" id="coverage-title">
                 Nine appearances, five outlets
               </Heading>
               <Prose measure="narrow">
@@ -139,7 +184,7 @@ export default function MediaPage() {
         <Container>
           <div className={styles.head}>
             <Eyebrow>Television and radio</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 02" id="segments-title">
+            <Heading level={2} size="2xl" id="segments-title">
               Watch three of them
             </Heading>
             <Prose>
@@ -174,7 +219,6 @@ export default function MediaPage() {
         id="press-enquiries"
         eyebrow="Press and media enquiries"
         heading="Working on a food or farm story?"
-        folio="No. 03"
         copy="Damian is a Purdue Ag Econ graduate who owns an Indiana farm and has been on stage since 1994. If your segment needs one person who can explain a commodity market and a grocery bill in the same take, email the office. We typically respond within one business day."
         actions={CTA_ACTIONS}
         panel={{

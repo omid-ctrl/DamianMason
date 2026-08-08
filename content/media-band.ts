@@ -26,4 +26,17 @@ export const mediaBand = {
   inquireLabel: 'Inquire About Working With Damian',
   /** Source section 5 of both pages, the same button on both. */
   mailingListLabel: 'Sign Up for Damian’s Mailing List',
+  /**
+   * The body under that heading, and it lives here for the same reason
+   * everything else in this file does.
+   *
+   * The source gives section 5 a heading and a button and no prose on either
+   * page. /acres-tv/ wrote two sentences for it; /xtreme-ag/ wrote none, so one
+   * route shipped a heading, a paragraph and a button and the other shipped a
+   * heading and a button with nothing between them, which is the thinnest
+   * section on the site. Written once, it is the same band on both, which is
+   * what the source actually had.
+   */
+  mailingListBlurb:
+    'Add yourself to the list and you’ll hear when a new episode posts, plus where Damian is speaking next. One email, not five.',
 } as const;

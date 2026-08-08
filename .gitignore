@@ -65,6 +65,13 @@ next-env.d.ts
 /_source/media/*.mp4
 /_source/media/*.mp3
 
+# The two media-kit archives recovered from the old WordPress library on
+# 2026-08-07, 36MB between them. Everything worth having was extracted into
+# _source/media-kit/ and every file in both, kept or not, is inventoried with a
+# SHA-256 in _source/media-kit/PROVENANCE.md. Carrying the zips as well would
+# store the same photographs twice, once compressed and once not.
+/_source/archive/
+
 # QA screenshots. 2,337 files and 1.47GB across eight audit rounds, every one of
 # them regenerable with `node scripts/shoot.mjs`. The JSON reports and the
 # measurement writeups beside them are kept, because those are the evidence.

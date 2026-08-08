@@ -10,6 +10,10 @@ import {
   type JsonLdDocument,
 } from '@/lib/schema';
 import { SITE_LANGUAGE, buildMetadata, canonicalUrl } from '@/lib/seo';
+import { PressList } from '@/components/sections/PressList';
+import { press } from '@/content/press';
+import { imageAlt } from '@/content/image-alt';
+
 import { PostCard } from './PostCard';
 import styles from './page.module.css';
 
@@ -65,6 +69,16 @@ const blogSchema: JsonLdDocument = {
   })),
 };
 
+/**
+ * The seven press items that are NOT the two posts above.
+ *
+ * The filter is required, not tidy: content/press.ts records at both of these
+ * ids that the item IS the blog post, so without it each of the two would
+ * render twice on one page, once as a card and once as a row.
+ */
+const OWN_POSTS = ['san-eggflation-record-profits', 'cheddar-climate-food-shortages'];
+const OTHER_COVERAGE = press.filter((item) => !OWN_POSTS.includes(item.id));
+
 export default function BlogIndexPage() {
   return (
     <>
@@ -80,6 +94,21 @@ export default function BlogIndexPage() {
         eyebrow="Two interviews, written up"
         title="Blog"
         deck="Two posts. Both are about what food costs. When Straight Arrow News or Cheddar News needs an ag economist on the record about egg prices or a global food shortage, they call Damian. You’ll find both here, with the source attached."
+        /* A type-only hero with no action, on a two-post archive, was the
+           thinnest opening on the site. The desk is the honest picture for a
+           blog index: it is where the writing happens, and it is the same frame
+           /join-the-conversation/ closes on, which is deliberate rather than a
+           reuse. The two routes are the same promise in two formats. */
+        image={{
+          src: '/img/photos/podcast-desk.jpg',
+          alt: imageAlt['/img/photos/podcast-desk.jpg'],
+          width: 2000,
+          height: 1308,
+          feature: true,
+        }}
+        actions={[
+          { label: 'See the media archive', href: '/blog-news/', variant: 'secondary' },
+        ] as const}
         cutline="Both posts are Damian in somebody else’s newsroom: Straight Arrow News in December 2022, Cheddar News in April 2023."
       />
 
@@ -123,6 +152,43 @@ export default function BlogIndexPage() {
                   Hear the podcasts
                 </Button>
               </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* THE SECTION ABOVE SAYS WHERE THE REST OF IT IS. This shows it.
+
+          A two-post archive that ends on a paragraph explaining that the real
+          work is somewhere else is a page apologising for itself. The nine
+          press items are the real work, they are already in content/press.ts
+          with verified outbound links, and two of them ARE these two posts,
+          which is why they are filtered out below rather than rendered twice.
+
+          Navy, because this route ran 3,412px of one grey and four images. */}
+      <Section id="elsewhere" surface="deep-alt" aria-labelledby="elsewhere-title">
+        <Container>
+          <div className="dm-grid12">
+            <div className="dm-rail col-span-6 md:col-span-4">
+              <Eyebrow>Also on the record</Eyebrow>
+              <Heading level={2} size="2xl" id="elsewhere-title">
+                Where the rest of it ran
+              </Heading>
+              <Prose measure="narrow">
+                <p>
+                  The posts above are two of nine. The other seven ran in
+                  somebody else&rsquo;s publication, which is where an interview
+                  belongs, and every one of them is linked at the source.
+                </p>
+              </Prose>
+            </div>
+            <div className="col-span-6 md:col-span-8">
+              <PressList
+                items={OTHER_COVERAGE}
+                limit={4}
+                headingLevel={3}
+                label="Coverage elsewhere"
+              />
             </div>
           </div>
         </Container>

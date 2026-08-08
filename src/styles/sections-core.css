@@ -74,9 +74,27 @@
     mix-blend-mode: var(--photo-wash-blend-shadow);
     opacity: var(--photo-veil-opacity);
   }
+  /* THE FEATURE FRAME. Same three layers, half the correction. See
+     DESIGN_SYSTEM 6.2.1 for the closed list of which files get it and why the
+     test is the file rather than the placement. */
+  .dm-photo[data-photo="feature"] .dm-photo__img { filter: var(--photo-filter-feature); }
+  .dm-photo[data-photo="feature"]::before { opacity: var(--photo-wash-highlight-opacity-feature); }
+  .dm-photo[data-photo="feature"]::after { opacity: var(--photo-veil-opacity-feature); }
+
   /* The only place the heavier veil is legal: a full-bleed band with reversed
-     type over it. */
-  .dm-photo--veil-band::after { opacity: var(--photo-veil-opacity-band); }
+     type over it.
+
+     IT OUTRANKS THE FEATURE GRADE, UNCONDITIONALLY, and it is stated as a
+     compound selector rather than left to source order because source order is
+     not a rule anybody can see from a call site. 0.62 is COMPUTED, not chosen:
+     --ink-primary against a worst-case white pixel, through the veil and the
+     hero scrim, at 75% across where the rightmost line of reversed type
+     actually sits, gives 1.58 at 0.20, 3.47 at 0.50 and 5.03 at 0.62. A feature
+     frame behind reversed type is not a feature frame, it is a ground. */
+  .dm-photo--veil-band::after,
+  .dm-photo--veil-band[data-photo="feature"]::after {
+    opacity: var(--photo-veil-opacity-band);
+  }
 
   .dm-photo--portrait { aspect-ratio: var(--ratio-portrait); }
   .dm-photo--portrait .dm-photo__img { object-position: var(--photo-focus-portrait); }
@@ -311,6 +329,100 @@
     .dm-hero__cutline--band { margin-block-start: var(--space-4); }
   }
 
+  /* --- cutout ---------------------------------------------------------------
+     The third hero variant, and the only place on the site where a photograph
+     has no box.
+
+     IT TAKES NONE OF .dm-photo, AND THAT IS A CONSEQUENCE OF THE WASH RATHER
+     THAN AN EXEMPTION FROM IT. The wash is a plate colour plus two full-bleed
+     blend layers painted across the element's RECTANGLE. Over a transparent
+     region a multiply resolves against whatever is behind it, so a cut-out
+     inside .dm-photo prints --surface-plate as a navy rectangle around the
+     silhouette, with a hard edge at the box. That is the same "visible box
+     around the mark" failure GROUND_FIXES exists to prevent on the logo wall.
+     The grade therefore moves onto the image itself, and there is no veil
+     because there is no reversed type here for a veil to hold off.
+     Do not "fix" this by adding .dm-photo back.
+
+     The 4:5 plate it replaces on the home page rendered 492x615 at 1440. This
+     renders 491x736: twenty per cent taller, uncropped, unveiled, and at full
+     chroma. That is the whole gesture, and it is scale and value rather than
+     any new visual vocabulary.
+     ------------------------------------------------------------------------ */
+  .dm-hero--cutout {
+    /* The figure's feet land on a rule rather than on nothing. --border-thick
+       is the section-head weight, the heaviest rule the system owns, and it is
+       what turns a floating cut-out into a man standing on a page. */
+    border-block-end: var(--border-thick) solid var(--rule-strong);
+  }
+
+  .dm-hero__figure--cutout {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-inline-size: 0;
+  }
+
+  .dm-hero__cutout {
+    position: relative;
+    z-index: var(--z-base);
+    /* The reservation, definite before the file arrives, in every branch below.
+       This is the whole CLS argument. */
+    aspect-ratio: var(--ratio-cutout);
+    inline-size: 100%;
+    margin-inline-start: auto;
+  }
+
+  .dm-hero__cutout-img {
+    inline-size: 100%;
+    block-size: 100%;
+    /* contain rather than cover: the box IS the file's ratio, so this decides
+       nothing today and is the guard for the day a different cut-out ships. */
+    object-fit: contain;
+    object-position: 50% 100%;
+    filter: var(--photo-filter-feature);
+    /* Nothing here is a control. A transparent PNG still paints a full
+       rectangle to the hit tester, and at lg that rectangle reaches the type
+       column's gutter, so without this the deck sits under an invisible sheet
+       and text selection dies at the column edge. */
+    pointer-events: none;
+  }
+
+  /* 768 to 1023: still stacked, but a 704px column at 2:3 is 1056px of picture,
+     taller than the viewport. The cap is --size-portrait-max, the token that
+     already means "how big a hero figure of a person may be", applied to the
+     inline axis because that is the axis aspect-ratio resolves from. */
+  @media (min-width: 48rem) and (max-width: 63.9375rem) {
+    .dm-hero__cutout {
+      max-inline-size: calc(var(--size-portrait-max) * 2 / 3);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    /* The type is the thing that gets read, so it holds the upper stacking
+       context whatever the figure's box does. */
+    .dm-hero--cutout .dm-hero__type {
+      position: relative;
+      z-index: var(--z-raised);
+    }
+    /* The section's own block-end interval is cancelled on this variant only,
+       so the silhouette's feet meet the closing rule instead of stopping
+       --section-pad-block short of it and floating above it. */
+    .dm-hero--cutout { padding-block-end: 0; }
+    .dm-hero__figure--cutout { align-self: end; }
+    .dm-hero__cutout { max-inline-size: calc(var(--size-cutout-max-h) * 2 / 3); }
+    /* THE ROW STARTS AT THE TOP, WHICH IS THE ONE THING THIS VARIANT HAS TO
+       OVERRIDE. .dm-hero__grid centres its items from 1024 because a 615px
+       plate and a three-line masthead are close enough in height that centring
+       reads as deliberate. A 736px figure against the same masthead is not: the
+       type column gets centred against the taller of the two and the whole
+       block drops about 90px, which on a 900px viewport takes the primary
+       action below the fold. The photograph is allowed to be the tall one; the
+       type is not allowed to move for it. */
+    .dm-hero--cutout .dm-hero__grid { align-items: start; }
+  }
+
   /* ==========================================================================
      STAT LEDGER
      Grafted from direction 3. Mono index, serif tabular figure, the orange
@@ -409,10 +521,6 @@
       align-items: baseline;
       column-gap: var(--space-4);
     }
-    .dm-statrow__item .dm-stat__index {
-      grid-row: 1;
-      grid-column: 1;
-    }
     .dm-statrow__item .dm-stat__label {
       grid-row: 1;
       grid-column: 2;
@@ -471,14 +579,30 @@
   .dm-logowall--cols-5 .dm-logowall__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dm-logowall__grid > .dm-logo-cell:last-child:nth-child(odd) { grid-column: span 2; }
   /* Three across from 768, where a third of the container is already wider
-     than the two-across phone cell. */
+     than the two-across phone cell.
+
+     THE RESET BELOW IS SCOPED TO cols-7 AND IT HAS TO BE. cols-5 stays at two
+     across all the way to 1024, because 25 marks divide by 5 and by nothing
+     else useful: three across would leave an orphan and five across at 768
+     gives a 140px cell, which the widest mark overflows once optical sizing has
+     taken it to 151px. So at 768 a cols-5 wall is still a two-column grid, and
+     an unscoped reset here would take the span off its 25th cell and leave a
+     ruled half-row at exactly the width nobody checks. */
   @media (min-width: 48rem) {
     .dm-logowall--cols-7 .dm-logowall__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .dm-logowall__grid > .dm-logo-cell:last-child:nth-child(odd) { grid-column: auto; }
+    .dm-logowall--cols-7 .dm-logowall__grid > .dm-logo-cell:last-child:nth-child(odd) { grid-column: auto; }
   }
   @media (min-width: 64rem) {
     .dm-logowall--cols-7 .dm-logowall__grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
     .dm-logowall--cols-5 .dm-logowall__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    /* THE SPAN COMES OFF HERE TOO, and this is the second half of the same
+       rule. The span exists so an ODD set does not leave a ruled hole in a
+       two-column grid. At five columns a set of 25 divides exactly, so the span
+       is not fixing anything: it makes the twenty-fifth cell two tracks wide,
+       which pushes it onto a SIXTH row and leaves a four-cell hole in the
+       fifth. Measured at 1024 and 1440 before this line: 25 cells, 5 columns,
+       6 rows. */
+    .dm-logowall__grid > .dm-logo-cell:last-child:nth-child(odd) { grid-column: auto; }
   }
 
   .dm-logo-cell {
@@ -781,3 +905,65 @@
   padding-block-start: var(--space-6);
   border-block-start: var(--border-hairline) solid var(--rule-structural);
 }
+
+/* ============================================================================
+   THE FULL-BLEED PLATE.
+
+   The one place a photograph is allowed out of the grid, and it is a direct
+   child of the <Section> rather than of the <Container>, which is the same
+   mechanism `Hero variant="band"` already uses.
+
+   WHY IT IS ALLOWED AT ALL, in a system whose whole argument is one measure and
+   one left axis. A broadsheet does this too: the picture that runs the width of
+   the sheet is how a printed page says "stop reading for a second and look".
+   Every other photograph on this site sits inside the container and takes its
+   turn; a route that never once breaks that has no way to signal which of its
+   images is the one that matters.
+
+   ONE PER ROUTE, AND ONLY FOR A FRAME THAT SURVIVES 1440px WIDE. Two would be a
+   layout rather than an emphasis, and a 1,500px source stretched across a
+   1440px viewport is worse than the same frame at half the size. The cutline
+   stays inside the container, on the page's own left axis, because the caption
+   is text and text does not leave the measure.
+
+   NO REVERSED TYPE OVER IT, ever. That is rule 17 and it is why this is a
+   plate with a caption under it rather than a band with a heading on it: at the
+   0.20 plate veil the photograph keeps its colour, and at the 0.62 veil a band
+   would need to survive, it would not.
+   ========================================================================== */
+.dm-bleed {
+  margin: 0;
+}
+
+.dm-bleed .dm-photo {
+  /* No max-inline-size and no container: the plate is the viewport. */
+  inline-size: 100%;
+}
+
+/* The caption returns to the grid. --gutter is what .dm-container pads by, and
+   --width-container-max is the measure it centres at, so this lands the cutline
+   on exactly the same left edge as every heading on the page. */
+.dm-bleed__caption {
+  margin-inline: auto;
+  margin-block-start: var(--space-4);
+  padding-inline: var(--gutter);
+  max-inline-size: var(--width-container-max);
+}
+
+/* ============================================================================
+   THE SEAM.
+
+   Two adjacent sections on the same ground draw --section-pad-block twice, so
+   at 1440 there is up to 240px between them with no rule, no ground change and
+   nothing at all to say that one section ended and another began. That reads as
+   a hole, not as a break.
+
+   Grouping light bands into runs of two is what actually breaks the
+   page/sunken metronome, and it only works if the pair reads as one band. This
+   drops the second section's own block-start interval so it does.
+
+   Doubled for the same cascade reason .dm-section-close is doubled: this file
+   is inside @layer components and a route CSS module is unlayered, so a single
+   class here loses to any module rule regardless of order.
+   ========================================================================== */
+.dm-section--seam.dm-section--seam { padding-block-start: 0; }

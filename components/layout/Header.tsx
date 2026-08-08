@@ -61,6 +61,19 @@ export type HeaderProps = {
 export function Header({ items = nav, className }: HeaderProps) {
   return (
     <header className={cx('dm-masthead', className)}>
+      {/* THE SCROLL SENTINEL, and it is why there is still no scroll listener
+          anywhere in this build.
+
+          .dm-masthead is position: sticky, which establishes a containing block
+          for absolutely positioned descendants, so this can be pinned to the
+          header's own top edge at exactly the distance the header travels. It
+          leaves the viewport at precisely the moment the bar goes flush, and an
+          IntersectionObserver reports that transition twice where a scroll
+          listener would report it sixty times a second.
+
+          Absolutely positioned, so it takes part in no layout and can shift
+          nothing. components/motion/MastheadState.tsx watches it. */}
+      <span className="dm-masthead__sentinel" aria-hidden="true" />
       {/* Deck 1: the identity rail. This is why the direction won, so it is
           load-bearing, not ornament. The two mono lines stand down as the
           viewport narrows. The phone number never does. */}

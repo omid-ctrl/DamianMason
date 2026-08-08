@@ -47,7 +47,5 @@ export type SectionShellProps = {
   id?: string;
   /** Mono running head above the heading. Never a substitute for the heading. */
   eyebrow?: ReactNode;
-  /** The numbered prefix, e.g. "No. 03". Renders inside the heading element. */
-  folio?: string;
   className?: string;
 };

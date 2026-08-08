@@ -11,15 +11,23 @@ import {
 import type { HeadingLevel, SectionDensity, Surface } from '@/components/ui';
 
 export type StatRowItem = {
-  /** "01" through "04". Decorative, auto hidden from assistive tech. Omit it
-   *  and the row numbers itself. */
-  index?: string;
   /** The figure and only the figure. Never bake the plus into it. */
   value: string;
   /** Renders the aria-hidden orange plus, so a screen reader says "2,400" and
    *  the glyph still means "more than". Counts against the orange budget. */
   plus?: boolean;
   label: string;
+  /**
+   * Where the count-up starts.
+   *
+   * Defaults to zero, which is right for a quantity and wrong for a date:
+   * "Speaking since 1994" counting up from zero spins through the middle ages
+   * and reads as a bug rather than as an effect. A year counts from a floor
+   * with visible runway instead.
+   *
+   * Pass the value itself to opt a figure out of the count-up entirely.
+   */
+  countFrom?: string;
 };
 
 /**
@@ -31,7 +39,10 @@ export type StatRowItem = {
 export const CREDIBILITY_STATS: StatRowItem[] = [
   { value: '2,400', plus: true, label: 'Audiences addressed' },
   { value: '50', label: 'States' },
-  { value: '1994', label: 'Speaking since' },
+  /* The year counts from 1974 rather than from zero. Twenty years of runway is
+     enough for the figure to visibly resolve, and every frame of it is a
+     plausible year rather than a trip through the middle ages. */
+  { value: '1994', countFrom: '1974', label: 'Speaking since' },
   { value: '40,000', plus: true, label: 'Monthly listeners' },
 ];
 
@@ -76,12 +87,19 @@ export type StatRowProps = {
   restatement?: ReactNode;
   surface?: Surface;
   density?: SectionDensity;
+  /** Sits directly under a section on the same ground. See Section. */
+  seam?: boolean;
   className?: string;
 };
 
 /**
- * The stat ledger, grafted from direction 3. Mono index, serif tabular figure,
- * the orange plus as an aria-hidden glyph, mono label, hairline rows.
+ * The stat ledger, grafted from direction 3. Serif tabular figure, the orange
+ * plus as an aria-hidden glyph, mono label, hairline rows.
+ *
+ * The mono "01" through "04" indices came off at the client's instruction on
+ * 2026-08-07, in the same pass that removed the section folios and the figure
+ * numbers. What the ledger is for is the four figures; numbering them was the
+ * broadsheet mannerism restated one level down.
  *
  * Below 768 the four columns collapse to four hairline rows reading label on
  * the left and figure on the right, which is the only arrangement that keeps a
@@ -100,6 +118,7 @@ export function StatRow({
   restatement,
   surface,
   density = 'tight',
+  seam,
   className,
 }: StatRowProps) {
   const rows = items ?? CREDIBILITY_STATS;
@@ -112,6 +131,7 @@ export function StatRow({
       aria-labelledby={headingId}
       surface={surface}
       density={density}
+      seam={seam}
       className={cx('dm-statrow', className)}
     >
       <Container>
@@ -137,11 +157,11 @@ export function StatRow({
           data-count={rows.length}
           data-reveal="stagger"
         >
-          {rows.map((row, i) => (
+          {rows.map((row) => (
             <li key={row.label} className="dm-statrow__item">
               <Stat
-                index={row.index ?? String(i + 1).padStart(2, '0')}
                 value={row.value}
+                countFrom={row.countFrom}
                 plus={row.plus}
                 label={row.label}
               />

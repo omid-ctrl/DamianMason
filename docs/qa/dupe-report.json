@@ -1,25 +1,25 @@
 {
-  "generatedAt": "2026-08-07T14:15:10.462Z",
-  "base": "http://localhost:3100",
+  "generatedAt": "2026-08-08T01:34:56.906Z",
+  "base": "http://localhost:3200",
   "routes": 19,
   "window": {
     "min": 8,
     "max": 12
   },
   "totals": {
-    "rebuiltRepeats": 27,
-    "crossRoute": 25,
-    "withinRoute": 2,
+    "rebuiltRepeats": 29,
+    "crossRoute": 26,
+    "withinRoute": 3,
     "sourceMandated": 2,
-    "repeatedNgrams": 657,
+    "repeatedNgrams": 716,
     "repeatedNgramsByLength": {
-      "8": 168,
-      "9": 145,
-      "10": 129,
-      "11": 115,
-      "12": 100
+      "8": 183,
+      "9": 159,
+      "10": 141,
+      "11": 125,
+      "12": 108
     },
-    "proseWords": 8768
+    "proseWords": 9436
   },
   "rebuilt": [
     {
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "words": 20,
-      "text": "exceptionally funny professional comedian studied at second city in chicago relatable farm raised farm owner 3 decades of business ownership",
+      "words": 21,
+      "text": "exceptionally funny professional comedian studied at second city in chicago relatable farm raised farm owner 3 decades of business ownership the",
       "seed": "exceptionally funny professional comedian studied at second city",
       "occurrences": [
         {
@@ -101,6 +101,21 @@
         },
         {
           "route": "keynote",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 17,
+      "text": "i quit my fortune 500 job in 1994 to pursue a life and business of my choice",
+      "seed": "i quit my fortune 500 job in 1994",
+      "occurrences": [
+        {
+          "route": "about",
+          "block": "prose"
+        },
+        {
+          "route": "do-business-better-podcast",
           "block": "prose"
         }
       ]
@@ -176,6 +191,40 @@
         },
         {
           "route": "do-business-better-podcast",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 12,
+      "text": "nine seconds on the california farm bureau stage a title card reads",
+      "seed": "nine seconds on the california farm bureau stage",
+      "occurrences": [
+        {
+          "route": "keynote",
+          "block": "prose"
+        },
+        {
+          "route": "keynote",
+          "block": "prose"
+        }
+      ]
+    },
+    {
+      "words": 11,
+      "text": "seconds on the california farm bureau stage a title card reads",
+      "seed": "seconds on the california farm bureau stage a",
+      "occurrences": [
+        {
+          "route": "keynote",
+          "block": "prose"
+        },
+        {
+          "route": "keynote",
+          "block": "prose"
+        },
+        {
+          "route": "keynote",
           "block": "prose"
         }
       ]
@@ -346,25 +395,6 @@
         },
         {
           "route": "join-the-conversation",
-          "block": "prose"
-        }
-      ]
-    },
-    {
-      "words": 8,
-      "text": "a short cut from a live keynote on",
-      "seed": "a short cut from a live keynote on",
-      "occurrences": [
-        {
-          "route": "keynote",
-          "block": "prose"
-        },
-        {
-          "route": "keynote",
-          "block": "prose"
-        },
-        {
-          "route": "keynote",
           "block": "prose"
         }
       ]
@@ -636,32 +666,30 @@
     },
     {
       "id": "farm-office-dateline",
-      "routes": 1,
-      "total": 1,
-      "perRoute": {
-        "about": 1
-      }
+      "routes": 0,
+      "total": 0,
+      "perRoute": {}
     }
   ],
   "wordsPerRoute": {
-    "home": 740,
-    "about": 589,
-    "speaking": 519,
-    "keynote": 675,
-    "reviews": 240,
+    "home": 765,
+    "about": 700,
+    "speaking": 808,
+    "keynote": 749,
+    "reviews": 263,
     "meeting-coordinators": 633,
     "collaboration-opportunities": 732,
-    "boasg": 525,
+    "boasg": 540,
     "podcasts": 342,
     "the-business-of-agriculture": 508,
     "do-business-better-podcast": 805,
-    "xtreme-ag": 305,
+    "xtreme-ag": 345,
     "blog-news": 427,
     "acres-tv": 383,
     "blog": 253,
-    "contact-us": 483,
+    "contact-us": 580,
     "join-the-conversation": 298,
     "post-eggflation": 162,
-    "post-climate": 149
+    "post-climate": 143
   }
 }

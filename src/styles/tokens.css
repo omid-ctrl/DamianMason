@@ -36,7 +36,7 @@
       going soft next to the serifs.
 
    4. "IBM Plex Mono"  --family-mono
-      The broadsheet furniture: running heads, folios, section numbers, stat
+      The broadsheet furniture: running heads, section labels, stat
       labels, photo cutlines, form labels, datelines. A humanist mono, warm
       enough not to read as code. This is also the carrier of the dry humor:
       cutlines and section metadata are a standing slot for it.
@@ -249,7 +249,7 @@
                                                     figures. The wordmark navy, reserved
                                                     for display type and proof numbers. */
   --ink-muted: var(--palette-stone-800);         /* @on page,raised,bright,sunken >=4.5
-                                                    Captions, folios, labels, running
+                                                    Captions, labels, running
                                                     heads, stat descriptions. */
   --ink-faint: var(--palette-stone-750);         /* @on page,raised,bright,sunken >=4.5
                                                     Decorative indices and disabled
@@ -495,9 +495,63 @@
      worth seeing, the band is the wrong element: use .dm-photo--band, the
      standalone plate that owns its own box, which takes the 0.20 plate veil. */
   --photo-veil-opacity-band: 0.62;             /* full-bleed bands under reversed type */
+  /* The video facade's veil ON HOVER, and it goes DOWN rather than up.
+
+     It used to rise to --photo-veil-opacity-band, so answering a pointer made
+     the frame darker, which is the opposite of what a poster should do when you
+     reach for it. The reason to suspect that was load bearing is the play
+     control's contrast, so it was measured rather than assumed: the control's
+     ink is --ink-primary on --surface-scrim (navy-950 at 78%) over the veil
+     over a worst-case white poster pixel, and that composites to 10.18:1 at the
+     resting 0.20 veil, 14.00:1 at 0.62, and 9.25:1 here. It was never borrowing
+     anything. The control moves to --surface-overlay anyway, which takes it to
+     a flat 17.37:1 independent of the veil, because a control whose legibility
+     depends on the picture behind it is one asset away from a defect. */
+  --photo-veil-opacity-hover: 0.08;
+
+  /* THE FEATURE GRADE.
+     ==========================================================================
+     --photo-filter above is fitted to hold eighteen sources of wildly mixed
+     quality to one material: MEASURED mean luminance spread 1.89 against raw
+     colour's 2.59. That fit is a property of the SET, and it is paid for by
+     every frame in it, including the ones that arrived from a professional at
+     2400x3600 out of a studio. On those the wash is subtracting the white
+     point, the contrast and the chroma that the wash exists to manufacture.
+
+     So the set keeps the wash and a small closed list of frames gets a grade
+     instead of a correction. It is deliberately close to the wash: saturation
+     returns almost to unity and the contrast lift comes down by nearly half,
+     which is the difference between "graded" and "untouched". Nothing here is
+     a licence to ship a raw frame.
+
+     BOTH WASH LAYERS HALVE, RATHER THAN THE FILTER ALONE. saturate() is not the
+     mechanism and never was: the screen-and-multiply pair does most of the
+     desaturation on its own, and the podium frame goes 0.986 to 0.67 before
+     saturate() applies at all. Dropping only the filter would change almost
+     nothing on screen. Halving the layers is what returns the chroma, and
+     keeping them at all is what keeps a feature frame on the same page as the
+     other seventeen.
+
+     THE TEST IS THE FILE, NOT THE PLACEMENT. Shot on purpose, by a
+     professional, at 2000px or better, meant to be looked at rather than past.
+     A broadcast frame grab in a hero is still a frame grab. The closed list is
+     in DESIGN_SYSTEM section 6.2.1.
+
+     RE-MEASURE AFTER ANY CHANGE. The number the SET must not be pushed past is
+     2.03, which is what the grayscale duotone this wash replaced measured. */
+  --photo-filter-feature: saturate(0.94) contrast(1.10);
+  --photo-wash-highlight-opacity-feature: 0.12;
+  --photo-veil-opacity-feature: 0.10;
+
   --photo-focus-portrait: 50% 22%;
   --photo-focus-band: 50% 40%;
   --ratio-portrait: 4 / 5;
+  /* The cut-out's box, and only its box. portrait-cutout.png is 933x1400,
+     which is exactly 2:3, and the wrapper states it so the section's height is
+     known before the file has arrived. There is no crop here and no focal
+     point: a cut-out's subject IS its shape, so object-fit has nothing left to
+     decide. */
+  --ratio-cutout: 2 / 3;
   --ratio-plate: 3 / 2;
   --ratio-band: 21 / 8;
   --ratio-band-mobile: 4 / 3;
@@ -792,6 +846,19 @@
      the screen is the one thing a broadsheet grid exists to prevent. */
   --size-menu-panel-w: 26rem;
   --size-portrait-max: 32rem;
+  /* The ceiling on the cut-out hero, stated as the HEIGHT it is really about
+     and applied as the width that follows from it, because aspect-ratio
+     resolves from the inline axis and a max-block-size would letterbox the
+     figure rather than shrink it.
+
+     46rem lands the figure at 490.67px wide against the 492px five-column
+     track at 1440, so the cap and the grid bind at the same moment and neither
+     one is doing nothing. At 1024 the track is 371px and the column binds
+     first, which is correct: below the flagship width the figure should follow
+     the grid rather than a fixed number. Between 768 and 1023 the cap steps
+     down to --size-portrait-max, because a 704px column at 2:3 is 1056px of
+     picture, which is taller than the whole viewport. */
+  --size-cutout-max-h: 46rem;
   --size-thumb: clamp(6rem, 4.2rem + 7.4vw, 10rem);  /* episode artwork column */
 
   /* The coverage tile grid on /speaking/: eleven tracks holding fifty state
@@ -805,10 +872,16 @@
 
      The cap only decides the LARGE end. Uncapped, the grid fills its column and
      a 764px track at 1440 renders 65px tiles carrying 13px labels, which reads
-     as a set of empty boxes with type lost in the middle of them. 28rem gives
-     37.1px tiles, roughly a 3:1 tile-to-type ratio at both ends of the range,
-     so the graphic keeps one texture from 390 to 1440. */
-  --size-tile-grid-max: 28rem;     /* 448px */
+     as a set of empty boxes with type lost in the middle of them.
+
+     RE-DERIVED when the graphic moved onto the navy ground. 28rem gave 37.1px
+     tiles, a 2.85:1 tile-to-type ratio at 1440 against 1.95:1 at 390, and on a
+     764px track that left the graphic using 59% of the space it had been given.
+     34rem gives 45.8px tiles and 3.52:1, which is still one texture end to end
+     and is the same tile-to-type relationship the 390 end has always had room
+     for. The floor is untouched: below 544px the grid fills its column exactly
+     as before, so the small end, which is the binding one, is unaffected. */
+  --size-tile-grid-max: 34rem;     /* 544px */
 
   /* SUPPLIED BRAND ARTWORK. See DESIGN_SYSTEM section 6.5.
      The ceiling on any single piece of full-colour supplied artwork. The Do
@@ -930,13 +1003,14 @@
    a Playwright assertion: see scripts/wordmark-check.mjs. A rule this load
    bearing should not be a comment.
 
-   "deepest" is a variant of this scope, not a separate one, so it matches here
-   too and then steps only its grounds darker in the block further down. An
-   attribute selector does not match a longer value, so without this second
-   selector a footer marked data-surface="deepest" would keep the ROOT ink and
-   render navy-950 type on a navy-950 ground.
+   "deepest" and "deep-alt" are variants of this scope, not separate ones, so
+   they match here too and then step only their grounds in the blocks further
+   down. An attribute selector does not match a longer value, so without these
+   extra selectors a footer marked data-surface="deepest" would keep the ROOT
+   ink and render navy-950 type on a navy-950 ground.
    ============================================================================ */
 [data-surface="deep"],
+[data-surface="deep-alt"],
 [data-surface="deepest"] {
   --surface-page: var(--palette-navy-950);
   --surface-raised: var(--palette-navy-900);
@@ -1021,11 +1095,25 @@
 
   /* Every client logo ships with an opaque white background. On a dark ground
      the light-scope math (brightness up, then multiply) erases the mark
-     entirely. Inverting and screening is the only treatment that works. */
+     entirely. Inverting and screening is the only treatment that works.
+
+     THE CELL GROUND MUST BE OPAQUE, AND IT CANNOT BE `transparent`.
+     .dm-logo-cell sets isolation: isolate, so the mark's mix-blend-mode
+     resolves against the CELL's own background and never reaches the section
+     ground behind it. `transparent` therefore hands `screen` no blend partner:
+     screen over nothing is the source unchanged, so the white artwork ground
+     that invert(1) just turned black paints as a black rectangle. Measured on
+     /podcasts/ before this line: cell rgb(6,40,62), inside the mark's box
+     rgb(2,11,17), a 78-point delta reading as a visible box around every mark.
+     Naming the section's own ground keeps the wall flush the way `transparent`
+     intended AND gives screen something to blend with: screen(black, navy) is
+     navy, so the box disappears. var(--surface-page) resolves per scope, so
+     deep-alt takes navy-900 and deepest navy-950 without a second declaration.
+     See docs/DESIGN_SYSTEM.md rule 28. */
   --logo-filter: grayscale(1) contrast(1.1) invert(1);
   --logo-blend: screen;
   --logo-opacity: 0.72;
-  --logo-cell-bg: transparent;
+  --logo-cell-bg: var(--surface-page);
   --logo-cell-rule: var(--palette-navy-800);
 
   /* The same ratio step the light scope takes: 0.30 to 0.20 there, 0.24 to
@@ -1035,6 +1123,35 @@
 
   color: var(--ink-primary);
   background-color: var(--surface-page);
+}
+
+/* The second navy register.
+   ----------------------------------------------------------------------------
+   --surface-deep-alt was declared in section 3 and consumed by no scope for
+   seven phases, and scripts/contrast-table.mjs has been listing 'deep-alt' in
+   its GROUNDS map the whole time: the ground was already being measured, it
+   just had nowhere to live.
+
+   It exists because a route needs a dark punctuation more often than it needs
+   to arrive at its closing CTA. Every route on this site ends in a `deep`
+   band, so a dark band earlier in the page has to be a step off that one or
+   the close stops reading as an arrival. This is that step, and it is one step,
+   not a new palette: ink stays exactly as the deep scope sets it and only the
+   grounds move.
+
+   NOT an orange scope, and that decision is recorded rather than left implicit.
+   A solid #ff5325 band was considered and rejected on three grounds, in order:
+   section 5's budget counts a solid band as the one filled field a viewport
+   gets, so an orange band and a primary button cannot coexist and the page's
+   revenue action stops being the loudest thing on screen; the focus ring is
+   --palette-orange-700 in light scopes and --palette-orange-300 in dark ones
+   and neither clears 3:1 on an orange ground, so focus would have to stop being
+   orange; and --action-primary-bg has nowhere to go on its own colour, which
+   forces the solid navy primary that DECISION.md records as not surviving. */
+[data-surface="deep-alt"] {
+  --surface-page: var(--palette-navy-900);
+  --surface-raised: var(--palette-navy-800);
+  --surface-plate: var(--palette-navy-800);
 }
 
 /* The footer plane, sitting under a deep CTA band. Ink stays as the deep scope
@@ -1253,11 +1370,13 @@
 
   /* Same reasoning as the deep scope: every client logo ships an opaque white
      background, and the light-scope math erases the mark on any dark ground.
-     Green is a dark ground. */
+     Green is a dark ground. The cell ground is the section's own for the same
+     reason it is in the deep scope: isolation: isolate means `transparent`
+     leaves `screen` with no blend partner and the mark keeps a black box. */
   --logo-filter: grayscale(1) contrast(1.1) invert(1);
   --logo-blend: screen;
   --logo-opacity: 0.72;
-  --logo-cell-bg: transparent;
+  --logo-cell-bg: var(--surface-page);
   --logo-cell-rule: var(--palette-forest-800);
 
   /* Both halves of the wash follow the band, the same way the deep scope's do:

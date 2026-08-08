@@ -1,17 +1,21 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
+import Image from 'next/image';
+
 import { Card, Container, Eyebrow, Heading, Prose, Section } from '@/components/ui';
 import { CTABand } from '@/components/sections/CTABand';
 import { Hero } from '@/components/sections/Hero';
 import { NewsletterForm } from '@/components/sections/NewsletterForm';
+import { PressList } from '@/components/sections/PressList';
 import { JsonLd } from '@/components/seo';
+import { imageAlt } from '@/content/image-alt';
+import { press } from '@/content/press';
 import { contact } from '@/content/site';
 import { buildMetadata, SITE_LANGUAGE, absoluteUrl, canonicalUrl } from '@/lib/seo';
 import { buildBreadcrumbListSchema, schemaIds, type JsonLdDocument } from '@/lib/schema';
 
 import styles from './page.module.css';
-import { imageAlt } from '@/content/image-alt';
 
 /* ============================================================================
    /join-the-conversation/
@@ -46,10 +50,14 @@ const PATH = '/join-the-conversation/';
 const MAILTO = `mailto:${contact.email}`;
 
 const HERO_IMAGE = {
-  src: '/img/photos/portrait-light-jacket.jpg',
-  alt: imageAlt['/img/photos/portrait-light-jacket.jpg'],
-  width: 1334,
+  src: '/img/photos/portrait-check-jacket.jpg',
+  /* Single call site, so the string lives here rather than in
+     content/image-alt.ts, per the rule at the head of that module. */
+  alt:
+    'Damian Mason in a grey check sport coat over a white shirt and navy trousers, one hand in a pocket, grinning.',
+  width: 1333,
   height: 2000,
+  feature: true,
 };
 
 export const metadata: Metadata = buildMetadata({
@@ -121,7 +129,6 @@ export default function JoinTheConversationPage() {
           },
         ] as const}
         image={HERO_IMAGE}
-        cutlineFolio="Fig. 01"
         cutline="One list, one address. There’s an unsubscribe link at the bottom of every email, and it works."
       />
 
@@ -131,7 +138,7 @@ export default function JoinTheConversationPage() {
           <div className={`dm-grid12 ${styles.rowTop}`}>
             <div className="col-span-6 md:col-span-7">
               <Eyebrow>What you get</Eyebrow>
-              <Heading level={2} folio="No. 01" id="signup-title" className={styles.sectionHeading}>
+              <Heading level={2} id="signup-title" className={styles.sectionHeading}>
                 Three things land in your inbox
               </Heading>
               <Prose>
@@ -174,7 +181,50 @@ export default function JoinTheConversationPage() {
         </Container>
       </Section>
 
-      {/* --- No. 02, the refusal -------------------------------------------- */}
+      {/* --- What actually landed -------------------------------------------
+          THE BEST VALUE-PER-WORD FILL AVAILABLE ON THIS ROUTE, and it adds not
+          one new fact.
+
+          The bulleted list above already claims, in prose, that the list
+          carries "an Acres TV segment, an XtremeAg field report, a news
+          interview about the price of food". That is an assertion. Three real
+          press rows directly under it turn the same sentence into evidence,
+          and every row is already in content/press.ts with a verified outbound
+          link.
+
+          A second home for that module, which had exactly one consumer.
+          Navy, because this route ran 3,674px of a single grey with three
+          images on it, which was the thinnest page on the site by every measure
+          worth taking. */}
+      <Section id="recent" surface="deep-alt" aria-labelledby="recent-title">
+        <Container>
+          <div className="dm-grid12">
+            <div className="dm-rail col-span-6 md:col-span-4">
+              <Eyebrow>Recently</Eyebrow>
+              <Heading level={2} id="recent-title" className={styles.sectionHeading}>
+                The kind of thing that lands
+              </Heading>
+              <Prose measure="narrow">
+                <p>
+                  Not a newsletter about a newsletter. Three of the last places
+                  Damian turned up, which is the sort of item the list carries a
+                  link to on the week it runs.
+                </p>
+              </Prose>
+            </div>
+            <div className="col-span-6 md:col-span-8">
+              <PressList
+                items={press}
+                limit={3}
+                headingLevel={3}
+                label="Recent coverage"
+              />
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* --- The refusal ----------------------------------------------------- */}
       <Section aria-labelledby="not-title">
         {/* Standard container, not narrow. A narrow container centres itself,
             which put this head on a 320px axis while every other head on the
@@ -182,9 +232,9 @@ export default function JoinTheConversationPage() {
             not to the section. */}
         <Container>
           <div className="dm-grid12">
-            <div className="col-span-6 md:col-span-4">
+            <div className="dm-rail col-span-6 md:col-span-4">
           <Eyebrow>What you won&rsquo;t get</Eyebrow>
-          <Heading level={2} folio="No. 02" id="not-title" className={styles.sectionHeading}>
+          <Heading level={2} id="not-title" className={styles.sectionHeading}>
             No weather forecast, no commodity prices
           </Heading>
             </div>
@@ -210,6 +260,27 @@ export default function JoinTheConversationPage() {
               that an episode posted.
             </p>
           </Prose>
+
+          {/* The one place on the site that shows the newsletter and the two
+              podcasts being MADE rather than described. It closes the route on
+              the same argument the copy above makes: a person writes this. */}
+          <figure className={`dm-figure ${styles.deskFigure}`} data-reveal="wipe">
+            <div className="dm-photo dm-photo--plate" data-photo="feature">
+              <Image
+                className="dm-photo__img"
+                src="/img/photos/podcast-desk.jpg"
+                alt={imageAlt['/img/photos/podcast-desk.jpg']}
+                width={2000}
+                height={1308}
+                loading="lazy"
+                sizes="(min-width: 48rem) 56rem, 100vw"
+              />
+            </div>
+            <figcaption className="dm-figure__caption">
+              One desk, one microphone, one laptop. Everything on this list is
+              written at it.
+            </figcaption>
+          </figure>
             </div>
           </div>
         </Container>
@@ -218,7 +289,6 @@ export default function JoinTheConversationPage() {
       <CTABand
         id="book"
         eyebrow="Bookings"
-        folio="No. 03"
         heading="Need a speaker, not an inbox?"
         /* "from Damian or from his office manager Lori" is /contact-us/'s own
            promise about who replies, and it ran here word for word. */

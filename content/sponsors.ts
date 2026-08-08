@@ -17,8 +17,11 @@
  *   NewFields Ag, liquid biologicals and seed treatments, Grand Mound Iowa.
  *   Redox Bio, plant bio-nutrition, Burley Idaho, trading as redoxgrows.com.
  *
- * Nano-Yield is the one logo whose source was already .webp, so its raster
- * is .webp and a .png fallback sits beside it.
+ * Nano-Yield is the one logo whose SOURCE is already .webp. Its raster is
+ * emitted as .png anyway, via an `ext` override in the manifest, so that it
+ * gets a real .webp sibling and behaves like the other thirty marks. Left
+ * alone, the .webp would be the <img src>, webpSibling() returns null for a
+ * .webp source, and the .png beside it would be unreachable by construction.
  */
 
 export type Sponsor = {
@@ -36,7 +39,7 @@ export const sponsors: Sponsor[] = [
   { name: 'Harvest Returns', logo: '/img/sponsors/harvest-returns.jpg', url: 'https://www.harvestreturns.com', width: 362, height: 120 },
   { name: 'Heads Up Plant Protectants', logo: '/img/sponsors/heads-up-plant-protectants.jpg', url: 'https://headsupst.com', width: 466, height: 160 },
   { name: 'Life Scientific', logo: '/img/sponsors/life-scientific.jpg', url: 'https://lifescientific.com', width: 386, height: 68 },
-  { name: 'Nano-Yield', logo: '/img/sponsors/nano-yield.webp', url: 'https://nano-yield.com', width: 445, height: 234 },
+  { name: 'Nano-Yield', logo: '/img/sponsors/nano-yield.png', url: 'https://nano-yield.com', width: 445, height: 234 },
   { name: 'NewFields Ag', logo: '/img/sponsors/newfields-ag.jpg', url: 'https://newfieldsag.com', width: 201, height: 234 },
   { name: 'Redox Bio', logo: '/img/sponsors/redox-bio.png', url: 'https://redoxgrows.com', width: 466, height: 178 },
   { name: 'Tidal Grow', logo: '/img/sponsors/tidal-grow.jpg', url: 'https://tidalgrowag.com', width: 402, height: 202 },

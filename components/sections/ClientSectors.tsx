@@ -62,8 +62,6 @@ export type ClientSectorsProps = {
   title?: ReactNode;
   /** Rank, independent of size. Defaults to h2. */
   level?: HeadingLevel;
-  /** The numbered prefix, rendered inside the heading. */
-  folio?: string;
   /** Prose between the head and the ledger. */
   intro?: ReactNode;
 };
@@ -74,7 +72,6 @@ export function ClientSectors({
   eyebrow = 'The roster by kind',
   title,
   level = 2,
-  folio,
   intro,
 }: ClientSectorsProps) {
   const headingId = titleId;
@@ -83,7 +80,7 @@ export function ClientSectors({
     <div className="dm-sectors" id={id}>
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       {title ? (
-        <Heading level={level} size="2xl" folio={folio} id={headingId} className="dm-sectors__title">
+        <Heading level={level} size="2xl" id={headingId} className="dm-sectors__title">
           {title}
         </Heading>
       ) : null}

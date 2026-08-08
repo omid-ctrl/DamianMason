@@ -105,24 +105,37 @@ export default function MeetingCoordinatorsPage() {
         title="Meeting Coordinators"
         deck="Book direct. When you hire Damian you get a proven professional speaker and showman who works with you, not through a bureau. He builds the right mix of humor, content, and take-away value for your audience, and he’s done it for 2,400 audiences since 1994."
         actions={
+          /* Hero takes at most two actions, and the second one changed.
+
+             It was the phone number, which is not lost: the masthead rail
+             carries it as a tel: link in every viewport of every route, the
+             mobile sheet pins it, the ledger in section 2 prints it, and the
+             closing band offers it again. It was the fourth copy on this page.
+
+             The old site put a Media Kit link on THIS page twice and both
+             resolved to a .zip on a staging host. /speaker-one-sheet/ is the
+             destination that link should always have had, and this is the page
+             the person who needs it is standing on. */
           [
             { label: 'Booking Inquiry', href: '/contact-us/' },
             {
-              label: `Call ${contact.phone}`,
-              href: contact.phoneHref,
+              label: 'Speaker one-sheet',
+              href: '/speaker-one-sheet/',
               variant: 'secondary',
-              'aria-label': `Call the Damian Mason office at ${contact.phone}`,
             },
           ] as const
         }
         image={{
-          src: '/img/photos/portrait-dark-blazer.jpg',
-          alt: imageAlt['/img/photos/portrait-dark-blazer.jpg'],
-          width: 1467,
-          height: 2000,
+          src: '/img/photos/portrait-boardroom.jpg',
+          /* Single call site, so the string lives here rather than in
+             content/image-alt.ts, per the rule at the head of that module. */
+          alt:
+            'Damian Mason in a grey check sport coat and jeans, perched on the edge of a conference table in a room of orange chairs.',
+          width: 1333,
+          height: 1333,
           priority: true,
+          feature: true,
         }}
-        cutlineFolio="FIG. 01"
         /* Dropped "and he booked the flights himself", which was one of ten
            statements of that fact across the site, and the state and country
            counts, which /contact-us/'s ledger note carries in the same words. */
@@ -169,7 +182,7 @@ export default function MeetingCoordinatorsPage() {
               </Button>
             </div>
 
-            <div className="col-span-6 md:col-span-12 lg:col-span-5">
+            <div className="dm-balance col-span-6 md:col-span-12 lg:col-span-5">
               <TestimonialGrid
                 items={testimonialsFor(ROUTE)}
                 variant="featured"
@@ -218,7 +231,7 @@ export default function MeetingCoordinatorsPage() {
               </Button>
             </div>
 
-            <figure className="dm-figure col-span-6 md:col-span-12 lg:col-span-5">
+            <figure className="dm-figure col-span-6 md:col-span-12 lg:col-span-5" data-reveal="wipe">
               <div className="dm-photo dm-photo--plate">
                 <Image
                   className="dm-photo__img"
@@ -231,7 +244,6 @@ export default function MeetingCoordinatorsPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">FIG. 02 </span>
                 Attendees waiting for a signed copy of{' '}
                 <Link href="/about/#books">Food Fear</Link> after a keynote. Nobody went
                 straight to the parking lot.
@@ -282,7 +294,7 @@ export default function MeetingCoordinatorsPage() {
           <div className="dm-grid12 mt-10">
             {/* Eight of twelve. A 3:2 plate across the full broadsheet width is
                 896 pixels tall at 1440 and swallows the section it belongs to. */}
-            <figure className="dm-figure col-span-6 md:col-span-8">
+            <figure className="dm-figure col-span-6 md:col-span-8" data-reveal="wipe">
               <div className="dm-photo dm-photo--plate">
                 <Image
                   className="dm-photo__img"
@@ -295,7 +307,6 @@ export default function MeetingCoordinatorsPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">FIG. 03 </span>
                 A breakout session at rounds, one screen. The in-depth version, for the
                 part of the program a general session can only introduce.
               </figcaption>
@@ -357,7 +368,6 @@ export default function MeetingCoordinatorsPage() {
           height: 1334,
           priority: false,
         }}
-        cutlineFolio="FIG. 04"
         cutline="He trained in improv and he carries a Screen Actors Guild card. A live microphone isn’t the thing to worry about."
       />
 
@@ -373,7 +383,7 @@ export default function MeetingCoordinatorsPage() {
             not to the section. Same arrangement as Home's FAQ. */}
         <Container>
           <div className="dm-grid12">
-            <div className="flex flex-col items-start gap-6 col-span-6 md:col-span-4">
+            <div className="dm-rail flex flex-col items-start gap-6 col-span-6 md:col-span-4">
               <Eyebrow>FAQ</Eyebrow>
               <Heading level={2} size="2xl" id="faq-title">
                 Questions meeting planners actually ask

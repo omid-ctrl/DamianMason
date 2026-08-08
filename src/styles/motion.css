@@ -98,6 +98,50 @@
     transition-delay: calc(var(--duration-instant) * 5);
   }
 
+  /* data-reveal="wipe": a figure resolves by being uncovered rather than by
+     fading up. A photograph fading up from nothing reads as a page still
+     loading. The same photograph uncovered from its top edge reads as ink
+     hitting paper, which is the gesture an editorial page actually makes, and
+     it is the one place on this site where the motion says something about the
+     material rather than merely announcing an arrival.
+
+     clip-path is a third animated property, and DESIGN_SYSTEM section 9 is
+     amended to say so. It is admitted on the same test the other two pass
+     rather than as an exception: it is composited, it moves no neighbour and it
+     forces no layout pass, so it cannot contribute to CLS. The test is "can
+     this move something else", not "is it on a list of two".
+
+     BOTH STATES STATE THE PATH. An unset clip-path does not interpolate toward
+     inset(0), so a transition written only on the pending state snaps.
+
+     THE CLIP IS ON THE CHILDREN, NEVER ON THE OBSERVED ELEMENT, AND THAT IS
+     LOAD BEARING RATHER THAN STYLISTIC. An element clipped to
+     inset(0 0 100% 0) has zero area, and an IntersectionObserver watching that
+     element reports isIntersecting: false at every scroll position, forever. It
+     hides itself and then makes itself unrevealable. Measured on /: three
+     figures armed, scrolled past at reading speed, still pending; a second
+     observer attached by hand with identical options never fired for them
+     either, while a control element on the same page fired normally.
+
+     So this takes the same shape "stagger" already has, and for the same
+     reason: the container is what gets observed and the children are what get
+     hidden. A figure's children are its plate and its cutline, and the two
+     resolving together on one path is the gesture anyway.
+
+     A "fade" reveal does not have this problem because opacity does not affect
+     intersection, which is why the trap survived seven phases undiscovered. */
+  [data-reveal="wipe"] > * {
+    clip-path: inset(0 0 0 0);
+    transition:
+      clip-path var(--duration-deliberate) var(--easing-entrance),
+      opacity var(--duration-slow) var(--easing-entrance);
+  }
+  [data-reveal="wipe"][data-reveal-state="pending"] > * {
+    transition: none;
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+  }
+
   /* ==========================================================================
      2. MICRO-INTERACTIONS
 
@@ -233,6 +277,10 @@
   [data-reveal] > * {
     opacity: 1;
     transform: none;
+    /* Not tidiness. A reader who turns reduced motion on mid-session may have
+       an armed figure on screen clipped to zero height, and the global
+       transition-duration clamp in app/globals.css does not un-clip it. */
+    clip-path: none;
     transition: none;
     transition-delay: 0s;
   }
@@ -252,7 +300,16 @@
   a.dm-footer__nav-title-link,
   a.dm-menu__link,
   a.dm-menu__sublink,
-  a.dm-masthead__phone {
+  a.dm-masthead__phone,
+  /* Added with the amplification pass. The scrolled masthead and the swept
+     button both keep their END states, because both are state: what goes is
+     the travel between them. The poster's scale is pure motion and goes
+     entirely, below. */
+  .dm-masthead__wordmark img,
+  .dm-masthead__bar,
+  .dm-btn--primary::before,
+  .dm-video__poster,
+  .dm-nav__panel {
     transition: none;
   }
   a.dm-btn:active,
@@ -260,7 +317,9 @@
   .dm-card.dm-card--interactive:hover,
   .dm-card.dm-card--interactive:active,
   .dm-video__facade:hover .dm-video__play,
-  .dm-video__facade:focus-visible .dm-video__play {
+  .dm-video__facade:focus-visible .dm-video__play,
+  .dm-video__facade:hover .dm-video__poster,
+  .dm-video__facade:focus-visible .dm-video__poster {
     transform: none;
   }
 }

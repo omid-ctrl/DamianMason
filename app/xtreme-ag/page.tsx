@@ -119,7 +119,6 @@ export default function XtremeAgPage() {
           width: 880,
           height: 1100,
         }}
-        cutlineFolio="Fig. 01"
         cutline="On stage for XtremeAg. He also produces their video and works their field days and trade shows."
       />
 
@@ -165,7 +164,7 @@ export default function XtremeAgPage() {
                   the field day and the articles, but never the trade show
                   floor. This is it, and it is the only frame on file of it.
                   The XtremeAg watermark bottom right is theirs, burned in. */}
-              <figure className={`dm-figure ${styles.stackFigure}`}>
+              <figure className={`dm-figure ${styles.stackFigure}`} data-reveal="wipe">
                 {/* A role ratio here rather than --uncropped: this frame has no
                     burned-in headline to protect and the 3:2 crop tightens it
                     onto the three of them. */}
@@ -181,7 +180,6 @@ export default function XtremeAgPage() {
                   />
                 </div>
                 <figcaption className="dm-figure__caption">
-                  <span className="dm-figure__folio">Fig. 02 </span>
                   Working a trade show floor for XtremeAg. The tractors have their headlights
                   on, indoors.
                 </figcaption>
@@ -240,7 +238,7 @@ export default function XtremeAgPage() {
           </div>
 
           <div className="dm-grid12">
-            <div className={`${styles.spaced} col-span-6 md:col-span-7`}>
+            <div className={`dm-rail ${styles.spaced} col-span-6 md:col-span-7`}>
               <PressList
                 items={featured}
                 headingLevel={3}
@@ -262,7 +260,6 @@ export default function XtremeAgPage() {
                   />
                 </div>
                 <figcaption className="dm-figure__caption">
-                  <span className="dm-figure__folio">Fig. 03 </span>
                   Damian with XtremeAg growers in a standing cornfield. He’s the one in
                   shorts.
                 </figcaption>
@@ -273,7 +270,7 @@ export default function XtremeAgPage() {
                   Cutting the Curve, and until now the page asserted both and
                   showed neither. Same hairline plate as Fig. 02: this is a
                   frame off the show, not a photograph. */}
-              <figure className={`dm-figure ${styles.stackedFigure}`}>
+              <figure className={`dm-figure ${styles.stackedFigure}`} data-reveal="wipe">
                 {/* --uncropped, unlike Fig. 02: this frame is 2.11:1 and a 3:2
                     plate would take 29% off its width, which is both video
                     panels' outer edges and the show badge between them. */}
@@ -289,7 +286,6 @@ export default function XtremeAgPage() {
                   />
                 </div>
                 <figcaption className="dm-figure__caption">
-                  <span className="dm-figure__folio">Fig. 04 </span>
                   Cutting the Curve, mid-episode. Two men on a video call, in front of a
                   cornfield neither of them is standing in.
                 </figcaption>
@@ -390,8 +386,16 @@ export default function XtremeAgPage() {
               <Heading level={2} size="2xl" id="join-title">
                 Join the Conversation
               </Heading>
-            </div>
-            <div className={`${styles.rowEnd} col-span-6 md:col-span-12 lg:col-span-5`}>
+              {/* This section was a heading and a button with nothing between
+                  them, which made it the thinnest block on the site. The body
+                  is the one /acres-tv/ already carried, moved into
+                  content/media-band.ts so the two routes cannot drift: the
+                  source gives both pages the same section and the same button,
+                  and one of them having prose was an accident of which route
+                  was written first. */}
+              <Prose>
+                <p>{mediaBand.mailingListBlurb}</p>
+              </Prose>
               <Button href="/join-the-conversation/" variant="secondary" size="lg">
                 {mediaBand.mailingListLabel}
               </Button>

@@ -168,7 +168,6 @@ export default function BusinessOfAgriculturePage() {
                 />
               </Section>
               <figcaption className={`dm-figure__caption ${styles.artCutline}`}>
-                <span className="dm-figure__folio">Fig. 01 </span>
                 Show art. A new episode lands every Monday.
               </figcaption>
             </figure>
@@ -186,7 +185,7 @@ export default function BusinessOfAgriculturePage() {
         <Container>
           <div className={styles.head}>
             <Eyebrow>From the feed</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 01" id="latest-episode-title">
+            <Heading level={2} size="2xl" id="latest-episode-title">
               Latest episode
             </Heading>
           </div>
@@ -277,7 +276,7 @@ export default function BusinessOfAgriculturePage() {
 
           <div className={styles.head}>
             <Eyebrow>Subscribe</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 02" id="listen-title">
+            <Heading level={2} size="2xl" id="listen-title">
               Where to listen
             </Heading>
           </div>
@@ -315,7 +314,6 @@ export default function BusinessOfAgriculturePage() {
           ================================================================== */}
       <SponsorWall
         id="sponsors"
-        folio="No. 03"
         level={2}
         intro="Ten sponsors. If you sell into Agriculture, these are the companies already spending money to reach that crowd."
       />
@@ -326,11 +324,14 @@ export default function BusinessOfAgriculturePage() {
           to www.damianmason.com is dropped: it pointed at the site the reader
           is already on, on the wrong host, guaranteeing a redirect hop.
           ================================================================== */}
-      <Section id="elsewhere" aria-labelledby="elsewhere-title" surface="sunken">
+      {/* Green. Same split as everywhere else: the band that talks about the
+          shows and the land goes forest, the band that asks for the
+          sponsorship stays navy. */}
+      <Section id="elsewhere" aria-labelledby="elsewhere-title" surface="forest">
         <Container>
           <div className={styles.head}>
             <Eyebrow>Elsewhere</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 04" id="elsewhere-title">
+            <Heading level={2} size="2xl" id="elsewhere-title">
               Also worth your time
             </Heading>
           </div>
@@ -425,7 +426,7 @@ export default function BusinessOfAgriculturePage() {
           <Container width="narrow" align="start">
             <div className={styles.head}>
               <Eyebrow>Listener review</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 05" id="review-title">
+              <Heading level={2} size="2xl" id="review-title">
                 What a listener said
               </Heading>
             </div>
@@ -476,7 +477,6 @@ export default function BusinessOfAgriculturePage() {
         id="sponsor"
         eyebrow="Sponsorship"
         heading="Sponsor the show."
-        folio="No. 06"
         copy={
           <>
             {/* THIS ROUTE OWNS THE OCCUPATION LIST. "Growers, ag lenders,

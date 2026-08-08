@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 
 import { CTABand } from '@/components/sections/CTABand';
 import { Hero } from '@/components/sections/Hero';
+import { SponsorWall } from '@/components/sections/SponsorWall';
 import { StatRow } from '@/components/sections/StatRow';
 import type { StatRowItem } from '@/components/sections/StatRow';
 import { JsonLd } from '@/components/seo';
@@ -173,8 +174,8 @@ export default function PodcastsPage() {
           alt: 'Damian Mason in a checked sport coat and jeans, seated on the edge of a conference table in his office.',
           width: 2000,
           height: 1334,
+          feature: true,
         }}
-        cutlineFolio="FIG. 01"
         /* The weather-forecast refusal is the site's most over-used joke: it
            was being retold in ten places across six routes. The verbatim source
            line stays on / and /join-the-conversation/. This route keeps one
@@ -184,7 +185,19 @@ export default function PodcastsPage() {
 
       <StatRow
         id="audience"
-        surface="sunken"
+        /* Navy. Every route on this site closes on a `deep` CTA band, and
+           most of them had no dark ground at all before it: the reader got two
+           greys 1.11:1 apart for thousands of pixels and then one arrival. A
+           ledger is the right block to punctuate with, because it is the one
+           thing on a page that is pure proof, and `deep-alt` is a step off the
+           closing band so the close still reads as an arrival rather than a
+           repeat.
+
+           It also moves the orange plus glyphs out of a documented exception:
+           on a light ground --ink-hot measures 2.72:1 and only ships because it
+           is aria-hidden, and in a deep scope it remaps to orange-400 at
+           5.60:1, where the brand orange is legal as a letterform. */
+        surface="deep-alt"
         eyebrow="The audience"
         title="Who is on the other end"
         items={AUDIENCE_STATS}
@@ -276,6 +289,30 @@ export default function PodcastsPage() {
           </ul>
         </Container>
       </Section>
+
+      {/* A SECOND HOME FOR content/sponsors.ts, which had exactly one.
+
+          Ten companies with verified outbound links were rendering on
+          /the-business-of-agriculture/ and nowhere else, while this hub, which
+          is the page a prospective sponsor lands on from the nav, closed
+          straight into a band asking them to sponsor a show it had shown no
+          evidence anybody sponsors.
+
+          SCOPED TO THE ONE SHOW THAT HAS THEM, in the eyebrow and in the
+          intro, and that is not pedantry: these ten sponsor The Business of
+          Agriculture. Letting a hub page imply they sponsor all three would be
+          the same class of overstatement the 70,000 figure is fenced off for
+          two sections up.
+
+          Navy, because this route had one Section on it and no dark ground
+          between the hero and the close. */}
+      <SponsorWall
+        id="sponsors"
+        surface="deep-alt"
+        eyebrow="The Business of Agriculture"
+        title="Who already sponsors it"
+        intro="Ten companies pay to be in front of this audience every Monday: soil data, crop protection, biologicals, farm transition planning, ag investment. Their customers are the people already listening."
+      />
 
       <CTABand
         id="collaborate"

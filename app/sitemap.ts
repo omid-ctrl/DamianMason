@@ -53,6 +53,10 @@ const ROUTE_WEIGHTS: Record<string, RouteWeight> = {
   '/keynote/': { changeFrequency: 'monthly', priority: 0.9 },
   '/contact-us/': { changeFrequency: 'yearly', priority: 0.9 },
   '/speaking/': { changeFrequency: 'monthly', priority: 0.9 },
+  /* Booking-critical, and the page a meeting planner is most likely to send to
+     somebody else, so it sits with the other three that earn money. Yearly,
+     because the facts on it are a thirty-year record and a phone number. */
+  '/speaker-one-sheet/': { changeFrequency: 'yearly', priority: 0.9 },
   '/about/': { changeFrequency: 'monthly', priority: 0.8 },
   '/reviews/': { changeFrequency: 'monthly', priority: 0.8 },
   '/boasg/': { changeFrequency: 'monthly', priority: 0.8 },

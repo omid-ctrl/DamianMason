@@ -121,6 +121,18 @@ const childRoutes = [
       </>
     ),
   },
+  {
+    href: '/speaker-one-sheet/',
+    title: 'Speaker One-Sheet',
+    meta: 'One page, and a PDF',
+    body: (
+      <>
+        The whole argument on one page: the program, the credentials, the client
+        roster, the fees and travel, and the number to call. There is a PDF of it
+        for the person on the committee who was not in the meeting.
+      </>
+    ),
+  },
 ] as const;
 
 /**
@@ -168,8 +180,8 @@ export default function SpeakingPage() {
           alt: imageAlt['/img/photos/portrait-black-suit.jpg'],
           width: 1333,
           height: 2000,
+          feature: true,
         }}
-        cutlineFolio="Fig. 01"
         /* The cutline used to end on "Fees get quoted when you ask, and they're
            NET to him", which is one of three NET statements this 723-word route
            was making. The booking band at the foot of the page is the one that
@@ -181,7 +193,19 @@ export default function SpeakingPage() {
         id="record"
         eyebrow="The record"
         title="Since 1994"
-        surface="sunken"
+        /* Navy. Every route on this site closes on a `deep` CTA band, and
+           most of them had no dark ground at all before it: the reader got two
+           greys 1.11:1 apart for thousands of pixels and then one arrival. A
+           ledger is the right block to punctuate with, because it is the one
+           thing on a page that is pure proof, and `deep-alt` is a step off the
+           closing band so the close still reads as an arrival rather than a
+           repeat.
+
+           It also moves the orange plus glyphs out of a documented exception:
+           on a light ground --ink-hot measures 2.72:1 and only ships because it
+           is aria-hidden, and in a deep scope it remaps to orange-400 at
+           5.60:1, where the brand orange is legal as a letterform. */
+        surface="deep-alt"
         /* This was a hand-typed near-copy of the shared default that / and
            /keynote/ were both rendering, so the same figures ran three times
            across three routes in almost the same words. It also restated the
@@ -193,7 +217,7 @@ export default function SpeakingPage() {
       />
 
       {/* The proof of the ledger's second glyph, and the reason it rides the
-          same sunken band rather than opening a new one: "50 / STATES" is a
+          same navy band rather than opening a new one: "50 / STATES" is a
           number a reader has to take on trust, and this is the same claim laid
           out so it can be counted instead.
 
@@ -202,7 +226,14 @@ export default function SpeakingPage() {
           ledger above it, the same way the StatRow's own title is. */}
       <CoverageGrid
         id="coverage"
-        surface="sunken"
+        /* Navy, and `seam`, because this graphic is a rider on the ledger
+           above it rather than a band of its own: "50 / STATES" is a number a
+           reader has to take on trust and this is the same claim laid out so it
+           can be counted. Fifty hairline tiles in navy-450 carrying stone-100
+           postal codes is also the best this component will ever look, which is
+           the second reason it moved rather than the first. */
+        surface="deep-alt"
+        seam
         density="tight"
         eyebrow="Coverage"
         title="Fifty states. Count them."
@@ -217,7 +248,7 @@ export default function SpeakingPage() {
         <Container>
           <div className={styles.head}>
             <Eyebrow>The speaking file</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 01" id="routes-title">
+            <Heading level={2} size="2xl" id="routes-title">
               Start where your question is.
             </Heading>
           </div>
@@ -265,7 +296,6 @@ export default function SpeakingPage() {
               />
             </div>
             <figcaption className="dm-figure__caption">
-              <span className="dm-figure__folio">Fig. 02 </span>
               A trade show floor, seen from row four. Every one of those chairs was a
               decision somebody made about how to spend an hour.
             </figcaption>
@@ -278,7 +308,7 @@ export default function SpeakingPage() {
           <div className={cx('dm-grid12', styles.ations)}>
             <div className={cx(styles.ationsBody, 'col-span-6 md:col-span-7')}>
               <Eyebrow>The signature program</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 02" id="ations-title">
+              <Heading level={2} size="2xl" id="ations-title">
                 The “Ations” of Agriculture
               </Heading>
 
@@ -300,9 +330,6 @@ export default function SpeakingPage() {
               <ul className={styles.ationsList} role="list">
                 {ations.map((subject, index) => (
                   <li key={subject} className={styles.ationsItem}>
-                    <span className={styles.ationsIndex} aria-hidden="true">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
                     <span>{subject}</span>
                   </li>
                 ))}
@@ -340,7 +367,6 @@ export default function SpeakingPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 03 </span>
                 InSite CDM Winter Forum, 2023. The lectern is right there. He isn’t
                 standing behind it.
               </figcaption>
@@ -357,7 +383,7 @@ export default function SpeakingPage() {
                 first time." is VOICE.md section 6, Pair 4, written for the
                 /reviews/ intro. /reviews/ still opens on it. Two routes cannot
                 both open on the same worked example. */}
-            <Heading level={2} size="2xl" folio="No. 03" id="reviews-title">
+            <Heading level={2} size="2xl" id="reviews-title">
               Three of them, in writing.
             </Heading>
             <Prose>
@@ -387,23 +413,22 @@ export default function SpeakingPage() {
         surface="sunken"
         eyebrow="Clients"
         title="Who hires him"
-        folio="No. 04"
         /* The second sentence here used to read "That's 21 marks out of 2,400+
-           audiences since 1994", which is precisely what the "21 OF 2,400+"
+           audiences since 1994", which is precisely what the "25 OF 2,400+"
            counter glyph directly above the wall already says. Round 3 named
            that pattern on /podcasts/ (a prose restatement sitting under a glyph
            that already carries the figure) and the same rule applies here.
            Home's wall makes the point with the roster alone. What is kept is
            the Farm Bureau fact, which the glyph cannot carry. */
-        intro="Cargill, Merck, Land O’Lakes Purina, CLAAS, Pioneer Seeds, and Wilbur-Ellis have all booked him, and so have three state Farm Bureaus."
+        intro="John Deere, Cargill, BASF, Merck, Land O’Lakes Purina, CLAAS, Pioneer Seeds, and Wilbur-Ellis have all booked him, and so have three state Farm Bureaus."
       />
 
       {/* The wall answers WHO. This answers what kind, and how many.
 
-          21 marks in a grid tell a reader that 21 organisations booked him.
+          25 marks in a grid tell a reader that 25 organisations booked him.
           What a meeting planner is actually deciding is whether THEIR kind of
           organisation booked him, and a grid of logos cannot answer that: it
-          asks them to recognise 21 brands and do the sorting themselves. The
+          asks them to recognise 25 brands and do the sorting themselves. The
           ledger does the sorting and stays checkable, because it prints the
           members of every row.
 
@@ -422,13 +447,13 @@ export default function SpeakingPage() {
           <ClientSectors
             titleId="sectors-title"
             eyebrow="The roster by kind"
-            title="21 clients, six kinds of business."
+            title="25 clients, six kinds of business."
             /* The finding, stated once, in the place a reader meets the ledger.
-               Nine of the 21 are member organizations, which is to say nine of
+               Ten of the 25 are member organizations, which is to say ten of
                them run an annual meeting, and an annual meeting is the thing a
                keynote gets booked for. The wall above cannot say that: it asks a
-               reader to recognise 21 marks and do the sorting themselves. */
-            intro="The wall above answers who. This answers what kind. Nine of the 21 are commodity groups, trade associations or Farm Bureaus, so nine of them run an annual meeting and they’ve got a room to fill. The other twelve sell into that room: ag lenders, input suppliers, grain and livestock buyers, and one combine maker."
+               reader to recognise 25 marks and do the sorting themselves. */
+            intro="The wall above answers who. This answers what kind. Ten of the 25 are commodity groups, trade associations or Farm Bureaus, so ten of them run an annual meeting and they’ve got a room to fill. The other fifteen sell into that room: input suppliers, ag lenders, grain and livestock buyers, and two equipment makers."
           />
         </Container>
       </Section>
@@ -437,7 +462,6 @@ export default function SpeakingPage() {
         id="booking"
         eyebrow="Booking"
         heading="Check the date first."
-        folio="No. 05"
         /* THE ONE BOOKING STATEMENT ON THIS ROUTE. The page carried three NET
            statements and two contract-and-deposit statements across 723 words,
            none of them the verbatim FAQ, which this route does not render. This

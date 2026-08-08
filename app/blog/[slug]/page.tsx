@@ -317,12 +317,6 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
                     />
                   </div>
                   <figcaption className="dm-figure__caption">
-                    {/* A folio only where the page has more than one figure,
-                        per DESIGN_SYSTEM 6.1. The Eggflation post's source
-                        block is a ruled row rather than a player, so that post
-                        carries exactly one figure and numbering it "Fig. 01"
-                        would be a series of one. */}
-                    {video ? <span className="dm-figure__folio">Fig. 01 </span> : null}
                     {IMAGE_CUTLINE[post.slug]}
                   </figcaption>
                 </figure>
@@ -351,7 +345,6 @@ export default async function BlogPostPage({ params }: { params: Promise<RoutePa
                       <VideoEmbed
                         video={video}
                         /* Fig. 02 since the header gained a plate above it. */
-                        folio="FIG. 02"
                         cutline={`${source.outlet}, ${formatPostDate(post.date)}. A national news desk calling an Indiana farm owner about the global food supply.`}
                       />
                       {/* The player is a facade, so it needs JavaScript. This

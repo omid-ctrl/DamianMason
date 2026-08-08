@@ -18,9 +18,9 @@ Three vision judges scored three directions. Directions 1 and 3 tied at 20 point
 
 The argument in four lines:
 
-1. **It is the only direction that cannot be re-skinned for another client.** Its identity is biographical: an "EST. 1994, INDIANA" masthead rail, a phone number in the chrome, numbered running heads, a dateline that says "FILED FROM THE INDIANA FARM OFFICE", section metadata reading "21 of 2,400+", and a photo cutline that mentions that Damian books his own rental car and his office manager Lori handles everything after that. Direction 2's hero becomes a Series B SaaS homepage with no other edits. Direction 3's becomes a farm credit annual report.
+1. **It is the only direction that cannot be re-skinned for another client.** Its identity is biographical: an "EST. 1994, INDIANA" masthead rail, a phone number in the chrome, a dateline that says "FILED FROM THE INDIANA FARM OFFICE", section metadata reading "25 of 2,400+", and a photo cutline that mentions that Damian books his own rental car and his office manager Lori handles everything after that. Direction 2's hero becomes a Series B SaaS homepage with no other edits. Direction 3's becomes a farm credit annual report.
 2. **It is the only direction that never needs a reversed wordmark.** Every ground the mark touches is light, and the proof figures are set in the wordmark navy exactly, which reserves that navy as the color of the evidence.
-3. **It wins the two things that will actually hurt this build:** 21 ragged client logos and mediocre photography. Its logo wall is 7 by 3, the only column counts that divide 21 evenly, with every mark legible. Its photography architecture puts the persuasion in the mono cutline rather than in the image, which is the only one of the three that survives a weak source.
+3. **It wins the two things that will actually hurt this build:** two dozen ragged client logos and mediocre photography. Its logo wall locks its column count to the divisors of its set, with every mark legible. Its photography architecture puts the persuasion in the mono cutline rather than in the image, which is the only one of the three that survives a weak source.
 4. **It is the only direction with a shared layout primitive and a section-head component** that transfers across all 17 routes rather than being re-authored per section.
 
 The legibility lens was right about every one of its findings and every one is a value in a token file. All of them are fixed here, and the fixes are listed in `docs/design/DECISION.md`. The best ideas from the two runners-up were grafted in: direction 3's stat ledger, portrait treatment, orange primary button, numeric tokens and dark-scope logo math; direction 2's paper scope, orange-on-deep-only rule, heading ladder discipline and lazy loading.
@@ -36,7 +36,7 @@ Four families, all Google Fonts, all loaded with `next/font/google` in `app/layo
 | `--family-display` | Oswald 600 | The masthead voice. A page's `h1`, and nothing else. | **`display: true` requires `level: 1`**, and a size of `3xl` or above. Both enforced by the type signature. |
 | `--family-serif` / `--family-figure` | Source Serif 4 | Every serif job: proof figures, pull quotes, section headings, the claims checklist, article decks. | Tabular lining figures on by default. |
 | `--family-body` | Archivo | Running text, UI, navigation, forms, buttons. | Body copy never drops below `--fs-base`. |
-| `--family-mono` | IBM Plex Mono | The furniture: eyebrows, folios, section numbers, stat labels, photo cutlines, form labels, button labels. | Never used for reading copy. Never below `--fs-2xs`. |
+| `--family-mono` | IBM Plex Mono | The furniture: eyebrows, stat labels, photo cutlines, form labels, button labels. | Never used for reading copy. Never below `--fs-2xs`. |
 
 The pairing in one line: **a condensed gothic for the masthead, a text serif for the proof, a grotesk for the reading, a mono for the machinery.** Four families on four *independent* axes of separation: display by width, serif by contrast, body by normal width, mono by rhythm.
 
@@ -76,17 +76,78 @@ Setting `data-surface` on any element remaps the whole semantic layer for its su
 | default | `#F7F8F6` cool stone | most routes |
 | `sunken` | `#E9EDE8` sage | the alternating band |
 | `deep` | `#041826` navy | the closing CTA band on every route, and full-bleed photo bands |
+| `deep-alt` | `#06283E` navy-900 | the second navy register: a dark band EARLIER in a page, one step off the close so the close still reads as an arrival. Ink is identical to `deep`; only the grounds move |
 | `deepest` | `#041826` with darker raised steps | the footer, sitting under a deep band |
 | `forest` | `#12231B` green | the second dark ground |
 | `paper` | `#F7F8F6` cool stone | a light card or plate **inside** a dark section |
 
 `paper` is grafted from direction 2 and it is not optional. Every route ends in a dark CTA band, several want a light card floating on it, and without an explicit light scope that card becomes hand-written light-on-dark overrides.
 
-**Two dark grounds, and the split carries meaning.** Before the Cool Modern Ag revision every dark band was navy, so a page's rhythm was light, light, light, navy, and on Home that meant a 21,000px scroll with two identical interruptions. The rule: **the band that talks about agriculture is green, the band that asks for the booking is navy.** So the ground still tells a reader which kind of thing they are looking at, and green does not simply become the new monotony. Two routes use it today.
+**Three dark grounds, and the split carries meaning.** Before the Cool Modern Ag revision every dark band was navy, so a page's rhythm was light, light, light, navy, and on Home that meant a 21,000px scroll with two identical interruptions. The rule: **the band that talks about agriculture is green, the band that asks for the booking is navy.** So the ground still tells a reader which kind of thing they are looking at, and green does not simply become the new monotony. Two routes use it today.
+
+`deep-alt` was declared as `--surface-deep-alt` in section 3 and consumed by no scope for seven phases, while `scripts/contrast-table.mjs` had been listing it in its GROUNDS map the whole time: the ground was already being measured, it just had nowhere to live. It exists because a route needs a dark punctuation more often than it needs to arrive at its close, and because putting the stat ledger on it moves two orange glyphs out of a documented exception (`--ink-hot` measures 2.72:1 on a light ground and ships only because it is `aria-hidden`; in a deep scope it is 5.60:1 and legal as a letterform).
 
 `--palette-forest-*` is **luminance-matched to the navy ramp step for step, to within 4%**, which is why a whole new scope arrives carrying zero new contrast risk: every pair already measured against navy transfers unchanged. The one step deliberately not matched is the ground, which sits 72% brighter than navy-950 because a luminance-matched green ground reads as near-black and the entire point is that it reads as green.
 
 **The wordmark never reverses, and it never sits on green.** A mark inside any dark region sits on a `surface="paper"` plate.
+
+### 3.4 Density: the section head rail and the full-bleed plate
+
+Added 2026-08-07, after the amplification pass, because the site still read
+quiet with the photography and the dark bands in place and the cause turned out
+to be measurable rather than a matter of taste.
+
+**The finding.** A grid item stretches. This site's commonest section is a
+four-column head beside an eight-column body, and where the body was a thirteen
+item accordion or a nine item press list, the head's BOX filled the row while
+its INK stopped near the top. Measured across the eighteen routes at 1440:
+**nineteen columns like that, 10,349px of ground with nothing on it**, the worst
+single one 1,524px of an 1,871px column. A column that stops while its neighbour
+keeps going reads as unfinished; that was the residual "underwhelming".
+
+**`.dm-rail`** is the fix and it is one rule. `align-self: start` plus
+`position: sticky` from 1024, so the head travels with the thing it names. It is
+the running head, which is the oldest device in the medium this direction is
+named after, and it does something useful rather than decorative: on the FAQ the
+"not finding your answer? email us" escape hatch stays reachable for all thirteen
+questions instead of scrolling away at the first. `align-self: start` is not
+optional; a stretched grid item fills its row and a sticky element with no room
+to move does nothing. Sticky changes no box, so CLS is untouched, and
+`scripts/motion-check.mjs` asserts that.
+
+**`.dm-balance`** is the other half. Where a short column sits beside a tall
+FIGURE rather than a long list, there is not enough scroll in the row for a
+sticky element to travel, so it gets `align-self: center` from 768 instead.
+A caption block set against a picture is centred on the picture, not hung from
+its top edge, and the emptiness then reads as the margin it is.
+
+Between them: **10,349px to 0**.
+
+**What is NOT a void.** A single prose column spanning seven or eight of twelve
+with several hundred pixels beside it is a reading measure, not dead ground.
+Nine sections are that shape and they stay. `--measure` is 66ch for a reason and
+a paragraph running the full 1248px would be worse, not denser.
+
+**`.dm-bleed`**, one per route, and only for a frame that survives 1440 wide.
+The photograph leaves the container; the caption comes back to it, on the page's
+own left axis, because text does not leave the measure. It is how a printed page
+says stop reading for a second and look, and a route that never once breaks the
+grid has no way to mark which of its images is the one that matters. Two would
+be a layout rather than an emphasis. **Never with reversed type over it**: that
+is rule 17, and it is why this is a plate with a caption rather than a band with
+a heading.
+
+### 3.5 Band rhythm
+
+Scopes exist so that a page can change ground. Having them is not the same as using them, and before the amplification pass most routes did not: thirteen of the seventeen content routes passed a `deep` or `forest` surface to no section at all, so a reader got two greys 1.11:1 apart for thousands of pixels and then one arrival at the closing CTA. `/speaking/` ran 9,674px carrying nothing but `sunken`.
+
+**The rule.** No route runs more than two consecutive light bands without a dark punctuation, and no route alternates `page`/`sunken` more than twice in a row. Any route with six or more sections carries at least two dark bands and they are not both navy.
+
+**Light bands group into runs.** Two adjacent sections on the same ground draw `--section-pad-block` twice, which at 1440 is up to 240px with no rule, no ground change and nothing to say one section ended. `Section`'s `seam` prop drops the second one's block-start interval so the pair reads as one band with a break in it. It is opt-in and never a sibling selector: `[data-surface="sunken"] + [data-surface="sunken"]` says the same thing in one rule and then silently changes every route that already abuts, which on this site is five of them.
+
+**What punctuates.** A stat ledger, first: it is the one block on a page that is pure proof, and it is the block that gains the most from a dark ground. Then the data graphics, `CoverageGrid` and `ClientSectors`, which reverse better than they print. A photograph does not need a dark band; it can BE one.
+
+**Do not widen the light pair to fix this.** `--surface-sunken` is one step from failing the gate in two places at once: `--ink-faint` measures 4.58 on it against a 4.5 floor, and `--rule-structural` measures 3.12 against 3.0. The monotony is broken by adding dark bands, never by darkening the sage.
 
 ---
 
@@ -410,9 +471,59 @@ pure decoration or a disabled control.
 | `--field-error-ink` | `#ffb39c` | field error `#1f3c2a` | **7.01** | AAA |
 | `--state-disabled-ink` | `#639c7b` | disabled, exempt SC 1.4.3 `#1f3c2a` | **3.78** | exempt |
 
-**Total pairs checked: 270.**
+### deep-alt
 
-10 pair(s) ship below floor on purpose, each named and restricted rather than fixed:
+| Token | Value | Against | Ratio | Verdict |
+|---|---|---|---|---|
+| `--ink-primary` | `#fafbf8` | page `#06283e` | **14.64** | AAA |
+| `--ink-primary` | `#fafbf8` | sunken `#06283e` | **14.64** | AAA |
+| `--ink-secondary` | `#d3e0e8` | page `#06283e` | **11.30** | AAA |
+| `--ink-brand` | `#fdfefc` | page `#06283e` | **15.03** | AAA |
+| `--ink-brand` | `#fdfefc` | sunken `#06283e` | **15.03** | AAA |
+| `--ink-muted` | `#8fb2c7` | page `#06283e` | **6.78** | AA |
+| `--ink-muted` | `#8fb2c7` | raised `#07395a` | **5.37** | AA |
+| `--ink-muted` | `#8fb2c7` | bright `#07395a` | **5.37** | AA |
+| `--ink-muted` | `#8fb2c7` | sunken `#06283e` | **6.78** | AA |
+| `--ink-faint` | `#7ca6c4` | page `#06283e` | **5.87** | AA |
+| `--ink-faint` | `#7ca6c4` | raised `#07395a` | **4.65** | AA |
+| `--ink-faint` | `#7ca6c4` | bright `#07395a` | **4.65** | AA |
+| `--ink-faint` | `#7ca6c4` | sunken `#06283e` | **5.87** | AA |
+| `--ink-accent` | `#ff5325` | page `#06283e` | **4.72** | AA |
+| `--ink-accent` | `#ff5325` | sunken `#06283e` | **4.72** | AA |
+| `--ink-hot` | `#ff5325` | page `#06283e` | **4.72** | 3:1 pass |
+| `--ink-hot` | `#ff5325` | sunken `#06283e` | **4.72** | 3:1 pass |
+| `--ink-gold` | `#e0be7a` | page `#06283e` | **8.56** | AAA |
+| `--ink-green` | `#75ac8b` | page `#06283e` | **5.82** | AA |
+| `--rule-structural` | `#6197b8` | page `#06283e` | **4.80** | 3:1 pass |
+| `--rule-structural` | `#6197b8` | raised `#07395a` | **3.80** | 3:1 pass |
+| `--rule-structural` | `#6197b8` | bright `#07395a` | **3.80** | 3:1 pass |
+| `--rule-structural` | `#6197b8` | sunken `#06283e` | **4.80** | 3:1 pass |
+| `--rule-decorative` | `#07395a` | page `#06283e` | **1.26** | documented exception (ornament by definition. If deleting the rule would lose meaning it was the wrong token. DESIGN_SYSTEM 5.) |
+| `--focus-ring-color` | `#ff8154` | page `#06283e` | **6.17** | 3:1 pass |
+| `--focus-ring-color` | `#ff8154` | sunken `#06283e` | **6.17** | 3:1 pass |
+| `--focus-ring-color` | `#ff8154` | bright `#07395a` | **4.89** | 3:1 pass |
+| `--link-ink` | `#ff8154` | page `#06283e` | **6.17** | AA |
+| `--link-ink` | `#ff8154` | sunken `#06283e` | **6.17** | AA |
+| `--link-ink-hover` | `#ffb39c` | page `#06283e` | **8.82** | AAA |
+| `--action-primary-ink` | `#041826` | primary button `#ff5325` | **5.60** | AA |
+| `--action-primary-ink` | `#041826` | primary hover `#f94d1c` | **5.25** | AA |
+| `--action-primary-ink` | `#041826` | primary active `#e8511f` | **4.84** | AA |
+| `--action-secondary-ink` | `#fafbf8` | secondary hover `#07395a` | **11.61** | AAA |
+| `--selection-ink` | `#041826` | selection `#e0be7a` | **10.15** | AAA |
+| `--status-success-ink` | `#75ac8b` | status success `#07395a` | **4.61** | AA |
+| `--status-warning-ink` | `#e0be7a` | status warning `#07395a` | **6.78** | AA |
+| `--status-danger-ink` | `#ffb39c` | status danger `#07395a` | **6.99** | AA |
+| `--status-info-ink` | `#b7cedd` | status info `#07395a` | **7.40** | AAA |
+| `--field-ink` | `#fafbf8` | field text `#07395a` | **11.61** | AAA |
+| `--field-placeholder-ink` | `#b7cedd` | field placeholder `#07395a` | **7.40** | AAA |
+| `--field-rule` | `#6197b8` | field rule `#07395a` | **3.80** | 3:1 pass |
+| `--field-rule-focus` | `#ff8154` | field rule, focused `#07395a` | **4.89** | 3:1 pass |
+| `--field-error-ink` | `#ffb39c` | field error `#07395a` | **6.99** | AA |
+| `--state-disabled-ink` | `#6197b8` | disabled, exempt SC 1.4.3 `#07395a` | **3.80** | exempt |
+
+**Total pairs checked: 315.**
+
+11 pair(s) ship below floor on purpose, each named and restricted rather than fixed:
 
 - `--ink-hot` on sunken at 2.72:1. the brand orange is a field, a rule or an aria-hidden mark on a light ground, never a letterform. Legal as text only in a dark scope. DESIGN_SYSTEM 5.
 - `--rule-decorative` on page at 1.33:1. ornament by definition. If deleting the rule would lose meaning it was the wrong token. DESIGN_SYSTEM 5.
@@ -424,6 +535,7 @@ pure decoration or a disabled control.
 - `--rule-decorative` on page at 1.50:1. ornament by definition. If deleting the rule would lose meaning it was the wrong token. DESIGN_SYSTEM 5.
 - `--rule-decorative` on page at 1.19:1. ornament by definition. If deleting the rule would lose meaning it was the wrong token. DESIGN_SYSTEM 5.
 - `--rule-decorative` on page at 1.36:1. ornament by definition. If deleting the rule would lose meaning it was the wrong token. DESIGN_SYSTEM 5.
+- `--rule-decorative` on page at 1.26:1. ornament by definition. If deleting the rule would lose meaning it was the wrong token. DESIGN_SYSTEM 5.
 
 <!-- CONTRAST:END -->
 
@@ -446,7 +558,7 @@ Not counting against the budget:
 - the focus ring, which is a transient state
 - `--ink-accent` `#A8330E` used as link or label text. It is a deepened print orange, not the brand orange, and it is a text ink
 
-**Where the orange goes, in priority order.** If there is only one orange element on the page, it is the primary button. Then, in order: the `+` glyphs in the stat ledger, the section-number folio, the accent rule under a masthead eyebrow, the bar on a pull quote.
+**Where the orange goes, in priority order.** If there is only one orange element on the page, it is the primary button. Then, in order: the `+` glyphs in the stat ledger, the accent rule under a masthead eyebrow, the bar on a pull quote.
 
 **Where it never goes.** Body text on a light ground. Headings. Hover states on links in prose. Icon washes. Anything that is orange because orange is the brand color rather than because a decision is being asked for.
 
@@ -485,7 +597,7 @@ Assume several source images are mediocre, one is a macOS screenshot, and the ar
 
 ### 6.1 The rule that makes it work
 
-**Every photograph is a `<figure>` with a cutline.** No exceptions, including the hero. The cutline is set in `--family-mono` at `--fs-2xs`, `--ink-muted`, under a `--rule-structural` hairline, capped at `--measure-narrow`. It carries a `FIG. 01` style folio where the page has more than one image.
+**Every photograph is a `<figure>` with a cutline.** No exceptions, including the hero. The cutline is set in `--family-mono` at `--fs-2xs`, `--ink-muted`, under a `--rule-structural` hairline, capped at `--measure-narrow`. **It carries no figure number.** The numbering was removed at the client's instruction on 2026-08-07, along with the `No. 01` section folios, and the machinery went with it: there is no `folio` prop on `Heading`, no `cutlineFolio` on `Hero`, and no `.dm-figure__folio` or `.dm-heading__folio` rule. A cutline is a sentence about a photograph, not a caption in a series.
 
 The cutline is also one of the three standing slots the dry humor lives in, per VOICE.md trait 4. State two true things next to each other and stop. The model is already written: "On stage, 2024. Damian books his own airfare and rental car. His office manager Lori handles everything after that."
 
@@ -523,6 +635,28 @@ A redesigned scrim holding 0.80 out to 62% still only reaches 3.67. So 0.62 stay
 
 **The rule that follows: if a band's photograph has colour worth seeing, the band is the wrong element.** Use `.dm-photo--band`, the standalone 21:8 plate that owns its own box and takes the plate veil, rather than a `Hero variant="band"`.
 
+### 6.2.1 The feature grade
+
+`--photo-filter` above is fitted to hold eighteen sources of wildly mixed quality to one material: measured mean luminance spread 1.89 against raw colour's 2.59. That fit is a property of the SET, and every frame in it pays for it, including the ones shot by a professional at 2400x3600 in a studio. On those the wash subtracts the white point, the contrast and the chroma that the wash exists to manufacture.
+
+So the set keeps the wash and a closed list of frames gets a grade instead of a correction, selected by `data-photo="feature"` on the `.dm-photo`:
+
+```
+filter:            saturate(0.94) contrast(1.10);   /* --photo-filter-feature */
+highlight layer:   0.12  (half)
+shadow layer:      0.10  (half)
+```
+
+**Both wash layers halve, not the filter alone.** `saturate()` is not the mechanism and never was: the screen-and-multiply pair does most of the desaturation on its own, and the podium frame goes 0.986 to 0.67 before `saturate()` applies at all. Dropping only the filter would change almost nothing on screen.
+
+**The test is the FILE, not the placement.** Shot on purpose, by a professional, at 2000px or better, meant to be looked at rather than past. A broadcast frame grab in a hero is still a frame grab.
+
+**Gets it:** every `Hero` portrait, the cut-out, and the studio and stage photography recovered from the client's media library in `_source/media-kit/`.
+
+**Never gets it:** every broadcast frame grab (`cheddar-news-*`, `news-interview-cal-maine`, `san-interview-2`, `food-inflation-episode`, `forbes-feature`, `field-day-panel`); `microphones-background.jpg`, which carries an exposure CORRECTION and is a different thing; every `.dm-video__poster`, which are 480x360 YouTube stills; both logo walls; and all supplied brand artwork, which takes no filter at all per 6.5. And never a band: see rule 17.
+
+**Re-measure after any change.** The number the SET must not be pushed past is 2.03, which is what the grayscale duotone this wash replaced measured.
+
 ### 6.3 Crops and focal points
 
 | Role | Ratio | Focal point | Notes |
@@ -531,13 +665,14 @@ A redesigned scrim holding 0.80 out to 62% still only reaches 3.67. So 0.62 stay
 | Editorial plate | `--ratio-plate` 3:2 | 50% 40% | A captioned figure lower on the page, never a hero. |
 | Full-bleed band | `--ratio-band` 21:8, `--ratio-band-mobile` 4:3 | `--photo-focus-band` 50% 40% | Reversed type over the band. Ships with the 0.62 veil. |
 | Card thumbnail | `--ratio-square` 1:1 | 50% 30% | Episode and video grids. |
+| Hero cut-out | `--ratio-cutout` 2:3, as a box reservation only | none | `portrait-cutout.png`, the one asset on the site with a real alpha channel. No crop, no plate, no veil and no wash layers: the grade is on the image, because the wash paints two full-bleed blend layers across the element's RECTANGLE and a multiply over a transparent region prints the plate colour as a navy box around the silhouette. Renders 491x736 at 1440 against the 4:5 plate's 492x615. See 6.2.1 and `.dm-hero--cutout`. |
 
 ### 6.4 The screenshot
 
 `speaking-collage.png`, the Acres TV episode grid and the browser-chrome captures are screenshots, not photographs. Rules:
 
 1. A screenshot never appears in a hero, a band, or above the fold.
-2. If a screenshot is the only asset for a slot, replace the slot with a typographic treatment: a `Card` in the `ruled` variant carrying the title, a mono folio and a link. A ruled card with a real headline beats a blurry rectangle every time.
+2. If a screenshot is the only asset for a slot, replace the slot with a typographic treatment: a `Card` in the `ruled` variant carrying the title, a mono outlet label and a link. A ruled card with a real headline beats a blurry rectangle every time.
 3. If a screenshot must appear as evidence, crop it to remove all browser and OS chrome, place it inside a `--surface-plate` figure with a hairline, and give it a cutline that says what it is.
 
 ### 6.5 Supplied brand artwork
@@ -556,15 +691,17 @@ Artwork means the three book covers, the two podcast cover arts, the Business of
    Where two pieces of artwork share a row, cap the axis that makes them peers rather than the one the grid already caps. Two book jackets side by side and one on its own bottomed out at 176px and 350px under an inline-size cap, because inline-size was the axis the column was already deciding; `--size-jacket-h` caps the block axis instead and the two cover rows land on one baseline.
 5. **The file is cleaned, not hidden.** `scripts/normalize-brand-art.mjs` trims each mark to its own ink and deletes near-transparent leftovers, including the RGB under fully transparent pixels. That last part is not cosmetic: the image optimizer emits AVIF with a lossy alpha channel and will rebuild a deleted ghost out of whatever colour the exporter left underneath it. See the header of that script.
 
+**A photograph OF a supplied product is photography, not artwork.** The Food Fear jacket FILE is artwork under this section: colour kept, no filter, `mix-blend-mode: multiply`, a hairline frame, no cutline. `food-fear-hardback.jpg`, which is a studio photograph of the hardback standing on a walnut table between two stacks of it, is a photograph under 6.2: it takes the wash, it takes a plate, it takes a cutline, and it is on the 6.2.1 feature list. The distinction is what was photographed, not what is depicted.
+
 ### 6.6 Loading
 
-`loading="lazy"` on every image below the fold and on all 21 logo-wall marks. Explicit `width` and `height` on every image so nothing shifts. The hero portrait is the only eager image on any page.
+`loading="lazy"` on every image below the fold and on all 25 logo-wall marks. Explicit `width` and `height` on every image so nothing shifts. The hero portrait is the only eager image on any page.
 
 ---
 
 ## 7. The logo wall
 
-21 ragged client marks and 10 sponsor marks. Every file in `public/img/clients` and `public/img/sponsors` has an opaque **pure white** ground, which is what `mix-blend-mode: multiply` needs to make the ground disappear into the cell.
+25 ragged client marks and 10 sponsor marks. Every file in `public/img/clients` and `public/img/sponsors` has an opaque **pure white** ground, which is what `mix-blend-mode: multiply` needs to make the ground disappear into the cell.
 
 Every file is also trimmed to its own ink, by `scripts/normalize-logo-ink.mjs`, which runs at the end of `scripts/normalize-assets.mjs`. After that trim the canvas aspect ratio **is** the mark's aspect ratio, and those run from 0.86 (newfields-ag) to 6.05 (life-scientific). Before it they were the supplier's framing, and that is not the same thing: `claas.png` arrived as 168 by 148 with 27px of ink in it, so the cell gave it a full 72px box and 13px of visible mark. Measured on the live wall at 1440, ink height ran 13.1px to 72.0px on the clients and 15.6px to 69.8px on the sponsors, a 5.5x and a 4.5x spread inside cells that were the same size to the pixel. Trimmed, the same measurement is 26.6 to 67.9 and 36.0 to 67.7, and what is left is aspect ratio, which is real: a 5.6:1 logotype cannot be as tall as a square badge in a cell that is 2.2:1.
 
@@ -602,7 +739,7 @@ Measured in Chromium after the change, at 1440 / 768 / 390 on both walls:
 | smallest mark before | 28.6px | 41.5px | 17.8px | 27.7px |
 | smallest mark after | 29.3px | 29.0px | 27.2px | 26.9px |
 
-**The residual height spread is not a defect and must not be driven down.** It equals `sqrt(aspect_max / aspect_min)`, which is 2.39x for the 21 client marks and 2.57x for the 10 sponsors. It is the amount by which a 6:1 logotype is genuinely wider than it is tall. Rendering claas as tall as a square badge would give it 2.4x its correct visual weight and make it the loudest thing on the wall. **Report optical spread, not height spread.** `scripts/measure-logo-wall.mjs` measures all three in a real browser.
+**The residual height spread is not a defect and must not be driven down.** It equals `sqrt(aspect_max / aspect_min)`, which is 2.57x for the 25 client marks and 2.57x for the 10 sponsors. It was 2.39x at 21 marks; John Deere and the IPPA seal are both nearer square than the old extremes, and BASF is wider, so the ratio moved. Re-measure with `scripts/measure-logo-wall.mjs` rather than carrying the old number. It is the amount by which a 6:1 logotype is genuinely wider than it is tall. Rendering claas as tall as a square badge would give it 2.4x its correct visual weight and make it the loudest thing on the wall. **Report optical spread, not height spread.** `scripts/measure-logo-wall.mjs` measures all three in a real browser.
 
 **Do not hand-write a per-logo override in CSS.** The factor is derived from the file's real pixel dimensions by the same script that writes those dimensions, which is why `src/styles/logo-optical.css` is generated and carries a do-not-edit banner. A hand-tuned number can drift from the file it describes; a generated one cannot.
 
@@ -610,20 +747,20 @@ There is no wide-mark backoff. `--logo-scale-wide` `0.86` existed because a wide
 
 ### 7.1.1 The section head does not ride the wide container
 
-The seven-column grid needs `Container width="wide"`; the section head does not. When the head rode along with it, every eyebrow, folio and H2 on a logo-wall section sat at x=48 while every other section on the same page sat at x=96, and on Home that jog was directly visible between "For meeting planners" and "Client roster". The head takes the standard container and only the `<ul>` goes wide.
+The seven-column grid needs `Container width="wide"`; the section head does not. When the head rode along with it, every eyebrow and H2 on a logo-wall section sat at x=48 while every other section on the same page sat at x=96, and on Home that jog was directly visible between "For meeting planners" and "Client roster". The head takes the standard container and only the `<ul>` goes wide.
 
 ### 7.2 Column counts are locked
 
-21 divides evenly by 1, 3, 7 and 21. 10 divides evenly by 1, 2, 5 and 10. Any other count leaves a ragged tail of dead cells at exactly the width a meeting planner on a laptop sees.
+**The set was 21 and is now 25**, which changes the answer rather than the rule. 21 divides by 1, 3, 7 and 21; 25 divides by 1, 5 and 25 and by nothing else useful. So three across is no longer available at any width and the wall runs 5 across from 1024 and 2 below it. 10 divides by 1, 2, 5 and 10. Any other count leaves a ragged tail of dead cells at exactly the width a meeting planner on a laptop sees.
 
 | Set | 1024px and up | 768 to 1023 | below 768 |
 |---|---|---|---|
-| Clients (21) | **7** | **3** | **2** |
+| Clients (25) | **5** | **2** | **2** |
 | Sponsors (10) | **5** | **2** | **2** |
 
 No 4-across, no 5-across for clients, no 3-across for sponsors.
 
-**Below 768 the client wall is two across, not three, and the exception is measured.** Three across leaves 99px of content in a cell, and at the optical target in 7.1 a 5.55:1 logotype in 99px renders 17.8px tall. Two across offers 157px and carries the same mark to 27.2px, which is what makes the wall legible on a phone. It costs four extra rows of scroll. 21 is odd, so the twenty-first cell spans both columns rather than leaving a ruled hole, which is why the "no dead cells" property above still holds.
+**Below 768 the client wall is two across, not three, and the exception is measured.** Three across leaves 99px of content in a cell, and at the optical target in 7.1 a 5.55:1 logotype in 99px renders 17.8px tall. Two across offers 157px and carries the same mark to 27.2px, which is what makes the wall legible on a phone. It costs four extra rows of scroll. 25 is odd, so the twenty-fifth cell spans both columns rather than leaving a ruled hole, which is why the "no dead cells" property above still holds. **That span rule must stay scoped.** The 768 breakpoint resets it for `cols-7`, which is correct for a three-across grid, and applying it unscoped would take the span off a `cols-5` wall that is still two across at 768 and leave a ruled half-row at exactly the width nobody checks.
 
 ### 7.3 The dark ground
 
@@ -640,7 +777,7 @@ This is grafted from direction 3, which was the only comp that worked the math o
 
 ### 7.4 Indices
 
-If the wall carries `01` through `21` corner indices, they are `--ink-faint` and `aria-hidden="true"`. They are decoration and a screen reader should read the logo's alt text, not a number.
+If the wall carries `01` through `25` corner indices, they are `--ink-faint` and `aria-hidden="true"`. They are decoration and a screen reader should read the logo's alt text, not a number.
 
 ---
 
@@ -664,7 +801,7 @@ Never nest two Sections with the same surface. Never write a light-on-dark color
 
 `level` (the semantics) and `size` (the appearance) are independent, always. `display: true` sets the masthead face and is only accepted with `level: 1` and a `size` of `3xl` and above; the type signature is the guardrail for both.
 
-`folio` renders the numbered prefix ("No. 01") **inside** the heading element, so the document outline carries it. That is the corrected form of direction 1's best idea. Do not put a section number in a sibling `Eyebrow` and call the section headed.
+There is no `folio` prop. Section numbering was removed at the client's instruction on 2026-08-07. The prop rendered a `No. 01` prefix inside the heading element so the document outline carried it, which was the right way to do the wrong thing; the sections keep their eyebrows and their headings and lose only the count. **Do not reintroduce it in a sibling `Eyebrow`**: that was the defect the prop existed to prevent, and it would put the numbering back through the door the rule closed.
 
 The ladder, at 1440: H1 `6xl` 120px, hero secondary `5xl` 80px, band title `3xl` 50px, section H2 `2xl` 40px, H3 `xl` 30px, H4 `lg` 23px. No two adjacent steps are within 20% of each other. Exactly one H1 per page, and after the Cool Modern Ag revision that is enforced rather than asserted: `display: true` requires `level: 1`.
 
@@ -672,7 +809,7 @@ A hero H1 does not take `6xl` directly. `--fs-6xl-hero` rebinds it to **83 to 10
 
 ### `Eyebrow`
 
-The mono running head, dateline, folio, section label. `tone`: `muted` (default, 5.74:1, legal as content), `accent`, `brand`, `faint` (3.89:1, decorative only, pair with `aria-hidden`).
+The mono running head, dateline, section label. `tone`: `muted` (default, 5.74:1, legal as content), `accent`, `brand`, `faint` (3.89:1, decorative only, pair with `aria-hidden`).
 
 **An Eyebrow is never a substitute for a heading.** If it is naming a section, the section still needs a real `Heading`. This is the document-outline failure that cost direction 3 its editorial section.
 
@@ -730,6 +867,14 @@ Fixed at `--fs-xl` (30px at 1440), exactly one step **below** a section `Heading
 
 `.dm-grid12` is a shared 12-column grid (6 columns below 768px). Sections place children with span utilities against it. Do not author a bespoke `grid-template-columns` per section; that is a tax paid on every one of 17 routes.
 
+### Header
+
+**The scrolled state.** The masthead carries `data-scrolled`, written by `components/motion/MastheadState.tsx` from a zero-layout sentinel absolutely positioned at the header's own top edge. There is still no scroll listener anywhere in this build: sticky positioning establishes a containing block, so the sentinel leaves the viewport at exactly the moment the bar goes flush and an `IntersectionObserver` reports that transition twice where a listener would report it sixty times a second.
+
+Nothing in that state changes a layout box, per rule 24. What condenses is the wordmark, on a transform, and what changes is the bar's separation from the content it now overlaps, on the one shadow rule 20 already grants it.
+
+The sentinel's height is written from ONE of the sticky offset's three terms, and both omissions are measured. The 8px rule goes because an absolutely positioned box resolves against its containing block's padding box and the rule is a border; including it left 8px of sentinel permanently on screen and `data-scrolled` never once flipped. The hairline goes because at the full 45px the sentinel's bottom lands at exactly 0 when the bar goes flush, and a zero-area rect touching the viewport edge still reports `isIntersecting: true`.
+
 ### Header, for phase 2
 
 - The masthead rail carries `EST. 1994, INDIANA`, `THE BUSINESS OF FOOD, FUEL, AND FIBER`, and the phone number at desktop, all in `--ink-muted` at `--fs-2xs`.
@@ -741,9 +886,9 @@ Fixed at `--fs-xl` (30px at 1440), exactly one step **below** a section `Heading
 
 Nothing slides in from off screen. Things resolve in place. Durations `80` / `140` / `220` / `380` / `620` ms with the four easings in tokens. `prefers-reduced-motion: reduce` collapses every duration token to 1ms and the base layer additionally clamps `transition-duration` and `animation-duration` globally.
 
-**Only `opacity` and `transform` are ever animated.** Nothing in the motion layer can move a neighbour, so nothing in it can contribute to CLS or force a layout pass mid scroll. Measured CLS is 0 on every route at 390 and 1440.
+**Only properties that cannot move a neighbour are ever animated.** Today that list is `opacity`, `transform`, `clip-path`, `filter` and `box-shadow`. It is a CLOSED list and the test is "can this move something else", not "is it on a list of two". Never `height`, `margin`, `inset`, `padding`, `font-size` or `display`. The ledger count-up replaces text content inside a box reserved in `ch` by `data-count-len`, which is a paint change and not a layout one. Measured CLS is 0 on every route at 390 and 1440, and `scripts/motion-check.mjs` now asserts it through a scripted scroll rather than inferring it from a single page load, because every scroll-triggered effect on this site is invisible to a metric taken at load.
 
-**The scroll reveal, and the one rule it cannot break.** The implementation is `src/styles/motion.css` plus `components/motion/RevealController.tsx`, and the markup contract is two attributes: `data-reveal="fade"` on a block, or `data-reveal="stagger"` on a container whose direct children arrive one `--duration-instant` beat apart, capped at five beats. The container is what gets observed, never the cells, so a 21 mark logo wall costs one observer entry.
+**The scroll reveal, and the one rule it cannot break.** The implementation is `src/styles/motion.css` plus `components/motion/RevealController.tsx`, and the markup contract is three attributes: `data-reveal="fade"` on a block, `data-reveal="stagger"` on a container whose direct children arrive one `--duration-instant` beat apart capped at five beats, or `data-reveal="wipe"` on a figure whose children are uncovered from their top edge on a `clip-path` inset. `wipe` hides children rather than the observed element, and that is rule 25 rather than a style choice: an element clipped to zero area can never be seen entering the viewport by the observer watching it. The `prefers-reduced-motion` block resets `clip-path` as well as `opacity` and `transform`, because a reader who turns the preference on mid-session may have an armed figure on screen clipped to zero height and the global `transition-duration` clamp does not un-clip it. The container is what gets observed, never the cells, so a 25 mark logo wall costs one observer entry.
 
 *Nothing is hidden by default.* No selector hides anything on its own. The hidden state is `data-reveal-state="pending"`, it is written only by the controller, and only for an element the controller has measured as sitting entirely below the fold. JavaScript off, bundle failed, `IntersectionObserver` missing, reduced motion requested, observer never reporting: every one of those paths ends with the attribute never written and the page fully visible. A reveal that hides content by default and depends on JavaScript to show it is the failure mode this design exists to make impossible. Do not invert it.
 
@@ -768,22 +913,28 @@ Because an element already on screen is never armed, the fold never flashes and 
 1. **Do not pin `font-variation-settings`.** Especially not `"opsz"`. And do not assume an axis is live because a declaration mentions it: `next/font/google` requests no axis beyond `wght` unless you pass `axes:`, so for the whole life of the previous face `font-optical-sizing: auto` was controlling a master that was not in the file. If a future display face has an `opsz` axis and you want it, requesting it forces `weight: 'variable'` and the full variable font. Measure the byte cost first.
 2. **Do not set the display face below `--fs-3xl`, and never on anything but a page's `h1`.** `2xl` is the section H2 step, and the masthead voice reaching it flattens the ladder. The type signature enforces both: `display: true` requires `level: 1`.
 3. **Do not set a proof figure in the display face at any size.** Figures are Source Serif 4, tabular, always. The reason is not that any one face is fragile: **no condensed gothic on Google Fonts has working tabular figures**, so a ledger column set in one does not align, and a ledger column that does not align is not a ledger.
-4. **Do not reverse the wordmark, and do not put it on green.** `wordmark-white.png` exists in the asset library and this system does not use it. A mark inside any dark region, navy or forest, sits on a `surface="paper"` plate.
+4. **Do not reverse the wordmark, and do not put it on green.** `wordmark-white.png` exists in the asset library and this system does not use it. A mark inside any dark region, navy or forest, sits on a `surface="paper"` plate. **Re-examined during the amplification pass, and the rule survived on evidence rather than on habit:** the white file was read pixel by pixel and every opaque pixel in it is pure white, which means the mark's second brand constant, the full-width `#FF5325` rule occupying the bottom 30% of the art, is simply absent from it. It is a flat knockout, not a reversed lockup, and a third dark scope (`deep-alt`) was added in the same pass, which is exactly the moment a rule held only by structural luck would have broken. A purpose-made white lockup would be a different object and does not exist: it would keep `#FF5325` on the rule and knock only the navy type to `--ink-inverse`. If one is ever made it is derived by script from `wordmark.png`, it is named `wordmark-inverse`, and the flat knockout stays forbidden by name.
 5. **Do not use `#FF5325` as a letterform on a light ground.** It measures 3.19 on `bright`, 3.10 on `raised`, 3.03 on `page` and 2.72 on the sage band, so it clears the 3:1 non-text floor on the page but nothing clears 4.5:1. Use `--ink-accent` `#A8330E` (6.27 on the page), or put the type on a dark ground, where the brand orange is legal as text. Note the restriction names a **ground**, not a scope: 37 Sections use `sunken`, where it is still 2.72.
-6. **Do not exceed the orange budget.** Three orange elements per viewport, one filled field. Two primary buttons on screen at once means neither is the action. **And do not put the filled field in the sticky masthead**: it is `secondary` there, permanently, because sticky chrome spends the budget in every viewport of every route. Section 5.1.
+6. **Do not exceed the orange budget, and do not make a band out of it.** An orange SCOPE was considered during the amplification pass and rejected on three grounds, recorded here so it is not re-litigated: section 5 counts a solid field as the one filled field a viewport gets, and a full-width band is thousands of times a button's area, so the page's revenue action stops being the loudest thing on screen; the focus ring is `--palette-orange-700` in light scopes and `--palette-orange-300` in dark ones and neither clears 3:1 on an orange ground, so focus would have to stop being orange; and `--action-primary-bg` has nowhere to go on its own colour, which forces the solid navy primary that DECISION.md records as not surviving. The second dark register is `deep-alt`, not orange. The rest of the budget is unchanged: Three orange elements per viewport, one filled field. Two primary buttons on screen at once means neither is the action. **And do not put the filled field in the sticky masthead**: it is `secondary` there, permanently, because sticky chrome spends the budget in every viewport of every route. Section 5.1.
 7. **Do not use `--ink-faint` for prose.** It is for decorative indices and disabled text. Pair it with `aria-hidden` when it is an index. Phase 5 moved it from `#7E7460` to `#6A6252` so it clears 4.5:1 on every light ground: an `aria-hidden` index is still visible text to a low-vision reader, and WCAG's "pure decoration" exemption is too soft a thing to rest 90 nodes on.
 8. **Do not use `--rule-decorative` for a rule that carries structure.** If deleting it would lose meaning, it is `structural`.
 9. **Do not use `columns` for prose.** There is no multicolumn token and no multicolumn class.
-10. **Do not put type below `--fs-2xs`.** The floor is 12px at 390 and it applies to every mono label, folio and button on the site.
+10. **Do not put type below `--fs-2xs`.** The floor is 12px at 390 and it applies to every mono label and button on the site.
 11. **Do not let an `Eyebrow` do a heading's job.** A mono label above a section is not a section heading, in the outline or in the render.
 12. **Do not let a pull quote outrank the heading it sits under.** `Quote` is one full step below `Heading`.
 13. **Do not carry over `maximum-scale=1.0, user-scalable=0`.** The old site shipped it and it fails SC 1.4.4. `app/layout.tsx` sets `width=device-width, initial-scale=1` and nothing else.
 14. **Do not reference a `--palette-*` token from a component.** Use the semantic layer.
 15. **Do not write a hex value, an `rgba()`, an arbitrary pixel value, or an inline style in a component.** The Tailwind namespaces are reset, so `bg-blue-500` does not exist by construction.
 16. **Do not hand-write a light-on-dark override.** Put the subtree in a `Section` with `surface="deep"`.
-17. **Do not put a photograph with colour worth seeing behind reversed type.** The band veil is 0.62 because nothing lower reaches 4.5:1, and 0.62 kills chroma. Use `.dm-photo--band`, the standalone plate, instead of a `Hero variant="band"`. Superseded the old "cool navy duotone only" rule, which the wash in section 6.2 replaced.
+17. **Do not put a photograph with colour worth seeing behind reversed type, and do not mark one `feature`.** `data-photo="feature"` on a `.dm-photo--veil-band` is a no-op by construction: the band veil is stated as a compound selector that outranks it, so the grade cannot apply. It is still a defect in review, because it says an intention the render cannot honour. The original rule stands: The band veil is 0.62 because nothing lower reaches 4.5:1, and 0.62 kills chroma. Use `.dm-photo--band`, the standalone plate, instead of a `Hero variant="band"`. Superseded the old "cool navy duotone only" rule, which the wash in section 6.2 replaced.
 18. **Do not put a screenshot in a hero, a band, or above the fold.**
-19. **Do not ship a logo grid at a column count that does not divide the set.** 7 or 3 for the 21 clients, 5 or 2 for the 10 sponsors.
-20. **Do not put a shadow on a card, an image or a button.** Shadows exist for the nav dropdown, the mobile sheet and the sticky header, and for nothing else.
+19. **Do not ship a logo grid at a column count that does not divide the set.** 5 or 2 for the 25 clients, 5 or 2 for the 10 sponsors. 7 and 3 were correct when the set was 21 and are wrong for 25; the rule is the divisor, never the number.
+20. **Do not put a shadow on a card, an image or a button.** Shadows exist for the nav dropdown, the mobile sheet and the sticky header, and for nothing else. The header's exemption covers escalating its OWN hairline to `--elevation-lifted` in the scrolled state, because that is the same shadow doing the same job harder while it overlaps content. It does not extend to the bar acquiring a shadow it did not have, and it does not extend to anything else.
 21. **Do not remove a focus indicator.** Replace it if you must.
 22. **Do not write an em dash.** Not in copy, not in alt text, not in a comment. Period, comma or colon. The colon is the in-voice substitute and Damian already uses it constantly.
+23. **Do not animate a property that can move a neighbour.** The list of what may be animated is in section 9 and it is closed. Adding to it is a decision about CLS, not a decision about taste, and `scripts/motion-check.mjs` measures the consequence on every route.
+24. **Do not change the masthead's height on scroll.** It is `position: sticky` and therefore still in flow, so a height change moves every pixel of the document under it. "The header shrinks on scroll" is a layout shift with a nicer name. The scrolled state is a transform on the art and a shadow on the bar, and the motion check asserts the box is byte-identical in both states.
+25. **Do not hide the element an observer is watching.** A reveal that clips its own target to zero area makes itself unrevealable: `IntersectionObserver` reports `isIntersecting: false` at every scroll position, forever, and the content is gone for anyone with JavaScript on and visible only to those without it. `stagger` and `wipe` both hide CHILDREN for this reason. Measured the hard way: three figures on `/` armed, scrolled past at reading speed, still pending, and a second observer attached by hand with identical options never fired for them either.
+26. **Do not leave a stretched column with its ink at the top.** A four-column head beside a tall body is the site's commonest section and a grid item stretches, so the head's box fills the row while its content stops. That is `.dm-rail` (sticky, travels with the body) or `.dm-balance` (centred against a figure), never nothing. Section 3.4 has the measurement: nineteen of them, 10,349px, before the two classes existed.
+27. **Do not ship a second full-bleed plate on one route.** One is an emphasis and marks the image that carries the page's argument. Two is a layout, and then neither is the one that matters. Section 3.4.
+28. **Do not give a blending element a transparent backdrop.** `mix-blend-mode` resolves against the nearest stacking context, and `.dm-logo-cell` sets `isolation: isolate` precisely so a mark cannot blend with the section behind it. That makes the cell's own `background-color` the only blend partner the mark has, so `transparent` is not "no plate", it is "no blending": the mode silently does nothing and the source paints as-is. It cost the dark logo walls a black box around every mark, because `invert(1)` had already turned each mark's white artwork ground black and `screen` was never given anything to lift it against. Measured on `/podcasts/` before the fix: cell `rgb(6,40,62)`, inside the mark's own box `rgb(2,11,17)`. The dark scopes now name `var(--surface-page)`, which is the section's own ground, so the wall still reads flush the way `transparent` was reaching for and `screen(black, navy)` correctly returns navy. Verified across 120 cells on every wall on the site.

@@ -1,5 +1,15 @@
 # Design direction decision
 
+> **Read this as a dated record, not as the current spec.** The values quoted
+> below are the phase-1 resolutions as they stood at the decision, and several
+> have moved since: `--ink-faint`, `--ink-muted`, `--ink-accent` and
+> `--rule-structural` all shifted in the Cool Modern Ag revision, and the hero
+> photograph changed again in the amplification pass. The shipped values live in
+> `docs/DESIGN_SYSTEM.md` section 4 and are generated from
+> `src/styles/tokens.css` by `scripts/contrast-table.mjs`. Where the two
+> disagree, the generated table is the truth.
+
+
 Phase 1, Damian Mason rebuild. Three directions, three vision judges, one production system.
 
 ## Scores
@@ -36,7 +46,7 @@ The tiebreak, stated plainly:
 |---|---|
 | The ledger stat row wholesale: text-serif figures, mono `01` to `04` indices, mono label under the figure, hairline row, and a prose restatement of the numbers below | `Stat.tsx`, `.dm-stat*` in `globals.css`, `--fs-figure` |
 | Figures set in Source Serif 4, not the Didone, with the `+` glyph in brand orange and `aria-hidden` | `.dm-stat__figure` / `.dm-stat__plus` |
-| The duotone navy portrait as the hero image, plus the FIG numbering convention for captions | Photography rules in `DESIGN_SYSTEM.md`, `.dm-figure__folio` |
+| The duotone navy portrait as the hero image *(2026-08-07: read this as "the wash", DESIGN_SYSTEM 6.2, which replaced the duotone.)*, plus the FIG numbering convention for captions | Photography rules in `DESIGN_SYSTEM.md`, `.dm-figure__folio` |
 | The solid orange primary button with navy type, replacing direction 1's solid navy block | `--action-primary-*`, `.dm-btn--primary` |
 | `--numeric-tabular` and `--numeric-proportional` as first-class tokens | tokens.css section 11, applied by default in the base layer |
 | The dark-scope logo math: `grayscale(1) contrast(1.1) invert(1)` with `mix-blend-mode: screen` | `[data-surface="deep"]` logo tokens |
@@ -65,7 +75,7 @@ The numbered section-head pattern is kept, but implemented as a real `<h2>` carr
 | Must-fix | Resolution |
 |---|---|
 | Re-set the proof figures. The opsz 96 pin at weight 500 in #094D78 on bone sheds the comma, the plus, and the thin strokes of the 4 | Figures are set in Source Serif 4 at `--fs-figure` with `font-optical-sizing: auto`, weight 600, and `tabular-nums lining-nums`. The Didone is barred below `--fs-4xl` by the `Heading` type signature. `font-variation-settings` appears nowhere in the system |
-| Replace or supplement the hero photo. Damian is a 45px figure in a 430px-tall wide shot | `portrait-dark-blazer.jpg` at 4:5 with the cool duotone is the hero. `keynote-stage-wide.jpg` is demoted to a captioned figure lower on the page where the mono cutline does its work |
+| Replace or supplement the hero photo. Damian is a 45px figure in a 430px-tall wide shot | `portrait-dark-blazer.jpg` at 4:5 with the cool duotone *(2026-08-07: there is no duotone. The wash in DESIGN_SYSTEM 6.2 replaced it, and the home hero is now a transparent cut-out with no crop and no veil at all.)* is the hero. `keynote-stage-wide.jpg` is demoted to a captioned figure lower on the page where the mono cutline does its work |
 | Give the dry humor a repeating structural slot | Three standing carriers, documented and componentized: the photo cutline (`.dm-figure__caption`, required on every photograph), the section metadata line, and the `Eyebrow` running head. The rule is written into `DESIGN_SYSTEM.md` and into the `Eyebrow` and figure component comments |
 | Codify "the wordmark never reverses" as an explicit system rule | Written into tokens.css at the head of the deep scope, and into `DESIGN_SYSTEM.md` under What NOT to do. The deep scope ships no white-wordmark path. A mark inside a navy region sits on a `surface="paper"` plate |
 | Give the orange one high-value solid application | The primary button is a solid `#FF5325` field with `#041826` type, 5.60:1. That is the wordmark's two colors doing a job, and it is the only field-sized orange permitted per viewport |
@@ -100,3 +110,53 @@ The numbered section-head pattern is kept, but implemented as a real `<h2>` carr
 - Direction 1's `--ink-muted #9A8E77`, `--ink-faint #BFB39C`, `--ink-accent #C63E12`, orange focus ring on bone, `columns: 2`, the 10 and 11px type steps, the solid navy primary button, and the distant hero photograph.
 - Direction 2's near-black ground, the 120px grotesk hero, and the gold focus ring at 1.70:1.
 - Direction 3's warm gold duotone, its logo cell geometry, its 16-of-21 logo set, and its missing section headings.
+
+
+---
+
+## Phase 7 amendment: amplification
+
+**Dated 2026-08-07. The direction is unchanged and the bake-off is not reopened.**
+
+The client brief asked for "a giant improvement" and the owner's read was that the
+site felt underwhelming next to the Divi build it replaces. That read was correct
+and the cause was specific: the direction had been executed as *austere* rather
+than as *broadsheet*. Real editorial design runs enormous photography, saturated
+colour fields and violent scale contrast; this build had one photograph per page
+at a third of the viewport, thirteen of seventeen routes with no dark band
+anywhere in the body, and one 8px fade as its entire motion vocabulary.
+
+**What changed.**
+
+1. **Band rhythm.** `deep-alt` was promoted from a declared-but-unused token to a
+   real scope, every stat ledger moved onto it, and `Section` gained a `seam`
+   prop so light bands can group into runs instead of alternating like a
+   metronome. See DESIGN_SYSTEM 3.4.
+2. **The cut-out hero.** A transparent studio portrait recovered from the client's
+   own media library, standing on the page at 491x736 against the 4:5 plate's
+   492x615, with no box, no crop and no veil. See 6.3 and `.dm-hero--cutout`.
+3. **The feature grade.** `--photo-filter` is fitted to eighteen mixed sources and
+   the professional frames were paying for that fit. A closed list of files now
+   takes a grade instead of a correction. See 6.2.1.
+4. **Six motion items**, all craft level: a masthead that acknowledges the scroll,
+   a ledger that counts up, figures that wipe, a poster that brightens when you
+   reach for it, a primary button that sweeps, and a nav panel that arrives
+   instead of appearing. Zero new dependencies, zero `@keyframes`, and CLS still
+   measured 0 on every route.
+
+**What was rejected, and why it is written down.**
+
+- **An orange scope.** Section 5 counts a solid field as the one filled field a
+  viewport gets, and a band is thousands of times a button's area. The focus ring
+  cannot survive it either: neither orange-700 nor orange-300 clears 3:1 on an
+  orange ground. See rule 6.
+- **A bigger H1.** `--fs-6xl-hero` is 109px against a measured 111.5px limit on
+  this route's binding word. A 2% margin is not headroom, and exceeding it
+  reintroduces the mid-word break the Oswald swap was made to fix. The perceived
+  scale came from the photograph instead.
+- **Darkening the sage band.** `--ink-faint` measures 4.58 on it against a 4.5
+  floor and `--rule-structural` 3.12 against 3.0. Both are one step from failing
+  the gate. The monotony was broken by adding dark bands.
+- **Reversing the wordmark.** Re-examined on evidence and the rule held: the white
+  file is a flat knockout with the brand's orange rule deleted from it. See
+  rule 4.

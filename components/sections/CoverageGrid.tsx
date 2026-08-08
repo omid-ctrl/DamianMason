@@ -32,8 +32,6 @@ export type CoverageGridProps = {
   title?: ReactNode;
   /** Rank, independent of size. Defaults to h2. */
   level?: HeadingLevel;
-  /** The numbered prefix, rendered inside the heading. */
-  folio?: string;
   /** The prose beside the plot. */
   intro?: ReactNode;
   /**
@@ -44,6 +42,8 @@ export type CoverageGridProps = {
   cutline?: ReactNode;
   surface?: Surface;
   density?: SectionDensity;
+  /** Sits directly under a section on the same ground. See Section. */
+  seam?: boolean;
   className?: string;
 };
 
@@ -61,11 +61,11 @@ export function CoverageGrid({
   eyebrow,
   title,
   level = 2,
-  folio,
   intro,
   cutline,
   surface,
   density,
+  seam,
   className,
 }: CoverageGridProps) {
   const headingId = id ? `${id}-title` : undefined;
@@ -76,6 +76,7 @@ export function CoverageGrid({
       aria-labelledby={headingId}
       surface={surface}
       density={density}
+      seam={seam}
       className={cx('dm-coverage', className)}
     >
       <Container>
@@ -83,7 +84,7 @@ export function CoverageGrid({
           <div className="dm-coverage__head">
             {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
             {title ? (
-              <Heading level={level} size="2xl" folio={folio} id={headingId}>
+              <Heading level={level} size="2xl" id={headingId}>
                 {title}
               </Heading>
             ) : null}

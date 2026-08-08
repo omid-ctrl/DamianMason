@@ -169,13 +169,13 @@ export default function CollaborationOpportunitiesPage() {
         deck="Be a guest on the show. Sponsor an episode. Co-host a webinar, or put your brand in front of an Ag audience that buys. These are the real-world agriculture people you’re trying to reach, and they’re already listening."
         actions={[{ label: 'Work with Damian', href: CONTACT }]}
         image={{
-          src: '/img/photos/portrait-dark-blazer.jpg',
-          alt: imageAlt['/img/photos/portrait-dark-blazer.jpg'],
-          width: 1467,
+          src: '/img/photos/portrait-charcoal-jacket.jpg',
+          alt: imageAlt['/img/photos/portrait-charcoal-jacket.jpg'],
+          width: 1333,
           height: 2000,
           priority: true,
+          feature: true,
         }}
-        cutlineFolio="Fig. 01"
         cutline="Purdue Ag Econ degree, Second City Chicago, and a farm in Indiana. The economist argues the numbers and the comedian keeps the room awake."
       />
 
@@ -185,7 +185,19 @@ export default function CollaborationOpportunitiesPage() {
           7 countries from the PROFESSIONAL bullets.
           ==================================================================== */}
       <StatRow
-        surface="sunken"
+        /* Navy. Every route on this site closes on a `deep` CTA band, and
+           most of them had no dark ground at all before it: the reader got two
+           greys 1.11:1 apart for thousands of pixels and then one arrival. A
+           ledger is the right block to punctuate with, because it is the one
+           thing on a page that is pure proof, and `deep-alt` is a step off the
+           closing band so the close still reads as an arrival rather than a
+           repeat.
+
+           It also moves the orange plus glyphs out of a documented exception:
+           on a light ground --ink-hot measures 2.72:1 and only ships because it
+           is aria-hidden, and in a deep scope it remaps to orange-400 at
+           5.60:1, where the brand orange is legal as a letterform. */
+        surface="deep-alt"
         items={[
           { value: '40,000', plus: true, label: 'Monthly listeners' },
           { value: '2,400', plus: true, label: 'Audiences addressed' },
@@ -210,7 +222,7 @@ export default function CollaborationOpportunitiesPage() {
         <Container>
           <div className={styles.head}>
             <Eyebrow>Ways in</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 01" id="tracks-title">
+            <Heading level={2} size="2xl" id="tracks-title">
               Three ways to work together.
             </Heading>
           </div>
@@ -294,11 +306,13 @@ export default function CollaborationOpportunitiesPage() {
           over, with a decorative icon-font glyph and no accessible name. These
           are real lists and the glyphs are gone.
           ==================================================================== */}
-      <Section surface="sunken" aria-labelledby="credentials-title">
+      {/* Green. Four claims about the man, so it takes the ground the man's
+          own sections take across the site. */}
+      <Section surface="forest" aria-labelledby="credentials-title">
         <Container>
           <div className={styles.head}>
             <Eyebrow>The collaborator</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 02" id="credentials-title">
+            <Heading level={2} size="2xl" id="credentials-title">
               Who you’re actually booking.
             </Heading>
           </div>
@@ -336,7 +350,7 @@ export default function CollaborationOpportunitiesPage() {
         <Container>
           <div className={styles.head}>
             <Eyebrow>Samples</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 03" id="video-title">
+            <Heading level={2} size="2xl" id="video-title">
               Watch Damian in action.
             </Heading>
           </div>
@@ -402,7 +416,7 @@ export default function CollaborationOpportunitiesPage() {
         <Container>
           <div className={styles.head}>
             <Eyebrow>The menu</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 04" id="work-together-title">
+            <Heading level={2} size="2xl" id="work-together-title">
               How can we work together?
             </Heading>
           </div>
@@ -454,7 +468,6 @@ export default function CollaborationOpportunitiesPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">FIG. 02 </span>
                 Growers, agronomists, and ag lenders. This is the room a sponsorship puts
                 you in front of. Damian is the one with his back to the camera.
               </figcaption>
@@ -474,7 +487,7 @@ export default function CollaborationOpportunitiesPage() {
         <Container>
           <div className={styles.head}>
             <Eyebrow>Reviews</Eyebrow>
-            <Heading level={2} size="2xl" folio="No. 05" id="reviews-title">
+            <Heading level={2} size="2xl" id="reviews-title">
               What they said after working with him.
             </Heading>
           </div>

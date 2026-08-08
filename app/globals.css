@@ -404,7 +404,67 @@
     .dm-grid12 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   }
 
-  /* --- eyebrow / running head / folio -------------------------------------- */
+  /* ==========================================================================
+     THE SECTION HEAD RAIL.
+
+     This site's commonest section is a four-column head beside an eight-column
+     body: an eyebrow, an h2, sometimes a sentence, and then a thirteen-item
+     accordion or a nine-item press list next to it. The head is about 200px
+     tall and the body is often over a thousand, and a grid item stretches, so
+     the head's BOX filled the row while its INK stopped near the top. Measured
+     across the eighteen routes: nineteen columns like this, 10,349px of ground
+     with nothing on it, the worst single one 1,524px of an 1,871px column.
+
+     That is what made the site read quiet after the photography and the dark
+     bands went in. It was never a colour problem. A column that simply stops
+     while its neighbour keeps going reads as unfinished; the same emptiness
+     under a heading that TRAVELS with the thing it names reads as a margin.
+
+     So the rail sticks. It is the oldest device in the medium this direction is
+     named after: the running head at the top of a page, still there when you
+     are four columns into the story. It also does something useful rather than
+     decorative, which is the test: on the FAQ the escape hatch ("not finding
+     your answer? email us") stays reachable for all thirteen questions instead
+     of scrolling away at the first one.
+
+     align-self: start is not optional. A stretched grid item fills its row, and
+     a sticky element with no room to move does nothing at all.
+
+     ONLY FROM 1024. Below that the grid is one column and the head sits above
+     its body, where there is no void to fill and a sticky heading would just be
+     a thing that will not go away on a phone.
+
+     It costs no layout: sticky positioning changes nothing about the box, so
+     CLS is untouched, and scripts/motion-check.mjs asserts that on every route.
+     The offset clears the pinned masthead plus a breath. */
+  .dm-rail { align-self: start; }
+  @media (min-width: 64rem) {
+    .dm-rail {
+      position: sticky;
+      inset-block-start: calc(var(--header-height-compact) + var(--space-7));
+    }
+  }
+
+  /* The other half of the same problem, and it wants the opposite answer.
+
+     Where a SHORT column sits beside a TALL FIGURE rather than beside a long
+     list, sticking it does nothing: there is not enough scroll in the row for a
+     sticky element to travel, so the ink still stops near the top and the
+     bottom of the column is still empty. Four rows on this site are that shape,
+     1,480px of ground between them.
+
+     Optical balance is the answer a printed page would use. A caption block set
+     against a picture is centred on the picture, not hung from its top edge,
+     and the emptiness then reads as the margin it actually is because there is
+     an equal amount of it above.
+
+     Only from 768, where the two columns exist. Below that they stack and the
+     text simply follows the picture. */
+  @media (min-width: 48rem) {
+    .dm-balance { align-self: center; }
+  }
+
+  /* --- eyebrow / running head ---------------------------------------------- */
   .dm-eyebrow {
     display: block;
     color: var(--ink-muted);
@@ -481,22 +541,6 @@
 
   .dm-heading--brand, .dm-display--brand { color: var(--ink-brand); }
   .dm-heading--muted { color: var(--ink-muted); }
-
-  /* The numbered section-head prefix, set INSIDE the h2 so the document
-     outline carries it. This is direction 1's best idea, executed with the
-     heading weight it forgot to give itself: the mono folio is subordinate,
-     the serif title is the heading, and the two are never the same size. */
-  .dm-heading__folio {
-    display: block;
-    color: var(--ink-accent);
-    font-family: var(--family-mono);
-    font-size: var(--fs-2xs);
-    font-weight: var(--weight-medium);
-    letter-spacing: var(--ls-widest);
-    line-height: var(--lh-loose);
-    margin-block-end: var(--space-2);
-    text-transform: uppercase;
-  }
 
   /* --- rules --------------------------------------------------------------- */
   .dm-rule {
@@ -605,15 +649,64 @@
     background-color: var(--action-primary-bg);
     border-color: var(--action-primary-bg);
     color: var(--action-primary-ink);
+    /* For the sweep below. isolation keeps the negative-z layer inside this
+       element's own stacking context, and overflow clips it to the field. It
+       does NOT clip the focus ring, which is drawn outside the border box. */
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
   }
-  .dm-btn--primary:hover {
+  /* THE SWEEP.
+
+     A primary button already changed ground on hover, everywhere at once. This
+     is the same two values arriving from the leading edge instead, which is
+     what a press feels like rather than what a state change looks like.
+
+     NO @keyframes AND NO animation PROPERTY, which keeps both counts at zero in
+     this codebase. The hover ground is a layer that scales from 0 to 1 on the
+     inline axis: one transform, on one composited pseudo-element, inside a box
+     with overflow: hidden, so it can move nothing.
+
+     PRIMARY ONLY. A secondary button is an outline with no field to sweep and a
+     ghost has no field at all.
+
+     Both grounds are legal for the whole travel, so there is no intermediate
+     frame below the floor: --action-primary-ink measures 5.60:1 on orange-400
+     and 5.25:1 on orange-500.
+
+     The negative z-index is the whole trick, and it is spec rather than luck: a
+     negative-z child paints after its parent's background and BEFORE its
+     parent's content, so the label is never covered.
+
+     ORANGE BUDGET: the layer is --action-primary-bg-hover on the same element,
+     transiently. It adds no element to the count, and scripts/orange-check.mjs
+     samples rgb(255, 83, 37) specifically and never hovers, so its arithmetic
+     is unaffected. */
+  .dm-btn--primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background-color: var(--action-primary-bg-hover);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--duration-base) var(--easing-standard);
+  }
+  .dm-btn--primary:hover::before,
+  .dm-btn--primary:focus-visible::before {
+    transform: scaleX(1);
+  }
+  /* The ground itself stops moving, so only the layer travels. Without this the
+     two crossfade underneath each other and the sweep's leading edge vanishes. */
+  .dm-btn--primary:hover {
+    background-color: var(--action-primary-bg);
     border-color: var(--action-primary-bg-hover);
   }
   .dm-btn--primary:active {
     background-color: var(--action-primary-bg-active);
     border-color: var(--action-primary-bg-active);
   }
+  .dm-btn--primary:active::before { transform: scaleX(0); }
 
   .dm-btn--secondary {
     background-color: var(--action-secondary-bg);
@@ -735,13 +828,6 @@
     flex-direction: column;
     gap: var(--space-2);
   }
-  .dm-stat__index {
-    color: var(--ink-faint);
-    font-family: var(--family-mono);
-    font-size: var(--fs-2xs);
-    letter-spacing: var(--ls-wider);
-    line-height: 1;
-  }
   .dm-stat__figure {
     color: var(--ink-brand);
     font-family: var(--family-figure);
@@ -752,6 +838,34 @@
     letter-spacing: var(--ls-tight);
     line-height: 1;
   }
+  /* THE COUNT-UP RESERVES ITS OWN BOX, IN CSS, BEFORE ANY SCRIPT RUNS.
+
+     Figures are tabular (--numeric-tabular, set in the base layer above), so
+     one character is one advance and the final string's LENGTH is the whole
+     reservation. Without it, "2,400" counting up from "0" is a box that grows
+     five characters wide while the reader watches, and the mono label under it
+     walks left to right. That is a layout shift, and this build's measured CLS
+     is 0 on every route.
+
+     Five rules for five lengths, which is the same shape .dm-sectors__row
+     already uses for its six bar fills and for the same reason: the
+     alternative is an inline style, which rule 15 bars in a component. A
+     measured runtime write would also work and is worse, because it only
+     reserves once the script has run.
+
+     A comma is narrower than a digit even under tabular figures, so a value
+     carrying one over-reserves by a fraction of a character. text-align: start
+     puts that slack on the trailing edge, where the orange plus already sits. */
+  .dm-stat__value {
+    display: inline-block;
+    text-align: start;
+  }
+  .dm-stat__value[data-count-len="2"] { min-inline-size: 2ch; }
+  .dm-stat__value[data-count-len="3"] { min-inline-size: 3ch; }
+  .dm-stat__value[data-count-len="4"] { min-inline-size: 4ch; }
+  .dm-stat__value[data-count-len="5"] { min-inline-size: 5ch; }
+  .dm-stat__value[data-count-len="6"] { min-inline-size: 6ch; }
+
   /* The plus sign carries meaning (more than) and is the one place a hairline
      of brand orange earns a letterform. It is aria-hidden, so it is exempt
      from the text contrast floor and a screen reader still says "2,400". */
@@ -832,11 +946,6 @@
     margin-block-start: var(--space-3);
     max-inline-size: var(--measure-narrow);
     padding-block-start: var(--space-2);
-  }
-  .dm-figure__folio {
-    color: var(--ink-faint);
-    letter-spacing: var(--ls-wider);
-    text-transform: uppercase;
   }
 }
 
@@ -952,11 +1061,70 @@
   }
 
   /* --- deck 2, the bar ------------------------------------------------------ */
+  /* The sentinel MastheadState watches. Its height is the distance the header
+     travels before the bar goes flush.
+
+     ONE TERM, NOT THREE, AND BOTH OMISSIONS ARE MEASURED RATHER THAN TIDY.
+
+     The sticky offset above is written from three terms: the 8px rule, the 44px
+     rail and the hairline under it.
+
+     The rule goes because an absolutely positioned box resolves its offsets
+     against its containing block's PADDING box, and the rule is a border.
+     Including it put the sentinel 8px too low and 8px too tall, so when the
+     header pinned its bottom edge sat at +8 and it never left the viewport at
+     all: the observer reported isIntersecting: true at every scroll position
+     and data-scrolled never once flipped.
+
+     The hairline goes because at the full 45px the sentinel's bottom edge lands
+     at exactly 0 when the bar goes flush, and a rect touching the viewport edge
+     with zero area still reports isIntersecting: true at threshold 0. One
+     hairline short, it clears. The state flips one pixel of scroll early, which
+     is the correct direction to be wrong in and is not perceivable. */
+  .dm-masthead__sentinel {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: var(--border-hairline);
+    block-size: var(--size-tap-target);
+    pointer-events: none;
+  }
+
   .dm-masthead__bar {
     background-color: var(--surface-page);
     /* A hairline drawn as a shadow so it costs no layout height. This is the
        one shadow the sticky header is allowed. */
     box-shadow: var(--elevation-rule);
+    transition: box-shadow var(--duration-base) var(--easing-standard);
+  }
+
+  /* ==========================================================================
+     THE SCROLLED STATE.
+
+     NOTHING IN HERE CHANGES A LAYOUT BOX, and that is not caution, it is the
+     definition of the problem. The masthead is position: sticky, which is still
+     IN FLOW, so a height change on the pinned bar moves every pixel of the
+     document under it. "The header shrinks on scroll" is a layout shift with a
+     nicer name, and this build's measured CLS is 0 on every route at 390 and
+     1440.
+
+     So what condenses is the ART, on a transform, and what changes is the bar's
+     separation from the content it is now overlapping, on the one shadow rule
+     20 already grants a sticky header. Escalating that header's own hairline to
+     --elevation-lifted while it is overlapping content is inside the existing
+     exemption; it is not a new one.
+     ========================================================================== */
+  .dm-masthead__wordmark img {
+    transition: transform var(--duration-base) var(--easing-standard);
+  }
+  .dm-masthead[data-scrolled="true"] .dm-masthead__wordmark img {
+    transform: scale(0.88);
+    /* Left, so the mark shrinks toward the page's own left edge rather than
+       drifting inward away from every heading below it. */
+    transform-origin: left center;
+  }
+  .dm-masthead[data-scrolled="true"] .dm-masthead__bar {
+    box-shadow: var(--elevation-lifted);
   }
   .dm-masthead__bar-inner {
     display: flex;
@@ -1184,6 +1352,26 @@
     background-color: var(--surface-raised);
     border: var(--border-hairline) solid var(--rule-structural);
     box-shadow: var(--elevation-lifted);
+    /* The panel arrives instead of appearing. It hangs from the bar, so it
+       eases from its top edge: a panel easing from its own centre reads as a
+       balloon. */
+    transform-origin: top center;
+    transition:
+      opacity var(--duration-fast) var(--easing-entrance),
+      transform var(--duration-fast) var(--easing-entrance);
+  }
+  /* `hidden` resolves to display: none, and a display change cannot be
+     transitioned FROM, so the open state needs a stated starting style. This is
+     the whole reason the panel popped rather than arrived: there was no frame
+     for it to interpolate out of. @starting-style is Baseline in every browser
+     Next 16 targets, and it costs no component change, which the alternative
+     (PrimaryNav writing a second `data-open` attribute and the panel switching
+     to visibility) does not. */
+  @starting-style {
+    .dm-nav__panel:not([hidden]) {
+      opacity: 0;
+      transform: translateY(calc(-1 * var(--space-1)));
+    }
   }
   .dm-nav__panel-link {
     display: flex;

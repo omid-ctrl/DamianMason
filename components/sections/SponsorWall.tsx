@@ -22,7 +22,6 @@ export type SponsorWallProps = {
   eyebrow?: ReactNode;
   title?: ReactNode;
   level?: HeadingLevel;
-  folio?: string;
   /** The mono metadata line. Pass null to drop it. */
   meta?: ReactNode;
   intro?: ReactNode;

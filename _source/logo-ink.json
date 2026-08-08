@@ -29,6 +29,16 @@
     "width": 466,
     "height": 173
   },
+  "clients/basf.png": {
+    "sha1": "9a09de22b269569de5d256bf9b1ee852aae2e071",
+    "width": 466,
+    "height": 169
+  },
+  "clients/basf.webp": {
+    "sha1": "098e53109c09175ff3f08bf78df04577653f7c63",
+    "width": 466,
+    "height": 169
+  },
   "clients/california-farm-bureau.png": {
     "sha1": "c745203d6425566d549a8e34d635176a62cfa2f3",
     "width": 234,
@@ -89,6 +99,16 @@
     "width": 316,
     "height": 210
   },
+  "clients/helena.png": {
+    "sha1": "023176c94a4bdfe0e68628d20f282dc72ea8dd30",
+    "width": 466,
+    "height": 220
+  },
+  "clients/helena.webp": {
+    "sha1": "663b3ce00e373aec3dd16b87d3b3cb88a0a4ec9d",
+    "width": 466,
+    "height": 220
+  },
   "clients/hudson-insurance.png": {
     "sha1": "43cf4a361cbd1bbd4dcf95731f30cdeb1fa3df10",
     "width": 466,
@@ -118,6 +138,26 @@
     "sha1": "c6ed8c31fd808094b598ce90fc7bf495cdc5e186",
     "width": 414,
     "height": 198
+  },
+  "clients/iowa-pork-alliance.jpg": {
+    "sha1": "ceaa07f3e8c018ab8e51d81f970c7887da52b36c",
+    "width": 466,
+    "height": 205
+  },
+  "clients/iowa-pork-alliance.webp": {
+    "sha1": "07a6309d90fd344a1b3c1769d192e14a01ba8e2f",
+    "width": 466,
+    "height": 205
+  },
+  "clients/john-deere.png": {
+    "sha1": "43346db899702aac7eea6a3e64a2e7cd1a1ef31f",
+    "width": 350,
+    "height": 234
+  },
+  "clients/john-deere.webp": {
+    "sha1": "b91c9174bc74eeaf2c250b9a70ab21d707a455b1",
+    "width": 350,
+    "height": 234
   },
   "clients/land-olakes-purina.png": {
     "sha1": "92ca4960d30974f1c2f1b1e551629dc168845308",
@@ -270,12 +310,12 @@
     "height": 68
   },
   "sponsors/nano-yield.png": {
-    "sha1": "9e05077173fc784325d93d33a52bf3073bf435da",
+    "sha1": "0450e760c5aae458f2b0b3dc5c2d23d1411f5dc7",
     "width": 445,
     "height": 234
   },
   "sponsors/nano-yield.webp": {
-    "sha1": "a49f7dde04eb0cc2f54174e403e1e8122a53302e",
+    "sha1": "0480a7120be84bed87d9961d02d33819aba1473c",
     "width": 445,
     "height": 234
   },

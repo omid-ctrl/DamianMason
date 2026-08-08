@@ -145,13 +145,21 @@ export default function HomePage() {
       />
 
       {/* == 1. Hero ========================================================
-          Portrait variant at the 0.30 veil. The meeting planner is buying a
-          man for a stage and has to see his face above the fold. The old
-          hero's two decorative chevron PNGs with empty alt are not carried
-          over: they carried no information and no cutline could be written
-          for them. */}
+          Cut-out variant. The meeting planner is buying a man for a stage and
+          has to see him above the fold, and until the media-kit rescue the
+          strongest way to do that was a 4:5 plate capped at 32rem, which
+          rendered 492x615 at 1440 and used about a third of the viewport.
+          portrait-cutout.png is the same shoot with a real alpha channel, so
+          he can stand at 491x736 on the page ground with no box, no crop and
+          no veil: twenty per cent taller, at full chroma, standing on the
+          closing rule. Same argument, more of it.
+
+          The old hero's two decorative chevron PNGs with empty alt are still
+          not carried over: they carried no information and no cutline could be
+          written for them. */}
       <Hero
         id="hero"
+        variant="cutout"
         eyebrow="Keynote Speaker • Media Guest • Podcaster • Author"
         /* KNOWN, MEASURED, AND NOT FIXABLE HERE: this H1 breaks at the hyphen
            in "Straight-Forward" at every width from about 1030 up. Holding the
@@ -183,14 +191,13 @@ export default function HomePage() {
           { label: 'See the Keynote', href: '/keynote/' },
         ]}
         image={{
-          src: '/img/photos/portrait-black-suit.jpg',
+          src: '/img/photos/portrait-cutout.png',
           /* One alt string per asset, from content/image-alt.ts. */
-          alt: imageAlt['/img/photos/portrait-black-suit.jpg'],
-          width: 1333,
-          height: 2000,
+          alt: imageAlt['/img/photos/portrait-cutout.png'],
+          width: 933,
+          height: 1400,
           priority: true,
         }}
-        cutlineFolio="Fig. 01"
         /* The airfare-and-Lori pair is VOICE.md section 6, Pair 2, and its home
            on this route is the Flawless Process card in section 6 below, which
            is the card that model rewrite was written for. It ran here as well,
@@ -210,7 +217,25 @@ export default function HomePage() {
           StatRow.tsx. This line interprets the fourth figure instead of
           reciting any of them. */}
       <StatRow
-        surface="sunken"
+        /* NAVY, AND IT IS THE HIGHEST-VALUE ONE-WORD CHANGE ON THE PAGE.
+
+           Two things. First the rhythm: eight of eleven bands here were one of
+           two light greys 1.11:1 apart, so a reader got two changes of ground
+           in 11,502px. A dark ledger at one sixth of the scroll gives the page
+           a spine, and it is a step off --surface-deep so the closing CTA band
+           still reads as an arrival rather than as a repeat.
+
+           Second, and this is the part that is not taste: it removes an
+           @allow-fail. --ink-hot is the orange plus glyph, and on `sunken` it
+           measures 2.72:1 and only ships because it is aria-hidden and rides
+           the documented exemption. In a deep scope it remaps to orange-400 at
+           5.60:1, where tokens.css says plainly that the brand orange is legal
+           as text and only there. Two of the site's orange letterforms become
+           legitimately legal for the first time.
+
+           Orange budget is unchanged at the ceiling, not over it: two plus
+           glyphs here and one filled field in the hero above is three. */
+        surface="deep-alt"
         eyebrow="Track record"
         title="Three Decades on Stage"
         restatement="The fourth number is what keeps the other three honest. He’s in the argument every week on the podcast, so what your growers hear is this year’s read and not a rerun."
@@ -226,7 +251,7 @@ export default function HomePage() {
           <div className={`dm-grid12 ${styles.sectionGrid}`}>
             <div className={`${styles.head} col-span-6 md:col-span-9`}>
               <Eyebrow>What you’re booking</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 01" id="not-boring-title">
+              <Heading level={2} size="2xl" id="not-boring-title">
                 Not Your Boring Ag Speaker
               </Heading>
             </div>
@@ -234,9 +259,6 @@ export default function HomePage() {
             <ul className={`${styles.claims} col-span-6 md:col-span-5`}>
               {CLAIMS.map((claim, index) => (
                 <li key={claim} className={styles.claim}>
-                  <span className={styles.claimIndex} aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
                   <span className={styles.claimTerm}>{claim}</span>
                 </li>
               ))}
@@ -265,7 +287,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <figure className={`dm-figure ${styles.plate} col-span-6 md:col-span-8`}>
+            <figure className={`dm-figure ${styles.plate} col-span-6 md:col-span-8`} data-reveal="wipe">
               <div className="dm-photo dm-photo--plate">
                 <Image
                   className="dm-photo__img"
@@ -282,7 +304,6 @@ export default function HomePage() {
                   page's own FAQ block, so the cutline was saying it twice on
                   one route. It was on five routes and nine times sitewide. */}
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 02 </span>
                 Damian runs 60 to 90 minutes. The grins coming back at him are the part a
                 meeting planner is buying.
               </figcaption>
@@ -302,7 +323,7 @@ export default function HomePage() {
           <div className={`dm-grid12 ${styles.sectionGrid}`}>
             <div className={`${styles.head} col-span-6 md:col-span-9`}>
               <Eyebrow>For meeting planners</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 02" id="win-win-win-title">
+              <Heading level={2} size="2xl" id="win-win-win-title">
                 A Win, Win, Win for Event Planners, Organizers, and Audience Attendees
               </Heading>
             </div>
@@ -315,9 +336,6 @@ export default function HomePage() {
               {PLANNER_BENEFITS.map((benefit, index) => (
                 <li key={benefit.title} className="col-span-6 md:col-span-6 lg:col-span-3">
                   <Card variant="ruled" className={styles.cardBody}>
-                    <span className={styles.cardIndex} aria-hidden="true">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
                     <Heading level={3} size="lg">
                       {benefit.title}
                     </Heading>
@@ -329,7 +347,7 @@ export default function HomePage() {
               ))}
             </ul>
 
-            <figure className={`dm-figure ${styles.plate} col-span-6 md:col-span-7`}>
+            <figure className={`dm-figure ${styles.plate} col-span-6 md:col-span-7`} data-reveal="wipe">
               <div className="dm-photo dm-photo--plate">
                 <Image
                   className="dm-photo__img"
@@ -348,13 +366,12 @@ export default function HomePage() {
                     cutlines that open on the same seven words are not. The
                     other one keeps that sentence because it is the logistics
                     page and the room layout is its subject. */}
-                <span className="dm-figure__folio">Fig. 03 </span>
                 A hotel ballroom, round tables, one lit screen. Extended sessions get
                 booked alongside the keynote, not instead of it.
               </figcaption>
             </figure>
 
-            <div className={`${styles.stack} col-span-6 md:col-span-5`}>
+            <div className={`dm-balance ${styles.stack} col-span-6 md:col-span-5`}>
               <Prose measure="narrow">
                 <p>
                   Booking a date, sizing up a program, or working out the travel line item?
@@ -373,32 +390,39 @@ export default function HomePage() {
       </Section>
 
       {/* == 5. The client wall =============================================
-          All 21 marks the client supplied, replacing the six the old page
+          All 25 marks: the 21 the client supplied plus the four that were on the
+          old wall and not in the folder, replacing the six the old page
           shipped at resolutions running from 400px to 2560px wide with three
           of them carrying no alt text at all and a fourth carrying the wrong
           alt text. */}
       <LogoWall
         id="clients"
+        /* Joins section 4 into one sage run rather than starting a fourth
+           band. The wall's own hairline grid is what separates it from the
+           cards above; it does not need a change of ground as well, and the
+           page needs its light bands grouped into runs of two so the rhythm
+           stops being a metronome. */
+        surface="sunken"
+        seam
         eyebrow="Client roster"
         title="Some of Damian’s Clients"
-        folio="No. 03"
-        intro="Cargill, Merck, Land O’Lakes Purina, CLAAS, Pioneer, and 16 more."
+        intro="John Deere, Cargill, BASF, Merck, Land O’Lakes Purina, CLAAS, Pioneer, and 18 more."
       />
 
       {/* == 6. If it’s Agriculture, it Needs Damian ======================== */}
-      <Section id="roles" surface="sunken" aria-labelledby="roles-title">
+      <Section id="roles" aria-labelledby="roles-title">
         <Container>
           <div className={`dm-grid12 ${styles.sectionGrid}`}>
             <div className={`${styles.head} col-span-6 md:col-span-9`}>
               <Eyebrow>A leading voice in the industry, sought after for commentary</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 04" id="roles-title">
+              <Heading level={2} size="2xl" id="roles-title">
                 If it’s Agriculture, it Needs Damian.
               </Heading>
             </div>
 
             <ul className={`${styles.cardList} dm-grid12 col-span-6 md:col-span-12`}>
               {ROLES.map((role) => (
-                <li key={role.title} className="col-span-6 md:col-span-4">
+                <li key={role.title} className="dm-rail col-span-6 md:col-span-4">
                   <Card variant="ruled" className={styles.cardBody}>
                     <Heading level={3} size="lg">
                       {role.title}
@@ -429,7 +453,7 @@ export default function HomePage() {
                 site that shows him inside a crop rather than on a stage in
                 front of one. It also earns its keep now in a way it could not
                 before: under grayscale(1) a field of sunflowers was grey. */}
-            <figure className={`dm-figure ${styles.rolesFigure} col-span-6 md:col-span-12`}>
+            <figure className={`dm-figure ${styles.rolesFigure} col-span-6 md:col-span-12`} data-reveal="wipe">
               <div className="dm-photo dm-photo--band">
                 <Image
                   className="dm-photo__img"
@@ -445,7 +469,6 @@ export default function HomePage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 04 </span>
                 A field day, four men and a cocktail table in a stand of sunflowers.
                 Nobody is holding a microphone and everybody is talking.
               </figcaption>
@@ -467,6 +490,40 @@ export default function HomePage() {
             </Button>
           </div>
         </Container>
+
+        {/* THE ONE FULL-BLEED PLATE ON THIS ROUTE, and it is outside the
+            Container on purpose: the picture leaves the grid, the caption comes
+            back to it. See .dm-bleed in sections-core.css for why this is
+            allowed at all and why there is only ever one.
+
+            It earns the exception on the argument it makes rather than on being
+            the biggest file. This section is "If it's Agriculture, it Needs
+            Damian", and everything above it is Damian talking. This is the
+            room listening back: shot from the seat a meeting planner would be
+            sitting in, at 2,033px, and it is the frame docs/OPEN-ITEMS.md item
+            4 asked the client to go out and commission. It was in his own media
+            library the whole time.
+
+            A plate with a caption, never a band with a heading over it. Rule 17:
+            at the 0.62 veil reversed type needs, this photograph would lose the
+            thing that makes it worth running. */}
+        <figure className="dm-figure dm-bleed" data-reveal="wipe">
+          <div className="dm-photo dm-photo--band" data-photo="feature">
+            <Image
+              className="dm-photo__img"
+              src="/img/photos/audience-from-the-back.jpg"
+              alt={imageAlt['/img/photos/audience-from-the-back.jpg']}
+              width={2000}
+              height={1125}
+              loading="lazy"
+              sizes="100vw"
+            />
+          </div>
+          <figcaption className="dm-figure__caption dm-bleed__caption">
+            The view from the seat you would be sitting in. Every written review
+            further down this page was written by somebody in a room like it.
+          </figcaption>
+        </figure>
       </Section>
 
       {/* == 7. The podcast band ===========================================
@@ -490,7 +547,6 @@ export default function HomePage() {
       <CTABand
         id="podcast"
         surface="forest"
-        folio="No. 05"
         eyebrow="Connect the dots"
         heading="Connecting people of the world’s most important industry."
         copy="You don’t need anyone telling you the weather forecast or the commodity prices, technology does that for you! What you need is a connection with real-world agriculture people and topics that inform, educate, and help you grow."
@@ -517,7 +573,7 @@ export default function HomePage() {
           <div className={`dm-grid12 ${styles.sectionGrid}`}>
             <div className={`${styles.head} col-span-6 md:col-span-9`}>
               <Eyebrow>Rave reviews</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 06" id="reviews-title">
+              <Heading level={2} size="2xl" id="reviews-title">
                 What People Are Saying
               </Heading>
             </div>
@@ -526,7 +582,7 @@ export default function HomePage() {
                 grid inside a 400px track and rendered the four facades at
                 182x102, smaller than the same four are at 390: the media got
                 smaller as the viewport got larger. */}
-            <div className="col-span-6 md:col-span-12 lg:col-span-5">
+            <div className="dm-balance col-span-6 md:col-span-12 lg:col-span-5">
               <TestimonialGrid
                 items={homeTestimonials}
                 variant="featured"
@@ -570,7 +626,7 @@ export default function HomePage() {
           <div className={`dm-grid12 ${styles.sectionGrid}`}>
             <div className={`${styles.head} col-span-6 md:col-span-9`}>
               <Eyebrow>Also in print</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 07" id="books-title">
+              <Heading level={2} size="2xl" id="books-title">
                 He Writes the Books, Too
               </Heading>
             </div>
@@ -583,7 +639,7 @@ export default function HomePage() {
               />
             </div>
 
-            <div className={`${styles.stack} col-span-6 md:col-span-4`}>
+            <div className={`dm-rail ${styles.stack} col-span-6 md:col-span-4`}>
               {/* The "after speaking to companies such as Merck, Land O'Lakes,
                   and Cargill" clause came out of this paragraph. It is verbatim
                   jacket copy in content/books.ts, so it already runs on /about/
@@ -652,9 +708,9 @@ export default function HomePage() {
       <Section id="faq" aria-labelledby="faq-title">
         <Container>
           <div className={`dm-grid12 ${styles.sectionGrid}`}>
-            <div className={`${styles.stackTight} col-span-6 md:col-span-4`}>
+            <div className={`dm-rail ${styles.stackTight} col-span-6 md:col-span-4`}>
               <Eyebrow>Booking questions</Eyebrow>
-              <Heading level={2} size="2xl" folio="No. 08" id="faq-title">
+              <Heading level={2} size="2xl" id="faq-title">
                 Do You Have Any Questions?
               </Heading>
               <Prose measure="narrow">

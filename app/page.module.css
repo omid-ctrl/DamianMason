@@ -82,15 +82,6 @@
   padding-block: var(--space-4);
 }
 
-.claimIndex {
-  color: var(--ink-faint);
-  flex: none;
-  font-family: var(--family-mono);
-  font-size: var(--fs-2xs);
-  letter-spacing: var(--ls-widest);
-  line-height: var(--lh-loose);
-}
-
 .claimTerm {
   color: var(--ink-primary);
   font-family: var(--family-serif);
@@ -115,14 +106,6 @@
   flex-direction: column;
   gap: var(--space-3);
   block-size: 100%;
-}
-
-.cardIndex {
-  color: var(--ink-faint);
-  font-family: var(--family-mono);
-  font-size: var(--fs-2xs);
-  letter-spacing: var(--ls-widest);
-  line-height: var(--lh-loose);
 }
 
 /* Pins the card's link to the bottom edge so a row of three cards with copy

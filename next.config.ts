@@ -226,6 +226,16 @@ const nextConfig: NextConfig = {
       // Two newsletter routes collapsed into one.
       { source: '/join-mailing-list', destination: '/join-the-conversation/', statusCode: 301 },
 
+      /* The two WordPress archives. Both were linked from three old pages, the
+         blog index and both posts, so they are in Google's index and in any
+         link Damian has ever shared from a post footer. The site has one author
+         and one category, so neither archive has a destination of its own: the
+         author is the man, and the category was WordPress's untouched default.
+         No trailing slash on `source`, matching every rule above, because
+         trailingSlash: true handles it. */
+      { source: '/author/damianmasonstg', destination: '/about/', statusCode: 301 },
+      { source: '/category/uncategorized', destination: '/blog/', statusCode: 301 },
+
       // Both posts move under /blog/. The first shipped on WordPress's default
       // slug and was never renamed.
       {

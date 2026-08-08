@@ -5,7 +5,7 @@
    resolves to a token in src/styles/tokens.css. This file exists because the
    hub needs three arrangements that no shared section owns yet: a four-up card
    list of child routes, the "Ations" subject ledger, and the section head that
-   pairs a running head with a folioed heading.
+   pairs a running head with a heading.
    ============================================================================ */
 
 /* --- the standing section head ------------------------------------------- */
@@ -79,17 +79,6 @@
   font-family: var(--family-serif);
   font-size: var(--fs-lg);
   line-height: var(--lh-snug);
-}
-
-/* Decorative index. --ink-faint is 3.89:1 and is never prose, so this is
-   aria-hidden in the markup. */
-.ationsIndex {
-  flex: 0 0 auto;
-  color: var(--ink-faint);
-  font-family: var(--family-mono);
-  font-size: var(--fs-2xs);
-  letter-spacing: var(--ls-wider);
-  line-height: var(--lh-loose);
 }
 
 .plate {

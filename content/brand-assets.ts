@@ -26,16 +26,39 @@ export const brandAssets = {
  * Secondary marks that ship alongside the primary set. They are kept out of
  * brandAssets so that object stays a short, stable contract, but the files
  * are real and available if a page needs them.
+ *
+ * REVIEWED 2026-08-07. "Unplaced" was doing two different jobs here: some of
+ * these had no home YET, and some have no home BY DECISION and should never
+ * get one. Those are different facts, and a maintainer looking for something
+ * to place should not have to guess which is which, so each one says.
  */
 
 export const brandAssetsExtra = {
-  boasgWhiteFlat: '/img/brand/boasg-white-flat.jpg', // unplaced, the opaque duplicate of the boasgWhite badge. See docs/CONTENT_MANIFEST.md
   doBusinessBetterPodcast: '/img/brand/do-business-better-podcast.png', // /podcasts/ and /do-business-better-podcast/ cover art, and the PodcastSeries image
-  businessOfAgricultureLockup: '/img/brand/business-of-agriculture-lockup.png', // unplaced, the horizontal alternate to businessOfAgriculture
-  businessOfAgricultureIconWhite: '/img/brand/business-of-agriculture-icon-white.png', // unplaced, the leaf icon on its own at favicon scale
-  businessOfAgricultureAvatar: '/img/brand/business-of-agriculture-avatar.png', // unplaced, the square avatar the player embeds carry themselves
   xtremeAgTransparent: '/img/brand/xtreme-ag-transparent.png', // /podcasts/ and /xtreme-ag/, the transparent XtremeAg mark for placing on color
-  dmMonogram: '/img/brand/dm-monogram.jpg', // never referenced by a route: this is the SOURCE the site icons were cut from, not a shipped image. See app/icon.png
+
+  /* DELIBERATELY NEVER PLACED. Each is available and each is the wrong
+     answer to the slot it looks like it fits. */
+  businessOfAgricultureLockup: '/img/brand/business-of-agriculture-lockup.png', // the horizontal alternate. This site has no wide lockup slot: the show is named in a heading or shown as square artwork. Placing it means inventing the slot first
+  businessOfAgricultureIconWhite: '/img/brand/business-of-agriculture-icon-white.png', // the leaf alone. A mark without its wordmark identifies nothing to a reader who has not already learned it, and this site names the show in full everywhere
+  businessOfAgricultureAvatar: '/img/brand/business-of-agriculture-avatar.png', // the 218x217 SoundCloud avatar. Both player embeds draw it themselves, so a copy beside one is the same picture twice
+  dmMonogram: '/img/brand/dm-monogram.jpg', // not a shipped image at all: the SOURCE the site icons were cut from. See app/icon.png and scripts/build-app-icons.mjs
 } as const;
 
+/**
+ * ALSO IN THE ASSET LIBRARY AND DELIBERATELY NOT IN THIS FILE.
+ *
+ * boasg-white-flat.jpg was an "unplaced" extra here for seven phases. It is
+ * the opaque duplicate of boasgWhite, which ships and is placed, so it was
+ * two files for one mark. Dropped from the pipeline 2026-08-07; the reason
+ * is recorded in the skipped list in _source/asset-map.json.
+ *
+ * wordmark-white.png is the one people reach for and the one to refuse.
+ * DESIGN_SYSTEM rule 4 forbids reversing the wordmark, and the file was
+ * re-examined pixel by pixel during the amplification pass: every opaque
+ * pixel in it is pure white, so the orange rule across the bottom third of
+ * the art is simply absent from it. It is a flat knockout, not a reversed
+ * lockup. Inside a dark region the wordmark sits on a paper plate instead,
+ * which is what the footer does.
+ */
 export type BrandAssetKey = keyof typeof brandAssets;

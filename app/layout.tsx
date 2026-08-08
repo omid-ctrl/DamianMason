@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Archivo, IBM_Plex_Mono, Oswald, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import { Footer, Header } from '@/components/layout';
-import { RevealController } from '@/components/motion';
+import { CountController, MastheadState, RevealController } from '@/components/motion';
 import { JsonLd } from '@/components/seo';
 import { site } from '@/content/site';
 import { buildSiteBaseSchema } from '@/lib/schema';
@@ -113,7 +113,7 @@ const archivo = Archivo({
   weight: ['400', '500', '600', '700'],
 });
 
-/** The broadsheet furniture: eyebrows, folios, labels, cutlines, buttons. */
+/** The broadsheet furniture: eyebrows, labels, cutlines, buttons. */
 const plexMono = IBM_Plex_Mono({
   variable: '--font-plex-mono',
   subsets: ['latin'],
@@ -175,6 +175,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fold, and with JavaScript off it never runs at all, which is why
             every route is fully readable without it. */}
         <RevealController />
+        {/* Two siblings, not two more responsibilities inside the reveal.
+            RevealController's value is that it has exactly one job and exactly
+            one bail path; the masthead's scrolled state has to SURVIVE reduced
+            motion, because it is state, and the count-up has to bail on it,
+            because it is motion, so folding either into that early return
+            would mean two rules in one place. Both render nothing. */}
+        <MastheadState />
+        <CountController />
         {/* Person, Organization and WebSite apply site-wide. Page-specific
             graphs (FAQPage, PodcastSeries, BreadcrumbList) are emitted by the
             routes that own them. */}

@@ -9,6 +9,7 @@ import { TestimonialGrid } from '@/components/sections/TestimonialGrid';
 import { VideoGrid } from '@/components/sections/VideoGrid';
 import { JsonLd } from '@/components/seo';
 import { Container, Eyebrow, Heading, Prose, Section } from '@/components/ui';
+import { imageAlt } from '@/content/image-alt';
 import { testimonialsFor } from '@/content/testimonials';
 import { videosFor } from '@/content/videos';
 import { buildBreadcrumbListSchema, buildVideoObjectSchema } from '@/lib/schema';
@@ -74,15 +75,21 @@ export default function ReviewsPage() {
     <>
       <JsonLd schema={schema} id="reviews-schema" />
 
-      {/* The masthead. Still no image, and the reason survived the Cool Modern
-          Ag revision even though the route gained a second photograph.
+      {/* The masthead, and it has a photograph for the first time.
 
-          Neither of this page's two photographs is a 4:5 portrait. The book
-          signing is a wide two-person shot, and the close-up harvested for the
-          section below is 502x452, so cropping it to a portrait at hero scale
-          would mean throwing away the raised hand, which is the half of the
-          frame that makes it worth having. Section 6.3 demotes both to 3:2
-          plates rather than forcing a crop neither supports.
+          THE OLD REASONING, AND WHY IT NO LONGER HOLDS. This route ran a
+          type-only hero through two revisions on a stated ground: neither of
+          its two photographs is a 4:5 portrait. The book signing is a wide
+          two-person shot and the close-up harvested for the section below is
+          502x452, so cropping either to a portrait at hero scale meant throwing
+          away the half of the frame worth having, and section 6.3 demoted both
+          to 3:2 plates rather than force it. That was correct about the two
+          photographs it had.
+
+          It was a type-only hero on the one page whose entire job is proof.
+          The media-kit rescue supplies a real 2400x3600 studio portrait, so the
+          argument is now moot rather than overruled, and the page opens on a
+          face like every other route.
 
           The cutline slot still earns its keep. It is where the missing byline
           on quote two gets accounted for, in two true sentences, instead of
@@ -95,6 +102,15 @@ export default function ReviewsPage() {
         eyebrow="Speaking, on the record"
         title="Testimonials"
         deck="Meeting planners book Damian twice. Here’s what they said the first time: ten written notes from Michael Foods, Bayer, Farm Credit West, AgroLiquid, BW Fusion, and five more, plus four on camera. Fourteen out of 2,400+ audiences since 1994."
+        image={{
+          src: '/img/photos/portrait-headshot.jpg',
+          /* Single call site, so the string lives here rather than in
+             content/image-alt.ts, per the rule at the head of that module. */
+          alt: 'Damian Mason in a charcoal suit and a white shirt, close, looking straight at the camera.',
+          width: 1333,
+          height: 2000,
+          feature: true,
+        }}
         cutline="Nobody writes a thank-you note to a speaker they forgot by the parking lot."
         actions={
           [{ href: '/contact-us/', label: 'Check your date', variant: 'secondary' }] as const
@@ -108,7 +124,7 @@ export default function ReviewsPage() {
         <Container>
           <div className={styles.head}>
             <div className={styles.headText}>
-              <Heading level={2} size="2xl" folio="No. 01" id="written-title">
+              <Heading level={2} size="2xl" id="written-title">
                 What they said, in writing
               </Heading>
             </div>
@@ -119,31 +135,40 @@ export default function ReviewsPage() {
               A testimonials page should show the thing being reviewed, and the
               thing being reviewed is Damian working, not Damian posed.
 
-              This frame spent seven phases inside speaking-collage.png, a
-              four-up composite the content manifest recorded as "wide room
-              shots", so nobody opened it. It is the tightest action frame in
-              the archive and it exists nowhere else. Harvested by CROPS in
-              scripts/normalize-assets.mjs.
+              THE FRAME docs/OPEN-ITEMS.md ITEM 4 ASKED THE CLIENT TO COMMISSION,
+              word for word: "live-event photography from the back of the room,
+              showing you on stage with the audience in frame". It was in his own
+              media library the whole time. Recovered 2026-08-07, see
+              _source/media-kit/PROVENANCE.md.
 
-              Above the quotes rather than below them, because it is the
-              evidence the quotes are about. Still lazy: it sits roughly 900px
-              down and the hero above it is the LCP element. */}
-          <figure className={`dm-figure ${styles.writtenFigure}`}>
-            <div className="dm-photo dm-photo--plate">
+              It replaces speaking-closeup.png, which was the best this route
+              could do before: a 502x452 panel harvested out of a four-up
+              composite, rendered up to 1344px wide, so it was being upscaled
+              2.7x on the page whose job is to look credible. That file still
+              ships and still has a home; it is simply no longer the best action
+              frame in the archive.
+
+              Above the quotes rather than below them, because it IS the
+              evidence the quotes are about, and it is the strongest argument on
+              the page: a room full of people, several of them laughing, and
+              every written note below from somebody who was in one. Still lazy:
+              it sits roughly 900px down and the hero above it is the LCP
+              element. */}
+          <figure className={`dm-figure ${styles.writtenFigure}`} data-reveal="wipe">
+            <div className="dm-photo dm-photo--plate" data-photo="feature">
               <Image
                 className="dm-photo__img"
-                src="/img/photos/speaking-closeup.png"
-                alt="Damian Mason in three-quarter profile mid-sentence, one hand raised, a presentation clicker in the other, against a lit green wall panel."
-                width={502}
-                height={452}
+                src="/img/photos/audience-from-the-back.jpg"
+                alt={imageAlt['/img/photos/audience-from-the-back.jpg']}
+                width={2000}
+                height={1125}
                 loading="lazy"
                 sizes="(min-width: 64rem) 84rem, 100vw"
               />
             </div>
             <figcaption className="dm-figure__caption">
-              <span className="dm-figure__folio">Fig. 01 </span>
-              Mid-sentence, mid-gesture. Ten of the notes below were written by people
-              who were in a room like this one.
+              Shot from the back of the room, which is where a meeting planner sits.
+              Ten of the notes below were written by people who were in one like it.
             </figcaption>
           </figure>
 
@@ -156,7 +181,7 @@ export default function ReviewsPage() {
           <div className={`dm-grid12 ${styles.plateGrid}`}>
             <div className={`${styles.plateBody} col-span-6 md:col-span-12 lg:col-span-5`}>
               <div className={styles.plateHead}>
-                <Heading level={2} size="2xl" folio="No. 02" id="repeat-business-title">
+                <Heading level={2} size="2xl" id="repeat-business-title">
                   The second booking is the real review
                 </Heading>
               </div>
@@ -179,7 +204,7 @@ export default function ReviewsPage() {
               </Prose>
             </div>
 
-            <figure className="dm-figure col-span-6 md:col-span-12 lg:col-span-7">
+            <figure className="dm-figure col-span-6 md:col-span-12 lg:col-span-7" data-reveal="wipe">
               <div className="dm-photo dm-photo--plate">
                 <Image
                   className="dm-photo__img"
@@ -192,7 +217,6 @@ export default function ReviewsPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 02 </span>
                 Book signing at the StoneX Ag and Dairy Market Outlook. The book is{' '}
                 <Link href="/about/#books">
                   Food Fear: How Fear is Ruining Your Dinner and Why You Should Celebrate
@@ -209,7 +233,7 @@ export default function ReviewsPage() {
         <Container>
           <div className={styles.head}>
             <div className={styles.headText}>
-              <Heading level={2} size="2xl" folio="No. 03" id="on-camera-title">
+              <Heading level={2} size="2xl" id="on-camera-title">
                 And what four of them said on camera
               </Heading>
             </div>
@@ -228,15 +252,13 @@ export default function ReviewsPage() {
       <LogoWall
         id="clients"
         surface="sunken"
-        folio="No. 04"
         title="Who books him"
-        meta="21 of 2,400+"
+        meta="25 of 2,400+"
       />
 
       <CTABand
         id="book"
         eyebrow="Booking"
-        folio="No. 05"
         /* The heading used to spend the page's own figure ("Fourteen rooms on
            the record") and the band then ran with no panel, which left the
            right five columns of the close as empty navy. The figure moved into

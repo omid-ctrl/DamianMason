@@ -21,3 +21,10 @@
 .sectionHeading {
   margin-block-end: var(--space-4);
 }
+
+/* The closing figure sits under the refusal's prose, in the same column, so it
+   takes a section-scale interval above it rather than a paragraph-scale one:
+   it is answering the section, not continuing the sentence. */
+.deskFigure {
+  margin-block-start: var(--space-9);
+}

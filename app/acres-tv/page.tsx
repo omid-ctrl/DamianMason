@@ -4,6 +4,7 @@ import Image from 'next/image';
 // components/sections has no index.ts barrel yet, so these import by file.
 import { CTABand } from '@/components/sections/CTABand';
 import { Hero } from '@/components/sections/Hero';
+import { StatRow, type StatRowItem } from '@/components/sections/StatRow';
 import { JsonLd } from '@/components/seo';
 import {
   Button,
@@ -99,24 +100,54 @@ export const metadata: Metadata = buildMetadata({
    Page
    ========================================================================== */
 
+/**
+ * Derived from `episodes` above so the ledger and the list cannot disagree.
+ * The guest count excludes Damian: episode 04 is him alone, which the source
+ * capture records by naming him in the guest column, and counting the host as
+ * a guest of his own show would be a small lie in a figure.
+ */
+const ACRES_STATS: StatRowItem[] = [
+  { value: String(episodes.length), label: 'Episodes' },
+  {
+    value: String(new Set(episodes.map((e) => e.guest).filter((g) => g !== 'Damian Mason')).size),
+    label: 'Guests',
+  },
+  {
+    value: String(Math.min(...episodes.map((e) => Number(e.runtime.split(':')[0])))),
+    label: 'Shortest, in minutes',
+  },
+  {
+    value: String(Math.max(...episodes.map((e) => Number(e.runtime.split(':')[0])))),
+    label: 'Longest, in minutes',
+  },
+];
+
 export default function AcresTvPage() {
   return (
     <>
       {/* ------------------------------------------------------------------
-          No. 00 Hero. The source ran a stock "microphones on a stand" photo as
-          the section background, so it stays, as the band image it always was.
-          The source H1 was a 130 character sentence wrapped in <b>; the claim
-          it carries is kept word for word in the deck and the heading is cut
-          down to something a heading can actually be.
+          Hero. The source H1 was a 130 character sentence wrapped in <b>; the
+          claim it carries is kept word for word in the deck and the heading is
+          cut down to something a heading can actually be.
 
-          The photograph is stock and it documents nothing, so the cutline makes
-          no claim about it and the alt text says only what is in the frame. It
-          used to ship alt="" beside a cutline that described the picture, which
-          handed a screen reader a caption for an image it was told to ignore.
-          Same alt string as the same file on /meeting-coordinators/.
+          THE STOCK PHOTOGRAPH IS GONE, and the note that used to sit here is
+          the reason. It read: "the photograph is stock and it documents
+          nothing, so the cutline makes no claim about it". That was an honest
+          description of a defect, not a defence of one, and it stood only
+          because the archive had nothing better. The media-kit rescue has a
+          photograph of the actual apparatus: Damian at a desk, behind a boom
+          microphone, lit for camera. That is what a streaming show is made on.
+
+          The variant changes with it. `band` puts the frame full-bleed behind
+          reversed type at the 0.62 veil, which tokens.css is explicit costs
+          nothing "because both band consumers carry microphones-background.jpg
+          and there is no colour in it to lose". A real colour frame in a band
+          WOULD lose its colour, so this is a portrait plate at the 0.20 veil
+          instead. microphones-background.jpg still ships and still runs on
+          /meeting-coordinators/, where it is a mood band under a heading and
+          not a claim about a room.
           ------------------------------------------------------------------ */}
       <Hero
-        variant="band"
         id="acres-tv"
         eyebrow="Media: Acres TV"
         title={
@@ -144,13 +175,13 @@ export default function AcresTvPage() {
           },
         ]}
         image={{
-          src: '/img/photos/microphones-background.jpg',
-          alt: imageAlt['/img/photos/microphones-background.jpg'],
+          src: '/img/photos/podcast-desk.jpg',
+          alt: imageAlt['/img/photos/podcast-desk.jpg'],
           width: 2000,
-          height: 1334,
+          height: 1308,
           priority: true,
+          feature: true,
         }}
-        cutlineFolio="Fig. 01"
         cutline="Damian and his guest talk for 41 to 54 minutes, and Acres TV carries all of it."
       />
 
@@ -171,7 +202,7 @@ export default function AcresTvPage() {
                 'col-span-6 md:col-span-12 lg:col-span-7',
               )}
             >
-              <Heading level={2} size="2xl" folio="No. 01" id="what-it-is-title">
+              <Heading level={2} size="2xl" id="what-it-is-title">
                 A streaming service for one industry.
               </Heading>
               <Prose>
@@ -192,7 +223,7 @@ export default function AcresTvPage() {
               </Prose>
             </div>
 
-            <figure className="dm-figure col-span-6 md:col-span-12 lg:col-span-5 lg:order-first">
+            <figure className="dm-figure col-span-6 md:col-span-12 lg:col-span-5 lg:order-first" data-reveal="wipe">
               <Card variant="plate" className={styles.brandPlate}>
                 <Image
                   src="/img/photos/acres-tv-lockup.png"
@@ -204,7 +235,6 @@ export default function AcresTvPage() {
                 />
               </Card>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 02 </span>
                 The Acres TV mark. Green fields, a black studio, and a tagline
                 that leaves no doubt about the audience.
               </figcaption>
@@ -216,6 +246,23 @@ export default function AcresTvPage() {
       {/* ------------------------------------------------------------------
           No. 02 The episode ledger, transcribed out of the screenshot.
           ------------------------------------------------------------------ */}
+      {/* Every figure here is arithmetic on the `episodes` array above, which
+          was transcribed from the source screenshot, so the ledger cannot state
+          anything the list does not. The runtime range is quoted in the prose
+          two sections up and never shown; this is where it becomes a figure.
+
+          Navy. This route had one dark ground and it was the hero's, which is
+          now a light portrait plate, so without this it would run 4,894px of
+          two greys into its closing band. */}
+      <StatRow
+        id="record"
+        surface="deep-alt"
+        eyebrow="What is up there"
+        title="Six conversations, in full"
+        items={ACRES_STATS}
+        restatement="Long-form is the point. Nobody gets a straight answer out of a market analyst in ninety seconds, which is roughly the whole reason this show exists."
+      />
+
       <Section id="episodes" surface="sunken" aria-labelledby="episodes-title">
         <Container>
           <div className={cx('dm-grid12', styles.splitRow)}>
@@ -225,7 +272,7 @@ export default function AcresTvPage() {
                 'col-span-6 md:col-span-12 lg:col-span-7',
               )}
             >
-              <Heading level={2} size="2xl" folio="No. 02" id="episodes-title">
+              <Heading level={2} size="2xl" id="episodes-title">
                 Episodes streaming now.
               </Heading>
               <Prose measure="wide">
@@ -238,7 +285,7 @@ export default function AcresTvPage() {
               </Prose>
             </div>
 
-            <figure className="dm-figure col-span-6 md:col-span-12 lg:col-span-5">
+            <figure className="dm-figure col-span-6 md:col-span-12 lg:col-span-5" data-reveal="wipe">
               <div className={cx('dm-figure__media', styles.evidence)}>
                 <Image
                   src="/img/photos/acres-tv-arlan-suderman.png"
@@ -250,7 +297,6 @@ export default function AcresTvPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 03 </span>
                 Damian and market analyst Arlan Suderman, 42 minutes on whether the
                 good times are real and how long they last.
               </figcaption>
@@ -301,15 +347,11 @@ export default function AcresTvPage() {
                 'col-span-6 md:col-span-12 lg:col-span-7',
               )}
             >
-              <Heading level={2} size="2xl" folio="No. 03" id="join-title">
+              <Heading level={2} size="2xl" id="join-title">
                 Join the Conversation
               </Heading>
               <Prose>
-                <p>
-                  Add yourself to the list and you&rsquo;ll hear when a new
-                  episode posts, plus where Damian is speaking next. One email,
-                  not five.
-                </p>
+                <p>{mediaBand.mailingListBlurb}</p>
               </Prose>
               <Button href="/join-the-conversation/" variant="secondary" size="lg">
                 {mediaBand.mailingListLabel}
@@ -328,7 +370,6 @@ export default function AcresTvPage() {
           ------------------------------------------------------------------ */}
       <CTABand
         id="inquire"
-        folio="No. 04"
         eyebrow={mediaBand.eyebrow}
         heading={mediaBand.heading}
         actions={[

@@ -246,6 +246,12 @@ export const testimonials: Testimonial[] = [
  */
 const testimonialsByRoute: Record<string, readonly string[]> = {
   '/': ['amy-b-agroliquid', 'book-endorsement-unattributed'],
+  /* Three named bylines with an organization each, which is what a one-sheet
+     needs: it is the page a planner forwards to a committee, and an
+     unattributed quote is worth nothing to a committee. Deliberately NOT
+     b-kettler-ihla, which the site-wide footer already renders on every route,
+     so picking it here would print the same quote twice in one scroll. */
+  '/speaker-one-sheet/': ['melissa-bockman', 'william-noland', 'dusty-rich'],
   '/reviews/': [
     'mike-elliott',
     'unattributed-great-feedback',

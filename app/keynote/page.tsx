@@ -127,8 +127,8 @@ export default function KeynotePage() {
           alt: imageAlt['/img/photos/portrait-light-jacket.jpg'],
           width: 1334,
           height: 2000,
+          feature: true,
         }}
-        cutlineFolio="Fig. 01"
         cutline="Damian Mason. He studied Ag Econ at Purdue and improv at Second City, and he uses both in the same hour."
       />
 
@@ -142,7 +142,19 @@ export default function KeynotePage() {
       <StatRow
         id="record"
         title="The record"
-        surface="sunken"
+        /* Navy. Every route on this site closes on a `deep` CTA band, and
+           most of them had no dark ground at all before it: the reader got two
+           greys 1.11:1 apart for thousands of pixels and then one arrival. A
+           ledger is the right block to punctuate with, because it is the one
+           thing on a page that is pure proof, and `deep-alt` is a step off the
+           closing band so the close still reads as an arrival rather than a
+           repeat.
+
+           It also moves the orange plus glyphs out of a documented exception:
+           on a light ground --ink-hot measures 2.72:1 and only ships because it
+           is aria-hidden, and in a deep scope it remaps to orange-400 at
+           5.60:1, where the brand orange is legal as a letterform. */
+        surface="deep-alt"
         restatement="Some of those rooms met in a good year. Plenty met in a bad one. Damian works both the same way: your growers get the truth, and they get to laugh at it."
       />
 
@@ -172,7 +184,7 @@ export default function KeynotePage() {
       </Section>
 
       {/* == 4. The program ================================================== */}
-      <Section id="program" surface="sunken" aria-labelledby="program-title">
+      <Section id="program" aria-labelledby="program-title">
         <Container>
           <div className="dm-grid12">
             <div className="col-span-6 md:col-span-12 lg:col-span-7">
@@ -224,7 +236,6 @@ export default function KeynotePage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 02 </span>
                 Mid-program, and every face in the room is pointed the same direction.
                 That&rsquo;s what 60 to 90 minutes buys you.
               </figcaption>
@@ -303,7 +314,6 @@ export default function KeynotePage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">Fig. 03 </span>
                 Damian moderating a grower panel for AgriGold. Breakouts, luncheons, and
                 panels book alongside the keynote, not instead of it.
               </figcaption>
@@ -357,21 +367,33 @@ export default function KeynotePage() {
           broadsheet cannot spend. */}
       <Section as="div" density="tight">
         <Container>
-          <figure className={styles.band}>
-            <div className={'dm-photo dm-photo--band'}>
+          <figure className={styles.band} data-reveal="wipe">
+            {/* THE PROGRAM PAGE'S ONE FULL-WIDTH PHOTOGRAPH, so it should be
+                the best frame in the archive of him actually delivering it.
+                It was keynote-stage-podium.jpg, a 2,000px frame in which the
+                subject is small and beside a lectern, on a page whose own hero
+                cutline says there usually isn't one. This is a 2,861px
+                professional frame, mid-gesture, with a slide behind him: the
+                thing a meeting planner is buying, at the width the layout was
+                built to give it.
+
+                keynote-stage-podium.jpg has not gone: it is still the og:image
+                for this route and still runs on /speaking/, where its cutline
+                turns on the lectern being in the frame. */}
+            <div className="dm-photo dm-photo--band" data-photo="feature">
               <Image
                 className="dm-photo__img"
-                src="/img/photos/keynote-stage-podium.jpg"
-                alt={imageAlt['/img/photos/keynote-stage-podium.jpg']}
+                src="/img/photos/stage-dairy-case.jpg"
+                alt={imageAlt['/img/photos/stage-dairy-case.jpg']}
                 width={2000}
-                height={1500}
+                height={1333}
                 loading="lazy"
                 sizes="100vw"
               />
             </div>
             <figcaption className="dm-figure__caption">
-              <span className="dm-figure__folio">Fig. 04 </span>
-              InSite CDM Winter Forum, 2023. One of over 2,400 rooms since 1994.
+              A slide of retail milk and the four things now sold beside it. One of
+              over 2,400 rooms since 1994.
             </figcaption>
           </figure>
         </Container>
@@ -488,7 +510,7 @@ export default function KeynotePage() {
       </Section>
 
       {/* == 10. FAQ ========================================================= */}
-      <Section id="faq" surface="sunken" aria-labelledby="faq-title">
+      <Section id="faq" surface="sunken" seam aria-labelledby="faq-title">
         {/* The standard container, not the narrow one. A narrow container
             centres itself, which put this section's eyebrow and H2 on a 320px
             axis while every other head on the route sat at 96, so a reader
@@ -499,7 +521,7 @@ export default function KeynotePage() {
             arrangement Home's FAQ already uses. */}
         <Container>
           <div className="dm-grid12">
-            <div className={`${styles.head} col-span-6 md:col-span-4`}>
+            <div className={`dm-rail ${styles.head} col-span-6 md:col-span-4`}>
             <Eyebrow>Booking</Eyebrow>
             <Heading level={2} size="2xl" id="faq-title">
               Questions meeting planners ask

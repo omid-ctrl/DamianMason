@@ -45,8 +45,14 @@
  *
  * KNOWN CONTENT DEFECTS carried through verbatim, for a later phase to fix
  * with the client rather than for this file to invent around:
- *   - "AV/and Room Setup Requirements" reads like a typo, and the document it
- *     refers to is not linked anywhere on the old site.
+ *   - "AV/and Room Setup Requirements" reads like a typo. It stays, because the
+ *     answer is verbatim source and is what the FAQPage JSON-LD serializes.
+ *     RESOLVED, 2026-08-07: the document itself was never linked on the old
+ *     site and was assumed lost. It was sitting unreferenced in the WordPress
+ *     media library, one page carrying nine numbered requirements, and it now
+ *     ships at /docs/av-and-room-setup-requirements.pdf with `links` pointing
+ *     at it. The label reads correctly even though the answer does not, which
+ *     is what the label field exists for.
  *   - "pre recorded" is unhyphenated, and "pre-ordered/ pre-purchased" had the
  *     space on the wrong side, in the removed products answer.
  *   - The YouTube channel URL sat inline in the answer text as bare text.
@@ -164,7 +170,32 @@ export const faq: FaqItem[] = [
   {
     id: 'technology-requirements',
     question: 'What are your technology requirements?',
+    /* ANSWER UNCHANGED, AND DELIBERATELY SO. It is verbatim from the source and
+       it is what buildFaqPageSchema serialises, so editing it would edit the
+       structured data too. The typo, "AV/and", is the client's and it stays;
+       the LINK LABEL below is what reads correctly, which is exactly what the
+       label field is for.
+
+       For seven phases this was the one answer on the site that asked the
+       reader to do something impossible: the document it names was linked
+       nowhere on the old site and existed nowhere on the new one, and
+       docs/OPEN-ITEMS.md item 12 offered the client a choice between sending it
+       and rewording the answer. It was in the WordPress media library the whole
+       time. Recovered 2026-08-07: see _source/media-kit/PROVENANCE.md.
+
+       LINKED, NEVER EMBEDDED. next.config.ts sets object-src 'none' and a
+       frame-src that permits only youtube-nocookie.com and play.libsyn.com, so
+       an <iframe>, <object> or <embed> is blocked in production and works in a
+       dev server with the header stripped. That failure is invisible until it
+       is live. */
     answer: 'Refer to Damian’s AV/and Room Setup Requirements.',
+    links: [
+      {
+        match: 'AV/and Room Setup Requirements',
+        href: '/docs/av-and-room-setup-requirements.pdf',
+        label: 'AV and Room Setup Requirements (PDF)',
+      },
+    ],
     topics: ['technology'],
   },
   {
@@ -183,8 +214,20 @@ export const faq: FaqItem[] = [
   {
     id: 'promote-our-event',
     question: 'Will you help us promote our event?',
+    /* This answer has promised headshots and a bio since the old site, in the
+       client's own words, and until 2026-08-07 there was nowhere on either site
+       to get them: the two Media Kit links both resolved to a .zip on a staging
+       host. /speaker-one-sheet/ is where the promise is now kept. The answer
+       text is untouched; the link is attached to the phrase that makes it. */
     answer:
       'Yes, Damian will work with you to help you make it a success. For example: Local Radio interviews are welcomed, Podcast guests, and short introductory videos may be pre recorded for your event. Headshots and Bio are available for your use for your own marketing efforts as well.',
+    links: [
+      {
+        match: 'Headshots and Bio are available for your use',
+        href: '/speaker-one-sheet/',
+        label: 'Headshots and a bio are on the speaker one-sheet',
+      },
+    ],
     topics: ['audience', 'program'],
   },
   {

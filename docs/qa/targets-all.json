@@ -70,5 +70,13 @@
   {
     "name": "blog-eggflation-gives-producers-record-profits",
     "url": "http://localhost:3200/blog/eggflation-gives-producers-record-profits/"
+  },
+  {
+    "name": "blog-climate-crisis",
+    "url": "http://localhost:3200/blog/how-the-climate-crisis-is-causing-food-shortages-globally/"
+  },
+  {
+    "name": "speaker-one-sheet",
+    "url": "http://localhost:3200/speaker-one-sheet/"
   }
 ]

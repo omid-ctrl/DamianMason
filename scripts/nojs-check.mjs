@@ -36,6 +36,21 @@ for (const t of targets) {
       textLength: document.body.innerText.trim().length,
       h1: [...document.querySelectorAll('h1')].map((h) => h.innerText.trim()),
       headings: [...document.querySelectorAll('h2,h3')].map((h) => h.innerText.trim()).filter(Boolean).length,
+      /* Added with the amplification pass. Two effects now write into the
+         page from JavaScript, and both must be no-ops here.
+
+         countsWrong: components/ui/Stat.tsx renders the true figure twice,
+         once sr-only and once painted, both server side. With scripting off
+         the painted copy IS the figure, so any drift between its text and its
+         own data-count-to means the count-up has become load bearing.
+
+         clipped: data-reveal="wipe" hides a figure's CHILDREN behind a
+         clip-path, and only when the controller has written
+         data-reveal-state="pending". With no controller there is nothing to
+         un-clip, so a clipped child here is content that no reader without
+         JavaScript can see. */
+      countsWrong: [],
+      clipped: [],
       videos: 0,
       unreachableVideos: [],
       deadFacades: [],
@@ -117,6 +132,23 @@ for (const t of targets) {
         }
       }
     }
+        for (const el of document.querySelectorAll('[data-count-to]')) {
+      const want = el.getAttribute('data-count-to');
+      if (el.textContent.trim() !== want) out.countsWrong.push(`"${el.textContent}" != "${want}"`);
+    }
+    for (const el of document.querySelectorAll('[data-reveal]')) {
+      for (const kid of el.children) {
+        const cp = getComputedStyle(kid).clipPath;
+        /* Only a clip that actually hides something. The resting state of a
+           wipe is inset(0px), a full-visible no-op that exists so the pending
+           state has something to interpolate FROM: an unset clip-path does not
+           animate toward inset(0) and the reveal would snap. Flagging that
+           would fail the check on every correctly-behaving figure. */
+        if (cp && cp !== 'none' && !/^inset\(0px\)$/.test(cp) && /[1-9]/.test(cp)) {
+          out.clipped.push(cp);
+        }
+      }
+    }
     return out;
   });
 
@@ -128,20 +160,26 @@ for (const t of targets) {
     (r.hiddenTextNodes.length ? `  HIDDEN:${r.hiddenTextNodes.length}` : '') +
     (r.offscreenTransformed.length ? `  SHIFTED:${r.offscreenTransformed.length}` : '') +
     (r.unreachableVideos.length ? `  UNREACHABLE-VIDEO:${r.unreachableVideos.length}` : '') +
+    (r.countsWrong.length ? `  COUNT-DRIFT:${r.countsWrong.length}` : '') +
+    (r.clipped.length ? `  CLIPPED:${r.clipped.length}` : '') +
     (r.deadFacades.length ? `  DEAD-FACADE:${r.deadFacades.length}` : ''),
   );
   if (r.hiddenTextNodes.length) console.log('    ' + r.hiddenTextNodes.slice(0, 5).join('\n    '));
   if (r.offscreenTransformed.length) console.log('    ' + r.offscreenTransformed.slice(0, 5).join('\n    '));
   if (r.unreachableVideos.length) console.log('    unreachable: ' + r.unreachableVideos.join('\n    unreachable: '));
   if (r.deadFacades.length) console.log('    dead facade: ' + r.deadFacades.join('\n    dead facade: '));
+  if (r.countsWrong.length) console.log('    count drift: ' + r.countsWrong.join('\n    count drift: '));
+  if (r.clipped.length) console.log('    clipped with no controller: ' + r.clipped.join(', '));
   await page.close();
 }
 
 await browser.close();
-fs.writeFileSync(process.argv[3], JSON.stringify(results, null, 2));
+fs.writeFileSync(process.argv[3] ?? 'docs/qa/nojs-report.json', JSON.stringify(results, null, 2));
 const failures = results.filter(
   (r) =>
     r.pending > 0 ||
+    r.countsWrong.length > 0 ||
+    r.clipped.length > 0 ||
     r.hiddenTextNodes.length > 0 ||
     r.offscreenTransformed.length > 0 ||
     r.unreachableVideos.length > 0 ||

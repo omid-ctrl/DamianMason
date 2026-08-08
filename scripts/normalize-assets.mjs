@@ -12,6 +12,7 @@
  *   Website - List of Podcast Sponsors - Logos/   -> public/img/sponsors/
  *   Damian Mason Logos/                           -> public/img/brand/
  *   _source/media/                                -> public/img/{brand,logos,photos}/
+ *   _source/media-kit/                            -> public/img/photos/
  *
  * Rules enforced here
  *   - Output names are kebab-case, lowercase, no spaces, no parentheses, and
@@ -60,6 +61,22 @@ const SRC_CLIENTS = 'Client Logos';
 const SRC_SPONSORS = 'Website - List of Podcast Sponsors - Logos';
 const SRC_BRAND = 'Damian Mason Logos';
 const SRC_MEDIA = '_source/media';
+/**
+ * Photography recovered from the client's own WordPress media library on
+ * 2026-08-07, before the old hosting was switched off. Inventoried file by
+ * file, with source URLs and SHA-256s, in _source/media-kit/PROVENANCE.md.
+ *
+ * IT IS A SECOND SOURCE FOLDER RATHER THAN MORE FILES IN _source/media, AND
+ * THAT IS NOT TIDINESS. _source/media is a dated crawl artifact: manifest.json
+ * records `crawledAt` and asserts `gate.actual.mediaAssets: 70`, and three
+ * documents reason from that number. Adding 2026 rescues to it would
+ * retroactively falsify a record the whole audit trail rests on.
+ *
+ * FLAT, NO SUBDIRECTORIES. The completeness audit at the foot of this file
+ * uses a non-recursive readdirSync, so a subfolder would appear as one
+ * unaccounted entry and everything inside it would escape the gate entirely.
+ */
+const SRC_MEDIA_KIT = '_source/media-kit';
 
 /**
  * Files that must never be processed, whatever else the walker finds.
@@ -77,20 +94,41 @@ const FORBIDDEN = new Set(['LOGO-REVISION-B-A-F-01 copy.png']);
 //   kind - 'logo' (capped at LOGO_MAX, gets a webp sibling) or 'photo'
 //   ext  - override the output raster extension; defaults to the source's
 
-/** @type {{name: string, src: string, base: string}[]} */
+/**
+ * The client wall.
+ *
+ * `from` overrides the source folder for the four marks that were on the old
+ * site's wall but are NOT in the "Client Logos" folder the client supplied.
+ * They live in the crawl of the old site instead. Copying their bytes into the
+ * supplied folder would falsify what the client actually sent, which is a
+ * record docs/OPEN-ITEMS.md item 2 reasons from, so the manifest points at
+ * where each file really is.
+ *
+ * @type {{name: string, src: string, base: string, from?: string}[]}
+ */
 const CLIENTS = [
   { name: 'AgFirst Farm Credit', src: 'AgFirst FC Logo.png', base: 'agfirst-farm-credit' },
   { name: 'Agromark', src: 'Agromark.jpeg', base: 'agromark' },
   { name: 'Almond Alliance', src: 'Almond Alliance logo.png', base: 'almond-alliance' },
   { name: 'California Farm Bureau', src: 'CA Farm Bureau.png', base: 'california-farm-bureau' },
+  { name: 'BASF', src: 'BASF-Logo_bw.svg_.png', base: 'basf', from: SRC_MEDIA },
   { name: 'Cargill', src: 'Cargill logo.png', base: 'cargill' },
   { name: 'CLAAS', src: 'Claas logo.png', base: 'claas' },
   { name: 'Compeer Financial', src: 'Compeer.jpeg', base: 'compeer-financial' },
   { name: 'Egg Farmers', src: 'Egg Farmers Logo.jpg', base: 'egg-farmers' },
   { name: 'Farm Credit Services of America', src: 'FCS of America Logo.png', base: 'farm-credit-services-of-america' },
+  { name: 'Helena Agri-Enterprises', src: 'lo-helenalogo.png', base: 'helena', from: SRC_MEDIA },
   { name: 'Hudson Insurance', src: 'Hudson Insurance.png', base: 'hudson-insurance' },
   { name: 'Indiana Farm Bureau', src: 'Indiana Farm Bureau.jpeg', base: 'indiana-farm-bureau' },
   { name: 'Iowa Farm Bureau', src: 'Iowa Farm Bureau.jpeg', base: 'iowa-farm-bureau' },
+  /* OPEN QUESTION, and it is on the wall where a screen reader will read it.
+     The file is 19225_IPPA_Alliance_Logo_4C-scaled-1.jpg and the artwork reads
+     "Iowa Pork Producers Association" over "Iowa Pork Alliance". OPEN-ITEMS
+     item 2 calls it "Iowa Pork Alliance (IPPA)". The artwork's own primary line
+     is used here; confirm with the client, in the same breath as the Egg
+     Farmers of Ontario question. */
+  { name: 'Iowa Pork Producers Association', src: '19225_IPPA_Alliance_Logo_4C-scaled-1.jpg', base: 'iowa-pork-alliance', from: SRC_MEDIA },
+  { name: 'John Deere', src: 'John_Deere_logo.svg_.png', base: 'john-deere', from: SRC_MEDIA },
   { name: "Land O'Lakes Purina", src: 'Land OLakes Purina.png', base: 'land-olakes-purina' },
   { name: 'Merck', src: 'Merck Logo.png', base: 'merck' },
   { name: 'North Dakota Grain Dealers Association', src: 'NDGrain Dealers.jpeg', base: 'north-dakota-grain-dealers-association' },
@@ -116,7 +154,19 @@ const SPONSORS = [
   { name: 'Harvest Returns', src: 'Harvest Returns.jpeg', base: 'harvest-returns', url: 'https://www.harvestreturns.com' },
   { name: 'Heads Up Plant Protectants', src: 'Heads Up logo.jpg', base: 'heads-up-plant-protectants', url: 'https://headsupst.com' },
   { name: 'Life Scientific', src: 'Life Scientific.jpeg', base: 'life-scientific', url: 'https://lifescientific.com' },
-  { name: 'Nano-Yield', src: 'Nano-Yield- logo.webp', base: 'nano-yield', url: 'https://nano-yield.com' },
+  /* The one supplied mark that arrived as .webp, and the `ext` override is
+     what makes it behave like the other thirty.
+
+     Without it the emitted raster is .webp, so content/sponsors.ts names the
+     .webp as `logo`, LogoWall puts that in the <img src>, and webpSibling()
+     returns null for a .webp source. The .png beside it was therefore
+     unreachable by construction: no <source> pointed at it and no <img> could
+     fall back to it. It was 30KB of dead weight that looked like a fallback.
+
+     Forcing the raster to .png sends this mark down the ordinary branch below,
+     which emits a real .webp sibling, and the pair then behaves exactly like
+     every other tile. */
+  { name: 'Nano-Yield', src: 'Nano-Yield- logo.webp', base: 'nano-yield', url: 'https://nano-yield.com', ext: '.png' },
   { name: 'NewFields Ag', src: 'NewFields Ag.jpg', base: 'newfields-ag', url: 'https://newfieldsag.com' },
   { name: 'Redox Bio', src: 'Redox Bio logo.png', base: 'redox-bio', url: 'https://redoxgrows.com' },
   { name: 'Tidal Grow', src: 'Tidal Grow.jpeg', base: 'tidal-grow', url: 'https://tidalgrowag.com' },
@@ -125,7 +175,6 @@ const SPONSORS = [
 /** Damian's own marks, from both the supplied folder and the mirror. */
 const BRAND = [
   { src: `${SRC_BRAND}/BOASG-BRAND-LOGO-FINAL-LINKSHARE.jpg`, base: 'boasg' },
-  { src: `${SRC_BRAND}/BOASG-BRAND-LOGO-FINAL-WHITE.jpg`, base: 'boasg-white-flat' },
   { src: `${SRC_BRAND}/Business of AG-STACKED-black.png`, base: 'business-of-agriculture' },
   { src: `${SRC_BRAND}/DM-BIZ-AG-PODCAST-LOGO (1).jpg`, base: 'business-of-agriculture-podcast' },
   { src: `${SRC_BRAND}/The Granary 3x png@3x.PNG`, base: 'the-granary' },
@@ -148,10 +197,6 @@ const BRAND = [
  * one to one match for content/clients.ts.
  */
 const THIRD_PARTY_LOGOS = [
-  { src: `${SRC_MEDIA}/19225_IPPA_Alliance_Logo_4C-scaled-1.jpg`, base: 'iowa-pork-alliance' },
-  { src: `${SRC_MEDIA}/BASF-Logo_bw.svg_.png`, base: 'basf' },
-  { src: `${SRC_MEDIA}/John_Deere_logo.svg_.png`, base: 'john-deere' },
-  { src: `${SRC_MEDIA}/lo-helenalogo.png`, base: 'helena' },
   { src: `${SRC_MEDIA}/FCSAmerica-logo-400x192-1.jpg`, base: 'farm-credit-services-of-america' },
   { src: `${SRC_MEDIA}/merck-logo.png`, base: 'merck' },
   { src: `${SRC_MEDIA}/acres-tv.png`, base: 'acres-tv' },
@@ -192,6 +237,87 @@ const PHOTOS = [
   { src: `${SRC_MEDIA}/Screenshot-2023-04-25-at-2.44.31-PM.png`, base: 'green-screen-studio' },
   { src: `${SRC_MEDIA}/Screenshot-2023-04-25-at-9.17.26-AM.png`, base: 'equipment-factory-tour' },
   { src: `${SRC_MEDIA}/Screenshot-2024-08-21-at-11.49.00 AM.png`, base: 'san-interview-2' },
+
+  /* ---------------------------------------------------------------------
+     THE RECOVERED MEDIA KIT.
+
+     Sixteen photographs that were sitting in the client's WordPress media
+     library, referenced by no page and therefore invisible to a crawl that
+     walked pages. docs/OPEN-ITEMS.md items 3, 4 and 12 all rest on the
+     assumption that this material did not exist.
+
+     Five of the six studio portraits are frames the site has never had. Five
+     more are professional live-stage photographs, which is the one thing the
+     old archive had none of: OPEN-ITEMS item 4 asks the client to commission
+     exactly these, "live-event photography from the back of the room, showing
+     you on stage with the audience in frame", and audience-from-the-back is
+     that photograph.
+
+     DSC_7639 is NOT in this list, and its absence is a finding rather than an
+     oversight. It is byte-identical to _source/media/DSC_7639.jpg, which
+     already ships as portrait-black-suit, and PHOTO_MAX is 2000, so the
+     2400x3600 "original" emits the same 1333x2000 the site already has. There
+     was no resolution to recover. See PROVENANCE.md.
+     --------------------------------------------------------------------- */
+  { src: `${SRC_MEDIA_KIT}/studio-portrait-window.jpg`, base: 'portrait-window-light' },
+  { src: `${SRC_MEDIA_KIT}/studio-portrait-dark-jacket.jpg`, base: 'portrait-charcoal-jacket' },
+  { src: `${SRC_MEDIA_KIT}/studio-portrait-check-jacket.jpg`, base: 'portrait-check-jacket' },
+  { src: `${SRC_MEDIA_KIT}/studio-portrait-headshot.jpg`, base: 'portrait-headshot' },
+  { src: `${SRC_MEDIA_KIT}/studio-portrait-boardroom.jpg`, base: 'portrait-boardroom' },
+  { src: `${SRC_MEDIA_KIT}/stage-milk-cartons.jpg`, base: 'stage-dairy-case' },
+  { src: `${SRC_MEDIA_KIT}/stage-close-gesture.jpg`, base: 'stage-mid-sentence' },
+  { src: `${SRC_MEDIA_KIT}/stage-labor-slide.jpg`, base: 'stage-labor-slide' },
+  { src: `${SRC_MEDIA_KIT}/stage-crop-protection-slide.jpg`, base: 'stage-crop-protection-slide' },
+  { src: `${SRC_MEDIA_KIT}/stage-audience-from-back.jpg`, base: 'audience-from-the-back' },
+  { src: `${SRC_MEDIA_KIT}/stage-mueller-walking.jpg`, base: 'stage-walking-the-front' },
+  { src: `${SRC_MEDIA_KIT}/stage-mueller-white-wall.jpg`, base: 'stage-white-wall' },
+  { src: `${SRC_MEDIA_KIT}/stage-blue-jacket.jpg`, base: 'stage-blue-jacket' },
+  { src: `${SRC_MEDIA_KIT}/studio-podcast-desk.jpg`, base: 'podcast-desk' },
+  { src: `${SRC_MEDIA_KIT}/studio-green-screen.jpg`, base: 'green-screen-setup' },
+  { src: `${SRC_MEDIA_KIT}/food-fear-hardback-table.jpg`, base: 'food-fear-hardback' },
+
+  /* The cut-out, and it is the only entry in this file that needs either of
+     the two per-entry options below.
+
+     `max` because it never renders wider than about 491 CSS px, so a 1400px
+     raster is already 2.8x, and a 2000px one is dead weight in a format that
+     cannot drop its alpha channel.
+
+     `deghost` because 49.0% of this file is fully transparent and every one of
+     those 1,654,970 pixels carries RGB (71, 112, 76), a mid green, uniformly.
+     Nothing composites it, so it is invisible in the file and in any lossless
+     copy. It is not invisible downstream: these are served through the Next
+     image optimizer, which emits AVIF with a LOSSY alpha channel, and a lossy
+     alpha channel does not reproduce zero exactly. This is the same defect
+     scripts/normalize-brand-art.mjs measures for the brand marks, where the
+     optimizer rebuilt a deleted ghost at alpha 6 to 7 carrying grey 146. Here
+     it would rebuild a green rectangle over half the frame, in production and
+     nowhere else. Measured with a raw-buffer walk, not assumed. */
+  {
+    src: `${SRC_MEDIA_KIT}/portrait-cutout.png`,
+    base: 'portrait-cutout',
+    max: 1400,
+    deghost: true,
+  },
+  /* The same cut-out at card scale, and it is a second output rather than a
+     resize at render time because app/opengraph-image.tsx cannot resize
+     anything: Satori has no image pipeline, it decodes what it is handed.
+
+     Handed the 1400px master it fails outright, with "Input buffer contains
+     unsupported image format", which is what a decoder says when it gives up
+     rather than when the file is wrong: the PNG is a perfectly ordinary 8-bit
+     RGBA non-interlaced image and the wordmark beside it loads fine. The card
+     renders it 380px tall, so the master was 3.7x oversized before it was
+     base64'd into every social-card render.
+
+     520 is 380 times the 1.37 device-pixel headroom a 1200x630 card gets when
+     a platform re-encodes it, rounded to a round number. */
+  {
+    src: `${SRC_MEDIA_KIT}/portrait-cutout.png`,
+    base: 'portrait-cutout-card',
+    max: 520,
+    deghost: true,
+  },
 ];
 
 /**
@@ -331,6 +457,50 @@ const SKIPPED = [
       'The four-up composite itself is not emitted. It is barred from a hero or a band by DESIGN_SYSTEM 6.4, and as a figure it is four small frames where the site wants one. Two of its four panels ARE emitted, harvested by CROPS: speaking-closeup and tradeshow-floor-audience. Panel 1 is a wider take on a stage frame already covered; panel 4 duplicates the shipping keynote-stage-xtremeag-portrait.jpg.',
   },
 
+  /* ---------------------------------------------------------------------
+     The recovered media kit, part two: what came back and did not ship.
+
+     Every one of these was fetched on 2026-08-07 and is inventoried with its
+     source URL and SHA-256 in _source/media-kit/PROVENANCE.md. They are held
+     rather than deleted because the folder they came from is being switched
+     off, and "we had this and chose not to use it" is a different fact from
+     "we never had it". That distinction is the entire reason this rescue was
+     necessary in the first place.
+     --------------------------------------------------------------------- */
+  {
+    src: `${SRC_MEDIA_KIT}/PROVENANCE.md`,
+    reason:
+      'The inventory itself. Source URLs, dimensions, byte sizes and SHA-256s for every file in both recovered archives, including the ones not kept. It is documentation living beside the thing it documents, not a pipeline input.',
+  },
+  {
+    src: `${SRC_MEDIA_KIT}/logo-bayer.png`,
+    reason:
+      'Recovered from the WordPress library, where it sat unreferenced by any page. It is NOT in the "Client Logos" folder the client supplied, and OPEN-ITEMS item 2 records the decision to treat that folder as the definitive list. Putting a company on a wall captioned "some of Damian\'s clients" is a claim about a commercial relationship, and it is not ours to make. Held pending a one-line answer.',
+  },
+  {
+    src: `${SRC_MEDIA_KIT}/logo-agco.png`,
+    reason: 'Same as logo-bayer.png: recovered, unreferenced, not in the supplied client folder.',
+  },
+  {
+    src: `${SRC_MEDIA_KIT}/logo-boehringer-ingelheim.png`,
+    reason: 'Same as logo-bayer.png: recovered, unreferenced, not in the supplied client folder.',
+  },
+  {
+    src: `${SRC_MEDIA_KIT}/logo-fast-genetics.png`,
+    reason: 'Same as logo-bayer.png: recovered, unreferenced, not in the supplied client folder.',
+  },
+  {
+    src: `${SRC_MEDIA_KIT}/logo-cpda.jpeg`,
+    reason:
+      'Same as logo-bayer.png, plus one of its own: at 367x208 it is the smallest mark in the rescue and it would land under the wall\'s optical floor even if the relationship were confirmed.',
+  },
+
+  {
+    src: `${SRC_BRAND}/BOASG-BRAND-LOGO-FINAL-WHITE.jpg`,
+    reason:
+      'The opaque duplicate of BOASG-BRAND-LOGO-FINAL-WHITE-transparent.png, which ships as boasg-white and is placed on /boasg/. Two files for one mark, and the transparent one is strictly more useful. It shipped as an "unplaced extra" for seven phases; reviewed 2026-08-07 and dropped rather than carried.',
+  },
+
   // Divi / theme icon set. Generic orange line icons, not brand assets.
   { src: `${SRC_MEDIA}/add-ons.png`, reason: 'Divi theme icon (generic line art), UI furniture.' },
   { src: `${SRC_MEDIA}/content-contributor.png`, reason: 'Divi theme icon (generic line art), UI furniture.' },
@@ -451,6 +621,66 @@ function encode(pipeline, ext, kind) {
     mozjpeg: true,
     chromaSubsampling: kind === 'logo' ? '4:4:4' : '4:2:0',
   });
+}
+
+/**
+ * Write a transparent PNG with nothing hiding under its transparency.
+ *
+ * WHY THIS EXISTS. A fully transparent pixel still carries RGB. Nothing
+ * composites it, so it is invisible in the file and in every lossless copy of
+ * it, and it stops being invisible the moment the Next image optimizer
+ * re-encodes to AVIF: a lossy alpha channel does not reproduce zero exactly,
+ * so whatever colour was hiding comes back as a tinted rectangle at a few
+ * percent alpha, in production and nowhere else.
+ * scripts/normalize-brand-art.mjs measured that on the brand marks, where the
+ * region came back at alpha 6 to 7 carrying grey 146. The cut-out portrait
+ * arrived carrying RGB (71, 112, 76), a mid green, under 1,654,970 pixels,
+ * which is 49.0% of the frame.
+ *
+ * WHITE, for the same reason that file gives: this asset stands on bone, so a
+ * few percent of leaked white lightens the paper by well under one level and
+ * cannot be seen, while a few percent of leaked green is the defect the pass
+ * exists to remove.
+ *
+ * TWO ORDERING TRAPS, BOTH MEASURED, BOTH SILENT.
+ *
+ *   1. It has to run AFTER the resize, not before. sharp premultiplies alpha
+ *      to resize an image with one, so every transparent pixel's RGB is
+ *      multiplied by an alpha of zero and un-premultiplied by dividing by it.
+ *      A pass that paints white first hands the resizer white and gets back
+ *      (0, 0, 0), which on a light ground is worse than the green it replaced.
+ *      That is why this takes a pipeline and not a buffer.
+ *
+ *   2. It has to encode WITHOUT `effort`. sharp treats png effort >= 7 as
+ *      permission to quantize to a palette, and a palette has no concept of
+ *      "the colour under a transparent pixel": every one is reassigned to
+ *      whatever entry the quantizer picked. With effort 10 the emitted file
+ *      came back carrying (76, 105, 113) under the transparency, which is the
+ *      exporter teal, not anything this pass wrote.
+ *
+ *   3. The `info` object that comes back from a resized pipeline carries
+ *      `premultiplied: true`. Handing it straight back as the raw input
+ *      descriptor tells sharp the buffer is premultiplied, so it un-premultiplies
+ *      on the way in, which divides by an alpha of zero and writes (0, 0, 0)
+ *      over every pixel this pass just painted white. Black under transparency
+ *      on a bone ground is the worst of the three outcomes. Only width, height
+ *      and channels are passed through.
+ *
+ * All three were verified by reading the transparent region back out of the
+ * emitted PNG, not by reasoning about it. The cost is a few KB on one file, and
+ * the optimizer serves AVIF anyway, so no visitor downloads them.
+ */
+async function writeDeghosted(pipeline, rasterPath) {
+  const { data, info } = await pipeline.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  for (let i = 0; i < data.length; i += info.channels) {
+    if (data[i + 3] === 0) {
+      data[i] = 255;
+      data[i + 1] = 255;
+      data[i + 2] = 255;
+    }
+  }
+  const raw = { width: info.width, height: info.height, channels: info.channels };
+  return sharp(data, { raw }).png({ compressionLevel: 9 }).toFile(rasterPath);
 }
 
 /**
@@ -581,7 +811,12 @@ async function process(entry) {
   if (!absSrc) throw new Error(`Source not found: ${entry.src}`);
 
   const isLogo = entry.kind === 'logo';
-  const cap = isLogo ? LOGO_MAX : PHOTO_MAX;
+  /* Per-entry override, because one asset in the manifest is not like the
+     others: a transparent PNG cannot drop its alpha channel, so the usual
+     "cap generously, the encoder will sort it out" reasoning does not apply
+     and the cap has to be set from how wide the thing actually renders. Only
+     set `max` with that kind of measured reason. */
+  const cap = entry.max ?? (isLogo ? LOGO_MAX : PHOTO_MAX);
   const outDir = path.join(PUBLIC_IMG, entry.dir);
   await fsp.mkdir(outDir, { recursive: true });
 
@@ -617,7 +852,9 @@ async function process(entry) {
 
   const ext = entry.ext ?? rasterExt(entry.src);
   const rasterPath = path.join(outDir, entry.base + ext);
-  const info = await encode(base(input, cap), ext, entry.kind).toFile(rasterPath);
+  const info = entry.deghost
+    ? await writeDeghosted(base(input, cap), rasterPath)
+    : await encode(base(input, cap), ext, entry.kind).toFile(rasterPath);
 
   const out = [`/img/${entry.dir}/${entry.base}${ext}`];
 
@@ -625,8 +862,11 @@ async function process(entry) {
     // Same pixel dimensions as the raster. Try lossless and quality 90, keep
     // whichever is smaller. Flat-color marks usually win with lossless.
     if (ext === '.webp') {
-      // Source was already webp, so the raster IS the webp sibling. Emit a PNG
-      // fallback so every sponsor has a non-webp raster available.
+      // Source was already webp AND no `ext` override sent it down the normal
+      // branch. Nothing in the manifest reaches this today, because the one
+      // .webp source carries ext: '.png' for the reason recorded beside it.
+      // Kept as a guard rather than deleted: a future .webp drop that forgets
+      // the override should emit SOMETHING non-webp rather than nothing.
       const pngPath = path.join(outDir, entry.base + '.png');
       await base(input, cap).png({ compressionLevel: 9, effort: 10 }).toFile(pngPath);
       out.push(`/img/${entry.dir}/${entry.base}.png`);
@@ -669,8 +909,8 @@ function header(lines) {
 
 async function main() {
   const entries = [
-    ...CLIENTS.map((c) => ({ src: `${SRC_CLIENTS}/${c.src}`, dir: 'clients', base: c.base, kind: 'logo', name: c.name })),
-    ...SPONSORS.map((s) => ({ src: `${SRC_SPONSORS}/${s.src}`, dir: 'sponsors', base: s.base, kind: 'logo', name: s.name, url: s.url })),
+    ...CLIENTS.map((c) => ({ src: `${c.from ?? SRC_CLIENTS}/${c.src}`, dir: 'clients', base: c.base, kind: 'logo', name: c.name })),
+    ...SPONSORS.map((s) => ({ src: `${SRC_SPONSORS}/${s.src}`, dir: 'sponsors', base: s.base, kind: 'logo', name: s.name, url: s.url, ext: s.ext })),
     ...BRAND.map((b) => ({ ...b, dir: 'brand', kind: 'logo' })),
     ...THIRD_PARTY_LOGOS.map((l) => ({ ...l, dir: 'logos', kind: 'logo' })),
     ...PHOTOS.map((p) => ({ ...p, dir: 'photos', kind: 'photo' })),
@@ -715,7 +955,7 @@ async function main() {
   const fold = (s) => s.normalize('NFC').replace(/\s+/gu, ' ');
   const accounted = new Set([...entries.map((e) => e.src), ...SKIPPED.map((s) => s.src)].map(fold));
   const unaccounted = [];
-  for (const dir of [SRC_CLIENTS, SRC_SPONSORS, SRC_BRAND, SRC_MEDIA]) {
+  for (const dir of [SRC_CLIENTS, SRC_SPONSORS, SRC_BRAND, SRC_MEDIA, SRC_MEDIA_KIT]) {
     for (const f of fs.readdirSync(path.join(ROOT, dir))) {
       if (f.startsWith('.')) continue;
       if (!accounted.has(fold(`${dir}/${f}`))) unaccounted.push(`${dir}/${f}`);
@@ -738,7 +978,7 @@ async function main() {
 
   // -- content/clients.ts ---------------------------------------------------
   const clientRows = CLIENTS.map((c) => {
-    const d = dims.get(`${SRC_CLIENTS}/${c.src}`);
+    const d = dims.get(`${c.from ?? SRC_CLIENTS}/${c.src}`);
     return { ...c, logo: d.out[0], w: d.w, h: d.h };
   }).sort((a, b) => a.name.localeCompare(b.name, 'en'));
 
@@ -802,8 +1042,11 @@ async function main() {
       '  NewFields Ag, liquid biologicals and seed treatments, Grand Mound Iowa.',
       '  Redox Bio, plant bio-nutrition, Burley Idaho, trading as redoxgrows.com.',
       '',
-      'Nano-Yield is the one logo whose source was already .webp, so its raster',
-      'is .webp and a .png fallback sits beside it.',
+      'Nano-Yield is the one logo whose SOURCE is already .webp. Its raster is',
+      'emitted as .png anyway, via an `ext` override in the manifest, so that it',
+      'gets a real .webp sibling and behaves like the other thirty marks. Left',
+      'alone, the .webp would be the <img src>, webpSibling() returns null for a',
+      '.webp source, and the .png beside it would be unreachable by construction.'
     ]) +
     '\nexport type Sponsor = {\n' +
     '  name: string;\n' +
@@ -852,16 +1095,39 @@ async function main() {
       'Secondary marks that ship alongside the primary set. They are kept out of',
       'brandAssets so that object stays a short, stable contract, but the files',
       'are real and available if a page needs them.',
+      '',
+      'REVIEWED 2026-08-07. "Unplaced" was doing two different jobs here: some of',
+      'these had no home YET, and some have no home BY DECISION and should never',
+      'get one. Those are different facts, and a maintainer looking for something',
+      'to place should not have to guess which is which, so each one says.',
     ]) +
     '\nexport const brandAssetsExtra = {\n' +
-    `  boasgWhiteFlat: ${q(b('boasg-white-flat'))}, // unplaced, the opaque duplicate of the boasgWhite badge. See docs/CONTENT_MANIFEST.md\n` +
     `  doBusinessBetterPodcast: ${q(b('do-business-better-podcast'))}, // /podcasts/ and /do-business-better-podcast/ cover art, and the PodcastSeries image\n` +
-    `  businessOfAgricultureLockup: ${q(b('business-of-agriculture-lockup'))}, // unplaced, the horizontal alternate to businessOfAgriculture\n` +
-    `  businessOfAgricultureIconWhite: ${q(b('business-of-agriculture-icon-white'))}, // unplaced, the leaf icon on its own at favicon scale\n` +
-    `  businessOfAgricultureAvatar: ${q(b('business-of-agriculture-avatar'))}, // unplaced, the square avatar the player embeds carry themselves\n` +
     `  xtremeAgTransparent: ${q(b('xtreme-ag-transparent'))}, // /podcasts/ and /xtreme-ag/, the transparent XtremeAg mark for placing on color\n` +
-    `  dmMonogram: ${q(b('dm-monogram'))}, // never referenced by a route: this is the SOURCE the site icons were cut from, not a shipped image. See app/icon.png\n` +
+    '\n' +
+    '  /* DELIBERATELY NEVER PLACED. Each is available and each is the wrong\n' +
+    '     answer to the slot it looks like it fits. */\n' +
+    `  businessOfAgricultureLockup: ${q(b('business-of-agriculture-lockup'))}, // the horizontal alternate. This site has no wide lockup slot: the show is named in a heading or shown as square artwork. Placing it means inventing the slot first\n` +
+    `  businessOfAgricultureIconWhite: ${q(b('business-of-agriculture-icon-white'))}, // the leaf alone. A mark without its wordmark identifies nothing to a reader who has not already learned it, and this site names the show in full everywhere\n` +
+    `  businessOfAgricultureAvatar: ${q(b('business-of-agriculture-avatar'))}, // the 218x217 SoundCloud avatar. Both player embeds draw it themselves, so a copy beside one is the same picture twice\n` +
+    `  dmMonogram: ${q(b('dm-monogram'))}, // not a shipped image at all: the SOURCE the site icons were cut from. See app/icon.png and scripts/build-app-icons.mjs\n` +
     '} as const;\n\n' +
+    header([
+      'ALSO IN THE ASSET LIBRARY AND DELIBERATELY NOT IN THIS FILE.',
+      '',
+      'boasg-white-flat.jpg was an "unplaced" extra here for seven phases. It is',
+      'the opaque duplicate of boasgWhite, which ships and is placed, so it was',
+      'two files for one mark. Dropped from the pipeline 2026-08-07; the reason',
+      'is recorded in the skipped list in _source/asset-map.json.',
+      '',
+      'wordmark-white.png is the one people reach for and the one to refuse.',
+      'DESIGN_SYSTEM rule 4 forbids reversing the wordmark, and the file was',
+      're-examined pixel by pixel during the amplification pass: every opaque',
+      'pixel in it is pure white, so the orange rule across the bottom third of',
+      'the art is simply absent from it. It is a flat knockout, not a reversed',
+      'lockup. Inside a dark region the wordmark sits on a paper plate instead,',
+      'which is what the footer does.',
+    ]) +
     'export type BrandAssetKey = keyof typeof brandAssets;\n';
   await fsp.writeFile(path.join(CONTENT, 'brand-assets.ts'), brandTs);
 

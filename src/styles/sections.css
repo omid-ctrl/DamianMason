@@ -144,7 +144,9 @@
     block-size: 100%;
     object-fit: cover;
     filter: var(--photo-filter);
-    transition: var(--transition-media);
+    transition:
+      var(--transition-media),
+      transform var(--duration-base) var(--easing-standard);
   }
 
   .dm-video__facade {
@@ -171,13 +173,20 @@
     opacity: var(--photo-veil-opacity);
     transition: opacity var(--duration-base) var(--easing-standard);
   }
+  /* The frame brightens when you reach for it, rather than dimming. See
+     --photo-veil-opacity-hover in tokens.css for the measured reason the veil
+     is free to come down, and for the arithmetic behind the play control's
+     ground below. */
   .dm-video__facade:hover::after,
   .dm-video__facade:focus-visible::after {
-    opacity: var(--photo-veil-opacity-band);
+    opacity: var(--photo-veil-opacity-hover);
   }
   .dm-video__facade:hover .dm-video__poster,
   .dm-video__facade:focus-visible .dm-video__poster {
     filter: var(--photo-filter-soft);
+    /* Four per cent, on the poster only. .dm-video__stage carries
+       overflow: hidden, so nothing overruns the frame and no neighbour moves. */
+    transform: scale(1.04);
   }
 
   .dm-video__play {
@@ -193,7 +202,11 @@
     block-size: var(--size-icon-lg);
     border: var(--border-thin) solid currentColor;
     border-radius: var(--corner-none);
-    background-color: var(--surface-scrim);
+    /* Opaque, so the control's legibility is a property of the control and not
+       of whichever poster happens to be behind it. --ink-primary on this is a
+       flat 17.37:1 at every veil. It was 10.18:1 at rest through the scrim,
+       which passed, and it passed because of the picture. */
+    background-color: var(--surface-overlay);
     color: var(--ink-primary);
   }
   .dm-video__play svg {

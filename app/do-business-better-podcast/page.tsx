@@ -179,7 +179,6 @@ export default function DoBusinessBetterPodcastPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">FIG. 01 </span>
                 Show art for Do Business Better. The show and the book share a title, an
                 argument, and an author.
               </figcaption>
@@ -242,8 +241,11 @@ export default function DoBusinessBetterPodcastPage() {
       {/* SECTION 3 */}
       {/* The old page called this "Latest 3 Episodes" in an h1, and the three
           it listed were 144, 142 and 141. 143 is not among them, so the
-          heading here does not claim to be the latest anything. */}
-      <Section aria-labelledby="episodes-title">
+          heading here does not claim to be the latest anything.
+
+          NAVY. This route ran three light bands and one arrival, and the
+          episodes are what it is actually for. */}
+      <Section surface="deep-alt" aria-labelledby="episodes-title">
         {/* A left rail for the head and the reading column for the episodes.
             The section used to run head and list at full container width, so
             each episode's top rule spanned 1248px over a paragraph that stopped
@@ -254,7 +256,7 @@ export default function DoBusinessBetterPodcastPage() {
             measure nobody chose. */}
         <Container>
           <div className="dm-grid12">
-            <div className={`${styles.stack} col-span-6 md:col-span-4`}>
+            <div className={`dm-rail ${styles.stack} col-span-6 md:col-span-4`}>
               <Eyebrow>From the catalog</Eyebrow>
               <Heading level={2} id="episodes-title">
                 Three episodes to start with
@@ -325,7 +327,6 @@ export default function DoBusinessBetterPodcastPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                <span className="dm-figure__folio">FIG. 02 </span>
                 Do Business Better: Traits, Habits, and Actions to Help You Succeed. Wiley
                 published it, with a foreword by Larry Winget.
               </figcaption>

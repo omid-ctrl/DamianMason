@@ -86,6 +86,10 @@ export const nav: NavItem[] = [
       { label: 'Testimonials', href: '/reviews/' },
       { label: 'Meeting Coordinators', href: '/meeting-coordinators/' },
       { label: 'Collaboration Opportunities', href: '/collaboration-opportunities/' },
+      /* The one route added after the rebuild shipped. It is NOT called a media
+         kit: the client asked for both Media Kit links removed, and
+         docs/QA_REPORT.md asserts zero rendered hits for that phrase. */
+      { label: 'Speaker One-Sheet', href: '/speaker-one-sheet/' },
     ],
   },
   { label: 'The Business of Ag Success Group', href: '/boasg/' },

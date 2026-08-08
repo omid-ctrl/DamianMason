@@ -14,22 +14,26 @@
    in src/styles/sections-core.css under LOGO WALL; the reasoning lives in the
    header of scripts/normalize-logo-ink.mjs.
 
-   31 marks.
+   35 marks.
    ============================================================================ */
 
 @layer components {
   .dm-logo-cell__img[data-logo="agfirst-farm-credit"] { --logo-ar-sqrt: 1.7820; }  /* clients, 362x114, aspect 3.1754 */
   .dm-logo-cell__img[data-logo="agromark"] { --logo-ar-sqrt: 1.8679; }  /* clients, 314x90, aspect 3.4889 */
   .dm-logo-cell__img[data-logo="almond-alliance"] { --logo-ar-sqrt: 1.6412; }  /* clients, 466x173, aspect 2.6936 */
+  .dm-logo-cell__img[data-logo="basf"] { --logo-ar-sqrt: 1.6605; }  /* clients, 466x169, aspect 2.7574 */
   .dm-logo-cell__img[data-logo="california-farm-bureau"] { --logo-ar-sqrt: 1.0000; }  /* clients, 234x234, aspect 1.0000 */
   .dm-logo-cell__img[data-logo="cargill"] { --logo-ar-sqrt: 1.5009; }  /* clients, 428x190, aspect 2.2526 */
   .dm-logo-cell__img[data-logo="claas"] { --logo-ar-sqrt: 2.3562; }  /* clients, 322x58, aspect 5.5517 */
   .dm-logo-cell__img[data-logo="compeer-financial"] { --logo-ar-sqrt: 2.2032; }  /* clients, 466x96, aspect 4.8542 */
   .dm-logo-cell__img[data-logo="egg-farmers"] { --logo-ar-sqrt: 0.9871; }  /* clients, 228x234, aspect 0.9744 */
   .dm-logo-cell__img[data-logo="farm-credit-services-of-america"] { --logo-ar-sqrt: 1.2267; }  /* clients, 316x210, aspect 1.5048 */
+  .dm-logo-cell__img[data-logo="helena"] { --logo-ar-sqrt: 1.4554; }  /* clients, 466x220, aspect 2.1182 */
   .dm-logo-cell__img[data-logo="hudson-insurance"] { --logo-ar-sqrt: 1.7066; }  /* clients, 466x160, aspect 2.9125 */
   .dm-logo-cell__img[data-logo="indiana-farm-bureau"] { --logo-ar-sqrt: 1.4281; }  /* clients, 310x152, aspect 2.0395 */
   .dm-logo-cell__img[data-logo="iowa-farm-bureau"] { --logo-ar-sqrt: 1.4460; }  /* clients, 414x198, aspect 2.0909 */
+  .dm-logo-cell__img[data-logo="iowa-pork-alliance"] { --logo-ar-sqrt: 1.5077; }  /* clients, 466x205, aspect 2.2732 */
+  .dm-logo-cell__img[data-logo="john-deere"] { --logo-ar-sqrt: 1.2230; }  /* clients, 350x234, aspect 1.4957 */
   .dm-logo-cell__img[data-logo="land-olakes-purina"] { --logo-ar-sqrt: 2.1262; }  /* clients, 434x96, aspect 4.5208 */
   .dm-logo-cell__img[data-logo="merck"] { --logo-ar-sqrt: 1.8511; }  /* clients, 466x136, aspect 3.4265 */
   .dm-logo-cell__img[data-logo="north-dakota-grain-dealers-association"] { --logo-ar-sqrt: 1.1171; }  /* clients, 292x234, aspect 1.2479 */

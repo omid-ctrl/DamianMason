@@ -49,12 +49,6 @@ const SIZE_CLASS: Record<HeadingSize, string> = {
 
 type HeadingBase = {
   level: HeadingLevel;
-  /**
-   * The numbered prefix from the broadsheet section-head pattern, for example
-   * "No. 01". It renders inside the heading element so the document outline
-   * carries it, and it is read aloud. It is not a decorative folio.
-   */
-  folio?: string;
   /** Sets the heading in the wordmark navy rather than the body ink. */
   brand?: boolean;
   className?: string;
@@ -80,13 +74,13 @@ export type HeadingProps = HeadingBase &
   );
 
 export function Heading(props: HeadingProps) {
-  const { level, folio, brand = false, className, children, ...rest } = props;
+  const { level, brand = false, className, children, ...rest } = props;
   const display = props.display === true;
   const size = props.size ?? '2xl';
   const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
   // `display` and `size` are part of the union, not valid DOM attributes.
-  const domProps = { ...rest } as Omit<HeadingBase, 'level' | 'folio' | 'brand' | 'className' | 'children'>;
+  const domProps = { ...rest } as Omit<HeadingBase, 'level' | 'brand' | 'className' | 'children'>;
   delete (domProps as Record<string, unknown>).display;
   delete (domProps as Record<string, unknown>).size;
 
@@ -100,7 +94,6 @@ export function Heading(props: HeadingProps) {
       )}
       {...domProps}
     >
-      {folio ? <span className="dm-heading__folio">{folio}</span> : null}
       {children}
     </Tag>
   );

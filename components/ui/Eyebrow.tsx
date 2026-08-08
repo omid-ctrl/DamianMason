@@ -6,7 +6,7 @@ export type EyebrowTone = 'muted' | 'accent' | 'brand' | 'faint';
 export type EyebrowProps = {
   /**
    * muted  the default. 5.76:1 on the page ground, so it is legal as real content.
-   * accent the deepened print orange, 5.63:1. For a section number or a folio.
+   * accent the deepened print orange, 5.63:1.
    * brand  the wordmark navy, 7.56:1.
    * faint  3.89:1. Decorative indices only, and pair it with aria-hidden.
    */
@@ -26,7 +26,7 @@ const TONE_CLASS: Record<EyebrowTone, string> = {
 };
 
 /**
- * The mono running head, dateline, folio and section label. This is one of the
+ * The mono running head, dateline and section label. This is one of the
  * three standing slots the dry humor lives in, alongside the photo cutline and
  * the section metadata. Write two true things next to each other and stop.
  *

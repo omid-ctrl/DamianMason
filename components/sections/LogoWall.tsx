@@ -108,9 +108,10 @@ function LogoCell({ item, index, linked }: LogoCellProps) {
 }
 
 export type LogoWallProps = {
-  /** Defaults to the 21 normalized client marks. */
+  /** Defaults to the 25 normalized client marks. */
   items?: LogoItem[];
-  /** 7 for a set of 21, 5 for a set of 10. */
+  /** 5 for the 25 clients and for the 10 sponsors. 7 is kept because it is
+   *  the only other count that has ever divided a set on this site. */
   columns?: LogoWallColumns;
   /**
    * Client marks are not links, because the client set has no URLs and a dead
@@ -125,17 +126,18 @@ export type LogoWallProps = {
   title?: ReactNode;
   /** Rank, independent of size. Defaults to h2. */
   level?: HeadingLevel;
-  /** The numbered prefix, e.g. "No. 04", rendered inside the heading. */
-  folio?: string;
   /**
    * The mono section metadata line, one of the three standing slots the dry
-   * humor lives in. Defaults to "21 of 2,400+". Pass null to drop it.
+   * humor lives in. Derived from the set, so it reads "25 of 2,400+" today.
+   * Pass null to drop it.
    */
   meta?: ReactNode;
   /** Optional prose between the head and the grid. */
   intro?: ReactNode;
   surface?: Surface;
   density?: SectionDensity;
+  /** Sits directly under a section on the same ground. See Section. */
+  seam?: boolean;
   className?: string;
 };
 
@@ -150,23 +152,29 @@ export type LogoWallProps = {
  * multiply on a light ground and invert plus screen on a dark one, and optical centering.
  *
  * Column counts are locked by docs/DESIGN_SYSTEM.md section 7.2 and are not a
- * matter of taste: 7 at 1024 and up, 3 below it, because 7 and 3 are the only
- * counts that divide 21 with no dead cells.
+ * matter of taste. The client set is 25, whose only useful divisor is 5, so the
+ * wall runs 5 across from 1024 and 2 below it, with the odd twenty-fifth cell
+ * spanning both columns rather than leaving a ruled hole. Three across is not
+ * available at any width: 25 does not divide by 3.
+ *
+ * It was 7 and 3 when the set was 21. Both counts survive in the CSS because
+ * the sponsor wall and any future set may need them, and because a column count
+ * that does not divide its set is the defect rule 19 exists to prevent.
  */
 export function LogoWall({
   items,
-  columns = 7,
+  columns = 5,
   linked = false,
   indices = false,
   id,
   eyebrow,
   title,
   level = 2,
-  folio,
   meta,
   intro,
   surface,
   density,
+  seam,
   className,
 }: LogoWallProps) {
   const marks = items ?? clients;
@@ -179,11 +187,12 @@ export function LogoWall({
       aria-labelledby={headingId}
       surface={surface}
       density={density}
+      seam={seam}
       className={cx('dm-logowall', COLUMN_CLASS[columns], className)}
     >
       {/* Two containers on purpose. The seven-column grid genuinely needs the
           wide measure, but the section HEAD does not, and when the head rode
-          along with it every eyebrow, folio and H2 on a logo-wall section sat
+          along with it every eyebrow and H2 on a logo-wall section sat
           at x=48 while every other section on the same page sat at x=96. On
           Home that jog was directly visible between "For meeting planners" and
           "Client roster". The head now uses the standard container, so the
@@ -198,7 +207,6 @@ export function LogoWall({
                   <Heading
                     level={level}
                     size="2xl"
-                    folio={folio}
                     id={headingId}
                     className="dm-logowall__title"
                   >
