@@ -23,9 +23,11 @@ import { contact, podcasts, socials } from '@/content/site';
 import { testimonialsFor } from '@/content/testimonials';
 import {
   buildBreadcrumbListSchema,
+  buildBusinessOfAgricultureEpisodeSchema,
   buildBusinessOfAgricultureSchema,
 } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
+import { getLatestEpisode } from '@/lib/podcast-feed';
 
 import styles from './page.module.css';
 import { imageAlt } from '@/content/image-alt';
@@ -67,6 +69,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     'Smart talk about the business of food, fuel, and fiber. New episodes every Monday, more than 40,000 listeners a month, and opinions Damian won’t soften.',
   path: ROUTE,
+  rss: show.rss,
   image: {
     url: brandAssets.businessOfAgriculturePodcast,
     width: 800,
@@ -75,14 +78,23 @@ export const metadata: Metadata = buildMetadata({
   },
 });
 
-export default function BusinessOfAgriculturePage() {
+export default async function BusinessOfAgriculturePage() {
   const listenerQuotes = testimonialsFor(ROUTE);
+  const latestEpisode = await getLatestEpisode();
 
   return (
     <>
       <JsonLd
         schema={[
           buildBusinessOfAgricultureSchema(),
+          buildBusinessOfAgricultureEpisodeSchema({
+            title: latestEpisode.title,
+            description: latestEpisode.summary,
+            url: latestEpisode.episodeUrl,
+            publishedAt: latestEpisode.publishedAt,
+            episodeNumber: latestEpisode.episodeNumber,
+            duration: latestEpisode.duration,
+          }),
           buildBreadcrumbListSchema([
             { name: 'Home', path: '/' },
             { name: 'Podcasts', path: '/podcasts/' },
@@ -137,7 +149,6 @@ export default function BusinessOfAgriculturePage() {
                   rel="noopener noreferrer"
                 >
                   Listen on Apple Podcasts
-                  <span className="sr-only"> (opens in a new tab)</span>
                 </Button>
                 <Button
                   href={show.spotify}
@@ -147,7 +158,6 @@ export default function BusinessOfAgriculturePage() {
                   rel="noopener noreferrer"
                 >
                   Listen on Spotify
-                  <span className="sr-only"> (opens in a new tab)</span>
                 </Button>
               </div>
             </div>
@@ -191,33 +201,19 @@ export default function BusinessOfAgriculturePage() {
           </div>
 
           <EpisodeCard
-            title="Will the Great American Cotton Plan Save U.S. Cotton?"
-            date="2026-08-03"
+            title={latestEpisode.title}
+            href={latestEpisode.episodeUrl}
+            date={latestEpisode.publishedAt}
+            duration={latestEpisode.duration}
+            episodeNumber={latestEpisode.episodeNumber}
             show="The Business of Agriculture"
             headingLevel={3}
             layout="stacked"
-            description={
-              <>
-                <p>
-                  $2.6 billion. That’s what U.S. cotton growers stand to lose this year
-                  according to USDA, the fifth straight year of red ink for the industry. The
-                  Great American Cotton Plan, announced in May 2026, aims to change the
-                  economics of American cotton. In short, we’ve lost acres, we’ve lost
-                  infrastructure, and the producers have lost money. Plains Cotton Growers CEO,
-                  Kody Bessent joins cotton farmers Todd Kimbrell and Matt Miles. Along with
-                  Damian, they discuss: cotton’s current financial condition, how they see the
-                  new initiative impacting farmers, consumer apparel issues, and the promise of
-                  renewed cotton demand’s effect on rural communities.
-                </p>
-                <p>
-                  A major component of the new cotton promotion ties to the fiber’s
-                  natural-ness. American consumers discard more than 70 pounds of apparel each
-                  year, nearly three fourths of which is made from petroleum based material.
-                  Will all this bode as a positive for one of America’s original cash crops?
-                </p>
-              </>
-            }
-            platformLinks={[{ label: 'Episode details on Libsyn', href: show.showPage }]}
+            description={latestEpisode.summary}
+            platformLinks={[
+              { label: 'Apple Podcasts', href: show.apple },
+              { label: 'Spotify', href: show.spotify },
+            ]}
           />
 
           {/* The old page shipped "Episode Details" and "All Episodes" as two
@@ -299,7 +295,6 @@ export default function BusinessOfAgriculturePage() {
                   rel="noopener noreferrer"
                 >
                   {platform.label}
-                  <span className="sr-only"> (opens in a new tab)</span>
                 </Button>
               </li>
             ))}
@@ -373,7 +368,6 @@ export default function BusinessOfAgriculturePage() {
                 rel="noopener noreferrer"
               >
                 Watch at XtremeAg
-                <span className="sr-only"> (opens in a new tab)</span>
               </Button>
             </li>
 
@@ -401,7 +395,6 @@ export default function BusinessOfAgriculturePage() {
                 rel="noopener noreferrer"
               >
                 Listen at XtremeAg
-                <span className="sr-only"> (opens in a new tab)</span>
               </Button>
             </li>
           </ul>

@@ -273,6 +273,50 @@ export function buildBusinessOfAgricultureSchema(): JsonLdDocument {
   });
 }
 
+export type PodcastEpisodeSchemaInput = {
+  title: string;
+  description: string;
+  url: string;
+  publishedAt: string;
+  episodeNumber?: string;
+  duration?: string;
+};
+
+function podcastDuration(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  const parts = value.split(':');
+  if (parts.length < 2 || parts.length > 3 || !parts.every((part) => /^\d+$/.test(part))) {
+    return undefined;
+  }
+  const [hours, minutes, seconds] =
+    parts.length === 3 ? parts.map(Number) : [0, Number(parts[0]), Number(parts[1])];
+  return `PT${hours ? `${hours}H` : ''}${minutes}M${seconds}S`;
+}
+
+export function buildBusinessOfAgricultureEpisodeSchema({
+  title,
+  description,
+  url,
+  publishedAt,
+  episodeNumber,
+  duration,
+}: PodcastEpisodeSchemaInput): JsonLdDocument {
+  return {
+    '@context': CONTEXT,
+    '@type': 'PodcastEpisode',
+    '@id': `${url}#episode`,
+    name: title,
+    description,
+    url,
+    datePublished: publishedAt,
+    ...(episodeNumber ? { episodeNumber } : {}),
+    ...(podcastDuration(duration) ? { timeRequired: podcastDuration(duration) } : {}),
+    partOfSeries: { '@id': `${canonicalUrl('/the-business-of-agriculture/')}#podcast` },
+    author: personRef,
+    publisher: organizationRef,
+  };
+}
+
 /** Do Business Better. The back catalogue lives on SoundCloud. */
 export function buildDoBusinessBetterSchema(): JsonLdDocument {
   const show = podcasts.doBusinessBetter;

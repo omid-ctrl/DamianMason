@@ -19,8 +19,6 @@ const isDev = process.env.NODE_ENV === 'development';
  *
  * Every origin below is one this site actually contacts. They are, in full:
  *
- *   i.ytimg.com                  YouTube's poster stills, behind the video
- *                                facade in components/sections/VideoEmbed.tsx.
  *   www.youtube-nocookie.com     The player iframe, mounted only after a
  *                                visitor presses play.
  *   play.libsyn.com              The podcast player on
@@ -57,14 +55,14 @@ const CSP_DIRECTIVES: Array<[string, string[]]> = [
   ['object-src', ["'none'"]],
   // The modern half of X-Frame-Options. Both ship; see SECURITY_HEADERS.
   ['frame-ancestors', ["'none'"]],
-  // The newsletter is the only form on the site, and Mailchimp is the only
-  // place it may post to.
+  // Inquiries post to this origin; newsletter signups post directly to the
+  // existing Mailchimp audience.
   ['form-action', ["'self'", 'https://damianmason.us13.list-manage.com']],
   ['script-src', ["'self'", "'unsafe-inline'", ...(isDev ? ["'unsafe-eval'"] : [])]],
   // next/font and the two <noscript> style blocks in VideoEmbed are inline.
   ['style-src', ["'self'", "'unsafe-inline'"]],
   // data: covers the wordmark that app/opengraph-image.tsx inlines.
-  ['img-src', ["'self'", 'data:', 'blob:', 'https://i.ytimg.com', 'https://i9.ytimg.com']],
+  ['img-src', ["'self'", 'data:', 'blob:']],
   ['font-src', ["'self'"]],
   // The three self-hosted demo reels in public/video.
   ['media-src', ["'self'"]],
@@ -172,30 +170,7 @@ const nextConfig: NextConfig = {
   distDir: qaDistDir || '.next',
   ...(qaDistDir ? { typescript: { ignoreBuildErrors: true } } : {}),
   trailingSlash: true,
-  images: {
-    formats: ['image/avif', 'image/webp'],
-    /**
-     * YouTube's poster host.
-     *
-     * Today nothing here needs it: the posters in
-     * components/sections/VideoEmbed.tsx are plain <img> tags, chosen because
-     * the facade already fixes the frame with aspect-ratio so there is no
-     * layout shift for next/image to buy back, and verified as such rather
-     * than assumed. An `<Image src="https://i.ytimg.com/...">` without this
-     * entry does not degrade, it throws: the optimizer answers 400 and the
-     * poster is simply gone in production while looking fine in a dev server
-     * that was started before the URL was added.
-     *
-     * The entry is here so that swapping one of those tags for next/image
-     * later is a one-line change that works, instead of a one-line change that
-     * ships a broken page. It permits reading two paths on one host and
-     * nothing else.
-     */
-    remotePatterns: [
-      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
-      { protocol: 'https', hostname: 'i9.ytimg.com', pathname: '/vi/**' },
-    ],
-  },
+  images: { formats: ['image/avif', 'image/webp'] },
   /**
    * Set on every response, including the static HTML Vercel serves from its
    * CDN. See SECURITY_HEADERS above for what each one buys.
@@ -234,20 +209,32 @@ const nextConfig: NextConfig = {
          No trailing slash on `source`, matching every rule above, because
          trailingSlash: true handles it. */
       { source: '/author/damianmasonstg', destination: '/about/', statusCode: 301 },
-      { source: '/category/uncategorized', destination: '/blog/', statusCode: 301 },
+      { source: '/category/uncategorized', destination: '/blog-news/', statusCode: 301 },
 
       // Both posts move under /blog/. The first shipped on WordPress's default
       // slug and was never renamed.
       {
         source: '/hello-world',
-        destination: '/blog/eggflation-gives-producers-record-profits/',
+        destination: '/blog-news/#san-eggflation-record-profits',
         statusCode: 301,
       },
       {
         source: '/how-the-climate-crisis-is-causing-food-shortages-globally',
-        destination: '/blog/how-the-climate-crisis-is-causing-food-shortages-globally/',
+        destination: '/blog-news/#cheddar-climate-food-shortages',
         statusCode: 301,
       },
+      {
+        source: '/blog/eggflation-gives-producers-record-profits',
+        destination: '/blog-news/#san-eggflation-record-profits',
+        statusCode: 301,
+      },
+      {
+        source: '/blog/how-the-climate-crisis-is-causing-food-shortages-globally',
+        destination: '/blog-news/#cheddar-climate-food-shortages',
+        statusCode: 301,
+      },
+      { source: '/blog', destination: '/blog-news/', statusCode: 301 },
+      { source: '/blog/:path*', destination: '/blog-news/', statusCode: 301 },
     ];
   },
 };

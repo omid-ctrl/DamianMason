@@ -142,3 +142,6 @@
 .heroFocus :global(.dm-photo--portrait) :global(.dm-photo__img) {
   object-position: 63% 22%;
 }
+.latestEpisode {
+  margin-block-start: var(--space-8);
+}

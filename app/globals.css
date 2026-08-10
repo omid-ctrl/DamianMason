@@ -1239,7 +1239,7 @@
       border: 0;
     }
   }
-  @media (min-width: 64rem) {
+  @media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
     .dm-masthead__menu { display: none; }
   }
 
@@ -1260,7 +1260,7 @@
 
   /* --- the desktop nav ------------------------------------------------------ */
   .dm-nav { display: none; }
-  @media (min-width: 64rem) {
+  @media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
     .dm-nav {
       display: block;
       flex: 1 1 auto;
@@ -1413,7 +1413,7 @@
        sticky opaque foot is a plate over the bottom of the list. */
     overflow: hidden;
   }
-  @media (min-width: 64rem) {
+  @media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
     .dm-menu { display: none; }
   }
   /* 768 to 1023 is the one band where this sheet IS the site's navigation and
@@ -1775,6 +1775,20 @@
     font-size: var(--fs-2xs);
     letter-spacing: var(--ls-wide);
     line-height: var(--lh-loose);
+  }
+  .dm-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-family: var(--family-mono);
+    font-size: var(--fs-2xs);
+    letter-spacing: var(--ls-wide);
+  }
+  .dm-footer__legal a {
+    color: var(--ink-muted);
+  }
+  .dm-footer__legal a:hover {
+    color: var(--ink-primary);
   }
   /* The folio is an Eyebrow rendered as a paragraph, so it already carries the
      mono treatment. This only holds the margin at zero if the reset ever

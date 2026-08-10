@@ -92,9 +92,9 @@ const DESTINATIONS: readonly Destination[] = [
   },
   {
     href: '/blog-news/',
-    label: 'Blog and News',
+    label: 'Media',
     blurb:
-      'Damian writing in his own words, plus the press, columns and appearances the industry has run.',
+      'Press, columns, broadcast clips, and appearances, kept together on one media shelf.',
   },
   {
     href: '/contact-us/',

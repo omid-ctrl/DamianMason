@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 
 import { Button, Heading, cx } from '@/components/ui';
@@ -8,14 +9,20 @@ import {
   CONTACT_FIELDS,
   CONTACT_HONEYPOT_FIELD,
   CONTACT_LIMITS,
+  INQUIRY_DATE_LABELS,
+  INQUIRY_LABELS,
+  INQUIRY_MESSAGE_HELP,
+  INQUIRY_TYPES,
   contactPlainText,
   contactSubject,
   emptyContactValues,
+  isInquiryType,
   validateContact,
   type ContactField,
   type ContactFieldErrors,
   type ContactResponse,
   type ContactValues,
+  type InquiryType,
 } from '@/lib/contact';
 
 /* ============================================================================
@@ -69,6 +76,8 @@ export type ContactFormProps = {
   idPrefix?: string;
   /** Labels the <form> for assistive tech. Pass the id of the section heading. */
   labelledBy?: string;
+  /** Preselects the route's intent while keeping the selector editable. */
+  initialInquiryType?: InquiryType;
   className?: string;
 };
 
@@ -211,9 +220,12 @@ function Field({
 export function ContactForm({
   idPrefix = 'contact-form',
   labelledBy,
+  initialInquiryType,
   className,
 }: ContactFormProps) {
-  const [values, setValues] = useState<ContactValues>(emptyContactValues);
+  const [values, setValues] = useState<ContactValues>(() =>
+    emptyContactValues(initialInquiryType),
+  );
   const [errors, setErrors] = useState<ContactFieldErrors>({});
   const [phase, setPhase] = useState<Phase>('editing');
   const [status, setStatus] = useState<Status>(NO_STATUS);
@@ -234,6 +246,11 @@ export function ContactForm({
   });
 
   const busy = phase === 'submitting';
+  const selectedInquiry = isInquiryType(values.inquiryType) ? values.inquiryType : undefined;
+  const dateLabel = selectedInquiry ? INQUIRY_DATE_LABELS[selectedInquiry] : undefined;
+  const messageHelp = selectedInquiry
+    ? INQUIRY_MESSAGE_HELP[selectedInquiry]
+    : 'Choose an inquiry type above and we’ll tell you what is most useful to include.';
 
   function updateField(name: ContactField, next: string) {
     setValues((current) => ({ ...current, [name]: next }));
@@ -246,6 +263,13 @@ export function ContactForm({
       delete remaining[name];
       return remaining;
     });
+  }
+
+  function updateInquiry(next: string) {
+    updateField('inquiryType', next);
+    if (!isInquiryType(next) || !INQUIRY_DATE_LABELS[next]) {
+      updateField('eventDate', '');
+    }
   }
 
   function failToFallback() {
@@ -415,9 +439,44 @@ export function ContactForm({
       noValidate
     >
       <p className="dm-field__help">
-        This goes to the same inbox as the address above. The more of the list in No. 02 you put in
-        the message, the fewer rounds it takes.
+        Pick the reason first. The form will ask only for the details that help the office answer.
       </p>
+
+      <div className="dm-form__fields">
+        <div className="dm-field">
+          <label className="dm-field__label" htmlFor={`${idPrefix}-inquiryType`}>
+            What are you reaching out about?{' '}
+            <span className="dm-field__required" aria-hidden="true">
+              Required
+            </span>
+          </label>
+          <select
+            className="dm-field__control"
+            id={`${idPrefix}-inquiryType`}
+            name="inquiryType"
+            value={values.inquiryType}
+            disabled={busy}
+            required
+            aria-invalid={errors.inquiryType ? true : undefined}
+            aria-describedby={
+              errors.inquiryType ? `${idPrefix}-inquiryType-error` : undefined
+            }
+            onChange={(event) => updateInquiry(event.target.value)}
+          >
+            <option value="">Choose one</option>
+            {INQUIRY_TYPES.map((type) => (
+              <option key={type} value={type}>
+                {INQUIRY_LABELS[type]}
+              </option>
+            ))}
+          </select>
+          {errors.inquiryType ? (
+            <span className="dm-field__error" id={`${idPrefix}-inquiryType-error`}>
+              {errors.inquiryType}
+            </span>
+          ) : null}
+        </div>
+      </div>
 
       <div className="dm-form__fields dm-form__fields--pair">
         <Field
@@ -477,20 +536,22 @@ export function ContactForm({
         />
       </div>
 
-      <div className="dm-form__fields">
-        <Field
-          idBase={idPrefix}
-          name="eventDate"
-          label="Event date"
-          value={values.eventDate}
-          onChange={updateField}
-          disabled={busy}
-          error={errors.eventDate}
-          help="Optional, and the first thing checked. If you have a window rather than a day, put the window in the message."
-          type="date"
-          autoComplete="off"
-        />
-      </div>
+      {dateLabel ? (
+        <div className="dm-form__fields">
+          <Field
+            idBase={idPrefix}
+            name="eventDate"
+            label={dateLabel}
+            value={values.eventDate}
+            onChange={updateField}
+            disabled={busy}
+            error={errors.eventDate}
+            help="Optional. If you have a window rather than a day, put the window in the message."
+            type="date"
+            autoComplete="off"
+          />
+        </div>
+      ) : null}
 
       <div className="dm-form__fields">
         <Field
@@ -501,7 +562,7 @@ export function ContactForm({
           onChange={updateField}
           disabled={busy}
           error={errors.message}
-          help="The city, who’s in the room and how many, the slot you’re filling, and your budget."
+          help={messageHelp}
           required
           multiline
           maxLength={CONTACT_LIMITS.messageMax}
@@ -548,6 +609,10 @@ export function ContactForm({
         <Button type="submit" variant="primary" disabled={busy}>
           {busy ? 'Sending' : 'Send it'}
         </Button>
+        <p className="dm-field__help">
+          See how this form and the newsletter handle information in the{' '}
+          <Link href="/privacy/">privacy notice</Link>.
+        </p>
       </div>
     </form>
   );

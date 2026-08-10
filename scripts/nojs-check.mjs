@@ -194,11 +194,11 @@ const facadeBad = results.reduce((n, r) => n + r.deadFacades.length, 0);
  * The reachability count is only meaningful against a known total. Without
  * this floor a route that stopped rendering its videos altogether would pass
  * the sweep by having nothing left to fail, which is how a regression hides.
- * 18 figures across the 19 routes: 4 on /, 3 on /keynote/, 4 on /reviews/,
- * 3 on /collaboration-opportunities/, 3 on /blog-news/, 1 on the climate post.
+ * 11 figures across the current routes: 1 on /, 3 on /keynote/, 4 on
+ * /reviews/, and 3 on /blog-news/.
  * Raise it when a route gains a video; never lower it to make the sweep pass.
  */
-const EXPECTED_VIDEOS = 18;
+const EXPECTED_VIDEOS = 11;
 const countShort = videoTotal < EXPECTED_VIDEOS;
 
 console.log(`\nVIDEOS: ${videoTotal - videoBad}/${videoTotal} reachable with JS off`);

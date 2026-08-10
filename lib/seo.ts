@@ -100,6 +100,8 @@ export type BuildMetadataInput = {
    * "Damian Mason, Business Agriculture | Damian Mason".
    */
   titleIsAbsolute?: boolean;
+  /** Optional RSS alternate for a podcast-led page. */
+  rss?: string;
 };
 
 /**
@@ -155,6 +157,7 @@ export function buildMetadata({
   type = 'website',
   noIndex = false,
   titleIsAbsolute = false,
+  rss,
 }: BuildMetadataInput): Metadata {
   const url = canonicalUrl(path);
   const resolvedTitle = titleIsAbsolute ? title : applyTitleTemplate(title);
@@ -166,6 +169,7 @@ export function buildMetadata({
     description,
     alternates: {
       canonical: url,
+      ...(rss ? { types: { 'application/rss+xml': rss } } : {}),
     },
     // Index and follow everywhere, with the previews Google will actually
     // render. The old site's WooCommerce disallows died with the store.

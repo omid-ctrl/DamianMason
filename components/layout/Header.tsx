@@ -49,8 +49,8 @@ import { PrimaryNav } from './PrimaryNav';
  * Persistent chrome earns findability from position and persistence. The page
  * body earns it from color. Do not change this to `primary`.
  */
-const BOOKING_HREF = '/contact-us/';
-const BOOKING_LABEL = 'Book Damian';
+const BOOKING_HREF = '/collaboration-opportunities/';
+const BOOKING_LABEL = 'Sponsor the Show';
 
 export type HeaderProps = {
   /** Defaults to the tree in content/site.ts. Injectable for a test render. */

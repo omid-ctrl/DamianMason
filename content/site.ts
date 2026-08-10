@@ -65,34 +65,8 @@ export type NavItem = {
   children?: NavItem[];
 };
 
-/**
- * The live site's information architecture, with two deliberate changes.
- *
- * 1. The three dropdown parents that carry `href=""` today (Speaking,
- *    Podcasts, Media) resolve to real hub pages.
- * 2. Blog moves from a top-level item into the Media dropdown. On the old nav
- *    it sat at position 5, immediately beside the Media parent whose only
- *    real child was `/blog-news/`, so the two blog-ish destinations were
- *    presented as unrelated peers. It is the one route on the site that costs
- *    a reader one more interaction than it used to, and the trade is recorded
- *    in docs/CONTENT_MANIFEST.md rather than made quietly.
- */
+/** The compact primary IA. Detail pages remain available from their hubs. */
 export const nav: NavItem[] = [
-  {
-    label: 'Speaking',
-    href: '/speaking/',
-    children: [
-      { label: 'Keynote', href: '/keynote/' },
-      { label: 'Testimonials', href: '/reviews/' },
-      { label: 'Meeting Coordinators', href: '/meeting-coordinators/' },
-      { label: 'Collaboration Opportunities', href: '/collaboration-opportunities/' },
-      /* The one route added after the rebuild shipped. It is NOT called a media
-         kit: the client asked for both Media Kit links removed, and
-         docs/QA_REPORT.md asserts zero rendered hits for that phrase. */
-      { label: 'Speaker One-Sheet', href: '/speaker-one-sheet/' },
-    ],
-  },
-  { label: 'The Business of Ag Success Group', href: '/boasg/' },
   {
     label: 'Podcasts',
     href: '/podcasts/',
@@ -102,17 +76,23 @@ export const nav: NavItem[] = [
       { label: 'XtremeAg', href: '/xtreme-ag/' },
     ],
   },
+  { label: 'Newsletter', href: '/join-the-conversation/' },
+  { label: 'Ag Success Group', href: '/boasg/' },
   {
-    label: 'Media',
-    href: '/blog-news/',
+    label: 'Speaking',
+    href: '/speaking/',
     children: [
-      { label: 'Media', href: '/blog-news/' },
-      { label: 'Acres TV', href: '/acres-tv/' },
-      { label: 'Blog', href: '/blog/' },
+      { label: 'Keynote', href: '/keynote/' },
+      { label: 'Testimonials', href: '/reviews/' },
+      { label: 'Meeting Coordinators', href: '/meeting-coordinators/' },
+      /* The one route added after the rebuild shipped. It is NOT called a media
+         kit: the client asked for both Media Kit links removed, and
+         docs/QA_REPORT.md asserts zero rendered hits for that phrase. */
+      { label: 'Speaker One-Sheet', href: '/speaker-one-sheet/' },
     ],
   },
+  { label: 'Media', href: '/blog-news/' },
   { label: 'About', href: '/about/' },
-  { label: 'Contact Us', href: '/contact-us/' },
 ];
 
 export const podcasts = {

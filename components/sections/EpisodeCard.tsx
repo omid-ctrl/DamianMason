@@ -179,7 +179,6 @@ export function EpisodeCard({
                     rel="noopener noreferrer"
                   >
                     {link.label}
-                    <span className="sr-only"> (opens in a new tab)</span>
                   </Button>
                 </li>
               ))}

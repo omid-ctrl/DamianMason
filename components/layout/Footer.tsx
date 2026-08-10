@@ -127,6 +127,10 @@ export function Footer({ className, ...rest }: FooterProps) {
             <p className="dm-footer__copyright">
               {'©'} {year} {site.legalName}. All rights reserved.
             </p>
+            <nav className="dm-footer__legal" aria-label="Legal and contact">
+              <Link href="/contact-us/">Contact</Link>
+              <Link href="/privacy/">Privacy</Link>
+            </nav>
             <Eyebrow as="p" className="dm-footer__folio">
               {site.tagline}
             </Eyebrow>

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import { CTABand } from '@/components/sections/CTABand';
+import { EpisodeCard } from '@/components/sections/EpisodeCard';
 import { Hero } from '@/components/sections/Hero';
 import { SponsorWall } from '@/components/sections/SponsorWall';
 import { StatRow } from '@/components/sections/StatRow';
@@ -21,10 +22,12 @@ import { brandAssets, brandAssetsExtra } from '@/content/brand-assets';
 import { contact, podcasts } from '@/content/site';
 import {
   buildBreadcrumbListSchema,
+  buildBusinessOfAgricultureEpisodeSchema,
   buildBusinessOfAgricultureSchema,
   buildDoBusinessBetterSchema,
 } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
+import { getLatestEpisode } from '@/lib/podcast-feed';
 
 import styles from './page.module.css';
 import { imageAlt } from '@/content/image-alt';
@@ -43,6 +46,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     'Three shows, one host: The Business of Agriculture every Monday, Do Business Better, and Cutting the Curve with XtremeAg. Pick one and press play.',
   path: '/podcasts/',
+  rss: podcasts.businessOfAgriculture.rss,
 });
 
 /* The two audience figures are the ones the old site published: "more than
@@ -54,7 +58,6 @@ export const metadata: Metadata = buildMetadata({
    three, and the label says so. */
 const AUDIENCE_STATS: StatRowItem[] = [
   { value: '40,000', plus: true, label: 'Monthly listeners' },
-  { value: '70,000', plus: true, label: 'Business of Ag views and downloads' },
   { value: '3', label: 'Shows he hosts' },
 ];
 
@@ -136,12 +139,22 @@ const SHOWS: Show[] = [
   },
 ];
 
-export default function PodcastsPage() {
+export default async function PodcastsPage() {
+  const latestEpisode = await getLatestEpisode();
+
   return (
     <>
       <JsonLd
         schema={[
           buildBusinessOfAgricultureSchema(),
+          buildBusinessOfAgricultureEpisodeSchema({
+            title: latestEpisode.title,
+            description: latestEpisode.summary,
+            url: latestEpisode.episodeUrl,
+            publishedAt: latestEpisode.publishedAt,
+            episodeNumber: latestEpisode.episodeNumber,
+            duration: latestEpisode.duration,
+          }),
           buildDoBusinessBetterSchema(),
           buildBreadcrumbListSchema([
             { name: 'Home', path: '/' },
@@ -182,6 +195,35 @@ export default function PodcastsPage() {
            retelling, the hero deck's, and the cutline dropped its clause. */
         cutline="At the office. New Business of Agriculture episodes land every Monday."
       />
+
+      <Section id="latest" surface="sunken" aria-labelledby="latest-title">
+        <Container>
+          <div className={styles.head}>
+            <Eyebrow>Latest from the flagship</Eyebrow>
+            <Heading level={2} size="2xl" id="latest-title">
+              Start with this week’s conversation.
+            </Heading>
+          </div>
+          <EpisodeCard
+            className={styles.latestEpisode}
+            title={latestEpisode.title}
+            href={latestEpisode.episodeUrl}
+            date={latestEpisode.publishedAt}
+            duration={latestEpisode.duration}
+            episodeNumber={latestEpisode.episodeNumber}
+            show="The Business of Agriculture"
+            description={latestEpisode.summary}
+            artwork={brandAssets.businessOfAgriculturePodcast}
+            artworkAlt={imageAlt['/img/brand/business-of-agriculture-podcast.jpg']}
+            layout="row"
+            headingLevel={3}
+            platformLinks={[
+              { label: 'Apple Podcasts', href: boa.apple },
+              { label: 'Spotify', href: boa.spotify },
+            ]}
+          />
+        </Container>
+      </Section>
 
       <StatRow
         id="audience"
@@ -279,7 +321,6 @@ export default function PodcastsPage() {
                         rel="noopener noreferrer"
                       >
                         {platform.label}
-                        <span className="sr-only"> (opens in a new tab)</span>
                       </Button>
                     </li>
                   ))}
@@ -310,8 +351,9 @@ export default function PodcastsPage() {
         id="sponsors"
         surface="deep-alt"
         eyebrow="The Business of Agriculture"
-        title="Who already sponsors it"
-        intro="Ten companies pay to be in front of this audience every Monday: soil data, crop protection, biologicals, farm transition planning, ag investment. Their customers are the people already listening."
+        title="Brands that have sponsored it"
+        meta="Historical sponsor roster supplied by Damian Mason’s office"
+        intro="Soil data, crop protection, biologicals, farm transition planning, and ag investment brands have all used the flagship show to reach this audience."
       />
 
       <CTABand
@@ -341,7 +383,7 @@ export default function PodcastsPage() {
           value: '40,000',
           plus: true,
           label: 'Monthly listeners',
-          note: 'The Business of Agriculture runs more than 70,000 views and downloads a month.',
+          note: 'Published monthly audience for The Business of Agriculture.',
         }}
       />
     </>

@@ -13,6 +13,7 @@
  */
 
 export const CONTACT_FIELDS = [
+  'inquiryType',
   'name',
   'email',
   'phone',
@@ -20,6 +21,53 @@ export const CONTACT_FIELDS = [
   'eventDate',
   'message',
 ] as const;
+
+export const INQUIRY_TYPES = [
+  'podcast_sponsorship',
+  'podcast_guest',
+  'media_commentary',
+  'brand_partnership',
+  'speaking_event',
+  'coaching_consulting',
+  'boasg_membership',
+  'other',
+] as const;
+
+export type InquiryType = (typeof INQUIRY_TYPES)[number];
+
+export const INQUIRY_LABELS: Record<InquiryType, string> = {
+  podcast_sponsorship: 'Podcast sponsorship',
+  podcast_guest: 'Podcast guest pitch',
+  media_commentary: 'Media commentary',
+  brand_partnership: 'Brand partnership',
+  speaking_event: 'Speaking event',
+  coaching_consulting: 'Coaching or consulting',
+  boasg_membership: 'Ag Success Group membership',
+  other: 'Something else',
+};
+
+export const INQUIRY_MESSAGE_HELP: Record<InquiryType, string> = {
+  podcast_sponsorship: 'Include your objective, product or category, audience, and timing.',
+  podcast_guest: 'Include the show, topic, why its audience should care, and your timing.',
+  media_commentary: 'Include the outlet, subject, deadline, and whether it is live or recorded.',
+  brand_partnership: 'Include the format you have in mind, audience, objective, and timing.',
+  speaking_event: 'Include the city, audience size, slot you are filling, and budget.',
+  coaching_consulting: 'Include the team or business, the goal, and your timeline.',
+  boasg_membership: 'Include your membership question and a little about your business.',
+  other: 'Tell us what you want to make happen and when.',
+};
+
+export const INQUIRY_DATE_LABELS: Partial<Record<InquiryType, string>> = {
+  podcast_sponsorship: 'Desired start date',
+  podcast_guest: 'Recording or air date',
+  media_commentary: 'Deadline or air date',
+  brand_partnership: 'Desired start date',
+  speaking_event: 'Event date',
+};
+
+export function isInquiryType(value: string): value is InquiryType {
+  return (INQUIRY_TYPES as readonly string[]).includes(value);
+}
 
 export type ContactField = (typeof CONTACT_FIELDS)[number];
 
@@ -81,8 +129,9 @@ const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
  *  a country code all survive that test; "call me" does not. */
 const PHONE_DIGITS = /\d/g;
 
-export function emptyContactValues(): ContactValues {
+export function emptyContactValues(inquiryType: InquiryType | '' = ''): ContactValues {
   return {
+    inquiryType,
     name: '',
     email: '',
     phone: '',
@@ -109,6 +158,10 @@ function isRealCalendarDate(value: string): boolean {
  */
 export function validateContact(values: ContactValues): ContactFieldErrors {
   const errors: ContactFieldErrors = {};
+
+  if (!isInquiryType(values.inquiryType)) {
+    errors.inquiryType = 'Choose what you are reaching out about.';
+  }
 
   if (!values.name) {
     errors.name = 'We need a name to put on the reply.';
@@ -151,7 +204,10 @@ export function validateContact(values: ContactValues): ContactFieldErrors {
 /** The subject line the office sees, on both providers. */
 export function contactSubject(values: ContactValues): string {
   const who = values.organization || values.name;
-  return `Website inquiry: ${who}`;
+  const label = isInquiryType(values.inquiryType)
+    ? INQUIRY_LABELS[values.inquiryType].toLowerCase()
+    : 'general';
+  return `Website ${label} inquiry: ${who}`;
 }
 
 /**
@@ -160,10 +216,17 @@ export function contactSubject(values: ContactValues): string {
  * omitted rather than printed as empty labels.
  */
 export function contactPlainText(values: ContactValues): string {
-  const lines: string[] = [`Name: ${values.name}`, `Email: ${values.email}`];
+  const inquiry = isInquiryType(values.inquiryType)
+    ? INQUIRY_LABELS[values.inquiryType]
+    : 'Not selected';
+  const lines: string[] = [
+    `Inquiry type: ${inquiry}`,
+    `Name: ${values.name}`,
+    `Email: ${values.email}`,
+  ];
   if (values.phone) lines.push(`Phone: ${values.phone}`);
   if (values.organization) lines.push(`Organization: ${values.organization}`);
-  if (values.eventDate) lines.push(`Event date: ${values.eventDate}`);
+  if (values.eventDate) lines.push(`Relevant date: ${values.eventDate}`);
   lines.push('', values.message);
   return lines.join('\n');
 }

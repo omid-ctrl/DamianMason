@@ -15,6 +15,7 @@ const args = Object.fromEntries(
 );
 const outDir = args.out;
 const widths = (args.widths ?? '390,768,1440').split(',').map(Number);
+const base = (args.base ?? 'http://localhost:3100').replace(/\/$/, '');
 fs.mkdirSync(outDir, { recursive: true });
 
 const overflowIn = (page, w) =>
@@ -76,7 +77,7 @@ for (const width of widths) {
   // ---- 1. mobile menu sheet -------------------------------------------------
   {
     const page = await context.newPage();
-    await page.goto('http://localhost:3100/', { waitUntil: 'networkidle' });
+    await page.goto(`${base}/`, { waitUntil: 'networkidle' });
     await page.addStyleTag({ content: HIDE_DEV_OVERLAY });
     const toggle = page.locator('button.dm-masthead__menu').first();
     if (await toggle.count()) {
@@ -97,7 +98,7 @@ for (const width of widths) {
   // ---- 2. FAQ, every answer open -------------------------------------------
   {
     const page = await context.newPage();
-    await page.goto('http://localhost:3100/meeting-coordinators/', { waitUntil: 'networkidle' });
+    await page.goto(`${base}/meeting-coordinators/`, { waitUntil: 'networkidle' });
     await page.addStyleTag({ content: HIDE_DEV_OVERLAY });
     await page.evaluate(() => document.querySelectorAll('details.dm-faq__item').forEach((d) => (d.open = true)));
     await page.waitForTimeout(300);
@@ -112,7 +113,7 @@ for (const width of widths) {
   // ---- 3. newsletter form ---------------------------------------------------
   {
     const page = await context.newPage();
-    await page.goto('http://localhost:3100/join-the-conversation/', { waitUntil: 'networkidle' });
+    await page.goto(`${base}/join-the-conversation/`, { waitUntil: 'networkidle' });
     await page.addStyleTag({ content: HIDE_DEV_OVERLAY });
     const box = await page.locator('.dm-form').first().boundingBox();
     if (box) {

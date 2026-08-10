@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import type { Video } from '@/content/videos';
 import { Heading, cx } from '@/components/ui';
-import { VideoEmbed, type VideoCaptionTrack } from './VideoEmbed';
+import { VideoEmbed } from './VideoEmbed';
 
 export type VideoGridColumns = 1 | 2 | 3 | 4;
 
@@ -25,8 +25,6 @@ export type VideoGridProps = {
   showTitles?: boolean;
   /** Poster overrides, keyed by video id. */
   posters?: Record<string, string>;
-  /** Caption tracks for the MP4 items, keyed by video id. */
-  captions?: Record<string, VideoCaptionTrack>;
   /**
    * Per-route cutline overrides, keyed by video id. `VideoEmbed` already takes
    * a `cutline` and falls back to `video.description`; this is the way a grid
@@ -66,7 +64,6 @@ export function VideoGrid({
   headingLevel = 3,
   showTitles = true,
   posters,
-  captions,
   cutlines,
   label,
   className,
@@ -90,7 +87,7 @@ export function VideoGrid({
           <VideoEmbed
             video={video}
             poster={posters?.[video.id]}
-            captions={captions?.[video.id]}
+            captions={video.kind === 'mp4' ? video.captions : undefined}
             cutline={cutlines?.[video.id]}
           />
         </li>

@@ -403,6 +403,7 @@ export default function MeetingCoordinatorsPage() {
               Want to see him work before you sign? Every clip is on{' '}
               <a href={YOUTUBE} target="_blank" rel="noopener noreferrer">
                 Damian&rsquo;s YouTube channel
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
               . If your question isn’t answered above, email the office at{' '}
               <a href={MAILTO}>{contact.email}</a>.
