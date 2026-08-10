@@ -140,7 +140,6 @@ async function parseBody(request: Request): Promise<ParsedBody> {
       const raw: unknown = await request.json();
       if (!raw || typeof raw !== 'object') return null;
       const record = raw as Record<string, unknown>;
-      values.inquiryType = asString(record.inquiryType);
       values.name = asString(record.name);
       values.email = asString(record.email);
       values.phone = asString(record.phone);
@@ -155,7 +154,6 @@ async function parseBody(request: Request): Promise<ParsedBody> {
       contentType.includes('application/x-www-form-urlencoded')
     ) {
       const form = await request.formData();
-      values.inquiryType = asString(form.get('inquiryType'));
       values.name = asString(form.get('name'));
       values.email = asString(form.get('email'));
       values.phone = asString(form.get('phone'));
@@ -235,7 +233,6 @@ async function deliverWithWebhook(values: ContactValues): Promise<DeliveryResult
     receivedAt: new Date().toISOString(),
     subject,
     _subject: subject,
-    inquiryType: values.inquiryType,
     name: values.name,
     email: values.email,
     phone: values.phone,

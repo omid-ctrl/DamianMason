@@ -157,6 +157,7 @@ export default function DoBusinessBetterPodcastPage() {
               <div className="dm-hero__actions">
                 <Button href={show.soundcloud} variant="primary" size="lg" {...NEW_TAB_PROPS}>
                   Listen on SoundCloud
+                  <span className="sr-only">{NEW_TAB_NOTE}</span>
                 </Button>
                 <Button href="#subscribe" variant="secondary" size="lg">
                   Get new episodes
@@ -302,6 +303,7 @@ export default function DoBusinessBetterPodcastPage() {
           <div className="dm-section-close">
             <Button href={show.soundcloud} variant="secondary" {...NEW_TAB_PROPS}>
               All episodes on SoundCloud
+              <span className="sr-only">{NEW_TAB_NOTE}</span>
             </Button>
           </div>
         </Container>

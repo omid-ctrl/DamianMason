@@ -87,13 +87,7 @@ export function PressList({
         const thumb = thumbs ? item.thumb : undefined;
 
         return (
-          <Card
-            as="li"
-            variant="ruled"
-            key={item.id}
-            id={item.id}
-            className="dm-press__item"
-          >
+          <Card as="li" variant="ruled" key={item.id} className="dm-press__item">
             {/* The layout div rather than the Card itself, because .dm-card
                 sets flex-direction and it is declared after this file in the
                 cascade. Same shape and same reason as .dm-episode__layout. */}

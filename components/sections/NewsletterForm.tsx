@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import Link from 'next/link';
 import { newsletter } from '@/content/site';
 import { Button, Heading, cx } from '@/components/ui';
 
@@ -123,8 +122,7 @@ export function NewsletterForm({
             aria-describedby={emailHelpId}
           />
           <span className="dm-field__help" id={emailHelpId}>
-            Required. Unsubscribe from the bottom of any email. Mailchimp opens confirmation in
-            a new tab.
+            Required. Unsubscribe from the bottom of any email.
           </span>
         </div>
       </div>
@@ -154,9 +152,6 @@ export function NewsletterForm({
         >
           {submitLabel}
         </Button>
-        <p className="dm-field__help">
-          Read the <Link href="/privacy/">privacy notice</Link> for how this signup is handled.
-        </p>
       </div>
     </form>
   );

@@ -34,12 +34,16 @@ const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 const EXT_TIMEOUT = 25_000;
 
-/** Public routes come from the captured manifest, minus the retired blog
- *  shelf, plus routes added after that capture. */
+/** The 19 live URLs. Static routes come from the manifest routeMap; the two
+ *  posts come from the same slug list app/sitemap.ts declares. */
 const manifest = JSON.parse(fs.readFileSync('_source/manifest.json', 'utf8'));
+const BLOG_POST_SLUGS = [
+  'eggflation-gives-producers-record-profits',
+  'how-the-climate-crisis-is-causing-food-shortages-globally',
+];
 const ROUTES = [
-  ...Object.keys(manifest.routeMap).filter((r) => !r.includes('[') && r !== '/blog/'),
-  '/privacy/',
+  ...Object.keys(manifest.routeMap).filter((r) => !r.includes('[')),
+  ...BLOG_POST_SLUGS.map((s) => `/blog/${s}/`),
 ];
 
 /** Legacy paths that must still resolve. Kept in sync with next.config.ts by
@@ -55,16 +59,10 @@ const LEGACY_REDIRECTS = [
   ['/product-category/books', '/about/'],
   ['/podcast-2', '/podcasts/'],
   ['/join-mailing-list', '/join-the-conversation/'],
-  ['/hello-world', '/blog-news/#san-eggflation-record-profits'],
+  ['/hello-world', '/blog/eggflation-gives-producers-record-profits/'],
   [
     '/how-the-climate-crisis-is-causing-food-shortages-globally',
-    '/blog-news/#cheddar-climate-food-shortages',
-  ],
-  ['/blog', '/blog-news/'],
-  ['/blog/eggflation-gives-producers-record-profits', '/blog-news/#san-eggflation-record-profits'],
-  [
-    '/blog/how-the-climate-crisis-is-causing-food-shortages-globally',
-    '/blog-news/#cheddar-climate-food-shortages',
+    '/blog/how-the-climate-crisis-is-causing-food-shortages-globally/',
   ],
 ];
 

@@ -32,7 +32,7 @@ const OUT = path.resolve(
   args.out ?? 'docs/qa/a11y-report.json',
 );
 
-/** Every public route. Order matches the IA, not the filesystem. */
+/** The 18 routes. Order matches the IA, not the filesystem. */
 const ROUTES = [
   ['home', '/'],
   ['about', '/about/'],
@@ -48,10 +48,11 @@ const ROUTES = [
   ['xtreme-ag', '/xtreme-ag/'],
   ['blog-news', '/blog-news/'],
   ['acres-tv', '/acres-tv/'],
-  ['speaker-one-sheet', '/speaker-one-sheet/'],
+  ['blog', '/blog/'],
+  ['blog-eggflation', '/blog/eggflation-gives-producers-record-profits/'],
+  ['blog-climate-crisis', '/blog/how-the-climate-crisis-is-causing-food-shortages-globally/'],
   ['contact-us', '/contact-us/'],
   ['join-the-conversation', '/join-the-conversation/'],
-  ['privacy', '/privacy/'],
 ];
 
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 
 import {
   Card,
@@ -13,7 +12,6 @@ import {
   SocialIcon,
 } from '@/components/ui';
 import { ContactForm } from '@/components/sections/ContactForm';
-import { ContactFormFromQuery } from '@/components/sections/ContactFormFromQuery';
 import { CTABand } from '@/components/sections/CTABand';
 import { Hero } from '@/components/sections/Hero';
 import { NewsletterForm } from '@/components/sections/NewsletterForm';
@@ -252,7 +250,6 @@ export default function ContactUsPage() {
                     >
                       <SocialIcon name={social.icon} />
                       {social.label}
-                      <span className="sr-only"> (opens in a new tab)</span>
                     </a>
                   </li>
                 ))}
@@ -318,7 +315,7 @@ export default function ContactUsPage() {
           second sunken band here would run straight into No. 04's. The bright
           card is what separates this section from No. 02 above it, which is
           exactly the job it does for the newsletter panel at No. 05. */}
-      <Section id="inquiry" aria-labelledby="form-title">
+      <Section aria-labelledby="form-title">
         <Container>
           <div className="dm-grid12">
             <div className="dm-rail col-span-6 md:col-span-4">
@@ -328,14 +325,7 @@ export default function ContactUsPage() {
               </Heading>
             </div>
             <Card variant="bright" className="col-span-6 md:col-span-8">
-              <Suspense
-                fallback={<ContactForm idPrefix="contact-inquiry" labelledBy="form-title" />}
-              >
-                <ContactFormFromQuery
-                  idPrefix="contact-inquiry"
-                  labelledBy="form-title"
-                />
-              </Suspense>
+              <ContactForm idPrefix="contact-inquiry" labelledBy="form-title" />
             </Card>
           </div>
         </Container>

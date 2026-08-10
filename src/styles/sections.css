@@ -1064,6 +1064,3 @@
   font-size: var(--fs-xs);
   line-height: var(--lh-normal);
 }
-.dm-press__item {
-  scroll-margin-block-start: calc(var(--header-height-compact) + var(--space-5));
-}

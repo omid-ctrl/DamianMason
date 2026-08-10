@@ -1,6 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 import Link from 'next/link';
-import { isExternalHref, NEW_TAB_NOTE, NEW_TAB_PROPS } from '@/lib/links';
 import { cx } from './cx';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
@@ -77,11 +76,9 @@ export function Button(props: ButtonProps) {
       );
     }
 
-    const external = isExternalHref(anchorProps.href);
     return (
-      <a className={classes} {...anchorProps} {...(external ? NEW_TAB_PROPS : {})}>
+      <a className={classes} {...anchorProps}>
         {children}
-        {external ? <span className="sr-only">{NEW_TAB_NOTE}</span> : null}
       </a>
     );
   }

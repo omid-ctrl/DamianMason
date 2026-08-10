@@ -14,7 +14,18 @@ import { canonicalUrl } from '@/lib/seo';
  * to stay absent.
  */
 
-const REMOVED_CONTENT_ROUTES = ['/blog/', '/blog/[slug]'] as const;
+/** `routeMap` keys are route patterns, not URLs. `/blog/[slug]` is expanded. */
+const BLOG_POST_ROUTE = '/blog/[slug]';
+
+/**
+ * The two posts, in the order the manifest lists their source slugs. The first
+ * shipped on WordPress's default `hello-world` slug and is re-slugged here; the
+ * matching 301s live in `next.config.ts`.
+ */
+const BLOG_POST_SLUGS = [
+  'eggflation-gives-producers-record-profits',
+  'how-the-climate-crisis-is-causing-food-shortages-globally',
+] as const;
 
 /** Anything the store used to own. None of it comes back. */
 const REMOVED_COMMERCE_PREFIXES = [
@@ -52,10 +63,11 @@ const ROUTE_WEIGHTS: Record<string, RouteWeight> = {
   '/the-business-of-agriculture/': { changeFrequency: 'weekly', priority: 0.8 },
   '/podcasts/': { changeFrequency: 'monthly', priority: 0.7 },
   '/blog-news/': { changeFrequency: 'weekly', priority: 0.7 },
-  '/collaboration-opportunities/': { changeFrequency: 'monthly', priority: 0.9 },
-  '/privacy/': { changeFrequency: 'yearly', priority: 0.4 },
+  '/blog/': { changeFrequency: 'weekly', priority: 0.7 },
   '/join-the-conversation/': { changeFrequency: 'yearly', priority: 0.6 },
 };
+
+const BLOG_POST_WEIGHT: RouteWeight = { changeFrequency: 'yearly', priority: 0.5 };
 
 function isCommerceRoute(route: string): boolean {
   return REMOVED_COMMERCE_PREFIXES.some(
@@ -70,13 +82,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // would tell a crawler the whole site changed on every deploy.
   const lastModified = new Date(manifest.crawledAt);
 
-  const staticRoutes = [...Object.keys(routeMap), '/privacy/']
-    .filter((route, index, routes) => routes.indexOf(route) === index)
-    .filter((route) => !REMOVED_CONTENT_ROUTES.includes(route as (typeof REMOVED_CONTENT_ROUTES)[number]))
+  const postSourceCount = routeMap[BLOG_POST_ROUTE]?.from.length ?? 0;
+  if (postSourceCount !== BLOG_POST_SLUGS.length) {
+    throw new Error(
+      `Sitemap drift: _source/manifest.json lists ${postSourceCount} source posts for "${BLOG_POST_ROUTE}" but app/sitemap.ts declares ${BLOG_POST_SLUGS.length} slugs. Update BLOG_POST_SLUGS in app/sitemap.ts.`,
+    );
+  }
+
+  const staticRoutes = Object.keys(routeMap)
+    .filter((route) => route !== BLOG_POST_ROUTE)
     .filter((route) => !route.includes('['))
     .filter((route) => !isCommerceRoute(route));
 
-  return staticRoutes.map((route) => {
+  const entries: MetadataRoute.Sitemap = staticRoutes.map((route) => {
     const weight = ROUTE_WEIGHTS[route] ?? DEFAULT_WEIGHT;
     return {
       url: canonicalUrl(route),
@@ -85,4 +103,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: weight.priority,
     };
   });
+
+  for (const slug of BLOG_POST_SLUGS) {
+    entries.push({
+      url: canonicalUrl(`/blog/${slug}/`),
+      lastModified,
+      changeFrequency: BLOG_POST_WEIGHT.changeFrequency,
+      priority: BLOG_POST_WEIGHT.priority,
+    });
+  }
+
+  return entries;
 }

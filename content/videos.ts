@@ -44,9 +44,20 @@
  *       cwebp -q 78 -resize 640 360 -m 6 <frame>.jpg -o dm-<name>.webp
  *     Combined with `preload="none"`, a reel now costs 6KB to 18KB until
  *     someone presses play.
- *   - Each reel now carries a default English WebVTT captions track alongside
- *     its visual `description`. Keep both: the track covers spoken audio while
- *     the cutline gives the frame context that audio alone cannot convey.
+ *   - None of the three is captioned yet. `VideoEmbed` takes a `captions` prop
+ *     and the VTT is still owed. See scripts/captions.md for the three ways to
+ *     produce one and for why nothing was fabricated in the meantime.
+ *   - Until then, each reel's `description` is what a visitor who cannot hear
+ *     the audio gets, and it prints as the cutline under the frame. Every one
+ *     of them describes what the reel SHOWS and nothing it says: the venue, the
+ *     title card, the slides, and what is printed on them. Each was written
+ *     against frames sampled across the whole reel and read by eye, not
+ *     inferred from the file name. A description is not a caption and does not
+ *     satisfy WCAG SC 1.2.2, so do not let one become the reason the VTT never
+ *     gets ordered. If you edit these, re-sample the frames first: three of the
+ *     facts below are ones an earlier pass got wrong from memory. All three
+ *     reels are the same California Farm Bureau date, the same grey plaid coat
+ *     and lapel mic, and all three carry a white title card a few seconds in.
  *
  * `file` and `poster` are BOTH root-relative URLs served from `public/`. They
  * are the paths that actually ship, so a route renders a reel by handing the
@@ -71,21 +82,12 @@
  */
 export type VideoFraming = 'wide' | 'vertical';
 
-export type VideoCaptionTrack = {
-  src: string;
-  srcLang?: string;
-  label?: string;
-  isDefault?: boolean;
-};
-
 export type Video =
   | {
       id: string;
       kind: 'youtube';
       youtubeId: string;
       title: string;
-      /** Self-hosted facade image. Third-party poster hosts are never contacted. */
-      poster: string;
       description?: string;
       /** Defaults to 'wide'. */
       framing?: VideoFraming;
@@ -96,8 +98,7 @@ export type Video =
       kind: 'mp4';
       file: string;
       title: string;
-      poster: string;
-      captions: VideoCaptionTrack;
+      poster?: string;
       description?: string;
       /** Defaults to 'wide'. */
       framing?: VideoFraming;
@@ -111,7 +112,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 'yL33iAIS2K4',
     title: 'Life Changing!',
-    poster: '/img/video-posters/youtube/life-changing.webp',
     onPages: ['/'],
   },
   {
@@ -119,7 +119,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 'Tk8dPv_8Zo0',
     title: 'Rocked It In Saskatchewan!',
-    poster: '/img/video-posters/youtube/rocked-it-in-saskatchewan.webp',
     onPages: ['/'],
   },
   {
@@ -127,7 +126,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 'xmwijvcK1wY',
     title: 'MFA Emerging Leaders Conference',
-    poster: '/img/video-posters/youtube/mfa-emerging-leaders-conference.webp',
     onPages: ['/'],
   },
   {
@@ -135,7 +133,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 'jQAaQfcamVs',
     title: 'Do Business Better for Lindsay Corporation',
-    poster: '/img/video-posters/youtube/do-business-better-lindsay-corporation.webp',
     onPages: ['/'],
   },
 
@@ -153,7 +150,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 'iZ85SxLyykA',
     title: 'Hardwood Lumbermen’s Association recommends Damian Mason',
-    poster: '/img/video-posters/youtube/hardwood-lumbermens-association.webp',
     framing: 'vertical',
     onPages: ['/reviews/'],
   },
@@ -162,7 +158,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 't3iCvSKEyx0',
     title: 'Farm Credit Emerging Entrepreneurs Conference & Damian Mason',
-    poster: '/img/video-posters/youtube/farm-credit-emerging-entrepreneurs.webp',
     framing: 'vertical',
     onPages: ['/reviews/'],
   },
@@ -171,7 +166,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 'e79QDYxpJOE',
     title: 'Nutrien - a successful meeting!',
-    poster: '/img/video-posters/youtube/nutrien-a-successful-meeting.webp',
     framing: 'vertical',
     onPages: ['/reviews/'],
   },
@@ -180,7 +174,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 't6BkS7Eb9pE',
     title: 'The “Ations” of Agriculture & Ag’s Future',
-    poster: '/img/video-posters/youtube/ations-of-agriculture.webp',
     framing: 'vertical',
     onPages: ['/reviews/'],
   },
@@ -196,7 +189,6 @@ export const videos: Video[] = [
     youtubeId: 'M01PxhzRVFg',
     title:
       'Managing For The Future: A Candid Conversation with a 30 Year Old, 4th Gen Farmer',
-    poster: '/img/video-posters/youtube/managing-for-the-future.webp',
     onPages: ['/collaboration-opportunities/'],
   },
   {
@@ -204,7 +196,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 'csEaUJ52p3I',
     title: 'Survival Strategies For Small Business',
-    poster: '/img/video-posters/youtube/survival-strategies-for-small-business.webp',
     onPages: ['/collaboration-opportunities/'],
   },
 
@@ -214,7 +205,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: '5FUIE6Ks0Ok',
     title: 'Damian Mason Discussing Climate & Food Shortage Truth on CheddarNews',
-    poster: '/img/video-posters/youtube/cheddar-climate-food-shortage.webp',
     onPages: ['/blog-news/'],
   },
   {
@@ -223,7 +213,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: '-cmL21M1XF0',
     title: 'Interview with Eagle Country 95.9',
-    poster: '/img/video-posters/youtube/eagle-country-95-9-interview.webp',
     onPages: ['/blog-news/'],
   },
   {
@@ -231,7 +220,6 @@ export const videos: Video[] = [
     kind: 'youtube',
     youtubeId: 'Ngfdu0YdBY8',
     title: 'Damian Mason Discussing Wheat and Inflation of Food Prices on NewsmaxTV',
-    poster: '/img/video-posters/youtube/newsmax-wheat-and-inflation.webp',
     onPages: ['/blog-news/'],
   },
 
@@ -241,7 +229,6 @@ export const videos: Video[] = [
     kind: 'mp4',
     file: '/video/dm-food-waste-720p.mp4',
     poster: '/img/video-posters/dm-food-waste.webp',
-    captions: { src: '/video/captions/dm-food-waste.en.vtt', label: 'English', isDefault: true },
     title: 'Food Waste',
     description:
       'Eighty-nine seconds on the California Farm Bureau stage. A title card reads FOOD WASTE, then Damian works a darkened room in front of a slide that says the same thing.',
@@ -252,7 +239,6 @@ export const videos: Video[] = [
     kind: 'mp4',
     file: '/video/dm-labor-720p.mp4',
     poster: '/img/video-posters/dm-labor.webp',
-    captions: { src: '/video/captions/dm-labor.en.vtt', label: 'English', isDefault: true },
     title: 'Labor',
     description:
       'Sixty-nine seconds on the California Farm Bureau stage. A title card reads THE LABOR MARKET, then a slide headed “What If It Stays This Way?” On it, a restaurant door sign dated 7/11/2021: dining room closed, short staffed, drive thru open.',
@@ -264,7 +250,6 @@ export const videos: Video[] = [
     kind: 'mp4',
     file: '/video/dm-innovation-720p.mp4',
     poster: '/img/video-posters/dm-innovation.webp',
-    captions: { src: '/video/captions/dm-innovation.en.vtt', label: 'English', isDefault: true },
     title: 'Innovation',
     description:
       'Ninety-four seconds on the California Farm Bureau stage. A title card reads INNOVATION, then two slides. One is headed “Automate Faster?” over a crew hand harvesting a field. The other is “Ag Innovation from Outside Ag,” over the Tesla, Uber, and Lyft marks.',

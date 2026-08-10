@@ -81,7 +81,7 @@ const schema = [
 ];
 
 const CTA_ACTIONS = [
-  { label: 'Book Damian for a segment', href: '/contact-us/?intent=media_commentary#inquiry' },
+  { label: 'Contact the office', href: '/contact-us/' },
   {
     label: `Call ${contact.phone}`,
     href: contact.phoneHref,
@@ -127,10 +127,7 @@ export default function MediaPage() {
           feature: true,
         }}
         actions={[
-          {
-            label: 'Book Damian for a segment',
-            href: '/contact-us/?intent=media_commentary#inquiry',
-          },
+          { label: 'Book Damian for a segment', href: '/contact-us/' },
           { label: 'Watch the clips', href: '#segments', variant: 'secondary' },
         ] as const}
         cutline="When the price of eggs makes the national news, somebody has to explain why. Damian gets the call."
@@ -166,8 +163,8 @@ export default function MediaPage() {
                   or a producer looking for a guest who will say something, start here.
                 </p>
                 <p>
-                  Coverage, source links, and the two longer written stories now live together
-                  on this media shelf, so there is no second archive to search.
+                  Two of these also ran as posts on the{' '}
+                  <Link href="/blog/">blog</Link>.
                 </p>
               </Prose>
             </div>

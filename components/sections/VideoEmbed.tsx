@@ -21,21 +21,31 @@
  */
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import type { Video, VideoCaptionTrack } from '@/content/videos';
+import type { Video } from '@/content/videos';
 import { cx } from '@/components/ui';
 
-export type { VideoCaptionTrack } from '@/content/videos';
+export type VideoCaptionTrack = {
+  /** Path to a WebVTT file. */
+  src: string;
+  /** BCP 47 tag. Defaults to 'en'. */
+  srcLang?: string;
+  /** Shown in the browser's captions menu. */
+  label?: string;
+  /** Whether the track is on at load. Defaults to true. */
+  isDefault?: boolean;
+};
 
 export type VideoEmbedProps = {
   video: Video;
   /**
-   * Overrides the poster. Both video kinds otherwise use the self-hosted
-   * `video.poster` recorded in content/videos.ts.
+   * Overrides the poster. YouTube falls back to the still YouTube already
+   * hosts; an MP4 falls back to `video.poster`. One source MP4 currently ships
+   * with no poster at all, so this is a first-class prop, not an afterthought.
    */
   poster?: string;
   /**
-   * A captions track for the MP4 branch. Content records supply the default
-   * English track; the prop remains available to explicit call sites.
+   * A captions track for the MP4 branch. Also first-class: none of the three
+   * self-hosted files is captioned yet and a later phase adds the VTT.
    */
   captions?: VideoCaptionTrack;
   /** The cutline under the frame. Falls back to `video.description`. */
@@ -44,6 +54,12 @@ export type VideoEmbedProps = {
   loading?: 'lazy' | 'eager';
   className?: string;
 };
+
+/** The still YouTube serves for every video. 480 by 360, and cropping it to
+ *  16:9 removes exactly the letterbox bars it ships with. */
+function youtubePoster(youtubeId: string): string {
+  return `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
+}
 
 /** Attribute-safe. These strings are ours, not a visitor's, but the no-JS
  *  player is assembled as raw HTML and an unescaped apostrophe in a title
@@ -127,7 +143,7 @@ function noScriptYouTube(
     '<span class="dm-video__play" aria-hidden="true">' +
     '<svg viewBox="0 0 12 14" role="presentation" focusable="false"><path d="M0 0 L12 7 L0 14 Z"/></svg>' +
     `</span><span class="dm-video__nojs-label">Watch &ldquo;${attr(video.title)}&rdquo; on YouTube` +
-    ' (opens in a new tab)</span></a>'
+    '</span></a>'
   );
 }
 
@@ -167,7 +183,8 @@ export function VideoEmbed({
   }, [activated]);
 
   const caption = cutline ?? video.description;
-  const posterSrc = poster ?? video.poster;
+  const posterSrc =
+    poster ?? (video.kind === 'youtube' ? youtubePoster(video.youtubeId) : video.poster);
 
   /**
    * Only a captioned embed is a figure. Without a cutline the `<figure>` would
@@ -188,10 +205,11 @@ export function VideoEmbed({
       aria-label={`Play video: ${video.title}`}
     >
       {posterSrc ? (
-        /* eslint-disable-next-line @next/next/no-img-element -- these small,
-           self-hosted facade stills are already sized by aspect-ratio and are
-           mounted lazily. Both video kinds take the same path so their resting
-           frames stay identical. */
+        /* eslint-disable-next-line @next/next/no-img-element -- the YouTube
+           poster is a remote still, and next/image would need a remotePatterns
+           entry to serve a frame this component already sizes with
+           aspect-ratio, so there is no layout shift to buy back. The MP4
+           posters take the same path so both branches rest identically. */
         <img
           className="dm-video__poster"
           src={posterSrc}
