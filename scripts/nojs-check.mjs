@@ -54,6 +54,8 @@ for (const t of targets) {
       videos: 0,
       unreachableVideos: [],
       deadFacades: [],
+      audios: 0,
+      unreachableAudios: [],
     };
 
     /**
@@ -103,6 +105,28 @@ for (const t of targets) {
       // is not yet a route a visitor can reach.
       if (rendered(fig.querySelector('button.dm-video__facade'))) {
         out.deadFacades.push(name);
+      }
+    }
+
+    // Native audio must remain a real control with a direct first-party file
+    // when scripting is off. This is the archived Do Business Better episode,
+    // not a player facade, so there is no button to rescue it later.
+    for (const player of document.querySelectorAll('audio[controls]')) {
+      out.audios += 1;
+      const source = player.querySelector('source[src]')?.getAttribute('src') ??
+        player.getAttribute('src') ?? '';
+      const route = source ? new URL(source, document.baseURI) : null;
+      const transcript = [...(player.closest('[data-audio-archive]')?.querySelectorAll('a[href]') ?? [])]
+        .find((anchor) => /\.txt(?:[?#]|$)/i.test(anchor.getAttribute('href') ?? ''));
+      if (
+        !rendered(player) ||
+        !route ||
+        !/\.mp3(?:[?#]|$)/i.test(route.pathname) ||
+        !rendered(transcript)
+      ) {
+        out.unreachableAudios.push(
+          `${source || '(missing source)'}${transcript ? '' : ' (missing transcript)'}`,
+        );
       }
     }
     // Any element that directly holds visible text must actually be visible.
@@ -156,10 +180,11 @@ for (const t of targets) {
   results.push({ name: t.name, ...r });
   console.log(
     `${t.name.padEnd(34)} text:${String(r.textLength).padStart(6)} h1:${r.h1.length} h2/h3:${String(r.headings).padStart(3)}` +
-    ` revealAttrs:${r.revealAttrs} pending:${r.pending} video:${r.videos}` +
+    ` revealAttrs:${r.revealAttrs} pending:${r.pending} video:${r.videos} audio:${r.audios}` +
     (r.hiddenTextNodes.length ? `  HIDDEN:${r.hiddenTextNodes.length}` : '') +
     (r.offscreenTransformed.length ? `  SHIFTED:${r.offscreenTransformed.length}` : '') +
     (r.unreachableVideos.length ? `  UNREACHABLE-VIDEO:${r.unreachableVideos.length}` : '') +
+    (r.unreachableAudios.length ? `  UNREACHABLE-AUDIO:${r.unreachableAudios.length}` : '') +
     (r.countsWrong.length ? `  COUNT-DRIFT:${r.countsWrong.length}` : '') +
     (r.clipped.length ? `  CLIPPED:${r.clipped.length}` : '') +
     (r.deadFacades.length ? `  DEAD-FACADE:${r.deadFacades.length}` : ''),
@@ -167,6 +192,7 @@ for (const t of targets) {
   if (r.hiddenTextNodes.length) console.log('    ' + r.hiddenTextNodes.slice(0, 5).join('\n    '));
   if (r.offscreenTransformed.length) console.log('    ' + r.offscreenTransformed.slice(0, 5).join('\n    '));
   if (r.unreachableVideos.length) console.log('    unreachable: ' + r.unreachableVideos.join('\n    unreachable: '));
+  if (r.unreachableAudios.length) console.log('    unreachable audio: ' + r.unreachableAudios.join('\n    unreachable audio: '));
   if (r.deadFacades.length) console.log('    dead facade: ' + r.deadFacades.join('\n    dead facade: '));
   if (r.countsWrong.length) console.log('    count drift: ' + r.countsWrong.join('\n    count drift: '));
   if (r.clipped.length) console.log('    clipped with no controller: ' + r.clipped.join(', '));
@@ -183,29 +209,35 @@ const failures = results.filter(
     r.hiddenTextNodes.length > 0 ||
     r.offscreenTransformed.length > 0 ||
     r.unreachableVideos.length > 0 ||
+    r.unreachableAudios.length > 0 ||
     r.deadFacades.length > 0 ||
     r.textLength < 400,
 );
 const videoTotal = results.reduce((n, r) => n + r.videos, 0);
 const videoBad = results.reduce((n, r) => n + r.unreachableVideos.length, 0);
+const audioTotal = results.reduce((n, r) => n + r.audios, 0);
+const audioBad = results.reduce((n, r) => n + r.unreachableAudios.length, 0);
 const facadeBad = results.reduce((n, r) => n + r.deadFacades.length, 0);
 
 /**
  * The reachability count is only meaningful against a known total. Without
  * this floor a route that stopped rendering its videos altogether would pass
  * the sweep by having nothing left to fail, which is how a regression hides.
- * 18 figures across the 19 routes: 4 on /, 3 on /keynote/, 4 on /reviews/,
- * 3 on /collaboration-opportunities/, 3 on /blog-news/, 1 on the climate post.
- * Raise it when a route gains a video; never lower it to make the sweep pass.
+ * The floor covers every media figure across the 21 routes. The precise
+ * route-level count is reported above and must be raised when media is added;
+ * never lower it to make the sweep pass.
  */
 const EXPECTED_VIDEOS = 18;
 const countShort = videoTotal < EXPECTED_VIDEOS;
+const audioCountShort = audioTotal < 1;
 
 console.log(`\nVIDEOS: ${videoTotal - videoBad}/${videoTotal} reachable with JS off`);
+console.log(`AUDIO: ${audioTotal - audioBad}/${audioTotal} reachable with JS off`);
 if (facadeBad) console.log(`DEAD FACADES STILL PAINTED: ${facadeBad}`);
 if (countShort) {
   console.log(`VIDEO COUNT SHORT: found ${videoTotal}, expected at least ${EXPECTED_VIDEOS}`);
 }
+if (audioCountShort) console.log('AUDIO COUNT SHORT: expected the archived episode 144 player');
 console.log('FAILING ROUTES: ' + failures.length);
 for (const f of failures) console.log('  ' + f.name);
-process.exitCode = failures.length || countShort ? 1 : 0;
+process.exitCode = failures.length || countShort || audioCountShort ? 1 : 0;

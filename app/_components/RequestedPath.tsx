@@ -88,9 +88,9 @@ export function RequestedPath() {
       {commerce ? (
         <p className={styles.note}>
           That address belonged to the online store. The store is closed and nothing on this site is
-          for sale. The three books are still real: what they are and what is in them is on{' '}
-          <Link href="/about/#books">the About page</Link>. To buy one, or to ask about a bulk order
-          for an event, email the office.
+          for sale here. The three book editions are still real: what they are and what is in them is
+          in the <Link href="/books/">Books &amp; Resources library</Link>. To ask what is currently
+          available, email the office.
         </p>
       ) : null}
     </div>

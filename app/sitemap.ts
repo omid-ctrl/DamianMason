@@ -58,6 +58,7 @@ const ROUTE_WEIGHTS: Record<string, RouteWeight> = {
      because the facts on it are a thirty-year record and a phone number. */
   '/speaker-one-sheet/': { changeFrequency: 'yearly', priority: 0.9 },
   '/about/': { changeFrequency: 'monthly', priority: 0.8 },
+  '/books/': { changeFrequency: 'monthly', priority: 0.8 },
   '/reviews/': { changeFrequency: 'monthly', priority: 0.8 },
   '/boasg/': { changeFrequency: 'monthly', priority: 0.8 },
   '/the-business-of-agriculture/': { changeFrequency: 'weekly', priority: 0.8 },

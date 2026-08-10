@@ -166,14 +166,14 @@ export default function CollaborationOpportunitiesPage() {
            the Influencer card in No. 01 below, which is VOICE.md Pair 3. It ran
            here as well, so the same eight words opened two blocks on one page,
            and the ledger restated the number a third time. */
-        deck="Be a guest on the show. Sponsor an episode. Co-host a webinar, or put your brand in front of an Ag audience that buys. These are the real-world agriculture people you’re trying to reach, and they’re already listening."
+        deck="Be a guest on one of Damian’s current shows. Sponsor an episode. Feature him on your podcast, company meeting, webinar, live event, news, or media channel."
         actions={[{ label: 'Work with Damian', href: CONTACT }]}
         image={{
           src: '/img/photos/portrait-charcoal-jacket.jpg',
           alt: imageAlt['/img/photos/portrait-charcoal-jacket.jpg'],
           width: 1333,
           height: 2000,
-          priority: true,
+          preload: true,
           feature: true,
         }}
         cutline="Purdue Ag Econ degree, Second City Chicago, and a farm in Indiana. The economist argues the numbers and the comedian keeps the room awake."
@@ -212,7 +212,7 @@ export default function CollaborationOpportunitiesPage() {
            countries"), so it ran twice on one page. The reader here is a
            prospective sponsor, so the prose says which figures they are
            actually buying. */
-        restatement="You’re buying two of these four. The stage figures are why the audience trusts him. The podcast figure is how many of them hear your brand every month."
+        restatement="The speaking record and monthly podcast audience are the two established channels available to prospective collaborators."
       />
 
       {/* ====================================================================
@@ -238,10 +238,10 @@ export default function CollaborationOpportunitiesPage() {
               </Heading>
               <Prose measure="full">
                 <p>
-                  Damian hosts three shows and runs the{' '}
-                  <Link href="/boasg/">Business of Ag Success Group</Link>. He books guests for
-                  his own shows, and he says yes to other people’s. Want your story in
-                  front of an audience that already works in your business?
+                  Damian&rsquo;s current podcast and video roster has four formats: The
+                  Business of Agriculture, Do Business Better, XtremeAg, and UPROOTED. He
+                  also runs the <Link href="/boasg/">Business of Ag Success Group</Link>,
+                  books guests for his own programs, and joins other people&rsquo;s.
                 </p>
               </Prose>
               <div className={styles.cardAction}>
@@ -279,9 +279,9 @@ export default function CollaborationOpportunitiesPage() {
               </Heading>
               <Prose measure="full">
                 <p>
-                  More than 40,000 people listen every month, and they work in the
-                  business you sell into. If your brand belongs in front of them, say so
-                  and we’ll talk.
+                  More than 40,000 people listen every month. Featured guest,
+                  sponsorship, and promotional opportunities can raise awareness of a
+                  brand&rsquo;s message across Damian&rsquo;s programming.
                 </p>
               </Prose>
             </Card>
@@ -468,8 +468,8 @@ export default function CollaborationOpportunitiesPage() {
                 />
               </div>
               <figcaption className="dm-figure__caption">
-                Growers, agronomists, and ag lenders. This is the room a sponsorship puts
-                you in front of. Damian is the one with his back to the camera.
+                Damian speaking to a live audience. He is the one with his back to the
+                camera.
               </figcaption>
             </figure>
           </div>
@@ -493,9 +493,10 @@ export default function CollaborationOpportunitiesPage() {
           </div>
           <Prose className={styles.headIntro}>
             <p>
-              All three of these came in after a live event, not a podcast. It’s the same
-              prep either way. Ten more, plus four on video, are on the{' '}
-              <Link href="/reviews/">reviews page</Link>.
+              These three came in after live events, not podcasts. The{' '}
+              <Link href="/reviews/">reviews page</Link> brings together all fifteen
+              written speaking testimonials and the four videos carried on the original
+              reviews page.
             </p>
           </Prose>
 

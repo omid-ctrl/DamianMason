@@ -110,21 +110,16 @@ export function Header({ items = nav, className }: HeaderProps) {
               width={800}
               height={199}
               sizes="(min-width: 80rem) 15rem, 10.5rem"
-              /* Eager, because the mark is above the fold on all 19 routes, but
-                 deliberately NOT `priority`. LCP was measured on every route
+              /* Eager, because the mark is above the fold on all 20 routes, but
+                 deliberately NOT preloaded. LCP was measured on every route
                  against a production build and the wordmark is the LCP element
                  on none of them: it is always either the H1 or the hero
-                 portrait, so `priority` was asserting something untrue.
+                 portrait, so a preload would assert something untrue.
 
-                 Be aware this does not change the emitted network work today.
-                 Next 16 preloads any non-lazy image, so the <link rel="preload"
-                 as="image"> for this 7KB mark is still there. What it does not
-                 do is emit a priority hint: in Next 16 `priority` maps to
-                 preload only and the hint is the separate `fetchPriority` prop.
-                 Hero.tsx now passes that prop explicitly on both of its image
-                 sites, which is where the real LCP element always is. The
-                 masthead deliberately does not, so the one hint on the page
-                 stays pointed at the element that actually decides LCP. */
+                 The Next 16 image API uses `preload` for likely LCP images and
+                 says not to combine it with `loading` or `fetchPriority`.
+                 Hero.tsx applies that preload to the actual page hero. This
+                 small wordmark stays eager without competing for that slot. */
               loading="eager"
             />
           </Link>

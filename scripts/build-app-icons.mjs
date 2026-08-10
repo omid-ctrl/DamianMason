@@ -5,7 +5,7 @@
  *
  * WHY THIS IS A REAL SCRIPT AND NOT SCRATCH
  * Phase 0 shipped the create-next-app scaffold favicon, Vercel's white triangle
- * in a black circle, on all 19 routes, so every browser tab and bookmark for
+ * in a black circle, on all 20 routes, so every browser tab and bookmark for
  * damianmason.com carried the framework vendor's logo. The replacement is the
  * client's own DM monogram, cut from _source/media/cropped-favicon.jpg (the
  * favicon the old site served) by way of public/img/brand/dm-monogram.jpg. That

@@ -35,11 +35,9 @@ import { imageAlt } from '@/content/image-alt';
    action is a mailto with the subject and the body already written. The visitor
    only fills in the facts about themselves.
 
-   The monthly figure is deliberately absent. The old page set it as a second
-   h1 directly above the checkout button. With no checkout behind it, a number
-   on the page is a number nobody can act on, so the email asks for the current
-   terms instead. The membership is still described as monthly, which is what
-   the source copy supports.
+   The source-backed $99/month figure is restored as useful membership context,
+   but the retired checkout is not. The page tells visitors to confirm current
+   terms by email before joining.
    ============================================================================ */
 
 const JOIN_SUBJECT = 'BoASG: I want in';
@@ -86,6 +84,8 @@ const HERO_INTRO =
 
 const POSITIONING =
   'The Business of Ag Success Group (BoASG) is a business outlook, advisory, and networking community for Ag professionals.';
+
+const MEMBERSHIP_TERMS = '$99/month. Confirm current terms by email before joining.';
 
 const WHAT_YOU_GET = [
   'Online programs every other Friday addressing Business and Agricultural topics',
@@ -161,7 +161,7 @@ const JOIN_FALLBACK_LEAD = 'The button opens your email app with the message sta
 export const metadata: Metadata = buildMetadata({
   title: 'The Business of Ag Success Group',
   description:
-    'Every other Friday at 11am Eastern, 60 to 90 minutes of Ag outlook and an interactive Q&A, led by Damian and swine consultant Todd Thurman. Email to join.',
+    'Listed at $99/month. Confirm current terms by email. Every other Friday, Damian Mason and Todd Thurman lead 60 to 90 minutes of Ag outlook and Q&A.',
   path: '/boasg/',
   image: {
     url: brandAssets.boasg,
@@ -178,12 +178,11 @@ const breadcrumbs = buildBreadcrumbListSchema([
 
 /**
  * Every figure is already in SCHEDULE_NOTE above or on the seal itself, which
- * reads "established 2020". Nothing here is a new claim, and the membership
- * price is deliberately still absent: see the header note.
+ * reads "established 2020". The derived annual-call total is deliberately not
+ * presented as a source fact.
  */
 const BOASG_STATS: StatRowItem[] = [
   { value: '2020', countFrom: '2010', label: 'Running since' },
-  { value: '26', label: 'Calls a year' },
   { value: '90', label: 'Minutes, at most' },
   { value: '2', label: 'People leading it' },
 ];
@@ -211,6 +210,7 @@ export default function BoasgPage() {
               </Heading>
               <Prose lead>
                 <p>{HERO_INTRO}</p>
+                <p>{MEMBERSHIP_TERMS}</p>
               </Prose>
               <div className="dm-hero__actions">
                 <Button href={JOIN_HREF} variant="primary" size="lg">
@@ -239,8 +239,7 @@ export default function BoasgPage() {
                   alt={imageAlt['/img/photos/portrait-black-suit.jpg']}
                   width={1333}
                   height={2000}
-                  priority
-                  fetchPriority="high"
+                  preload
                   sizes="(min-width: 48rem) 32rem, 100vw"
                 />
               </div>

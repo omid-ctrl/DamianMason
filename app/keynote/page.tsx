@@ -406,13 +406,11 @@ export default function KeynotePage() {
             <Heading level={2} size="2xl" id="reviews-title">
               Reviews
             </Heading>
-            {/* Not "four of them": the four videos on /reviews/ are in addition
-                to the ten written notes, not four of the ten. /speaking/ and
-                /collaboration-opportunities/ already had the arithmetic right. */}
             <Prose>
               <p>
-                Three from meeting planners who were in the room while it happened.
-                There&rsquo;s ten more on the reviews page, plus four on video.
+                Three verified speaking testimonials are below. The reviews page brings
+                together all fifteen in writing, plus four videos carried from the
+                original reviews page.
               </p>
             </Prose>
           </div>
@@ -424,23 +422,12 @@ export default function KeynotePage() {
           />
 
           <div className={`${styles.actions} dm-section-close`}>
-            {/* Not "every". Ten written reviews live on /reviews/, and the
-                three quoted above this button are not among them: they are the
-                trio this route's own source page carried, which is why the
-                standfirst can say "ten more". The label says what that page
-                holds, so it stays a flat count and does not have to move when a
-                row is re-cut. /speaking/ quotes three that ARE drawn from the
-                ten, and its own copy is written for that ("Ten written notes
-                and four video testimonials are on the testimonials page"), so
-                the two routes do not share a sentence. See the /keynote/ note
-                in content/testimonials.ts before touching either row.
-
-                Secondary, not ghost. Ghost carries the same inline padding
+            {/* Secondary, not ghost. Ghost carries the same inline padding
                 without the border that explains it, so this label alone sat
                 13px inside the left axis every other closing action is on, and
                 the misalignment was visible against the hairline above it. */}
             <Button href="/reviews/" variant="secondary" size="lg">
-              Read the ten written reviews
+              Read all fifteen written testimonials
             </Button>
           </div>
         </Container>

@@ -406,6 +406,8 @@ export function ContactForm({
     <form
       className={cx('dm-form', className)}
       id={`${idPrefix}-form`}
+      action="/api/contact/"
+      method="post"
       onSubmit={handleSubmit}
       aria-labelledby={labelledBy}
       aria-busy={busy || undefined}

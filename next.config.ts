@@ -57,8 +57,8 @@ const CSP_DIRECTIVES: Array<[string, string[]]> = [
   ['object-src', ["'none'"]],
   // The modern half of X-Frame-Options. Both ship; see SECURITY_HEADERS.
   ['frame-ancestors', ["'none'"]],
-  // The newsletter is the only form on the site, and Mailchimp is the only
-  // place it may post to.
+  // The inquiry form posts to the same-origin API route. The newsletter posts
+  // to Mailchimp; no other form destinations are permitted.
   ['form-action', ["'self'", 'https://damianmason.us13.list-manage.com']],
   ['script-src', ["'self'", "'unsafe-inline'", ...(isDev ? ["'unsafe-eval'"] : [])]],
   // next/font and the two <noscript> style blocks in VideoEmbed are inline.
@@ -139,9 +139,21 @@ const SECURITY_HEADERS = [
 ];
 
 /**
+ * Vercel URLs are review artifacts until the production-domain release is
+ * explicitly approved. `VERCEL_ENV=production` alone is not sufficient: the
+ * project `.vercel.app` URL currently occupies that environment. Set
+ * SITE_ALLOW_INDEXING=true only for the approved cutover.
+ */
+const preventIndexing =
+  Boolean(process.env.VERCEL) && process.env.SITE_ALLOW_INDEXING !== 'true';
+const RESPONSE_HEADERS = preventIndexing
+  ? [...SECURITY_HEADERS, { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }]
+  : SECURITY_HEADERS;
+
+/**
  * Every URL the old WordPress site had indexed either still resolves or 301s
- * somewhere sensible. Commerce is gone, so the shop funnel points at the books
- * section of /about/, which is where the titles now live as credibility.
+ * somewhere sensible. Commerce is gone, so the retired shop funnel points at
+ * the non-commerce books library and each known product lands on its edition.
  */
 const nextConfig: NextConfig = {
   /**
@@ -204,21 +216,36 @@ const nextConfig: NextConfig = {
    * `/:path+` would not.
    */
   async headers() {
-    return [{ source: '/:path*', headers: SECURITY_HEADERS }];
+    return [{ source: '/:path*', headers: RESPONSE_HEADERS }];
   },
   async redirects() {
     return [
       // Commerce removed: the client is not selling books moving forward.
-      { source: '/shop', destination: '/about/#books', statusCode: 301 },
-      { source: '/damian-mason-online-shop', destination: '/about/#books', statusCode: 301 },
-      { source: '/cart', destination: '/about/#books', statusCode: 301 },
-      { source: '/checkout', destination: '/about/#books', statusCode: 301 },
-      { source: '/my-account', destination: '/about/#books', statusCode: 301 },
+      { source: '/shop', destination: '/books/', statusCode: 301 },
+      { source: '/damian-mason-online-shop', destination: '/books/', statusCode: 301 },
+      { source: '/cart', destination: '/books/', statusCode: 301 },
+      { source: '/checkout', destination: '/books/', statusCode: 301 },
+      { source: '/my-account', destination: '/books/', statusCode: 301 },
       // The BOASG "product" was a membership, not a book. Specific rule must be
       // declared before the /product/* wildcard so it wins.
       { source: '/product/business-of-ag-success-group', destination: '/boasg/', statusCode: 301 },
-      { source: '/product/:slug*', destination: '/about/#books', statusCode: 301 },
-      { source: '/product-category/:slug*', destination: '/about/#books', statusCode: 301 },
+      {
+        source: '/product/do-business-better-traits-habits-and-actions-to-help-you-succeed-limited-supply',
+        destination: '/books/#do-business-better',
+        statusCode: 301,
+      },
+      {
+        source: '/product/food-fear-audiobook-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating',
+        destination: '/books/#food-fear-audiobook',
+        statusCode: 301,
+      },
+      {
+        source: '/product/food-fear-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating',
+        destination: '/books/#food-fear',
+        statusCode: 301,
+      },
+      { source: '/product/:slug*', destination: '/books/', statusCode: 301 },
+      { source: '/product-category/:slug*', destination: '/books/', statusCode: 301 },
 
       // Orphaned podcast stub now resolves to the real hub.
       { source: '/podcast-2', destination: '/podcasts/', statusCode: 301 },

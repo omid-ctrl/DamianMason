@@ -527,9 +527,10 @@
        have been bought, on the type size: see the --fs-6xl override on
        .dm-hero__type in src/styles/sections-core.css, which tracks the
        narrower two-column measure and lands back on the documented 120px at
-       1440. hyphens: auto stays because a real syllable break with a real
-       hyphen is still the preferred outcome wherever a browser offers it. */
-    hyphens: auto;
+       1440. Automatic hyphenation is also disabled: the 768px About masthead
+       proved that even a valid syllable break reads like a typesetting error
+       at display scale. */
+    hyphens: none;
   }
   /* The 6xl masthead step takes the tighter of the two display tracking values.
      No unlayered escape hatch is needed here, unlike the --fs-6xl rebind a few
@@ -1592,12 +1593,11 @@
   }
 
   /* --- the footer plane ---------------------------------------------------- */
-  /* The closing rule of the broadsheet. --rule-strong resolves to the light ink in the
-     deep scope, so the footer reads as a plane separate from the navy CTA band
-     it sits under. No orange: the footer's one orange element is the bar on the
-     testimonial. */
+  /* The footer's deeper navy already separates it from the closing CTA band.
+     A thick light rule here read as an accidental gap between the two planes,
+     so the transition is now carried by the surface shift alone. */
   .dm-footer {
-    border-block-start: var(--border-thick) solid var(--rule-strong);
+    border-block-start: 0;
   }
   .dm-footer__stack {
     display: flex;

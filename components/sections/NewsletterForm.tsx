@@ -41,7 +41,7 @@ export type NewsletterFormProps = {
 export function NewsletterForm({
   idPrefix = 'newsletter',
   title = 'Add yourself to the list.',
-  blurb = 'One email when there’s something worth your time: Ag news you can use, plus where Damian is speaking next. No daily clutter, no pitches.',
+  blurb = 'New podcast-release notices and Damian’s commentary on recent trends in the business of food, fuel, and fiber.',
   headingLevel = 2,
   nameFields = true,
   submitLabel = 'Join the list',
@@ -122,7 +122,7 @@ export function NewsletterForm({
             aria-describedby={emailHelpId}
           />
           <span className="dm-field__help" id={emailHelpId}>
-            Required. Unsubscribe from the bottom of any email.
+            Required.
           </span>
         </div>
       </div>

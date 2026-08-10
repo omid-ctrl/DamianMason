@@ -23,6 +23,30 @@
   margin-block-end: var(--space-6);
 }
 
+.episodeRail,
+.episodeColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.episodeRail {
+  gap: var(--space-5);
+}
+
+.episodeColumn {
+  gap: var(--space-7);
+}
+
+.episodeList {
+  display: grid;
+  gap: var(--space-6);
+  inline-size: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 /* --- hero cover art --------------------------------------------------------
    The show art is a mark on an opaque white field, not a photograph, so it
    gets none of the duotone recipe. It sits on a bone plate inside the navy
@@ -107,7 +131,7 @@
    The height attribute on the iframe is the embed's own, carried from the
    player URL, so the frame reserves its box before the third party answers. */
 .player {
-  margin-block-start: var(--space-7);
+  inline-size: 100%;
 }
 
 .playerCutline {
@@ -125,7 +149,7 @@
 
 @media (min-width: 48rem) {
   .crossGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -169,6 +193,16 @@
   display: flex;
   align-items: flex-end;
   min-block-size: var(--logo-box-h);
+}
+
+.crossIndex {
+  border-block: var(--border-thin) solid currentColor;
+  color: var(--ink-secondary);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  padding-block: var(--space-2);
+  text-transform: uppercase;
 }
 
 .crossAction {

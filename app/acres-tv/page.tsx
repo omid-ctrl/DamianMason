@@ -179,7 +179,7 @@ export default function AcresTvPage() {
           alt: imageAlt['/img/photos/podcast-desk.jpg'],
           width: 2000,
           height: 1308,
-          priority: true,
+          preload: true,
           feature: true,
         }}
         cutline="Damian and his guest talk for 41 to 54 minutes, and Acres TV carries all of it."

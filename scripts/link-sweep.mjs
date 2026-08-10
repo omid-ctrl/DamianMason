@@ -3,7 +3,7 @@
  *
  *   node scripts/link-sweep.mjs [--base http://localhost:3100] [--out docs/qa/link-report.json]
  *
- * Renders all 19 live routes in Chromium (so client-rendered hrefs and CSS
+ * Renders all 21 live routes in Chromium (so client-rendered hrefs and CSS
  * background images are included, not just the server HTML), then:
  *
  *   - collects every href, every src, every srcset candidate, every CSS url()
@@ -34,29 +34,43 @@ const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 const EXT_TIMEOUT = 25_000;
 
-/** The 19 live URLs. Static routes come from the manifest routeMap; the two
- *  posts come from the same slug list app/sitemap.ts declares. */
+/** Live URLs. Static routes come from the manifest routeMap and the two
+ *  posts come from the same slug list app/sitemap.ts declares. Set semantics
+ *  keep the purpose-built one-sheet route present without ever crawling it
+ *  twice if the source manifest also contains it. */
 const manifest = JSON.parse(fs.readFileSync('_source/manifest.json', 'utf8'));
 const BLOG_POST_SLUGS = [
   'eggflation-gives-producers-record-profits',
   'how-the-climate-crisis-is-causing-food-shortages-globally',
 ];
-const ROUTES = [
+const ROUTES = [...new Set([
   ...Object.keys(manifest.routeMap).filter((r) => !r.includes('[')),
+  '/speaker-one-sheet/',
   ...BLOG_POST_SLUGS.map((s) => `/blog/${s}/`),
-];
+])];
 
 /** Legacy paths that must still resolve. Kept in sync with next.config.ts by
  *  hand; the point of the check is to catch it when they drift. */
 const LEGACY_REDIRECTS = [
-  ['/shop', '/about/'],
-  ['/damian-mason-online-shop', '/about/'],
-  ['/cart', '/about/'],
-  ['/checkout', '/about/'],
-  ['/my-account', '/about/'],
+  ['/shop', '/books/'],
+  ['/damian-mason-online-shop', '/books/'],
+  ['/cart', '/books/'],
+  ['/checkout', '/books/'],
+  ['/my-account', '/books/'],
   ['/product/business-of-ag-success-group', '/boasg/'],
-  ['/product/food-fear', '/about/'],
-  ['/product-category/books', '/about/'],
+  [
+    '/product/do-business-better-traits-habits-and-actions-to-help-you-succeed-limited-supply',
+    '/books/#do-business-better',
+  ],
+  [
+    '/product/food-fear-audiobook-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating',
+    '/books/#food-fear-audiobook',
+  ],
+  [
+    '/product/food-fear-how-fear-is-ruining-your-dinner-and-why-you-should-celebrate-eating',
+    '/books/#food-fear',
+  ],
+  ['/product-category/books', '/books/'],
   ['/podcast-2', '/podcasts/'],
   ['/join-mailing-list', '/join-the-conversation/'],
   ['/hello-world', '/blog/eggflation-gives-producers-record-profits/'],
@@ -475,8 +489,8 @@ for (const p of pages) {
   }
 }
 
-// Cross-route fragments. `/about/#books` linked from /speaking/ is only a live
-// link if /about/ actually renders id="books". The same-page pass above cannot
+// Cross-route fragments. `/books/#food-fear` linked from another route is only
+// live if /books/ actually renders id="food-fear". The same-page pass cannot
 // see that, so resolve every internal href carrying a hash against the id list
 // harvested from the route it points at.
 const idsByRoute = new Map(pages.map((p) => [p.route, new Set(p.ids)]));
@@ -500,7 +514,8 @@ for (const p of pages) {
     }
   }
 }
-// Same for the redirect destinations that carry a fragment (/shop -> /about/#books).
+// Same for redirect destinations that carry a fragment (known products ->
+// their edition anchors on /books/).
 for (const [, dest] of LEGACY_REDIRECTS.map((r) => r)) void dest;
 
 stage('checking urls');
@@ -567,10 +582,18 @@ for (const [from, expectPrefix] of LEGACY_REDIRECTS) {
   });
 }
 
-// 2. /about/#books
+// 2. The retained compact shelf and the full edition destination.
 const aboutPage = pages.find((p) => p.route === '/about/');
 verify.aboutBooksAnchor = {
   present: aboutPage?.hasBooksAnchor ?? false,
+};
+const booksPage = pages.find((p) => p.route === '/books/');
+const booksPageIds = new Set(booksPage?.ids ?? []);
+verify.booksEditionAnchors = {
+  present: Boolean(booksPage),
+  foodFear: booksPageIds.has('food-fear'),
+  foodFearAudiobook: booksPageIds.has('food-fear-audiobook'),
+  doBusinessBetter: booksPageIds.has('do-business-better'),
 };
 
 // 3. sitemap

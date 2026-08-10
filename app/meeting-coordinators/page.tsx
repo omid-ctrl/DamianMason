@@ -18,6 +18,8 @@ import { imageAlt } from '@/content/image-alt';
 const ROUTE = '/meeting-coordinators/';
 const MAILTO = `mailto:${contact.email}`;
 const YOUTUBE = 'https://www.youtube.com/@DamianMasonChannel/videos';
+const AV_REQUIREMENTS = '/docs/av-and-room-setup-requirements.pdf';
+const PHOTO_ZIP = '/docs/damian-mason-speaker-photos.zip';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Meeting Coordinators: How to Book',
@@ -112,10 +114,9 @@ export default function MeetingCoordinatorsPage() {
              mobile sheet pins it, the ledger in section 2 prints it, and the
              closing band offers it again. It was the fourth copy on this page.
 
-             The old site put a Media Kit link on THIS page twice and both
-             resolved to a .zip on a staging host. /speaker-one-sheet/ is the
-             destination that link should always have had, and this is the page
-             the person who needs it is standing on. */
+             The old site's two staging-host resource links are replaced by the
+             one-sheet here and by direct, curated downloads in the logistics
+             section below. */
           [
             { label: 'Booking Inquiry', href: '/contact-us/' },
             {
@@ -133,7 +134,7 @@ export default function MeetingCoordinatorsPage() {
             'Damian Mason in a grey check sport coat and jeans, perched on the edge of a conference table in a room of orange chairs.',
           width: 1333,
           height: 1333,
-          priority: true,
+          preload: true,
           feature: true,
         }}
         /* Dropped "and he booked the flights himself", which was one of ten
@@ -157,9 +158,9 @@ export default function MeetingCoordinatorsPage() {
               </Heading>
               <Prose>
                 <p>
-                  Meeting planners book Damian twice. He and his office manager Lori do the
-                  research, the prep, and the follow-up on every engagement, and that&rsquo;s why the
-                  second call comes.
+                  Repeat business is the hallmark of a professional like Damian. He and his
+                  office manager Lori do the research, the prep, and the follow-up on every
+                  engagement.
                 </p>
                 <ul>
                   {KNOWS.map((item) => (
@@ -245,7 +246,7 @@ export default function MeetingCoordinatorsPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 Attendees waiting for a signed copy of{' '}
-                <Link href="/about/#books">Food Fear</Link> after a keynote. Nobody went
+                <Link href="/books/#food-fear">Food Fear</Link> after a keynote. Nobody went
                 straight to the parking lot.
               </figcaption>
             </figure>
@@ -290,6 +291,18 @@ export default function MeetingCoordinatorsPage() {
               </Card>
             ))}
           </ul>
+
+          <div className="dm-section-close">
+            <Button href="/speaker-one-sheet/" variant="secondary">
+              Open the speaker one-sheet
+            </Button>
+            <Button href={AV_REQUIREMENTS} variant="secondary" download>
+              Download A/V and room setup (PDF)
+            </Button>
+            <Button href={PHOTO_ZIP} variant="secondary" download>
+              Download speaker photos (ZIP)
+            </Button>
+          </div>
 
           <div className="dm-grid12 mt-10">
             {/* Eight of twelve. A 3:2 plate across the full broadsheet width is
@@ -366,7 +379,7 @@ export default function MeetingCoordinatorsPage() {
           alt: imageAlt['/img/photos/microphones-background.jpg'],
           width: 2000,
           height: 1334,
-          priority: false,
+          preload: false,
         }}
         cutline="He trained in improv and he carries a Screen Actors Guild card. A live microphone isn’t the thing to worry about."
       />

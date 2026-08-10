@@ -7,8 +7,10 @@
  * the page. Every route here goes through one function so none of that can
  * happen again.
  *
- * Every URL this file emits is absolute and is built off `site.url` from
- * `content/site.ts`. Nothing hard-codes the origin.
+ * Every canonical URL this file emits is absolute and is built off `site.url`
+ * from `content/site.ts`. Root-relative social-card assets use the active
+ * active Vercel review origin during review builds so a card never points at
+ * an asset that only exists on the unapproved deployment.
  *
  * `next.config.ts` sets `trailingSlash: true`, so every canonical this file
  * produces carries a trailing slash. A canonical that disagrees with the
@@ -16,7 +18,7 @@
  */
 
 import type { Metadata } from 'next';
-import { site, socials } from '@/content/site';
+import { podcasts, site, socials } from '@/content/site';
 
 /**
  * Pages pass a bare page name and get "Page Name | Damian Mason". The same
@@ -69,8 +71,39 @@ export type OgType = 'website' | 'article' | 'profile';
  */
 export const DEFAULT_OG_IMAGE_PATH = '/opengraph-image/';
 
+/**
+ * Vercel review deployments must advertise assets from the deployment being
+ * reviewed, not from production. Canonicals deliberately remain on
+ * `site.url`; only root-relative social-card assets use this temporary origin.
+ */
+function reviewAssetOrigin(): string | undefined {
+  if (!shouldPreventIndexing()) return undefined;
+
+  const deploymentHost = process.env.VERCEL_URL?.trim();
+  if (!deploymentHost) return undefined;
+
+  const origin = /^[a-z][a-z0-9+.-]*:\/\//i.test(deploymentHost)
+    ? deploymentHost
+    : `https://${deploymentHost}`;
+
+  return origin.replace(/\/+$/, '');
+}
+
+/**
+ * A Vercel deployment is a review artifact until the domain cutover is
+ * explicitly approved. `VERCEL_ENV=production` is not enough: the current
+ * rebuild already uses the project's production `.vercel.app` URL while the
+ * public canonical still belongs to the legacy site. Set
+ * `SITE_ALLOW_INDEXING=true` only for the approved production-domain release.
+ * Local production builds stay indexable so SEO verification remains honest.
+ */
+export function shouldPreventIndexing(): boolean {
+  const isVercelDeployment = Boolean(process.env.VERCEL);
+  return isVercelDeployment && process.env.SITE_ALLOW_INDEXING !== 'true';
+}
+
 export type OgImage = {
-  /** Absolute URL, or a root-relative path that gets resolved against site.url. */
+  /** Absolute URL, or a root-relative path resolved against the active asset origin. */
   url: string;
   width?: number;
   height?: number;
@@ -132,7 +165,13 @@ export function applyTitleTemplate(title: string): string {
 
 function toOgImage(image: string | OgImage): OgImage {
   const normalized = typeof image === 'string' ? { url: image, alt: SITE_DEFAULT_TITLE } : image;
-  return { ...normalized, url: absoluteUrl(normalized.url) };
+  const reviewOrigin = reviewAssetOrigin();
+  const rootRelative = normalized.url.startsWith('/') && !normalized.url.startsWith('//');
+  const url = reviewOrigin && rootRelative
+    ? new URL(normalized.url, `${reviewOrigin}/`).toString()
+    : absoluteUrl(normalized.url);
+
+  return { ...normalized, url };
 }
 
 /** The generated card, described the way `app/opengraph-image.tsx` renders it. */
@@ -159,6 +198,7 @@ export function buildMetadata({
   const url = canonicalUrl(path);
   const resolvedTitle = titleIsAbsolute ? title : applyTitleTemplate(title);
   const ogImage = toOgImage(image ?? DEFAULT_OG_IMAGE);
+  const preventIndexing = noIndex || shouldPreventIndexing();
 
   return {
     metadataBase: new URL(site.url),
@@ -166,15 +206,19 @@ export function buildMetadata({
     description,
     alternates: {
       canonical: url,
+      types: {
+        'application/rss+xml': podcasts.businessOfAgriculture.rss,
+      },
     },
-    // Index and follow everywhere, with the previews Google will actually
-    // render. The old site's WooCommerce disallows died with the store.
+    // Review deployments and explicitly private routes stay out of search.
+    // The approved production release otherwise carries the rich preview
+    // directives Google can render.
     robots: {
-      index: !noIndex,
-      follow: !noIndex,
+      index: !preventIndexing,
+      follow: !preventIndexing,
       googleBot: {
-        index: !noIndex,
-        follow: !noIndex,
+        index: !preventIndexing,
+        follow: !preventIndexing,
         'max-image-preview': 'large',
         'max-snippet': -1,
         'max-video-preview': -1,

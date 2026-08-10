@@ -54,7 +54,7 @@ export const CREDIBILITY_STATS: StatRowItem[] = [
  * all 50 states and 7 foreign countries. Another 40,000 people listen to the
  * podcast every month." Two routes took the fallback (/ and /keynote/) and so
  * rendered that sentence byte for byte, while /speaking/ had hand-typed a third
- * near-copy of it. Measured on the rendered <main> of all 19 routes, the clause
+ * near-copy of it. Measured on the rendered <main> of all 20 routes, the clause
  * "2,400 audiences in all 50 states and 7 foreign countries" was the single
  * most repeated run on the site.
  *

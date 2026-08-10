@@ -1,9 +1,12 @@
 import type { MetadataRoute } from 'next';
 
 import { site } from '@/content/site';
+import { shouldPreventIndexing } from '@/lib/seo';
 
 /**
- * Everything is crawlable.
+ * Review deployments are blocked at this route as well as by page metadata
+ * and the X-Robots-Tag response header. A Vercel release becomes crawlable
+ * only when SITE_ALLOW_INDEXING=true is set for the approved domain cutover.
  *
  * The old robots.txt carried the WooCommerce boilerplate: Disallow /cart/,
  * /checkout/, /my-account/ and /wp-admin/. The store is gone and there is no
@@ -11,6 +14,15 @@ import { site } from '@/content/site';
  * crawler should not see.
  */
 export default function robots(): MetadataRoute.Robots {
+  if (shouldPreventIndexing()) {
+    return {
+      rules: {
+        userAgent: '*',
+        disallow: '/',
+      },
+    };
+  }
+
   return {
     rules: [
       {

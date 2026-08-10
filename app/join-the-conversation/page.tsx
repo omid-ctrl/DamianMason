@@ -39,9 +39,9 @@ import styles from './page.module.css';
 
    ONE 40,000 PER ROUTE. Both figures are in the harvest: 40,000 subscribers
    (join-mailing-list.md:23) and 40,000 listeners per month
-   (collaboration-opportunities.md:38). This route's metadata and the site-wide
-   footer both say subscribers, so the listener figure is off this page
-   entirely and the stat panel is scoped to the list. Whether the two 40,000s
+   (collaboration-opportunities.md:38). This route preserves the source
+   subscriber figure in its hero and closing panel; the listener figure is off
+   this page entirely. Whether the two 40,000s
    are the same 40,000 people is a question only the client can answer and it
    is logged in docs/OPEN-ITEMS.md.
    ============================================================================ */
@@ -63,7 +63,7 @@ const HERO_IMAGE = {
 export const metadata: Metadata = buildMetadata({
   title: 'Ag Newsletter and Mailing List',
   description:
-    'More than 40,000 subscribers get Damian’s read on the trends in food, fuel, and fiber. Free to join, unsubscribe any time. Add yourself to the list.',
+    'Subscribe for new podcast releases and Damian Mason’s commentary on recent trends in the business of food, fuel, and fiber.',
   path: PATH,
   image: {
     url: HERO_IMAGE.src,
@@ -120,7 +120,7 @@ export default function JoinTheConversationPage() {
         id="join"
         eyebrow="The mailing list"
         title="Join the Conversation"
-        deck="New podcast episodes, plus Damian’s read on the trends behind them: the business of food, fuel, and fiber. Free to join, and more than 40,000 people already have."
+        deck="Subscribe to get notified of new podcast releases and follow Damian’s commentary on recent trends in the business of food, fuel, and fiber."
         actions={[
           {
             label: 'Add yourself to the list',
@@ -129,7 +129,7 @@ export default function JoinTheConversationPage() {
           },
         ] as const}
         image={HERO_IMAGE}
-        cutline="One list, one address. There’s an unsubscribe link at the bottom of every email, and it works."
+        cutline="Damian Mason, speaker, author, and host of The Business of Agriculture."
       />
 
       {/* --- No. 01, what you get, and the form ----------------------------- */}
@@ -137,30 +137,21 @@ export default function JoinTheConversationPage() {
         <Container>
           <div className={`dm-grid12 ${styles.rowTop}`}>
             <div className="col-span-6 md:col-span-7">
-              <Eyebrow>What you get</Eyebrow>
+              <Eyebrow>What to expect</Eyebrow>
               <Heading level={2} id="signup-title" className={styles.sectionHeading}>
-                Three things land in your inbox
+                What the list carries
               </Heading>
               <Prose>
                 <ul>
                   <li>
-                    New episodes of{' '}
-                    <Link href="/the-business-of-agriculture/">The Business of Agriculture</Link>{' '}
-                    and <Link href="/do-business-better-podcast/">Do Business Better</Link>.
+                    Notifications of new podcast releases from Damian Mason.
                   </li>
                   <li>
-                    Damian&rsquo;s commentary on recent trends in the business of food, fuel, and
-                    fiber. Same wit he uses on stage, in writing.
-                  </li>
-                  <li>
-                    Whatever else he has put his name on lately: an{' '}
-                    <Link href="/acres-tv/">Acres TV</Link> segment, an{' '}
-                    <Link href="/xtreme-ag/">XtremeAg</Link> field report, a{' '}
-                    <Link href="/blog-news/">news interview</Link> about the price of food.
+                    Commentary on recent trends in the business of food, fuel, and fiber.
                   </li>
                 </ul>
                 <p>
-                  One address, one list. Unsubscribe from the bottom of any email.
+                  Email is required. First and last name are optional.
                 </p>
               </Prose>
             </div>
@@ -174,7 +165,7 @@ export default function JoinTheConversationPage() {
                 idPrefix="join-signup"
                 headingLevel={3}
                 title="Add yourself to the list."
-                blurb="Email address is the only field the list actually needs. The names just mean Damian knows who he’s talking to."
+                blurb="Email is required. First and last name are optional."
               />
             </Card>
           </div>
@@ -185,12 +176,9 @@ export default function JoinTheConversationPage() {
           THE BEST VALUE-PER-WORD FILL AVAILABLE ON THIS ROUTE, and it adds not
           one new fact.
 
-          The bulleted list above already claims, in prose, that the list
-          carries "an Acres TV segment, an XtremeAg field report, a news
-          interview about the price of food". That is an assertion. Three real
-          press rows directly under it turn the same sentence into evidence,
-          and every row is already in content/press.ts with a verified outbound
-          link.
+          Three real press rows show the public commentary described by the
+          source pitch. They are examples of Damian's current work, not a claim
+          that every appearance is sent to the list.
 
           A second home for that module, which had exactly one consumer.
           Navy, because this route ran 3,674px of a single grey with three
@@ -202,13 +190,12 @@ export default function JoinTheConversationPage() {
             <div className="dm-rail col-span-6 md:col-span-4">
               <Eyebrow>Recently</Eyebrow>
               <Heading level={2} id="recent-title" className={styles.sectionHeading}>
-                The kind of thing that lands
+                Commentary behind the list
               </Heading>
               <Prose measure="narrow">
                 <p>
-                  Not a newsletter about a newsletter. Three of the last places
-                  Damian turned up, which is the sort of item the list carries a
-                  link to on the week it runs.
+                  Three recent public appearances showing Damian&rsquo;s commentary on food,
+                  fuel, and fiber.
                 </p>
               </Prose>
             </div>
@@ -224,7 +211,7 @@ export default function JoinTheConversationPage() {
         </Container>
       </Section>
 
-      {/* --- The refusal ----------------------------------------------------- */}
+      {/* --- Direct alternatives --------------------------------------------- */}
       <Section aria-labelledby="not-title">
         {/* Standard container, not narrow. A narrow container centres itself,
             which put this head on a 320px axis while every other head on the
@@ -233,31 +220,21 @@ export default function JoinTheConversationPage() {
         <Container>
           <div className="dm-grid12">
             <div className="dm-rail col-span-6 md:col-span-4">
-          <Eyebrow>What you won&rsquo;t get</Eyebrow>
+          <Eyebrow>Go straight to the source</Eyebrow>
           <Heading level={2} id="not-title" className={styles.sectionHeading}>
-            No weather forecast, no commodity prices
+            Listen or read without joining
           </Heading>
             </div>
             <div className="col-span-6 md:col-span-8">
           <Prose>
-            {/* This paragraph used to be the source's weather-forecast refusal
-                re-typed with the exclamation point softened and a tail bolted
-                on: 39 words that ran word for word against the No. 05 band on
-                Home. That paragraph is verbatim source copy at
-                `_source/pages/home.md:206` and Home is the only route with a
-                claim to it, so Home keeps it. The refusal itself is this
-                section's whole point and it is already made by the heading
-                above, so what the prose owes the reader is the other half of
-                the trade: what the list actually sends. */}
             <p>
-              Your phone already has the forecast and the close. What it doesn&rsquo;t have is
-              somebody telling you which of this week&rsquo;s Ag stories is going to cost you
-              money, and that&rsquo;s the only reason worth handing over an email address for.
+              The form is optional. New episodes remain available through the{' '}
+              <Link href="/podcasts/">podcast hub</Link>, and Damian&rsquo;s published media
+              appearances remain available through <Link href="/blog-news/">Media &amp; News</Link>.
             </p>
             <p>
-              If you&rsquo;d rather skip the inbox and just listen, start at the{' '}
-              <Link href="/podcasts/">podcast hub</Link>. The list is how a lot of people hear
-              that an episode posted.
+              Join only if a direct notification is more useful than checking those pages
+              yourself.
             </p>
           </Prose>
 
@@ -314,7 +291,7 @@ export default function JoinTheConversationPage() {
              owns, and not the same list this route's own CTA copy uses two
              lines above. A subscriber list is defined by what it does, not by
              a job title. */
-          note: 'People who would rather read it than be sold it.',
+          note: 'Published mailing-list figure; the current total awaits Damian’s confirmation.',
         }}
       />
     </>

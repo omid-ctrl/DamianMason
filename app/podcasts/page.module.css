@@ -19,6 +19,34 @@
   padding: 0;
 }
 
+.featureRail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.uprootedGrid {
+  align-items: center;
+  row-gap: var(--space-8);
+}
+
+.episodeColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+.episodeList {
+  display: grid;
+  gap: var(--space-6);
+  inline-size: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 /* Three across only from 1024. At 768 a third of the container is a 28 character
    measure, which ladders every description into fifteen lines. Below that the
    cards stack full width and the artwork stays at --size-thumb. */

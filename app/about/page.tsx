@@ -368,7 +368,7 @@ export default function AboutPage() {
            hero, biography, credentials and books across five bands and only
            changed ground once, at the closing CTA. */
         surface="deep-alt"
-        restatement="Three of these four are stages. The fourth is the podcast, which is where the same material goes on the weeks nobody has booked him." />
+        restatement="Three figures describe Damian’s speaking record. The fourth describes the podcast audience." />
 
       {/* ================================================================
           No. 03, the books. This section is the redirect target for every

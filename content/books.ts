@@ -1,5 +1,6 @@
 /**
- * Book credibility content for /about/#books.
+ * Shared book content for the compact shelf on /about/#books and the complete
+ * edition library on /books/.
  *
  * Harvested verbatim from the retired WooCommerce product pages on the old
  * damianmason.com. Commerce has been removed from this site, so:

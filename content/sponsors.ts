@@ -6,9 +6,9 @@
  * the real output dimensions of the files in public/img/sponsors.
  *
  * Four URLs were supplied by the client: Heads Up Plant Protectants, Tidal
- * Grow, Nano-Yield, and Good Agriculture. The other six were each looked up
- * and matched to a live official site rather than inferred from the brand
- * name, so none of them is a guess:
+ * Grow Agriscience, Nano-Yield, and Good Agriculture. The other six were each
+ * looked up and matched to a live official site rather than inferred from the
+ * brand name, so none of them is a guess:
  *   AgView Solutions, farm transition planning, Rowley Iowa.
  *   EarthOptics, soil data mapping, Minneapolis.
  *   Harvest Returns, agriculture investment platform, Fort Worth. The www
@@ -42,5 +42,5 @@ export const sponsors: Sponsor[] = [
   { name: 'Nano-Yield', logo: '/img/sponsors/nano-yield.png', url: 'https://nano-yield.com', width: 445, height: 234 },
   { name: 'NewFields Ag', logo: '/img/sponsors/newfields-ag.jpg', url: 'https://newfieldsag.com', width: 201, height: 234 },
   { name: 'Redox Bio', logo: '/img/sponsors/redox-bio.png', url: 'https://redoxgrows.com', width: 466, height: 178 },
-  { name: 'Tidal Grow', logo: '/img/sponsors/tidal-grow.jpg', url: 'https://tidalgrowag.com', width: 402, height: 202 },
+  { name: 'Tidal Grow Agriscience', logo: '/img/sponsors/tidal-grow.jpg', url: 'https://tidalgrowag.com', width: 402, height: 202 },
 ];

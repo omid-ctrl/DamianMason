@@ -3,9 +3,11 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import { CTABand } from '@/components/sections/CTABand';
+import { EpisodeCard } from '@/components/sections/EpisodeCard';
 import { Hero } from '@/components/sections/Hero';
 import { SponsorWall } from '@/components/sections/SponsorWall';
 import { StatRow } from '@/components/sections/StatRow';
+import { VideoEmbed } from '@/components/sections/VideoEmbed';
 import type { StatRowItem } from '@/components/sections/StatRow';
 import { JsonLd } from '@/components/seo';
 import {
@@ -18,12 +20,17 @@ import {
   Section,
 } from '@/components/ui';
 import { brandAssets, brandAssetsExtra } from '@/content/brand-assets';
+import { uprooted, uprootedEpisodeOne } from '@/content/current-media';
 import { contact, podcasts } from '@/content/site';
 import {
   buildBreadcrumbListSchema,
   buildBusinessOfAgricultureSchema,
   buildDoBusinessBetterSchema,
 } from '@/lib/schema';
+import {
+  getRecentBusinessOfAgricultureEpisodes,
+  podcastEpisodeExcerpt,
+} from '@/lib/podcast-feed';
 import { buildMetadata } from '@/lib/seo';
 
 import styles from './page.module.css';
@@ -41,7 +48,7 @@ import { imageAlt } from '@/content/image-alt';
 export const metadata: Metadata = buildMetadata({
   title: 'Agriculture Podcasts',
   description:
-    'Three shows, one host: The Business of Agriculture every Monday, Do Business Better, and Cutting the Curve with XtremeAg. Pick one and press play.',
+    'Four formats with Damian Mason: The Business of Agriculture, Do Business Better, Cutting the Curve with XtremeAg, and the UPROOTED documentary series.',
   path: '/podcasts/',
 });
 
@@ -55,7 +62,7 @@ export const metadata: Metadata = buildMetadata({
 const AUDIENCE_STATS: StatRowItem[] = [
   { value: '40,000', plus: true, label: 'Monthly listeners' },
   { value: '70,000', plus: true, label: 'Business of Ag views and downloads' },
-  { value: '3', label: 'Shows he hosts' },
+  { value: '4', label: 'Podcast and video formats' },
 ];
 
 type PlatformLink = {
@@ -136,7 +143,9 @@ const SHOWS: Show[] = [
   },
 ];
 
-export default function PodcastsPage() {
+export default async function PodcastsPage() {
+  const recentEpisodes = await getRecentBusinessOfAgricultureEpisodes(3);
+
   return (
     <>
       <JsonLd
@@ -154,9 +163,9 @@ export default function PodcastsPage() {
         className={styles.heroFocus}
         id="podcasts"
         eyebrow="Podcasts"
-        title="Three shows. One host."
+        title="Four formats. One host."
         titleSize="5xl"
-        deck="The Business of Agriculture drops a new episode every Monday. Do Business Better is for the striver who wants to run the place better. On XtremeAg’s Cutting the Curve, the growers talk. You won’t get a weather forecast on any of them."
+        deck="The Business of Agriculture drops every Monday. Do Business Better is for the striver running a company. XtremeAg puts top operators on the record. UPROOTED takes a documentary camera to the businesses, technology, and people changing farming."
         actions={[
           {
             label: 'Latest episodes',
@@ -217,6 +226,58 @@ export default function PodcastsPage() {
            routes, and this show's audience has a name of its own. */
         restatement="Growers, the bankers behind them, and the companies that sell to both. Nobody is making them listen."
       />
+
+      <Section id="latest" aria-labelledby="latest-title">
+        <Container>
+          <div className="dm-grid12">
+            <div className={`dm-rail ${styles.featureRail} col-span-6 md:col-span-4`}>
+              <Eyebrow>Live from the feed</Eyebrow>
+              <Heading level={2} size="2xl" id="latest-title">
+                Start with the newest conversations
+              </Heading>
+              <Prose measure="narrow">
+                <p>
+                  Titles, dates, episode numbers, runtimes, and summaries come directly from
+                  Damian’s published Libsyn feed. The archive remains one click away.
+                </p>
+              </Prose>
+            </div>
+            <div className={`col-span-6 md:col-span-8 ${styles.episodeColumn}`}>
+              <ol className={styles.episodeList} aria-label="Recent Business of Agriculture episodes">
+                {recentEpisodes.map((episode, index) => (
+                  <EpisodeCard
+                    key={episode.link}
+                    as="li"
+                    title={episode.title}
+                    href={episode.link}
+                    date={episode.published}
+                    duration={episode.duration}
+                    episodeNumber={episode.episodeNumber}
+                    show="The Business of Agriculture"
+                    description={
+                      index === 0
+                        ? episode.description
+                        : podcastEpisodeExcerpt(episode.description)
+                    }
+                    platformLinks={[
+                      { label: 'Episode details', href: episode.link },
+                    ]}
+                  />
+                ))}
+              </ol>
+              <Button
+                href={boa.showPage}
+                variant="ghost"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Browse every Business of Agriculture episode
+                <span className="sr-only"> (opens in a new tab)</span>
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
 
       <Section id="shows" aria-labelledby="shows-title">
         <Container>
@@ -290,17 +351,49 @@ export default function PodcastsPage() {
         </Container>
       </Section>
 
+      <Section id="uprooted" surface="forest" aria-labelledby="uprooted-title">
+        <Container>
+          <div className={`dm-grid12 ${styles.uprootedGrid}`}>
+            <div className={`${styles.featureRail} col-span-6 md:col-span-5`}>
+              <Eyebrow>Documentary field series</Eyebrow>
+              <Heading level={2} size="2xl" id="uprooted-title">
+                {uprooted.name}
+              </Heading>
+              <Prose>
+                <p>{uprooted.description}</p>
+                <p>
+                  The first episode asks what nanotechnology is and how that tiny science
+                  could change farming. Runtime: {uprooted.episodeOneDuration}.
+                </p>
+              </Prose>
+              <Button
+                href={uprooted.playlist}
+                variant="secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Watch the UPROOTED playlist
+                <span className="sr-only"> (opens in a new tab)</span>
+              </Button>
+            </div>
+            <div className="col-span-6 md:col-span-7">
+              <VideoEmbed video={uprootedEpisodeOne} />
+            </div>
+          </div>
+        </Container>
+      </Section>
+
       {/* A SECOND HOME FOR content/sponsors.ts, which had exactly one.
 
-          Ten companies with verified outbound links were rendering on
+          Ten supplied sponsor marks with verified outbound links were rendering on
           /the-business-of-agriculture/ and nowhere else, while this hub, which
           is the page a prospective sponsor lands on from the nav, closed
           straight into a band asking them to sponsor a show it had shown no
           evidence anybody sponsors.
 
           SCOPED TO THE ONE SHOW THAT HAS THEM, in the eyebrow and in the
-          intro, and that is not pedantry: these ten sponsor The Business of
-          Agriculture. Letting a hub page imply they sponsor all three would be
+          intro, and that is not pedantry: these marks were supplied for The
+          Business of Agriculture. Letting a hub page imply they sponsor every format would be
           the same class of overstatement the 70,000 figure is fenced off for
           two sections up.
 
@@ -310,8 +403,9 @@ export default function PodcastsPage() {
         id="sponsors"
         surface="deep-alt"
         eyebrow="The Business of Agriculture"
-        title="Who already sponsors it"
-        intro="Ten companies pay to be in front of this audience every Monday: soil data, crop protection, biologicals, farm transition planning, ag investment. Their customers are the people already listening."
+        title="Ten supplied sponsor marks"
+        meta={null}
+        intro="Ten sponsor marks supplied for The Business of Agriculture, spanning soil data, crop protection, biologicals, farm transition planning, and agricultural investment."
       />
 
       <CTABand
@@ -327,7 +421,7 @@ export default function PodcastsPage() {
            card on /collaboration-opportunities/ and had been copied onto this
            route and onto Home. The canonical instance stays where VOICE.md put
            it, and this band closes on what this page sells: three shows. */
-        copy="Damian books guests who have something to say and sponsors whose customers are already listening. Tell him which of the three shows your people are on, and what you want them to hear."
+        copy="Damian books guests who have something substantive to say and works with sponsors whose business belongs in an agricultural conversation. Tell him which format fits and what you want to discuss."
         actions={[
           { label: 'Work with Damian', href: '/collaboration-opportunities/' },
           {

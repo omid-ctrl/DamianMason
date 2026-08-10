@@ -31,8 +31,8 @@ export type SponsorWallProps = {
 };
 
 /**
- * The podcast sponsor wall. Net new: on the old site these ten companies were
- * plain text links with no artwork at all.
+ * The podcast sponsor wall. The project includes ten client-supplied sponsor
+ * marks; the legacy show page published four corresponding text links.
  *
  * Same normalization engine as the client wall, so a 132 by 132 square and an
  * 800 by 205 banner land at the same optical weight. Two differences: the
@@ -43,7 +43,7 @@ export type SponsorWallProps = {
 export function SponsorWall({
   items,
   eyebrow = 'The Business of Agriculture',
-  title = 'Podcast sponsors',
+  title = 'Supplied sponsor marks',
   meta,
   className,
   ...rest
@@ -56,7 +56,7 @@ export function SponsorWall({
     url: sponsor.url ? sponsor.url : undefined,
   }));
 
-  const metaLine = meta !== undefined ? meta : `${marks.length} sponsors, 40,000+ listeners a month`;
+  const metaLine = meta !== undefined ? meta : `${marks.length} supplied sponsor marks`;
 
   return (
     <LogoWall

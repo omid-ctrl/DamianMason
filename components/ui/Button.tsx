@@ -40,6 +40,13 @@ export type ButtonAsLink = ButtonBase &
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
+/**
+ * Static downloads need a normal document request. Sending one through
+ * next/link makes the App Router prefetch it as an RSC route, which turns a
+ * perfectly valid PDF or media file into a noisy `?_rsc=` 404 in the console.
+ */
+const ROOT_DOWNLOAD_PATH = /^\/(?!\/)[^?#]*\.(?:csv|docx?|epub|m4a|m4v|mobi|mov|mp3|mp4|odp|ods|odt|ogg|pdf|pptx?|rtf|srt|txt|vtt|wav|webm|xlsx?|zip)(?:[?#]|$)/i;
+
 export function Button(props: ButtonProps) {
   const { variant = 'secondary', size = 'default', block = false, className, children } = props;
 
@@ -59,16 +66,18 @@ export function Button(props: ButtonProps) {
     void _c;
     void _ch;
 
-    /* A path is a route on this site, so it goes through next/link: client-side
+    /* A route on this site goes through next/link: client-side
        transition, prefetch, no full document reload. Everything else stays a
        bare <a>, and every one of those cases needs to:
          mailto: and tel:   the browser hands them to another application
          #fragment          same document, and Link would re-run the router
          https://           another origin, which Link cannot navigate to
+         static downloads   files are documents, not App Router routes
        Before this, "Book Damian" in the masthead, every Hero and CTABand
        action and the podcast hub cards all triggered a full reload while
        app/blog/ used next/link, so the codebase behaved two ways. */
-    if (anchorProps.href.startsWith('/')) {
+    const isRootDownload = ROOT_DOWNLOAD_PATH.test(anchorProps.href);
+    if (anchorProps.href.startsWith('/') && !isRootDownload && anchorProps.download === undefined) {
       return (
         <Link className={classes} {...anchorProps}>
           {children}

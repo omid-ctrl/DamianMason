@@ -32,14 +32,16 @@ const OUT = path.resolve(
   args.out ?? 'docs/qa/a11y-report.json',
 );
 
-/** The 18 routes. Order matches the IA, not the filesystem. */
+/** The 21 routes. Order matches the IA, not the filesystem. */
 const ROUTES = [
   ['home', '/'],
   ['about', '/about/'],
+  ['books', '/books/'],
   ['speaking', '/speaking/'],
   ['keynote', '/keynote/'],
   ['reviews', '/reviews/'],
   ['meeting-coordinators', '/meeting-coordinators/'],
+  ['speaker-one-sheet', '/speaker-one-sheet/'],
   ['collaboration-opportunities', '/collaboration-opportunities/'],
   ['boasg', '/boasg/'],
   ['podcasts', '/podcasts/'],

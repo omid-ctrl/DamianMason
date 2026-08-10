@@ -115,6 +115,14 @@ export const nav: NavItem[] = [
   { label: 'Contact Us', href: '/contact-us/' },
 ];
 
+/**
+ * Useful destinations that belong in the footer's "More" register without
+ * adding another label to the already fitted desktop masthead.
+ */
+export const footerOnlyNav: NavItem[] = [
+  { label: 'Books & Resources', href: '/books/' },
+];
+
 export const podcasts = {
   businessOfAgriculture: {
     name: 'The Business of Agriculture',
@@ -132,6 +140,11 @@ export const podcasts = {
     name: 'XtremeAg',
     site: 'https://xtremeag.farm',
     granary: 'https://xtremeag.farm/the-granary',
+  },
+  uprooted: {
+    name: 'UPROOTED',
+    playlist:
+      'https://www.youtube.com/playlist?list=PLC6Hi9FYKyg0&si=3VxxIXoQrIZRaXxV',
   },
 } as const;
 

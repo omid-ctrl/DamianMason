@@ -8,6 +8,10 @@
   "url": "http://localhost:3210/about/"
  },
  {
+  "name": "books",
+  "url": "http://localhost:3210/books/"
+ },
+ {
   "name": "speaking",
   "url": "http://localhost:3210/speaking/"
  },
@@ -22,6 +26,10 @@
  {
   "name": "meeting-coordinators",
   "url": "http://localhost:3210/meeting-coordinators/"
+ },
+ {
+  "name": "speaker-one-sheet",
+  "url": "http://localhost:3210/speaker-one-sheet/"
  },
  {
   "name": "collaboration-opportunities",
