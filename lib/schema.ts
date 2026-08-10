@@ -287,6 +287,73 @@ export function buildDoBusinessBetterSchema(): JsonLdDocument {
 }
 
 /* ==========================================================================
+   PodcastEpisode
+   ========================================================================== */
+
+export type PodcastEpisodeSchemaInput = {
+  name: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  episodeNumber?: string;
+  /** `53:23` or `01:05:46`. */
+  duration?: string;
+  audioUrl?: string;
+};
+
+function podcastDuration(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  const parts = value.trim().split(':');
+  if (parts.length < 2 || parts.length > 3 || !parts.every((part) => /^\d+$/.test(part))) {
+    return undefined;
+  }
+
+  const [hours, minutes, seconds] =
+    parts.length === 3
+      ? parts.map(Number)
+      : [0, Number(parts[0]), Number(parts[1])];
+  return `PT${hours > 0 ? `${hours}H` : ''}${minutes}M${seconds}S`;
+}
+
+/** A current episode in The Business of Agriculture's first-party feed. */
+export function buildPodcastEpisodeSchema({
+  name,
+  description,
+  url,
+  datePublished,
+  episodeNumber,
+  duration,
+  audioUrl,
+}: PodcastEpisodeSchemaInput): JsonLdDocument {
+  const isoDuration = podcastDuration(duration);
+
+  return {
+    '@context': CONTEXT,
+    '@type': 'PodcastEpisode',
+    '@id': `${url}#episode`,
+    name,
+    description,
+    url,
+    datePublished,
+    inLanguage: SITE_LANGUAGE,
+    author: personRef,
+    partOfSeries: {
+      '@id': `${canonicalUrl('/the-business-of-agriculture/')}#podcast`,
+    },
+    ...(episodeNumber ? { episodeNumber } : {}),
+    ...(isoDuration ? { timeRequired: isoDuration } : {}),
+    ...(audioUrl
+      ? {
+          associatedMedia: {
+            '@type': 'MediaObject',
+            contentUrl: audioUrl,
+          },
+        }
+      : {}),
+  };
+}
+
+/* ==========================================================================
    FAQPage
    ========================================================================== */
 

@@ -90,7 +90,9 @@ export function VideoGrid({
           <VideoEmbed
             video={video}
             poster={posters?.[video.id]}
-            captions={captions?.[video.id]}
+            captions={
+              captions?.[video.id] ?? (video.kind === 'mp4' ? video.captions : undefined)
+            }
             cutline={cutlines?.[video.id]}
           />
         </li>

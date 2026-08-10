@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Archivo, IBM_Plex_Mono, Oswald, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import { Footer, Header } from '@/components/layout';
-import { CountController, MastheadState, RevealController } from '@/components/motion';
+import { CountController, MastheadState } from '@/components/motion';
 import { JsonLd } from '@/components/seo';
 import { site } from '@/content/site';
 import { buildSiteBaseSchema } from '@/lib/schema';
@@ -75,7 +75,7 @@ const sourceSerif = Source_Serif_4({
  *  Same defect the Bodoni note above describes, one family down and twice the
  *  size: asking one Source_Serif_4() call for both styles emits a preloaded
  *  latin subset per style, so a 50.3KB italic master was fetched at High
- *  priority in the head of all 19 routes to serve exactly one CSS rule,
+ *  priority in the head of all 20 routes to serve exactly one CSS rule,
  *  .dm-quote__body. Measured on the home route, blocking that one file moved
  *  LCP from 3.23s to 2.93s and performance from 93 to 95.
  *
@@ -170,17 +170,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
-        {/* The scroll reveal. Renders nothing. It is the only thing on the site
-            that may hide content, it only ever hides what is already below the
-            fold, and with JavaScript off it never runs at all, which is why
-            every route is fully readable without it. */}
-        <RevealController />
-        {/* Two siblings, not two more responsibilities inside the reveal.
-            RevealController's value is that it has exactly one job and exactly
-            one bail path; the masthead's scrolled state has to SURVIVE reduced
-            motion, because it is state, and the count-up has to bail on it,
-            because it is motion, so folding either into that early return
-            would mean two rules in one place. Both render nothing. */}
+        {/* The masthead's scrolled treatment is state, while the count-up is
+            optional motion. Both render nothing; neither ever hides content. */}
         <MastheadState />
         <CountController />
         {/* Person, Organization and WebSite apply site-wide. Page-specific

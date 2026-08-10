@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import Link from 'next/link';
 import { Heading, cx } from '@/components/ui';
-import { nav, type NavItem } from '@/content/site';
+import { footerOnlyNav, nav, type NavItem } from '@/content/site';
 import { hubChildren } from './navRoutes';
 
 export type FooterNavProps = {
@@ -18,8 +18,8 @@ type FooterNavGroup = {
 const hasChildren = (item: NavItem): boolean => (item.children?.length ?? 0) > 0;
 
 /**
- * The columns are derived from the same `nav` tree the header reads, so the
- * footer cannot drift from the header the way the old one did. Its "The
+ * The main columns are derived from the same `nav` tree the header reads, so
+ * the footer cannot drift from the header the way the old one did. Its "The
  * Business of Ag" was the header's "The Business of Agriculture", and all six
  * of its links pointed at a staging host with unrewritten query URLs.
  *
@@ -28,6 +28,10 @@ const hasChildren = (item: NavItem): boolean => (item.children?.length ?? 0) > 0
  * child that resolves to its own parent's route: the Media group ships one on
  * the live site, a submenu item labelled "Media" under a parent labelled
  * "Media", both landing on /blog-news/.
+ *
+ * `footerOnlyNav` adds library destinations to the existing "More" register
+ * without widening the desktop masthead. It remains content data rather than
+ * component markup, and this is its only rendering path.
  */
 function buildGroups(): FooterNavGroup[] {
   const parents: FooterNavGroup[] = nav.filter(hasChildren).map((parent) => ({
@@ -36,7 +40,7 @@ function buildGroups(): FooterNavGroup[] {
     items: hubChildren(parent),
   }));
 
-  const standalone = nav.filter((item) => !hasChildren(item));
+  const standalone = [...nav.filter((item) => !hasChildren(item)), ...footerOnlyNav];
 
   return standalone.length > 0
     ? [...parents, { label: 'More', items: standalone }]

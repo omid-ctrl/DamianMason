@@ -46,6 +46,9 @@ yarn-error.log*
 # QA artifacts: browser-automation output and route screenshots left by
 # visual-check passes. Never part of the deploy.
 .playwright-mcp/
+/.playwright-cli/
+/output/
+/tmp/
 /*.png
 
 # typescript

@@ -25,7 +25,7 @@ export type HeroImage = {
    * The hero portrait is the only eager image on any page, so this defaults to
    * true. Set it false when a route puts a Hero below the fold.
    */
-  priority?: boolean;
+  preload?: boolean;
   /**
    * Take the feature grade instead of the wash. The test is the FILE, not the
    * placement: shot on purpose, by a professional, at 2000px or better. A
@@ -176,6 +176,7 @@ export function Hero(props: HeroProps) {
   const headingId = id ? `${id}-title` : undefined;
   const band = variant === 'band';
   const cutout = variant === 'cutout';
+  const preloadImage = image?.preload ?? true;
   /* A Hero speaks in the masthead voice only when it IS the page's H1.
      The size check alone was not the rule, it was a proxy for it that happened
      to hold: the one level-2 Hero on the site (the /meeting-coordinators/
@@ -267,12 +268,7 @@ export function Hero(props: HeroProps) {
                   alt={image.alt}
                   width={image.width}
                   height={image.height}
-                  priority={image.priority ?? true}
-                  /* Same pairing and the same reason as the portrait plate
-                     below: in Next 16 `priority` maps to preload only and the
-                     hint is a separate prop. This element is LCP on the
-                     flagship route. */
-                  fetchPriority="high"
+                  preload={preloadImage}
                   /* 31rem is --size-cutout-max-h times 2/3, the widest this
                      ever renders. */
                   sizes="(min-width: 64rem) 31rem, (min-width: 48rem) 22rem, 100vw"
@@ -293,16 +289,7 @@ export function Hero(props: HeroProps) {
                   alt={image.alt}
                   width={image.width}
                   height={image.height}
-                  priority={image.priority ?? true}
-                  /* `priority` and `fetchPriority` are two different things in
-                     Next 16 and this element wants both. `priority` maps to
-                     preload only (get-img-props.js), while the hint itself is a
-                     separate prop, so without this line no <img> on the site
-                     emits fetchpriority and lcp-discovery-insight scores 0 on
-                     every route where an image is LCP. Measured on a production
-                     build, adding it flips that audit to 1 and moves /keynote/
-                     desktop LCP from 803ms to 712ms. */
-                  fetchPriority="high"
+                  preload={preloadImage}
                   sizes="(min-width: 48rem) 32rem, 100vw"
                 />
               </div>
@@ -336,10 +323,7 @@ export function Hero(props: HeroProps) {
               alt={image.alt}
               width={image.width}
               height={image.height}
-              priority={image.priority ?? true}
-              /* Same pairing as the portrait above. The band photograph is the
-                 LCP element on /acres-tv/ at mobile. */
-              fetchPriority="high"
+              preload={preloadImage}
               sizes="100vw"
             />
             {/* The 0.62 veil handles the photograph. This handles the one thing

@@ -13,6 +13,8 @@ import { TestimonialGrid } from '@/components/sections/TestimonialGrid';
 import { JsonLd } from '@/components/seo';
 import { Button, Card, Container, Eyebrow, Heading, Prose, Section } from '@/components/ui';
 import { credentialPillars } from '@/content/credentials';
+import { clients } from '@/content/clients';
+import { foreignCountryCount } from '@/content/coverage';
 import { faq } from '@/content/faq';
 import { imageAlt } from '@/content/image-alt';
 import { contact } from '@/content/site';
@@ -52,6 +54,13 @@ import styles from './page.module.css';
 
 const PATH = '/speaker-one-sheet/';
 const PDF = '/docs/damian-mason-speaker-one-sheet.pdf';
+/* The PDF source article is present in the public DOM but screen-hidden. A
+   real `src` there still downloads, costing every web visit two full-size
+   JPEGs. The generator promotes `data-pdf-src` into `src` before printing;
+   browsers otherwise receive this valid one-pixel placeholder. */
+const PDF_IMAGE_PLACEHOLDER =
+  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+const PHOTO_ZIP = '/docs/damian-mason-speaker-photos.zip';
 const MAILTO = `mailto:${contact.email}`;
 
 /** The five topics a planner actually asks about, in the order they ask. */
@@ -183,7 +192,7 @@ export default function SpeakerOneSheetPage() {
             titleId="sectors-title"
             eyebrow="The roster by kind"
             title="Sorted by what kind of business booked him"
-            intro="Ten of the twenty-five run an annual meeting, which is the thing a keynote gets booked for. The other fifteen sell into that room."
+            intro="Ten of the twenty-five are commodity groups, trade associations, or Farm Bureaus. The other fifteen are input suppliers, ag lenders and insurers, grain, livestock, and produce businesses, and equipment makers."
           />
         </Container>
       </Section>
@@ -198,6 +207,7 @@ export default function SpeakerOneSheetPage() {
         eyebrow="Where he works"
         title="All fifty. Count them."
         intro="Whichever state your meeting is in, Damian has already worked in it. Travel is a quoted flat fee, not an open expense line: the terms are on the meeting coordinators page."
+        cutline="Seven countries beyond the United States, since 1994. Ask Damian’s office for the current list."
       />
 
       <Section id="said" surface="page" aria-labelledby="said-title">
@@ -211,7 +221,7 @@ export default function SpeakerOneSheetPage() {
           <TestimonialGrid items={quotes} columns={3} label="What committees said" />
           <div className="dm-section-close">
             <Button href="/reviews/" variant="secondary">
-              Read all ten written reviews
+              Read all fifteen written testimonials
             </Button>
           </div>
         </Container>
@@ -225,7 +235,7 @@ export default function SpeakerOneSheetPage() {
           marketing efforts as well." Until the media-kit rescue that promise
           could not be kept, because there was nothing to link. It can now.
 
-          BOTH PDFs ARE LINKED, NEVER EMBEDDED. next.config.ts sets
+          BOTH PDFs AND THE PHOTO ZIP ARE LINKED, NEVER EMBEDDED. next.config.ts sets
           object-src 'none' and a frame-src that permits only
           youtube-nocookie.com and play.libsyn.com, so an <iframe>, <object> or
           <embed> is blocked in production and works in a dev server with the
@@ -281,14 +291,16 @@ export default function SpeakerOneSheetPage() {
               </li>
               <li>
                 <Card variant="ruled">
-                  <Eyebrow>Photography</Eyebrow>
+                  <Eyebrow>ZIP, 10 photos</Eyebrow>
                   <Heading level={3} size="lg">
-                    <a href={MAILTO}>Headshots and stage photography</a>
+                    <a href={PHOTO_ZIP} download>
+                      Download speaker photos
+                    </a>
                   </Heading>
                   <Prose measure="narrow">
                     <p>
-                      Studio portraits and live-event frames at print resolution.
-                      Email the office and say what size you need.
+                      Four studio portraits, five stage photographs, one audience frame,
+                      and a file of usage notes. If you need another size, email the office.
                     </p>
                   </Prose>
                 </Card>
@@ -401,6 +413,165 @@ export default function SpeakerOneSheetPage() {
           { label: contact.phone, href: contact.phoneHref, 'aria-label': `Call ${contact.phone}` },
         ] as const}
       />
+
+      {/* This article is screen-hidden and revealed only by
+          scripts/build-one-sheet.mjs. It is semantic source material for a
+          genuinely one-page tagged PDF, not a second web presentation. */}
+      <article className="dm-one-sheet-print" style={{ display: 'none' }}>
+        <header className="dm-one-sheet-print__mast">
+          <div>
+            <p className="dm-one-sheet-print__kicker">
+              Agricultural keynote speaker · Podcaster · Author
+            </p>
+            <p className="dm-one-sheet-print__name">Damian Mason</p>
+            {/* The public page already has its one H1. Chromium maps this
+                print-only heading's explicit aria-level to H1 in the tagged
+                PDF, while the hidden source DOM remains a valid H1 -> H2
+                document for browser QA. */}
+            <h2 className="dm-one-sheet-print__title" role="heading" aria-level={1}>
+              Straight-Forward Agriculture Dialogue
+            </h2>
+            <p className="dm-one-sheet-print__lead">
+              Purdue Ag Econ, Second City Chicago, and an Indiana farm of his own.
+              Damian pairs current agricultural business insight with the timing of a
+              professional comedian.
+            </p>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element -- this image
+              exists only inside the PDF source article; the print generator
+              owns its exact physical dimensions and waits for it to decode. */}
+          <img
+            className="dm-one-sheet-print__portrait"
+            src={PDF_IMAGE_PLACEHOLDER}
+            data-pdf-src="/img/photos/portrait-headshot.jpg"
+            alt="Damian Mason in a light grey jacket, smiling at the camera."
+            width="1333"
+            height="2000"
+          />
+        </header>
+
+        <ul className="dm-one-sheet-print__stats" aria-label="Damian Mason track record">
+          <li>
+            <span className="dm-one-sheet-print__stat">2,400+</span>
+            <span className="dm-one-sheet-print__stat-label">Audiences addressed</span>
+          </li>
+          <li>
+            <span className="dm-one-sheet-print__stat">50 states</span>
+            <span className="dm-one-sheet-print__stat-label">
+              Plus {foreignCountryCount} foreign countries
+            </span>
+          </li>
+          <li>
+            <span className="dm-one-sheet-print__stat">1994</span>
+            <span className="dm-one-sheet-print__stat-label">Speaking since</span>
+          </li>
+          <li>
+            <span className="dm-one-sheet-print__stat">40,000+</span>
+            <span className="dm-one-sheet-print__stat-label">Monthly listeners</span>
+          </li>
+        </ul>
+
+        <div className="dm-one-sheet-print__body">
+          <div className="dm-one-sheet-print__column">
+            <section className="dm-one-sheet-print__panel dm-one-sheet-print__panel--accent">
+              <p className="dm-one-sheet-print__kicker">The keynote</p>
+              <h2>The “Ations” of Agriculture</h2>
+              <p className="dm-one-sheet-print__copy">{PROGRAM_ANSWER}</p>
+            </section>
+
+            <section className="dm-one-sheet-print__panel">
+              <p className="dm-one-sheet-print__kicker">Credentials</p>
+              <ul className="dm-one-sheet-print__credentials">
+                {credentialPillars.map((pillar) => (
+                  <li key={pillar.title}>
+                    <h3>{pillar.title}</h3>
+                    <ul>
+                      {pillar.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="dm-one-sheet-print__panel">
+              <p className="dm-one-sheet-print__kicker">Selected and verified roster</p>
+              <h2>25 clients across agriculture</h2>
+              <p className="dm-one-sheet-print__clients">
+                {clients.map((client) => client.name).join(' · ')}
+              </p>
+            </section>
+          </div>
+
+          <aside className="dm-one-sheet-print__column" aria-label="Proof and booking facts">
+            <section className="dm-one-sheet-print__panel dm-one-sheet-print__panel--accent">
+              <p className="dm-one-sheet-print__kicker">On the record</p>
+              {quotes[0] ? (
+                <blockquote>
+                  “{quotes[0].quote}”
+                  <cite>
+                    {quotes[0].name}
+                    {quotes[0].organization ? ` · ${quotes[0].organization}` : ''}
+                  </cite>
+                </blockquote>
+              ) : null}
+            </section>
+
+            <section className="dm-one-sheet-print__panel">
+              <p className="dm-one-sheet-print__kicker">What a planner can verify</p>
+              <ul className="dm-one-sheet-print__facts">
+                <li>60 to 90 minute keynote, with an extended breakout available.</li>
+                <li>Direct booking, a short contract, and a small deposit to hold the date.</li>
+                <li>Quoted flat travel fee; Damian books his own airfare and rental car.</li>
+                <li>{foreignCountryCount} foreign countries in addition to all 50 states.</li>
+                <li>15 verified written testimonials, plus four source-page videos.</li>
+                <li>
+                  Host of The Business of Agriculture, Do Business Better, XtremeAg’s
+                  Cutting the Curve, and UPROOTED.
+                </li>
+                <li>Author of Food Fear and Do Business Better.</li>
+              </ul>
+            </section>
+          </aside>
+        </div>
+
+        <figure className="dm-one-sheet-print__stage">
+          {/* eslint-disable-next-line @next/next/no-img-element -- same print-only
+              contract as the portrait above; the PDF generator owns the crop. */}
+          <img
+            src={PDF_IMAGE_PLACEHOLDER}
+            data-pdf-src="/img/photos/stage-crop-protection-slide.jpg"
+            alt="Damian Mason speaking on stage beside a presentation slide about crop protection."
+            width="1600"
+            height="1067"
+          />
+          <figcaption>
+            Agricultural business content, built for the room and the year in front of him.
+          </figcaption>
+        </figure>
+
+        <footer className="dm-one-sheet-print__contact">
+          <div>
+            <h2>Check the date first.</h2>
+            <p>Direct booking from Damian’s Indiana office. No speaker bureau in the middle.</p>
+          </div>
+          <dl>
+            <div>
+              <dt>Email</dt>
+              <dd>{contact.email}</dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <dd>{contact.phone}</dd>
+            </div>
+            <div>
+              <dt>Website</dt>
+              <dd>damianmason.com</dd>
+            </div>
+          </dl>
+        </footer>
+      </article>
     </>
   );
 }

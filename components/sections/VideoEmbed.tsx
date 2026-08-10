@@ -44,8 +44,9 @@ export type VideoEmbedProps = {
    */
   poster?: string;
   /**
-   * A captions track for the MP4 branch. Also first-class: none of the three
-   * self-hosted files is captioned yet and a later phase adds the VTT.
+   * A captions track for the MP4 branch. The three self-hosted files carry
+   * their own English tracks in `content/videos.ts`; this prop remains an
+   * escape hatch for a route-specific override.
    */
   captions?: VideoCaptionTrack;
   /** The cutline under the frame. Falls back to `video.description`. */

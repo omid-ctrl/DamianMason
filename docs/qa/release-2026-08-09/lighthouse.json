@@ -1,0 +1,5362 @@
+{
+  "generatedAt": "2026-08-10T05:28:01.493Z",
+  "base": "http://localhost:3100",
+  "targets": {
+    "performance": 90,
+    "accessibility": 95,
+    "best-practices": 95,
+    "seo": 100
+  },
+  "lighthouseVersion": "13.4.1",
+  "runs": {
+    "/": {
+      "mobile": {
+        "scores": {
+          "performance": 92,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3235.97685,
+          "fcpMs": 1807.3179,
+          "cls": 0,
+          "tbtMs": 4.5,
+          "siMs": 1807.3179,
+          "ttiMs": 3703.548815
+        },
+        "lcpElement": {
+          "selector": "div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#hero-title",
+          "snippet": "<h1 class=\"dm-display text-6xl dm-hero__title\" id=\"hero-title\">",
+          "label": "Straight-Forward Agriculture Dialogue",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 54
+            }
+          ]
+        },
+        "totalByteWeight": 548163,
+        "resources": {
+          "total": {
+            "requests": 38,
+            "bytes": 548163
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 5,
+            "bytes": 92892
+          },
+          "other": {
+            "requests": 8,
+            "bytes": 55367
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 44538
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 32036
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 1,
+            "bytes": 13099
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.71,
+              "weight": 25,
+              "pointsLost": 7.3,
+              "displayValue": "3.2 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.89,
+              "weight": 10,
+              "pointsLost": 1.1,
+              "displayValue": "1.8 s"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 25 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.9,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 600
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          }
+        ],
+        "allPerfScores": [
+          93,
+          92,
+          92
+        ],
+        "allLcpMs": [
+          3085,
+          3234,
+          3236
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 806.7790000000001,
+          "fcpMs": 447.06739999999996,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 447.06739999999996,
+          "ttiMs": 808.7790000000002
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-hero__cutout > img.dm-hero__cutout-img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal woven jacket and a black open-collar shirt, han…\" width=\"933\" height=\"1400\" decoding=\"async\" data-nimg=\"1\" class=\"dm-hero__cutout-img\" style=\"color:transparent\" sizes=\"(min-width: 64rem) 31rem, (min-width: 48rem) 22rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.png&amp;w=640&amp;q=75 640w, /…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-cutout.p…\">",
+          "label": "Damian Mason in a charcoal woven jacket and a black open-collar shirt, hands be…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 17
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 8
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 37
+            }
+          ]
+        },
+        "totalByteWeight": 643283,
+        "resources": {
+          "total": {
+            "requests": 56,
+            "bytes": 643283
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 8,
+            "bytes": 126774
+          },
+          "other": {
+            "requests": 18,
+            "bytes": 106453
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 44538
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42188
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 1,
+            "bytes": 13099
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.98,
+              "weight": 25,
+              "pointsLost": 0.5,
+              "displayValue": "0.8 s"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 16 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          787,
+          807,
+          809
+        ]
+      }
+    },
+    "/about/": {
+      "mobile": {
+        "scores": {
+          "performance": 90,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3594.89175,
+          "fcpMs": 1505.93505,
+          "cls": 0,
+          "tbtMs": 5,
+          "siMs": 1505.93505,
+          "ttiMs": 3685.9798425
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal blazer and jeans, one hand in a pocket, leaning…\" width=\"1467\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-dark-blazer.jpg&amp;w=640&amp;q=75 64…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-dark-bla…\">",
+          "label": "Damian Mason in a charcoal blazer and jeans, one hand in a pocket, leaning agai…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 22
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 8
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 24
+            }
+          ]
+        },
+        "totalByteWeight": 484828,
+        "resources": {
+          "total": {
+            "requests": 37,
+            "bytes": 484828
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 8,
+            "bytes": 55367
+          },
+          "image": {
+            "requests": 3,
+            "bytes": 51875
+          },
+          "stylesheet": {
+            "requests": 7,
+            "bytes": 34190
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 20066
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.61,
+              "weight": 25,
+              "pointsLost": 9.8,
+              "displayValue": "3.6 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.96,
+              "weight": 10,
+              "pointsLost": 0.4,
+              "displayValue": "1.5 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 450 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.9,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 450,
+            "metricSavings": {
+              "FCP": 450,
+              "LCP": 0
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 450 ms"
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "savingsMs": 300,
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 300
+            },
+            "savingsBytes": 29917,
+            "rowWastedMs": null,
+            "displayValue": "Est savings of 29 KiB"
+          }
+        ],
+        "allPerfScores": [
+          85,
+          90,
+          90
+        ],
+        "allLcpMs": [
+          4217,
+          3595,
+          3518
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 724.0111499999999,
+          "fcpMs": 406.6741,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 406.6741,
+          "ttiMs": 730.122385
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal blazer and jeans, one hand in a pocket, leaning…\" width=\"1467\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-dark-blazer.jpg&amp;w=640&amp;q=75 64…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-dark-bla…\">",
+          "label": "Damian Mason in a charcoal blazer and jeans, one hand in a pocket, leaning agai…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 2
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 17
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 8
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 22
+            }
+          ]
+        },
+        "totalByteWeight": 569791,
+        "resources": {
+          "total": {
+            "requests": 54,
+            "bytes": 569791
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 18,
+            "bytes": 106453
+          },
+          "image": {
+            "requests": 6,
+            "bytes": 77754
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42188
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 20066
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 4 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          725,
+          724,
+          725
+        ]
+      }
+    },
+    "/books/": {
+      "mobile": {
+        "scores": {
+          "performance": 93,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3159.6237499999997,
+          "fcpMs": 1203.8495,
+          "cls": 0,
+          "tbtMs": 3,
+          "siMs": 1203.8495,
+          "ttiMs": 3617.92375
+        },
+        "lcpElement": {
+          "selector": "section#books > figure.dm-hero__figure--band > div.dm-hero__media > img.dm-photo__img",
+          "snippet": "<img alt=\"A hardback copy of Food Fear stands between two stacks of the book on a wa…\" width=\"1555\" height=\"1103\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Ffood-fear-hardback.jpg&amp;w=640&amp;q=75 640w…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Ffood-fear-hardbac…\">",
+          "label": "A hardback copy of Food Fear stands between two stacks of the book on a walnut …",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 18
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 7
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 20
+            }
+          ]
+        },
+        "totalByteWeight": 504381,
+        "resources": {
+          "total": {
+            "requests": 36,
+            "bytes": 504381
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 5,
+            "bytes": 85030
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43279
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 32537
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 20205
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.73,
+              "weight": 25,
+              "pointsLost": 6.8,
+              "displayValue": "3.2 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.99,
+              "weight": 10,
+              "pointsLost": 0.1,
+              "displayValue": "1.2 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 150 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.91,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.6 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          94,
+          93,
+          89
+        ],
+        "allLcpMs": [
+          3009,
+          3160,
+          3742
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 728.3299000000001,
+          "fcpMs": 408.8866,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 408.8866,
+          "ttiMs": 734.47801
+        },
+        "lcpElement": {
+          "selector": "section#books > figure.dm-hero__figure--band > div.dm-hero__media > img.dm-photo__img",
+          "snippet": "<img alt=\"A hardback copy of Food Fear stands between two stacks of the book on a wa…\" width=\"1555\" height=\"1103\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Ffood-fear-hardback.jpg&amp;w=640&amp;q=75 640w…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Ffood-fear-hardbac…\">",
+          "label": "A hardback copy of Food Fear stands between two stacks of the book on a walnut …",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 21
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 8
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 29
+            }
+          ]
+        },
+        "totalByteWeight": 617807,
+        "resources": {
+          "total": {
+            "requests": 53,
+            "bytes": 617807
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 7,
+            "bytes": 137218
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42689
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 20205
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 4 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          773,
+          728,
+          725
+        ]
+      }
+    },
+    "/speaking/": {
+      "mobile": {
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3007.8516,
+          "fcpMs": 1655.2344,
+          "cls": 0,
+          "tbtMs": 5,
+          "siMs": 1655.2344,
+          "ttiMs": 3385.93884
+        },
+        "lcpElement": {
+          "selector": "div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#speaking-title",
+          "snippet": "<h1 class=\"dm-display text-5xl dm-hero__title\" id=\"speaking-title\">",
+          "label": "Hire a Speaker that Works for YOU.",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 45
+            }
+          ]
+        },
+        "totalByteWeight": 475630,
+        "resources": {
+          "total": {
+            "requests": 36,
+            "bytes": 475630
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 8,
+            "bytes": 55367
+          },
+          "image": {
+            "requests": 2,
+            "bytes": 35826
+          },
+          "stylesheet": {
+            "requests": 7,
+            "bytes": 33985
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 27122
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.78,
+              "weight": 25,
+              "pointsLost": 5.5,
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.93,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.4 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 600
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          }
+        ],
+        "allPerfScores": [
+          94,
+          94,
+          94
+        ],
+        "allLcpMs": [
+          3007,
+          3008,
+          3008
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 683.451225,
+          "fcpMs": 405.63415,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 405.63415,
+          "ttiMs": 685.5451275
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason with his arms folded, in a charcoal woven jacket and an open …\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&amp;w=640&amp;q=75 640…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-su…\">",
+          "label": "Damian Mason with his arms folded, in a charcoal woven jacket and an open white…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 19
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 6
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 28
+            }
+          ]
+        },
+        "totalByteWeight": 568323,
+        "resources": {
+          "total": {
+            "requests": 51,
+            "bytes": 568323
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 18,
+            "bytes": 106453
+          },
+          "image": {
+            "requests": 3,
+            "bytes": 69230
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42188
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 27122
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 4 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          686,
+          683,
+          684
+        ]
+      }
+    },
+    "/keynote/": {
+      "mobile": {
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3009.2139749999997,
+          "fcpMs": 1656.14265,
+          "cls": 0,
+          "tbtMs": 5,
+          "siMs": 1656.14265,
+          "ttiMs": 3469.8163525
+        },
+        "lcpElement": {
+          "selector": "div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#keynote-title",
+          "snippet": "<h1 class=\"dm-display text-4xl dm-hero__title\" id=\"keynote-title\">",
+          "label": "A Leading Agriculture Presenter Who Talks Candidly About Current Events.",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 49
+            }
+          ]
+        },
+        "totalByteWeight": 490516,
+        "resources": {
+          "total": {
+            "requests": 34,
+            "bytes": 490516
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 3,
+            "bytes": 65434
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43279
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 32036
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 26437
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.78,
+              "weight": 25,
+              "pointsLost": 5.5,
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.92,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.5 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 600
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          }
+        ],
+        "allPerfScores": [
+          94,
+          94,
+          94
+        ],
+        "allLcpMs": [
+          3013,
+          3009,
+          3007
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 745.5826500000001,
+          "fcpMs": 407.0551,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 407.0551,
+          "ttiMs": 749.7002350000001
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a grey plaid sport coat and open collar shirt, holding his…\" width=\"1334\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-light-jacket.jpg&amp;w=640&amp;q=75 6…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-light-ja…\">",
+          "label": "Damian Mason in a grey plaid sport coat and open collar shirt, holding his read…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 20
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 7
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 26
+            }
+          ]
+        },
+        "totalByteWeight": 592083,
+        "resources": {
+          "total": {
+            "requests": 53,
+            "bytes": 592083
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 7,
+            "bytes": 105763
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42188
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 26437
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.98,
+              "weight": 25,
+              "pointsLost": 0.5,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 25 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          743,
+          746,
+          743
+        ]
+      }
+    },
+    "/reviews/": {
+      "mobile": {
+        "scores": {
+          "performance": 90,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3588.8047500000002,
+          "fcpMs": 1654.6828500000001,
+          "cls": 0,
+          "tbtMs": 3,
+          "siMs": 1654.6828500000001,
+          "ttiMs": 3679.6632725000004
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal suit and a white shirt, close, looking straight…\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-headshot.jpg&amp;w=640&amp;q=75 640w,…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-headshot…\">",
+          "label": "Damian Mason in a charcoal suit and a white shirt, close, looking straight at t…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 21
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 7
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 26
+            }
+          ]
+        },
+        "totalByteWeight": 474911,
+        "resources": {
+          "total": {
+            "requests": 34,
+            "bytes": 474911
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 3,
+            "bytes": 51985
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43250
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 31867
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 24479
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.61,
+              "weight": 25,
+              "pointsLost": 9.8,
+              "displayValue": "3.6 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.9,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 0
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          }
+        ],
+        "allPerfScores": [
+          85,
+          94,
+          90
+        ],
+        "allLcpMs": [
+          4202,
+          3008,
+          3589
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 724.672525,
+          "fcpMs": 406.44835,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 406.44835,
+          "ttiMs": 726.5650525000001
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal suit and a white shirt, close, looking straight…\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-headshot.jpg&amp;w=640&amp;q=75 640w,…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-headshot…\">",
+          "label": "Damian Mason in a charcoal suit and a white shirt, close, looking straight at t…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 15
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 8
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 29
+            }
+          ]
+        },
+        "totalByteWeight": 555193,
+        "resources": {
+          "total": {
+            "requests": 49,
+            "bytes": 555193
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "image": {
+            "requests": 3,
+            "bytes": 71000
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42019
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 24479
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 18 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          728,
+          725,
+          722
+        ]
+      }
+    },
+    "/meeting-coordinators/": {
+      "mobile": {
+        "scores": {
+          "performance": 90,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3517.2432499999995,
+          "fcpMs": 1505.5459500000002,
+          "cls": 0,
+          "tbtMs": 4,
+          "siMs": 1505.5459500000002,
+          "ttiMs": 3698.2600075
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a grey check sport coat and jeans, perched on the edge of …\" width=\"1333\" height=\"1333\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&amp;w=640&amp;q=75 640w…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroo…\">",
+          "label": "Damian Mason in a grey check sport coat and jeans, perched on the edge of a con…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 24
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 8
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 27
+            }
+          ]
+        },
+        "totalByteWeight": 510581,
+        "resources": {
+          "total": {
+            "requests": 36,
+            "bytes": 510581
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 3,
+            "bytes": 71274
+          },
+          "other": {
+            "requests": 8,
+            "bytes": 59904
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 32071
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 24002
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.63,
+              "weight": 25,
+              "pointsLost": 9.3,
+              "displayValue": "3.5 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.96,
+              "weight": 10,
+              "pointsLost": 0.4,
+              "displayValue": "1.5 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 450 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.9,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 450,
+            "metricSavings": {
+              "FCP": 450,
+              "LCP": 0
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 302,
+            "displayValue": "Est savings of 450 ms"
+          }
+        ],
+        "allPerfScores": [
+          85,
+          94,
+          90
+        ],
+        "allLcpMs": [
+          4366,
+          3008,
+          3517
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 742.989,
+          "fcpMs": 366.74175,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 366.74175,
+          "ttiMs": 746.764275
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a grey check sport coat and jeans, perched on the edge of …\" width=\"1333\" height=\"1333\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroom.jpg&amp;w=640&amp;q=75 640w…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-boardroo…\">",
+          "label": "Damian Mason in a grey check sport coat and jeans, perched on the edge of a con…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 17
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 6
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 32
+            }
+          ]
+        },
+        "totalByteWeight": 609083,
+        "resources": {
+          "total": {
+            "requests": 53,
+            "bytes": 609083
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 18,
+            "bytes": 110990
+          },
+          "image": {
+            "requests": 5,
+            "bytes": 108538
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42223
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 24002
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.98,
+              "weight": 25,
+              "pointsLost": 0.5,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 18 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 80 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          704,
+          743,
+          704
+        ]
+      }
+    },
+    "/speaker-one-sheet/": {
+      "mobile": {
+        "scores": {
+          "performance": 93,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3082.3323,
+          "fcpMs": 1654.8882,
+          "cls": 0,
+          "tbtMs": 4.5,
+          "siMs": 1654.8882,
+          "ttiMs": 3467.36377
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal woven jacket and a black open-collar shirt, han…\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&amp;w=640&amp;q=7…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal…\">",
+          "label": "Damian Mason in a charcoal woven jacket and a black open-collar shirt, hands be…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 19
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 7
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 21
+            }
+          ]
+        },
+        "totalByteWeight": 502794,
+        "resources": {
+          "total": {
+            "requests": 37,
+            "bytes": 502794
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 6,
+            "bytes": 70660
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43279
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 33454
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 32071
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.76,
+              "weight": 25,
+              "pointsLost": 6,
+              "displayValue": "3.1 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.92,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.5 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [
+            {
+              "id": "label-content-name-mismatch",
+              "title": "Elements with visible text labels do not have matching accessible names.",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            }
+          ],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 0
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          }
+        ],
+        "allPerfScores": [
+          85,
+          93,
+          93
+        ],
+        "allLcpMs": [
+          4275,
+          3082,
+          3082
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 646.8606,
+          "fcpMs": 405.14545,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 405.14545,
+          "ttiMs": 650.8606
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal woven jacket and a black open-collar shirt, han…\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&amp;w=640&amp;q=7…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal…\">",
+          "label": "Damian Mason in a charcoal woven jacket and a black open-collar shirt, hands be…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 19
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 6
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 28
+            }
+          ]
+        },
+        "totalByteWeight": 754841,
+        "resources": {
+          "total": {
+            "requests": 73,
+            "bytes": 754841
+          },
+          "image": {
+            "requests": 27,
+            "bytes": 261469
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42223
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 33454
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.6 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 36 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [
+            {
+              "id": "label-content-name-mismatch",
+              "title": "Elements with visible text labels do not have matching accessible names.",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            }
+          ],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          763,
+          647,
+          764
+        ]
+      }
+    },
+    "/boasg/": {
+      "mobile": {
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3007.7282999999998,
+          "fcpMs": 1655.1522,
+          "cls": 0,
+          "tbtMs": 4,
+          "siMs": 1655.1522,
+          "ttiMs": 3384.71417
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > div.dm-hero__type > div.dm-prose > p",
+          "snippet": "<p>",
+          "label": "The Business of Ag Success Group is an information-packed community of ag profe…",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 46
+            }
+          ]
+        },
+        "totalByteWeight": 453692,
+        "resources": {
+          "total": {
+            "requests": 33,
+            "bytes": 453692
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43279
+          },
+          "image": {
+            "requests": 2,
+            "bytes": 35826
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 31677
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 19580
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.78,
+              "weight": 25,
+              "pointsLost": 5.5,
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.93,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.4 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 600
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          }
+        ],
+        "allPerfScores": [
+          94,
+          94,
+          94
+        ],
+        "allLcpMs": [
+          3011,
+          3008,
+          2933
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 703.6451750000001,
+          "fcpMs": 405.76345000000003,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 405.76345000000003,
+          "ttiMs": 707.7412325000001
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason with his arms folded, in a charcoal woven jacket and an open …\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-suit.jpg&amp;w=640&amp;q=75 640…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-black-su…\">",
+          "label": "Damian Mason with his arms folded, in a charcoal woven jacket and an open white…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 18
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 6
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 23
+            }
+          ]
+        },
+        "totalByteWeight": 537949,
+        "resources": {
+          "total": {
+            "requests": 49,
+            "bytes": 537949
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "image": {
+            "requests": 4,
+            "bytes": 60829
+          },
+          "stylesheet": {
+            "requests": 10,
+            "bytes": 39845
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 19580
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 4 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          704,
+          704,
+          702
+        ]
+      }
+    },
+    "/podcasts/": {
+      "mobile": {
+        "scores": {
+          "performance": 90,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3515.7209999999995,
+          "fcpMs": 1655.7907500000001,
+          "cls": 0,
+          "tbtMs": 4,
+          "siMs": 1655.7907500000001,
+          "ttiMs": 3614.2826374999995
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a checked sport coat and jeans, seated on the edge of a co…\" width=\"2000\" height=\"1334\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-office-seated.jpg&amp;w=640&amp;q=75 …\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-office-s…\">",
+          "label": "Damian Mason in a checked sport coat and jeans, seated on the edge of a confere…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 20
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 6
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 23
+            }
+          ]
+        },
+        "totalByteWeight": 482686,
+        "resources": {
+          "total": {
+            "requests": 40,
+            "bytes": 482686
+          },
+          "script": {
+            "requests": 13,
+            "bytes": 178576
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 10,
+            "bytes": 65172
+          },
+          "stylesheet": {
+            "requests": 8,
+            "bytes": 36530
+          },
+          "image": {
+            "requests": 2,
+            "bytes": 30387
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 24581
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.63,
+              "weight": 25,
+              "pointsLost": 9.3,
+              "displayValue": "3.5 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.91,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.6 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 0
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "savingsMs": 210,
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 200
+            },
+            "savingsBytes": 29917,
+            "rowWastedMs": null,
+            "displayValue": "Est savings of 29 KiB"
+          }
+        ],
+        "allPerfScores": [
+          94,
+          90,
+          89
+        ],
+        "allLcpMs": [
+          3007,
+          3516,
+          3666
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 721.746525,
+          "fcpMs": 405.16435,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 405.16435,
+          "ttiMs": 723.8325975
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a checked sport coat and jeans, seated on the edge of a co…\" width=\"2000\" height=\"1334\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-office-seated.jpg&amp;w=640&amp;q=75 …\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-office-s…\">",
+          "label": "Damian Mason in a checked sport coat and jeans, seated on the edge of a confere…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 20
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 6
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 28
+            }
+          ]
+        },
+        "totalByteWeight": 575820,
+        "resources": {
+          "total": {
+            "requests": 58,
+            "bytes": 575820
+          },
+          "script": {
+            "requests": 13,
+            "bytes": 178576
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 20,
+            "bytes": 116258
+          },
+          "image": {
+            "requests": 6,
+            "bytes": 64510
+          },
+          "stylesheet": {
+            "requests": 12,
+            "bytes": 44455
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 24581
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 1,
+            "bytes": 22882
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 17 KiB"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 4 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          724,
+          722,
+          725
+        ]
+      }
+    },
+    "/the-business-of-agriculture/": {
+      "mobile": {
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3006.4998,
+          "fcpMs": 1654.8748500000002,
+          "cls": 0,
+          "tbtMs": 4,
+          "siMs": 1654.8748500000002,
+          "ttiMs": 3369.2935225000006
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > div.dm-hero__type > div.dm-prose > p",
+          "snippet": "<p>",
+          "label": "Damian travels all over the globe talking to audiences about trends in the busi…",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 44
+            }
+          ]
+        },
+        "totalByteWeight": 450028,
+        "resources": {
+          "total": {
+            "requests": 34,
+            "bytes": 450028
+          },
+          "script": {
+            "requests": 13,
+            "bytes": 178576
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43279
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 32003
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 25796
+          },
+          "image": {
+            "requests": 2,
+            "bytes": 22934
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.78,
+              "weight": 25,
+              "pointsLost": 5.5,
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.93,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.4 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 600
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          }
+        ],
+        "allPerfScores": [
+          94,
+          94,
+          85
+        ],
+        "allLcpMs": [
+          3006,
+          2934,
+          4049
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 706.0327999999998,
+          "fcpMs": 285.0164,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 285.0164,
+          "ttiMs": 706.0328
+        },
+        "lcpElement": {
+          "selector": "div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#podcast-title",
+          "snippet": "<h1 class=\"dm-display text-6xl\" id=\"podcast-title\">",
+          "label": "The Business of Agriculture Podcast",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 62
+            }
+          ]
+        },
+        "totalByteWeight": 603113,
+        "resources": {
+          "total": {
+            "requests": 59,
+            "bytes": 603113
+          },
+          "script": {
+            "requests": 13,
+            "bytes": 178576
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 12,
+            "bytes": 114781
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42155
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 25796
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 17 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          765,
+          706,
+          651
+        ]
+      }
+    },
+    "/do-business-better-podcast/": {
+      "mobile": {
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3009.4115250000004,
+          "fcpMs": 1656.2743500000001,
+          "cls": 0,
+          "tbtMs": 3.5,
+          "siMs": 1656.2743500000001,
+          "ttiMs": 3385.8660975000003
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > div.page-module__TO-hGa__stack > div.dm-prose > p",
+          "snippet": "<p>",
+          "label": "Damian quit his Fortune 500 job in 1994 and hasn’t had a boss since. Every epis…",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 46
+            }
+          ]
+        },
+        "totalByteWeight": 454270,
+        "resources": {
+          "total": {
+            "requests": 33,
+            "bytes": 454270
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43279
+          },
+          "image": {
+            "requests": 2,
+            "bytes": 34162
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 31739
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 21760
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.78,
+              "weight": 25,
+              "pointsLost": 5.5,
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 22 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.93,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.4 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 600
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          }
+        ],
+        "allPerfScores": [
+          94,
+          94,
+          94
+        ],
+        "allLcpMs": [
+          3008,
+          3009,
+          3009
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 724.4707000000001,
+          "fcpMs": 406.3138,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 406.3138,
+          "ttiMs": 726.3654700000001
+        },
+        "lcpElement": {
+          "selector": "div.dm-container > div.dm-grid12 > div.page-module__TO-hGa__stack > h1#show-title",
+          "snippet": "<h1 class=\"dm-display text-5xl\" id=\"show-title\">",
+          "label": "Do Business Better Podcast",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 68
+            }
+          ]
+        },
+        "totalByteWeight": 520377,
+        "resources": {
+          "total": {
+            "requests": 49,
+            "bytes": 520377
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 41891
+          },
+          "image": {
+            "requests": 3,
+            "bytes": 39031
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 21760
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 19 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          629,
+          724,
+          628
+        ]
+      }
+    },
+    "/blog-news/": {
+      "mobile": {
+        "scores": {
+          "performance": 90,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3593.78265,
+          "fcpMs": 1505.8551,
+          "cls": 0,
+          "tbtMs": 5,
+          "siMs": 1505.8551,
+          "ttiMs": 3699.7585000000004
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason waving on a green-screen stage, between a studio light and a …\" width=\"2000\" height=\"1334\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fgreen-screen-setup.jpg&amp;w=640&amp;q=75 640w…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fgreen-screen-setu…\">",
+          "label": "Damian Mason waving on a green-screen stage, between a studio light and a camer…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 17
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 8
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 22
+            }
+          ]
+        },
+        "totalByteWeight": 484517,
+        "resources": {
+          "total": {
+            "requests": 38,
+            "bytes": 484517
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 7,
+            "bytes": 64526
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43279
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 31531
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 21851
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.61,
+              "weight": 25,
+              "pointsLost": 9.8,
+              "displayValue": "3.6 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.96,
+              "weight": 10,
+              "pointsLost": 0.4,
+              "displayValue": "1.5 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 450 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.9,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 450,
+            "metricSavings": {
+              "FCP": 450,
+              "LCP": 0
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 450 ms"
+          }
+        ],
+        "allPerfScores": [
+          85,
+          90,
+          90
+        ],
+        "allLcpMs": [
+          4274,
+          3594,
+          3665
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 721.9022249999998,
+          "fcpMs": 405.26815,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 405.26815,
+          "ttiMs": 723.9900275
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason waving on a green-screen stage, between a studio light and a …\" width=\"2000\" height=\"1334\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fgreen-screen-setup.jpg&amp;w=640&amp;q=75 640w…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fgreen-screen-setu…\">",
+          "label": "Damian Mason waving on a green-screen stage, between a studio light and a camer…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 19
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 8
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 27
+            }
+          ]
+        },
+        "totalByteWeight": 523175,
+        "resources": {
+          "total": {
+            "requests": 52,
+            "bytes": 523175
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "image": {
+            "requests": 7,
+            "bytes": 43784
+          },
+          "stylesheet": {
+            "requests": 10,
+            "bytes": 39845
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 21851
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 4 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          724,
+          722,
+          725
+        ]
+      }
+    },
+    "/contact-us/": {
+      "mobile": {
+        "scores": {
+          "performance": 89,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3664.5563999999995,
+          "fcpMs": 1655.6673,
+          "cls": 0,
+          "tbtMs": 3.5,
+          "siMs": 1655.6673,
+          "ttiMs": 3749.1344099999997
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal jacket and jeans, one hand in a pocket, standin…\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-window-light.jpg&amp;w=640&amp;q=75 6…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-window-l…\">",
+          "label": "Damian Mason in a charcoal jacket and jeans, one hand in a pocket, standing in …",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 21
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 8
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 29
+            }
+          ]
+        },
+        "totalByteWeight": 452204,
+        "resources": {
+          "total": {
+            "requests": 32,
+            "bytes": 452204
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43279
+          },
+          "image": {
+            "requests": 2,
+            "bytes": 36050
+          },
+          "stylesheet": {
+            "requests": 5,
+            "bytes": 29693
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 19852
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.59,
+              "weight": 25,
+              "pointsLost": 10.3,
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 20 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.9,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [
+            {
+              "id": "label-content-name-mismatch",
+              "title": "Elements with visible text labels do not have matching accessible names.",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            }
+          ],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 0
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "savingsMs": 300,
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 300
+            },
+            "savingsBytes": 29481,
+            "rowWastedMs": null,
+            "displayValue": "Est savings of 29 KiB"
+          },
+          {
+            "id": "image-delivery-insight",
+            "title": "Improve image delivery",
+            "savingsMs": 300,
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 300
+            },
+            "savingsBytes": 20990,
+            "rowWastedMs": null,
+            "displayValue": "Est savings of 20 KiB",
+            "unverified": "useResponsiveSize rows are DPR-blind under emulation. Confirm by blocking the file and re-running before resizing anything."
+          }
+        ],
+        "allPerfScores": [
+          85,
+          89,
+          93
+        ],
+        "allLcpMs": [
+          4314,
+          3665,
+          3082
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 722.9642500000001,
+          "fcpMs": 405.37854999999996,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 405.37854999999996,
+          "ttiMs": 724.9642500000002
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal jacket and jeans, one hand in a pocket, standin…\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-window-light.jpg&amp;w=640&amp;q=75 6…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-window-l…\">",
+          "label": "Damian Mason in a charcoal jacket and jeans, one hand in a pocket, standing in …",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 18
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 7
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 31
+            }
+          ]
+        },
+        "totalByteWeight": 522691,
+        "resources": {
+          "total": {
+            "requests": 48,
+            "bytes": 522691
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "image": {
+            "requests": 3,
+            "bytes": 45299
+          },
+          "stylesheet": {
+            "requests": 10,
+            "bytes": 39845
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 19852
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 4 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [
+            {
+              "id": "label-content-name-mismatch",
+              "title": "Elements with visible text labels do not have matching accessible names.",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            }
+          ],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          722,
+          723,
+          628
+        ]
+      }
+    },
+    "/collaboration-opportunities/": {
+      "mobile": {
+        "scores": {
+          "performance": 90,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3516.2862000000005,
+          "fcpMs": 1654.71465,
+          "cls": 0,
+          "tbtMs": 5,
+          "siMs": 1654.71465,
+          "ttiMs": 3614.650552500001
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal woven jacket and a black open-collar shirt, han…\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&amp;w=640&amp;q=7…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal…\">",
+          "label": "Damian Mason in a charcoal woven jacket and a black open-collar shirt, hands be…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 22
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 6
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 42
+            }
+          ]
+        },
+        "totalByteWeight": 455284,
+        "resources": {
+          "total": {
+            "requests": 33,
+            "bytes": 455284
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 6,
+            "bytes": 43279
+          },
+          "image": {
+            "requests": 2,
+            "bytes": 34787
+          },
+          "stylesheet": {
+            "requests": 6,
+            "bytes": 31993
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 21895
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.63,
+              "weight": 25,
+              "pointsLost": 9.3,
+              "displayValue": "3.5 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.91,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.6 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 0
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "savingsMs": 210,
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 200
+            },
+            "savingsBytes": 29917,
+            "rowWastedMs": null,
+            "displayValue": "Est savings of 29 KiB"
+          }
+        ],
+        "allPerfScores": [
+          90,
+          90,
+          90
+        ],
+        "allLcpMs": [
+          3596,
+          3516,
+          3590
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 722.91045,
+          "fcpMs": 405.9403,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 405.9403,
+          "ttiMs": 725.009455
+        },
+        "lcpElement": {
+          "selector": "div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img",
+          "snippet": "<img alt=\"Damian Mason in a charcoal woven jacket and a black open-collar shirt, han…\" width=\"1333\" height=\"2000\" decoding=\"async\" data-nimg=\"1\" class=\"dm-photo__img\" style=\"color:transparent\" sizes=\"(min-width: 48rem) 32rem, 100vw\" srcset=\"/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal-jacket.jpg&amp;w=640&amp;q=7…\" src=\"http://localhost:3100/_next/image/?url=%2Fimg%2Fphotos%2Fportrait-charcoal…\">",
+          "label": "Damian Mason in a charcoal woven jacket and a black open-collar shirt, hands be…",
+          "isText": false,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 3
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "ms": 16
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "ms": 6
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 25
+            }
+          ]
+        },
+        "totalByteWeight": 585951,
+        "resources": {
+          "total": {
+            "requests": 51,
+            "bytes": 585951
+          },
+          "script": {
+            "requests": 12,
+            "bytes": 175890
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "image": {
+            "requests": 5,
+            "bytes": 104216
+          },
+          "other": {
+            "requests": 16,
+            "bytes": 94365
+          },
+          "stylesheet": {
+            "requests": 11,
+            "bytes": 42145
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 21895
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 2,
+            "bytes": 63288
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 46 KiB"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 40 KiB"
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          722,
+          723,
+          724
+        ]
+      }
+    },
+    "/acres-tv/": {
+      "mobile": {
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 3008.06625,
+          "fcpMs": 1655.3775,
+          "cls": 0,
+          "tbtMs": 4,
+          "siMs": 1655.3775,
+          "ttiMs": 3385.055875
+        },
+        "lcpElement": {
+          "selector": "div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#acres-tv-title",
+          "snippet": "<h1 class=\"dm-display text-6xl dm-hero__title\" id=\"acres-tv-title\">",
+          "label": "Damian’s Business of Agriculture streams on Acres TV.",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 4
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 46
+            }
+          ]
+        },
+        "totalByteWeight": 487585,
+        "resources": {
+          "total": {
+            "requests": 39,
+            "bytes": 487585
+          },
+          "script": {
+            "requests": 13,
+            "bytes": 178576
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 8,
+            "bytes": 55081
+          },
+          "image": {
+            "requests": 4,
+            "bytes": 54146
+          },
+          "stylesheet": {
+            "requests": 7,
+            "bytes": 34330
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 18012
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.78,
+              "weight": 25,
+              "pointsLost": 5.5,
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "score": 0.93,
+              "weight": 10,
+              "pointsLost": 0.7,
+              "displayValue": "1.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 5 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 600 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "score": 0.93,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "3.4 s"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "savingsMs": 600,
+            "metricSavings": {
+              "FCP": 600,
+              "LCP": 600
+            },
+            "savingsBytes": null,
+            "rowWastedMs": 754,
+            "displayValue": "Est savings of 600 ms"
+          }
+        ],
+        "allPerfScores": [
+          91,
+          94,
+          94
+        ],
+        "allLcpMs": [
+          3440,
+          3008,
+          3007
+        ]
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcpMs": 682.390025,
+          "fcpMs": 405.59335,
+          "cls": 0,
+          "tbtMs": 0,
+          "siMs": 405.59335,
+          "ttiMs": 684.4832475000001
+        },
+        "lcpElement": {
+          "selector": "div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#acres-tv-title",
+          "snippet": "<h1 class=\"dm-display text-6xl dm-hero__title\" id=\"acres-tv-title\">",
+          "label": "Damian’s Business of Agriculture streams on Acres TV.",
+          "isText": true,
+          "subparts": [
+            {
+              "subpart": "timeToFirstByte",
+              "ms": 2
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "ms": 48
+            }
+          ]
+        },
+        "totalByteWeight": 538508,
+        "resources": {
+          "total": {
+            "requests": 54,
+            "bytes": 538508
+          },
+          "script": {
+            "requests": 13,
+            "bytes": 178576
+          },
+          "font": {
+            "requests": 6,
+            "bytes": 147440
+          },
+          "other": {
+            "requests": 18,
+            "bytes": 106167
+          },
+          "stylesheet": {
+            "requests": 12,
+            "bytes": 44482
+          },
+          "image": {
+            "requests": 4,
+            "bytes": 43831
+          },
+          "document": {
+            "requests": 1,
+            "bytes": 18012
+          },
+          "media": {
+            "requests": 0,
+            "bytes": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "bytes": 0
+          }
+        },
+        "failing": {
+          "performance": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "score": 0.99,
+              "weight": 25,
+              "pointsLost": 0.3,
+              "displayValue": "0.7 s"
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 4 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "score": 0.5,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": null
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 120 ms"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "score": 0,
+              "weight": 0,
+              "pointsLost": 0,
+              "displayValue": "Est savings of 29 KiB"
+            }
+          ],
+          "accessibility": [],
+          "best-practices": [],
+          "seo": []
+        },
+        "opportunities": [],
+        "allPerfScores": [
+          100,
+          100,
+          100
+        ],
+        "allLcpMs": [
+          681,
+          682,
+          702
+        ]
+      }
+    }
+  },
+  "summaryTable": "\n=== MOBILE (targets: Perf>=90 A11y>=95 BP>=95 SEO=100) ===\nroute                             Perf  A11y    BP   SEO   LCP s     CLS  TBT ms     KB  perf runs\n----------------------------------------------------------------------------------------------------\n/                                  92   100   100   100     3.24   0.000       5    535  93/92/92\n/about/                            90   100   100   100     3.59   0.000       5    473  85/90/90\n/books/                            93   100   100   100     3.16   0.000       3    493  94/93/89\n/speaking/                         94   100   100   100     3.01   0.000       5    464  94/94/94\n/keynote/                          94   100   100   100     3.01   0.000       5    479  94/94/94\n/reviews/                          90   100   100   100     3.59   0.000       3    464  85/94/90\n/meeting-coordinators/             90   100   100   100     3.52   0.000       4    499  85/94/90\n/speaker-one-sheet/                93   100   100   100     3.08   0.000       5    491  85/93/93\n/boasg/                            94   100   100   100     3.01   0.000       4    443  94/94/94\n/podcasts/                         90   100   100   100     3.52   0.000       4    471  94/90/89\n/the-business-of-agriculture/      94   100   100   100     3.01   0.000       4    439  94/94/85\n/do-business-better-podcast/       94   100   100   100     3.01   0.000       4    444  94/94/94\n/blog-news/                        90   100   100   100     3.59   0.000       5    473  85/90/90\n/contact-us/                       89*  100   100   100     3.66   0.000       4    442  85/89/93\n/collaboration-opportunities/      90   100   100   100     3.52   0.000       5    445  90/90/90\n/acres-tv/                         94   100   100   100     3.01   0.000       4    476  91/94/94\n(* = below target)\n\n  LCP element (mobile):\n    /                                TEXT  div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#hero-title\n    /about/                          IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /books/                          IMG   section#books > figure.dm-hero__figure--band > div.dm-hero__media > img.dm-photo__img\n    /speaking/                       TEXT  div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#speaking-title\n    /keynote/                        TEXT  div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#keynote-title\n    /reviews/                        IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /meeting-coordinators/           IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /speaker-one-sheet/              IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /boasg/                          TEXT  div.dm-grid12 > div.dm-hero__type > div.dm-prose > p\n    /podcasts/                       IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /the-business-of-agriculture/    TEXT  div.dm-grid12 > div.dm-hero__type > div.dm-prose > p\n    /do-business-better-podcast/     TEXT  div.dm-grid12 > div.page-module__TO-hGa__stack > div.dm-prose > p\n    /blog-news/                      IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /contact-us/                     IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /collaboration-opportunities/    IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /acres-tv/                       TEXT  div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#acres-tv-title\n\n  Opportunities >= 0.2s or >= 50KB (mobile):\n    /                                render-blocking-insight 600ms/0KB\n    /about/                          render-blocking-insight 450ms/0KB  |  unused-javascript 300ms/29KB\n    /books/                          none\n    /speaking/                       render-blocking-insight 600ms/0KB\n    /keynote/                        render-blocking-insight 600ms/0KB\n    /reviews/                        render-blocking-insight 600ms/0KB\n    /meeting-coordinators/           render-blocking-insight 450ms/0KB\n    /speaker-one-sheet/              render-blocking-insight 600ms/0KB\n    /boasg/                          render-blocking-insight 600ms/0KB\n    /podcasts/                       render-blocking-insight 600ms/0KB  |  unused-javascript 210ms/29KB\n    /the-business-of-agriculture/    render-blocking-insight 600ms/0KB\n    /do-business-better-podcast/     render-blocking-insight 600ms/0KB\n    /blog-news/                      render-blocking-insight 450ms/0KB\n    /contact-us/                     render-blocking-insight 600ms/0KB  |  unused-javascript 300ms/29KB  |  image-delivery-insight 300ms/20KB (unverified)\n    /collaboration-opportunities/    render-blocking-insight 600ms/0KB  |  unused-javascript 210ms/29KB\n    /acres-tv/                       render-blocking-insight 600ms/0KB\n    (unverified) image-delivery-insight: useResponsiveSize rows are DPR-blind under emulation. Confirm by blocking the file and re-running before resizing anything.\n\n=== DESKTOP (targets: Perf>=90 A11y>=95 BP>=95 SEO=100) ===\nroute                             Perf  A11y    BP   SEO   LCP s     CLS  TBT ms     KB  perf runs\n----------------------------------------------------------------------------------------------------\n/                                 100   100   100   100     0.81   0.000       0    628  100/100/100\n/about/                           100   100   100   100     0.72   0.000       0    556  100/100/100\n/books/                           100   100   100   100     0.73   0.000       0    603  100/100/100\n/speaking/                        100   100   100   100     0.68   0.000       0    555  100/100/100\n/keynote/                         100   100   100   100     0.75   0.000       0    578  100/100/100\n/reviews/                         100   100   100   100     0.72   0.000       0    542  100/100/100\n/meeting-coordinators/            100   100   100   100     0.74   0.000       0    595  100/100/100\n/speaker-one-sheet/               100   100   100   100     0.65   0.000       0    737  100/100/100\n/boasg/                           100   100   100   100     0.70   0.000       0    525  100/100/100\n/podcasts/                        100   100   100   100     0.72   0.000       0    562  100/100/100\n/the-business-of-agriculture/     100   100   100   100     0.71   0.000       0    589  100/100/100\n/do-business-better-podcast/      100   100   100   100     0.72   0.000       0    508  100/100/100\n/blog-news/                       100   100   100   100     0.72   0.000       0    511  100/100/100\n/contact-us/                      100   100   100   100     0.72   0.000       0    510  100/100/100\n/collaboration-opportunities/     100   100   100   100     0.72   0.000       0    572  100/100/100\n/acres-tv/                        100   100   100   100     0.68   0.000       0    526  100/100/100\n(* = below target)\n\n  LCP element (desktop):\n    /                                IMG   div.dm-grid12 > figure.dm-figure > div.dm-hero__cutout > img.dm-hero__cutout-img\n    /about/                          IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /books/                          IMG   section#books > figure.dm-hero__figure--band > div.dm-hero__media > img.dm-photo__img\n    /speaking/                       IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /keynote/                        IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /reviews/                        IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /meeting-coordinators/           IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /speaker-one-sheet/              IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /boasg/                          IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /podcasts/                       IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /the-business-of-agriculture/    TEXT  div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#podcast-title\n    /do-business-better-podcast/     TEXT  div.dm-container > div.dm-grid12 > div.page-module__TO-hGa__stack > h1#show-title\n    /blog-news/                      IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /contact-us/                     IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /collaboration-opportunities/    IMG   div.dm-grid12 > figure.dm-figure > div.dm-photo > img.dm-photo__img\n    /acres-tv/                       TEXT  div.dm-container > div.dm-grid12 > div.dm-hero__type > h1#acres-tv-title\n\n  Opportunities >= 0.2s or >= 50KB (desktop):\n    /                                none\n    /about/                          none\n    /books/                          none\n    /speaking/                       none\n    /keynote/                        none\n    /reviews/                        none\n    /meeting-coordinators/           none\n    /speaker-one-sheet/              none\n    /boasg/                          none\n    /podcasts/                       none\n    /the-business-of-agriculture/    none\n    /do-business-better-podcast/     none\n    /blog-news/                      none\n    /contact-us/                     none\n    /collaboration-opportunities/    none\n    /acres-tv/                       none"
+}

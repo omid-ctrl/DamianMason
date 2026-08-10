@@ -22,16 +22,18 @@ const ROUTE = '/reviews/';
 export const metadata: Metadata = buildMetadata({
   title: 'Speaker Reviews and Testimonials',
   description:
-    'Ten written reviews and four on camera, from Michael Foods, Bayer, Farm Credit West, AgroLiquid and Micronutrients. Meeting planners book him twice.',
+    'Fifteen verified written speaking testimonials, plus four videos carried from Damian’s original reviews page.',
   path: ROUTE,
 });
 
 /**
- * The ten written quotes, in the order they ran on the old page. One of them,
- * "We received a ton of great feedback on both you and the event!", shipped
- * with no attribution of any kind. It is carried here exactly as it shipped:
- * TestimonialGrid reads its empty `name` as "render no byline", so it becomes a
- * <figure> with no <figcaption> rather than a <figcaption> we invented.
+ * The complete set of fifteen verified speaking testimonials: ten from the old
+ * reviews page, three from keynote, one from meeting coordinators, and one from
+ * the old site-wide footer. "We received a ton of great feedback on both you
+ * and the event!" shipped with no attribution of any kind. It is carried here
+ * exactly as it shipped: TestimonialGrid reads its empty `name` as "render no
+ * byline", so it becomes a <figure> with no <figcaption> rather than a
+ * <figcaption> we invented.
  */
 const written = testimonialsFor(ROUTE);
 
@@ -101,7 +103,7 @@ export default function ReviewsPage() {
         id="testimonials"
         eyebrow="Speaking, on the record"
         title="Testimonials"
-        deck="Meeting planners book Damian twice. Here’s what they said the first time: ten written notes from Michael Foods, Bayer, Farm Credit West, AgroLiquid, BW Fusion, and five more, plus four on camera. Fourteen out of 2,400+ audiences since 1994."
+        deck="Fifteen written testimonials from Michael Foods, Bayer, Farm Credit West, AgroLiquid, BW Fusion, Helena Chemical, and others, plus four videos carried from the original reviews page."
         image={{
           src: '/img/photos/portrait-headshot.jpg',
           /* Single call site, so the string lives here rather than in
@@ -128,7 +130,7 @@ export default function ReviewsPage() {
                 What they said, in writing
               </Heading>
             </div>
-            <Eyebrow>10 of 2,400+</Eyebrow>
+            <Eyebrow>15 written</Eyebrow>
           </div>
 
           {/* The largest block on this route was ten quotes and nothing else.
@@ -168,7 +170,7 @@ export default function ReviewsPage() {
             </div>
             <figcaption className="dm-figure__caption">
               Shot from the back of the room, which is where a meeting planner sits.
-              Ten of the notes below were written by people who were in one like it.
+              The fifteen notes below document Damian&rsquo;s live speaking work.
             </figcaption>
           </figure>
 
@@ -182,24 +184,14 @@ export default function ReviewsPage() {
             <div className={`${styles.plateBody} col-span-6 md:col-span-12 lg:col-span-5`}>
               <div className={styles.plateHead}>
                 <Heading level={2} size="2xl" id="repeat-business-title">
-                  The second booking is the real review
+                  Repeat business is the hallmark
                 </Heading>
               </div>
               <Prose>
-                {/* The career total came out of the middle of this paragraph.
-                    "Since 1994 Damian has worked 2,400+ audiences in all 50
-                    states and 7 foreign countries" is a paraphrase of the
-                    source bio sentence at `_source/pages/keynote.md:183`, which
-                    /about/ carries verbatim and owns, so the same nine words
-                    ran on two routes. This page had also already spent the
-                    figure 40 words earlier, in the hero deck's "Fourteen out of
-                    2,400+ audiences since 1994", and it spends it twice more in
-                    the two ratio eyebrows. A career total is not what proves
-                    repeat business anyway: the callback is. */}
                 <p>
-                  A keynote gets graded twice: once in the room, and once when the meeting
-                  planner calls back next year. Nobody books a speaker a second time to be
-                  polite. That&rsquo;s the review that counts.
+                  Repeat business is the hallmark of a professional like Damian. These
+                  notes record what meeting planners, clients, and industry organizations
+                  said after seeing him work.
                 </p>
               </Prose>
             </div>
@@ -218,7 +210,7 @@ export default function ReviewsPage() {
               </div>
               <figcaption className="dm-figure__caption">
                 Book signing at the StoneX Ag and Dairy Market Outlook. The book is{' '}
-                <Link href="/about/#books">
+                <Link href="/books/#food-fear">
                   Food Fear: How Fear is Ruining Your Dinner and Why You Should Celebrate
                   Eating
                 </Link>
@@ -234,7 +226,7 @@ export default function ReviewsPage() {
           <div className={styles.head}>
             <div className={styles.headText}>
               <Heading level={2} size="2xl" id="on-camera-title">
-                And what four of them said on camera
+                Four videos from the original reviews page
               </Heading>
             </div>
             <Eyebrow>Four videos. Press to play.</Eyebrow>
@@ -267,7 +259,7 @@ export default function ReviewsPage() {
 
            This band used to recite four booking facts: check the date, 60 to 90
            minutes, airfare and travel fee, NET fees. None of them is what a
-           visitor who has just read fourteen testimonials is thinking about,
+           visitor who has just read fifteen written testimonials is thinking about,
            and all four are stated on /meeting-coordinators/ and in the verbatim
            FAQ. The close runs on the page's own evidence instead. */
         heading="Send the office your date."
@@ -282,15 +274,13 @@ export default function ReviewsPage() {
             },
           ] as const
         }
-        /* The arithmetic this page already states in its hero deck, set as the
-           proof it is. 10 written notes (No. 01) plus 4 on camera (No. 03).
-           2,400+ is deliberately not repeated here: this route already spends
-           it in the deck and in two section eyebrows. */
+        /* Keep the verified testimonial count distinct from the four videos:
+           the fourth video is a program clip, not a client testimonial. */
         panel={{
           eyebrow: 'On the record',
-          value: '14',
-          label: 'reviews in writing and on camera',
-          note: 'Ten in writing, four on camera.',
+          value: '15',
+          label: 'verified written speaking testimonials',
+          note: 'Plus four videos from the original reviews page.',
         }}
       />
     </>

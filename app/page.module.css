@@ -13,10 +13,10 @@
 /* --- section scaffolding --------------------------------------------------- */
 
 /* .dm-grid12 supplies the column gap. A section that stacks a head row, a
-   content row and a figure row into one grid needs a larger row gap than
-   column gap, or the rows read as one block. */
+   content row and a figure row still needs an explicit editorial beat between
+   rows, but not the full section-sized interval used before. */
 .sectionGrid {
-  row-gap: var(--space-9);
+  row-gap: var(--space-8);
 }
 
 /* Eyebrow and Heading both ship with zero margin, on purpose: the flow gap
@@ -170,4 +170,241 @@
    band rather than as a card that happens to contain a picture. */
 .rolesFigure {
   margin-block-start: var(--space-7);
+}
+
+/* --- current work desk ---------------------------------------------------- */
+
+.mediaStack,
+.workColumn,
+.pressColumn,
+.newsletterCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.workLedger {
+  border-block-start: var(--border-thin) solid var(--rule-strong);
+  inline-size: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.workLedger li {
+  border-block-end: var(--border-hairline) solid var(--rule-structural);
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: auto minmax(0, 1fr);
+  padding-block: var(--space-5);
+}
+
+.workLedger p {
+  color: var(--ink-secondary);
+  line-height: var(--lh-body);
+  margin-block-start: var(--space-2);
+  max-inline-size: var(--measure);
+}
+
+.workIndex {
+  color: var(--ink-muted);
+  font-family: var(--family-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-widest);
+  padding-block-start: var(--space-1);
+}
+
+.pressColumn :global(.dm-press) {
+  inline-size: 100%;
+}
+
+.newsletterGrid {
+  align-items: start;
+  row-gap: var(--space-8);
+}
+
+/* --- proof arrives early -------------------------------------------------- */
+
+.earlyQuote,
+.earlyProof,
+.bookCopy,
+.workFeatureBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.earlyQuote {
+  border-block-start: var(--border-thin) solid var(--rule-strong);
+  padding-block-start: var(--space-5);
+}
+
+.earlyProof {
+  inline-size: 100%;
+}
+
+.stageStory {
+  display: grid;
+  gap: var(--gutter-column);
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stageStory :global(.dm-photo) {
+  aspect-ratio: var(--ratio-landscape);
+}
+
+@media (min-width: 48rem) {
+  .stageStory {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Keep the flagship mobile masthead compact enough that Damian, rather than
+   only a column of type and controls, enters the first scroll. The shared Hero
+   geometry remains unchanged on every other route. */
+@media (max-width: 29.9375rem) {
+  .homeHero {
+    padding-block-start: var(--space-6);
+  }
+
+  .homeHero :global(.dm-hero__type) {
+    gap: var(--space-3);
+  }
+
+  .homeHero :global(.dm-hero__grid) {
+    gap: var(--space-5);
+  }
+
+  .homeHero :global(.dm-hero__figure--cutout) {
+    gap: var(--space-3);
+  }
+
+  .homeHero :global(.dm-hero__cutout) {
+    max-inline-size: 15rem;
+    margin-inline: auto;
+  }
+}
+
+/* --- the work gets a face ------------------------------------------------- */
+
+.roleMedia,
+.workFeatureMedia {
+  aspect-ratio: var(--ratio-video);
+  inline-size: 100%;
+  overflow: hidden;
+}
+
+.roleMedia img,
+.workFeatureMedia img {
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: cover;
+}
+
+.workFeature {
+  border-block-start: var(--border-thin) solid var(--rule-strong);
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: minmax(0, 1fr);
+  padding-block-start: var(--space-5);
+}
+
+.workFeatureMedia {
+  background: var(--surface-plate);
+}
+
+.workFeatureMediaArtwork img {
+  object-fit: contain;
+}
+
+.boasgFeature {
+  border-block: var(--border-thin) solid var(--rule-strong);
+  display: grid;
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+}
+
+.boasgMedia {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(5rem, 1fr);
+  min-block-size: 15rem;
+  overflow: hidden;
+}
+
+.boasgMedia img {
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: cover;
+}
+
+.boasgMedia img:first-child {
+  background: var(--palette-navy-900);
+  object-fit: contain;
+}
+
+@media (min-width: 48rem) {
+  .workFeature {
+    grid-template-columns: minmax(12rem, 2fr) minmax(0, 3fr);
+    align-items: start;
+  }
+
+  .boasgFeature {
+    grid-template-columns: minmax(14rem, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+}
+
+/* --- books as physical evidence ------------------------------------------ */
+
+.bookFeature {
+  inline-size: 100%;
+}
+
+.bookCopy {
+  justify-content: center;
+}
+
+.jackets {
+  justify-content: center;
+  gap: var(--space-6);
+  border-block-start: var(--border-hairline) solid var(--rule-structural);
+  padding-block-start: var(--space-6);
+}
+
+.jackets li {
+  align-items: start;
+  flex: 1 1 32rem;
+  gap: var(--space-6);
+  grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
+  min-inline-size: min(100%, 28rem);
+  place-items: initial;
+}
+
+.bookJacket {
+  display: grid;
+  place-items: center;
+}
+
+.bookItemBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.bookSubtitle {
+  color: var(--ink-secondary);
+  font-family: var(--family-serif);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+}
+
+@media (max-width: 39.9375rem) {
+  .jackets li {
+    grid-template-columns: 1fr;
+  }
 }

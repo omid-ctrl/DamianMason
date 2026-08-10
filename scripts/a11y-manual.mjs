@@ -28,7 +28,8 @@ const args = Object.fromEntries(
 const BASE = (args.base ?? 'http://localhost:3100').replace(/\/$/, '');
 
 const ROUTES = [
-  '/', '/about/', '/speaking/', '/keynote/', '/reviews/', '/meeting-coordinators/',
+  '/', '/about/', '/books/', '/speaking/', '/keynote/', '/reviews/', '/meeting-coordinators/',
+  '/speaker-one-sheet/',
   '/collaboration-opportunities/', '/boasg/', '/podcasts/', '/the-business-of-agriculture/',
   '/do-business-better-podcast/', '/xtreme-ag/', '/blog-news/', '/acres-tv/', '/blog/',
   '/blog/eggflation-gives-producers-record-profits/',
@@ -320,7 +321,7 @@ const browser = await chromium.launch();
 }
 
 // ============================================================================
-// 4. Landmarks, headings, lists, figures  (all 18 routes)
+// 4. Landmarks, headings, lists, figures  (all 21 routes)
 // ============================================================================
 {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
@@ -547,7 +548,8 @@ const browser = await chromium.launch();
         if (alt === null) { out.missing.push(src); continue; }
         if (alt.trim() === '') { out.decorative += 1; continue; }
         const a = alt.trim();
-        if (junk.test(a) || a.length < 5 || /\.(jpe?g|png|webp|svg|gif)$/i.test(a))
+        const shortBrandName = a.length < 5 && /^[A-Z0-9&.]{2,6}$/.test(a);
+        if (junk.test(a) || (a.length < 5 && !shortBrandName) || /\.(jpe?g|png|webp|svg|gif)$/i.test(a))
           out.suspicious.push(`${src} :: "${a}"`);
       }
       return out;
@@ -560,7 +562,104 @@ const browser = await chromium.launch();
 
   record('8 images', 'no <img> is missing its alt attribute', missing.length === 0, missing.slice(0, 5).join(' '));
   record('8 images', 'no alt text is a filename or a placeholder word', suspicious.length === 0, suspicious.slice(0, 5).join(' | '));
-  console.log(`      note: ${total} images across 18 routes, ${decorative} decorative (alt="")`);
+  console.log(`      note: ${total} images across ${ROUTES.length} routes, ${decorative} decorative (alt="")`);
+  await ctx.close();
+}
+
+// ============================================================================
+// 9. Prerecorded media alternatives (SC 1.2.1 and 1.2.2)
+// ============================================================================
+{
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+  const page = await ctx.newPage();
+  const expectedCaptionedVideos = new Map([
+    ['/keynote/', 3],
+    ['/collaboration-opportunities/', 1],
+  ]);
+  const problems = [];
+  const trackUrls = new Set();
+
+  for (const [route, expected] of expectedCaptionedVideos) {
+    await page.goto(BASE + route, { waitUntil: 'networkidle' });
+    const facades = page.locator('button.dm-video__facade');
+    while ((await facades.count()) > 0) await facades.first().click();
+    await page.waitForTimeout(300);
+    const media = await page.evaluate(() =>
+      [...document.querySelectorAll('video')].map((video) => ({
+        src: video.querySelector('source[src]')?.getAttribute('src') ?? video.getAttribute('src'),
+        tracks: [...video.querySelectorAll('track[kind="captions"]')].map((track) => ({
+          src: track.getAttribute('src'),
+          lang: track.getAttribute('srclang'),
+          label: track.getAttribute('label'),
+          isDefault: track.hasAttribute('default'),
+        })),
+      })),
+    );
+
+    if (media.length !== expected) problems.push(`${route}: ${media.length} videos, expected ${expected}`);
+    for (const item of media) {
+      if (item.tracks.length !== 1) {
+        problems.push(`${route}: ${item.src ?? 'unnamed video'} has ${item.tracks.length} caption tracks`);
+        continue;
+      }
+      const track = item.tracks[0];
+      if (!track.src || track.lang !== 'en' || !track.label || !track.isDefault) {
+        problems.push(`${route}: incomplete caption metadata for ${item.src ?? 'unnamed video'}`);
+      }
+      if (track.src) trackUrls.add(new URL(track.src, BASE).href);
+    }
+  }
+
+  for (const trackUrl of trackUrls) {
+    const response = await page.request.get(trackUrl);
+    const body = response.ok() ? await response.text() : '';
+    if (!response.ok() || !body.startsWith('WEBVTT\n')) {
+      problems.push(`${trackUrl}: HTTP ${response.status()} or invalid WEBVTT header`);
+    }
+  }
+
+  await page.goto(`${BASE}/do-business-better-podcast/`, { waitUntil: 'networkidle' });
+  const audioAlternative = await page.evaluate(() => {
+    const player = document.querySelector('audio[controls]');
+    const transcript = [...document.querySelectorAll('a[href]')].find((anchor) =>
+      /\/transcripts\/do-business-better-episode-144\.txt$/.test(
+        new URL(anchor.getAttribute('href'), document.baseURI).pathname,
+      ),
+    );
+    return {
+      hasPlayer: Boolean(player),
+      transcriptUrl: transcript?.href ?? null,
+      describedBy: player?.getAttribute('aria-describedby') ?? null,
+      descriptionExists: Boolean(
+        player?.getAttribute('aria-describedby') &&
+          document.getElementById(player.getAttribute('aria-describedby')),
+      ),
+    };
+  });
+  if (!audioAlternative.hasPlayer) problems.push('/do-business-better-podcast/: missing audio player');
+  if (!audioAlternative.transcriptUrl) problems.push('/do-business-better-podcast/: missing transcript link');
+  if (!audioAlternative.describedBy || !audioAlternative.descriptionExists) {
+    problems.push('/do-business-better-podcast/: audio transcript note is not associated');
+  }
+  if (audioAlternative.transcriptUrl) {
+    const response = await page.request.get(audioAlternative.transcriptUrl);
+    const body = response.ok() ? await response.text() : '';
+    if (
+      !response.ok() ||
+      !body.includes('TRANSCRIPT NOTE') ||
+      !body.includes('[00:24] Damian Mason:') ||
+      !body.includes('[35:15] Announcer:')
+    ) {
+      problems.push(`${audioAlternative.transcriptUrl}: incomplete transcript artifact`);
+    }
+  }
+
+  record(
+    '9 media alternatives',
+    'self-hosted reels have captions and the archived audio has a text transcript',
+    problems.length === 0,
+    problems.join(' | '),
+  );
   await ctx.close();
 }
 

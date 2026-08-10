@@ -10,6 +10,7 @@
  * Dev-server numbers are meaningless for performance. Always point BASE at a prod server.
  *
  * Usage: node scripts/lighthouse.mjs [--base http://localhost:3200] [--out docs/qa/lighthouse.json]
+ *                                     [--routes /,/contact-us/]
  */
 
 import fs from 'node:fs';
@@ -29,23 +30,33 @@ function arg(name, fallback) {
 const BASE = arg('base', 'http://localhost:3200');
 const OUT = path.resolve(ROOT, arg('out', 'docs/qa/lighthouse.json'));
 
-const ROUTES = [
+const DEFAULT_ROUTES = [
   '/',
   '/about/',
+  '/books/',
   '/speaking/',
   '/keynote/',
+  '/reviews/',
+  '/meeting-coordinators/',
+  '/speaker-one-sheet/',
   '/boasg/',
+  '/podcasts/',
   '/the-business-of-agriculture/',
+  '/do-business-better-podcast/',
   '/blog-news/',
   '/contact-us/',
-  // The last two carry the media the first eight do not. /keynote/ is the only
-  // route with three self-hosted reels, and it was the only route ever to miss
-  // the performance gate; /collaboration-opportunities/ carries the same
-  // innovation reel and was invisible to the first audit because it was not on
-  // this list. /acres-tv/ is the heaviest of the remaining image routes.
+  // These last two carry media the core conversion routes do not.
+  // /collaboration-opportunities/ shares the innovation reel and /acres-tv/
+  // is the heaviest of the remaining image routes.
   '/collaboration-opportunities/',
   '/acres-tv/',
 ];
+
+const requestedRoutes = arg('routes', '')
+  .split(',')
+  .map((route) => route.trim())
+  .filter(Boolean);
+const ROUTES = requestedRoutes.length ? requestedRoutes : DEFAULT_ROUTES;
 
 const TARGETS = {
   performance: 90,

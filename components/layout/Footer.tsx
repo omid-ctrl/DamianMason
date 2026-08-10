@@ -102,7 +102,7 @@ export function Footer({ className, ...rest }: FooterProps) {
                     different 40,000s: 40,000 mailing-list subscribers and
                     40,000 monthly podcast listeners. Whether they are the same
                     people is docs/OPEN-ITEMS.md item 5. This block renders on
-                    all 19 routes, so a subscriber figure in it landed on every
+                    all 20 routes, so a subscriber figure in it landed on every
                     page that already states the listener figure, which put both
                     meanings of one number in front of the same reader. The
                     subscriber count now appears on /join-the-conversation/ only,

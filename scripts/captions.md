@@ -1,111 +1,94 @@
-# Captions for the three self-hosted demo reels
+# Caption production record for the three self-hosted demo reels
 
-## The problem, stated plainly
+## Status
 
-`public/video/` holds three demo reels that ship with no caption track:
+All three self-hosted keynote reels now carry default English WebVTT caption
+tracks:
 
-| File | Length |
-|---|---|
-| `dm-food-waste-720p.mp4` | 89.0s |
-| `dm-labor-720p.mp4` | 69.3s |
-| `dm-innovation-720p.mp4` | 94.5s |
+| Video | Length | Caption track |
+|---|---:|---|
+| `public/video/dm-food-waste-720p.mp4` | 89.0s | `public/video/captions/dm-food-waste-720p.vtt` |
+| `public/video/dm-labor-720p.mp4` | 69.3s | `public/video/captions/dm-labor-720p.vtt` |
+| `public/video/dm-innovation-720p.mp4` | 94.5s | `public/video/captions/dm-innovation-720p.vtt` |
 
-That is a **WCAG 2.1 SC 1.2.2 Captions (Prerecorded) failure at Level A**, the strictest conformance level.
-It is the only known WCAG failure on the site.
+This closes the previously documented WCAG 2.1 SC 1.2.2 Level A gap. Axe
+cannot detect missing caption tracks, so the validation below is still
+required even when an automated accessibility run is clean.
 
-Note that `axe` reports zero violations across every route. Automated tools cannot detect a missing caption
-track, so a clean axe run is not evidence of conformance here. The other 13 videos on the site are YouTube
-embeds and carry YouTube's own captions, so this is the whole of the exposure.
+## How the captions were produced
 
-## Why there are no captions yet
+The shipping MP4 files were converted locally to mono 16 kHz PCM with macOS
+AVFoundation and `afconvert`. No footage or audio was uploaded to a third
+party. The audio was transcribed independently with three locally cached
+models:
 
-Producing captions requires a transcript, and a transcript requires either a person listening or a speech
-recognition model. Neither was available during the build:
+- `mlx-community/whisper-large-v3-turbo`
+- `mlx-community/whisper-large-v3-mlx-8bit`
+- `mlx-community/distil-whisper-large-v3`
 
-- No `whisper`, `whisper.cpp` or `ffmpeg` on the build machine.
-- macOS on-device speech recognition via `Speech.framework` was attempted and **aborts with SIGABRT** from a
-  command line binary. `SFSpeechRecognizer.requestAuthorization` needs `NSSpeechRecognitionUsageDescription`
-  in a bundle `Info.plist` and an interactive privacy grant, which a CLI cannot satisfy.
+The three outputs were compared sentence by sentence. Disagreements were
+re-decoded as short clips with both greedy and sampled decoding. Names and
+domain language were retained only where the models agreed or the source frame
+confirmed the wording.
 
-Captions were **not** fabricated from the video's topic, and should not be. Captions that do not match the
-audio are worse than no captions: a deaf viewer has no way to know they are being misled, and they will make
-a decision based on words the speaker never said.
+Every model also produced false speech over the instrumental outro. That is a
+known failure mode for speech recognition. Those hallucinated words were
+removed and the audible outro is captioned as `[music]`; no caption text was
+written from the topic or from page copy.
 
-## Fixing it: three routes, cheapest first
+## Wiring
 
-### 1. A captioning service (recommended, about 15 minutes of work)
+Each MP4 record in `content/videos.ts` owns its caption metadata. `VideoGrid`
+passes that track to `VideoEmbed`, which renders a real
+`<track kind="captions" ... default>` in both the scripted player and the
+no-JavaScript player.
 
-Upload each MP4 to Rev, Descript, 3Play Media, Otter, or similar. Ask for **WebVTT** output. Human-verified
-transcription of four minutes of speech costs very little. Then jump to "Wiring the files in" below.
+This keeps the Innovation track attached on both routes where that same source
+video appears: `/keynote/` and `/collaboration-opportunities/`.
 
-### 2. YouTube as a transcription tool, free
+## Validation contract
 
-If these reels are already on the YouTube channel, YouTube has auto-captioned them. Open the video in YouTube
-Studio, go to Subtitles, correct the auto-caption errors (ag terminology is where it will slip), and download
-as `.vtt`. If they are not on the channel, upload them unlisted, let the auto-captions run, correct, download,
-then delete the unlisted copies.
+Before release:
 
-### 3. Whisper locally, free, best accuracy
+1. Parse every VTT and confirm cue times increase, do not overlap, and end
+   before the corresponding MP4 duration.
+2. Confirm each cue contains no more than two caption lines and each line is
+   at most 42 characters.
+3. Render `/keynote/` and confirm three `kind="captions"` tracks are present in
+   the server HTML, including inside the no-JavaScript players.
+4. Render `/collaboration-opportunities/` and confirm the Innovation reel also
+   carries its track.
+5. Play all three videos in a real browser, leave captions enabled, and check
+   the cue changes against the spoken delivery and the final `[music]` cue.
 
-```bash
-brew install ffmpeg
-pipx install openai-whisper        # or: pip install -U openai-whisper
+The parser and DOM checks prove that the tracks ship and are structurally
+usable. A final human listen remains the release-quality check for names,
+contractions, and the two intentionally colloquial lines in the Labor and
+Innovation reels.
 
-for f in food-waste labor innovation; do
-  whisper "public/video/dm-$f-720p.mp4" \
-    --model small.en \
-    --language en \
-    --output_format vtt \
-    --output_dir public/video/captions
-done
-```
+## Burned-in legacy wordmark
 
-`small.en` is a good accuracy-to-speed tradeoff on four minutes of clear stage audio. Use `medium.en` if the
-room tone is difficult. **Read every generated file before shipping it.** Whisper is strong on general English
-and weak on names and ag jargon: expect it to mangle "agronomist", "Ag", commodity names, and any organization
-Damian names from the stage.
+All three reels carry a burned-in lower-right watermark reading “Damian Mason
+· BUSINESS · AGRICULTURE · FOOD.” That is the wordmark the client asked to omit
+from the rebuild. It is absent from every image and every page on the site, but
+it is baked into this footage and cannot be removed without re-exporting from
+the original edit.
 
-If you have no `ffmpeg`, macOS can extract the audio on its own, and Whisper will accept the `.m4a`:
+## Episode 144 audio transcript
 
-```bash
-avconvert --source public/video/dm-food-waste-720p.mp4 \
-          --output /tmp/food-waste.m4a --preset PresetAppleM4A --replace
-```
+The restored first-party Do Business Better episode also needs a text
+alternative under WCAG 2.1 SC 1.2.1. Its timestamped artifact is:
 
-## Wiring the files in
+`public/transcripts/do-business-better-episode-144.txt`
 
-The component work is already done. `VideoEmbed` takes a first-class `captions` prop and renders a real
-`<track kind="captions" ... default>` on the MP4 branch, so this is a data change and nothing else.
+It was produced locally from the archived MP3. Three speech-recognition passes
+were compared and local diarization supplied the speaker changes. The file is
+explicitly labeled machine-assisted, contains 92 timestamped speaker blocks,
+and marks the one unresolved employer descriptor near 01:44 as `[unclear]`.
+The page links the transcript directly beside the native audio player and
+associates its review note with the player through `aria-describedby`.
 
-1. Put the files in `public/video/captions/` as `dm-food-waste-720p.vtt`, and so on.
-2. In `content/videos.ts`, add a `captions` object to each of the three MP4 entries:
-
-```ts
-captions: {
-  src: '/video/captions/dm-food-waste-720p.vtt',
-  srcLang: 'en',
-  label: 'English captions',
-  isDefault: true,
-},
-```
-
-3. Verify. Play each reel, turn captions on in the player, and confirm the cues track the audio. Then confirm
-   the track element is actually in the DOM:
-
-```bash
-curl -s http://localhost:3100/keynote/ | grep -c 'kind="captions"'   # expect 3
-```
-
-## What ships in the meantime
-
-Each reel carries an accurate text description in `content/videos.ts`, written from frames sampled at four
-points across each video and verified by eye. A description is **not** a caption and does not satisfy SC 1.2.2.
-It does mean a visitor who cannot hear the audio still learns what the reel contains and where it was filmed,
-which is better than a bare title, which is what shipped before.
-
-## One more thing about these files
-
-All three reels carry a burned-in lower-right watermark reading **"Damian Mason · BUSINESS · AGRICULTURE ·
-FOOD"**. That is the wordmark the client asked to omit from the rebuild. It is absent from every image and
-every page on the site, but it is baked into this footage and cannot be removed without re-encoding, which
-would mean re-exporting from the original edit. Logged in `docs/OPEN-ITEMS.md`.
+A final human listen remains necessary before treating this transcript as
+publication-grade verbatim copy. `build-first-party-downloads.mjs --check`
+guards the artifact, the timestamp count, and the unresolved marker count so a
+later rewrite cannot silently remove that caveat.

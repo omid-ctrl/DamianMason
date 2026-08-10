@@ -10,6 +10,7 @@
     "build": "next build",
     "build:qa": "node scripts/build-qa.mjs",
     "build:icons": "node scripts/build-app-icons.mjs",
+    "build:first-party-downloads": "node scripts/build-first-party-downloads.mjs",
     "check:icons": "node scripts/build-app-icons.mjs --check",
     "start": "next start",
     "lint": "eslint"

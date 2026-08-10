@@ -44,11 +44,12 @@
  *       cwebp -q 78 -resize 640 360 -m 6 <frame>.jpg -o dm-<name>.webp
  *     Combined with `preload="none"`, a reel now costs 6KB to 18KB until
  *     someone presses play.
- *   - None of the three is captioned yet. `VideoEmbed` takes a `captions` prop
- *     and the VTT is still owed. See scripts/captions.md for the three ways to
- *     produce one and for why nothing was fabricated in the meantime.
- *   - Until then, each reel's `description` is what a visitor who cannot hear
- *     the audio gets, and it prints as the cutline under the frame. Every one
+ *   - All three carry English WebVTT captions. They were transcribed locally
+ *     from the shipping MP4s, checked across three speech-recognition models,
+ *     and cleaned of the false words those models produced over the outro
+ *     music. See scripts/captions.md for the production and validation record.
+ *   - Each reel's `description` is still what a visitor who cannot see the
+ *     footage gets, and it prints as the cutline under the frame. Every one
  *     of them describes what the reel SHOWS and nothing it says: the venue, the
  *     title card, the slides, and what is printed on them. Each was written
  *     against frames sampled across the whole reel and read by eye, not
@@ -99,6 +100,13 @@ export type Video =
       file: string;
       title: string;
       poster?: string;
+      /** English captions for the self-hosted recording. */
+      captions?: {
+        src: string;
+        srcLang?: string;
+        label?: string;
+        isDefault?: boolean;
+      };
       description?: string;
       /** Defaults to 'wide'. */
       framing?: VideoFraming;
@@ -229,6 +237,12 @@ export const videos: Video[] = [
     kind: 'mp4',
     file: '/video/dm-food-waste-720p.mp4',
     poster: '/img/video-posters/dm-food-waste.webp',
+    captions: {
+      src: '/video/captions/dm-food-waste-720p.vtt',
+      srcLang: 'en',
+      label: 'English captions',
+      isDefault: true,
+    },
     title: 'Food Waste',
     description:
       'Eighty-nine seconds on the California Farm Bureau stage. A title card reads FOOD WASTE, then Damian works a darkened room in front of a slide that says the same thing.',
@@ -239,6 +253,12 @@ export const videos: Video[] = [
     kind: 'mp4',
     file: '/video/dm-labor-720p.mp4',
     poster: '/img/video-posters/dm-labor.webp',
+    captions: {
+      src: '/video/captions/dm-labor-720p.vtt',
+      srcLang: 'en',
+      label: 'English captions',
+      isDefault: true,
+    },
     title: 'Labor',
     description:
       'Sixty-nine seconds on the California Farm Bureau stage. A title card reads THE LABOR MARKET, then a slide headed “What If It Stays This Way?” On it, a restaurant door sign dated 7/11/2021: dining room closed, short staffed, drive thru open.',
@@ -250,6 +270,12 @@ export const videos: Video[] = [
     kind: 'mp4',
     file: '/video/dm-innovation-720p.mp4',
     poster: '/img/video-posters/dm-innovation.webp',
+    captions: {
+      src: '/video/captions/dm-innovation-720p.vtt',
+      srcLang: 'en',
+      label: 'English captions',
+      isDefault: true,
+    },
     title: 'Innovation',
     description:
       'Ninety-four seconds on the California Farm Bureau stage. A title card reads INNOVATION, then two slides. One is headed “Automate Faster?” over a crew hand harvesting a field. The other is “Ag Innovation from Outside Ag,” over the Tesla, Uber, and Lyft marks.',

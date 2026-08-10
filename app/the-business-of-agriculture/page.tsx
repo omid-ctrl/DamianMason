@@ -19,12 +19,18 @@ import { SponsorWall } from '@/components/sections/SponsorWall';
 import { TestimonialGrid } from '@/components/sections/TestimonialGrid';
 import { JsonLd } from '@/components/seo';
 import { brandAssets } from '@/content/brand-assets';
+import { uprooted } from '@/content/current-media';
 import { contact, podcasts, socials } from '@/content/site';
 import { testimonialsFor } from '@/content/testimonials';
 import {
   buildBreadcrumbListSchema,
   buildBusinessOfAgricultureSchema,
+  buildPodcastEpisodeSchema,
 } from '@/lib/schema';
+import {
+  getRecentBusinessOfAgricultureEpisodes,
+  podcastEpisodeExcerpt,
+} from '@/lib/podcast-feed';
 import { buildMetadata } from '@/lib/seo';
 
 import styles from './page.module.css';
@@ -75,14 +81,25 @@ export const metadata: Metadata = buildMetadata({
   },
 });
 
-export default function BusinessOfAgriculturePage() {
+export default async function BusinessOfAgriculturePage() {
   const listenerQuotes = testimonialsFor(ROUTE);
+  const recentEpisodes = await getRecentBusinessOfAgricultureEpisodes(4);
+  const latestEpisode = recentEpisodes[0];
 
   return (
     <>
       <JsonLd
         schema={[
           buildBusinessOfAgricultureSchema(),
+          buildPodcastEpisodeSchema({
+            name: latestEpisode.title,
+            description: latestEpisode.description,
+            url: latestEpisode.link,
+            datePublished: latestEpisode.published,
+            episodeNumber: latestEpisode.episodeNumber,
+            duration: latestEpisode.duration,
+            audioUrl: latestEpisode.enclosureUrl,
+          }),
           buildBreadcrumbListSchema([
             { name: 'Home', path: '/' },
             { name: 'Podcasts', path: '/podcasts/' },
@@ -163,7 +180,7 @@ export default function BusinessOfAgriculturePage() {
                   alt={imageAlt['/img/brand/business-of-agriculture-podcast.jpg']}
                   width={800}
                   height={800}
-                  priority
+                  preload
                   sizes="(min-width: 64rem) 32rem, (min-width: 48rem) 60vw, 100vw"
                 />
               </Section>
@@ -176,70 +193,86 @@ export default function BusinessOfAgriculturePage() {
       </Section>
 
       {/* ==================================================================
-          LATEST EPISODE
-          Hand-pasted on the old site and dated by the page's own JSON-LD
-          dateModified. The date is on the card here so a stale episode is
-          visible as one rather than silently presented as this week's.
+          RECENT EPISODES
+          Hand-pasted on the old site and dated by the page's own JSON-LD.
+          This is now a feed-backed discovery list: publication date, episode
+          number, runtime, editorial summary and canonical link remain visible
+          even before the optional archive player is loaded.
           ================================================================== */}
       <Section id="latest-episode" aria-labelledby="latest-episode-title">
         <Container>
-          <div className={styles.head}>
-            <Eyebrow>From the feed</Eyebrow>
-            <Heading level={2} size="2xl" id="latest-episode-title">
-              Latest episode
-            </Heading>
-          </div>
-
-          <EpisodeCard
-            title="Will the Great American Cotton Plan Save U.S. Cotton?"
-            date="2026-08-03"
-            show="The Business of Agriculture"
-            headingLevel={3}
-            layout="stacked"
-            description={
-              <>
+          <div className="dm-grid12">
+            <div className={`${styles.episodeRail} col-span-6 md:col-span-4`}>
+              <Eyebrow>Live from the feed</Eyebrow>
+              <Heading level={2} size="2xl" id="latest-episode-title">
+                Recent episodes
+              </Heading>
+              <Prose measure="narrow">
                 <p>
-                  $2.6 billion. That’s what U.S. cotton growers stand to lose this year
-                  according to USDA, the fifth straight year of red ink for the industry. The
-                  Great American Cotton Plan, announced in May 2026, aims to change the
-                  economics of American cotton. In short, we’ve lost acres, we’ve lost
-                  infrastructure, and the producers have lost money. Plains Cotton Growers CEO,
-                  Kody Bessent joins cotton farmers Todd Kimbrell and Matt Miles. Along with
-                  Damian, they discuss: cotton’s current financial condition, how they see the
-                  new initiative impacting farmers, consumer apparel issues, and the promise of
-                  renewed cotton demand’s effect on rural communities.
+                  The newest conversations, with their publication dates, episode numbers,
+                  runtimes, and summaries direct from Damian’s Libsyn feed.
                 </p>
-                <p>
-                  A major component of the new cotton promotion ties to the fiber’s
-                  natural-ness. American consumers discard more than 70 pounds of apparel each
-                  year, nearly three fourths of which is made from petroleum based material.
-                  Will all this bode as a positive for one of America’s original cash crops?
-                </p>
-              </>
-            }
-            platformLinks={[{ label: 'Episode details on Libsyn', href: show.showPage }]}
-          />
+              </Prose>
+              <Button
+                href={show.showPage}
+                variant="ghost"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Browse the full archive
+                <span className="sr-only"> (opens in a new tab)</span>
+              </Button>
+            </div>
 
-          {/* The old page shipped "Episode Details" and "All Episodes" as two
-              buttons pointing at the identical URL. One link, one destination. */}
-          <div className={styles.player}>
-            <EmbedFacade
-              src={LIBSYN_PLAYER}
-              title="The Business of Agriculture Podcast player"
-              height={LIBSYN_PLAYER_HEIGHT}
-              eyebrow="The full archive"
-              /* "Load the Libsyn player" wrapped to two centred lines in this
-                 plate's button column at 768, the last mono label on the site
-                 still breaking. The word "Libsyn" is carried by the note
-                 immediately to its left, so dropping it costs no clarity and
-                 lands the label on one line at every width. */
-              action="Load the player"
-            >
-              Every episode, back to the first one.
-            </EmbedFacade>
-            <p className={`dm-figure__caption ${styles.playerCutline}`}>
-              The full archive, streaming straight from the Libsyn feed. Downloads are on.
-            </p>
+            <div className={`col-span-6 md:col-span-8 ${styles.episodeColumn}`}>
+              <ol className={styles.episodeList} aria-label="Recent Business of Agriculture episodes">
+                {recentEpisodes.map((episode, index) => (
+                  <EpisodeCard
+                    key={episode.link}
+                    as="li"
+                    title={episode.title}
+                    href={episode.link}
+                    date={episode.published}
+                    duration={episode.duration}
+                    episodeNumber={episode.episodeNumber}
+                    show="The Business of Agriculture"
+                    headingLevel={3}
+                    layout="stacked"
+                    description={
+                      index === 0
+                        ? episode.description
+                        : podcastEpisodeExcerpt(episode.description)
+                    }
+                    platformLinks={[
+                      { label: 'Episode details', href: episode.link },
+                      ...(episode.enclosureUrl
+                        ? [{ label: 'Direct MP3', href: episode.enclosureUrl }]
+                        : []),
+                    ]}
+                  />
+                ))}
+              </ol>
+
+              {/* The old page shipped "Episode Details" and "All Episodes" as
+                  two buttons pointing at the identical URL. The canonical
+                  episode links live above; the optional player exposes the
+                  complete back catalog without JavaScript being required for
+                  discovery. */}
+              <div className={styles.player}>
+                <EmbedFacade
+                  src={LIBSYN_PLAYER}
+                  title="The Business of Agriculture Podcast player"
+                  height={LIBSYN_PLAYER_HEIGHT}
+                  eyebrow="The full archive"
+                  action="Load the player"
+                >
+                  Every episode, back to the first one.
+                </EmbedFacade>
+                <p className={`dm-figure__caption ${styles.playerCutline}`}>
+                  The full archive, streaming straight from the Libsyn feed. Downloads are on.
+                </p>
+              </div>
+            </div>
           </div>
         </Container>
       </Section>
@@ -309,13 +342,15 @@ export default function BusinessOfAgriculturePage() {
 
       {/* ==================================================================
           SPONSORS
-          Net new. On the old site these companies were a bulleted list of
-          plain text links with no artwork anywhere on the page.
+          The project supplies ten sponsor marks. The old page published four
+          corresponding names as plain text links and showed no artwork.
           ================================================================== */}
       <SponsorWall
         id="sponsors"
         level={2}
-        intro="Ten sponsors. If you sell into Agriculture, these are the companies already spending money to reach that crowd."
+        surface="deep-alt"
+        meta={null}
+        intro="Ten sponsor marks supplied for The Business of Agriculture, spanning crop protection, biologicals, farm data, transition planning, and agricultural investment."
       />
 
       {/* ==================================================================
@@ -338,8 +373,9 @@ export default function BusinessOfAgriculturePage() {
 
           <Prose className={styles.intro}>
             <p>
-              Two more things from XtremeAg. The Granary is filmed with them, and Cutting
-              The Curve is their show with Damian hosting it.
+              The Granary and Cutting The Curve are Damian’s work with XtremeAg. UPROOTED
+              is his newer documentary-style series about the businesses, technology, and
+              people changing farming.
             </p>
           </Prose>
 
@@ -404,6 +440,29 @@ export default function BusinessOfAgriculturePage() {
                 <span className="sr-only"> (opens in a new tab)</span>
               </Button>
             </li>
+
+            <li className={styles.crossItem}>
+              <div className={styles.crossMarkSlot}>
+                <span className={styles.crossIndex}>Documentary series</span>
+              </div>
+              <Heading level={3} size="lg">
+                {uprooted.name}
+              </Heading>
+              <p>
+                Agriculture pulled apart from the roots up, with practical business context
+                for why each change matters.
+              </p>
+              <Button
+                className={styles.crossAction}
+                href={uprooted.playlist}
+                variant="secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Watch UPROOTED
+                <span className="sr-only"> (opens in a new tab)</span>
+              </Button>
+            </li>
           </ul>
 
           <Prose className={styles.crossFooter}>
@@ -449,11 +508,7 @@ export default function BusinessOfAgriculturePage() {
             idPrefix="podcast-subscribe"
             headingLevel={2}
             title="New episodes every Monday."
-            /* "No daily clutter, no pitches" is the closing line of
-               NewsletterForm's own default blurb, which renders on /contact-us/
-               and elsewhere. This form is attached to a show, so it promises
-               what the show's list actually sends. */
-            blurb="You’ll hear when a new episode posts. Nothing else lands in your inbox."
+            blurb="Subscribe to get notified when a new episode posts."
             submitLabel="Subscribe"
             submitVariant="secondary"
           />

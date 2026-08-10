@@ -36,7 +36,7 @@ export const mediaBand = {
    * heading and a button with nothing between them, which is the thinnest
    * section on the site. Written once, it is the same band on both, which is
    * what the source actually had.
-   */
+  */
   mailingListBlurb:
-    'Add yourself to the list and you’ll hear when a new episode posts, plus where Damian is speaking next. One email, not five.',
+    'Add yourself to the list for new podcast-release notices and Damian’s commentary on recent trends in the business of food, fuel, and fiber.',
 } as const;

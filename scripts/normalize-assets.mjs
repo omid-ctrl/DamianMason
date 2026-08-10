@@ -169,7 +169,7 @@ const SPONSORS = [
   { name: 'Nano-Yield', src: 'Nano-Yield- logo.webp', base: 'nano-yield', url: 'https://nano-yield.com', ext: '.png' },
   { name: 'NewFields Ag', src: 'NewFields Ag.jpg', base: 'newfields-ag', url: 'https://newfieldsag.com' },
   { name: 'Redox Bio', src: 'Redox Bio logo.png', base: 'redox-bio', url: 'https://redoxgrows.com' },
-  { name: 'Tidal Grow', src: 'Tidal Grow.jpeg', base: 'tidal-grow', url: 'https://tidalgrowag.com' },
+  { name: 'Tidal Grow Agriscience', src: 'Tidal Grow.jpeg', base: 'tidal-grow', url: 'https://tidalgrowag.com' },
 ];
 
 /** Damian's own marks, from both the supplied folder and the mirror. */

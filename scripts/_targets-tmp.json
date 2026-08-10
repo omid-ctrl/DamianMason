@@ -1,10 +1,12 @@
 [
  {"name":"home","url":"http://localhost:3100/"},
  {"name":"about","url":"http://localhost:3100/about/"},
+ {"name":"books","url":"http://localhost:3100/books/"},
  {"name":"speaking","url":"http://localhost:3100/speaking/"},
  {"name":"keynote","url":"http://localhost:3100/keynote/"},
  {"name":"reviews","url":"http://localhost:3100/reviews/"},
  {"name":"meeting-coordinators","url":"http://localhost:3100/meeting-coordinators/"},
+ {"name":"speaker-one-sheet","url":"http://localhost:3100/speaker-one-sheet/"},
  {"name":"collaboration-opportunities","url":"http://localhost:3100/collaboration-opportunities/"},
  {"name":"boasg","url":"http://localhost:3100/boasg/"},
  {"name":"podcasts","url":"http://localhost:3100/podcasts/"},

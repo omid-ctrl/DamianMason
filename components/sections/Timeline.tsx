@@ -97,13 +97,13 @@ export function Timeline({ id, eyebrow, title, level = 3, intro, className }: Ti
 
       {undatedMilestones.length > 0 ? (
         <div className="dm-spine__undated">
-          <Eyebrow as="p">No year in any source</Eyebrow>
+          <Eyebrow as="p">Dates still to confirm</Eyebrow>
           {/* The list is generated, so this sentence cannot drift from the data
               it describes. The two halves around it are the honesty, in the
               cutline register: two true things, and stop. */}
           <p className="dm-spine__undated-body">
-            The record has no year for any of these: {undated}. They happened. Nobody wrote down
-            when, so this line doesn’t guess.
+            Dates are still to be confirmed for: {undated}. Each belongs in the chronology; none
+            receives a guessed year.
           </p>
         </div>
       ) : null}

@@ -81,14 +81,14 @@ const childRoutes = [
   {
     href: '/reviews/',
     title: 'Testimonials',
-    meta: 'Ten written, four on video',
+    meta: 'Fifteen written, four videos',
     /* The client roll call belongs to /reviews/, whose deck and meta
        description both open on it. A card that sends the reader there does not
        need to be that page. */
     body: (
       <>
-        Ten notes in writing and four on camera, sent by the people who signed the
-        contract. Read them before you decide what the hour is worth.
+        Fifteen verified speaking testimonials in writing, plus four videos carried
+        from the original reviews page. Read them before you decide what the hour is worth.
       </>
     ),
   },
@@ -116,8 +116,9 @@ const childRoutes = [
     body: (
       <>
         Three ways to work together off the stage: podcast guest or sponsor, news and media
-        commentary, brand promotion. Ten brands already sponsor the show, and Cheddar News,
-        NewsmaxTV and Straight Arrow News have all put him on air.
+        commentary, brand promotion. The project supplies ten Business of Agriculture
+        sponsor marks, and Cheddar News, NewsmaxTV and Straight Arrow News have all put
+        him on air.
       </>
     ),
   },
@@ -241,7 +242,7 @@ export default function SpeakingPage() {
         /* The honesty slot. Two true things next to each other, and stop:
            there are seven more countries, and not one file in the source names
            a single one of them. See docs/OPEN-ITEMS.md item 22. */
-        cutline="Seven more countries, since 1994. Nothing in the record names them, so these seven run blank."
+        cutline="Seven countries beyond the United States, since 1994. Ask Damian’s office for the current list."
       />
 
       <Section id="routes" aria-labelledby="routes-title">
@@ -328,7 +329,7 @@ export default function SpeakingPage() {
               </Prose>
 
               <ul className={styles.ationsList} role="list">
-                {ations.map((subject, index) => (
+                {ations.map((subject) => (
                   <li key={subject} className={styles.ationsItem}>
                     <span>{subject}</span>
                   </li>
@@ -379,17 +380,13 @@ export default function SpeakingPage() {
         <Container>
           <div className={styles.head}>
             <Eyebrow>Reviews</Eyebrow>
-            {/* "Meeting planners book Damian twice. Here's what they said the
-                first time." is VOICE.md section 6, Pair 4, written for the
-                /reviews/ intro. /reviews/ still opens on it. Two routes cannot
-                both open on the same worked example. */}
             <Heading level={2} size="2xl" id="reviews-title">
               Three of them, in writing.
             </Heading>
             <Prose>
               <p>
-                Ten written notes and four video testimonials are on the testimonials
-                page. Start with these.
+                All fifteen written speaking testimonials and four source-page videos are
+                on the testimonials page. Start with these three.
               </p>
             </Prose>
           </div>
@@ -397,12 +394,8 @@ export default function SpeakingPage() {
           <TestimonialGrid items={reviews} columns={3} label="Speaking testimonials" />
 
           <div className={`${styles.actions} dm-section-close`}>
-            {/* Not "all": /reviews/ carries the ten written notes and the four
-                videos, and three more testimonials are quoted on /keynote/,
-                /speaking/ and /collaboration-opportunities/. The label says
-                what that page holds instead of implying it holds every one. */}
             <Button href="/reviews/" variant="secondary" size="lg">
-              Read the ten written reviews
+              Read all fifteen written testimonials
             </Button>
           </div>
         </Container>
@@ -449,11 +442,9 @@ export default function SpeakingPage() {
             eyebrow="The roster by kind"
             title="25 clients, six kinds of business."
             /* The finding, stated once, in the place a reader meets the ledger.
-               Ten of the 25 are member organizations, which is to say ten of
-               them run an annual meeting, and an annual meeting is the thing a
-               keynote gets booked for. The wall above cannot say that: it asks a
-               reader to recognise 25 marks and do the sorting themselves. */
-            intro="The wall above answers who. This answers what kind. Ten of the 25 are commodity groups, trade associations or Farm Bureaus, so ten of them run an annual meeting and they’ve got a room to fill. The other fifteen sell into that room: input suppliers, ag lenders, grain and livestock buyers, and two equipment makers."
+               It reports only the source-backed sector split and makes no
+               inference about which clients hold annual meetings. */
+            intro="The wall above answers who. This answers what kind. Ten of the 25 are commodity groups, trade associations, or Farm Bureaus. The other fifteen are input suppliers, ag lenders and insurers, grain, livestock, and produce businesses, and equipment makers."
           />
         </Container>
       </Section>
@@ -479,15 +470,11 @@ export default function SpeakingPage() {
           },
         ]}
         panel={{
-          eyebrow: 'Repeat business',
+          eyebrow: 'Track record',
           value: '2,400',
           plus: true,
           label: 'Audiences since 1994',
-          /* The bureau sentence is the FAQ's own answer and it is verbatim on
-             /, /keynote/ and /meeting-coordinators/, plus /contact-us/ in
-             prose. This panel's eyebrow is "Repeat business", so the note now
-             carries the thing that number is evidence of. */
-          note: 'The number that matters underneath it is how many of those rooms booked him a second time.',
+          note: 'Repeat business is the hallmark of a professional like Damian.',
         }}
       />
     </>

@@ -34,17 +34,16 @@ import { imageAlt } from '@/content/image-alt';
        now describes itself.
      - the "Latest Episode" block repeated episode 144 verbatim immediately
        above the list that already contained it. Rendered once.
-     - a 33 MB self-hosted MP3 of episode 144, played by a native <audio>
-       element. Playback goes to the show's own host instead. Nothing on this
-       page replaces it, so this route no longer plays anything in place: every
-       listen now leaves for SoundCloud. That is a deliberate functional
-       reduction and it is the only one on the route, logged for the client in
-       docs/OPEN-ITEMS.md. A facade-loaded SoundCloud player would restore it.
+     - a 33 MB self-hosted MP3 of episode 144. It is restored below through a
+       native, preload-none audio element, so no third-party player or script is
+       required and the file does not download until a visitor asks for it.
      - the contact email was plain text. It is a mailto in two places here.
    ============================================================================ */
 
 const show = podcasts.doBusinessBetter;
 const youtube = socials.find((social) => social.icon === 'youtube');
+const EPISODE_144_AUDIO = '/audio/do-business-better-episode-144.mp3';
+const EPISODE_144_TRANSCRIPT = '/transcripts/do-business-better-episode-144.txt';
 
 const SHOW_ART = {
   src: brandAssetsExtra.doBusinessBetterPodcast,
@@ -174,7 +173,7 @@ export default function DoBusinessBetterPodcastPage() {
                   alt={SHOW_ART.alt}
                   width={SHOW_ART.width}
                   height={SHOW_ART.height}
-                  priority
+                  preload
                   sizes="(min-width: 64rem) 32rem, 100vw"
                 />
               </div>
@@ -273,16 +272,49 @@ export default function DoBusinessBetterPodcastPage() {
             <div className="col-span-6 md:col-span-8">
           <ul className={styles.episodeList}>
             {EPISODES.map((episode) => (
-              <EpisodeCard
-                key={episode.number}
-                as="li"
-                headingLevel={3}
-                show="Do Business Better"
-                episodeNumber={episode.number}
-                title={episode.title}
-                href={episode.href}
-                description={episode.description}
-              />
+              <li key={episode.number}>
+                <EpisodeCard
+                  headingLevel={3}
+                  show="Do Business Better"
+                  episodeNumber={episode.number}
+                  title={episode.title}
+                  href={episode.href}
+                  description={episode.description}
+                />
+                {episode.number === '144' ? (
+                  <div className={styles.audioArchive} data-audio-archive>
+                    <Eyebrow>First-party audio archive · 35:47</Eyebrow>
+                    <audio
+                      controls
+                      preload="none"
+                      aria-label={`Listen to episode 144: ${episode.title}`}
+                      aria-describedby="episode-144-transcript-note"
+                    >
+                      <source src={EPISODE_144_AUDIO} type="audio/mpeg" />
+                      Your browser cannot play this recording.{' '}
+                      <a href={EPISODE_144_AUDIO} download>
+                        Download the MP3
+                      </a>
+                      .
+                    </audio>
+                    <p>
+                      <a className="dm-action-link" href={EPISODE_144_AUDIO} download>
+                        Download episode 144 as an MP3
+                      </a>
+                    </p>
+                    <p id="episode-144-transcript-note" className={styles.transcriptNote}>
+                      A timestamped, machine-assisted transcript is available as a text
+                      alternative. Three local recognition passes were compared; one unresolved
+                      phrase is marked [unclear], and a final human listen is still recommended.
+                    </p>
+                    <p>
+                      <a className="dm-action-link" href={EPISODE_144_TRANSCRIPT}>
+                        Read the episode 144 transcript
+                      </a>
+                    </p>
+                  </div>
+                ) : null}
+              </li>
             ))}
           </ul>
 
@@ -340,8 +372,8 @@ export default function DoBusinessBetterPodcastPage() {
                 The book the show is named after
               </Heading>
               {/* The jacket copy in content/books.ts says "2,000 audiences
-                  across the world" and it stays verbatim there, on /about/,
-                  where it reads as a quotation. This paragraph is the
+                  across the world" and it stays verbatim on /books/, where it
+                  reads as a quotation. This paragraph is the
                   rebuild's own sentence, so it carries the figure the rest of
                   the site carries rather than a second, lower career total. */}
               <Prose>
@@ -352,8 +384,8 @@ export default function DoBusinessBetterPodcastPage() {
                   success first, because yours isn’t your neighbor’s.
                 </p>
               </Prose>
-              <Button href="/about/#books" variant="secondary">
-                More about the books
+              <Button href="/books/#do-business-better" variant="secondary">
+                Read about the book
               </Button>
             </div>
           </div>
@@ -383,7 +415,7 @@ export default function DoBusinessBetterPodcastPage() {
             idPrefix="dbb-subscribe"
             headingLevel={2}
             title="Subscribe to get notified of new releases."
-            blurb="One email when a new episode is up, plus where Damian is speaking next. Nothing else."
+            blurb="Email address only. You’ll be notified when new releases post."
             submitLabel="Add me to the list"
             submitVariant="secondary"
           />

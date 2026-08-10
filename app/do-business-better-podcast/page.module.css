@@ -87,6 +87,27 @@
   list-style: none;
 }
 
+.episodeList > li {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.audioArchive {
+  border-inline-start: var(--border-thick) solid var(--rule-accent);
+  display: grid;
+  gap: var(--space-3);
+  padding-inline-start: var(--space-5);
+}
+
+.audioArchive audio {
+  inline-size: min(100%, var(--measure));
+}
+
+.transcriptNote {
+  color: var(--ink-muted);
+  max-inline-size: var(--measure);
+}
+
 /* .listFoot is gone. It set a --space-8 margin on the episode list's closing
    action row, which is one of the five different intervals a single named
    convention had picked up across the routes. The row carries only

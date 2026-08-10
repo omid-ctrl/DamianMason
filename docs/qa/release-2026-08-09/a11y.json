@@ -1,0 +1,4715 @@
+{
+  "generatedAt": "2026-08-10T05:20:17.149Z",
+  "base": "http://localhost:3100",
+  "widths": [
+    390,
+    768,
+    1440
+  ],
+  "tags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa"
+  ],
+  "routeCount": 21,
+  "runCount": 63,
+  "totalViolationNodes": 0,
+  "distinctRules": 0,
+  "byImpact": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0
+  },
+  "byRule": [],
+  "structuralFlags": {
+    "routesWithoutExactlyOneH1": [],
+    "routesWithoutExactlyOneMain": [],
+    "routesWithHeadingSkips": [],
+    "imagesMissingAlt": [],
+    "unlabelledControls": [],
+    "horizontalOverflow": [],
+    "duplicateOrMissingNavLabels": [],
+    "errors": []
+  },
+  "results": [
+    {
+      "name": "home",
+      "route": "/",
+      "url": "http://localhost:3100/",
+      "width": 390,
+      "violations": [],
+      "passCount": 32,
+      "incompleteCount": 2,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 3,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              "#home-newsletter-subscribe"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        },
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "help": "IDs used in ARIA and labels must be unique",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".page-module__E0kJGG__newsletterCopy > .text-2xl"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Straight-Forward Agriculture Dialogue"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 7,
+        "totalImages": 61,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "about",
+      "route": "/about/",
+      "url": "http://localhost:3100/about/",
+      "width": 390,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Ag economist, comedian, farm owner."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "books",
+      "route": "/books/",
+      "url": "http://localhost:3100/books/",
+      "width": 390,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 6,
+          "targets": [
+            [
+              "a[href$=\"#titles\"]"
+            ],
+            [
+              ".page-module__ZRfMjq__resourceLink.dm-link-bare[href$=\"podcasts/\"] > .page-module__ZRfMjq__resourceArrow[aria-hidden=\"true\"]"
+            ],
+            [
+              ".page-module__ZRfMjq__resourceLink.dm-link-bare[href$=\"blog-news/\"] > .page-module__ZRfMjq__resourceArrow[aria-hidden=\"true\"]"
+            ],
+            [
+              ".page-module__ZRfMjq__resourceLink.dm-link-bare[href$=\"speaking/\"] > .page-module__ZRfMjq__resourceArrow[aria-hidden=\"true\"]"
+            ],
+            [
+              ".page-module__ZRfMjq__resourceLink.dm-link-bare[href$=\"join-the-conversation/\"] > .page-module__ZRfMjq__resourceArrow[aria-hidden=\"true\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Books by Damian Mason."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 8,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "speaking",
+      "route": "/speaking/",
+      "url": "http://localhost:3100/speaking/",
+      "width": 390,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Hire a Speaker that Works for YOU."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 30,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "keynote",
+      "route": "/keynote/",
+      "url": "http://localhost:3100/keynote/",
+      "width": 390,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "A Leading Agriculture Presenter Who Talks Candidly About Current Events."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 9,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "reviews",
+      "route": "/reviews/",
+      "url": "http://localhost:3100/reviews/",
+      "width": 390,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Testimonials"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 5,
+        "totalImages": 34,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "meeting-coordinators",
+      "route": "/meeting-coordinators/",
+      "url": "http://localhost:3100/meeting-coordinators/",
+      "width": 390,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 3,
+          "targets": [
+            [
+              ".dm-hero__type.lg\\:col-span-7.md\\:col-span-12 > .dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".md\\:col-span-9 > .dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Meeting Coordinators"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 6,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "speaker-one-sheet",
+      "route": "/speaker-one-sheet/",
+      "url": "http://localhost:3100/speaker-one-sheet/",
+      "width": 390,
+      "violations": [],
+      "passCount": 29,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Damian Mason, on one page."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 30,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 2,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "collaboration-opportunities",
+      "route": "/collaboration-opportunities/",
+      "url": "http://localhost:3100/collaboration-opportunities/",
+      "width": 390,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 4,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".page-module__N2fuNW__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"join-the-conversation/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "If it’s Agriculture, it needs Damian."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "boasg",
+      "route": "/boasg/",
+      "url": "http://localhost:3100/boasg/",
+      "width": 390,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Ag Success Group"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "podcasts",
+      "route": "/podcasts/",
+      "url": "http://localhost:3100/podcasts/",
+      "width": 390,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href=\"/collaboration-opportunities/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Four formats. One host."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 2,
+        "totalImages": 17,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "the-business-of-agriculture",
+      "route": "/the-business-of-agriculture/",
+      "url": "http://localhost:3100/the-business-of-agriculture/",
+      "width": 390,
+      "violations": [],
+      "passCount": 31,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href=\"/collaboration-opportunities/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Agriculture Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 16,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "do-business-better-podcast",
+      "route": "/do-business-better-podcast/",
+      "url": "http://localhost:3100/do-business-better-podcast/",
+      "width": 390,
+      "violations": [],
+      "passCount": 29,
+      "incompleteCount": 2,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "help": "Links must be distinguishable without relying on color",
+          "nodeCount": 1,
+          "targets": [
+            [
+              "audio > a[download=\"\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Do Business Better Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "xtreme-ag",
+      "route": "/xtreme-ag/",
+      "url": "http://localhost:3100/xtreme-ag/",
+      "width": 390,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "What’s XtremeAg, You Ask?"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 8,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog-news",
+      "route": "/blog-news/",
+      "url": "http://localhost:3100/blog-news/",
+      "width": 390,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "News & Media"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 11,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "acres-tv",
+      "route": "/acres-tv/",
+      "url": "http://localhost:3100/acres-tv/",
+      "width": 390,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[rel=\"noopener noreferrer\"]"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Damian’s Business of Agriculture streams on Acres TV."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog",
+      "route": "/blog/",
+      "url": "http://localhost:3100/blog/",
+      "width": 390,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Blog"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog-eggflation",
+      "route": "/blog/eggflation-gives-producers-record-profits/",
+      "url": "http://localhost:3100/blog/eggflation-gives-producers-record-profits/",
+      "width": 390,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "‘Eggflation’ Gives Producers Record Profits While Internet Mocks Outrageous Pric"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog-climate-crisis",
+      "route": "/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+      "url": "http://localhost:3100/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+      "width": 390,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "How the Climate Crisis is Causing Food Shortages Globally"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 2,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "contact-us",
+      "route": "/contact-us/",
+      "url": "http://localhost:3100/contact-us/",
+      "width": 390,
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 3,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-btn--primary[type=\"submit\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Get in Touch"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "join-the-conversation",
+      "route": "/join-the-conversation/",
+      "url": "http://localhost:3100/join-the-conversation/",
+      "width": 390,
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              "#join-signup-subscribe"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Join the Conversation"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "home",
+      "route": "/",
+      "url": "http://localhost:3100/",
+      "width": 768,
+      "violations": [],
+      "passCount": 32,
+      "incompleteCount": 2,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 3,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              "#home-newsletter-subscribe"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        },
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "help": "IDs used in ARIA and labels must be unique",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".page-module__E0kJGG__newsletterCopy > .text-2xl"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Straight-Forward Agriculture Dialogue"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 7,
+        "totalImages": 61,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "about",
+      "route": "/about/",
+      "url": "http://localhost:3100/about/",
+      "width": 768,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Ag economist, comedian, farm owner."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "books",
+      "route": "/books/",
+      "url": "http://localhost:3100/books/",
+      "width": 768,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 11,
+          "targets": [
+            [
+              ".dm-hero__type > .dm-eyebrow"
+            ],
+            [
+              "#books-title"
+            ],
+            [
+              ".dm-prose--lead > p"
+            ],
+            [
+              "a[href$=\"#titles\"]"
+            ],
+            [
+              "a[href$=\"#resources\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Books by Damian Mason."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 8,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "speaking",
+      "route": "/speaking/",
+      "url": "http://localhost:3100/speaking/",
+      "width": 768,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Hire a Speaker that Works for YOU."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 30,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "keynote",
+      "route": "/keynote/",
+      "url": "http://localhost:3100/keynote/",
+      "width": 768,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "A Leading Agriculture Presenter Who Talks Candidly About Current Events."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 9,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "reviews",
+      "route": "/reviews/",
+      "url": "http://localhost:3100/reviews/",
+      "width": 768,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Testimonials"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 5,
+        "totalImages": 34,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "meeting-coordinators",
+      "route": "/meeting-coordinators/",
+      "url": "http://localhost:3100/meeting-coordinators/",
+      "width": 768,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 7,
+          "targets": [
+            [
+              ".dm-hero__type.lg\\:col-span-7.md\\:col-span-12 > .dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".md\\:col-span-9 > .dm-eyebrow"
+            ],
+            [
+              "#leading-voice-title"
+            ],
+            [
+              ".md\\:col-span-9 > .dm-prose--lead.dm-prose > p"
+            ],
+            [
+              ".md\\:col-span-9 > .dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Meeting Coordinators"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 6,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "speaker-one-sheet",
+      "route": "/speaker-one-sheet/",
+      "url": "http://localhost:3100/speaker-one-sheet/",
+      "width": 768,
+      "violations": [],
+      "passCount": 29,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Damian Mason, on one page."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 30,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 2,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "collaboration-opportunities",
+      "route": "/collaboration-opportunities/",
+      "url": "http://localhost:3100/collaboration-opportunities/",
+      "width": 768,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 4,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".page-module__N2fuNW__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"join-the-conversation/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "If it’s Agriculture, it needs Damian."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "boasg",
+      "route": "/boasg/",
+      "url": "http://localhost:3100/boasg/",
+      "width": 768,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Ag Success Group"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "podcasts",
+      "route": "/podcasts/",
+      "url": "http://localhost:3100/podcasts/",
+      "width": 768,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href=\"/collaboration-opportunities/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Four formats. One host."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 2,
+        "totalImages": 17,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "the-business-of-agriculture",
+      "route": "/the-business-of-agriculture/",
+      "url": "http://localhost:3100/the-business-of-agriculture/",
+      "width": 768,
+      "violations": [],
+      "passCount": 31,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href=\"/collaboration-opportunities/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Agriculture Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 16,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "do-business-better-podcast",
+      "route": "/do-business-better-podcast/",
+      "url": "http://localhost:3100/do-business-better-podcast/",
+      "width": 768,
+      "violations": [],
+      "passCount": 29,
+      "incompleteCount": 2,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "help": "Links must be distinguishable without relying on color",
+          "nodeCount": 1,
+          "targets": [
+            [
+              "audio > a[download=\"\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Do Business Better Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "xtreme-ag",
+      "route": "/xtreme-ag/",
+      "url": "http://localhost:3100/xtreme-ag/",
+      "width": 768,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "What’s XtremeAg, You Ask?"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 8,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog-news",
+      "route": "/blog-news/",
+      "url": "http://localhost:3100/blog-news/",
+      "width": 768,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "News & Media"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 11,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "acres-tv",
+      "route": "/acres-tv/",
+      "url": "http://localhost:3100/acres-tv/",
+      "width": 768,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[rel=\"noopener noreferrer\"]"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Damian’s Business of Agriculture streams on Acres TV."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog",
+      "route": "/blog/",
+      "url": "http://localhost:3100/blog/",
+      "width": 768,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Blog"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog-eggflation",
+      "route": "/blog/eggflation-gives-producers-record-profits/",
+      "url": "http://localhost:3100/blog/eggflation-gives-producers-record-profits/",
+      "width": 768,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "‘Eggflation’ Gives Producers Record Profits While Internet Mocks Outrageous Pric"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog-climate-crisis",
+      "route": "/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+      "url": "http://localhost:3100/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+      "width": 768,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "How the Climate Crisis is Causing Food Shortages Globally"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 2,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "contact-us",
+      "route": "/contact-us/",
+      "url": "http://localhost:3100/contact-us/",
+      "width": 768,
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 3,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-btn--primary[type=\"submit\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Get in Touch"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "join-the-conversation",
+      "route": "/join-the-conversation/",
+      "url": "http://localhost:3100/join-the-conversation/",
+      "width": 768,
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              "#join-signup-subscribe"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Join the Conversation"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "home",
+      "route": "/",
+      "url": "http://localhost:3100/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 32,
+      "incompleteCount": 2,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 3,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              "#home-newsletter-subscribe"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        },
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "help": "IDs used in ARIA and labels must be unique",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".page-module__E0kJGG__newsletterCopy > .text-2xl"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Straight-Forward Agriculture Dialogue"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 7,
+        "totalImages": 61,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "about",
+      "route": "/about/",
+      "url": "http://localhost:3100/about/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Ag economist, comedian, farm owner."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "books",
+      "route": "/books/",
+      "url": "http://localhost:3100/books/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 11,
+          "targets": [
+            [
+              ".dm-hero__type > .dm-eyebrow"
+            ],
+            [
+              "#books-title"
+            ],
+            [
+              ".dm-prose--lead > p"
+            ],
+            [
+              "a[href$=\"#titles\"]"
+            ],
+            [
+              "a[href$=\"#resources\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Books by Damian Mason."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 8,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "speaking",
+      "route": "/speaking/",
+      "url": "http://localhost:3100/speaking/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Hire a Speaker that Works for YOU."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 30,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "keynote",
+      "route": "/keynote/",
+      "url": "http://localhost:3100/keynote/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "A Leading Agriculture Presenter Who Talks Candidly About Current Events."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 9,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "reviews",
+      "route": "/reviews/",
+      "url": "http://localhost:3100/reviews/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Testimonials"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 5,
+        "totalImages": 34,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "meeting-coordinators",
+      "route": "/meeting-coordinators/",
+      "url": "http://localhost:3100/meeting-coordinators/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 7,
+          "targets": [
+            [
+              ".dm-hero__type.lg\\:col-span-7.md\\:col-span-12 > .dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".md\\:col-span-9 > .dm-eyebrow"
+            ],
+            [
+              "#leading-voice-title"
+            ],
+            [
+              ".md\\:col-span-9 > .dm-prose--lead.dm-prose > p"
+            ],
+            [
+              ".md\\:col-span-9 > .dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Meeting Coordinators"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 6,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "speaker-one-sheet",
+      "route": "/speaker-one-sheet/",
+      "url": "http://localhost:3100/speaker-one-sheet/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Damian Mason, on one page."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 30,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 2,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "collaboration-opportunities",
+      "route": "/collaboration-opportunities/",
+      "url": "http://localhost:3100/collaboration-opportunities/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 4,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".page-module__N2fuNW__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"join-the-conversation/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "If it’s Agriculture, it needs Damian."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "boasg",
+      "route": "/boasg/",
+      "url": "http://localhost:3100/boasg/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Ag Success Group"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "podcasts",
+      "route": "/podcasts/",
+      "url": "http://localhost:3100/podcasts/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 27,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href=\"/collaboration-opportunities/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Four formats. One host."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 2,
+        "totalImages": 17,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "the-business-of-agriculture",
+      "route": "/the-business-of-agriculture/",
+      "url": "http://localhost:3100/the-business-of-agriculture/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 31,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href=\"/collaboration-opportunities/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "The Business of Agriculture Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 16,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "do-business-better-podcast",
+      "route": "/do-business-better-podcast/",
+      "url": "http://localhost:3100/do-business-better-podcast/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 29,
+      "incompleteCount": 2,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "help": "Links must be distinguishable without relying on color",
+          "nodeCount": 1,
+          "targets": [
+            [
+              "audio > a[download=\"\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Do Business Better Podcast"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "xtreme-ag",
+      "route": "/xtreme-ag/",
+      "url": "http://localhost:3100/xtreme-ag/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "What’s XtremeAg, You Ask?"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 8,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog-news",
+      "route": "/blog-news/",
+      "url": "http://localhost:3100/blog-news/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 28,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "News & Media"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 4,
+        "totalImages": 11,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "acres-tv",
+      "route": "/acres-tv/",
+      "url": "http://localhost:3100/acres-tv/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[rel=\"noopener noreferrer\"]"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Damian’s Business of Agriculture streams on Acres TV."
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog",
+      "route": "/blog/",
+      "url": "http://localhost:3100/blog/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 25,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Blog"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 7,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog-eggflation",
+      "route": "/blog/eggflation-gives-producers-record-profits/",
+      "url": "http://localhost:3100/blog/eggflation-gives-producers-record-profits/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 25,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "‘Eggflation’ Gives Producers Record Profits While Internet Mocks Outrageous Pric"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "blog-climate-crisis",
+      "route": "/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+      "url": "http://localhost:3100/blog/how-the-climate-crisis-is-causing-food-shortages-globally/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 26,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 1,
+          "targets": [
+            [
+              ".dm-btn--primary.dm-btn--lg[href$=\"contact-us/\"]"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "How the Climate Crisis is Causing Food Shortages Globally"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Breadcrumb",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 2,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 2,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "contact-us",
+      "route": "/contact-us/",
+      "url": "http://localhost:3100/contact-us/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 3,
+          "targets": [
+            [
+              ".dm-hero__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ],
+            [
+              ".dm-btn--primary[type=\"submit\"]"
+            ],
+            [
+              ".dm-ctaband__actions > .dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Get in Touch"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 4,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    },
+    {
+      "name": "join-the-conversation",
+      "route": "/join-the-conversation/",
+      "url": "http://localhost:3100/join-the-conversation/",
+      "width": 1440,
+      "violations": [],
+      "passCount": 30,
+      "incompleteCount": 1,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodeCount": 2,
+          "targets": [
+            [
+              "#join-signup-subscribe"
+            ],
+            [
+              ".dm-btn--primary.dm-btn--lg.dm-btn"
+            ]
+          ]
+        }
+      ],
+      "structure": {
+        "mainCount": 1,
+        "h1": [
+          "Join the Conversation"
+        ],
+        "headingOrder": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "navLabels": [
+          "Primary",
+          "Primary, mobile",
+          "Footer"
+        ],
+        "imagesMissingAlt": [],
+        "emptyAltImages": 1,
+        "totalImages": 5,
+        "landmarks": {
+          "banner": 1,
+          "contentinfo": 1,
+          "main": 1
+        },
+        "unlabelledControls": [],
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "skipLinkTarget": {
+          "href": "#main",
+          "exists": true
+        }
+      },
+      "headingSkips": []
+    }
+  ]
+}
